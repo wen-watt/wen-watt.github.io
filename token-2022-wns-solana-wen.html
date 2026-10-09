@@ -13,7 +13,7 @@
 <meta property="og:title" content="Token-2022, WNS and Wen on Solana: SPL in Practice">
 <meta property="og:description" content="Token-2022 and WNS in practice: how the Solana Program Library extensions work, how the Wen token tested them, and what is still missing at the base.">
 <meta property="og:url" content="https://wen-watt.github.io/token-2022-wns-solana-wen.html">
-<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-w-coin-matrix-btc.jpeg">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Token-2022, WNS and Wen on Solana: SPL in Practice", "description": "Token-2022 and WNS in practice: how the Solana Program Library extensions work, how the Wen token tested them, and what is still missing at the base.", "url": "https://wen-watt.github.io/token-2022-wns-solana-wen.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
 <!-- seo:end -->
@@ -44,97 +44,54 @@
   <main class="wrap">
 
     <article>
-    <h1>Token 2022 WNS Wen Solana — SPL Solana Program Library and application</h1>
-
-    <h3>Token 2022 WNS Wen Solana SPL Solana Program Library and application</h3>
-
-    <p>A signal flashes our thoughts. Jupiter Tao produces a flower. Your mind opens and gains strength. You won't quite understand what will happen in the year 25. But then there's light and a blue beam. Oh, what is this energy and lightning and a flash. Here wen has come to us to save the balance. Now all the power is here with us and with you. Whoever believes in wen will find it. Energy — oh, pure energy, and it is distributed only to the worthy.</p>
-
-    <p>W Coin Wen crypto, not Wendy's.</p>
-
-    <figure><img src="wen-media/wen-w-coin-matrix-btc.jpeg" alt="W Coin Wen crypto not Wendy's"><figcaption>W Coin Wen crypto not Wendy's</figcaption></figure>
-
-    <p>How is this different from Token-2022?</p>
-
-    <p>Token-2022 is the technical name and GitHub repository for the new version of the SPL Token Program released by Solana Labs. Token Extensions, in turn, are the new capabilities implemented by this token standard. Think of them as a set of new functions and features now available at the Token Program level.</p>
-
-    <h3>Technical Manifesto: Token-2022 (Token Extensions) and Wen New Standard (WNS)</h3>
-
-    <h3>Token-2022 (Token Extensions): The Institutional Base Layer</h3>
-
-    <p>Definition and Architectural Status. Security & Audits: The core program code has successfully undergone 5 independent security audits by industry-leading firms: Halborn, Zellic, NCC, Trail of Bits, and OtterSec.</p>
-
-    <p>Token-2022 is the technical name and GitHub repository for the new SPL (Solana Program Library) token program developed and released by Solana Labs.</p>
-
-    <p>Token Extensions is the functional and ecosystem-facing name for the next-generation capabilities unlocked by this new program directly at the blockchain protocol level.</p>
-
-    <p>Backward Compatibility: While the protocol maintains backward compatibility with the legacy SPL Token standard, decentralized applications (dApps) must be upgraded to support tokens minted with specific extensions.</p>
-
-    <h3>Core Native Extensions and Their Purposes</h3>
-
-    <p>Token-2022 replaces fragmented third-party smart contracts with a unified, native set of features programmed directly at the asset's mint initialization:</p>
-
-    <p>Confidential Transfers: Masking account balances and transaction amounts using ElGamal encryption. It restricts viewing rights to a single auditor public key to ensure regulatory compliance. Enabled network-wide via the Agave 2.0 validator client. Transfer Fees: A native capability allowing token issuers to configure a percentage or flat fee deducted automatically on every transfer for direct monetization. Transfer Hooks: Intercepting token transfers to invoke a custom Solana program. This forces a programmatic verification check, enabling rule-based transfer execution like KYC/AML verification or white/blacklisting. Permanent Delegation: Granting the token issuer absolute authority to transfer, freeze, or burn tokens from any account. This is critical for Real-World Assets (RWA) and compliant stablecoins (such as Paxos USDP). Required Metadata: Forcing token-level data payload attachments directly within the mint account. This binds accounting, attribution, or asset properties natively to the transaction itself.</p>
-
-    <h3>WNS (Wen New Standard): The Application-Level NFT Layer</h3>
-
-    <h3>1. Architectural Essence</h3>
-
-    <p>WNS (Wen New Standard) is an open-source asset representation specification and tooling framework designed by the Wen Developer Community. It is explicitly built to standardize NFTs (Non-Fungible Tokens) on top of Token-2022 (Token Extensions), solving missing application-layer requirements of the raw standard.</p>
-
-    <h3>2. Core Components of the Wen Program Library (WPL)</h3>
-
-    <p>The WNS specification is encoded and enforced through two crucial on-chain programs:</p>
-
-    <p>wen_new_standard Program — source: <a href="https://github.com/wen-community/wen-program-library">https://github.com/wen-community/wen-program-library</a>. Purpose: Complements Token Extensions by adding native grouping structures (Token Groups) and establishing default configurations for required NFT extensions. It provides a standardized CLI for collection minting and management operations.</p>
-
-    <p>wen_royalty_distribution Program — source: <a href="https://github.com/wen-community/wen-program-library">https://github.com/wen-community/wen-program-library</a>. Purpose: Handles the programmatic allocation and distribution of creator royalties. It strictly enforces royalty enforcement by leveraging Token-2022's Transfer Hook extension. Because this logic executes on-chain during the transfer state itself, marketplaces can no longer bypass creator fees.</p>
-
-    <p>Wen New Standart: <a href="https://github.com/wen-community/wen-program-library/blob/main/programs/wen_new_standard/README.md">README on GitHub</a>. WNS_roadmap_EN — Download or look Roadmap WNS.</p>
-
-    <h3>The Direct Link: Token-2022 and WNS Synergy</h3>
-
-    <p>The relationship between these two technologies is strictly hierarchical (L1 Protocol Program → Application Framework):</p>
-
-    <p>Solana Base Layer (L1 Consensus) → Token-2022 Program / Token Extensions (Infrastructure) — Transfer Hooks, Metadata, Confidential → Natively implements & utilizes features → WNS: Wen New Standard (Application) — wen_new_standard (NFT Creation, Token Groups/Collections), wen_royalty_distribution (Enforced Royalty Transfer Hook)</p>
-
-    <p>The Shift from Legacy Architecture: In the legacy Solana standard, NFTs required complex, separate indexers and metadata states (e.g., Metaplex). WNS moves properties into a native state. It abstracts Token-2022's primitive building blocks into a plug-and-play NFT standard.</p>
-
-    <p>Abstract Primitives to Functional Execution: Token-2022 introduces the abstract concept of a Transfer Hook (allowing custom code to execute during an asset transfer). WNS takes this primitive tool and configures it into wen_royalty_distribution, a specialized contract that calculates and claims creator percentages in real time.</p>
-
-    <p>Optimized Metadata Layouts: By utilizing Token-2022's Required Metadata extension, WNS anchors media links and attributes directly inside the mint account state. This design removes redundant account layouts and keeps storage architecture thin.</p>
-
-    <p>If Token-2022 is an infrastructure toolkit built to satisfy large financial institutions and enterprise stablecoin issuers (via privacy controls, delegation, and hooks), then WNS is the Web3 community's manifesto. WNS proves that those exact same institutional control mechanics (transfer hooks) can be re-engineered to protect digital artists, making royalty avoidance technically impossible at the protocol level.</p>
-
-    <h3>The Direct Technical Link: github.com & Token-2022</h3>
-
-    <p>The Wen Foundation (Wen Community) GitHub organization does not merely consume the Token-2022 standard—its flagship wen-program-library (WPL) acts as a production-grade abstraction layer written in the Anchor framework. It is built specifically to automate, govern, and enforce Token-2022 extensions for Non-Fungible Tokens (NFTs).</p>
-
-    <p>The direct technical architecture relies on three primary connection vectors:</p>
-
-    <p>Manifest Layer Dependencies: The core wen_new_standard smart contracts directly import spl-token-2022 and spl-token-metadata-interface crates. WNS serves as an orchestrator, calculating byte layouts and managing Cross-Program Invocations (CPI) directly into the native Token-2022 program state.</p>
-
-    <p>Native Extension Configurations: Instead of utilizing heavy external metadata accounts (like legacy standards), WNS initializes the mint by embedding the native Metadata Pointer and Metadata extensions directly inside the single token account layout according to Token-2022 protocol rules. Multi-asset asset groupings (Collections) are established utilizing Token-2022's native Token Group and Token Group Member extensions, keeping index structures lean.</p>
-
-    <p>Transfer Hook Standardization: The wen_royalty_distribution program explicitly implements the spl-transfer-hook-interface. By hooking into the native Token-2022 transfer flow, it intercepts execution states to enforce immutable, on-chain royalty split distributions.</p>
-
-    <h3>Production Anchor/Rust Template: Enforced Royalty & Transfer Hook</h3>
-
-    <p>The following Anchor (v0.30.1+) program implements a custom Transfer Hook extension. Unlike vanilla transfer hooks that only validate text states, this production sample captures token transfer events and strictly enforces a royalty payout in native SOL or SPL tokens directly to a designated creator account before allowing the core transfer to settle.</p>
-
-    <p>Cargo.toml configuration:</p>
-
-    <pre><code>[dependencies]
+<h1>Token-2022, WNS and Wen on Solana: the SPL Program Library in Practice</h1>
+<h3>Token-2022, WNS, Wen and Solana: the SPL Solana Program Library and how it is used</h3>
+<p>A signal flashes through our thoughts. Jupiter's Tao brings forth a flower. Your mind opens and grows stronger. You will not fully understand what happens in the year '25. But then comes light and a blue beam. Oh, what is this energy, this lightning, this flash? Wen has come to us to restore the balance. Now all the power is here, with us and with you. Whoever believes in Wen will find it. Energy — oh, pure energy, shared only with the worthy.</p>
+<p>W Coin, Wen crypto — not Wendy's.</p>
+<figure><img alt="W Coin Wen crypto not Wendy's" src="wen-media/wen-w-coin-matrix-btc.jpeg"/><figcaption>W Coin, Wen crypto — not Wendy's</figcaption></figure>
+<p>How does this differ from Token-2022?</p>
+<p>Token-2022 is the technical name, and the GitHub repository, of the new SPL Token Program released by Solana Labs. Token Extensions are the new capabilities this token standard brings. Think of them as a set of new functions and features now available at the Token Program level.</p>
+<h3>Technical Manifesto: Token-2022 (Token Extensions) and the Wen New Standard (WNS)</h3>
+<h3>Token-2022 (Token Extensions): the Institutional Base Layer</h3>
+<p>Definition and architecture. Security and audits: the core program code has passed 5 independent security audits by leading firms: Halborn, Zellic, NCC, Trail of Bits and OtterSec.</p>
+<p>Token-2022 is the technical name, and the GitHub repository, of the new SPL (Solana Program Library) token program built and released by Solana Labs.</p>
+<p>Token Extensions is the functional, ecosystem-facing name for the next-generation features this program unlocks directly at the protocol level.</p>
+<p>Backward compatibility: the protocol stays compatible with the legacy SPL Token standard, but decentralized apps (dApps) must be updated to support tokens minted with specific extensions.</p>
+<h3>Core Native Extensions and What They Do</h3>
+<p>Token-2022 replaces scattered third-party smart contracts with one native set of features, programmed right when the asset's mint is created:</p>
+<p>Confidential Transfers: hide account balances and transfer amounts with ElGamal encryption, with viewing rights limited to a single auditor public key for regulatory compliance; switched on network-wide through the Agave 2.0 validator client. Transfer Fees: a native way for issuers to set a percentage or flat fee taken automatically on every transfer, for direct monetization. Transfer Hooks: intercept transfers to call a custom Solana program, forcing a programmatic check that enables rule-based transfers such as KYC/AML checks or allow and block lists. Permanent Delegation: gives the issuer full authority to move, freeze or burn tokens in any account — key for real-world assets (RWA) and compliant stablecoins (such as Paxos USDP). Required Metadata: forces token-level data to be attached inside the mint account, tying accounting, attribution or asset properties natively to the transaction.</p>
+<h3>WNS (Wen New Standard): the Application-Level NFT Layer</h3>
+<h3>1. Architectural Essence</h3>
+<p>WNS (the Wen New Standard) is an open-source asset specification and tool framework designed by the Wen developer community. It was built specifically to standardize NFTs (non-fungible tokens) on Token-2022 (Token Extensions), filling the application-layer gaps the raw standard leaves open.</p>
+<h3>2. Core Components of the Wen Program Library (WPL)</h3>
+<p>The WNS specification is written and enforced through two key on-chain programs (a full walkthrough is in our <a href="posts/wen-program-library-review.html">Wen Program Library review</a>):</p>
+<p>The wen_new_standard program — source: <a href="https://github.com/wen-community/wen-program-library">https://github.com/wen-community/wen-program-library</a>. Purpose: it complements Token Extensions with native grouping structures (Token Groups) and default settings for the extensions an NFT needs. It also offers a standard CLI for minting and managing collections.</p>
+<p>The wen_royalty_distribution program — source: <a href="https://github.com/wen-community/wen-program-library">https://github.com/wen-community/wen-program-library</a>. Purpose: it handles how creator royalties are calculated and paid out, enforcing them strictly through Token-2022's Transfer Hook extension. Because this logic runs on-chain during the transfer itself, marketplaces can no longer skip creator fees.</p>
+<p>The Wen New Standard: <a href="https://github.com/wen-community/wen-program-library/blob/main/programs/wen_new_standard/README.md">README on GitHub</a>. WNS_roadmap_EN — download or view the WNS roadmap.</p>
+<h3>The Direct Link: How Token-2022 and WNS Work Together</h3>
+<p>The two technologies sit in a strict hierarchy (L1 protocol program → application framework):</p>
+<p>Solana base layer (L1 consensus) → Token-2022 program / Token Extensions (infrastructure) — Transfer Hooks, Metadata, Confidential → used natively by → WNS: the Wen New Standard (application) — wen_new_standard (NFT creation, token groups and collections), wen_royalty_distribution (enforced royalty transfer hook)</p>
+<p>Moving on from the legacy design: in the old Solana standard, NFTs needed complex, separate indexers and metadata states (such as Metaplex). WNS moves those properties into native state. It turns Token-2022's basic building blocks into a plug-and-play NFT standard.</p>
+<p>From abstract primitives to working features: Token-2022 introduces the abstract idea of a Transfer Hook (custom code that runs during an asset transfer). WNS takes that primitive and sets it up as wen_royalty_distribution, a dedicated contract that calculates and collects creator percentages in real time.</p>
+<p>Lean metadata layouts: using Token-2022's Required Metadata extension, WNS stores media links and attributes directly in the mint account state. That removes redundant account layouts and keeps storage thin.</p>
+<p>If Token-2022 is an infrastructure toolkit built to satisfy large financial institutions and enterprise stablecoin issuers (with privacy controls, delegation and hooks), then WNS is the Web3 community's manifesto. It shows that the very same institutional control tools (transfer hooks) can be re-engineered to protect digital artists, making royalty avoidance technically impossible at the protocol level.</p>
+<h3>The Direct Technical Link: GitHub and Token-2022</h3>
+<p>The Wen Foundation (Wen Community) GitHub organization does not just use the Token-2022 standard — its flagship wen-program-library (WPL) is a production-grade abstraction layer written in the Anchor framework, built to automate, manage and enforce Token-2022 extensions for non-fungible tokens (NFTs).</p>
+<p>The technical link rests on three main connections:</p>
+<p>Manifest dependencies: the core wen_new_standard smart contracts import the spl-token-2022 and spl-token-metadata-interface crates directly. WNS acts as a conductor, working out byte layouts and making Cross-Program Invocations (CPI) straight into the native Token-2022 program state.</p>
+<p>Native extension setup: instead of heavy external metadata accounts (as in legacy standards), WNS sets up the mint with the native Metadata Pointer and Metadata extensions inside a single token account layout, following Token-2022 rules. Groups of assets (collections) are built with Token-2022's native Token Group and Token Group Member extensions, keeping indexes lean.</p>
+<p>Standard Transfer Hooks: the wen_royalty_distribution program implements the spl-transfer-hook-interface. By hooking into the native Token-2022 transfer flow, it steps into execution to enforce fixed, on-chain royalty splits.</p>
+<h3>Anchor/Rust template: enforced royalty and Transfer Hook</h3>
+<p>The Anchor (v0.30.1+) program below implements a custom Transfer Hook extension. Unlike basic hooks that only check text states, this sample catches token transfer events and enforces a royalty payout in native SOL or SPL tokens to a chosen creator account before the main transfer settles.</p>
+<p>Cargo.toml setup:</p>
+<pre><code>[dependencies]
     anchor-lang = { version = "0.30.1", features = ["init-if-needed"] }
     anchor-spl = { version = "0.30.1", features = ["token_2022"] }
     spl-transfer-hook-interface = "0.6.3"
     spl-tlv-account-resolution = "0.6.3"</code></pre>
-
-    <p>Use the code with caution. This is an example of the capabilities, not a final offer for use. Use API data according to the protocol github.</p>
-
-    <p>Smart Contract Implementation (src/lib.rs):</p>
-
-    <pre><code>use anchor_lang::prelude::*;
+<p>Use this code carefully. It shows what is possible and is not a finished product to use as is. Work with the API data according to the protocol's GitHub.</p>
+<p>Smart contract implementation (src/lib.rs):</p>
+<pre><code>use anchor_lang::prelude::*;
     use anchor_lang::solana_program::program::invoke;
     use anchor_lang::solana_program::system_instruction;
     use anchor_spl::token_interface::{TokenAccount, Mint};
@@ -148,18 +105,18 @@
 
         /// Initializes the layout describing what additional accounts this hook requires.
         /// This pattern mimics WNS implementations to ensure client indexers resolve metadata addresses.
-        pub fn initialize_extra_account_meta_list(ctx: Context&lt;InitializeExtraAccountMetaList&gt;) -> Result&lt;()&gt; {
+        pub fn initialize_extra_account_meta_list(ctx: Context&lt;InitializeExtraAccountMetaList&gt;) -&gt; Result&lt;()&gt; {
             // Define additional account constraints needed during execution
             // Index 0: Creator Wallet (Receiver of Royalties)
             // Index 1: System Program (Required for native SOL transfers)
             let account_metas = vec![
                 spl_transfer_hook_interface::instruction::ExtraAccountMeta::new_with_pubkey(
-                    &ctx.accounts.creator.key(),
+                    &amp;ctx.accounts.creator.key(),
                     false, // Is not a signer
                     true,  // Is writable (receives SOL)
                 ).map_err(|_| ProgramError::InvalidArgument)?,
                 spl_transfer_hook_interface::instruction::ExtraAccountMeta::new_with_pubkey(
-                    &anchor_lang::solana_program::system_program::ID,
+                    &amp;anchor_lang::solana_program::system_program::ID,
                     false,
                     false,
                 ).map_err(|_| ProgramError::InvalidArgument)?,
@@ -167,8 +124,8 @@
 
             let mut data = ctx.accounts.extra_account_meta_list.data.borrow_mut();
             spl_transfer_hook_interface::state::ExtraAccountMetaList::init::&lt;spl_transfer_hook_interface::instruction::ExecuteInstruction&gt;(
-                &mut data,
-                &account_metas,
+                &amp;mut data,
+                &amp;account_metas,
             )?;
 
             msg!("Royalty Extra Account Meta List Initialized.");
@@ -176,13 +133,13 @@
         }
 
         /// The definitive consensus instruction invoked by Token-2022 via CPI on every single transfer.
-        pub fn execute(ctx: Context&lt;TransferHookExecute&gt;, amount: u64) -> Result&lt;()&gt; {
+        pub fn execute(ctx: Context&lt;TransferHookExecute&gt;, amount: u64) -&gt; Result&lt;()&gt; {
             msg!("Enforced Royalty Hook Triggered. Transferring amount: {}", amount);
 
             // SECURITY VULNERABILITY MITIGATION:
             // Ensure this instruction is strictly called by the official Token-2022 Program, not direct callers.
             let token_program_info = ctx.accounts.token_program.to_account_info();
-            if token_program_info.key != &anchor_spl::token_2022::ID {
+            if token_program_info.key != &amp;anchor_spl::token_2022::ID {
                 return Err(ProgramError::IncorrectProgramId.into());
             }
 
@@ -206,12 +163,12 @@
 
             msg!("Deducting royalty tax from transfer origin...");
             invoke(
-                &system_instruction::transfer(
+                &amp;system_instruction::transfer(
                     source_wallet_info.key,
                     creator_wallet_info.key,
                     royalty_fee_lamports,
                 ),
-                &[
+                &amp;[
                     source_wallet_info,
                     creator_wallet_info,
                     system_program_info,
@@ -266,22 +223,14 @@
         pub system_program: Program&lt;'info, System&gt;,
         pub token_program: Program&lt;'info, anchor_spl::token_2022::Token2022&gt;,
     }</code></pre>
-
-    <p>Use the code with caution. This is an example of the capabilities, not a final offer for use. Use API data according to the protocol github.</p>
-
-    <p>How it works in practice: You deploy this contract to the Solana network. When you create (mint) your new token via the CLI or script, you specify this program's address as a Transfer Hook extension. initialize_extra_account_meta_list is called, registering the wallet rules. Now, when any marketplace, DEX, or user attempts to transfer your token using the standard transfer_checked command, the Token-2022 program will automatically make an internal call (CPI) to your execute function. If your function returns an error (e.g., Err), the entire token transfer transaction is completely rolled back.</p>
-
-    <p>Source: <a href="https://solana.stackexchange.com/questions/7360/transfer-hook-in-token-2022-how-to-actually-transfer">https://solana.stackexchange.com/questions/7360/transfer-hook-in-token-2022-how-to-actually-transfer</a></p>
-
-    <h3>Client TypeScript/JavaScript Implementation</h3>
-
-    <p>When interacting with assets protected by Token-2022 Transfer Hooks, client applications (DApps, Marketplaces) cannot use legacy token transfer instructions. The runtime requires looking up the ExtraAccountMetaList on-chain to append the supplementary validation accounts dynamically before submission.</p>
-
-    <p>The code below utilizes the official stable Solana libraries to dynamically parse and resolve the required royalty hook accounts.</p>
-
-    <p>JavaScript Script (transfer-with-hook.ts):</p>
-
-    <pre><code>import {
+<p>Use this code carefully. It shows what is possible and is not a finished product to use as is. Work with the API data according to the protocol's GitHub.</p>
+<p>How it works in practice: you deploy this contract to the Solana network. When you mint your new token through the CLI or a script, you set this program's address as its Transfer Hook extension. initialize_extra_account_meta_list is called and registers the wallet rules. From then on, whenever a marketplace, DEX or user tries to move your token with the standard transfer_checked command, the Token-2022 program automatically makes an internal call (CPI) to your execute function. If that function returns an error (Err), the whole token transfer is rolled back.</p>
+<p>Source: <a href="https://solana.stackexchange.com/questions/7360/transfer-hook-in-token-2022-how-to-actually-transfer">https://solana.stackexchange.com/questions/7360/transfer-hook-in-token-2022-how-to-actually-transfer</a></p>
+<h3>Client implementation in TypeScript/JavaScript</h3>
+<p>When working with assets protected by Token-2022 Transfer Hooks, client apps (dApps, marketplaces) cannot use the old token transfer instructions. The runtime needs to look up the ExtraAccountMetaList on-chain and add the extra validation accounts dynamically before sending.</p>
+<p>The code below uses the official stable Solana libraries to find and resolve the required royalty-hook accounts on the fly.</p>
+<p>JavaScript script (transfer-with-hook.ts):</p>
+<pre><code>import {
       Connection,
       PublicKey,
       Transaction,
@@ -331,116 +280,61 @@
       // const signature = await sendAndConfirmTransaction(connection, transaction, [senderKeypair]);
       // console.log(`Transaction Settled Successfully. Signature: ${signature}`);
     }</code></pre>
-
-    <p>Use the code with caution. This is an example of the capabilities, not a final offer for use. Use API data according to the protocol github.</p>
-
-    <h3>Reference Documentation</h3>
-
-    <p>For deep technical validation and ongoing framework adjustments regarding production Token-2022 integrations, visit the verified official platform channels: Learn more about implementation patterns directly on Solana Core Solutions: Token Extensions — <a href="https://solana.com/solutions/token-extensions">https://solana.com/solutions/token-extensions</a> View production code wrappers and open-source packages directly within the Wen Foundation Repositories (WPL) — <a href="https://github.com/wen-community/wen-program-library">https://github.com/wen-community/wen-program-library</a> If you need a TypeScript/JavaScript script to build a transaction that takes this hook into account — <a href="https://solana.com/vi/developers/guides/token-extensions/transfer-hook">https://solana.com/vi/developers/guides/token-extensions/transfer-hook</a></p>
-
-    <h3>Comparative Framework: Legacy SPL vs. Token-2022 Compliance</h3>
-
-    <p>Compliance Dimension — Legacy SPL Token Standard — Token-2022 / WNS Extension Framework Real-time KYC Validation — Impossible without external application wrappers. — Native execution via protocol-level Transfer Hooks. Asset Reclamation & Recovery — Not supported; requires total contract freezing. — Natively supported via Permanent Delegate authority. Native Revenue/Tax Modeling — Requires customized and auditable smart contracts. — Embedded in token design using Transfer Fees. Default Security Isolation — Open and transacting to all addresses by default. — Restricted on creation via Default Account State. On-Chain Audit Trails — Optional; dependent on client dApp implementation. — Natively enforced using Memo Transfer logic.</p>
-
-    <h3>WEN ($WEN) Crypto Cat — The First Mass-Scale Field Test</h3>
-
-    <p>WEN ($WEN) is a cat-themed community token created by the core team behind the leading Solana aggregator, Jupiter DEX. Launched in January 2024, WEN was designed as a production-scale stress test for both the Token-2022 standard and Jupiter's LFG Launchpad before conducting the massive JUP token distribution.</p>
-
-    <p>And Solana Token-2022 Architecture & Built-In Compliance. Before Token-2022, enforcing regulatory rules (like geographic restrictions or KYC checks) required developers to build custom smart contract wrappers around standard SPL tokens. This introduced security risks and fragmented user experiences.</p>
-
-    <p>The Solana Token Extensions Spec embeds enterprise-grade compliance tools directly into the protocol layer using modular Type-Length-Value (TLV) data extensions. Source: <a href="https://solana.com/docs/tokens/extensions">https://solana.com/docs/tokens/extensions</a></p>
-
-    <p>Solana Token-2022 and WEN ($WEN): The Definitive Guide to Built-In Compliance and Live Mass Testing</p>
-
-    <p>The Token-2022 standard (officially referred to as Token Extensions) and the WEN ($WEN) meme coin share a fundamental technical link. Rather than being a typical speculative asset, project WEN historically served as the primary mass-testing infrastructure to prove the stability and capabilities of this new token standard directly on the Solana Blockchain.</p>
-
-    <p>wns-github-wen-sol-spl — the information above is an open collection and references to the open sources mentioned in the context and below in the list. Within the framework of this multifaceted collection of information, a strict conclusion can be drawn regarding the status as of September 2026: the information is available and there is a note on the cited history of the creation of the Token 2022 standard – SPL – WNS, the Wen Community Open Instrument Foundations, and the Solana updates, as well as their practical application in the historical notes of August 2026. And these are open sources.</p>
-
-    <h3>WNS and Token-2022: technical architecture</h3>
-
-    <p>Token-2022 is the official name of the new SPL token program released by Solana Labs, also known by its functional name Token Extensions. The program has undergone 5 independent security audits (Halborn, Zellic, NCC Group, Trail of Bits, OtterSec) per Solana's official FAQ; more recent independent audit registries also list a Certora audit.</p>
-
-    <p>WNS is an open NFT-representation standard, built by the Wen Community on top of Token-2022, addressing application-layer gaps the raw protocol leaves open (collection grouping, royalties, metadata). Its architecture consists of two programs: wen_new_standard (NFT-group creation and management via 5 state PDAs — Manager, Group, Member, Approve Transfer Account, Extra Meta Account List) and wen_royalty_distribution (enforced royalty payouts via Transfer Hook). The core mechanism is the Transfer Hook: on every token-transfer attempt, Token-2022 calls out via CPI to an external verification program; if the check (in WNS, an approval "slot" match) fails, the entire transfer transaction is rolled back.</p>
-
-    <h3>Practical application of WNS/Token-2022 (per additional sources)</h3>
-
-    <p>This architecture's real-world use splits into two confirmed tiers.</p>
-
-    <p>Tier 1 — the standard's stress test (2024). The WEN memecoin, launched by the Jupiter team in January 2024, used WNS to fractionalize the founder's NFT poem ("A Love Letter to Wen Bros") into one trillion fungible $WEN tokens, airdropped to over 1 million active wallets simultaneously — independently confirmed by DL News and Gate Learn. This was the first mass-scale production test of these Token-2022/WNS structures under peak load.</p>
-
-    <p>Tier 2 — institutional application (2026). Shinhan Asset Management (roughly $96.6B AUM) signed a four-party non-binding MOU on August 21, 2026 with the Solana Foundation, Etherfuse and Orca to run a proof-of-concept — testing the full issuance-to-distribution cycle for a KRW-denominated short-term bond fund aimed at overseas institutional investors, modeled on BlackRock's BUIDL. The PoC specifically exercises the functions Token-2022's architecture provides — KYC/AML checks, issuance, and on-chain distribution. Confirmed by four independent outlets: The Block, CryptoTimes, BigGo Finance, TechTimes.</p>
-
-    <p>An important caveat missing from the original description: this is not an exclusive choice of Solana. Exactly one week earlier, on August 14, 2026, Shinhan signed a nearly identical MOU with rival blockchain Plume for the same product — parallel infrastructure testing ahead of Korea's Security Token Offering (STO) law taking effect in February 2027. Source: BigGo Finance, TechTimes.</p>
-
-    <p>Separately, on the regulatory-recognition side for SOL as an asset — staking ETF filings (Bitwise Solana Staking ETF, form dated Aug. 13, 2026) are filed and registered with the SEC via EDGAR, an independent confirmation of institutional movement toward the SOL asset more broadly, unrelated to WNS/Token-2022 specifically.</p>
-
-    <p>Roadmap with Sources — all sources (combined, duplicates removed):</p>
-
-    <p>Technical sources (from the WNS-README document): GitHub — WNS README: <a href="https://github.com/wen-community/wen-program-library/blob/main/programs/wen_new_standard/README.md">link</a> GitHub — wen-program-library repository (root): <a href="https://github.com/wen-community/wen-program-library">link</a> Solana.com — Token Extensions (Solutions): <a href="https://solana.com/solutions/token-extensions">link</a> Solana.com — Token Extensions Docs: <a href="https://solana.com/docs/tokens/extensions">link</a> Solana.com — Transfer Hook Guide: <a href="https://solana.com/vi/developers/guides/token-extensions/transfer-hook">link</a> Solana StackExchange — Transfer Hook in Token-2022: <a href="https://solana.stackexchange.com/questions/7360/transfer-hook-in-token-2022-how-to-actually-transfer">link</a></p>
-
-    <p>News sources on the Shinhan case: The Block: <a href="https://www.theblock.co/news/regulation/2026-08-21-south-korea-shinhan-partners-solana-412420">link</a> TechTimes: <a href="https://www.techtimes.com/articles/325238/20260821/shinhan-bets-korean-won-solana-tokenized-fund-targets-dollar-dominated-rwa-market.htm">link</a> CryptoTimes: <a href="https://www.cryptotimes.io/2026/08/21/shinhan-taps-solana-to-test-korean-won-tokenized-fund/">link</a> BigGo Finance: <a href="https://finance.biggo.com/news/4991f187-02e5-49b5-8d85-b6728d1f43f4">link</a></p>
-
-    <p>Regulatory Sources: SEC EDGAR — Bitwise Solana Staking ETF: <a href="https://www.sec.gov/Archives/edgar/data/0002045872/000119312526349138/bsol-20260813.htm">link</a> SEC EDGAR — Grayscale Sui Staking ETF: <a href="https://www.sec.gov/Archives/edgar/data/2034012/000203401226000009/424b3_gsui_12312025.htm">link</a></p>
-
-    <p>WEN/WNS Historical Sources: DL News: <a href="https://www.dlnews.com/articles/defi/jupiter-wen-airdrop-introduces-new-solana-nft-standard/">link</a> Gate Learn: <a href="https://www.gate.com/learn/articles/what-is-wen-all-you-need-to-know-about-wen/5046">link</a> CoinMarketCap AI: <a href="https://coinmarketcap.com/cmc-ai/wen/what-is/">link</a> wen-crypto.com: <a href="index.html">homepage</a></p>
-
-    <p>More about WNS: Token 2022 history – WNS – SPL Solana Program Library and application — from poem to history, from standard to applications. <a href="https://wen-crypto.com/2025/09/23/wen-new-standard-wns-0-0-wen-crypto-inform/" target="_blank" rel="noopener">WNS 0.0 announcement post</a> <a href="https://wen-crypto.com/2025/10/21/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation/" target="_blank" rel="noopener">The usefulness of the WNS standard for cryptocurrency implementation</a></p>
-
-    <p>Connection: from the emergence of the WNS/Token-2022 standard to real-world practice in South Korea</p>
-
-    <p>Token-2022, program released by Solana Labs (native Transfer Hook, protocol-level KYC/AML primitives, 5 independent audits: Halborn, Zellic, NCC, Trail of Bits, OtterSec) → WNS — Wen New Standard, built by the Wen Community (application layer on top of Token-2022: Group/Member PDAs, enforced royalties via wen_royalty_distribution) → $WEN, January 2024 — real-world load stress test (1 trillion tokens, airdrop to 1M+ wallets, first proof that Transfer Hook holds under mass load) → Institutional interest in Token-2022 as compliance infrastructure (PYUSD, USDG, EURC and other regulated stablecoins are already built on Token-2022, per independent market reviews) → South Korea, August 2026 — Shinhan Asset Management (non-binding PoC on Solana using the same Token-2022 compliance primitives: KYC/AML, issuance, on-chain liquidity) — in parallel: an identical PoC with Plume (Aug 14, 2026) → hedged infrastructure choice → Korea's STO law expected to take effect, February 2027</p>
-
-    <h3>WNS: A Standard of Consent for Solana's Digital Assets</h3>
-
-    <p>Some of the most consequential technical standards don't begin with a whitepaper or a funding round — they begin with a poem. That's exactly how the Wen New Standard came into being: one of the leanest, yet most structurally important, standards in Solana's history.</p>
-
-    <h3>The Poem That Started a Protocol</h3>
-
-    <p>In January 2024, the pseudonymous founder of Jupiter Exchange, known to the community as weremeow, grew tired of the community's endless refrain — "wen token?" — and wrote a lighthearted poem titled "A Love Letter to Wen Bros." To preserve it as a digital artifact, he minted a single NFT — not through the heavyweight Metaplex standard that dominated the ecosystem at the time, but through a brand-new construct: the Wen New Standard. That single NFT was later fractionalized into a trillion WEN tokens, each nominally representing a share of ownership in the original poem. The feline branding that grew around the project — the cat mascot, the "cutest cat" persona, weremeow's own handle — is cultural packaging; the underlying substance was the standard itself, which the project used as its proving ground.</p>
-
-    <h3>From a Pile of Bricks to a Shared Protocol</h3>
-
-    <p>Before WNS, Solana already had a powerful but fragmented toolkit: SPL Token-2022 introduced TLV-based extensions — Transfer Hooks, MetadataPointer, TokenMetadata, Group/GroupMember. But every developer assembled these pieces into their own bespoke construction. One team wrote a custom Transfer Hook for royalties, another built its own metadata scheme, a third invented its own way of grouping collections. Marketplaces and wallets simply couldn't keep up — every project effectively required its own integration code.</p>
-
-    <p>WNS doesn't solve this by adding new functionality; it solves it by standardizing what already exists. It takes four core Token-2022 extensions — Metadata & Metadata Pointer, Transfer Hook, Immutable Owner, and Group & Group Pointer — and packages them into one predictable interface. Metadata (name, symbol, uri) lives directly inside the mint account, with no external PDA accounts required, unlike the old architecture. Collection grouping runs through the Group/Member extensions rather than custom account relationships. The upshot: any dApp only needs to integrate WNS once to correctly handle millions of different NFTs, instead of rewriting integration logic project by project.</p>
-
-    <h3>Asset Autonomy as a Quiet Political Statement</h3>
-
-    <p>There's a deeper, almost political dimension to this architecture. Under the old model, NFT royalties depended on a marketplace's goodwill: if a trading platform decided to stop honoring creator royalties — which happened repeatedly in 2022–2023 — the creator had no protocol-level recourse. Through Immutable Owner and Transfer Hook, WNS moves that logic inside the token itself. Royalties, transfer restrictions, and compliance rules become properties of the asset, not conditions imposed by whichever venue happens to be trading it. The token enforces its own rules regardless of whether the trade happens on a major exchange or in a direct wallet-to-wallet swap.</p>
-
-    <h3>Technical Notes: What to Verify Before Shipping</h3>
-
-    <p>Working with the Token-2022 + Transfer Hook stack in practice surfaces three recurring classes of issues:</p>
-
-    <p>Compute Unit (CU) limits. Every hook invocation is an additional Cross-Program Invocation. When a transfer routes through an aggregator like Jupiter, the CU budget can be exhausted unless additional units are explicitly requested via ComputeBudgetProgram. Validation-account substitution. Token-2022 requires a specific PDA validation account for the hook interface. In production, it's essential to verify the passed-in account address against the address the program itself derives — not to rely solely on framework-level automatic checks. Hook bypass via "zero-cost" transfers. The hook only sees the quantity of tokens moved, not the actual sale price in SOL or USDC. If a marketplace transfers the token as a "gift" for 0 SOL while settling payment through a separate contract, royalties collapse to zero. The usual mitigation is tying the hook to a price oracle or enforcing a fixed minimum execution fee on the transfer itself.</p>
-
-    <h3>Where This Matters Economically</h3>
-
-    <p>WNS's logic extends well beyond NFT art. The same Token-2022 + Transfer Hook combination applies to real-world asset (RWA) tokenization, where KYC and geographic restrictions need to be embedded directly into the transfer protocol; to compliance-driven finance, where a security-token issuer needs built-in control over how the instrument circulates; and to simpler cases — NFT collections whose creators want guaranteed royalties without depending on any single platform's goodwill.</p>
-
-    <h3>In Summary</h3>
-
-    <p>WNS isn't new functionality — it's discipline. It turns a scattered set of powerful but mutually incompatible Token-2022 extensions into a shared language that any wallet, marketplace, or DeFi protocol on Solana can understand out of the box. The asset's creator sets the rules; the network itself — not agreements between platforms — enforces them.</p>
-
-    <h3>What is Wen WNS</h3>
-
-    <p>Let's break this down logically—setting aside inflated, fanciful metrics—and determine the actual significance of WEN.</p>
-
-    <p>WEN itself is neither a "pool" nor an RWA instrument. It is a memecoin serving as a proof-of-concept—a demonstration of a realized capability: it showcases a utility model involving royalty logic and Transfer Hooks—free from the burdens of KYC compliance, geo-restrictions, or underlying asset valuation—while statistically demonstrating the feasibility of such a mechanism.</p>
-
-    <p>In other words, WEN is a proof-of-concept; it should not be confused with an actual RWA product. RWA represents a sector of the economic landscape, whereas WEN is essentially a blueprint for building the ship—a technology, a fundamental approach.</p>
-
-    <p>The true progenitor of RWA here isn't WEN, or even WNS per se, but the Token-2022 extensions layer itself—featuring Transfer Hooks, Permanent Delegates, Confidential Transfers, and Non-Transferable capabilities. These are the unifying elements. WNS is simply one configuration of this layer, tailored specifically for NFT semantics (metadata, grouping, and royalties). For RWA, the industry utilizes this same set of building blocks but assembles them for a different segment: not for images or collectibles, but to embed legal compliance (such as KYC gates on transfers, issuer-mandated freezes, or links to asset valuation oracles).</p>
-
-    <p>The bottom-line formula, stated honestly, is this: WNS → demonstrated in practice (via WEN) that business rules can be embedded directly into the token itself rather than the platform—an indirect, conceptual influence on future RWA architectures; Token-2022 extensions represent the direct, literal technical foundation upon which genuine RWA (Real-World Asset) tools are built—not via the WNS configuration itself, but through distinct sets of extensions tailored to specific jurisdictions or assets.</p>
-
-    <p>Stripping away the hype and accolades to focus on actual utility and performance, it is more accurate to define the relationship between WNS and RWA precisely: it is not that "WNS spawned RWA," but rather that "WNS serves as the first showcase demonstrating that the very protocol layer underpinning RWA is functional and commercially viable."</p>
-
-    <p>Sources WNS: <a href="https://discuss.jup.ag/t/wen-new-standard-wns-0-0/133">https://discuss.jup.ag/t/wen-new-standard-wns-0-0/133</a> <a href="https://solana.com/solutions/token-extensions">https://solana.com/solutions/token-extensions</a> <a href="https://solana.com/docs/tokens/extensions">https://solana.com/docs/tokens/extensions</a> <a href="https://solana.com/docs/tokens/extensions/transfer-hook">https://solana.com/docs/tokens/extensions/transfer-hook</a> <a href="https://phantom.app/learn/crypto-101/solana-token-extensions">https://phantom.app/learn/crypto-101/solana-token-extensions</a> <a href="https://decrypt.co/214282/wen-token-over-million-wallets-eligible-solana-meme-coin-airdrop">https://decrypt.co/214282/wen-token-over-million-wallets-eligible-solana-meme-coin-airdrop</a> <a href="https://nftnow.com/news/jupiter-exchange-debuts-wen-on-new-token-launchpad/">https://nftnow.com/news/jupiter-exchange-debuts-wen-on-new-token-launchpad/</a> <a href="https://opensea.io/token/solana/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk">https://opensea.io/token/solana/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</a> <a href="https://chainstack.com/solana-transfer-hooks-anchor-token-2022">https://chainstack.com/solana-transfer-hooks-anchor-token-2022</a> <a href="https://www.quicknode.com/guides/solana-development/spl-tokens/token-2022/transfer-hooks">https://www.quicknode.com/guides/solana-development/spl-tokens/token-2022/transfer-hooks</a> <a href="https://crates.io/crates/spl-token-2022">https://crates.io/crates/spl-token-2022</a></p>
-
-    <p>Disclaimer and Data Transparency Statement: This analytical note is compiled solely based on verified historical data, official government announcements, and technical documentation of blockchain protocols. Regulatory and Government Track: the dates for the testing phases of the wholesale CBDC (Project Hangang) and the integration of tokenized bonds correspond to official releases from the Bank of Korea (BOK) and the Ministry of Economy and Finance (MOEF). Institutional Track: The conclusion of the Quadripartite Agreement (MOU) on August 21, 2026, between Shinhan Asset Management, Solana Foundation, Etherfuse, and Orca is a confirmed corporate event in the real asset market (RWA). Technical Track: The architectural features of the Token-2022 extensions (Transfer Hooks, Permanent Delegate) and the launch parameters of the WNS standard of the WEN memecoin (as a network stress testing tool) are presented based on the open source code of the Solana Labs repositories and the Jupiter ecosystem documentation. This post is created for informational and research purposes only and does not constitute investment, financial, legal, or professional advice.</p>
-
-    </article>
+<p>Use this code carefully. It shows what is possible and is not a finished product to use as is. Work with the API data according to the protocol's GitHub.</p>
+<h3>Reference Documentation</h3>
+<p>For deeper technical checks and ongoing changes to production Token-2022 integrations, use the verified official channels: implementation patterns on Solana's Token Extensions solutions page — <a href="https://solana.com/solutions/token-extensions">https://solana.com/solutions/token-extensions</a>; production code wrappers and open-source packages in the Wen Foundation repositories (WPL) — <a href="https://github.com/wen-community/wen-program-library">https://github.com/wen-community/wen-program-library</a>; and if you need a TypeScript/JavaScript script that builds a transaction with this hook — <a href="https://solana.com/vi/developers/guides/token-extensions/transfer-hook">https://solana.com/vi/developers/guides/token-extensions/transfer-hook</a></p>
+<h3>Side by Side: Legacy SPL vs. Token-2022 Compliance</h3>
+<p>Compliance area — legacy SPL token standard — Token-2022 / WNS extension framework. Real-time KYC checks — not possible without external app wrappers — runs natively through protocol-level Transfer Hooks. Asset recovery and reclaim — not supported; needs the whole contract frozen — supported natively through Permanent Delegate authority. Built-in revenue and tax logic — needs custom smart contracts that must be audited — part of the token design through Transfer Fees. Security isolation by default — open to transfers with every address — restricted at creation through Default Account State. On-chain audit trails — optional, depends on the client dApp — enforced natively through Memo Transfer logic.</p>
+<h3>WEN ($WEN), the Crypto Cat — the First Mass-Scale Field Test</h3>
+<p>WEN ($WEN) is a cat-themed community token created by the core team behind Jupiter DEX, Solana's leading aggregator. Launched in January 2024, WEN was built as a production-scale stress test for both the Token-2022 standard and Jupiter's LFG Launchpad ahead of the huge JUP token distribution.</p>
+<p>And Solana Token-2022 architecture with built-in compliance: before Token-2022, enforcing regulatory rules (such as geographic limits or KYC checks) meant developers had to build custom smart contract wrappers around standard SPL tokens. That brought security risks and a fragmented user experience.</p>
+<p>The Solana Token Extensions specification builds enterprise-grade compliance tools straight into the protocol layer through modular Type-Length-Value (TLV) data extensions. Source: <a href="https://solana.com/docs/tokens/extensions">https://solana.com/docs/tokens/extensions</a></p>
+<p>Solana Token-2022 and WEN ($WEN): the Complete Guide to Built-In Compliance and Live Mass Testing</p>
+<p>The Token-2022 standard (officially Token Extensions) and the WEN ($WEN) meme coin share a basic technical link. Far from a typical speculative asset, the WEN project was historically the main mass-testing ground that proved this new standard stable and capable on the Solana blockchain. The full guide is in our post <a href="posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html">Solana Token-2022 and WEN: compliance and testing</a>.</p>
+<p>wns-github-wen-sol-spl — everything above is an open collection of references to the public sources named in context and listed below. Taken together, this many-sided collection supports a firm conclusion as of September 2026: the information is public, and there is a sourced record of how the Token-2022 standard, SPL and WNS were created, of the Wen community's open tooling foundations and Solana's updates, and of how they were put into practice in the historical notes of August 2026. All of these are open sources.</p>
+<h3>WNS and Token-2022: the technical architecture</h3>
+<p>Token-2022 is the official name of the new SPL token program released by Solana Labs, also known by its functional name, Token Extensions. According to Solana's official FAQ, the program has passed 5 independent security audits (Halborn, Zellic, NCC Group, Trail of Bits, OtterSec); newer independent audit registries also list a Certora audit.</p>
+<p>WNS is an open NFT-representation standard built by the Wen community on Token-2022, filling the application-layer gaps the raw protocol leaves (collection grouping, royalties, metadata). It is made of two programs: wen_new_standard (creating and managing NFT groups through 5 state PDAs — Manager, Group, Member, Approve Transfer Account and Extra Meta Account List) and wen_royalty_distribution (enforced royalty payouts through a Transfer Hook). The heart of it is the Transfer Hook: on every transfer attempt, Token-2022 calls an external verification program via CPI; if the check fails (in WNS, a matching approval "slot"), the whole transfer is rolled back.</p>
+<h3>How WNS and Token-2022 are used in practice (according to further sources)</h3>
+<p>Real-world use of this architecture falls into two confirmed tiers.</p>
+<p>Tier 1 — stress-testing the standard (2024). The WEN memecoin, launched by the Jupiter team in January 2024, used WNS to split the founder's NFT poem ("A Love Letter to Wen Bros") into one trillion fungible $WEN tokens, airdropped to more than 1 million active wallets at once — confirmed independently by DL News and Gate Learn. It was the first mass-scale production test of these Token-2022 and WNS structures under peak load.</p>
+<p>Tier 2 — institutional use (2026). Shinhan Asset Management (about $96.6B AUM) signed a four-party, non-binding MOU on August 21, 2026 with the Solana Foundation, Etherfuse and Orca to run a proof of concept — testing the full issuance-to-distribution cycle of a KRW short-term bond fund for overseas institutional investors, modeled on BlackRock's BUIDL. The PoC uses exactly the functions Token-2022's architecture provides — KYC/AML checks, issuance and on-chain distribution. It is confirmed by four independent outlets: The Block, CryptoTimes, BigGo Finance and TechTimes. Our full write-up: <a href="posts/wns-w-token-2022-and-economic-solana-wen.html">WNS, Token-2022 and the Shinhan deal</a>.</p>
+<p>An important caveat the original description left out: Solana was not chosen exclusively. Exactly one week earlier, on August 14, 2026, Shinhan signed an almost identical MOU with the rival blockchain Plume for the same product — parallel infrastructure testing ahead of Korea's Security Token Offering (STO) law, which takes effect in February 2027. Source: BigGo Finance, TechTimes. More in <a href="posts/south-korea-cbdc-and-tokenization.html">South Korea, CBDC and tokenization</a>.</p>
+<p>Separately, on regulatory recognition of SOL as an asset — staking ETF filings (the Bitwise Solana Staking ETF form dated Aug. 13, 2026) are filed and registered with the SEC through EDGAR, independent confirmation that institutions are moving toward the SOL asset more broadly, unrelated to WNS or Token-2022 as such.</p>
+<p>Roadmap with sources — every source, combined and de-duplicated:</p>
+<p>Technical sources (from the WNS README): GitHub — the WNS README: <a href="https://github.com/wen-community/wen-program-library/blob/main/programs/wen_new_standard/README.md">link</a> GitHub — the wen-program-library repository (root): <a href="https://github.com/wen-community/wen-program-library">link</a> Solana.com — Token Extensions (solutions): <a href="https://solana.com/solutions/token-extensions">link</a> Solana.com — Token Extensions docs: <a href="https://solana.com/docs/tokens/extensions">link</a> Solana.com — Transfer Hook guide: <a href="https://solana.com/vi/developers/guides/token-extensions/transfer-hook">link</a> Solana StackExchange — Transfer Hook in Token-2022: <a href="https://solana.stackexchange.com/questions/7360/transfer-hook-in-token-2022-how-to-actually-transfer">link</a></p>
+<p>News sources on the Shinhan case: The Block: <a href="https://www.theblock.co/news/regulation/2026-08-21-south-korea-shinhan-partners-solana-412420">link</a> TechTimes: <a href="https://www.techtimes.com/articles/325238/20260821/shinhan-bets-korean-won-solana-tokenized-fund-targets-dollar-dominated-rwa-market.htm">link</a> CryptoTimes: <a href="https://www.cryptotimes.io/2026/08/21/shinhan-taps-solana-to-test-korean-won-tokenized-fund/">link</a> BigGo Finance: <a href="https://finance.biggo.com/news/4991f187-02e5-49b5-8d85-b6728d1f43f4">link</a></p>
+<p>Regulatory sources: SEC EDGAR — Bitwise Solana Staking ETF: <a href="https://www.sec.gov/Archives/edgar/data/0002045872/000119312526349138/bsol-20260813.htm">link</a> SEC EDGAR — Grayscale Sui Staking ETF: <a href="https://www.sec.gov/Archives/edgar/data/2034012/000203401226000009/424b3_gsui_12312025.htm">link</a></p>
+<p>Historical WEN/WNS sources: DL News: <a href="https://www.dlnews.com/articles/defi/jupiter-wen-airdrop-introduces-new-solana-nft-standard/">link</a> Gate Learn: <a href="https://www.gate.com/learn/articles/what-is-wen-all-you-need-to-know-about-wen/5046">link</a> CoinMarketCap AI: <a href="https://coinmarketcap.com/cmc-ai/wen/what-is/">link</a> The Wen almanac: <a href="index.html">home page</a></p>
+<p>More about WNS: the history of Token-2022, WNS and the SPL Solana Program Library in practice — from poem to history, from standard to real applications. <a data-pending="2025/09/23/wen-new-standard-wns-0-0-wen-crypto-inform" href="#">The WNS 0.0 announcement</a> <a data-pending="2025/10/21/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation" href="#">Why the WNS standard is useful for putting crypto to work</a> <a href="posts/solanas-wns-roadmap-how-a-meme-cat-poem.html">Solana's WNS roadmap</a></p>
+<p>The connection: from the birth of the WNS / Token-2022 standard to real practice in South Korea</p>
+<p>Token-2022, the program released by Solana Labs (native Transfer Hook, protocol-level KYC/AML building blocks, 5 independent audits: Halborn, Zellic, NCC, Trail of Bits, OtterSec) → WNS, the Wen New Standard built by the Wen community (an application layer on Token-2022: Group/Member PDAs, enforced royalties through wen_royalty_distribution) → $WEN, January 2024 — a real-world load stress test (1 trillion tokens, an airdrop to 1M+ wallets, the first proof that Transfer Hook holds up under mass load) → institutional interest in Token-2022 as compliance infrastructure (PYUSD, USDG, EURC and other regulated stablecoins already run on Token-2022, according to independent market reviews) → South Korea, August 2026 — Shinhan Asset Management (a non-binding PoC on Solana using the same Token-2022 compliance tools: KYC/AML, issuance, on-chain liquidity) — alongside an identical PoC with Plume (Aug 14, 2026) → a hedged infrastructure choice → Korea's STO law expected to take effect in February 2027</p>
+<h3>WNS: a Standard of Consent for Solana's Digital Assets</h3>
+<p>Some of the most important technical standards do not start with a whitepaper or a funding round — they start with a poem. That is exactly how the Wen New Standard was born: one of the leanest, yet most structurally important, standards in Solana's history.</p>
+<h3>The Poem That Started a Protocol</h3>
+<p>In January 2024, the pseudonymous founder of Jupiter Exchange, known to the community as weremeow, tired of the endless chorus of "wen token?", wrote a light-hearted poem called "A Love Letter to Wen Bros". To keep it as a digital artifact, he minted a single NFT — not with the heavyweight Metaplex standard that ruled the ecosystem then, but with a brand-new construct: the Wen New Standard. That one NFT was later split into a trillion WEN tokens, each nominally a share of the original poem. The cat branding that grew around the project — the cat mascot, the "cutest cat" persona, weremeow's own handle — is cultural packaging; the real substance was the standard itself, which the project used as its testing ground.</p>
+<h3>From a Pile of Bricks to a Shared Protocol</h3>
+<p>Before WNS, Solana already had a powerful but scattered toolkit: SPL Token-2022 had introduced TLV-based extensions — Transfer Hooks, MetadataPointer, TokenMetadata, Group/GroupMember. But every developer put the pieces together in their own custom way. One team wrote its own Transfer Hook for royalties, another built its own metadata scheme, a third invented its own way of grouping collections. Marketplaces and wallets could not keep up — every project in effect needed its own integration code.</p>
+<p>WNS does not fix this by adding new features; it fixes it by standardizing what is already there. It takes four core Token-2022 extensions — Metadata &amp; Metadata Pointer, Transfer Hook, Immutable Owner and Group &amp; Group Pointer — and wraps them in one predictable interface. Metadata (name, symbol, uri) lives inside the mint account, with no external PDA accounts, unlike the old design. Collections are grouped through the Group/Member extensions instead of custom account links. The result: a dApp only has to integrate WNS once to handle millions of different NFTs correctly, instead of rewriting integration logic for every project.</p>
+<h3>Asset Autonomy as a Quiet Political Statement</h3>
+<p>This architecture has a deeper, almost political side. Under the old model, NFT royalties depended on a marketplace's goodwill: if a trading platform chose to stop honoring creator royalties — which happened again and again in 2022–2023 — the creator had no recourse at the protocol level. Through Immutable Owner and Transfer Hook, WNS moves that logic inside the token itself. Royalties, transfer limits and compliance rules become properties of the asset, not conditions set by whichever venue happens to trade it. The token enforces its own rules whether the trade happens on a major exchange or wallet to wallet.</p>
+<h3>Technical Notes: What to Check Before Shipping</h3>
+<p>In practice, the Token-2022 + Transfer Hook stack keeps raising three kinds of issues:</p>
+<p>Compute Unit (CU) limits. Each hook call is one more Cross-Program Invocation. When a transfer goes through an aggregator such as Jupiter, the CU budget can run out unless extra units are requested explicitly through ComputeBudgetProgram. Validation account substitution. Token-2022 needs a specific PDA validation account for the hook interface. In production, always check the account passed in against the address the program derives itself, rather than relying only on the framework's automatic checks. Hook bypass through "zero-cost" transfers. The hook only sees how many tokens move, not the real sale price in SOL or USDC. If a marketplace sends the token as a "gift" for 0 SOL and settles the payment through a separate contract, royalties drop to zero. The usual fix is to tie the hook to a price oracle or to charge a fixed minimum fee on the transfer itself.</p>
+<h3>Where This Matters Economically</h3>
+<p>WNS's logic reaches far beyond NFT art. The same Token-2022 + Transfer Hook pairing applies to real-world asset (RWA) tokenization, where KYC and geographic limits must sit inside the transfer itself; to compliance-driven finance, where a security-token issuer needs built-in control over how the instrument circulates; and to simpler cases — NFT collections whose creators want guaranteed royalties without depending on any one platform's goodwill.</p>
+<h3>In Summary</h3>
+<p>WNS is not new functionality — it is discipline. It turns a scattered set of powerful but mutually incompatible Token-2022 extensions into a shared language that any wallet, marketplace or DeFi protocol on Solana understands out of the box. The asset's creator sets the rules; the network itself — not deals between platforms — enforces them.</p>
+<h3>What Wen and WNS Really Are</h3>
+<p>Let us work through this logically — leaving inflated, fanciful numbers aside — and find what WEN actually means.</p>
+<p>WEN itself is neither a "pool" nor an RWA instrument. It is a memecoin acting as a proof of concept — a demonstration of a working capability: it shows a utility model built on royalty logic and Transfer Hooks, free of the weight of KYC compliance, geo-restrictions or underlying asset valuation, while showing statistically that such a mechanism is feasible.</p>
+<p>In other words, WEN is a proof of concept and should not be confused with a real RWA product. RWA is a sector of the economy, while WEN is essentially a blueprint for building the ship — a technology, a basic approach.</p>
+<p>The true ancestor of RWA here is not WEN, or even WNS as such, but the Token-2022 extension layer itself — with Transfer Hooks, Permanent Delegates, Confidential Transfers and Non-Transferable tokens. These are the shared elements. WNS is just one configuration of that layer, made for NFT semantics (metadata, grouping and royalties). For RWA, the industry uses the same building blocks but assembles them for a different job: not images or collectibles, but legal compliance built in (such as KYC gates on transfers, issuer-ordered freezes or links to asset-valuation oracles).</p>
+<p>The honest bottom line: WNS → showed in practice (through WEN) that business rules can live inside the token itself rather than on the platform — an indirect, conceptual influence on future RWA designs; Token-2022 extensions are the direct, literal technical base on which real RWA (real-world asset) tools are built — not through the WNS configuration itself, but through separate sets of extensions tuned to specific jurisdictions or assets.</p>
+<p>Without the hype and praise, and looking only at real utility and performance, the precise way to describe the WNS–RWA relationship is this: not "WNS created RWA", but "WNS is the first showcase proving that the protocol layer beneath RWA works and is commercially viable."</p>
+<p>Sources WNS: <a href="https://discuss.jup.ag/t/wen-new-standard-wns-0-0/133">https://discuss.jup.ag/t/wen-new-standard-wns-0-0/133</a> <a href="https://solana.com/solutions/token-extensions">https://solana.com/solutions/token-extensions</a> <a href="https://solana.com/docs/tokens/extensions">https://solana.com/docs/tokens/extensions</a> <a href="https://solana.com/docs/tokens/extensions/transfer-hook">https://solana.com/docs/tokens/extensions/transfer-hook</a> <a href="https://phantom.app/learn/crypto-101/solana-token-extensions">https://phantom.app/learn/crypto-101/solana-token-extensions</a> <a href="https://decrypt.co/214282/wen-token-over-million-wallets-eligible-solana-meme-coin-airdrop">https://decrypt.co/214282/wen-token-over-million-wallets-eligible-solana-meme-coin-airdrop</a> <a href="https://nftnow.com/news/jupiter-exchange-debuts-wen-on-new-token-launchpad/">https://nftnow.com/news/jupiter-exchange-debuts-wen-on-new-token-launchpad/</a> <a href="https://opensea.io/token/solana/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk">https://opensea.io/token/solana/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</a> <a href="https://chainstack.com/solana-transfer-hooks-anchor-token-2022">https://chainstack.com/solana-transfer-hooks-anchor-token-2022</a> <a href="https://www.quicknode.com/guides/solana-development/spl-tokens/token-2022/transfer-hooks">https://www.quicknode.com/guides/solana-development/spl-tokens/token-2022/transfer-hooks</a> <a href="https://crates.io/crates/spl-token-2022">https://crates.io/crates/spl-token-2022</a></p>
+<p>Disclaimer and data transparency statement: this analytical note is based only on verified historical data, official government announcements and the technical documentation of blockchain protocols. Regulatory and government track: the dates of the wholesale CBDC testing phases (Project Hangang) and of tokenized bond integration follow official releases from the Bank of Korea (BOK) and the Ministry of Economy and Finance (MOEF). Institutional track: the four-party MOU signed on August 21, 2026, by Shinhan Asset Management, the Solana Foundation, Etherfuse and Orca is a confirmed corporate event in the real-world asset (RWA) market. Technical track: the design of the Token-2022 extensions (Transfer Hooks, Permanent Delegate) and the launch parameters of the WNS standard behind the WEN memecoin (as a network stress-testing tool) are based on the open-source code in Solana Labs repositories and the Jupiter ecosystem documentation. This post is for information and research only and is not investment, financial, legal or professional advice.</p>
+</article>
 
   <div id="footer-slot"></div>
 

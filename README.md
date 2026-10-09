@@ -5,7 +5,7 @@ repository root. It is the maintained home of the $WEN almanac, migrated post by
 post from wen-crypto.com.
 
 Working rules live in `WEN_PROTOCOL.md` (kept outside the site, with the owner).
-State of this archive: 2026-10-10 (all posts rewritten; SEO metadata on every indexable page).
+State of this archive: 2026-10-10 (all posts and key pages rewritten; SEO metadata on every indexable page; author "Wen", the community voice).
 
 ## Structure
 

@@ -110,6 +110,10 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/privacy-policy-cookie-policy.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/navigation.html</loc>
     <priority>0.5</priority>
   </url>
