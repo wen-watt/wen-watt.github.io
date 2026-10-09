@@ -22,6 +22,8 @@
     ['b2b-invoices-token-2022.html', '3 · B2B invoices'],
     ['payments-acquiring-bridge.html', '4 · Payments bridge'],
     ['payment-simulator.html', '5 · Simulator'],
+    ['devnet.html', '6 · Devnet: repeat it'],
+    ['trust.html', '&#10003; Trust chain'],
     ['benefits.html', '&#9733; Benefits &amp; use']
   ];
   var path = (window.location && window.location.pathname) || '';

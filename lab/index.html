@@ -47,7 +47,7 @@
     <p class="meta">Wen Open Lab · open integration</p>
     <h1>Wen Open Lab: Open Integration<span class="lab-badge">Stage 0 · Roadmap</span></h1>
 
-    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html" aria-current="page">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html" aria-current="page">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
 
     <figure><img src="../wen-media/wen-crypto-space-coin-solana.jpeg" alt="Wen space coin over Solana" width="1200" height="675"><figcaption>From story to tools: the Lab begins</figcaption></figure>
 
@@ -77,11 +77,14 @@
       <li class="done"><strong>4 · <a href="payments-acquiring-bridge.html">Payments bridge</a>.</strong> Solana Pay link, payment watcher, validation, webhook to the shop. <span class="lab-badge">link verified</span></li>
       <li class="done"><strong>5 · <a href="payment-simulator.html">Simulator</a>.</strong> Compare card acquiring and on-chain payments with your own numbers. <span class="lab-badge">interactive</span></li>
       <li class="done"><strong>★ · <a href="benefits.html">Benefits and use</a>.</strong> Who gains what, where it fits, and where it does not. <span class="lab-badge">live</span></li>
-      <li class="next"><strong>6 · Devnet live demo.</strong> Run every model on public devnet and publish the addresses so anyone can inspect them in an explorer. <span class="lab-badge">next</span></li>
-      <li class="next"><strong>7 · WNS group registration.</strong> Add receipts to a WNS collection through the official program, built from the official repository's IDL. <span class="lab-badge">planned</span></li>
-      <li class="next"><strong>8 · Royalty hook program sample.</strong> An Anchor transfer-hook program with tests, compared line by line with WNS royalty distribution. <span class="lab-badge">planned</span></li>
-      <li class="next"><strong>9 · Threat model and audit checklist.</strong> Compute limits, account substitution, zero-price transfers, key management. <span class="lab-badge">planned</span></li>
-      <li class="next"><strong>10 · Merchant plugin sketch.</strong> How an online store connects the payments bridge to its order system through a webhook. <span class="lab-badge">planned</span></li>
+      <li class="done"><strong>6 · <a href="devnet.html">Devnet: repeat it yourself</a>.</strong> A published script runs Models 1 and 3 on public devnet and prints explorer links. Anyone can repeat it with a new, empty wallet. <span class="lab-badge">ready to run</span></li>
+      <li class="done"><strong>✓ · <a href="trust.html">Trust chain</a>.</strong> Every key claim with its status and sources: verified, reported, opinion, unverified or conflicting. <span class="lab-badge">live</span></li>
+      <li class="next"><strong>6b · Public devnet run.</strong> Run the script in public and publish the addresses on the devnet page. <span class="lab-badge">next</span></li>
+      <li class="next"><strong>7 · Pay in WEN, the shop receives USDC.</strong> The buyer pays in WEN, a Jupiter swap in the same transaction converts it, the shop receives a stablecoin. Builds on Stage 4. <span class="lab-badge">next model</span></li>
+      <li class="next"><strong>8 · WNS group registration.</strong> Add receipts to a WNS collection through the official program, built from the official repository's IDL. <span class="lab-badge">planned</span></li>
+      <li class="next"><strong>9 · Royalty hook program sample.</strong> An Anchor transfer-hook program with tests, compared line by line with WNS royalty distribution. <span class="lab-badge">planned</span></li>
+      <li class="next"><strong>10 · Threat model and audit checklist.</strong> Compute limits, account substitution, zero-price transfers, key management. <span class="lab-badge">planned</span></li>
+      <li class="next"><strong>11 · Merchant plugin sketch.</strong> How an online store connects the payments bridge to its order system through a webhook. <span class="lab-badge">planned</span></li>
     </ol>
 
     <h2 id="verification-log">Verification log</h2>
@@ -124,6 +127,7 @@ npm test            # local Solana VM, no network, no real funds</code></pre>
 
     <h2>Background reading</h2>
     <ul>
+      <li><a href="../posts/wen-open-lab-review.html">Wen Open Lab review</a> — the whole section in one story, with the devnet plan and the next model</li>
       <li><a href="../posts/wen-program-library-review.html">Wen Program Library review</a> — the code behind WNS, section by section</li>
       <li><a href="../spl-solana-program-library-token-2022-wns.html">SPL, Token-2022 and WNS explained</a></li>
       <li><a href="../posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html">Solana Token-2022 and WEN: compliance and testing</a></li>

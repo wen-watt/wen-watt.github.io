@@ -5,6 +5,11 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/posts/wen-open-lab-review.html</loc>
+    <lastmod>2026-10-10</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/posts/wen-program-library-review.html</loc>
     <lastmod>2026-10-10</lastmod>
     <priority>0.8</priority>
@@ -91,6 +96,14 @@
   </url>
   <url>
     <loc>https://wen-watt.github.io/lab/payment-simulator.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/devnet.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/trust.html</loc>
     <priority>0.7</priority>
   </url>
   <url>

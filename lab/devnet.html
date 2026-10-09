@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage 6: Run Wen Open Lab Models on Solana Devnet Yourself</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/devnet.html">
+<meta name="description" content="Stage 6 of Wen Open Lab: run the receipt and B2B invoice models on public Solana devnet with a new empty wallet, then check every step in the explorer.">
+<!-- seo:start -->
+<meta name="keywords" content="Solana devnet, Wen Open Lab, test wallet, explorer, Token-2022, receipt NFT, B2B invoice">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stage 6: Run Wen Open Lab Models on Solana Devnet Yourself">
+<meta property="og:description" content="Stage 6 of Wen Open Lab: run the receipt and B2B invoice models on public Solana devnet with a new empty wallet, then check every step in the explorer.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/devnet.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/testing-jup-wen-solana.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Stage 6: Run Wen Open Lab Models on Solana Devnet Yourself", "description": "Stage 6 of Wen Open Lab: run the receipt and B2B invoice models on public Solana devnet with a new empty wallet, then check every step in the explorer.", "url": "https://wen-watt.github.io/lab/devnet.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <p class="meta">Wen Open Lab · open integration</p>
+    <h1>Stage 6: Devnet — Repeat It Yourself<span class="lab-badge">ready to run</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html" aria-current="page">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
+
+    <figure><img src="../wen-media/testing-jup-wen-solana.jpeg" alt="Testing Wen on Solana devnet" width="1200" height="675"><figcaption>Test in public, not in theory</figcaption></figure>
+
+    <p class="intro">A local test proves the logic; a public network proves it to everyone. Devnet is Solana's open test network: the same programs as mainnet, but the coins have no value. This page is the repeatable recipe. Run it once, run it a hundred times — every run creates new addresses that anyone can open in the explorer.</p>
+
+    <h2>Why devnet matters</h2>
+    <p>The <a href="index.html#verification-log">verification log</a> shows 25 checks passing inside LiteSVM, a local copy of the Solana runtime. That is strong evidence, but it happens on one machine. A devnet run moves the same models onto a public network where every transaction has a public link. Nobody has to trust us: they open the link and see the receipt with its supply of one, the invoice payment with its memo, the rejected payment without one.</p>
+
+    <h2>What you need</h2>
+    <ul>
+      <li>Node.js 20 or newer and the files from <a href="code/README.md">lab/code</a>.</li>
+      <li>The Solana command-line tools (<code>solana</code>, <code>solana-keygen</code>).</li>
+      <li>A <strong>new, empty wallet created only for devnet</strong>. Never use a wallet that holds real funds.</li>
+    </ul>
+
+    <h2>Repeat it: five commands</h2>
+    <pre class="lab-code"><code># 1. install the example project
+npm install
+
+# 2. create a throwaway devnet wallet (it never holds real money)
+solana-keygen new -o devnet-wallet.json --no-bip39-passphrase
+
+# 3. get free devnet SOL (test coins with no value; use faucet.solana.com if the CLI is rate-limited)
+solana airdrop 2 $(solana-keygen pubkey devnet-wallet.json) --url devnet
+
+# 4. run the local checks first
+npm test
+
+# 5. run the public devnet demo
+KEYPAIR=./devnet-wallet.json npm run devnet</code></pre>
+    <p>The script refuses to run against anything that is not devnet, and stops if the wallet has less than 0.2 devnet SOL.</p>
+
+    <h2>What the script does</h2>
+    <ol>
+      <li><strong>Model 1:</strong> mints a soulbound receipt NFT for a new test buyer, with the order hash and warranty date inside the mint, then locks the supply at one.</li>
+      <li><strong>Model 3:</strong> creates a settlement token with a 0.25% fee capped at 50 units and frozen-by-default accounts, opens a buyer and a seller account (the seller requires an invoice memo), approves both, funds the buyer, pays invoice <code>INV-DEVNET-0001</code>, then tries a payment without an invoice number and shows that it is rejected.</li>
+      <li>Prints an explorer link for every transaction and every address.</li>
+    </ol>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">File: <a href="code/scripts/devnet-demo.ts">lab/code/scripts/devnet-demo.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Wen Open Lab: run Models 1 and 3 on PUBLIC DEVNET and print explorer links anyone can open.
+// Devnet only. Use a NEW, EMPTY wallet created just for this. No real funds are ever needed.
+// License: Apache-2.0. Example code, not audited.
+//
+//   solana-keygen new -o devnet-wallet.json          # new throwaway wallet
+//   solana airdrop 2 $(solana-keygen pubkey devnet-wallet.json) --url devnet
+//   KEYPAIR=./devnet-wallet.json npx tsx scripts/devnet-demo.ts
+import { Keypair, LAMPORTS_PER_SOL, Transaction, sendAndConfirmTransaction, type TransactionInstruction } from &#x27;@solana/web3.js&#x27;;
+import { TOKEN_2022_PROGRAM_ID, createMintToInstruction } from &#x27;@solana/spl-token&#x27;;
+import { getConnection, loadKeypair } from &#x27;../src/common.js&#x27;;
+import { buildReceiptInstructions, receiptLayout, type Order } from &#x27;../src/01-receipt-nft.js&#x27;;
+import {
+  buildApproveCounterparty, buildInvoiceAccount, buildPayInvoice, buildSettlementMint,
+  invoiceAccountSpace, settlementMintSpace, DECIMALS,
+} from &#x27;../src/03-b2b-invoice.js&#x27;;
+
+const connection = getConnection();
+const wallet = loadKeypair();
+const link = (kind: &#x27;tx&#x27; | &#x27;address&#x27;, id: string) =&gt; `https://explorer.solana.com/${kind}/${id}?cluster=devnet`;
+
+async function send(label: string, ixs: TransactionInstruction[], signers: Keypair[]) {
+  const sig = await sendAndConfirmTransaction(connection, new Transaction().add(...ixs), signers);
+  console.log(`  ${label}\n    ${link(&#x27;tx&#x27;, sig)}`);
+  return sig;
+}
+
+async function main() {
+  const endpoint = (connection as unknown as { rpcEndpoint: string }).rpcEndpoint;
+  if (!/devnet/.test(endpoint)) throw new Error(`Refusing to run outside devnet: ${endpoint}`);
+  const balance = await connection.getBalance(wallet.publicKey);
+  console.log(`Wallet ${wallet.publicKey.toBase58()} has ${balance / LAMPORTS_PER_SOL} devnet SOL`);
+  if (balance &lt; 0.2 * LAMPORTS_PER_SOL) throw new Error(&#x27;Need at least 0.2 devnet SOL: run `solana airdrop 2 &lt;address&gt; --url devnet`&#x27;);
+
+  // ---- Model 1: receipt NFT (soulbound) to a fresh &quot;buyer&quot; address ----
+  console.log(&#x27;\nModel 1 — receipt and warranty NFT&#x27;);
+  const buyer = Keypair.generate();
+  const mint = Keypair.generate();
+  const order: Order = { orderId: `DEVNET-${Date.now()}`, sku: &#x27;WEN-PLUSH-01&#x27;, priceMinorUnits: 2500, currency: &#x27;USD&#x27;, purchasedAt: new Date().toISOString(), warrantyMonths: 12 };
+  const opts = { soulbound: true, uri: &#x27;https://wen-watt.github.io/lab/receipt-warranty-wns.html&#x27; };
+  const { rentSpace } = receiptLayout(order, mint.publicKey, wallet.publicKey, opts);
+  const rent = await connection.getMinimumBalanceForRentExemption(rentSpace);
+  const { instructions, buyerAta } = buildReceiptInstructions({ order, mint: mint.publicKey, merchant: wallet.publicKey, buyer: buyer.publicKey, opts, rentLamports: rent });
+  await send(&#x27;receipt minted, supply locked at 1&#x27;, instructions, [wallet, mint]);
+  console.log(`    receipt mint: ${link(&#x27;address&#x27;, mint.publicKey.toBase58())}`);
+  console.log(`    buyer holds it in: ${link(&#x27;address&#x27;, buyerAta.toBase58())}`);
+
+  // ---- Model 3: B2B settlement token with fee, allowlist and invoice memo ----
+  console.log(&#x27;\nModel 3 — B2B invoice settlement&#x27;);
+  const settle = Keypair.generate();
+  await send(&#x27;settlement mint created (fee 0.25% cap 50, frozen by default)&#x27;,
+    buildSettlementMint(wallet.publicKey, settle.publicKey, await connection.getMinimumBalanceForRentExemption(settlementMintSpace())), [wallet, settle]);
+  const accRent = await connection.getMinimumBalanceForRentExemption(invoiceAccountSpace());
+  const payerAcc = Keypair.generate(), sellerAcc = Keypair.generate();
+  // In this demo one wallet plays both companies; in real life they are different owners.
+  await send(&#x27;buyer account opened&#x27;, buildInvoiceAccount(wallet.publicKey, payerAcc.publicKey, settle.publicKey, accRent, false), [wallet, payerAcc]);
+  await send(&#x27;seller account opened (invoice memo required)&#x27;, buildInvoiceAccount(wallet.publicKey, sellerAcc.publicKey, settle.publicKey, accRent, true), [wallet, sellerAcc]);
+  await send(&#x27;both companies approved by the issuer&#x27;, [
+    ...buildApproveCounterparty(wallet.publicKey, settle.publicKey, payerAcc.publicKey),
+    ...buildApproveCounterparty(wallet.publicKey, settle.publicKey, sellerAcc.publicKey),
+  ], [wallet]);
+  const unit = 10n ** BigInt(DECIMALS);
+  await send(&#x27;buyer funded with 10,000 test units&#x27;, [createMintToInstruction(settle.publicKey, payerAcc.publicKey, wallet.publicKey, 10_000n * unit, [], TOKEN_2022_PROGRAM_ID)], [wallet]);
+  await send(&#x27;invoice INV-DEVNET-0001 paid: 1,000 units, memo on-chain&#x27;,
+    buildPayInvoice({ mint: settle.publicKey, from: payerAcc.publicKey, to: sellerAcc.publicKey, payer: wallet.publicKey, invoiceId: &#x27;INV-DEVNET-0001&#x27;, amount: 1_000n * unit }), [wallet]);
+
+  try {
+    await send(&#x27;payment WITHOUT invoice number (must fail)&#x27;,
+      buildPayInvoice({ mint: settle.publicKey, from: payerAcc.publicKey, to: sellerAcc.publicKey, payer: wallet.publicKey, invoiceId: null, amount: 1n * unit }), [wallet]);
+    console.log(&#x27;  !! unexpected: payment without memo succeeded&#x27;);
+  } catch {
+    console.log(&#x27;  payment WITHOUT invoice number was rejected, as designed&#x27;);
+  }
+  console.log(`    settlement mint: ${link(&#x27;address&#x27;, settle.publicKey.toBase58())}`);
+  console.log(&#x27;\nDone. Paste these links into the Lab devnet page so anyone can inspect them.&#x27;);
+}
+
+main().catch(e =&gt; { console.error(e); process.exit(1); });</code></pre>
+
+    <h2>Published runs</h2>
+    <table class="lab-table">
+      <thead><tr><th>Run</th><th>Date</th><th>Receipt mint</th><th>Settlement mint</th><th>Invoice payment</th></tr></thead>
+      <tbody><tr><td>#1</td><td colspan="4">pending — the first public run will be published here with its explorer links</td></tr></tbody>
+    </table>
+    <p>Ran it yourself? Share your links with the community on X (<a href="https://x.com/wenwencoin">@wenwencoin</a>). Independent runs are the best proof there is.</p>
+
+    <h2>Safety rules</h2>
+    <ul>
+      <li>Devnet coins have no value and cannot be sold. Anyone offering to "sell" devnet SOL is a scam.</li>
+      <li>Keep <code>devnet-wallet.json</code> out of any repository and never reuse it on mainnet.</li>
+      <li>Devnet is sometimes reset or slow; if a step fails, wait and run again — every run starts fresh.</li>
+    </ul>
+
+
+    <h2>Wen in pictures</h2>
+    <div class="lab-grid"><figure><a href="../wen-media/wen-up-seeker.jpeg" target="_blank" rel="noopener" title="Wen Seeker devnet run"><img src="../wen-media/wen-up-seeker.jpeg" alt="Wen Seeker devnet run" loading="lazy" width="300" height="300"></a><figcaption>Your own run, your own proof</figcaption></figure><figure><a href="../wen-media/wen-up-seeker-3.jpeg" target="_blank" rel="noopener" title="Wen cat checks the explorer"><img src="../wen-media/wen-up-seeker-3.jpeg" alt="Wen cat checks the explorer" loading="lazy" width="300" height="300"></a><figcaption>Every step has a link</figcaption></figure><figure><a href="../wen-media/wen-up-seeker-5.jpeg" target="_blank" rel="noopener" title="Wen builder repeats the test"><img src="../wen-media/wen-up-seeker-5.jpeg" alt="Wen builder repeats the test" loading="lazy" width="300" height="300"></a><figcaption>Repeat it any time</figcaption></figure><figure><a href="../wen-media/1-phone-cryptocurrency-news-prediction-reddit-wen-solana-blockchain-solana-meme-coins.jpeg" target="_blank" rel="noopener" title="Wen on the phone, devnet links"><img src="../wen-media/1-phone-cryptocurrency-news-prediction-reddit-wen-solana-blockchain-solana-meme-coins.jpeg" alt="Wen on the phone, devnet links" loading="lazy" width="300" height="300"></a><figcaption>Share the links</figcaption></figure><figure><a href="../wen-media/wen-crypto-developers.jpeg" target="_blank" rel="noopener" title="Wen developers on devnet"><img src="../wen-media/wen-crypto-developers.jpeg" alt="Wen developers on devnet" loading="lazy" width="300" height="300"></a><figcaption>Builders welcome</figcaption></figure></div>
+
+    <div class="lab-box">
+      <h3>Where Wen fits in this model</h3>
+      <p style='margin:0;'>The real WEN token lives on mainnet only; there is no WEN on devnet. The script therefore creates its own test tokens, clearly named as tests. When a model is ready for WEN — for example Stage 7, pay in WEN and receive USDC — it moves to mainnet only after its devnet run and an independent review.</p>
+    </div>
+
+    <div class="lab-box">
+      <h3>The Wen thread: one contract, everywhere</h3>
+      <p style="margin:0 0 8px;">Every model in the Lab is free and open, and every one carries the same signature: the $WEN token contract. Copy it, repeat it in your own docs, and always verify it against an explorer before use.</p>
+      <p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Check: <a href="https://explorer.solana.com/address/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk" rel="noopener" target="_blank">Solana Explorer</a> · <a href="https://coinmarketcap.com/currencies/wen/" rel="noopener" target="_blank">CoinMarketCap</a> · <a href="https://youtu.be/7JgpVGisQbg" rel="noopener" target="_blank">how to find the contract ID</a></p>
+    </div>
+
+    <div class="lab-box" id="open-use-policy">
+      <h3>Open use policy</h3>
+      <ul style="margin:0 0 8px;">
+        <li><strong>Free and open.</strong> All Lab code is released under the Apache License 2.0, the same license as the Wen Program Library. Use it, change it, ship it, commercially or not; keep the license notice.</li>
+        <li><strong>Open tools only.</strong> Built on public, documented tools: Solana SPL Token-2022 (Token Extensions), the token layout of the Wen New Standard (WNS), Solana Pay, and LiteSVM for local testing.</li>
+        <li><strong>The rule: always verify your own model.</strong> Run the tests, start on devnet, read the official documentation, review every account and amount, and get an independent audit before any mainnet use. A model that is not checked is not a model, it is a guess.</li>
+        <li><strong>Not audited, not advice.</strong> These are educational examples. They are not financial, legal or tax advice, and not a licensed payment or banking product. Payments, stablecoins and acquiring are regulated activities in most countries.</li>
+        <li><strong>Security.</strong> Never paste a private key into a website. Do not install the npm package <code>@wen-community/wen-new-standard</code>: npm removed it as malicious. Build from official sources.</li>
+      </ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Spoken by Wen, for the community. More in our <a href="../privacy-policy-cookie-policy.html">editorial and data policy</a>.</p>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="code/README.md">all code</a> · <a href="https://github.com/wen-community/wen-program-library" rel="noopener" target="_blank">Wen Program Library on GitHub</a></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>
