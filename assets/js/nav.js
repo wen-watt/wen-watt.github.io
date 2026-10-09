@@ -14,6 +14,29 @@
   var prefix = (scriptEl && scriptEl.getAttribute('data-prefix')) || '';
   var p = prefix; // shorthand used in templates below
 
+  // Wen Open Lab submenu: shown expanded on pages inside /lab/
+  var LAB_STAGES = [
+    ['index.html', '0 · Roadmap'],
+    ['receipt-warranty-wns.html', '1 · Receipts &amp; warranty'],
+    ['creator-royalties-wns.html', '2 · Creator royalties'],
+    ['b2b-invoices-token-2022.html', '3 · B2B invoices'],
+    ['payments-acquiring-bridge.html', '4 · Payments bridge'],
+    ['payment-simulator.html', '5 · Simulator'],
+    ['benefits.html', '&#9733; Benefits &amp; use']
+  ];
+  var path = (window.location && window.location.pathname) || '';
+  var inLab = /\/lab\//.test(path);
+  var here = path.split('/').pop() || 'index.html';
+  var labSub = '';
+  if (inLab) {
+    labSub = '<ul class="lab-sub">';
+    for (var i = 0; i < LAB_STAGES.length; i++) {
+      var cur = LAB_STAGES[i][0] === here ? ' aria-current="page"' : '';
+      labSub += '<li><a href="' + p + 'lab/' + LAB_STAGES[i][0] + '"' + cur + '>' + LAB_STAGES[i][1] + '</a></li>';
+    }
+    labSub += '</ul>';
+  }
+
   var sidebarHTML = ''
     + '<aside class="sidebar">'
     + '  <a class="brand" href="' + p + 'index.html">Wen<span>Crypto</span></a>'
@@ -34,6 +57,7 @@
     + '  <nav class="key-pages" aria-label="Key pages">'
     + '    <ul>'
     + '      <li><a href="' + p + 'about-wen-token-wen-coin-crypto.html#wen-crypto">About Wen token, WEN coin crypto</a></li>'
+    + '      <li><a href="' + p + 'lab/index.html"><strong>&#9733; Wen Open Lab</strong></a>' + labSub + '</li>'
     + '      <li><a href="' + p + 'about.html#wen-token">More about Wen ($Wen) token</a></li>'
     + '      <li><a href="' + p + 'token-2022-wns-solana-wen.html">Token 2022 WNS Solana Wen</a></li>'
     + '      <li><a href="' + p + 'wen-coin-with-pinterest.html#wen">Wen coin with Pinterest</a></li>'

@@ -1,0 +1,27 @@
+PASS  M1 receipt minted (soulbound=true)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 soulbound receipt cannot be transferred  — rejected by Token-2022
+PASS  M1 nobody can mint a second copy
+PASS  M1 receipt minted (soulbound=false)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 transferable receipt can be resold or gifted
+PASS  M1 nobody can mint a second copy
+PASS  M3 settlement mint created (fee 0.25% cap 50, frozen by default)
+PASS  M3 seller account requires an invoice memo
+PASS  M3 issuer funds the buyer account
+PASS  M3 payment WITHOUT invoice number is rejected  — Program log: Error: No memo in previous instruction required for recipient to receive a transfer
+PASS  M3 payment to a NOT approved company is rejected (account frozen)  — Program log: Error: Account is frozen
+PASS  M3 invoice INV-2026-0042 paid with memo to approved company
+PASS  M3 invoice number is recorded on-chain (memo in logs)
+PASS  M3 seller received amount minus fee; fee withheld for the platform  — received 997.5, fee 2.5
+PASS  M3 fee cap works (fee on 100,000 is 50, not 250)
+PASS  M2 NFT mint created with a transfer hook
+PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
+PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
+PASS  M4 every order gets a unique reference
+
+ALL CHECKS PASSED

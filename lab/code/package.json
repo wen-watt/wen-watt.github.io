@@ -1,0 +1,25 @@
+{
+  "name": "wen-open-lab",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "description": "Wen Open Lab: open examples on Solana Token-2022, WNS layout and Solana Pay. Not audited.",
+  "scripts": {
+    "typecheck": "tsc -p .",
+    "test": "tsx test/run-litesvm.ts"
+  },
+  "dependencies": {
+    "@solana/web3.js": "1.99.0",
+    "@solana/spl-token": "0.4.15",
+    "@solana/spl-token-metadata": "0.1.6",
+    "@solana/pay": "1.0.26",
+    "@solana/kit": "6.10.0"
+  },
+  "devDependencies": {
+    "litesvm": "1.6.0",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "@types/node": "26.6.5"
+  }
+}

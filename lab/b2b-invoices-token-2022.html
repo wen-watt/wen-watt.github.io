@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage 3: B2B Invoice Settlement With Solana Token-2022 Rules</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/b2b-invoices-token-2022.html">
+<meta name="description" content="Model 3 of Wen Open Lab: B2B settlement where the token enforces a fee, approved counterparties and a mandatory invoice number. Tested with 9 checks.">
+<!-- seo:start -->
+<meta name="keywords" content="B2B payments, invoice settlement, Token-2022, transfer fee, required memo, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stage 3: B2B Invoice Settlement With Solana Token-2022 Rules">
+<meta property="og:description" content="Model 3 of Wen Open Lab: B2B settlement where the token enforces a fee, approved counterparties and a mandatory invoice number. Tested with 9 checks.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/b2b-invoices-token-2022.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Stage 3: B2B Invoice Settlement With Solana Token-2022 Rules", "description": "Model 3 of Wen Open Lab: B2B settlement where the token enforces a fee, approved counterparties and a mandatory invoice number. Tested with 9 checks.", "url": "https://wen-watt.github.io/lab/b2b-invoices-token-2022.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <p class="meta">Wen Open Lab · open integration</p>
+    <h1>Stage 3: B2B Invoices<span class="lab-badge">9 checks passed</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html" aria-current="page">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
+
+    <figure><img src="../wen-media/wen-wallstreet.jpeg" alt="Wen on Wall Street, B2B settlement" width="1200" height="675"><figcaption>Business rules inside the token</figcaption></figure>
+
+    <p class="intro">In business payments the hard part is not moving money but moving it correctly: to the right counterparty, with the right reference, with fees accounted for. Token-2022 can carry those rules inside the token. This model builds a settlement token that refuses payments without an invoice number and refuses counterparties nobody approved.</p>
+
+    <h2>The task</h2>
+    <p>A group of companies settles invoices with each other. Every payment must reference an invoice, only verified companies may receive funds, and the network operator takes a small, capped fee.</p>
+
+    <h2>The model</h2>
+    <table class="lab-table">
+      <thead><tr><th>Rule</th><th>Token-2022 extension</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td>Platform fee 0.25%, capped at 50 units</td><td>Transfer Fees</td><td>The token withholds the fee on every transfer</td></tr>
+        <tr><td>Only approved companies</td><td>Default Account State = Frozen</td><td>New accounts start frozen; the issuer thaws them after its own KYB checks</td></tr>
+        <tr><td>Invoice number mandatory</td><td>Required Memo (on the receiving account)</td><td>A payment without a memo right before it is rejected</td></tr>
+      </tbody>
+    </table>
+    <p>The flow: the issuer creates the mint; each company opens a receiving account that requires a memo; the issuer approves (thaws) verified companies; the payer sends a memo <code>invoice:INV-…</code> and the transfer in the same transaction.</p>
+
+    <h2>The code</h2>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">File: <a href="code/src/03-b2b-invoice.ts">lab/code/src/03-b2b-invoice.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 3: B2B settlement token with built-in rules (Token-2022, not the WNS program itself):
+//   - Transfer Fees: a platform fee taken by the token itself;
+//   - Default Account State = Frozen: only accounts the issuer thaws (verified counterparties) can hold it;
+//   - Required Memo: the receiving account rejects any payment without an invoice number.
+// License: Apache-2.0. Example code, not audited. Devnet first. A real stablecoin issuer is a licensed entity.
+import { Keypair, PublicKey, SystemProgram, Transaction, TransactionInstruction, sendAndConfirmTransaction } from &#x27;@solana/web3.js&#x27;;
+import {
+  AccountState, ExtensionType, TOKEN_2022_PROGRAM_ID,
+  createEnableRequiredMemoTransfersInstruction, createInitializeAccount3Instruction,
+  createInitializeDefaultAccountStateInstruction, createInitializeMintInstruction,
+  createInitializeTransferFeeConfigInstruction, createThawAccountInstruction,
+  createTransferCheckedWithFeeInstruction, getAccountLen, getMintLen,
+} from &#x27;@solana/spl-token&#x27;;
+import { getConnection, loadKeypair } from &#x27;./common.js&#x27;;
+
+export const DECIMALS = 6;
+
+/** The canonical SPL Memo program that Token-2022 checks for &quot;required memo&quot; accounts.
+ *  Note: newer @solana/spl-memo releases default to a different program ID, so we build the memo ourselves. */
+export const SPL_MEMO_PROGRAM_ID = new PublicKey(&#x27;MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr&#x27;);
+
+export function memoInstruction(text: string, signer: PublicKey): TransactionInstruction {
+  return new TransactionInstruction({
+    programId: SPL_MEMO_PROGRAM_ID,
+    keys: [{ pubkey: signer, isSigner: true, isWritable: false }],
+    data: Buffer.from(text, &#x27;utf8&#x27;),
+  });
+}
+export const FEE_BPS = 25;                                   // 0.25%
+export const FEE_CAP = 50n * 10n ** BigInt(DECIMALS);        // at most 50 units per transfer
+
+export const settlementMintSpace = () =&gt; getMintLen([ExtensionType.TransferFeeConfig, ExtensionType.DefaultAccountState]);
+export const invoiceAccountSpace = () =&gt; getAccountLen([ExtensionType.TransferFeeAmount, ExtensionType.MemoTransfer]);
+
+/** Issuer creates the settlement mint. It keeps the freeze authority: thawing = approving a counterparty. */
+export function buildSettlementMint(issuer: PublicKey, mint: PublicKey, rentLamports: number): TransactionInstruction[] {
+  return [
+    SystemProgram.createAccount({ fromPubkey: issuer, newAccountPubkey: mint, space: settlementMintSpace(), lamports: rentLamports, programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializeTransferFeeConfigInstruction(mint, issuer, issuer, FEE_BPS, FEE_CAP, TOKEN_2022_PROGRAM_ID),
+    createInitializeDefaultAccountStateInstruction(mint, AccountState.Frozen, TOKEN_2022_PROGRAM_ID),
+    createInitializeMintInstruction(mint, DECIMALS, issuer, issuer, TOKEN_2022_PROGRAM_ID),
+  ];
+}
+
+/** A company opens an account that demands an invoice memo on every incoming payment. */
+export function buildInvoiceAccount(company: PublicKey, account: PublicKey, mint: PublicKey, rentLamports: number, requireMemo = true): TransactionInstruction[] {
+  return [
+    SystemProgram.createAccount({ fromPubkey: company, newAccountPubkey: account, space: invoiceAccountSpace(), lamports: rentLamports, programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializeAccount3Instruction(account, mint, company, TOKEN_2022_PROGRAM_ID),
+    ...(requireMemo ? [createEnableRequiredMemoTransfersInstruction(account, company, [], TOKEN_2022_PROGRAM_ID)] : []),
+  ];
+}
+
+/** Issuer approves (thaws) an account after its own KYB checks off-chain. */
+export function buildApproveCounterparty(issuer: PublicKey, mint: PublicKey, account: PublicKey): TransactionInstruction[] {
+  return [createThawAccountInstruction(account, mint, issuer, [], TOKEN_2022_PROGRAM_ID)];
+}
+
+/** Fee the token will take: 0.25% capped at 50 units. Must match the mint config exactly. */
+export function expectedFee(amount: bigint): bigint {
+  const pct = (amount * BigInt(FEE_BPS)) / 10_000n;
+  return pct &gt; FEE_CAP ? FEE_CAP : pct;
+}
+
+/** Pay an invoice: the memo instruction must come right before the transfer. */
+export function buildPayInvoice(args: { mint: PublicKey; from: PublicKey; to: PublicKey; payer: PublicKey; invoiceId: string | null; amount: bigint }): TransactionInstruction[] {
+  return [
+    ...(args.invoiceId ? [memoInstruction(`invoice:${args.invoiceId}`, args.payer)] : []),
+    createTransferCheckedWithFeeInstruction(args.from, args.mint, args.to, args.payer, args.amount, DECIMALS, expectedFee(args.amount), [], TOKEN_2022_PROGRAM_ID),
+  ];
+}
+
+/** Example of sending one step on a real cluster (devnet by default). */
+export async function createSettlementMint() {
+  const connection = getConnection();
+  const issuer = loadKeypair();
+  const mint = Keypair.generate();
+  const rent = await connection.getMinimumBalanceForRentExemption(settlementMintSpace());
+  await sendAndConfirmTransaction(connection, new Transaction().add(...buildSettlementMint(issuer.publicKey, mint.publicKey, rent)), [issuer, mint]);
+  return mint.publicKey;
+}</code></pre>
+    <p><strong>A real pitfall found while testing:</strong> recent releases of <code>@solana/spl-memo</code> use a different program ID by default. Token-2022 checks for the canonical SPL Memo program (<code>MemoSq4g…</code>), so the code builds the memo instruction itself. Always check program IDs, not only package names.</p>
+
+    <h2>What was verified</h2>
+    <p>In LiteSVM: the mint is created with fee and frozen-by-default rules; the seller's account requires a memo; the issuer funds the buyer; a payment <strong>without</strong> an invoice number is rejected ("No memo in previous instruction"); a payment to a company that was <strong>not approved</strong> is rejected ("Account is frozen"); invoice INV-2026-0042 is paid; the invoice number is recorded on-chain; the seller receives 997.5 of 1,000 with 2.5 withheld as fee; and the fee cap holds at 50 on a 100,000 payment.</p>
+
+    <h2>Where it is useful</h2>
+    <ul>
+      <li>Supplier networks and marketplaces with many small invoices.</li>
+      <li>Cross-border B2B payments that need a clear audit trail.</li>
+      <li>Corporate treasury pilots with tokenized deposits or stablecoins (as in the <a href="../posts/wns-w-token-2022-and-economic-solana-wen.html">Shinhan case</a>).</li>
+    </ul>
+
+    <h2>Limits and risks</h2>
+    <ul>
+      <li>Issuing a stable settlement token is regulated; this is the technical layer only.</li>
+      <li>The issuer's freeze authority is powerful. Use a multisig and clear governance.</li>
+      <li>A memo is public. Use invoice numbers, never invoice contents.</li>
+      <li>Fees withheld in accounts must be harvested by the fee authority; plan that operation.</li>
+    </ul>
+
+
+    <h2>Wen in pictures</h2>
+    <div class="lab-grid"><figure><a href="../wen-media/wall-street.jpeg" target="_blank" rel="noopener" title="Wall Street meets Solana"><img src="../wen-media/wall-street.jpeg" alt="Wall Street meets Solana" loading="lazy" width="300" height="300"></a><figcaption>Traditional finance, new rails</figcaption></figure><figure><a href="../wen-media/wen-market-wall-street.jpeg" target="_blank" rel="noopener" title="Wen market settlement desk"><img src="../wen-media/wen-market-wall-street.jpeg" alt="Wen market settlement desk" loading="lazy" width="300" height="300"></a><figcaption>Invoices that cannot go missing</figcaption></figure><figure><a href="../wen-media/meow-wen-coin-market-wallet-exchange-wall-street.jpeg" target="_blank" rel="noopener" title="Meow Wen business wallet"><img src="../wen-media/meow-wen-coin-market-wallet-exchange-wall-street.jpeg" alt="Meow Wen business wallet" loading="lazy" width="300" height="300"></a><figcaption>Approved counterparties only</figcaption></figure><figure><a href="../wen-media/jupiter-stable-coin.jpeg" target="_blank" rel="noopener" title="Stable settlement on Jupiter rails"><img src="../wen-media/jupiter-stable-coin.jpeg" alt="Stable settlement on Jupiter rails" loading="lazy" width="300" height="300"></a><figcaption>Stable value, programmable rules</figcaption></figure><figure><a href="../wen-media/wen-gold-market-coin-crypto-2025.jpeg" target="_blank" rel="noopener" title="Golden Wen business coin"><img src="../wen-media/wen-gold-market-coin-crypto-2025.jpeg" alt="Golden Wen business coin" loading="lazy" width="300" height="300"></a><figcaption>Every payment with its reference</figcaption></figure></div>
+
+    <div class="lab-box">
+      <h3>Where Wen fits in this model</h3>
+      <p style='margin:0;'>The settlement token here is a stable unit issued by a regulated party; WEN is not meant to be an invoice currency. Wen's role is the proof: WEN's launch was the first mass test of the Token-2022 machinery this model uses. A community or business network can still settle small service fees or tips between members in WEN, outside the invoice flow.</p>
+    </div>
+
+    <div class="lab-box">
+      <h3>The Wen thread: one contract, everywhere</h3>
+      <p style="margin:0 0 8px;">Every model in the Lab is free and open, and every one carries the same signature: the $WEN token contract. Copy it, repeat it in your own docs, and always verify it against an explorer before use.</p>
+      <p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Check: <a href="https://explorer.solana.com/address/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk" rel="noopener" target="_blank">Solana Explorer</a> · <a href="https://coinmarketcap.com/currencies/wen/" rel="noopener" target="_blank">CoinMarketCap</a> · <a href="https://youtu.be/7JgpVGisQbg" rel="noopener" target="_blank">how to find the contract ID</a></p>
+    </div>
+
+    <div class="lab-box" id="open-use-policy">
+      <h3>Open use policy</h3>
+      <ul style="margin:0 0 8px;">
+        <li><strong>Free and open.</strong> All Lab code is released under the Apache License 2.0, the same license as the Wen Program Library. Use it, change it, ship it, commercially or not; keep the license notice.</li>
+        <li><strong>Open tools only.</strong> Built on public, documented tools: Solana SPL Token-2022 (Token Extensions), the token layout of the Wen New Standard (WNS), Solana Pay, and LiteSVM for local testing.</li>
+        <li><strong>The rule: always verify your own model.</strong> Run the tests, start on devnet, read the official documentation, review every account and amount, and get an independent audit before any mainnet use. A model that is not checked is not a model, it is a guess.</li>
+        <li><strong>Not audited, not advice.</strong> These are educational examples. They are not financial, legal or tax advice, and not a licensed payment or banking product. Payments, stablecoins and acquiring are regulated activities in most countries.</li>
+        <li><strong>Security.</strong> Never paste a private key into a website. Do not install the npm package <code>@wen-community/wen-new-standard</code>: npm removed it as malicious. Build from official sources.</li>
+      </ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Spoken by Wen, for the community. More in our <a href="../privacy-policy-cookie-policy.html">editorial and data policy</a>.</p>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="code/README.md">all code</a> · <a href="https://github.com/wen-community/wen-program-library" rel="noopener" target="_blank">Wen Program Library on GitHub</a></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>

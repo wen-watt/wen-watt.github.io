@@ -70,6 +70,34 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/lab/index.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/receipt-warranty-wns.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/creator-royalties-wns.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/b2b-invoices-token-2022.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/payments-acquiring-bridge.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/payment-simulator.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/benefits.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html</loc>
     <priority>0.6</priority>
   </url>

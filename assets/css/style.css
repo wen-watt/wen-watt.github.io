@@ -423,3 +423,32 @@ dl dd{margin:4px 0 0;color:var(--ink-dim);font-size:13.5px;}
 
 /* Links to posts not yet migrated: visible but inactive until the post exists */
 a[data-pending]{pointer-events:none;cursor:default;opacity:.5;text-decoration:none;}
+
+/* ---------- Wen Open Lab ---------- */
+.lab-strip{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 22px;padding:0;list-style:none;}
+.lab-strip li{margin:0;}
+.lab-strip a{display:inline-block;padding:5px 10px;border:1px solid var(--panel-line);border-radius:999px;font-size:12.5px;text-decoration:none;background:var(--panel);}
+.lab-strip a[aria-current="page"]{border-color:var(--amber);font-weight:600;}
+.lab-badge{display:inline-block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--panel-line);color:var(--ink-dim);margin-left:6px;vertical-align:middle;}
+.lab-box{background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);padding:14px 18px;margin:0 0 24px;}
+.lab-box h3{margin-top:0;}
+.lab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:0 0 24px;}
+.lab-grid figure{margin:0;}
+.lab-grid a{display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);}
+.lab-grid img{width:100%;height:100%;object-fit:cover;display:block;}
+.lab-grid figcaption{font-size:12px;color:var(--ink-dim);margin-top:4px;}
+.lab-code{white-space:pre;overflow-x:auto;background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);padding:14px 16px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.55;color:var(--ink-dim);margin:0 0 20px;}
+.lab-table{width:100%;border-collapse:collapse;font-size:14px;margin:0 0 24px;}
+.lab-table th,.lab-table td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;}
+.lab-roadmap{list-style:none;padding:0;margin:0 0 24px;}
+.lab-roadmap li{border-left:2px solid var(--panel-line);padding:0 0 18px 16px;margin:0;position:relative;}
+.lab-roadmap li::before{content:"";position:absolute;left:-6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--panel-line);}
+.lab-roadmap li.done::before{background:var(--teal);}
+.lab-roadmap li.next::before{background:transparent;border:1px solid var(--panel-line);}
+.lab-sim{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 16px;margin:0 0 18px;}
+.lab-sim label{display:flex;flex-direction:column;font-size:13px;color:var(--ink-dim);gap:4px;}
+.lab-sim input{background:transparent;border:1px solid var(--panel-line);border-radius:6px;padding:7px 9px;color:inherit;font:inherit;}
+.sidebar .lab-sub{list-style:none;margin:4px 0 6px 12px;padding:0 0 0 10px;border-left:1px solid var(--panel-line);}
+.sidebar .lab-sub li{margin:0;}
+.sidebar .lab-sub a{font-size:12.5px;}
+.sidebar .lab-sub a[aria-current="page"]{font-weight:600;}

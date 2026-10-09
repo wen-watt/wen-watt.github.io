@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage 1: NFT Receipts and Warranty Cards on WNS Layout</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/receipt-warranty-wns.html">
+<meta name="description" content="Model 1 of Wen Open Lab: a purchase receipt and warranty card as a Token-2022 NFT with the WNS layout. Proof of purchase without personal data, tested code.">
+<!-- seo:start -->
+<meta name="keywords" content="NFT receipt, warranty NFT, Token-2022, WNS, e-commerce, proof of purchase, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stage 1: NFT Receipts and Warranty Cards on WNS Layout">
+<meta property="og:description" content="Model 1 of Wen Open Lab: a purchase receipt and warranty card as a Token-2022 NFT with the WNS layout. Proof of purchase without personal data, tested code.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/receipt-warranty-wns.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-buy.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Stage 1: NFT Receipts and Warranty Cards on WNS Layout", "description": "Model 1 of Wen Open Lab: a purchase receipt and warranty card as a Token-2022 NFT with the WNS layout. Proof of purchase without personal data, tested code.", "url": "https://wen-watt.github.io/lab/receipt-warranty-wns.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <p class="meta">Wen Open Lab · open integration</p>
+    <h1>Stage 1: Receipts and Warranty Cards<span class="lab-badge">12 checks passed</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html" aria-current="page">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
+
+    <figure><img src="../wen-media/wen-crypto-buy.jpeg" alt="Wen cat checkout receipt" width="1200" height="675"><figcaption>Every order, one unique receipt</figcaption></figure>
+
+    <p class="intro">A paper receipt fades, a PDF can be edited, and a shop's database can disappear. A receipt minted as an NFT cannot be forged and stays with the buyer. This model issues one per order, using exactly the token layout WNS introduced: zero decimals, a supply locked at one, metadata stored inside the token itself.</p>
+
+    <h2>The task</h2>
+    <p>Give every customer a proof of purchase that the shop cannot lose, the customer cannot forge, and that reveals nothing private on a public chain. Optionally, tie a warranty to that one buyer so it cannot be sold separately from the person who bought the item.</p>
+
+    <h2>The model</h2>
+    <ol>
+      <li>The shop hashes the order (id, product, price, date) with SHA-256. Only the hash goes on-chain; the order itself stays in the shop's system and with the customer.</li>
+      <li>A new Token-2022 mint is created with the <strong>Metadata Pointer</strong> extension, so name, symbol, link and extra fields live inside the mint. No external metadata account is needed — the WNS approach.</li>
+      <li>Extra fields: <code>order_hash</code>, <code>warranty_until</code>, <code>sku</code>.</li>
+      <li>Optional <strong>Non-Transferable</strong> extension makes the receipt soulbound: the warranty belongs to the buyer and cannot be moved.</li>
+      <li>One token is minted to the buyer, then the mint authority is removed. Supply is locked at exactly one forever.</li>
+    </ol>
+    <p>To check a warranty, anyone hashes the order the customer presents and compares it with <code>order_hash</code> on-chain. A match proves the purchase; the date field proves the term.</p>
+
+    <h2>The code</h2>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">File: <a href="code/src/01-receipt-nft.ts">lab/code/src/01-receipt-nft.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 1: digital receipt and warranty card as a Token-2022 NFT (the same on-chain layout WNS uses:
+// zero decimals, supply locked at 1, metadata stored inside the mint).
+// License: Apache-2.0. Example code, not audited. Devnet first.
+import {
+  Keypair, PublicKey, SystemProgram, Transaction, sendAndConfirmTransaction, type TransactionInstruction,
+} from &#x27;@solana/web3.js&#x27;;
+import {
+  AuthorityType, ExtensionType, LENGTH_SIZE, TOKEN_2022_PROGRAM_ID, TYPE_SIZE,
+  createAssociatedTokenAccountIdempotentInstruction, createInitializeMetadataPointerInstruction,
+  createInitializeMintInstruction, createInitializeNonTransferableMintInstruction,
+  createMintToInstruction, createSetAuthorityInstruction, getAssociatedTokenAddressSync, getMintLen,
+} from &#x27;@solana/spl-token&#x27;;
+import { createInitializeInstruction, createUpdateFieldInstruction, pack, type TokenMetadata } from &#x27;@solana/spl-token-metadata&#x27;;
+import { createHash } from &#x27;node:crypto&#x27;;
+import { getConnection, loadKeypair } from &#x27;./common.js&#x27;;
+
+export interface Order {
+  orderId: string;
+  sku: string;
+  priceMinorUnits: number;      // e.g. cents
+  currency: string;             // e.g. &quot;USD&quot;
+  purchasedAt: string;          // ISO date
+  warrantyMonths: number;
+}
+
+/** Hash the order so the chain stores proof of purchase, not the customer&#x27;s personal data. */
+export function orderHash(order: Order): string {
+  return createHash(&#x27;sha256&#x27;).update(JSON.stringify(order)).digest(&#x27;hex&#x27;);
+}
+
+export interface ReceiptOptions { soulbound: boolean; uri: string }
+
+/** Everything needed to size and build the receipt mint. */
+export function receiptLayout(order: Order, mint: PublicKey, merchant: PublicKey, opts: ReceiptOptions) {
+  const warrantyUntil = new Date(order.purchasedAt);
+  warrantyUntil.setMonth(warrantyUntil.getMonth() + order.warrantyMonths);
+  const metadata: TokenMetadata = {
+    mint, updateAuthority: merchant,
+    name: `Receipt ${order.orderId}`,
+    symbol: &#x27;RCPT&#x27;,
+    uri: opts.uri,                                // JSON with public, non-personal details
+    additionalMetadata: [
+      [&#x27;order_hash&#x27;, orderHash(order)],
+      [&#x27;warranty_until&#x27;, warrantyUntil.toISOString().slice(0, 10)],
+      [&#x27;sku&#x27;, order.sku],
+    ],
+  };
+  // A soulbound receipt cannot be transferred: good for a warranty tied to one buyer.
+  const extensions = [ExtensionType.MetadataPointer, ...(opts.soulbound ? [ExtensionType.NonTransferable] : [])];
+  const mintLen = getMintLen(extensions);
+  const metadataLen = TYPE_SIZE + LENGTH_SIZE + pack(metadata).length;
+  return { metadata, mintLen, rentSpace: mintLen + metadataLen };
+}
+
+/** Build all instructions: create mint, store metadata, mint 1 to the buyer, lock supply. */
+export function buildReceiptInstructions(args: {
+  order: Order; mint: PublicKey; merchant: PublicKey; buyer: PublicKey; opts: ReceiptOptions; rentLamports: number;
+}): { instructions: TransactionInstruction[]; buyerAta: PublicKey } {
+  const { order, mint, merchant, buyer, opts } = args;
+  const { metadata, mintLen } = receiptLayout(order, mint, merchant, opts);
+  const buyerAta = getAssociatedTokenAddressSync(mint, buyer, false, TOKEN_2022_PROGRAM_ID);
+  const instructions = [
+    SystemProgram.createAccount({
+      fromPubkey: merchant, newAccountPubkey: mint, space: mintLen, lamports: args.rentLamports, programId: TOKEN_2022_PROGRAM_ID,
+    }),
+    // Metadata lives inside the mint itself: no external metadata account.
+    createInitializeMetadataPointerInstruction(mint, merchant, mint, TOKEN_2022_PROGRAM_ID),
+    ...(opts.soulbound ? [createInitializeNonTransferableMintInstruction(mint, TOKEN_2022_PROGRAM_ID)] : []),
+    createInitializeMintInstruction(mint, 0, merchant, null, TOKEN_2022_PROGRAM_ID),
+    createInitializeInstruction({
+      programId: TOKEN_2022_PROGRAM_ID, metadata: mint, updateAuthority: merchant, mint, mintAuthority: merchant,
+      name: metadata.name, symbol: metadata.symbol, uri: metadata.uri,
+    }),
+    ...metadata.additionalMetadata.map(([field, value]) =&gt; createUpdateFieldInstruction({
+      programId: TOKEN_2022_PROGRAM_ID, metadata: mint, updateAuthority: merchant, field, value,
+    })),
+    createAssociatedTokenAccountIdempotentInstruction(merchant, buyerAta, buyer, mint, TOKEN_2022_PROGRAM_ID),
+    createMintToInstruction(mint, buyerAta, merchant, 1, [], TOKEN_2022_PROGRAM_ID),
+    // Lock supply at exactly 1: zero decimals + no mint authority = an NFT, as in WNS.
+    createSetAuthorityInstruction(mint, merchant, AuthorityType.MintTokens, null, [], TOKEN_2022_PROGRAM_ID),
+  ];
+  return { instructions, buyerAta };
+}
+
+/** Send on a real cluster (devnet by default). */
+export async function mintReceipt(order: Order, buyer: PublicKey, opts: ReceiptOptions) {
+  const connection = getConnection();
+  const merchant = loadKeypair();
+  const mint = Keypair.generate();
+  const { rentSpace } = receiptLayout(order, mint.publicKey, merchant.publicKey, opts);
+  const rentLamports = await connection.getMinimumBalanceForRentExemption(rentSpace);
+  const { instructions, buyerAta } = buildReceiptInstructions({ order, mint: mint.publicKey, merchant: merchant.publicKey, buyer, opts, rentLamports });
+  const signature = await sendAndConfirmTransaction(connection, new Transaction().add(...instructions), [merchant, mint]);
+  return { mint: mint.publicKey.toBase58(), buyerAta: buyerAta.toBase58(), signature };
+}</code></pre>
+
+    <h2>What was verified</h2>
+    <p>In LiteSVM, for both the soulbound and the transferable version: the receipt is minted; supply is exactly 1 with 0 decimals and no mint authority; name, order hash and warranty date are read back from inside the mint; the buyer holds it; a soulbound receipt refuses to move (rejected by Token-2022 itself), a transferable one can be gifted or resold; and nobody can mint a second copy. See the <a href="index.html#verification-log">verification log</a>.</p>
+
+    <h2>Where it is useful</h2>
+    <ul>
+      <li>Electronics and appliances: warranty claims without paper.</li>
+      <li>Limited goods and collectibles: provenance from the first sale.</li>
+      <li>Second-hand markets: a transferable receipt shows the item's origin to the next owner.</li>
+      <li>Loyalty programs: the receipt itself becomes the membership card.</li>
+    </ul>
+
+    <h2>Limits and risks</h2>
+    <ul>
+      <li>Each receipt costs rent (a small SOL deposit) and a network fee. Batch or compress for high volumes.</li>
+      <li>Never put personal data (name, address, phone) into metadata: the chain is public and permanent.</li>
+      <li>The hash only proves what the shop hashed. Agree on a fixed order format before you start.</li>
+      <li>The buyer needs a wallet. For mass retail, plan a custodial or embedded wallet option.</li>
+    </ul>
+
+
+    <h2>Wen in pictures</h2>
+    <div class="lab-grid"><figure><a href="../wen-media/wen-crypto-buy-1.jpeg" target="_blank" rel="noopener" title="Wen shopper proof of purchase"><img src="../wen-media/wen-crypto-buy-1.jpeg" alt="Wen shopper proof of purchase" loading="lazy" width="300" height="300"></a><figcaption>Proof of purchase in the wallet</figcaption></figure><figure><a href="../wen-media/toy-wen-crypto.jpeg" target="_blank" rel="noopener" title="Wen toy with warranty card"><img src="../wen-media/toy-wen-crypto.jpeg" alt="Wen toy with warranty card" loading="lazy" width="300" height="300"></a><figcaption>A warranty that travels with the item</figcaption></figure><figure><a href="../wen-media/wen-toys.jpeg" target="_blank" rel="noopener" title="Wen plush collection receipts"><img src="../wen-media/wen-toys.jpeg" alt="Wen plush collection receipts" loading="lazy" width="300" height="300"></a><figcaption>Physical goods, digital proof</figcaption></figure><figure><a href="../wen-media/w-coin-what-need-to-buy.jpeg" target="_blank" rel="noopener" title="Wen shopping list on Solana"><img src="../wen-media/w-coin-what-need-to-buy.jpeg" alt="Wen shopping list on Solana" loading="lazy" width="300" height="300"></a><figcaption>From cart to chain</figcaption></figure><figure><a href="../wen-media/meet-wen-cat-crypto.jpeg" target="_blank" rel="noopener" title="Meet Wen, the receipt keeper"><img src="../wen-media/meet-wen-cat-crypto.jpeg" alt="Meet Wen, the receipt keeper" loading="lazy" width="300" height="300"></a><figcaption>Loyalty starts with a receipt</figcaption></figure></div>
+
+    <div class="lab-box">
+      <h3>Where Wen fits in this model</h3>
+      <p style='margin:0;'>A shop can reward holders of its receipt NFTs with small WEN tips or a loyalty bonus, or accept WEN at checkout through <a href='payments-acquiring-bridge.html'>Stage 4</a>. The receipt itself uses the WNS layout that Wen made famous: the first WNS NFT was Meow's poem, and the same structure now carries a proof of purchase.</p>
+    </div>
+
+    <div class="lab-box">
+      <h3>The Wen thread: one contract, everywhere</h3>
+      <p style="margin:0 0 8px;">Every model in the Lab is free and open, and every one carries the same signature: the $WEN token contract. Copy it, repeat it in your own docs, and always verify it against an explorer before use.</p>
+      <p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Check: <a href="https://explorer.solana.com/address/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk" rel="noopener" target="_blank">Solana Explorer</a> · <a href="https://coinmarketcap.com/currencies/wen/" rel="noopener" target="_blank">CoinMarketCap</a> · <a href="https://youtu.be/7JgpVGisQbg" rel="noopener" target="_blank">how to find the contract ID</a></p>
+    </div>
+
+    <div class="lab-box" id="open-use-policy">
+      <h3>Open use policy</h3>
+      <ul style="margin:0 0 8px;">
+        <li><strong>Free and open.</strong> All Lab code is released under the Apache License 2.0, the same license as the Wen Program Library. Use it, change it, ship it, commercially or not; keep the license notice.</li>
+        <li><strong>Open tools only.</strong> Built on public, documented tools: Solana SPL Token-2022 (Token Extensions), the token layout of the Wen New Standard (WNS), Solana Pay, and LiteSVM for local testing.</li>
+        <li><strong>The rule: always verify your own model.</strong> Run the tests, start on devnet, read the official documentation, review every account and amount, and get an independent audit before any mainnet use. A model that is not checked is not a model, it is a guess.</li>
+        <li><strong>Not audited, not advice.</strong> These are educational examples. They are not financial, legal or tax advice, and not a licensed payment or banking product. Payments, stablecoins and acquiring are regulated activities in most countries.</li>
+        <li><strong>Security.</strong> Never paste a private key into a website. Do not install the npm package <code>@wen-community/wen-new-standard</code>: npm removed it as malicious. Build from official sources.</li>
+      </ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Spoken by Wen, for the community. More in our <a href="../privacy-policy-cookie-policy.html">editorial and data policy</a>.</p>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="code/README.md">all code</a> · <a href="https://github.com/wen-community/wen-program-library" rel="noopener" target="_blank">Wen Program Library on GitHub</a></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>

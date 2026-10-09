@@ -16,6 +16,8 @@ wen-media.html             Wen Media gallery (file list inline in FILES array)
 sitemap.xml, robots.txt
 <9 key pages>.html         flat, in the root
 posts/<wp-slug>.html       one flat file per post (example-post-slug.html = template)
+lab/                       Wen Open Lab: roadmap, models 1-5, benefits (own submenu in nav.js)
+lab/code/                  open example code (Apache-2.0): npm install && npm run typecheck && npm test
 assets/css/style.css       the only stylesheet
 assets/js/nav.js           sidebar menu + footer for every page (edit here only)
 assets/js/main.js
@@ -67,6 +69,13 @@ with the local path and remove `data-pending` (and `aria-disabled` in nav.js).
 4. Line in `navigation.html` and `<url>` in `sitemap.xml` (lastmod = publication date).
 5. Activate the post's footer slot / pending links if any.
 6. Link check.
+
+## Wen Open Lab
+
+Seven pages in `lab/` (roadmap, receipts, royalties, B2B invoices, payments bridge, simulator,
+benefits). Example code lives in `lab/code/` and runs in LiteSVM (local Solana VM, no network):
+25 checks, see `lab/code/test/results.txt`. Do not install the npm package
+`@wen-community/wen-new-standard`: npm removed it as malicious.
 
 ## Indexing notes
 

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stage 2: Creator Royalties With WNS Transfer Hooks on Solana</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/creator-royalties-wns.html">
+<meta name="description" content="Model 2 of Wen Open Lab: how WNS enforces creator royalties through a Token-2022 transfer hook, how to read the hook of any NFT and transfer it safely.">
+<!-- seo:start -->
+<meta name="keywords" content="NFT royalties, transfer hook, WNS royalty distribution, Token-2022, creators, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stage 2: Creator Royalties With WNS Transfer Hooks on Solana">
+<meta property="og:description" content="Model 2 of Wen Open Lab: how WNS enforces creator royalties through a Token-2022 transfer hook, how to read the hook of any NFT and transfer it safely.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/creator-royalties-wns.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-coin-style-2-3.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Stage 2: Creator Royalties With WNS Transfer Hooks on Solana", "description": "Model 2 of Wen Open Lab: how WNS enforces creator royalties through a Token-2022 transfer hook, how to read the hook of any NFT and transfer it safely.", "url": "https://wen-watt.github.io/lab/creator-royalties-wns.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <p class="meta">Wen Open Lab · open integration</p>
+    <h1>Stage 2: Creator Royalties<span class="lab-badge">hook read verified</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html" aria-current="page">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
+
+    <figure><img src="../wen-media/wen-coin-style-2-3.jpeg" alt="Wen creator coin art" width="1200" height="675"><figcaption>Art that pays its creator</figcaption></figure>
+
+    <p class="intro">For years, NFT royalties depended on whether a marketplace felt like paying them. WNS moved that rule into the token: a transfer hook runs on every transfer and enforces the creator's share. This model shows how to see which program guards an NFT, and how to move the NFT so that guard actually runs.</p>
+
+    <h2>The task</h2>
+    <p>Make sure a creator receives their share on every resale, whether the NFT is sold on a big marketplace, a small one, or passed directly between wallets.</p>
+
+    <h2>The model</h2>
+    <ol>
+      <li>An NFT mint carries the Token-2022 <strong>Transfer Hook</strong> extension, which names a hook program. For WNS assets that program is WNS royalty distribution: <code>diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay</code>.</li>
+      <li>On every transfer, Token-2022 calls the hook. If the hook's conditions are not met, the whole transaction is rolled back.</li>
+      <li>The hook needs extra accounts. The official helper <code>createTransferCheckedWithTransferHookInstruction</code> reads them from the chain, so wallets and marketplaces do not have to guess.</li>
+    </ol>
+    <table class="lab-table">
+      <thead><tr><th></th><th>Before (classic NFTs)</th><th>With a WNS transfer hook</th></tr></thead>
+      <tbody>
+        <tr><td>Who enforces royalties</td><td>Each marketplace, if it wants to</td><td>The token itself, on every transfer</td></tr>
+        <tr><td>Wallet-to-wallet sale</td><td>Royalty easily skipped</td><td>Hook still runs</td></tr>
+        <tr><td>Integration</td><td>Custom per marketplace</td><td>One standard flow for everyone</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The code</h2>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">File: <a href="code/src/02-royalty-transfer.ts">lab/code/src/02-royalty-transfer.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 2: creator royalties. Inspect which program enforces royalties on an NFT,
+// then transfer it so that the transfer hook (e.g. WNS royalty distribution) runs.
+// License: Apache-2.0. Example code, not audited. Devnet first.
+import { PublicKey, Transaction, sendAndConfirmTransaction } from &#x27;@solana/web3.js&#x27;;
+import {
+  TOKEN_2022_PROGRAM_ID, createAssociatedTokenAccountIdempotentInstruction,
+  createTransferCheckedWithTransferHookInstruction, getAssociatedTokenAddressSync, getMint, getTransferHook,
+} from &#x27;@solana/spl-token&#x27;;
+import { WNS_ROYALTY_PROGRAM_ID, detectTokenProgram, getConnection, loadKeypair } from &#x27;./common.js&#x27;;
+
+/** Read the transfer-hook program attached to a mint. */
+export async function inspectRoyaltyHook(mintAddress: string) {
+  const connection = getConnection();
+  const mint = new PublicKey(mintAddress);
+  const program = await detectTokenProgram(connection, mint);
+  if (!program.equals(TOKEN_2022_PROGRAM_ID)) return { mint: mintAddress, hook: null, note: &#x27;Classic SPL token: no transfer hooks&#x27; };
+  const info = await getMint(connection, mint, &#x27;confirmed&#x27;, TOKEN_2022_PROGRAM_ID);
+  const hook = getTransferHook(info);
+  const hookProgram = hook?.programId ?? null;
+  return {
+    mint: mintAddress,
+    hook: hookProgram?.toBase58() ?? null,
+    isWnsRoyalty: hookProgram ? hookProgram.equals(WNS_ROYALTY_PROGRAM_ID) : false,
+  };
+}
+
+/** Transfer one NFT. The helper resolves the hook&#x27;s extra accounts on-chain, so royalties logic runs. */
+export async function transferWithRoyalties(mintAddress: string, to: string) {
+  const connection = getConnection();
+  const owner = loadKeypair();
+  const mint = new PublicKey(mintAddress);
+  const recipient = new PublicKey(to);
+  const source = getAssociatedTokenAddressSync(mint, owner.publicKey, false, TOKEN_2022_PROGRAM_ID);
+  const destination = getAssociatedTokenAddressSync(mint, recipient, false, TOKEN_2022_PROGRAM_ID);
+
+  const transferIx = await createTransferCheckedWithTransferHookInstruction(
+    connection, source, mint, destination, owner.publicKey, 1n, 0, [], &#x27;confirmed&#x27;, TOKEN_2022_PROGRAM_ID,
+  );
+  const tx = new Transaction().add(
+    createAssociatedTokenAccountIdempotentInstruction(owner.publicKey, destination, recipient, mint, TOKEN_2022_PROGRAM_ID),
+    transferIx,
+  );
+  // If the hook rejects the transfer (for example, royalties not approved), the whole transaction rolls back.
+  return sendAndConfirmTransaction(connection, tx, [owner]);
+}
+
+// Example: npx tsx src/02-royalty-transfer.ts &lt;MINT_ADDRESS&gt;
+if (process.argv[2]) inspectRoyaltyHook(process.argv[2]).then(r =&gt; console.log(r)).catch(e =&gt; { console.error(e); process.exit(1); });</code></pre>
+
+    <h2>What was verified</h2>
+    <p>In LiteSVM: an NFT mint is created with a transfer hook pointing to the WNS royalty program, and the inspection logic reads that program back from the mint correctly. The transfer function is type-checked against the official <code>@solana/spl-token</code> API; running it end to end needs the real WNS programs, which is the job of the devnet stage on the <a href="index.html">roadmap</a>.</p>
+
+    <h2>Where it is useful</h2>
+    <ul>
+      <li>Digital art, music and video NFTs.</li>
+      <li>Game items whose designers earn from the secondary market.</li>
+      <li>Licensed brand collectibles, where the license fee follows every sale.</li>
+    </ul>
+
+    <h2>Limits and risks</h2>
+    <ul>
+      <li>The hook sees the number of tokens moved, not the price. A sale settled in a separate transaction ("a gift for 0 SOL") can dodge a percentage royalty. WNS handles this with approval logic; read the program before relying on it.</li>
+      <li>Every hook call costs compute units. Aggregators may need to request more.</li>
+      <li>The WNS audit is documented as not formally completed. Treat it accordingly.</li>
+    </ul>
+
+
+    <h2>Wen in pictures</h2>
+    <div class="lab-grid"><figure><a href="../wen-media/wen-coin-style-2-5.jpeg" target="_blank" rel="noopener" title="Wen royalty coin design"><img src="../wen-media/wen-coin-style-2-5.jpeg" alt="Wen royalty coin design" loading="lazy" width="300" height="300"></a><figcaption>Royalties written into the token</figcaption></figure><figure><a href="../wen-media/best-crypto-memes-cats-we.jpeg" target="_blank" rel="noopener" title="Wen meme artists gallery"><img src="../wen-media/best-crypto-memes-cats-we.jpeg" alt="Wen meme artists gallery" loading="lazy" width="300" height="300"></a><figcaption>Meme culture, fair rewards</figcaption></figure><figure><a href="../wen-media/anime-cat-crypto-wen-solana.jpeg" target="_blank" rel="noopener" title="Anime Wen cat creator"><img src="../wen-media/anime-cat-crypto-wen-solana.jpeg" alt="Anime Wen cat creator" loading="lazy" width="300" height="300"></a><figcaption>Creators first</figcaption></figure><figure><a href="../wen-media/wen-cat-anime-crypto.jpeg" target="_blank" rel="noopener" title="Wen anime royalty story"><img src="../wen-media/wen-cat-anime-crypto.jpeg" alt="Wen anime royalty story" loading="lazy" width="300" height="300"></a><figcaption>Every resale remembers the artist</figcaption></figure><figure><a href="../wen-media/memes-cats-best-crypto-wen-idol-crypto-cat.jpeg" target="_blank" rel="noopener" title="Wen idol cat collection"><img src="../wen-media/memes-cats-best-crypto-wen-idol-crypto-cat.jpeg" alt="Wen idol cat collection" loading="lazy" width="300" height="300"></a><figcaption>Collections with a conscience</figcaption></figure></div>
+
+    <div class="lab-box">
+      <h3>Where Wen fits in this model</h3>
+      <p style='margin:0;'>This is Wen's own invention at work: <code>wen_royalty_distribution</code> is one of the two programs of the Wen Program Library. A creator community can choose to quote prices or pay tips in WEN, while the royalty rule itself stays in the token. Read the <a href='../posts/wen-program-library-review.html'>Wen Program Library review</a> for the full picture.</p>
+    </div>
+
+    <div class="lab-box">
+      <h3>The Wen thread: one contract, everywhere</h3>
+      <p style="margin:0 0 8px;">Every model in the Lab is free and open, and every one carries the same signature: the $WEN token contract. Copy it, repeat it in your own docs, and always verify it against an explorer before use.</p>
+      <p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Check: <a href="https://explorer.solana.com/address/WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk" rel="noopener" target="_blank">Solana Explorer</a> · <a href="https://coinmarketcap.com/currencies/wen/" rel="noopener" target="_blank">CoinMarketCap</a> · <a href="https://youtu.be/7JgpVGisQbg" rel="noopener" target="_blank">how to find the contract ID</a></p>
+    </div>
+
+    <div class="lab-box" id="open-use-policy">
+      <h3>Open use policy</h3>
+      <ul style="margin:0 0 8px;">
+        <li><strong>Free and open.</strong> All Lab code is released under the Apache License 2.0, the same license as the Wen Program Library. Use it, change it, ship it, commercially or not; keep the license notice.</li>
+        <li><strong>Open tools only.</strong> Built on public, documented tools: Solana SPL Token-2022 (Token Extensions), the token layout of the Wen New Standard (WNS), Solana Pay, and LiteSVM for local testing.</li>
+        <li><strong>The rule: always verify your own model.</strong> Run the tests, start on devnet, read the official documentation, review every account and amount, and get an independent audit before any mainnet use. A model that is not checked is not a model, it is a guess.</li>
+        <li><strong>Not audited, not advice.</strong> These are educational examples. They are not financial, legal or tax advice, and not a licensed payment or banking product. Payments, stablecoins and acquiring are regulated activities in most countries.</li>
+        <li><strong>Security.</strong> Never paste a private key into a website. Do not install the npm package <code>@wen-community/wen-new-standard</code>: npm removed it as malicious. Build from official sources.</li>
+      </ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Spoken by Wen, for the community. More in our <a href="../privacy-policy-cookie-policy.html">editorial and data policy</a>.</p>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="code/README.md">all code</a> · <a href="https://github.com/wen-community/wen-program-library" rel="noopener" target="_blank">Wen Program Library on GitHub</a></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>
