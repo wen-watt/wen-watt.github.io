@@ -22,10 +22,11 @@ assets/js/main.js
 wen-media/                 all images (.jpeg), PDFs and HTML attachments — flat
 ```
 
-## Posts (12)
+## Posts (13)
 
 | Date | File |
 |---|---|
+| 2026-10-10 | posts/wen-program-library-review.html (original review, also in the left menu) |
 | 2026-09-07 | posts/solanas-wns-roadmap-how-a-meme-cat-poem.html |
 | 2026-09-03 | posts/wns-w-token-2022-and-economic-solana-wen.html |
 | 2026-09-02 | posts/south-korea-cbdc-and-tokenization.html |

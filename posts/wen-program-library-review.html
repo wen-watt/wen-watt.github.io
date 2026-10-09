@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wen Program Library Review: Open Code of the Space Cat</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/wen-program-library-review.html">
+<meta name="description" content="A tour of the open-source Wen Program Library: WNS and royalty programs, build and test steps, JS and Rust clients, the CLI and the Wen Foundation.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Program Library, WNS, Wen New Standard, royalty distribution, Solana Token Extensions, Wen Foundation, GitHub">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wen Program Library Review: Open Code of the Space Cat">
+<meta property="og:description" content="A tour of the open-source Wen Program Library: WNS and royalty programs, build and test steps, JS and Rust clients, the CLI and the Wen Foundation.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/wen-program-library-review.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-space-crypto-cat.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-10-10">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Wen Program Library Review: the Open Code Behind the Space Cat", "description": "A tour of the open-source Wen Program Library: WNS and royalty programs, build and test steps, JS and Rust clients, the CLI and the Wen Foundation.", "image": "https://wen-watt.github.io/wen-media/wen-space-crypto-cat.jpeg", "mainEntityOfPage": "https://wen-watt.github.io/posts/wen-program-library-review.html", "inLanguage": "en", "keywords": "Wen Program Library, WNS, Wen New Standard, royalty distribution, Solana Token Extensions, Wen Foundation, GitHub", "author": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2026-10-10"}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <h1>Wen Program Library Review: the Open Code Behind the Space Cat</h1>
+
+    <p class="meta">October 10, 2026</p>
+
+    <figure>
+      <img src="../wen-media/wen-space-crypto-cat.jpeg" alt="Wen space cat drifting through open source code">
+      <figcaption>The Wen cat in orbit: a meme on the surface, open infrastructure underneath</figcaption>
+    </figure>
+
+    <p class="intro">Every meme coin tells a story. Few of them leave a toolbox behind. The Wen Program Library is that toolbox: a public, Apache-licensed collection of Solana programs that turned a cat poem into a working NFT standard. This review walks through it the way the repository itself is laid out, section by section, for builders, curious holders and anyone meeting Wen for the first time.</p>
+
+    <nav aria-label="Contents" style="background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);padding:14px 18px;margin:0 0 28px;">
+      <p style="margin:0 0 6px;color:var(--ink-dim);font-size:13px;letter-spacing:.06em;text-transform:uppercase;">Flight plan</p>
+      <ol style="margin:0;padding-left:20px;columns:2;column-gap:28px;">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#building">Building</a></li>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#testing">Testing</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#cli">CLI</a></li>
+        <li><a href="#license">License</a></li>
+        <li><a href="#foundation">Wen Foundation</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="overview">1. Overview: two specifications, one quiet mission</h2>
+
+    <figure>
+      <img src="../wen-media/github-wns-wen-crypto-solana.jpeg" alt="Wen on GitHub, the WNS standard on Solana">
+      <figcaption>Where the meme meets the repository: Wen on GitHub</figcaption>
+    </figure>
+
+    <p>Picture a cat floating above Solana, looking down at a crowded sky of tokens. Most of them shine for a night and fade. Wen chose a different orbit. Its developer community keeps a single shared library of on-chain programs, and that library holds two specifications that do real work.</p>
+
+    <ul>
+      <li><strong>WEN New Standard (WNS).</strong> A way to represent NFTs with Solana's Token Extensions (Token-2022). A dedicated program enforces the standard and fills the gaps the base extensions leave open, such as token groups and the setup of the extensions an NFT needs.</li>
+      <li><strong>WEN Royalty Distribution.</strong> A way to define royalties for WNS assets and actually collect them, enforced through a Token Extensions transfer hook, so the creator's share travels with every transfer instead of depending on goodwill.</li>
+    </ul>
+
+    <figure>
+      <img src="../wen-media/wen-crypto-wns-standart.jpeg" alt="Golden Wen cat WNS standard">
+      <figcaption>WNS: NFTs built natively on Token Extensions</figcaption>
+    </figure>
+
+    <p>Why does this matter to someone who simply holds or watches the coin? Because a standard outlives a price chart. The poem that became $WEN was the first NFT minted on WNS, then split into a trillion tokens. The joke was the launch; the library is what stayed. If you want the longer history of that first mint, our <a href="solanas-wns-roadmap-how-a-meme-cat-poem.html">WNS roadmap review</a> tells it in full.</p>
+
+    <h2 id="building">2. Building: two commands to the launch pad</h2>
+
+    <figure>
+      <img src="../wen-media/wen-crypto-developers.jpeg" alt="Wen cat developers at work">
+      <figcaption>The builders' deck: Rust, Anchor and a cat on watch</figcaption>
+    </figure>
+
+    <p>A good project respects a newcomer's time. Here the whole build fits on a napkin: install the dependencies, then let the Anchor framework compile the programs.</p>
+
+    <pre style="white-space:pre-wrap;background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);padding:16px 18px;font-size:13.5px;color:var(--ink-dim);line-height:1.7;">yarn install
+anchor build</pre>
+
+    <p>Two things come out the other side. The compiled program binaries land in <code>target/deploy/&lt;program_name&gt;.so</code>, ready to deploy. The IDLs, the machine-readable maps of every instruction and account, land in <code>target/idl/&lt;program_name&gt;.json</code>. The IDL is the quiet hero here: it is what lets other tools and clients talk to the programs without guessing.</p>
+
+    <p>The repository itself reads like a well-kept ship's manifest:</p>
+
+    <pre style="white-space:pre;overflow-x:auto;background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);padding:16px 18px;font-size:13px;color:var(--ink-dim);line-height:1.6;">wen-program-library/
+├── programs/        the on-chain Solana programs (WNS, royalty distribution)
+├── clients/         autogenerated JavaScript and Rust clients
+├── tests/           the test suite, run with anchor test
+├── wpl_cli/         command-line tool for collections and assets
+├── scripts/         helper scripts
+├── .husky/          git hooks that check every commit
+├── Anchor.toml      Anchor workspace configuration
+├── Cargo.toml       Rust workspace
+├── kinobi.mjs       client code generation setup
+├── CHANGELOG.md     what changed, release by release
+├── CONTRIBUTING.md  how to join in
+├── SECURITY.md      how to report a vulnerability
+└── LICENSE          Apache License 2.0</pre>
+
+    <p>Notice the small files at the bottom. A changelog, contribution rules, a security policy and commit checks are not glamorous, but they are the signs of a codebase that expects visitors and plans to be around when they arrive.</p>
+
+    <h2 id="programs">3. Programs: the engines in the hull</h2>
+
+    <figure>
+      <img src="../wen-media/matrix-wen-crypto-future.jpeg" alt="Wen cat in the code matrix">
+      <figcaption>Two programs, each with a public address on Solana</figcaption>
+    </figure>
+
+    <p>At the heart of the library sit two on-chain programs. Each has a fixed program ID on Solana, so anyone can look it up in an explorer and see exactly what is running.</p>
+
+    <div style="overflow-x:auto;margin:0 0 24px;">
+    <table style="width:100%;border-collapse:collapse;font-size:14px;">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--panel-line);">Program</th>
+          <th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--panel-line);">What it does</th>
+          <th style="text-align:left;padding:8px 10px;border-bottom:1px solid var(--panel-line);">Program ID and packages</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;"><strong>wen_new_standard</strong></td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;">Implements the WNS specification: NFTs on Token Extensions, with groups and required extensions handled for you.</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;word-break:break-all;"><code>wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM</code><br>npm: <code>@wen-community/wen-new-standard</code><br>crates.io: <code>wen_new_standard</code></td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;"><strong>wen_royalty_distribution</strong></td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;">Enforces royalty payouts for WNS assets through a transfer hook.</td>
+          <td style="padding:8px 10px;border-bottom:1px solid var(--panel-line);vertical-align:top;word-break:break-all;"><code>diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay</code></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <figure>
+      <img src="../wen-media/new-crypto-standarts-wen.jpeg" alt="Wen cat new standards for creators">
+      <figcaption>Royalties that travel with the token, not with promises</figcaption>
+    </figure>
+
+    <p>The two engines work as a pair. <code>wen_new_standard</code> gives an NFT its body: a mint with zero decimals and a supply of one, metadata stored inside the mint, membership in a collection. <code>wen_royalty_distribution</code> gives it a conscience: when the asset moves, the transfer hook makes sure the creator's share is accounted for. The heavy lifting is done by Solana's own Token Extensions, which is why minting stays cheap and why the standard leans on native code rather than a tower of third-party contracts. For a layer-by-layer explanation of Token-2022 itself, see <a href="../spl-solana-program-library-token-2022-wns.html">SPL, Token-2022 and WNS explained</a>.</p>
+
+    <h2 id="testing">4. Testing: checking every seal before lift-off</h2>
+
+    <figure>
+      <img src="../wen-media/wen-crypto-rocket-moon.jpeg" alt="Wen rocket cat ready for launch">
+      <figcaption>No launch without a countdown: tests first</figcaption>
+    </figure>
+
+    <p>The test suite lives in its own <code>tests/</code> folder and runs with a single command:</p>
+
+    <pre style="white-space:pre-wrap;background:var(--panel);border:1px solid var(--panel-line);border-radius:var(--radius);padding:16px 18px;font-size:13.5px;color:var(--ink-dim);line-height:1.7;">anchor test</pre>
+
+    <p>Anchor spins up a local validator, deploys the programs and runs the scenarios against them, so a change can be checked end to end before it ever touches a real network. Wen already went through the hardest test there is: a live airdrop to more than a million wallets in January 2024, which also served as a dress rehearsal for Jupiter's own launch. The test folder is how that discipline continues day to day. In the same honest spirit, the project's documentation says plainly that a formal audit of WNS has not been completed, so builders should weigh that themselves. The open issues and plans are tracked in our <a href="wen-crypto-token-gitgub-com-release-planning.html">release planning review</a>.</p>
+
+    <h2 id="clients">5. Clients: translators for every crew</h2>
+
+    <figure>
+      <img src="../wen-media/wen-crypto-solana-memecoin-space-travel.jpeg" alt="Wen cat space travel across Solana">
+      <figcaption>From the chain to your app: generated clients do the talking</figcaption>
+    </figure>
+
+    <p>On-chain programs are only as useful as the code that can reach them. For every program, the library ships autogenerated clients in two languages: JavaScript for web and app developers, Rust for those working close to the metal. The clients are produced from the programs' IDLs with Kinobi, so they stay in step with the on-chain code instead of drifting away from it. The <code>wen_new_standard</code> clients come with their own READMEs inside the <code>clients/</code> folder, and the published packages on npm and crates.io mean a developer can start with one install rather than a weekend of plumbing.</p>
+
+    <h2 id="cli">6. CLI: the cat's command console</h2>
+
+    <figure>
+      <img src="../wen-media/wen-ufo-coin.jpeg" alt="Wen UFO coin command console">
+      <figcaption>A console for creators who prefer the terminal</figcaption>
+    </figure>
+
+    <p>Not everyone wants to write code to try a standard. The <code>wpl_cli</code> tool lets you create collections and run asset operations straight from the command line, with its own README listing every command. It is the shortest path from curiosity to a real WNS collection, and a handy companion for scripts and test runs.</p>
+
+    <h2 id="license">7. License: open skies</h2>
+
+    <p>The whole library is released under the <strong>Apache License 2.0</strong>. In plain words: you may use it, change it, build products on it and share it, as long as you keep the license and notices. Openness here is not a slogan; it is written into the terms. At the time of writing the repository shows 98 stars, 20 forks and 189 commits on its main branch, which is a modest, steady record of real work rather than noise.</p>
+
+    <h2 id="foundation">8. Wen Foundation: the crew behind the code</h2>
+
+    <figure>
+      <img src="../wen-media/crypto-cat-memecoin-wen-in-space.jpeg" alt="Wen cat crew in deep space">
+      <figcaption>Public goods for Solana, maintained in the open</figcaption>
+    </figure>
+
+    <p>The library lives under the <a href="https://github.com/wen-community" rel="noopener" target="_blank">wen-community</a> organization on GitHub, run by the Wen Foundation. Its stated purpose is simple and generous: to support the development of public goods on Solana and give back to the Solana community. Around the main library sit smaller satellites that show the same idea in practice:</p>
+
+    <ul>
+      <li><strong>wns-sample-mint</strong>: a demo of the core WNS functions, a working example to learn from.</li>
+      <li><strong>wen-royalty-claimer</strong>: a site where creators claim their WNS royalties.</li>
+      <li><strong>wpl-explorer</strong>: a portal into the Wen Program Library.</li>
+      <li><strong>wen-migration</strong>: tools for moving assets over to WNS.</li>
+      <li><strong>wenwencoin-landingpage</strong> and <strong>wen-marketing-site</strong>: the public face of the project, also open source.</li>
+    </ul>
+
+    <p>Step back and the picture is clear. A meme gave Wen its voice; the library gives it a spine. For a holder, it means the token sits next to something that keeps working when the timeline moves on. For a builder, it means a free, documented standard for NFTs and royalties on one of the fastest chains there is. For someone just meeting the cat, it is a reminder that the most useful things in crypto are often the quiet, open ones. Stay curious, read the code, and decide for yourself.</p>
+
+    <!-- wen-roller:start -->
+    <section class="wen-roller" aria-label="Wen Media" itemscope itemtype="https://schema.org/ImageGallery" style="margin:36px 0 24px;">
+      <h2 itemprop="name" style="margin-bottom:6px;">Wen Media</h2>
+      <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 12px;">Wen cat, Wen meme and the golden Wen coin: a few picks from the community archive. <a href="../wen-media.html" itemprop="url">Open all of Wen Media</a>.</p>
+      <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;">
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin56.jpeg" target="_blank" rel="noopener" title="Shiny Wen paws" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin56.jpeg" alt="Shiny Wen paws" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin56.jpeg">
+          <meta itemprop="name" content="Shiny Wen paws">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-icon.jpeg" target="_blank" rel="noopener" title="Wen signal long term" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-icon.jpeg" alt="Wen signal long term" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-icon.jpeg">
+          <meta itemprop="name" content="Wen signal long term">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-gif-new-world19.jpeg" target="_blank" rel="noopener" title="Playful Wen kitty" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-gif-new-world19.jpeg" alt="Playful Wen kitty" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-gif-new-world19.jpeg">
+          <meta itemprop="name" content="Playful Wen kitty">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-gif-new-world4.jpeg" target="_blank" rel="noopener" title="Cosmic Wen meme with WNS" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-gif-new-world4.jpeg" alt="Cosmic Wen meme with WNS" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-gif-new-world4.jpeg">
+          <meta itemprop="name" content="Cosmic Wen meme with WNS">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/market-wen-bonk-crypto-nov-2025.jpeg" target="_blank" rel="noopener" title="Wen legend to the moon" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/market-wen-bonk-crypto-nov-2025.jpeg" alt="Wen legend to the moon" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/market-wen-bonk-crypto-nov-2025.jpeg">
+          <meta itemprop="name" content="Wen legend to the moon">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-wall-street-july-2025.jpeg" target="_blank" rel="noopener" title="Bold Wen whiskers long term" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-wall-street-july-2025.jpeg" alt="Bold Wen whiskers long term" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-wall-street-july-2025.jpeg">
+          <meta itemprop="name" content="Bold Wen whiskers long term">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-coin-1.jpeg" target="_blank" rel="noopener" title="Cozy Wen vibes on Solana" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-coin-1.jpeg" alt="Cozy Wen vibes on Solana" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-coin-1.jpeg">
+          <meta itemprop="name" content="Cozy Wen vibes on Solana">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/solana-western.jpeg" target="_blank" rel="noopener" title="Happy Wen energy" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/solana-western.jpeg" alt="Happy Wen energy" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/solana-western.jpeg">
+          <meta itemprop="name" content="Happy Wen energy">
+        </figure>
+      </div>
+    </section>
+    <!-- wen-roller:end -->
+
+    <!-- roller-here -->
+    <h3>Keep exploring on the Wen almanac</h3>
+    <ul>
+      <li><a href="solanas-wns-roadmap-how-a-meme-cat-poem.html">Solana's WNS roadmap: how a meme cat poem is laying real-world asset rails</a></li>
+      <li><a href="ultimate-solana-token-2022-and-wen-compliance-and-testing.html">Solana Token-2022 and WEN: compliance and testing</a></li>
+      <li><a href="../token-2022-wns-solana-wen.html">Token-2022, WNS and Wen on Solana</a></li>
+      <li><a href="../wen-media/WNS_almanac_EN.html">The interactive WNS almanac</a></li>
+    </ul>
+
+    <p style="margin-top:28px;font-size:13.5px;color:var(--ink-dim);"><em>This review is for education only. It is not financial advice. Facts about the repository are taken from its public README and organization page at the time of writing and may change.</em></p>
+
+    <p style="margin-top:20px;"><a href="https://github.com/wen-community/wen-program-library" rel="noopener" target="_blank" style="display:inline-block;padding:10px 16px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel);">Open the Wen Program Library on GitHub →</a></p>
+</article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>

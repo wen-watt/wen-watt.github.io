@@ -40,6 +40,7 @@
     + '      <li><a href="' + p + 'wen-coin-video.html#wen-video">Wen coin video</a></li>'
     + '      <li><a href="' + p + 'jupiter-mobile-exchange-with-wen.html#jup">Jupiter mobile &amp; Exchange with Wen</a></li>'
     + '      <li><a href="' + p + 'spl-solana-program-library-token-2022-wns.html">Solana Program Library Token-2022 WNS</a></li>'
+    + '      <li><a href="' + p + 'posts/wen-program-library-review.html">Wen Program Library</a></li>'
     + '      <li><a href="' + p + 'links-wen-cat.html">Links Wen $Wen coin</a></li>'
     + '      <li><a href="' + p + 'wen-media.html">Wen Media</a></li>'
     + '      <li><a href="' + p + 'search-video-wen.html">More Wen</a></li>'
