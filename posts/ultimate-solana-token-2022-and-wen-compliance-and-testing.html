@@ -3,9 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ultimate Solana Token-2022 and WEN: Compliance and Testing</title>
+<title>Solana Token-2022 and WEN: Compliance and Testing Guide</title>
 <link rel="canonical" href="https://wen-watt.github.io/posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html">
-<meta name="description" content="Token-2022's built-in compliance extensions, WEN as the first mass-scale field test, and a legacy-SPL-vs-Token-2022 comparison table.">
+<meta name="description" content="Transfer Hooks, Permanent Delegate, Default Account State and Memo Transfers explained, plus how the WEN airdrop field-tested Token-2022 at scale.">
+<!-- seo:start -->
+<meta name="keywords" content="Solana Token-2022, Token Extensions, compliance, Transfer Hooks, WEN airdrop, WNS, SPL vs Token-2022">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solana Token-2022 and WEN: Compliance and Testing Guide">
+<meta property="og:description" content="Transfer Hooks, Permanent Delegate, Default Account State and Memo Transfers explained, plus how the WEN airdrop field-tested Token-2022 at scale.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="article:published_time" content="2026-09-02">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Solana Token-2022 and WEN: the Complete Guide to Compliance and Testing", "description": "Transfer Hooks, Permanent Delegate, Default Account State and Memo Transfers explained, plus how the WEN airdrop field-tested Token-2022 at scale.", "image": "https://wen-watt.github.io/wen-media/wen-crypto.jpeg", "mainEntityOfPage": "https://wen-watt.github.io/posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html", "inLanguage": "en", "keywords": "Solana Token-2022, Token Extensions, compliance, Transfer Hooks, WEN airdrop, WNS, SPL vs Token-2022", "author": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2026-09-02"}</script>
+<!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -33,71 +45,105 @@
   <main class="wrap">
 
     <article>
-    <h1>Ultimate Solana Token-2022 and WEN: Compliance and Testing</h1>
+<h1>Solana Token-2022 and WEN: the Complete Guide to Compliance and Testing</h1>
+<p>Wen, WNS, Token-2022, Solana and Korea connect through Token Extensions, Solana's token standard. Historically, the WEN project was the main mass-testing ground that proved this standard stable on Solana.</p>
+<figure>
+<img alt="What coin should I buy instead of USDC USDC Is WEN Coin a more affordable, promising alternative" src="../wen-media/wen-crypto-main.jpeg"/>
+<figcaption>The special Wen crypto sign</figcaption>
+</figure>
+<hr/>
+<h2>Solana Token-2022 Architecture and Built-In Compliance</h2>
+<p>Before Token-2022, enforcing regulatory rules (such as geographic limits or KYC checks) meant developers had to build custom smart contract wrappers around standard SPL tokens. That added security risks and a fragmented user experience.</p>
+<p>The <a href="https://solana.com/docs/tokens/extensions" rel="noopener" target="_blank">Solana Token Extensions specification</a> builds enterprise-grade compliance tools straight into the protocol layer through modular <strong>Type-Length-Value (TLV) data extensions</strong>. The main compliance extensions are:</p>
+<ul>
+<li><strong>Transfer Hooks:</strong> the cornerstone of automated compliance. Each time a transfer starts, a second verification program runs natively. The transfer goes through only if that program confirms set parameters, which allows on-chain, real-time KYC/AML checks, geographic whitelists or sanctions screening.</li>
+<li><strong>Permanent Delegate:</strong> this extension gives the issuer a fixed authority to manage token supply in any wallet. Issuers can freeze, seize or burn tokens without the owner's private keys. Regulated financial entities need this to follow court orders or reverse fraudulent hacks.</li>
+<li><strong>Default Account State:</strong> when a new user account is created for a token, it starts out "Frozen". The user cannot use the asset until they complete an outside verification step (for example, an identity check on a portal) that unfreezes the account.</li>
+<li><strong>Memo Transfers:</strong> this extension requires a text memo on every transaction. If the note (such as an invoice ID or audit code) is missing, the transfer fails at the protocol level, which simplifies corporate accounting and transaction tracking.</li>
+</ul>
+<hr/>
+<p><em>Section 2:</em> WEN ($WEN), the Crypto Cat — the First Mass-Scale Field Test</p>
+<p><strong>WEN ($WEN)</strong> is a cat-themed community token created by the core team behind Jupiter DEX, Solana's leading aggregator. Launched in January 2024, WEN was built as a production-scale stress test for both the Token-2022 standard and Jupiter's LFG Launchpad ahead of the huge JUP token distribution.</p>
+<p>WEN's real-world rollout proved the standard through concrete technical milestones:</p>
+<ol>
+<li><strong>The WNS specification:</strong> the Wen Foundation designed <strong>WNS (Wen New Standard)</strong>, an optimized, light NFT standard built entirely on the <a href="https://github.com/wen-community/wen-program-library" rel="noopener" target="_blank">Token-2022 program on GitHub</a>.</li>
+<li><strong>Native NFT fractionalization:</strong> founder <em>Meow</em> wrote a digital poem, <em>"A Love Letter to Wen Bros"</em>. It was minted as a WNS NFT and split into <strong>1 trillion fungible $WEN tokens</strong> using native Token-2022 logic. Each $WEN token stands for ownership of a tiny share of that founding digital asset.</li>
+<li><strong>Enterprise proof of concept:</strong> by airdropping to more than <strong>1 million active Solana wallets</strong> at once, WEN stress-tested Token-2022's data layouts under peak network load. This real-world run showed institutional token issuers (such as Paxos for the USDP stablecoin and GMO Trust) that Token-2022's compliance structures stay stable and efficient even in extreme traffic congestion.</li>
+</ol>
+<p><em>Section 3:</em> Side by Side: Legacy SPL vs. Token-2022 Compliance</p>
+<div class="sources">
+<table style="width:100%;border-collapse:collapse;font-size:13px;">
+<tbody>
+<tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--panel-line);">Compliance Dimension</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--panel-line);">Legacy SPL token standard</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--panel-line);">Token-2022 / WNS extension framework</th></tr>
+<tr><td style="padding:6px 8px;"><strong>Real-time KYC checks</strong></td><td style="padding:6px 8px;">Not possible without external app wrappers.</td><td style="padding:6px 8px;"><strong>Runs natively</strong> through protocol-level <code>Transfer Hooks</code>.</td></tr>
+<tr><td style="padding:6px 8px;"><strong>Asset recovery and reclaim</strong></td><td style="padding:6px 8px;">Not supported; needs the whole contract frozen.</td><td style="padding:6px 8px;"><strong>Supported natively</strong> through <code>Permanent Delegate</code> authority.</td></tr>
+<tr><td style="padding:6px 8px;"><strong>Built-in revenue and tax logic</strong></td><td style="padding:6px 8px;">Needs custom smart contracts that must be audited.</td><td style="padding:6px 8px;"><strong>Part of the token design</strong> through <code>Transfer Fees</code>.</td></tr>
+<tr><td style="padding:6px 8px;"><strong>Security isolation by default</strong></td><td style="padding:6px 8px;">Open to transfers with every address by default.</td><td style="padding:6px 8px;"><strong>Restricted at creation</strong> through <code>Default Account State</code>.</td></tr>
+<tr><td style="padding:6px 8px;"><strong>On-chain audit trails</strong></td><td style="padding:6px 8px;">Optional; depends on how the client dApp is built.</td><td style="padding:6px 8px;"><strong>Enforced natively</strong> through <code>Memo Transfer</code> logic.</td></tr>
+</tbody>
+</table>
+</div>
+<p>Read more: <a href="https://phantom.com/learn/crypto-101/wen-coin-token" rel="noopener" target="_blank">Phantom Learn — what the Wen coin token is</a></p>
+<p><a href="https://www.bitget.com/academy/explain-recent-trends-predictions-for-wen-crypto" rel="noopener" target="_blank">Bitget Academy — recent trends and forecasts for Wen crypto</a></p>
+<p><a href="https://web3.bitget.com/en/crypto-news/solana-token-extensions-enterprise-adoption-and-compliance" rel="noopener" target="_blank">Bitget Web3 — Solana Token Extensions, enterprise adoption and compliance</a></p>
+<p><a href="https://solana.com/ru/docs/tokens/extensions" rel="noopener" target="_blank">Solana docs — Token Extensions</a></p>
+<p>This document is a historical research note built only from public sources: official regulatory releases (SEC, CFTC), issuer registration filings on sec.gov (SEC EDGAR), and business and industry media. It holds no insider, confidential or non-public information, is not legal, investment or tax advice, and is not an offer to buy any asset. All facts are given as of the compilation date (September 2, 2026) and may change. Direct source links are included for checking; where anything differs, the primary source prevails.</p>
+<p lang="ko"><strong>KO:</strong> 본 문서는 공개적으로 이용 가능한 출처만을 근거로 작성된 역사적 사실 기록 노트(research note)입니다 — 규제기관의 공식 발표(SEC, CFTC), 발행사의 sec.gov(SEC EDGAR) 등록 서류, 그리고 업계·경제 언론 보도가 그 출처입니다. 본 문서는 내부자 정보, 기밀 정보 또는 비공개 정보를 포함하지 않으며, 법률·투자·세무 자문에 해당하지 않고, 어떠한 자산의 매수 제안도 아닙니다. 모든 사실은 작성일(2026년 9월 2일) 기준이며 향후 변경될 수 있습니다. 검증을 위해 원문 출처 링크를 제공하며, 내용이 상충할 경우 1차 출처가 우선합니다.</p>
+<p>TechTimes — <a href="https://www.techtimes.com/articles/325238/20260821/shinhan-bets-korean-won-solana-tokenized-fund-targets-dollar-dominated-rwa-market.htm">Shinhan bets on the Korean won with a Solana tokenized fund</a> SEC EDGAR, Bitwise Solana Staking ETF — <a href="https://www.sec.gov/Archives/edgar/data/0002045872/000119312526349138/bsol-20260813.htm">BSOL filing, August 13, 2026</a> SEC EDGAR, Grayscale Sui Staking ETF — <a href="https://www.sec.gov/Archives/edgar/data/2034012/000203401226000009/424b3_gsui_12312025.htm">GSUI prospectus 424B3</a></p>
+<p>DL News — <a href="https://www.dlnews.com/articles/defi/jupiter-wen-airdrop-introduces-new-solana-nft-standard/">https://www.dlnews.com/articles/defi/jupiter-wen-airdrop-introduces-new-solana-nft-standard/</a></p>
+<p>Gate Learn — <a href="https://www.gate.com/learn/articles/what-is-wen-all-you-need-to-know-about-wen/5046">https://www.gate.com/learn/articles/what-is-wen-all-you-need-to-know-about-wen/5046</a></p>
+<p>CoinMarketCap AI — <a href="https://coinmarketcap.com/cmc-ai/wen/what-is/">https://coinmarketcap.com/cmc-ai/wen/what-is/</a></p>
+    <!-- wen-roller:start -->
+    <section class="wen-roller" aria-label="Wen Media" itemscope itemtype="https://schema.org/ImageGallery" style="margin:36px 0 24px;">
+      <h2 itemprop="name" style="margin-bottom:6px;">Wen Media</h2>
+      <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 12px;">Wen cat, Wen meme and the golden Wen coin: a few picks from the community archive. <a href="../wen-media.html" itemprop="url">Open all of Wen Media</a>.</p>
+      <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;">
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin62.jpeg" target="_blank" rel="noopener" title="Playful Wen spark in orbit" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin62.jpeg" alt="Playful Wen spark in orbit" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin62.jpeg">
+          <meta itemprop="name" content="Playful Wen spark in orbit">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/night-racing-crypto-cat-wen-solana-memecoin-4.jpeg" target="_blank" rel="noopener" title="Smart Wen meme on Solana" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/night-racing-crypto-cat-wen-solana-memecoin-4.jpeg" alt="Smart Wen meme on Solana" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/night-racing-crypto-cat-wen-solana-memecoin-4.jpeg">
+          <meta itemprop="name" content="Smart Wen meme on Solana">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-coin-style-2-16.jpeg" target="_blank" rel="noopener" title="Wen future long term" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-coin-style-2-16.jpeg" alt="Wen future long term" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-coin-style-2-16.jpeg">
+          <meta itemprop="name" content="Wen future long term">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-crypto-pinterest-3.jpeg" target="_blank" rel="noopener" title="Wen cat to the moon" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-pinterest-3.jpeg" alt="Wen cat to the moon" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-pinterest-3.jpeg">
+          <meta itemprop="name" content="Wen cat to the moon">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-style-coin-2025.jpeg" target="_blank" rel="noopener" title="Wen crew for builders" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-style-coin-2025.jpeg" alt="Wen crew for builders" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-style-coin-2025.jpeg">
+          <meta itemprop="name" content="Wen crew for builders">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/23-cryptocurrency-market-Solana-wen-trading-crypto-cryptocurrency.jpeg" target="_blank" rel="noopener" title="Brave Wen business world class" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/23-cryptocurrency-market-Solana-wen-trading-crypto-cryptocurrency.jpeg" alt="Brave Wen business world class" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/23-cryptocurrency-market-Solana-wen-trading-crypto-cryptocurrency.jpeg">
+          <meta itemprop="name" content="Brave Wen business world class">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/review-wen-coin-cost.jpeg" target="_blank" rel="noopener" title="Wen mood to the moon" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/review-wen-coin-cost.jpeg" alt="Wen mood to the moon" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/review-wen-coin-cost.jpeg">
+          <meta itemprop="name" content="Wen mood to the moon">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-ufo-style-coin.jpeg" target="_blank" rel="noopener" title="Wen spark goes bluechip" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-ufo-style-coin.jpeg" alt="Wen spark goes bluechip" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-ufo-style-coin.jpeg">
+          <meta itemprop="name" content="Wen spark goes bluechip">
+        </figure>
+      </div>
+    </section>
+    <!-- wen-roller:end -->
 
-
-    <p>Wen WNS Token-2022 Solana Korea establishes a link to Token Extensions, the Token standard. Project WEN historically served as the primary mass-testing infrastructure to prove the stability of this token standard on Solana.</p>
-
-    <figure>
-      <img src="../wen-media/wen-crypto-main.jpeg" alt="What coin should I buy instead of USDC USDC Is WEN Coin a more affordable, promising alternative">
-      <figcaption>Wen crypt special sign</figcaption>
-    </figure>
-
-    <hr>
-
-    <h2>Solana Token-2022 Architecture &amp; Built-In Compliance</h2>
-    <p>Before Token-2022, enforcing regulatory rules (like geographic restrictions or KYC checks) required developers to build custom smart contract wrappers around standard SPL tokens. This introduced security risks and fragmented user experiences.</p>
-    <p>The <a target="_blank" rel="noopener" href="https://solana.com/docs/tokens/extensions">Solana Token Extensions Spec</a> embeds enterprise-grade compliance tools directly into the protocol layer using modular <strong>Type-Length-Value (TLV) data extensions</strong>. The key compliance extensions include:</p>
-    <ul>
-      <li><strong>Transfer Hooks:</strong> This is the cornerstone of automated compliance. Every time a token transfer is initiated, a secondary verification program is natively triggered. The transfer will execute only if the program verifies specific parameters, enabling on-chain, real-time KYC/AML validation, geographic whitelisting, or sanction screening.</li>
-      <li><strong>Permanent Delegate:</strong> This extension gives the token issuer an immutable authority to manage token supply across any wallet. Issuers can freeze, seize, or burn tokens without the wallet owner's private keys. This capability is mandatory for regulated financial entities to comply with court orders or reverse fraudulent hacks.</li>
-      <li><strong>Default Account State:</strong> When a new user account is generated for a token, it is automatically initialized in a "Frozen" state. The user cannot transact with the asset until they perform an external verification step (e.g., identity check on a portal) to unfreeze the account.</li>
-      <li><strong>Memo Transfers:</strong> This extension strictly requires a text memo to be attached to every single transaction. If the text log (such as an invoice ID or audit code) is missing, the transfer fails natively at the protocol level, streamlining corporate accounting and transaction tracking.</li>
-    </ul>
-
-    <hr>
-
-    <p><em>section 2:</em> WEN ($WEN) Crypto Cat — The First Mass-Scale Field Test</p>
-    <p><strong>WEN ($WEN)</strong> is a cat-themed community token created by the core team behind the leading Solana aggregator, Jupiter DEX. Launched in January 2024, WEN was designed as a production-scale stress test for both the Token-2022 standard and Jupiter's LFG Launchpad before conducting the massive JUP token distribution.</p>
-    <p>WEN's practical implementation validated the standard through specific technical milestones:</p>
-    <ol>
-      <li><strong>Creation of the WNS Specification:</strong> The Wen Foundation engineered the <strong>WNS (Wen New Standard)</strong>, an optimized, lightweight NFT standard constructed entirely on top of the <a href="https://github.com/wen-community/wen-program-library" target="_blank" rel="noopener">Token-2022 Program on GitHub</a>.</li>
-      <li><strong>Native NFT Fractionalization:</strong> Founder <em>Meow</em> wrote a digital poem called <em>"A Love Letter to Wen Bros"</em>. This poem was minted as a WNS NFT and broken down into <strong>1 trillion fungible $WEN tokens</strong> using native Token-2022 logic. Holding individual $WEN tokens represents ownership of a microscopic fraction of that foundational digital asset.</li>
-      <li><strong>Enterprise Proof-of-Concept:</strong> By executing an airdrop to over <strong>1 million active Solana wallets</strong> simultaneously, WEN stress-tested Token-2022's data layouts under peak network loads. This real-world execution proved to institutional token issuers (such as Paxos for the USDP stablecoin and GMO Trust) that Token-2022's compliance structures remain stable and efficient during periods of extreme traffic congestion.</li>
-    </ol>
-
-    <p><em>Section 3:</em> Comparative Framework: Legacy SPL vs. Token-2022 Compliance</p>
-    <div class="sources">
-      <table style="width:100%;border-collapse:collapse;font-size:13px;">
-        <tbody>
-          <tr><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--panel-line);">Compliance Dimension</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--panel-line);">Legacy SPL Token Standard</th><th style="text-align:left;padding:6px 8px;border-bottom:1px solid var(--panel-line);">Token-2022 / WNS Extension Framework</th></tr>
-          <tr><td style="padding:6px 8px;"><strong>Real-time KYC Validation</strong></td><td style="padding:6px 8px;">Impossible without external application wrappers.</td><td style="padding:6px 8px;"><strong>Native execution</strong> via protocol-level <code>Transfer Hooks</code>.</td></tr>
-          <tr><td style="padding:6px 8px;"><strong>Asset Reclamation &amp; Recovery</strong></td><td style="padding:6px 8px;">Not supported; requires total contract freezing.</td><td style="padding:6px 8px;"><strong>Natively supported</strong> via <code>Permanent Delegate</code> authority.</td></tr>
-          <tr><td style="padding:6px 8px;"><strong>Native Revenue/Tax Modeling</strong></td><td style="padding:6px 8px;">Requires customized and auditable smart contracts.</td><td style="padding:6px 8px;"><strong>Embedded in token design</strong> using <code>Transfer Fees</code>.</td></tr>
-          <tr><td style="padding:6px 8px;"><strong>Default Security Isolation</strong></td><td style="padding:6px 8px;">Open and transacting to all addresses by default.</td><td style="padding:6px 8px;"><strong>Restricted on creation</strong> via <code>Default Account State</code>.</td></tr>
-          <tr><td style="padding:6px 8px;"><strong>On-Chain Audit Trails</strong></td><td style="padding:6px 8px;">Optional; dependent on client dApp implementation.</td><td style="padding:6px 8px;"><strong>Natively enforced</strong> using <code>Memo Transfer</code> logic.</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <p>Further reading: <a href="https://phantom.com/learn/crypto-101/wen-coin-token" target="_blank" rel="noopener">phantom.com/learn/crypto-101/wen-coin-token</a></p>
-    <p><a href="https://www.bitget.com/academy/explain-recent-trends-predictions-for-wen-crypto" target="_blank" rel="noopener">bitget.com/academy — explain recent trends &amp; predictions for wen crypto</a></p>
-    <p><a href="https://web3.bitget.com/en/crypto-news/solana-token-extensions-enterprise-adoption-and-compliance" target="_blank" rel="noopener">web3.bitget.com — Solana Token Extensions enterprise adoption and compliance</a></p>
-    <p><a href="https://solana.com/ru/docs/tokens/extensions" target="_blank" rel="noopener">solana.com/ru/docs/tokens/extensions</a></p>
-
-    <p>This document is a historically-documented research note compiled exclusively from publicly available sources — official regulatory releases (SEC, CFTC), issuer registration filings on sec.gov (SEC EDGAR), and business/industry media coverage. It contains no insider, confidential, or non-public information, does not constitute legal, investment, or tax advice, and is not an offer to purchase any asset. All facts are stated as of the date of compilation (September 2, 2026) and are subject to change. Direct source links are provided for verification; in case of discrepancy, the primary source governs.</p>
-
-    <p lang="ko"><strong>KO:</strong> 본 문서는 공개적으로 이용 가능한 출처만을 근거로 작성된 역사적 사실 기록 노트(research note)입니다 — 규제기관의 공식 발표(SEC, CFTC), 발행사의 sec.gov(SEC EDGAR) 등록 서류, 그리고 업계·경제 언론 보도가 그 출처입니다. 본 문서는 내부자 정보, 기밀 정보 또는 비공개 정보를 포함하지 않으며, 법률·투자·세무 자문에 해당하지 않고, 어떠한 자산의 매수 제안도 아닙니다. 모든 사실은 작성일(2026년 9월 2일) 기준이며 향후 변경될 수 있습니다. 검증을 위해 원문 출처 링크를 제공하며, 내용이 상충할 경우 1차 출처가 우선합니다.</p>
-
-    <p>TechTimes — <a href="https://www.techtimes.com/articles/325238/20260821/shinhan-bets-korean-won-solana-tokenized-fund-targets-dollar-dominated-rwa-market.htm">https://www.techtimes.com/articles/325238/20260821/shinhan-bets-korean-won-solana-tokenized-fund-targets-dollar-dominated-rwa-market.htm</a> SEC EDGAR, Bitwise Solana Staking ETF — <a href="https://www.sec.gov/Archives/edgar/data/0002045872/000119312526349138/bsol-20260813.htm">https://www.sec.gov/Archives/edgar/data/0002045872/000119312526349138/bsol-20260813.htm</a> SEC EDGAR, Grayscale Sui Staking ETF — <a href="https://www.sec.gov/Archives/edgar/data/2034012/000203401226000009/424b3_gsui_12312025.htm">https://www.sec.gov/Archives/edgar/data/2034012/000203401226000009/424b3_gsui_12312025.htm</a></p>
-    <p>DL News — <a href="https://www.dlnews.com/articles/defi/jupiter-wen-airdrop-introduces-new-solana-nft-standard/">https://www.dlnews.com/articles/defi/jupiter-wen-airdrop-introduces-new-solana-nft-standard/</a></p>
-    <p>Gate Learn — <a href="https://www.gate.com/learn/articles/what-is-wen-all-you-need-to-know-about-wen/5046">https://www.gate.com/learn/articles/what-is-wen-all-you-need-to-know-about-wen/5046</a></p>
-    <p>CoinMarketCap AI — <a href="https://coinmarketcap.com/cmc-ai/wen/what-is/">https://coinmarketcap.com/cmc-ai/wen/what-is/</a></p>
-
-
-
-    <p><em>This page is the current, maintained version of this piece. It was originally published on wen-crypto.com and is reproduced here in full as part of migrating the $WEN almanac to this static archive.</em> Original page: <a href="https://wen-crypto.com/2026/09/02/ultimate-solana-token-2022-and-wen-compliance-and-testing/">wen-crypto.com</a>.</p>
-    </article>
+<p><em>This page is the current, maintained version of this piece. It was originally published on wen-crypto.com and is reproduced here in full as part of migrating the $WEN almanac to this static archive.</em> Original page: <a href="https://wen-crypto.com/2026/09/02/ultimate-solana-token-2022-and-wen-compliance-and-testing/">wen-crypto.com</a>.</p>
+</article>
 
   <div id="footer-slot"></div>
 

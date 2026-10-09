@@ -420,3 +420,6 @@ dl dd{margin:4px 0 0;color:var(--ink-dim);font-size:13.5px;}
   .notes{grid-template-columns:1fr;}
   .sources ul{grid-template-columns:1fr;}
 }
+
+/* Links to posts not yet migrated: visible but inactive until the post exists */
+a[data-pending]{pointer-events:none;cursor:default;opacity:.5;text-decoration:none;}

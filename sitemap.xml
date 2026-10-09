@@ -1,79 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/about.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/index.html</loc>
+    <loc>https://wen-watt.github.io/</loc>
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/jupiter-mobile-exchange-with-wen.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/links-wen-cat.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/navigation.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/privacy-policy-cookie-policy.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/search-video-wen.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/token-2022-wns-solana-wen.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/wen-coin-video.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/wen-coin-with-pinterest.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/wen-crypto-by-solana-gifs.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/wen-media.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/wenwencoin-com-content-wen-brand.html</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html</loc>
-    <lastmod>2025-12-24</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/posts/how-sol-achieved-proven-global-recognition-2022-2026.html</loc>
-    <lastmod>2026-09-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://wen-watt.github.io/posts/may-the-spirit-of-christmas-bring-you-an-unexpected-miracle-wen-cat.html</loc>
-    <lastmod>2025-12-25</lastmod>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://wen-watt.github.io/posts/solanas-wns-roadmap-how-a-meme-cat-poem.html</loc>
@@ -81,7 +10,17 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html</loc>
+    <lastmod>2026-09-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/posts/south-korea-cbdc-and-tokenization.html</loc>
+    <lastmod>2026-09-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/posts/how-sol-achieved-proven-global-recognition-2022-2026.html</loc>
     <lastmod>2026-09-02</lastmod>
     <priority>0.8</priority>
   </url>
@@ -96,18 +35,77 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wen-watt.github.io/posts/wen-crypto-token-gitgub-com-release-planning.html</loc>
-    <lastmod>2026-01-08</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://wen-watt.github.io/posts/wen-token-network-re-examination.html</loc>
     <lastmod>2026-06-23</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html</loc>
-    <lastmod>2026-09-03</lastmod>
+    <loc>https://wen-watt.github.io/posts/wen-crypto-token-gitgub-com-release-planning.html</loc>
+    <lastmod>2026-01-08</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/posts/may-the-spirit-of-christmas-bring-you-an-unexpected-miracle-wen-cat.html</loc>
+    <lastmod>2025-12-25</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html</loc>
+    <lastmod>2025-12-24</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/posts/w-coin-wen-crypto-coin-expanding-the-gates.html</loc>
+    <lastmod>2025-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/posts/wen-crypto-gold-coin-coinbase-roadmap-for-jupiter-bonk-memecoin-debuts-as-an-etp-today.html</loc>
+    <lastmod>2025-12-03</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/about.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/token-2022-wns-solana-wen.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/wen-coin-with-pinterest.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/wen-coin-video.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/jupiter-mobile-exchange-with-wen.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/links-wen-cat.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/search-video-wen.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/wen-media.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/navigation.html</loc>
+    <priority>0.5</priority>
   </url>
 </urlset>
