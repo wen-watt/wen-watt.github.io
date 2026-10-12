@@ -505,3 +505,8 @@ a[data-pending]{pointer-events:none;cursor:default;opacity:.5;text-decoration:no
 .sidebar nav.key-pages ul.lab-sub a{font-size:12.5px;}
 .sidebar nav.key-pages ul.lab-sub a[aria-current="page"]{color:var(--amber);font-weight:600;}
 @media (max-width:900px){.sidebar nav.key-pages ul.lab-sub a{font-size:14px;}}
+
+/* Brand: "Wen Almanac" with a small tagline under it */
+.sidebar .brand .brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.sidebar .brand .brand-tag{font-family:Inter,system-ui,sans-serif;font-weight:500;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-top:3px;}
+.sidebar .brand .brand-name{color:var(--ink);white-space:nowrap;}
