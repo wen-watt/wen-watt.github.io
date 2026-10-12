@@ -3,6 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
 <title>SPL Solana Program Library, Token-2022 and WNS Explained</title>
 <link rel="canonical" href="https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html">
 <meta name="description" content="SPL Token, Token-2022 extensions and the WNS standard explained layer by layer, with what each does in the market and how WEN proved it under load.">
@@ -55,7 +64,7 @@
 <p>NFT marketplaces and the creator economy — royalties are enforced by the token itself, which makes them far harder to dodge through "gray market" platforms (see the zero-price transfer caveat below) (a long-standing industry problem since 2022). RWA (real-world asset) tokenization — Transfer Hooks let KYC and geo-restriction rules live inside the transfer itself, a must for regulated financial instruments (see <a href="posts/wns-w-token-2022-and-economic-solana-wen.html">WNS, Token-2022 and the Shinhan deal</a>). Compliant DeFi — Permanent Delegate and Transfer Hooks make it possible to issue tokens with built-in controls (essential, for example, for stablecoin or security-token issuers). Lower infrastructure costs — dropping third-party metadata programs (such as those Metaplex used before) cuts the cost and complexity of minting NFT collections.</p>
 <p>What global mechanism is behind this? Put simply, Solana is moving from "programmability through third-party programs" to programmability built into tokens at the protocol level (similar to what Ethereum attempts with ERC-1404/ERC-3643 for security tokens, except that here it is a native part of SPL rather than an extra layer).</p>
 <p>Now to the direct link with Wen — his space-traveling role and his direct part in the whole Solana ecosystem of WNS, Token-2022 and SPL.</p>
-<figure><img alt="Dancing party Wen crypto and Ricky and Morty cartoon" src="wen-media/wen-crypto-dancing-party.jpeg"/><figcaption>A Wen crypto dance party, cartoon crossover art</figcaption></figure>
+<figure><img alt="Dancing party Wen crypto and Ricky and Morty cartoon" src="wen-media/wen-crypto-memecoin-friends.jpeg"/><figcaption>A Wen crypto dance party, cartoon crossover art</figcaption></figure>
 <p>"Wen cat" is not a separate project but the brand identity of the WEN memecoin, which was the first real-world use of WNS. In January 2024 the pseudonymous founder of Jupiter Exchange — known as "weremeow" (with "meow" hinting at a cat) — wrote a playful poem, "A Love Letter to Wen Bros", in reply to the community's endless "wen token?" questions.</p>
 <p>The poem was minted as a unique NFT with the newly created WNS (Wen New Standard). Then, using Token-2022 extensions — Metadata Pointer, Group/Member and Transfer Hook — that single NFT was split into one trillion WEN tokens. They trade like ordinary SPL tokens, yet each one formally stands for a share of ownership in the original poem NFT. The longer story is in <a href="posts/solanas-wns-roadmap-how-a-meme-cat-poem.html">Solana's WNS roadmap</a>.</p>
 <p>The cat theme — the mascot, the creator's handle and the community branding around the "cutest cat" — comes from the creator's name (weremeow), not from the standard's technical spec. In short, "Wen cat" is the marketing and cultural layer, WNS is the technology underneath, and the WEN token is the proof of concept that field-tested Token-2022, Transfer Hook and NFT fractionalization together.</p>

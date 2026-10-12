@@ -29,19 +29,18 @@
   var path = (window.location && window.location.pathname) || '';
   var inLab = /\/lab\//.test(path);
   var here = path.split('/').pop() || 'index.html';
-  var labSub = '';
-  if (inLab) {
-    labSub = '<ul class="lab-sub">';
-    for (var i = 0; i < LAB_STAGES.length; i++) {
-      var cur = LAB_STAGES[i][0] === here ? ' aria-current="page"' : '';
-      labSub += '<li><a href="' + p + 'lab/' + LAB_STAGES[i][0] + '"' + cur + '>' + LAB_STAGES[i][1] + '</a></li>';
-    }
-    labSub += '</ul>';
+  // The Lab sub-level is always rendered; it starts open inside /lab/ and can be toggled anywhere
+  var labSub = '<ul class="lab-sub" id="lab-sub">';
+  for (var i = 0; i < LAB_STAGES.length; i++) {
+    var cur = (inLab && LAB_STAGES[i][0] === here) ? ' aria-current="page"' : '';
+    labSub += '<li><a href="' + p + 'lab/' + LAB_STAGES[i][0] + '"' + cur + '>' + LAB_STAGES[i][1] + '</a></li>';
   }
+  labSub += '</ul>';
 
   var sidebarHTML = ''
-    + '<aside class="sidebar">'
-    + '  <a class="brand" href="' + p + 'index.html">Wen<span>Crypto</span></a>'
+    + '<aside class="sidebar" id="site-menu" aria-label="Site menu">'
+    + '  <button type="button" class="m-close" aria-label="Close menu">&times;</button>'
+    + '  <a class="brand" href="' + p + 'index.html"><img class="brand-logo" src="' + p + 'assets/icons/wen-logo-96.png" width="40" height="40" alt="Wen cat logo, the Wen Almanac sign"><span class="brand-text">Wen<span>Crypto</span></span></a>'
 
     + '  <div class="sidebar-intro">'
     + '    <p class="intro-line">'
@@ -59,7 +58,7 @@
     + '  <nav class="key-pages" aria-label="Key pages">'
     + '    <ul>'
     + '      <li><a href="' + p + 'about-wen-token-wen-coin-crypto.html#wen-crypto">About Wen token, WEN coin crypto</a></li>'
-    + '      <li><a href="' + p + 'lab/index.html"><strong>&#9733; Wen Open Lab</strong></a>' + labSub + '</li>'
+    + '      <li class="has-sub' + (inLab ? ' open' : '') + '"><a href="' + p + 'lab/index.html"><strong>&#9733; Wen Open Lab</strong></a><button type="button" class="sub-toggle" aria-controls="lab-sub" aria-expanded="' + (inLab ? 'true' : 'false') + '" aria-label="Show Wen Open Lab stages"></button>' + labSub + '</li>'
     + '      <li><a href="' + p + 'quiz.html"><strong>&#10067; What do you know about Wen?</strong></a></li>'
     + '      <li><a href="' + p + 'about.html#wen-token">More about Wen ($Wen) token</a></li>'
     + '      <li><a href="' + p + 'token-2022-wns-solana-wen.html">Token 2022 WNS Solana Wen</a></li>'
@@ -90,9 +89,9 @@
     + '    <a href="' + p + 'posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html">Catlumpurr</a><span class="sep">○</span>'
     + '    <a href="#" data-pending="2025/12/05/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly" aria-disabled="true">Reddit</a><span class="sep">○</span>'
     + '    <a href="' + p + 'posts/wen-crypto-gold-coin-coinbase-roadmap-for-jupiter-bonk-memecoin-debuts-as-an-etp-today.html">Wen</a><span class="sep">○</span>'
-    + '    <a href="#" data-pending="2025/11/18/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen" aria-disabled="true">Meow</a><span class="sep">○</span>'
-    + '    <a href="#" data-pending="2025/11/15/what-is-wendys-backstory-and-what-is-new-world-wen-crypto" aria-disabled="true">Wendy\'s</a><span class="sep">○</span>'
-    + '    <a href="#" data-pending="2025/10/30/bsol-new-york-stock-exchange-wall-street" aria-disabled="true">BSol Wallstreet</a><span class="sep">○</span>'
+    + '    <a href="' + p + 'posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html">Meow</a><span class="sep">○</span>'
+    + '    <a href="' + p + 'posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html">Wendy\'s</a><span class="sep">○</span>'
+    + '    <a href="' + p + 'posts/bsol-new-york-stock-exchange-wall-street.html">BSol Wallstreet</a><span class="sep">○</span>'
     + '    <a href="#" data-pending="2025/10/21/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption" aria-disabled="true">WNS 0.0</a><span class="sep">○</span>'
     + '    <a href="#" data-pending="2025/10/10/wen-crypto-egypt-cats" aria-disabled="true">Cats</a><span class="sep">○</span>'
     + '    <a href="#" data-pending="2025/10/10/wen-crypto-x-elevate-pictures-and-next-future" aria-disabled="true">Elevate</a><span class="sep">○</span>'
@@ -112,6 +111,93 @@
     var f = document.getElementById('footer-slot');
     if (s) s.outerHTML = sidebarHTML;
     if (f) f.outerHTML = footerHTML;
+    try { enhance(); } catch (e) { /* menu still works as plain links */ }
+  }
+
+  // ---------- Levels, "you are here" trail and the mobile menu ----------
+  function clean(u) { return String(u).split('#')[0].split('?')[0].replace(/\/$/, '/index.html'); }
+  function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function enhance() {
+    var side = document.getElementById('site-menu');
+    if (!side) return;
+    var me = clean(window.location.href);
+    var activeText = '';
+
+    // 1. Mark the current page in the menu
+    Array.prototype.forEach.call(side.querySelectorAll('nav.key-pages a'), function (a) {
+      if (clean(a.href) === me) {
+        a.classList.add('active');
+        a.setAttribute('aria-current', 'page');
+        if (!activeText) activeText = a.textContent.replace(/^[\s\u2605\u2753]+/, '').trim();
+      }
+    });
+
+    // 2. Sub-level toggles (open / close a section)
+    Array.prototype.forEach.call(side.querySelectorAll('.has-sub > .sub-toggle'), function (b) {
+      b.addEventListener('click', function () {
+        var li = b.parentNode, open = !li.classList.contains('open');
+        li.classList.toggle('open', open);
+        b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+    });
+
+    // 3. "You are here" trail: level > sub-level > page
+    var trail = [['Home', p + 'index.html']];
+    var h1 = document.querySelector('main h1');
+    var title = h1 ? h1.textContent.trim() : document.title;
+    if (inLab) {
+      trail.push(['Wen Open Lab', p + 'lab/index.html']);
+      for (var k = 0; k < LAB_STAGES.length; k++) {
+        if (LAB_STAGES[k][0] === here && here !== 'index.html') {
+          trail.push([LAB_STAGES[k][1].replace(/&amp;/g, '&').replace(/&#\d+;\s*/g, '').replace(/^\d+\s\u00b7\s/, ''), null]);
+        }
+      }
+    } else if (/\/posts\//.test(window.location.pathname)) {
+      trail.push(['Posts', p + 'navigation.html']);
+      trail.push([title, null]);
+    } else if (here !== 'index.html' && here !== '') {
+      trail.push([activeText || title, null]);
+    }
+    var crumbs = '<ol>';
+    trail.forEach(function (t, n) {
+      var last = n === trail.length - 1;
+      crumbs += last ? '<li aria-current="page"><span>' + esc(t[0]) + '</span></li>'
+                     : '<li><a href="' + t[1] + '">' + esc(t[0]) + '</a></li>';
+    });
+    crumbs += '</ol>';
+
+    // 4. Compact mobile header: logo, trail, menu button (hidden on desktop by CSS)
+    var head = document.createElement('div');
+    head.className = 'm-head';
+    head.innerHTML = '<div class="m-bar">'
+      + '<a class="m-brand" href="' + p + 'index.html"><img src="' + p + 'assets/icons/wen-logo-96.png" width="34" height="34" alt="Wen cat logo"><span>Wen<span>Crypto</span></span></a>'
+      + '<button type="button" class="m-burger" aria-controls="site-menu" aria-expanded="false"><span class="m-lines" aria-hidden="true"></span>Menu</button>'
+      + '</div>'
+      + '<nav class="m-crumbs" aria-label="You are here">' + crumbs + '</nav>';
+    document.body.insertBefore(head, document.body.firstChild);
+    var shade = document.createElement('div');
+    shade.className = 'm-backdrop';
+    document.body.appendChild(shade);
+
+    var burger = head.querySelector('.m-burger');
+    var closeBtn = side.querySelector('.m-close');
+    function setOpen(open) {
+      document.body.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) { setTimeout(function () { (closeBtn || side).focus(); }, 60); var cur = side.querySelector('[aria-current="page"]'); if (cur && cur.scrollIntoView) cur.scrollIntoView({ block: 'nearest' }); }
+      else burger.focus();
+    }
+    burger.addEventListener('click', function () { setOpen(!document.body.classList.contains('menu-open')); });
+    if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });
+    shade.addEventListener('click', function () { setOpen(false); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setOpen(false);
+    });
+    side.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (a && document.body.classList.contains('menu-open')) document.body.classList.remove('menu-open');
+    });
   }
 
   if (document.readyState === 'loading') {
