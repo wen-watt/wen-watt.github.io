@@ -153,6 +153,9 @@
           trail.push([LAB_STAGES[k][1].replace(/&amp;/g, '&').replace(/&#\d+;\s*/g, '').replace(/^\d+\s\u00b7\s/, ''), null]);
         }
       }
+    } else if (/\/media\//.test(window.location.pathname)) {
+      trail.push(['Wen Media', p + 'wen-media.html']);
+      trail.push([title, null]);
     } else if (/\/posts\//.test(window.location.pathname)) {
       trail.push(['Posts', p + 'navigation.html']);
       trail.push([title, null]);
