@@ -147,6 +147,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/quiz.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/wen-media.html</loc>
     <priority>0.5</priority>
   </url>

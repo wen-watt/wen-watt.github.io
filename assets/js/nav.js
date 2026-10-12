@@ -60,6 +60,7 @@
     + '    <ul>'
     + '      <li><a href="' + p + 'about-wen-token-wen-coin-crypto.html#wen-crypto">About Wen token, WEN coin crypto</a></li>'
     + '      <li><a href="' + p + 'lab/index.html"><strong>&#9733; Wen Open Lab</strong></a>' + labSub + '</li>'
+    + '      <li><a href="' + p + 'quiz.html"><strong>&#10067; What do you know about Wen?</strong></a></li>'
     + '      <li><a href="' + p + 'about.html#wen-token">More about Wen ($Wen) token</a></li>'
     + '      <li><a href="' + p + 'token-2022-wns-solana-wen.html">Token 2022 WNS Solana Wen</a></li>'
     + '      <li><a href="' + p + 'wen-coin-with-pinterest.html#wen">Wen coin with Pinterest</a></li>'
