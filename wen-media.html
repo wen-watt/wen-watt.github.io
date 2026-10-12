@@ -64,6 +64,7 @@
 
     <p class="intro">Every image in this site's <code>wen-media/</code> folder, in one place — 599 tiles below, all served as compressed <code>.jpeg</code>. Click any tile to open that file directly at full size (a plain link to the original, nothing fancier — just as visible to search engines as browsing it would be). A tile shows its expected filename instead of a broken image if that file isn't present yet.</p>
 
+    <p class="lab-box" style="padding:10px 14px;">Tiles marked <strong>?</strong> open an <a href="image-story/index.html">image story</a>: the photo with one checked fact about Wen. All 100 are collected on the <a href="image-story/index.html">Wen Image Stories</a> page.</p>
     <p id="media-count"></p>
     <div id="media-grid"></div>
 
@@ -682,7 +683,7 @@
   FILES.forEach(function(entry) {
     var file = entry[0], altText = entry[1];
     var a = document.createElement('a');
-    a.href = PAGES[file] ? 'media/' + PAGES[file] : 'wen-media/' + file;
+    a.href = PAGES[file] ? 'image-story/' + PAGES[file] : 'wen-media/' + file;
     if (PAGES[file]) a.className = 'has-fact';
     a.title = altText;
     var img = document.createElement('img');
