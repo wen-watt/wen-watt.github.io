@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>The Dress Rehearsal: Why Jupiter Tested on WEN</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html">
+<meta name="description" content="Why Jupiter rehearsed its launchpad on WEN before $JUP: the January 2024 timeline, the lessons on bots and claim windows, and twenty claimed benefits checked.">
+<!-- seo:start -->
+<meta name="keywords" content="Jupiter LFG launchpad, WEN stress test, JUP airdrop 2024, launch rehearsal, bot mitigation, WEN burn">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Dress Rehearsal: Why Jupiter Tested on WEN">
+<meta property="og:description" content="Why Jupiter rehearsed its launchpad on WEN before $JUP: the January 2024 timeline, the lessons on bots and claim windows, and twenty claimed benefits checked.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-lambo-coin.jpeg">
+<meta property="og:image:alt" content="The Wen cat at the wheel">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-lambo-coin.jpeg">
+<meta property="article:published_time" content="2025-07-10">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "The Dress Rehearsal: Why Jupiter Tested Its Launchpad on WEN", "description": "Why Jupiter rehearsed its launchpad on WEN before $JUP: the January 2024 timeline, the lessons on bots and claim windows, and twenty claimed benefits checked.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-lambo-coin.jpeg", "caption": "The Wen cat at the wheel"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html", "inLanguage": "en", "keywords": "Jupiter LFG launchpad, WEN stress test, JUP airdrop 2024, launch rehearsal, bot mitigation, WEN burn", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2025-07-10"}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <h1>The Dress Rehearsal: Why Jupiter Tested Its Launchpad on WEN</h1>
+
+    <p class="meta">July 10, 2025</p>
+
+    <p class="post-kind post-kind-history"><span class="post-kind-label">Historical post</span> This post records events as they were reported at the time. Facts are checked against sources; nothing here is a forecast.</p>
+
+    <figure>
+      <img src="../wen-media/wen-lambo-coin.jpeg" alt="The Wen cat at the wheel" loading="lazy">
+      <figcaption>The first car off the line: WEN on Jupiter's LFG Launchpad</figcaption>
+    </figure>
+
+    <p class="intro">Before Jupiter airdropped its own token to the whole Solana community, it needed to know whether its launchpad, its claim system and the network itself would survive a million people arriving at once. The answer was WEN. This post records the dress rehearsal — and checks a long list of "twenty technical benefits" that grew around it, keeping only what can be shown.</p>
+
+    <nav aria-label="Contents" class="lab-box">
+      <p style="margin:0 0 6px;color:var(--ink-dim);font-size:13px;letter-spacing:.06em;text-transform:uppercase;">In this post</p>
+      <ol style="margin:0;padding-left:20px;columns:2;column-gap:28px;">
+        <li><a href="#why">Why rehearse</a></li>
+        <li><a href="#timeline">The rehearsal, day by day</a></li>
+        <li><a href="#lessons">What the rehearsal taught</a></li>
+        <li><a href="#claims">Twenty claims, checked</a></li>
+        <li><a href="#verify">Check it yourself</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="why">Why rehearse</h2>
+    <p>Software can be tested in a lab, but a public launch is different: real wallets, real bots, real congestion. Jupiter chose to run its first launchpad event with a community coin before the event that mattered most — its own token. If something broke, it would break on a meme, with lessons learned before $JUP.</p>
+
+    <aside class="cat-tale" id="cat-tale" aria-label="Cat tales">
+      <p><span class="cat-tale-kicker">Cat tales · Wen</span>For centuries sailors kept a ship's cat to guard food and ropes from rats. Many crews believed a cat on board meant a safe voyage — the cat kept the hearth even at sea.</p>
+    </aside>
+
+    <h2 id="timeline">The rehearsal, day by day</h2>
+    <ul>
+      <li><strong>January 25, 2024</strong> — Meow announces "Immortalizing WEN Culture"; the <a href="wen-new-standard-wns-0-0-wen-crypto-inform.html">WNS 0.0</a> proposal is posted.</li>
+      <li><strong>January 26, 2024</strong> — WEN launches as the first token on the LFG Launchpad; more than a million wallets can claim. The network stays up — see <a href="solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html">the stress test</a>.</li>
+      <li><strong>January 29, 2024</strong> — the claim window closes; more than 271 billion unclaimed WEN, over 27% of supply, are burned (<a href="../sources.html#off-12" class="src-ref">Decrypt</a>).</li>
+      <li><strong>January 31, 2024</strong> — the $JUP airdrop follows, with the lessons applied.</li>
+    </ul>
+    <p>One correction to the original: the poem was split into <strong>one trillion</strong> tokens, not a billion.</p>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>When the WEN airdrop claim closed on January 29, 2024, more than 271 billion unclaimed tokens — over 27% of the supply — were burned for good. <a href="solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html">The launch-day stress test &rarr;</a></p>
+    </aside>
+
+    <h2 id="lessons">What the rehearsal taught</h2>
+    <ul>
+      <li><strong>The chain held</strong> under a peak of thousands of transactions per second.</li>
+      <li><strong>Bots were the weak spot.</strong> Jupiter's co-founder said so publicly the same day — and fair-launch defences became a priority.</li>
+      <li><strong>Claim windows work.</strong> A fixed window plus a burn of the remainder left no ambiguous leftover supply.</li>
+      <li><strong>Standards can ride along.</strong> WNS was introduced with the launch, so the experiment produced a tool, not only a token.</li>
+    </ul>
+
+    <h2 id="claims">Twenty claims, checked</h2>
+    <p>The original post carried a table of "20 core utility properties". Some describe what happened; many are guesses written in technical language. Our reading:</p>
+    <div class="lab-table" style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Claim</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Tested claims for over a million wallets; first LFG launch</td><td><span class="lab-badge">Primary source</span></td></tr>
+        <tr><td>Gave data on bot activity</td><td><span class="lab-badge">Primary source</span> — the co-founder's own words</td></tr>
+        <tr><td>Showed that a split poem can trade as ordinary tokens</td><td><span class="lab-badge">Verified</span> — it is how WEN works</td></tr>
+        <tr><td>Introduced WNS alongside the launch</td><td><span class="lab-badge">Primary source</span> — the WNS 0.0 proposal</td></tr>
+        <tr><td>"Tuned Solana's fee formulas", "calibrated AMM equations", "optimised RPC nodes"</td><td><span class="lab-badge">Unverified</span> — no published source</td></tr>
+        <tr><td>"Refined Jupiter Mobile", "synced with Seeker phone hardware"</td><td><span class="lab-badge">Unverified</span> — those products came later</td></tr>
+        <tr><td>"A community of 230,000 members"</td><td><span class="lab-badge">Reported · official X</span> — the figure Wen uses in its own announcements; see <a href="../sources.html#off-4" class="src-ref">the official X account</a></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The real list is shorter and better: a launch that worked, a weakness admitted, a burn that settled the supply, and a standard left behind.</p>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>WEN is tied to the Wen New Standard (WNS): an open way to build NFTs on Solana's Token-2022, with royalties enforced by the token itself. <a href="../token-2022-wns-solana-wen.html">Token-2022 and WNS &rarr;</a></p>
+    </aside>
+
+    <!-- src:callout --><aside class="src-callout" id="verify" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>Every external source behind this post — for your own open study and checking — is collected on one page. <a href="../sources.html#jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch">Open the sources for this post &rarr;</a></p>
+    </aside><!-- /src:callout -->
+    <h3 id="official">Official sources and the Wen community</h3>
+    <ul>
+      <li><a href="../sources.html#off-1" class="src-ref">wenwencoin.com</a> — official Wen site with the contract</li>
+      <li><a href="../sources.html#off-2" class="src-ref">wenwencoin.com/brand</a> — brand kit; see also our <a href="../wen-media.html">Wen Media</a> archive</li>
+      <li><a href="../sources.html#off-3" class="src-ref">docs.wenwencoin.com</a> — documentation</li>
+      <li><a href="../sources.html#off-4" class="src-ref">x.com/wenwencoin</a> — official X account</li>
+      <li><a href="../sources.html#off-7" class="src-ref">youtube.com/@wen-coin</a> and <a href="../sources.html#off-8" class="src-ref">TikTok</a> — community video</li>
+      <li><a href="../sources.html#off-9" class="src-ref">Pinterest</a> — community art, also on our <a href="../wen-coin-with-pinterest.html">Pinterest page</a></li>
+      <li><a href="../sources.html#off-10" class="src-ref">iq.wiki/wiki/wen</a> — the wiki entry, reviewed in our <a href="wen-cat-iq-wiki.html">IQ.wiki post</a></li>
+      <li><a href="../links-wen-cat.html">All open Wen links</a> in one place</li>
+    </ul>
+
+    <section class="lab-box" id="check" aria-label="Check the WEN contract">
+      <h3 style="margin-top:0;">Check before you trust: the WEN contract</h3>
+      <p>The one and only WEN mint on Solana is <code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code>. Compare it character by character with the <a href="../sources.html#off-5" class="src-ref">Solana Explorer</a> and the official site <a href="../sources.html#off-1" class="src-ref">wenwencoin.com</a>. A short video shows how: <a href="../sources.html#off-6" class="src-ref">find the ID contract</a>. Names, tickers and logos can be copied; the address cannot.</p>
+      <p style="margin:0;">Every claim on this site carries a status in our <a href="../lab/trust.html">trust chain</a>.</p>
+    </section>
+
+    <section class="lab-box" aria-label="Keep exploring">
+      <h3 style="margin-top:0;">Keep exploring</h3>
+      <ul style="margin:0;">
+        <li><a href="solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html"><strong>The launch-day stress test</strong></a> — the numbers of January 26, 2024</li>
+        <li><a href="wen-prediction-and-price.html"><strong>Four things at once</strong></a> — what WEN is, and what it is not</li>
+        <li><a href="../quiz.html"><strong>&#10067; What do you know about Wen?</strong></a> — ten questions, with a knowledge card for every miss</li>
+        <li><a href="../lab/index.html"><strong>&#9733; Wen Open Lab</strong></a> — free, tested models built on WNS and Token-2022</li>
+        <li><a href="../about-wen-token-wen-coin-crypto.html"><strong>About the Wen token</strong></a> — the poem, the airdrop and the cat</li>
+        <li><a href="../token-2022-wns-solana-wen.html"><strong>Token-2022 and WNS</strong></a> — the technology under the meme</li>
+      </ul>
+    </section>
+
+    <p class="claim-note"><strong>Disclaimer.</strong> This is an educational almanac entry, not financial advice. It describes events and ideas; it does not recommend buying, selling or holding any token. Where a detail could not be confirmed, it is marked in the text and listed in our <a href="../lab/trust.html">trust chain</a>.</p>
+
+
+    <!-- wen-roller:start -->
+    <section class="wen-roller" aria-label="Wen Media" itemscope itemtype="https://schema.org/ImageGallery" style="margin:36px 0 24px;">
+      <h2 itemprop="name" style="margin-bottom:6px;">Wen Media</h2>
+      <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 12px;">Wen cat, Wen meme and the golden Wen coin: a few picks from the community archive. <a href="../wen-media.html" itemprop="url">Open all of Wen Media</a>.</p>
+      <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;">
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-screen-3.jpeg" title="Rising Wen builder" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-screen-3.jpeg" alt="Rising Wen builder" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-screen-3.jpeg">
+          <meta itemprop="name" content="Rising Wen builder">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wen-coin-2027-mrfius-alexwoogo-pinterest-1-crypto-2.html" title="Cosmic Wen moon keeps growing" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-coin-2027-mrfius-alexwoogo-pinterest-1-crypto-2.jpeg" alt="Cosmic Wen moon keeps growing" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-coin-2027-mrfius-alexwoogo-pinterest-1-crypto-2.jpeg">
+          <meta itemprop="name" content="Cosmic Wen moon keeps growing">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin65.jpeg" title="Bold Wen orbit with WNS" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin65.jpeg" alt="Bold Wen orbit with WNS" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin65.jpeg">
+          <meta itemprop="name" content="Bold Wen orbit with WNS">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-crypto-histopry-03-oct-2025-2-2.jpeg" title="Wen crew with WNS" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-histopry-03-oct-2025-2-2.jpeg" alt="Wen crew with WNS" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-histopry-03-oct-2025-2-2.jpeg">
+          <meta itemprop="name" content="Wen crew with WNS">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/crypto-wen-coin-solana-jdm-japanese.html" title="Wen paws for builders" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/crypto-wen-coin-solana-jdm-japanese.jpeg" alt="Wen paws for builders" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/crypto-wen-coin-solana-jdm-japanese.jpeg">
+          <meta itemprop="name" content="Wen paws for builders">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wen-coin-screen-2025.html" title="Fearless Wen energy world class" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-coin-screen-2025.jpeg" alt="Fearless Wen energy world class" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-coin-screen-2025.jpeg">
+          <meta itemprop="name" content="Fearless Wen energy world class">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/korean-wen-crypto-best-crypto-corea.jpeg" title="Golden Wen crew" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/korean-wen-crypto-best-crypto-corea.jpeg" alt="Golden Wen crew" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/korean-wen-crypto-best-crypto-corea.jpeg">
+          <meta itemprop="name" content="Golden Wen crew">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wns-china-wen-crypto.html" title="Active Wen orbit long term" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wns-china-wen-crypto.jpeg" alt="Active Wen orbit long term" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wns-china-wen-crypto.jpeg">
+          <meta itemprop="name" content="Active Wen orbit long term">
+        </figure>
+      </div>
+    </section>
+    <!-- wen-roller:end -->
+
+<p><em>This page is the current, maintained version of this piece. It was first published on wen-crypto.com and has been rewritten, checked and expanded for the Wen almanac.</em> Original page: <a href="../sources.html#jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch-1" class="src-ref">wen-crypto.com</a>.</p>
+</article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>

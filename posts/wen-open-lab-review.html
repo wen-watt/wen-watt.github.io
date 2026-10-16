@@ -23,9 +23,11 @@
 <meta property="og:description" content="Wen Open Lab in one story: five free models on WNS and Solana, 25 checks, a devnet run anyone can repeat, the pay-in-WEN next step and a public trust chain.">
 <meta property="og:url" content="https://wen-watt.github.io/posts/wen-open-lab-review.html">
 <meta property="og:image" content="https://wen-watt.github.io/wen-media/crypto-cat-memecoin-wen-in-space.jpeg">
+<meta property="og:image:alt" content="Wen cat opens the Lab in space">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/crypto-cat-memecoin-wen-in-space.jpeg">
 <meta property="article:published_time" content="2026-10-10">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Wen Open Lab: From a Cat Meme to Open Tools Anyone Can Test", "description": "Wen Open Lab in one story: five free models on WNS and Solana, 25 checks, a devnet run anyone can repeat, the pay-in-WEN next step and a public trust chain.", "image": "https://wen-watt.github.io/wen-media/crypto-cat-memecoin-wen-in-space.jpeg", "mainEntityOfPage": "https://wen-watt.github.io/posts/wen-open-lab-review.html", "inLanguage": "en", "keywords": "Wen Open Lab, WNS, Solana devnet, Token-2022, Solana Pay, pay in WEN, trust chain, open source", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2026-10-10"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Wen Open Lab: From a Cat Meme to Open Tools Anyone Can Test", "description": "Wen Open Lab in one story: five free models on WNS and Solana, 25 checks, a devnet run anyone can repeat, the pay-in-WEN next step and a public trust chain.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/crypto-cat-memecoin-wen-in-space.jpeg", "caption": "Wen cat opens the Lab in space"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg", "caption": "Wen space coin over Solana rails"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-crypto-buy.jpeg", "caption": "Wen cat checkout with a receipt token"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/testing-jup-wen-solana.jpeg", "caption": "Testing Wen on public devnet"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/wen-open-lab-review.html", "inLanguage": "en", "keywords": "Wen Open Lab, WNS, Solana devnet, Token-2022, Solana Pay, pay in WEN, trust chain, open source", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2026-10-10"}</script>
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,7 +58,9 @@
     <article>
     <h1>Wen Open Lab: From a Cat Meme to Open Tools Anyone Can Test</h1>
 
-    <p class="meta">October 10, 2026</p>
+    <p class="meta">October 10, 2026</p><!-- retro:kind -->
+    <p class="post-kind post-kind-guide"><span class="post-kind-label">Almanac guide</span> Written by the almanac itself. Every claim links to a source you can open or to a model you can run and check.</p>
+<!-- /retro:kind -->
 
     <figure>
       <img src="../wen-media/crypto-cat-memecoin-wen-in-space.jpeg" alt="Wen cat opens the Lab in space">
@@ -87,7 +91,12 @@
       <figcaption>Open rails, open code, open roadmap</figcaption>
     </figure>
 
-    <h2 id="models">The five models, in plain words</h2>
+    <!-- retro:n1 -->
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>WEN is tied to the Wen New Standard (WNS): an open way to build NFTs on Solana's Token-2022, with royalties enforced by the token itself. <a href="../token-2022-wns-solana-wen.html">Token-2022 and WNS &rarr;</a></p>
+    </aside>
+<!-- /retro:n1 --><h2 id="models">The five models, in plain words</h2>
     <ol>
       <li><strong><a href="../lab/receipt-warranty-wns.html">Receipts and warranty cards</a>.</strong> Every purchase becomes a one-of-one token in the buyer's wallet, built with the WNS layout: zero decimals, a supply locked at one, the order's fingerprint and warranty date stored inside the token. Nothing personal goes on-chain. A soulbound version keeps the warranty with the buyer; a transferable one follows the item to its next owner.</li>
       <li><strong><a href="../lab/creator-royalties-wns.html">Creator royalties</a>.</strong> Wen's own invention at work: a transfer hook makes the token itself enforce the creator's share, instead of trusting each marketplace's goodwill.</li>
@@ -111,7 +120,11 @@
     </figure>
     <p>A local test convinces the person who ran it; a public network convinces everyone else. That is why the next stage of the Lab deserves its own attention and its own <a href="../lab/devnet.html">page</a>. Devnet is Solana's open test network: it runs the same programs as mainnet, including Token-2022 and the memo program, but its coins have no value, so mistakes cost nothing and experiments are free. The Lab already ships a ready-to-run script that takes two of the models onto devnet. It mints a soulbound receipt for a test buyer and locks its supply at one; then it creates a settlement token with a capped fee and frozen-by-default accounts, opens a buyer and a seller account, approves both, pays an invoice with its number recorded on-chain, and finally tries a payment without an invoice number to show, in public, that it is refused. For every step it prints an explorer link, so the result is not a screenshot or a promise but an address anyone can open. Repeating it takes five commands and about ten minutes: install the project, create a brand-new devnet wallet that will never hold real money, request free test SOL, run the local checks, then run the devnet demo. The script protects the person running it: it refuses any network that is not devnet and stops if the wallet is underfunded. Every run creates fresh addresses, which means the proof can be repeated by anyone, any day, as many times as they like — and independent runs by people who do not know us are worth more than anything we could write. The first public run will be published on the devnet page with its links. One honest limit: the real WEN token exists only on mainnet, so the devnet demo uses clearly labelled test tokens. A model that will touch real WEN goes to mainnet only after its public devnet run and an independent review. Devnet is the bridge between "it works on our machine" and "it works where you can see it", and it is the step that turns the Lab from a well-written page into public evidence. Anyone who opens the links will see the same thing we saw locally: a token with a supply of exactly one, a fee taken by the token itself, an invoice number written on-chain, and a payment refused because it had none.</p>
 
-    <h2 id="next">The next step: pay in WEN, receive a stable coin</h2>
+    <!-- retro:tale -->
+    <aside class="cat-tale" id="cat-tale" aria-label="Cat tales">
+      <p><span class="cat-tale-kicker">Cat tales · Wen</span>Simon, the ship's cat of HMS Amethyst, kept the crew's food safe from rats during a long siege in 1949 and became the only cat to receive the Dickin Medal for animal bravery.</p>
+    </aside>
+<!-- /retro:tale --><h2 id="next">The next step: pay in WEN, receive a stable coin</h2>
     <figure>
       <img src="../wen-media/behance-crypto-wen-payment-method.jpeg" alt="Wen as a payment method">
       <figcaption>The chain of the Lab: receipt → payment → conversion → shop</figcaption>
@@ -132,33 +145,57 @@
       <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);">
         <iframe src="https://www.youtube-nocookie.com/embed/nBy13RkhiVQ" width="640" height="360" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="What is the Wen coin" allowfullscreen loading="lazy"></iframe>
       </div>
-      <figcaption>What the Wen coin is · <a href="https://www.youtube.com/watch?v=nBy13RkhiVQ" rel="noopener" target="_blank">watch on YouTube</a></figcaption>
+      <figcaption>What the Wen coin is · <a href="../sources.html#wen-open-lab-review-1" class="src-ref">watch on YouTube</a></figcaption>
     </figure>
 
     <figure style="margin:20px 0 8px;width:100%;max-width:640px;">
       <div style="position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);">
         <iframe src="https://www.youtube-nocookie.com/embed/sWA7ZeI-0Ww" width="640" height="360" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="The Wen crypto star story" allowfullscreen loading="lazy"></iframe>
       </div>
-      <figcaption>The Wen crypto star story · <a href="https://www.youtube.com/watch?v=sWA7ZeI-0Ww" rel="noopener" target="_blank">watch on YouTube</a></figcaption>
+      <figcaption>The Wen crypto star story · <a href="../sources.html#wen-open-lab-review-2" class="src-ref">watch on YouTube</a></figcaption>
     </figure>
 
     <figure style="margin:20px 0 8px;width:100%;max-width:360px;">
       <div style="position:relative;width:100%;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);">
         <iframe src="https://www.youtube-nocookie.com/embed/c8KiM9RlHmo" width="360" height="640" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Wen crypto — YouTube Shorts" allowfullscreen loading="lazy"></iframe>
       </div>
-      <figcaption>Wen in a minute · <a href="https://www.youtube.com/shorts/c8KiM9RlHmo" rel="noopener" target="_blank">watch on YouTube</a></figcaption>
+      <figcaption>Wen in a minute · <a href="../sources.html#wen-open-lab-review-3" class="src-ref">watch on YouTube</a></figcaption>
     </figure>
-    <p style="font-size:13.5px;color:var(--ink-dim);">More from the community channel: <a href="https://www.youtube.com/@wen-coin" rel="noopener" target="_blank">youtube.com/@wen-coin</a>. Videos play through the privacy-enhanced youtube-nocookie domain; if a video does not start, use the link under it.</p>
+    <p style="font-size:13.5px;color:var(--ink-dim);">More from the community channel: <a href="../sources.html#off-7" class="src-ref">youtube.com/@wen-coin</a>. Videos play through the privacy-enhanced youtube-nocookie domain; if a video does not start, use the link under it.</p>
 
     <h2 id="join">How to take part</h2>
     <ul>
       <li>Open the <a href="../lab/index.html">Lab roadmap</a> and pick a model.</li>
-      <li>Run the code locally, then <a href="../lab/devnet.html">repeat it on devnet</a> and share your explorer links on X (<a href="https://x.com/wenwencoin">@wenwencoin</a>).</li>
+      <li>Run the code locally, then <a href="../lab/devnet.html">repeat it on devnet</a> and share your explorer links on X (<a href="../sources.html#off-4" class="src-ref">@wenwencoin</a>).</li>
       <li>Find a mistake or an unverified claim? Report it — the <a href="../lab/trust.html">trust chain</a> gets better with every check.</li>
       <li>Read who gains what in <a href="../lab/benefits.html">Benefits and use</a>.</li>
     </ul>
 
     <p><em>Spoken by Wen, for the community. Educational content, not financial advice. The Lab's code is free under Apache-2.0 and not audited: always verify your own model.</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -181,44 +218,44 @@
       <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 12px;">Wen cat, Wen meme and the golden Wen coin: a few picks from the community archive. <a href="../wen-media.html" itemprop="url">Open all of Wen Media</a>.</p>
       <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;">
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../image-story/wen-video-2.html" title="Bold Wen spark on Solana" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-video-2.jpeg" alt="Bold Wen spark on Solana" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-video-2.jpeg">
-          <meta itemprop="name" content="Bold Wen spark on Solana">
+          <a href="../wen-media/wen-youtube-video-crypto-popolar-coin.jpeg" title="Wen whiskers holds strong" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-youtube-video-crypto-popolar-coin.jpeg" alt="Wen whiskers holds strong" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-youtube-video-crypto-popolar-coin.jpeg">
+          <meta itemprop="name" content="Wen whiskers holds strong">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../wen-media/wen-crypto-cat-travel-japan-train.jpeg" title="Bold Wen vibes" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-cat-travel-japan-train.jpeg" alt="Bold Wen vibes" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-cat-travel-japan-train.jpeg">
-          <meta itemprop="name" content="Bold Wen vibes">
+          <a href="../image-story/wen-crypto-compare-history-2.html" title="Stellar Wen spark" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-compare-history-2.jpeg" alt="Stellar Wen spark" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-compare-history-2.jpeg">
+          <meta itemprop="name" content="Stellar Wen spark">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../wen-media/bonk-wen-crypto.jpeg" title="Rising Wen business" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/bonk-wen-crypto.jpeg" alt="Rising Wen business" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/bonk-wen-crypto.jpeg">
-          <meta itemprop="name" content="Rising Wen business">
+          <a href="../image-story/cat-lumpur-2026.html" title="Wen cat artwork from the community archive" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/cat-lumpur-2026.jpeg" alt="Wen cat artwork from the community archive" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/cat-lumpur-2026.jpeg">
+          <meta itemprop="name" content="Brave Wen signal keeps growing">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../image-story/crypto-wen-coin-solana-dance-miami.html" title="Wen future world class" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/crypto-wen-coin-solana-dance-miami.jpeg" alt="Wen future world class" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/crypto-wen-coin-solana-dance-miami.jpeg">
-          <meta itemprop="name" content="Wen future world class">
+          <a href="../image-story/cryptocurrency-market-wen-coin-jup-dao-exchange.html" title="Brave Wen mood on Solana" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/cryptocurrency-market-wen-coin-jup-dao-exchange.jpeg" alt="Brave Wen mood on Solana" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/cryptocurrency-market-wen-coin-jup-dao-exchange.jpeg">
+          <meta itemprop="name" content="Brave Wen mood on Solana">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../wen-media/energy-coin-wen-crypto.jpeg" title="Sunny Wen legend" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/energy-coin-wen-crypto.jpeg" alt="Sunny Wen legend" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/energy-coin-wen-crypto.jpeg">
-          <meta itemprop="name" content="Sunny Wen legend">
+          <a href="../wen-media/i-love-wen.jpeg" title="Wen kitty goes bluechip" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/i-love-wen.jpeg" alt="Wen kitty goes bluechip" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/i-love-wen.jpeg">
+          <meta itemprop="name" content="Wen kitty goes bluechip">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../wen-media/wen-crypto-memecoin-solana-jupiter.jpeg" title="Brave Wen vibes" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-memecoin-solana-jupiter.jpeg" alt="Brave Wen vibes" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-memecoin-solana-jupiter.jpeg">
-          <meta itemprop="name" content="Brave Wen vibes">
+          <a href="../image-story/wen-crypto-solana-memecoin-space-travel.html" title="Wen kitty world class" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-solana-memecoin-space-travel.jpeg" alt="Wen kitty world class" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-solana-memecoin-space-travel.jpeg">
+          <meta itemprop="name" content="Wen kitty world class">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../wen-media/wen-crypto-benefit.jpeg" title="Wen energy keeps growing" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-benefit.jpeg" alt="Wen energy keeps growing" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-benefit.jpeg">
-          <meta itemprop="name" content="Wen energy keeps growing">
+          <a href="../image-story/wen-crypto-coin-meme-solana-best-5.html" title="Rising Wen spirit" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-coin-meme-solana-best-5.jpeg" alt="Rising Wen spirit" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-coin-meme-solana-best-5.jpeg">
+          <meta itemprop="name" content="Rising Wen spirit">
         </figure>
         <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
-          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin59.jpeg" title="Shiny Wen signal" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin59.jpeg" alt="Shiny Wen signal" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
-          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin59.jpeg">
-          <meta itemprop="name" content="Shiny Wen signal">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin69.jpeg" title="Cosmic Wen builder holds strong" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin69.jpeg" alt="Cosmic Wen builder holds strong" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin69.jpeg">
+          <meta itemprop="name" content="Cosmic Wen builder holds strong">
         </figure>
       </div>
     </section>
@@ -231,6 +268,22 @@
       <li><a href="solanas-wns-roadmap-how-a-meme-cat-poem.html">Solana's WNS roadmap: a meme cat poem and real-world assets</a></li>
       <li><a href="../spl-solana-program-library-token-2022-wns.html">SPL, Token-2022 and WNS explained</a></li>
     </ul>
+    
+    
+    
+    
+    
+    
+    <!-- retro:n2 -->
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>You can test what you know about Wen in ten questions — every answer comes with a checked fact and a link to read more. <a href="../quiz.html">Take the quiz &rarr;</a></p>
+    </aside>
+<!-- /retro:n2 -->
+    <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>Every external source behind this post — for your own open study and checking — is collected on one page. <a href="../sources.html#wen-open-lab-review">Open the sources for this post &rarr;</a></p>
+    </aside><!-- /src:callout -->
     </article>
 
   <div id="footer-slot"></div>

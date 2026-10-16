@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>WNS 0.0: the Wen New Standard Proposal, Explained</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html">
+<meta name="description" content="WNS 0.0, proposed January 25, 2024: a lightweight NFT standard on Solana Token-2022 with metadata in the mint, collections, reclaimable rent and royalty hooks.">
+<!-- seo:start -->
+<meta name="keywords" content="WNS 0.0, Wen New Standard, Token-2022 NFT standard, metadata pointer, transfer hook royalties, Ovols, Wen Foundation">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WNS 0.0: the Wen New Standard Proposal, Explained">
+<meta property="og:description" content="WNS 0.0, proposed January 25, 2024: a lightweight NFT standard on Solana Token-2022 with metadata in the mint, collections, reclaimable rent and royalty hooks.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-main-world.jpeg">
+<meta property="og:image:alt" content="Wen and the Wen New Standard on Solana">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-crypto-main-world.jpeg">
+<meta property="article:published_time" content="2025-09-23">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "WNS 0.0: the Wen New Standard Proposal, Explained", "description": "WNS 0.0, proposed January 25, 2024: a lightweight NFT standard on Solana Token-2022 with metadata in the mint, collections, reclaimable rent and royalty hooks.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-crypto-main-world.jpeg", "caption": "Wen and the Wen New Standard on Solana"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-history.jpeg", "caption": "Meow's five-part announcement Immortalizing WEN Culture, January 25, 2024"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wns-sol-spl-token-2022.jpeg", "caption": "From SPL to RWA: how one standard taught Solana to keep its promises"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html", "inLanguage": "en", "keywords": "WNS 0.0, Wen New Standard, Token-2022 NFT standard, metadata pointer, transfer hook royalties, Ovols, Wen Foundation", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2025-09-23"}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <h1>WNS 0.0: the Wen New Standard Proposal, Explained</h1>
+
+    <p class="meta">September 23, 2025</p>
+
+    <p class="post-kind post-kind-history"><span class="post-kind-label">Historical post</span> This post records events as they were reported at the time. Facts are checked against sources; nothing here is a forecast.</p>
+
+    <figure>
+      <img src="../wen-media/wen-crypto-main-world.jpeg" alt="Wen and the Wen New Standard on Solana" loading="lazy">
+      <figcaption>WNS 0.0: the proposal that gave the Wen cat its technology</figcaption>
+    </figure>
+
+    <p class="intro">On January 25, 2024 — the day before the WEN airdrop — a short proposal appeared on Jupiter's research forum: <strong>Wen New Standard (WNS) 0.0</strong>. It described a lightweight way to make NFTs on Solana's Token-2022, with no middlemen. This post records that proposal as it was written, explains each part in plain words, and shows where it led.</p>
+
+    <nav aria-label="Contents" class="lab-box">
+      <p style="margin:0 0 6px;color:var(--ink-dim);font-size:13px;letter-spacing:.06em;text-transform:uppercase;">In this post</p>
+      <ol style="margin:0;padding-left:20px;columns:2;column-gap:28px;">
+        <li><a href="#origin">Where WNS came from</a></li>
+        <li><a href="#what">What WNS 0.0 is</a></li>
+        <li><a href="#goals">Three goals</a></li>
+        <li><a href="#features">The first three features</a></li>
+        <li><a href="#planned">Planned extensions</a></li>
+        <li><a href="#why">Why it matters</a></li>
+        <li><a href="#after">What came next</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#check">Check the contract</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="origin">Where WNS came from</h2>
+    <p>On January 25, 2024, Meow — co-founder of Jupiter — announced "Immortalizing WEN Culture" in five parts: <strong>the Poem, the NFT, the NFT Standard, the first culture token, and the first LFG Launchpad project</strong>. The third part was WNS. The same day, the proposal was posted to the forum (<a href="../sources.html#off-11" class="src-ref">WNS 0.0 on discuss.jup.ag</a>): a coalition of ecosystem partners, starting with <strong>Ovols</strong> and <strong>Jupiter</strong>, supported by the <strong>Wen Foundation</strong>, a Solana public-goods organisation.</p>
+
+    <figure>
+      <img src="../wen-media/wen-history.jpeg" alt="Meow&#x27;s five-part announcement Immortalizing WEN Culture, January 25, 2024" loading="lazy">
+      <figcaption>"The Poem, the NFT, the NFT Standard…" — January 25, 2024</figcaption>
+    </figure>
+
+    <p>Community member Swervor summed up the mood the next day: "a coin for the people, but WEN?" (<a href="../sources.html#wen-new-standard-wns-0-0-wen-crypto-inform-1" class="src-ref">post on X</a>).</p>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>Wen began as a poem. Meow, co-founder of Jupiter, wrote "A Love Letter to Wen Bros"; it was minted as an NFT and split into one trillion tokens — so holding WEN means holding a piece of the poem. <a href="../about-wen-token-wen-coin-crypto.html">The Wen story &rarr;</a></p>
+    </aside>
+
+    <h2 id="what">What WNS 0.0 is</h2>
+    <p>WNS is a <strong>lightweight NFT standard built on Token-2022</strong>, Solana's newer token program with built-in "extensions". Instead of a separate NFT program, WNS uses features already inside the token program. Version 0.0 starts as simply as possible:</p>
+    <ul>
+      <li><strong>One instruction</strong> creates an NFT.</li>
+      <li><strong>Metadata lives in the mint account</strong> itself, with three fields: name, symbol and URI.</li>
+      <li><strong>New instructions</strong> are added only after community approval.</li>
+      <li>The proposal expected <strong>WNS 1.0</strong>, once widely adopted, to be renamed — a standard meant to belong to everyone, not to Wen.</li>
+    </ul>
+
+    <h2 id="goals">Three goals</h2>
+    <ol>
+      <li><strong>Coordinate asset information</strong> — a shared, on-chain place for data that any program can read.</li>
+      <li><strong>Remove intermediaries</strong> — no one charging a fee just to pass that information along.</li>
+      <li><strong>Diversify the technology</strong> — Solana's NFT infrastructure had become concentrated in too few hands.</li>
+    </ol>
+
+    <figure>
+      <img src="../wen-media/wns-sol-spl-token-2022.jpeg" alt="From SPL to RWA: how one standard taught Solana to keep its promises" loading="lazy">
+      <figcaption>From the token program to WNS: one idea, several layers</figcaption>
+    </figure>
+
+    <h2 id="features">The first three features</h2>
+    <div class="lab-table" style="overflow-x:auto;">
+    <table>
+      <thead><tr><th>Token-2022 extension</th><th>What it does</th><th>In plain words</th></tr></thead>
+      <tbody>
+        <tr><td>Metadata Pointer</td><td>Points the mint to its on-chain metadata</td><td>The NFT carries its own name card</td></tr>
+        <tr><td>Group + Member Pointers</td><td>Link NFTs into a collection</td><td>Proof that an NFT belongs to a set</td></tr>
+        <tr><td>Mint Closure</td><td>Lets the creator close the mint and reclaim rent</td><td>Most of the minting cost can be recovered</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <!-- retro:tale -->
+    <aside class="cat-tale" id="cat-tale" aria-label="Cat tales">
+      <p><span class="cat-tale-kicker">Cat tales · Wen</span>In Britain and Ireland, a black cat crossing your path or arriving at your door is often a sign of good luck — the opposite of the belief in many other countries. Same cat, different story: it depends on who tells it.</p>
+    </aside>
+<!-- /retro:tale --><h2 id="planned">Planned extensions</h2>
+    <ul>
+      <li><strong>Transfer hooks</strong> ("transfer interceptors") — call a royalty program on every transfer, so creators are paid by the token itself.</li>
+      <li><strong>Non-transferable tokens</strong> — for badges, attendance proofs and identity.</li>
+      <li><strong>CPI Guard + ImmutableOwner</strong> — stronger protection for holders' accounts.</li>
+    </ul>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>WEN is tied to the Wen New Standard (WNS): an open way to build NFTs on Solana's Token-2022, with royalties enforced by the token itself. <a href="../token-2022-wns-solana-wen.html">Token-2022 and WNS &rarr;</a></p>
+    </aside>
+
+    <h2 id="why">Why it matters</h2>
+    <p>Most memecoins are only a ticker. Wen arrived with a public, open standard attached — royalties enforced by the token program, metadata without middlemen, costs that can be reclaimed. That is the difference between a meme and a piece of infrastructure, and it is why this almanac keeps WNS at the centre: the technology works whatever the market does.</p>
+
+    <h2 id="after">What came next</h2>
+    <ul>
+      <li>The next day, the WEN airdrop became Solana's biggest public <a href="solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html">stress test</a>; soon after, the first large NFT collections were minted on WNS.</li>
+      <li>The deeper story of the standard is in <a href="../token-2022-wns-solana-wen.html">Token-2022 and WNS</a>; the timeline from SPL to real-world assets is in the PDF <a href="../wen-media/wns-standart-wen-solana-crypto-2024-2026.pdf">WNS standard, 2024–2026</a>.</li>
+      <li><a href="../lab/index.html">Wen Open Lab</a> turns WNS into free, tested models — receipts, royalties, invoices — that anyone can run.</li>
+    </ul>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>Wen Open Lab turns WNS into free, tested models — receipts, creator royalties, B2B invoices and a payments bridge — that anyone can run and check. <a href="../lab/index.html">Wen Open Lab &rarr;</a></p>
+    </aside>
+
+    <h2 id="video">Video</h2>
+
+    <figure style="margin:20px 0 8px;width:100%;max-width:360px;">
+      <div style="position:relative;width:100%;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);">
+        <iframe src="https://www.youtube-nocookie.com/embed/foYRGFGxJhw" width="360" height="640" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Wen crypto — YouTube Shorts" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <figcaption>A short from the community channel · <a href="../sources.html#wen-new-standard-wns-0-0-wen-crypto-inform-2" class="src-ref">watch on YouTube</a></figcaption>
+    </figure>
+
+    <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>Every external source behind this post — for your own open study and checking — is collected on one page. <a href="../sources.html#wen-new-standard-wns-0-0-wen-crypto-inform">Open the sources for this post &rarr;</a></p>
+    </aside><!-- /src:callout -->
+    <h3 id="official">Official sources and the Wen community</h3>
+    <ul>
+      <li><a href="../sources.html#off-1" class="src-ref">wenwencoin.com</a> — official Wen site with the contract</li>
+      <li><a href="../sources.html#off-2" class="src-ref">wenwencoin.com/brand</a> — brand kit; see also our <a href="../wen-media.html">Wen Media</a> archive</li>
+      <li><a href="../sources.html#off-3" class="src-ref">docs.wenwencoin.com</a> — documentation</li>
+      <li><a href="../sources.html#off-4" class="src-ref">x.com/wenwencoin</a> — official X account</li>
+      <li><a href="../sources.html#off-7" class="src-ref">youtube.com/@wen-coin</a> and <a href="../sources.html#off-8" class="src-ref">TikTok</a> — community video</li>
+      <li><a href="../sources.html#off-9" class="src-ref">Pinterest</a> — community art, also on our <a href="../wen-coin-with-pinterest.html">Pinterest page</a></li>
+      <li><a href="../sources.html#off-10" class="src-ref">iq.wiki/wiki/wen</a> — the wiki entry, reviewed in our <a href="wen-cat-iq-wiki.html">IQ.wiki post</a></li>
+      <li><a href="../links-wen-cat.html">All open Wen links</a> in one place</li>
+    </ul>
+
+    <section class="lab-box" id="check" aria-label="Check the WEN contract">
+      <h3 style="margin-top:0;">Check before you trust: the WEN contract</h3>
+      <p>The one and only WEN mint on Solana is <code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code>. Compare it character by character with the <a href="../sources.html#off-5" class="src-ref">Solana Explorer</a> and the official site <a href="../sources.html#off-1" class="src-ref">wenwencoin.com</a>. A short video shows how: <a href="../sources.html#off-6" class="src-ref">find the ID contract</a>. Names, tickers and logos can be copied; the address cannot.</p>
+      <p style="margin:0;">Every claim on this site carries a status in our <a href="../lab/trust.html">trust chain</a>.</p>
+    </section>
+
+    <section class="lab-box" aria-label="Keep exploring">
+      <h3 style="margin-top:0;">Keep exploring</h3>
+      <ul style="margin:0;">
+        <li><a href="solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html"><strong>The launch-day stress test</strong></a> — the day after WNS 0.0</li>
+        <li><a href="wen-crypto.html"><strong>What does "wen" mean?</strong></a> — slang, Chinese characters, Old English</li>
+        <li><a href="../quiz.html"><strong>&#10067; What do you know about Wen?</strong></a> — ten questions, with a knowledge card for every miss</li>
+        <li><a href="../lab/index.html"><strong>&#9733; Wen Open Lab</strong></a> — free, tested models built on WNS and Token-2022</li>
+        <li><a href="../about-wen-token-wen-coin-crypto.html"><strong>About the Wen token</strong></a> — the poem, the airdrop and the cat</li>
+        <li><a href="../token-2022-wns-solana-wen.html"><strong>Token-2022 and WNS</strong></a> — the technology under the meme</li>
+      </ul>
+    </section>
+
+    <p class="claim-note"><strong>Disclaimer.</strong> This is an educational almanac entry, not financial advice. It describes events and ideas; it does not recommend buying, selling or holding any token. Where a detail could not be confirmed, it is marked in the text and listed in our <a href="../lab/trust.html">trust chain</a>.</p>
+
+
+
+
+
+
+    <!-- wen-roller:start -->
+    <section class="wen-roller" aria-label="Wen Media" itemscope itemtype="https://schema.org/ImageGallery" style="margin:36px 0 24px;">
+      <h2 itemprop="name" style="margin-bottom:6px;">Wen Media</h2>
+      <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 12px;">Wen cat, Wen meme and the golden Wen coin: a few picks from the community archive. <a href="../wen-media.html" itemprop="url">Open all of Wen Media</a>.</p>
+      <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;">
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/news-cryptocurrency-wen-crypto.html" title="Wen legend goes bluechip" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/news-cryptocurrency-wen-crypto.jpeg" alt="Wen legend goes bluechip" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/news-cryptocurrency-wen-crypto.jpeg">
+          <meta itemprop="name" content="Wen legend goes bluechip">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wen-crypto-alien-ship.html" title="Cheerful Wen business" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-crypto-alien-ship.jpeg" alt="Cheerful Wen business" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-crypto-alien-ship.jpeg">
+          <meta itemprop="name" content="Cheerful Wen business">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-lambo-crypto-memecoin-solana-coin.jpeg" title="Wen paws with WNS" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-lambo-crypto-memecoin-solana-coin.jpeg" alt="Wen paws with WNS" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-lambo-crypto-memecoin-solana-coin.jpeg">
+          <meta itemprop="name" content="Wen paws with WNS">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin57.jpeg" title="Bright Wen spirit" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin57.jpeg" alt="Bright Wen spirit" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin57.jpeg">
+          <meta itemprop="name" content="Bright Wen spirit">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wen-coin-new-gold-unifined0market.html" title="Wen cat artwork from the community archive" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-coin-new-gold-unifined0market.jpeg" alt="Wen cat artwork from the community archive" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-coin-new-gold-unifined0market.jpeg">
+          <meta itemprop="name" content="Brave Wen signal holds strong">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wen-gif-new-world23.html" title="Cosmic Wen crew" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-gif-new-world23.jpeg" alt="Cosmic Wen crew" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-gif-new-world23.jpeg">
+          <meta itemprop="name" content="Cosmic Wen crew">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-gif-new-world15.jpeg" title="Shiny Wen meme keeps growing" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-gif-new-world15.jpeg" alt="Shiny Wen meme keeps growing" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-gif-new-world15.jpeg">
+          <meta itemprop="name" content="Shiny Wen meme keeps growing">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin58.jpeg" title="Brave Wen mood" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin58.jpeg" alt="Brave Wen mood" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin58.jpeg">
+          <meta itemprop="name" content="Brave Wen mood">
+        </figure>
+      </div>
+    </section>
+    <!-- wen-roller:end -->
+
+<p><em>This page is the current, maintained version of this piece. It was first published on wen-crypto.com and has been rewritten, checked and expanded for the Wen almanac.</em> Original page: <a href="../sources.html#wen-new-standard-wns-0-0-wen-crypto-inform-3" class="src-ref">wen-crypto.com</a>.</p>
+</article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>

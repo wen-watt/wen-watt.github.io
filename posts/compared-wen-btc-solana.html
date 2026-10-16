@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen, Bitcoin and Solana: Was Crypto Invented or Discovered?</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/compared-wen-btc-solana.html">
+<meta name="description" content="Wen, Bitcoin and Solana side by side: invented systems on discovered maths, proof of work versus proof of stake, finality, and why no one should claim Satoshi.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Bitcoin Solana, proof of work, proof of stake, finality, Satoshi Nakamoto, secp256k1, SHA-256">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wen, Bitcoin and Solana: Was Crypto Invented or Discovered?">
+<meta property="og:description" content="Wen, Bitcoin and Solana side by side: invented systems on discovered maths, proof of work versus proof of stake, finality, and why no one should claim Satoshi.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/compared-wen-btc-solana.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/satoshi-bts-yakovenko-jupiter-wen-crypto-meow.jpeg">
+<meta property="og:image:alt" content="Satoshi, Solana and the Wen cat in one community picture">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/satoshi-bts-yakovenko-jupiter-wen-crypto-meow.jpeg">
+<meta property="article:published_time" content="2025-10-24">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Wen, Bitcoin and Solana: Invented or Discovered?", "description": "Wen, Bitcoin and Solana side by side: invented systems on discovered maths, proof of work versus proof of stake, finality, and why no one should claim Satoshi.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/satoshi-bts-yakovenko-jupiter-wen-crypto-meow.jpeg", "caption": "Satoshi, Solana and the Wen cat in one community picture"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-satoshi-with-friends.jpeg", "caption": "Wen cat with Satoshi and friends"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/btc-wen-crypto-solana.jpeg", "caption": "Bitcoin, Solana and the Wen cat"}, {"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/solana-wen-crypto.jpeg", "caption": "Solana and the Wen cat"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/compared-wen-btc-solana.html", "inLanguage": "en", "keywords": "Wen Bitcoin Solana, proof of work, proof of stake, finality, Satoshi Nakamoto, secp256k1, SHA-256", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "datePublished": "2025-10-24"}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <h1>Wen, Bitcoin and Solana: Invented or Discovered?</h1>
+
+    <p class="meta">October 24, 2025</p>
+
+    <figure>
+      <img src="../wen-media/satoshi-bts-yakovenko-jupiter-wen-crypto-meow.jpeg" alt="Satoshi, Solana and the Wen cat in one community picture" loading="lazy">
+      <figcaption>Bitcoin, Solana and a cat: an unusual comparison</figcaption>
+    </figure>
+
+    <p class="intro">Comparing Wen with Bitcoin and Solana is not a fair fight, and that is the point. This post is not about which coin is "better". It asks an older question: was crypto <em>invented</em> or <em>discovered</em>? Along the way we explain proof of work and proof of stake in plain words, look at why nobody should claim to be Satoshi, and place the Wen cat where it honestly belongs in this story.</p>
+
+    <nav aria-label="Contents" class="lab-box">
+      <p style="margin:0 0 6px;color:var(--ink-dim);font-size:13px;letter-spacing:.06em;text-transform:uppercase;">In this post</p>
+      <ol style="margin:0;padding-left:20px;columns:2;column-gap:28px;">
+        <li><a href="#question">Invented or discovered?</a></li>
+        <li><a href="#bitcoin">Bitcoin in a nutshell</a></li>
+        <li><a href="#consensus">Proof of work and proof of stake</a></li>
+        <li><a href="#finality">Finality: Bitcoin versus Solana</a></li>
+        <li><a href="#wen">Where Wen fits</a></li>
+        <li><a href="#satoshi">Why nobody should claim to be Satoshi</a></li>
+        <li><a href="#culture">Culture as Wen's real strength</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#check">Check the contract</a></li>
+      </ol>
+    </nav>
+
+    <h2 id="question">Invented or discovered?</h2>
+    <p>Every cryptocurrency stands on mathematics that existed long before it. Hash functions such as SHA-256 and elliptic curves such as secp256k1 were developed by researchers for other purposes years earlier. In that sense the building blocks were <em>discovered</em> — found in the landscape of mathematics.</p>
+    <p>The systems built from them were <em>invented</em>. Satoshi Nakamoto's 2008 white paper describes Bitcoin as a peer-to-peer electronic cash system: a deliberate design that solves the double-spending problem. No protocol document describes itself as something unearthed. The romance of "discovery" lives in the community's imagination — which is fine, as long as we know which part is poetry.</p>
+
+    <figure>
+      <img src="../wen-media/wen-satoshi-with-friends.jpeg" alt="Wen cat with Satoshi and friends" loading="lazy">
+      <figcaption>The mysterious founder and the curious cat</figcaption>
+    </figure>
+
+    <!-- retro:n1 -->
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>WEN is tied to the Wen New Standard (WNS): an open way to build NFTs on Solana's Token-2022, with royalties enforced by the token itself. <a href="../token-2022-wns-solana-wen.html">Token-2022 and WNS &rarr;</a></p>
+    </aside>
+<!-- /retro:n1 --><h2 id="bitcoin">Bitcoin in a nutshell</h2>
+    <ul>
+      <li><strong>2008:</strong> the white paper by the pseudonymous Satoshi Nakamoto.</li>
+      <li><strong>2009:</strong> the network starts; the first block is mined.</li>
+      <li><strong>Keys:</strong> signatures on the secp256k1 elliptic curve.</li>
+      <li><strong>Mining:</strong> proof of work based on the SHA-256 hash function.</li>
+      <li><strong>Confirmations:</strong> a payment is usually treated as settled after about six blocks, roughly an hour.</li>
+    </ul>
+
+    <h2 id="consensus">Proof of work and proof of stake, in plain words</h2>
+    <div class="lab-table" style="overflow-x:auto;">
+    <table>
+      <thead><tr><th></th><th>Proof of work (PoW)</th><th>Proof of stake (PoS)</th></tr></thead>
+      <tbody>
+        <tr><td>Who adds the next block</td><td>Miners racing to solve a computational puzzle</td><td>Validators chosen in proportion to the coins they lock up as a guarantee</td></tr>
+        <tr><td>What protects the chain</td><td>Electricity and hardware: rewriting history means redoing the work</td><td>Locked capital: cheating puts the validator's own stake at risk</td></tr>
+        <tr><td>Energy use</td><td>High</td><td>Low</td></tr>
+        <tr><td>Speed</td><td>Slower; minutes per block</td><td>Faster; seconds or less</td></tr>
+        <tr><td>Examples</td><td>Bitcoin; Ethereum before 2022</td><td>Ethereum since the Merge in 2022; Cardano; Solana</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Solana adds a twist called proof of history: a cryptographic clock that orders events before validators vote on them, which helps the network move quickly.</p>
+
+    <figure>
+      <img src="../wen-media/btc-wen-crypto-solana.jpeg" alt="Bitcoin, Solana and the Wen cat" loading="lazy">
+      <figcaption>Two machines for trust: work and stake</figcaption>
+    </figure>
+
+    <h2 id="finality">Finality: Bitcoin versus Solana</h2>
+    <p><em>Finality</em> is the moment a payment can no longer be undone. In Bitcoin it is probabilistic: each new block makes reversal less likely, which is why people wait for several confirmations. On Solana, validators vote on blocks continuously, and a transaction is typically confirmed within seconds.</p>
+    <p>That speed was tested in public. When WEN launched in January 2024, an enormous wave of claims hit the network at once, and Solana kept running — a story told in our post on the <a href="solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html">launch-day stress test</a>. The original post went further and promised "no risk of balance loss" under load <a class="claim-flag" href="../lab/trust.html#opinion" title="See the Wen Open Lab trust chain">opinion</a>. No system is risk-free; what the WEN launch showed is strong resilience, not a guarantee.</p>
+
+    <!-- retro:tale -->
+    <aside class="cat-tale" id="cat-tale" aria-label="Cat tales">
+      <p><span class="cat-tale-kicker">Cat tales · Wen</span>Russian fairy tales tell of Kot Bayun, a giant cat whose songs could lull travellers to sleep — and, in kinder versions, heal the sick. A cat as the keeper of stories: not a bad mascot for an almanac.</p>
+    </aside>
+<!-- /retro:tale --><h2 id="wen">Where Wen fits</h2>
+    <p>Wen is clearly on the <em>invented</em> side. In January 2024 Meow, co-founder of Jupiter, wrote the poem "A Love Letter to Wen Bros". It was minted as an NFT using the <strong>Wen New Standard</strong> (WNS) — not "Wen Name Service", as the original post said — and fractionalized into one trillion tokens, so that owning WEN means owning a piece of the poem. The tokens were airdropped to more than one million eligible wallets; how many actually claimed, and how much was burned afterwards, is reported differently by different sources <a class="claim-flag" href="../lab/trust.html#conflict" title="See the Wen Open Lab trust chain">figures differ</a>.</p>
+    <p>So Wen is not a "discovered" evaluation system and not a rival to Bitcoin. It is a cultural experiment that runs on Solana's fast, low-cost rails — and a technical one, because WNS showed a lightweight way to build NFTs on Token-2022. Our <a href="../lab/index.html">Wen Open Lab</a> turns that heritage into free, tested models.</p>
+
+    <figure>
+      <img src="../wen-media/solana-wen-crypto.jpeg" alt="Solana and the Wen cat" loading="lazy">
+      <figcaption>Wen runs on Solana's rails</figcaption>
+    </figure>
+
+    <h2 id="satoshi">Why nobody should claim to be Satoshi</h2>
+    <p>Bitcoin's creator disappeared in 2011 and has never been identified. Part of Bitcoin's strength is exactly that: there is no founder to pressure, arrest or bribe. People who claim the name tend to discover how unforgiving the community and the courts can be — in March 2024 the High Court in London ruled that Craig Wright, who had claimed for years to be Satoshi, was not the author of the white paper.</p>
+    <p>The lesson for any project is humility. Wen has grown for a long time without advertising, carried by its community; no one needs to crown themselves to keep it alive. The original post quoted a well-known exchange founder on this topic; we could not find the quote in any source, so we have removed it.</p>
+
+    <h2 id="culture">Culture as Wen's real strength</h2>
+    <p>If Bitcoin's strength is security and Solana's is speed, Wen's is culture. A cat everyone recognises, free art for anyone to use, cat accounts on X — WEN acquired @TweetsOfCats, according to a <a href="../sources.html#compared-wen-btc-solana-1" class="src-ref">2025 newsletter</a> — plush toys and football tournaments. Culture is how people who never read a white paper first meet crypto.</p>
+    <p>We removed the parts of the original that talked about exchange counts, liquidity, "undervaluation" and a "bullish angle". They describe markets, not knowledge. If you want to test what you have learned instead, try the <a href="../quiz.html">Wen quiz</a>, or read the space tale <a href="crypto-fantasy-or-the-inverted-almanac.html">Crypto Fantasy</a>, where proof of stake becomes a Force.</p>
+
+    <figure>
+      <img src="../wen-media/satoshi-next-crypto-wen-x-friend.jpeg" alt="Satoshi and the Wen cat as friends" loading="lazy">
+      <figcaption>No crowns needed: the community keeps the story alive</figcaption>
+    </figure>
+
+    <h2 id="video">Video</h2>
+
+    <figure style="margin:20px 0 8px;width:100%;max-width:360px;">
+      <div style="position:relative;width:100%;padding-bottom:177.78%;height:0;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);">
+        <iframe src="https://www.youtube-nocookie.com/embed/WNxQep-B1t0" width="360" height="640" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" title="Wen crypto — YouTube Shorts" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <figcaption>A short from the community channel · <a href="../sources.html#compared-wen-btc-solana-2" class="src-ref">watch on YouTube</a></figcaption>
+    </figure>
+
+    <h3>Sources</h3>
+    <ul>
+      <li><a href="../sources.html#compared-wen-btc-solana-3" class="src-ref">Bitcoin: A Peer-to-Peer Electronic Cash System</a> — Satoshi Nakamoto, 2008</li>
+      <li><a href="../sources.html#compared-wen-btc-solana-4" class="src-ref">Solana documentation</a> — proof of stake and proof of history</li>
+      <li><a href="../sources.html#compared-wen-btc-solana-1" class="src-ref">WEN acquires @TweetsOfCats</a> — Syndicate newsletter</li>
+    </ul>
+
+    
+    
+    
+    
+    
+    
+    <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>Every external source behind this post — for your own open study and checking — is collected on one page. <a href="../sources.html#compared-wen-btc-solana">Open the sources for this post &rarr;</a></p>
+    </aside><!-- /src:callout -->
+    <!-- retro:n2 -->
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>Wen Open Lab turns WNS into free, tested models — receipts, creator royalties, B2B invoices and a payments bridge — that anyone can run and check. <a href="../lab/index.html">Wen Open Lab &rarr;</a></p>
+    </aside>
+<!-- /retro:n2 -->
+    <h3 id="official">Official sources and the Wen community</h3>
+    <ul>
+      <li><a href="../sources.html#off-1" class="src-ref">wenwencoin.com</a> — official Wen site with the contract</li>
+      <li><a href="../sources.html#off-2" class="src-ref">wenwencoin.com/brand</a> — brand kit; see also our <a href="../wen-media.html">Wen Media</a> archive</li>
+      <li><a href="../sources.html#off-3" class="src-ref">docs.wenwencoin.com</a> — documentation</li>
+      <li><a href="../sources.html#off-4" class="src-ref">x.com/wenwencoin</a> — official X account</li>
+      <li><a href="../sources.html#off-7" class="src-ref">youtube.com/@wen-coin</a> and <a href="../sources.html#off-8" class="src-ref">TikTok</a> — community video</li>
+      <li><a href="../sources.html#off-9" class="src-ref">Pinterest</a> — community art, also on our <a href="../wen-coin-with-pinterest.html">Pinterest page</a></li>
+      <li><a href="../sources.html#off-10" class="src-ref">iq.wiki/wiki/wen</a> — the wiki entry, reviewed in our <a href="wen-cat-iq-wiki.html">IQ.wiki post</a></li>
+      <li><a href="../links-wen-cat.html">All open Wen links</a> in one place</li>
+    </ul>
+
+    <section class="lab-box" id="check" aria-label="Check the WEN contract">
+      <h3 style="margin-top:0;">Check before you trust: the WEN contract</h3>
+      <p>The one and only WEN mint on Solana is <code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code>. Compare it character by character with the <a href="../sources.html#off-5" class="src-ref">Solana Explorer</a> and the official site <a href="../sources.html#off-1" class="src-ref">wenwencoin.com</a>. A short video shows how: <a href="../sources.html#off-6" class="src-ref">find the ID contract</a>. Names, tickers and logos can be copied; the address cannot.</p>
+      <p style="margin:0;">Every claim on this site carries a status in our <a href="../lab/trust.html">trust chain</a>.</p>
+    </section>
+
+    <section class="lab-box" aria-label="Keep exploring">
+      <h3 style="margin-top:0;">Keep exploring</h3>
+      <ul style="margin:0;">
+        <li><a href="crypto-fantasy-or-the-inverted-almanac.html"><strong>Crypto Fantasy</strong></a> — a space tale about decentralization</li>
+        <li><a href="../token-2022-wns-solana-wen.html"><strong>Token-2022 and WNS</strong></a> — the open standard behind Wen</li>
+        <li><a href="../quiz.html"><strong>&#10067; What do you know about Wen?</strong></a> — ten questions, with a knowledge card for every miss</li>
+        <li><a href="../lab/index.html"><strong>&#9733; Wen Open Lab</strong></a> — free, tested models built on WNS and Token-2022</li>
+        <li><a href="../about-wen-token-wen-coin-crypto.html"><strong>About the Wen token</strong></a> — the poem, the airdrop and the cat</li>
+        <li><a href="../token-2022-wns-solana-wen.html"><strong>Token-2022 and WNS</strong></a> — the technology under the meme</li>
+      </ul>
+    </section>
+
+    <p class="claim-note"><strong>Disclaimer.</strong> This is an educational almanac entry, not financial advice. It describes events and ideas; it does not recommend buying, selling or holding any token. Where a detail could not be confirmed, it is marked in the text and listed in our <a href="../lab/trust.html">trust chain</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- wen-roller:start -->
+    <section class="wen-roller" aria-label="Wen Media" itemscope itemtype="https://schema.org/ImageGallery" style="margin:36px 0 24px;">
+      <h2 itemprop="name" style="margin-bottom:6px;">Wen Media</h2>
+      <p style="color:var(--ink-dim);font-size:13.5px;margin:0 0 12px;">Wen cat, Wen meme and the golden Wen coin: a few picks from the community archive. <a href="../wen-media.html" itemprop="url">Open all of Wen Media</a>.</p>
+      <div style="display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;">
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/jupiter-stable-coin.html" title="Rising Wen moon for builders" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/jupiter-stable-coin.jpeg" alt="Rising Wen moon for builders" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/jupiter-stable-coin.jpeg">
+          <meta itemprop="name" content="Rising Wen moon for builders">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-gif-new-world15.jpeg" title="Shiny Wen meme keeps growing" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-gif-new-world15.jpeg" alt="Shiny Wen meme keeps growing" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-gif-new-world15.jpeg">
+          <meta itemprop="name" content="Shiny Wen meme keeps growing">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/github-wns-wen-crypto-solana.html" title="Wen spirit to the moon" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/github-wns-wen-crypto-solana.jpeg" alt="Wen spirit to the moon" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/github-wns-wen-crypto-solana.jpeg">
+          <meta itemprop="name" content="Wen spirit to the moon">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../image-story/wen-forming-sep.html" title="Fearless Wen builder to the moon" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-forming-sep.jpeg" alt="Fearless Wen builder to the moon" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-forming-sep.jpeg">
+          <meta itemprop="name" content="Fearless Wen builder to the moon">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/best-solana-memes-wen-crypto.jpeg" title="Wen cat artwork from the community archive" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/best-solana-memes-wen-crypto.jpeg" alt="Wen cat artwork from the community archive" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/best-solana-memes-wen-crypto.jpeg">
+          <meta itemprop="name" content="Playful Wen signal">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/download-free-wen-coin-1.jpeg" title="Wen paws for builders" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/download-free-wen-coin-1.jpeg" alt="Wen paws for builders" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/download-free-wen-coin-1.jpeg">
+          <meta itemprop="name" content="Wen paws for builders">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin76.jpeg" title="Wen crew holds strong" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin76.jpeg" alt="Wen crew holds strong" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin76.jpeg">
+          <meta itemprop="name" content="Wen crew holds strong">
+        </figure>
+        <figure itemprop="image" itemscope itemtype="https://schema.org/ImageObject" style="flex:0 0 150px;margin:0;scroll-snap-align:start;">
+          <a href="../wen-media/solana-best-memes.jpeg" title="Shiny Wen meme holds strong" style="display:block;aspect-ratio:1/1;overflow:hidden;border-radius:var(--radius);border:1px solid var(--panel-line);background:var(--panel);"><img src="../wen-media/solana-best-memes.jpeg" alt="Shiny Wen meme holds strong" loading="lazy" width="150" height="150" style="width:100%;height:100%;object-fit:cover;display:block;"></a>
+          <meta itemprop="contentUrl" content="https://wen-watt.github.io/wen-media/solana-best-memes.jpeg">
+          <meta itemprop="name" content="Shiny Wen meme holds strong">
+        </figure>
+      </div>
+    </section>
+    <!-- wen-roller:end -->
+
+<p><em>This page is the current, maintained version of this piece. It was first published on wen-crypto.com and has been rewritten, checked and expanded for the Wen almanac.</em> Original page: <a href="../sources.html#compared-wen-btc-solana-5" class="src-ref">wen-crypto.com</a>.</p>
+</article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/nav.js" data-prefix="../"></script>
+</body>
+</html>
