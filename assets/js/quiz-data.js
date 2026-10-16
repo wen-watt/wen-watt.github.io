@@ -1,4 +1,4 @@
-/* Wen quiz base: 100 questions. The first option is the correct one; options are shuffled at runtime.
+/* Wen quiz base: 250 questions. The first option is the correct one; options are shuffled at runtime.
    Facts come only from verified, primary or reported sources (see lab/trust.html). */
 window.WEN_QUIZ = [
  {
@@ -1200,5 +1200,1805 @@ window.WEN_QUIZ = [
   ],
   "f": "Lab code is free and educational but not audited: run the tests, use devnet, read the docs and get an audit.",
   "l": "lab/index.html"
+ },
+ {
+  "lv": "fun",
+  "q": "What did the Copa de los Memes put memecoin communities into?",
+  "o": [
+   "A five-a-side football tournament",
+   "A chess match",
+   "A rap battle",
+   "A cooking show"
+  ],
+  "f": "On November 19, 2025, eight memecoin communities, WEN among them, played a single-elimination five-a-side football tournament.",
+  "l": "posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html"
+ },
+ {
+  "lv": "basic",
+  "q": "Where did the Copa de los Memes take place on November 19, 2025?",
+  "o": [
+   "La Rural, Buenos Aires (Devconnect Argentina)",
+   "Bangkok, Thailand",
+   "Lisbon, Portugal",
+   "Dubai, UAE"
+  ],
+  "f": "The venue was La Rural in Buenos Aires during Devconnect Argentina; early posts wrongly said Bangkok.",
+  "l": "posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#bangkok"
+ },
+ {
+  "lv": "basic",
+  "q": "How many teams were in the official Copa de los Memes line-up?",
+  "o": [
+   "Eight",
+   "Four",
+   "Twelve",
+   "Sixteen"
+  ],
+  "f": "Eight teams: WEN, WIF, Pudgy Penguins, Ponke, Shiba Inu, MOG, Turbo and Baby Doge.",
+  "l": "posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#teams"
+ },
+ {
+  "lv": "world",
+  "q": "Which Copa de los Memes team came from BNB Chain?",
+  "o": [
+   "Baby Doge",
+   "WIF",
+   "Ponke",
+   "WEN"
+  ],
+  "f": "The teams came from several chains: Solana, Ethereum and BNB Chain, where Baby Doge lives.",
+  "l": "posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#teams"
+ },
+ {
+  "lv": "safety",
+  "q": "What does a genuine event or airdrop page never need from you?",
+  "o": [
+   "Your seed phrase",
+   "Your wallet's public address",
+   "Your X handle",
+   "The token's contract address"
+  ],
+  "f": "No real event, airdrop or team page ever needs your seed phrase or private key.",
+  "l": "posts/the-copa-de-los-memes-is-a-gamified-irl-football-tournament-nov-19-ethereum-devcon-bangkok-by-bitsoonchain-wen-wenwencoin-bonk.html#safety"
+ },
+ {
+  "lv": "fun",
+  "q": "What is Jupiter's community called?",
+  "o": [
+   "Catdets",
+   "Moonboys",
+   "Jupernauts",
+   "Cat Club"
+  ],
+  "f": "Jupiter's community members call themselves Catdets.",
+  "l": "posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html#call"
+ },
+ {
+  "lv": "basic",
+  "q": "Which Planetary Call marked Meow's return in November 2025?",
+  "o": [
+   "#60",
+   "#10",
+   "#42",
+   "#100"
+  ],
+  "f": "The Jupiter Group published it as \"Meow is Back on the Planetary Call #60\".",
+  "l": "posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html"
+ },
+ {
+  "lv": "basic",
+  "q": "Which city is the pun \"Catlumpur\" based on?",
+  "o": [
+   "Kuala Lumpur",
+   "Istanbul",
+   "Lumbini",
+   "Kuching"
+  ],
+  "f": "Catlumpur is Jupiter's gathering in Kuala Lumpur, Malaysia.",
+  "l": "posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html#catlumpur"
+ },
+ {
+  "lv": "world",
+  "q": "Where did Jupiter's earlier event Catstanbul take place?",
+  "o": [
+   "Istanbul",
+   "Kuala Lumpur",
+   "Singapore",
+   "Bangkok"
+  ],
+  "f": "Before Catlumpur came Catstanbul, held in Istanbul.",
+  "l": "posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html#catlumpur"
+ },
+ {
+  "lv": "world",
+  "q": "In which city was the Ethereum Foundation's Devcon held in November 2024?",
+  "o": [
+   "Bangkok",
+   "Buenos Aires",
+   "Berlin",
+   "Denver"
+  ],
+  "f": "Devcon 2024 was in Bangkok; Devconnect 2025 moved to Buenos Aires, hence the mix-up.",
+  "l": "posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#bangkok"
+ },
+ {
+  "lv": "fun",
+  "q": "Which burger chain also trades under the ticker WEN?",
+  "o": [
+   "Wendy's",
+   "McDonald's",
+   "Burger King",
+   "Five Guys"
+  ],
+  "f": "The Wendy's Company trades on Nasdaq as WEN — the same three letters as the Wen cat's token.",
+  "l": "posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html#ticker"
+ },
+ {
+  "lv": "basic",
+  "q": "What tells the Wen cat token apart from Wendy's stock with the same ticker?",
+  "o": [
+   "Its single Solana mint address",
+   "Its logo colour",
+   "Its price",
+   "Its ticker"
+  ],
+  "f": "Names and tickers can match; the Solana address cannot. Always check the address.",
+  "l": "posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html#ticker"
+ },
+ {
+  "lv": "world",
+  "q": "Who was Wendy's named after?",
+  "o": [
+   "Founder Dave Thomas's daughter Melinda Lou",
+   "His wife",
+   "A cartoon character",
+   "A town in Ohio"
+  ],
+  "f": "Dave Thomas named the restaurant after his daughter Melinda Lou, nicknamed Wendy.",
+  "l": "posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html#history"
+ },
+ {
+  "lv": "basic",
+  "q": "Which X account did WEN acquire, according to a 2025 newsletter?",
+  "o": [
+   "@TweetsOfCats",
+   "@ShouldHaveCat",
+   "@CatWorkers",
+   "@Cats"
+  ],
+  "f": "A Syndicate newsletter reported that WEN acquired the @TweetsOfCats account.",
+  "l": "posts/wen-crypto-nov-11-2025-new-open-source-crypto-community-material.html#factcheck"
+ },
+ {
+  "lv": "safety",
+  "q": "What should you never attach to shared Wen community art?",
+  "o": [
+   "A buy link",
+   "A credit line",
+   "The Wen cat",
+   "Your own joke"
+  ],
+  "f": "Art is a way into the story, not an advert: show the token address, never a trading link.",
+  "l": "posts/wen-crypto-nov-11-2025-new-open-source-crypto-community-material.html#how"
+ },
+ {
+  "lv": "fun",
+  "q": "In the Inverted Almanac, what single transaction does Wen broadcast?",
+  "o": [
+   "wen = now",
+   "wen = moon",
+   "wen = lambo",
+   "gm"
+  ],
+  "f": "Instead of striking, Wen broadcasts one line: wen = now.",
+  "l": "posts/crypto-fantasy-or-the-inverted-almanac.html#part4"
+ },
+ {
+  "lv": "fun",
+  "q": "What is the name of Wen's home moon in the tale?",
+  "o": [
+   "Wen-9",
+   "Wen-1",
+   "Catnip Prime",
+   "Bonk-7"
+  ],
+  "f": "Wen grows up on Wen-9, an outer moon of forgotten airdrops.",
+  "l": "posts/crypto-fantasy-or-the-inverted-almanac.html#part1"
+ },
+ {
+  "lv": "basic",
+  "q": "On which exchange did BSOL, the Solana staking ETF, debut in October 2025?",
+  "o": [
+   "New York Stock Exchange",
+   "Nasdaq",
+   "London Stock Exchange",
+   "Tokyo Stock Exchange"
+  ],
+  "f": "Bitwise's BSOL started trading on the NYSE on October 28, 2025.",
+  "l": "posts/bsol-new-york-stock-exchange-wall-street.html#what"
+ },
+ {
+  "lv": "safety",
+  "q": "Does a Solana ETF like BSOL buy WEN tokens?",
+  "o": [
+   "No, it holds SOL only",
+   "Yes, all Solana tokens",
+   "Only memecoins",
+   "Only WEN and BONK"
+  ],
+  "f": "An ETF like BSOL holds and stakes SOL; it does not buy meme coins.",
+  "l": "posts/bsol-new-york-stock-exchange-wall-street.html#wen"
+ },
+ {
+  "lv": "fun",
+  "q": "What did Wen and Bonk release together in Drop 001?",
+  "o": [
+   "A limited plush toy",
+   "A video game",
+   "A sneaker",
+   "A cookbook"
+  ],
+  "f": "Drop 001 on Playground was a limited Wen x Bonk plush made with Toymak3rs.",
+  "l": "posts/wen-x-bonk-playground-drops-toysmak-3rs-partners.html#drop"
+ },
+ {
+  "lv": "world",
+  "q": "Where did the proceeds of the Wen x Bonk plush go?",
+  "o": [
+   "Buddies for Paws, an animal charity",
+   "The Wen treasury",
+   "A burn address",
+   "Jupiter DAO"
+  ],
+  "f": "Wen announced that 100% of the proceeds would go to charity with Buddies for Paws.",
+  "l": "posts/wen-x-bonk-playground-drops-toysmak-3rs-partners.html#charity"
+ },
+ {
+  "lv": "world",
+  "q": "What is the name of Western Union's stablecoin on Solana?",
+  "o": [
+   "USDPT",
+   "WUSD",
+   "USDW",
+   "PYUSD"
+  ],
+  "f": "Western Union announced the U.S. Dollar Payment Token, USDPT, on October 28, 2025.",
+  "l": "posts/solana-and-western-union-bridging-traditional-finance-and-blockchain-for-global-payments.html#what"
+ },
+ {
+  "lv": "tech",
+  "q": "Which bank issues Western Union's USDPT?",
+  "o": [
+   "Anchorage Digital Bank",
+   "JPMorgan Chase",
+   "Silvergate",
+   "Bank of America"
+  ],
+  "f": "USDPT is issued by Anchorage Digital Bank, a federally chartered crypto bank.",
+  "l": "posts/solana-and-western-union-bridging-traditional-finance-and-blockchain-for-global-payments.html#what"
+ },
+ {
+  "lv": "fun",
+  "q": "Which animal pair are Wen and Bonk often called on Solana?",
+  "o": [
+   "The cat and the dog",
+   "The fox and the owl",
+   "The frog and the toad",
+   "The bull and the bear"
+  ],
+  "f": "Wen is the curious cat, Bonk the loyal dog: Solana's best-known mascot duo.",
+  "l": "posts/drop-001-wen-x-bonk-october-29-12-pm-et-2025.html#pair"
+ },
+ {
+  "lv": "basic",
+  "q": "When was BONK airdropped to the Solana community?",
+  "o": [
+   "Christmas Day 2022",
+   "January 2024",
+   "Halloween 2023",
+   "Summer 2021"
+  ],
+  "f": "Bonk arrived on December 25, 2022, with half of its supply airdropped to the community.",
+  "l": "posts/drop-001-wen-x-bonk-october-29-12-pm-et-2025.html#pair"
+ },
+ {
+  "lv": "tech",
+  "q": "Which hash function does Bitcoin's proof of work use?",
+  "o": [
+   "SHA-256",
+   "MD5",
+   "CRC32",
+   "Base64"
+  ],
+  "f": "Bitcoin miners race to find SHA-256 hashes below a target.",
+  "l": "posts/compared-wen-btc-solana.html#bitcoin"
+ },
+ {
+  "lv": "tech",
+  "q": "Which elliptic curve signs Bitcoin transactions?",
+  "o": [
+   "secp256k1",
+   "Curve25519",
+   "P-256",
+   "BLS12-381"
+  ],
+  "f": "Bitcoin keys use secp256k1, a curve defined years before Bitcoin existed.",
+  "l": "posts/compared-wen-btc-solana.html#question"
+ },
+ {
+  "lv": "tech",
+  "q": "Which combination secures Solana?",
+  "o": [
+   "Proof of stake with proof of history",
+   "Proof of work",
+   "Proof of authority only",
+   "Proof of burn"
+  ],
+  "f": "Validators stake SOL, and proof of history orders events like a clock.",
+  "l": "posts/compared-wen-btc-solana.html#consensus"
+ },
+ {
+  "lv": "basic",
+  "q": "Roughly how many blocks do people wait before treating a Bitcoin payment as settled?",
+  "o": [
+   "About six",
+   "One",
+   "Sixty",
+   "Six hundred"
+  ],
+  "f": "Bitcoin finality is probabilistic; about six confirmations, roughly an hour, is the usual rule.",
+  "l": "posts/compared-wen-btc-solana.html#finality"
+ },
+ {
+  "lv": "world",
+  "q": "Who issued Hong Kong's first spot Solana ETF in October 2025?",
+  "o": [
+   "ChinaAMC",
+   "BlackRock",
+   "Bitwise",
+   "Grayscale"
+  ],
+  "f": "The ChinaAMC Solana ETF began trading on the Hong Kong Stock Exchange on October 27, 2025.",
+  "l": "posts/wen-crypto-gears-up-for-global-expansion-partnership-with-elevate-pictures-signals-multimedia-revolution.html#context"
+ },
+ {
+  "lv": "basic",
+  "q": "Which studio partnered with Wen in 2025 to build animation, comics and products?",
+  "o": [
+   "Elevate Pictures",
+   "Pixar",
+   "Studio Ghibli",
+   "Aardman"
+  ],
+  "f": "Wen and Elevate Pictures announced a story world of animation, comics and products.",
+  "l": "posts/wen-crypto-gears-up-for-global-expansion-partnership-with-elevate-pictures-signals-multimedia-revolution.html#partner"
+ },
+ {
+  "lv": "basic",
+  "q": "How many wallets were eligible for the WEN airdrop in January 2024?",
+  "o": [
+   "More than one million",
+   "About 10,000",
+   "Exactly 393",
+   "Five billion"
+  ],
+  "f": "WEN was airdropped to more than a million Solana wallets — one of the largest airdrops the network had seen.",
+  "l": "posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#day"
+ },
+ {
+  "lv": "tech",
+  "q": "What peak throughput did SolanaFloor report during the WEN launch?",
+  "o": [
+   "More than 2,300 transactions per second",
+   "23 per second",
+   "2.3 million per second",
+   "230 per hour"
+  ],
+  "f": "SolanaFloor reported a peak above 2,300 TPS while the network stayed up.",
+  "l": "posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html"
+ },
+ {
+  "lv": "world",
+  "q": "Which Jupiter token launched five days after WEN, on January 31, 2024?",
+  "o": [
+   "$JUP",
+   "$BONK",
+   "$SOL",
+   "$WIF"
+  ],
+  "f": "WEN was the dress rehearsal; $JUP followed on January 31, 2024.",
+  "l": "posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#jup"
+ },
+ {
+  "lv": "basic",
+  "q": "What was the first 10K collection minted on WNS called?",
+  "o": [
+   "Elements (AssetDash)",
+   "Mad Lads",
+   "Okay Bears",
+   "Pudgy Penguins"
+  ],
+  "f": "AssetDash minted its 10,000-piece Elements collection on the Wen New Standard.",
+  "l": "posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#assetdash"
+ },
+ {
+  "lv": "safety",
+  "q": "What weak spot did Jupiter's co-founder admit after the WEN launch?",
+  "o": [
+   "Bot mitigation",
+   "Network downtime",
+   "Lost tokens",
+   "A hacked contract"
+  ],
+  "f": "\"We did ok, but did not do that well on the bot mitigation front today\" — honest lessons made the next launch better.",
+  "l": "posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#lessons"
+ },
+ {
+  "lv": "world",
+  "q": "Which Egyptian goddess was linked to cats?",
+  "o": [
+   "Bastet",
+   "Isis",
+   "Hathor",
+   "Sekhmet"
+  ],
+  "f": "Bastet, often shown as a cat or cat-headed woman, protected homes and families.",
+  "l": "posts/wen-crypto-egypt-cats.html#history"
+ },
+ {
+  "lv": "world",
+  "q": "Which bird was sacred to Thoth, the Egyptian god of wisdom?",
+  "o": [
+   "The ibis",
+   "The falcon",
+   "The vulture",
+   "The owl"
+  ],
+  "f": "Thoth, god of writing and wisdom, was shown with the head of an ibis.",
+  "l": "posts/wen-crypto-egypt-cats.html#ibis"
+ },
+ {
+  "lv": "fun",
+  "q": "What practical job made cats precious in ancient Egypt?",
+  "o": [
+   "Protecting grain from rodents",
+   "Pulling chariots",
+   "Carrying messages",
+   "Guarding gold mines"
+  ],
+  "f": "Cats kept mice and snakes away from grain stores — the start of a 4,000-year friendship.",
+  "l": "posts/wen-crypto-egypt-cats.html#history"
+ },
+ {
+  "lv": "basic",
+  "q": "On which date did Wen hold its \"Meet the Team\" Space with Elevate Pictures?",
+  "o": [
+   "October 16, 2025",
+   "January 26, 2024",
+   "December 25, 2022",
+   "November 19, 2025"
+  ],
+  "f": "Wen and Elevate Pictures met the community in an X Space on October 16, 2025.",
+  "l": "posts/wen-crypto-x-elevate-pictures-and-next-future.html"
+ },
+ {
+  "lv": "safety",
+  "q": "What should you search for to find the real WEN token?",
+  "o": [
+   "Its contract address (ID)",
+   "Its name only",
+   "Its logo",
+   "The cheapest price"
+  ],
+  "f": "Names, logos and tickers are copied; the contract address is unique.",
+  "l": "posts/wen-crypto-x-elevate-pictures-and-next-future.html"
+ },
+ {
+  "lv": "world",
+  "q": "Which company built JupUSD together with Jupiter?",
+  "o": [
+   "Ethena Labs",
+   "Circle",
+   "Tether",
+   "Paxos"
+  ],
+  "f": "Jupiter announced JupUSD with Ethena Labs in October 2025; it went live in January 2026.",
+  "l": "posts/jupiter-is-launching-its-own-stablecoin.html#what"
+ },
+ {
+  "lv": "tech",
+  "q": "What mainly backs JupUSD at launch?",
+  "o": [
+   "USDtb, a token holding mainly BlackRock's BUIDL fund",
+   "Solana liquid staking tokens",
+   "Bitcoin",
+   "WEN tokens"
+  ],
+  "f": "About 90% of JupUSD's reserves were planned in USDtb, which holds mainly a tokenized Treasury fund.",
+  "l": "posts/jupiter-is-launching-its-own-stablecoin.html#backing"
+ },
+ {
+  "lv": "safety",
+  "q": "What does a crypto \"fear and greed\" index describe?",
+  "o": [
+   "The mood of the market",
+   "The value of a project",
+   "A guaranteed forecast",
+   "The token supply"
+  ],
+  "f": "It summarises market mood from signals like volatility and volume — a thermometer, not a forecast.",
+  "l": "posts/wen-crypto-wen-to-reach-a-price-today.html#fear"
+ },
+ {
+  "lv": "safety",
+  "q": "Which of these does no real project ever ask you for?",
+  "o": [
+   "Your seed phrase",
+   "Your public address",
+   "Your feedback",
+   "Your favourite meme"
+  ],
+  "f": "A seed phrase is the key to everything in a wallet. No real team, support or event ever needs it.",
+  "l": "posts/wen-crypto-wen-to-reach-a-price-today.html#safe"
+ },
+ {
+  "lv": "world",
+  "q": "What is PayPay?",
+  "o": [
+   "Japan's leading cashless payment app",
+   "A Solana wallet",
+   "A meme coin",
+   "A Korean bank"
+  ],
+  "f": "PayPay, with around 70 million users, took a 40% stake in a Japanese crypto exchange in October 2025.",
+  "l": "posts/paypay-binance-alliance.html#news"
+ },
+ {
+  "lv": "world",
+  "q": "In which year did Ethereum launch?",
+  "o": [
+   "2015",
+   "2009",
+   "2017",
+   "2021"
+  ],
+  "f": "Ethereum launched on July 30, 2015 and brought smart contracts — programmable money.",
+  "l": "posts/crypto-eras-2025-with-wen-crypto-and-history.html#timeline"
+ },
+ {
+  "lv": "fun",
+  "q": "What does the crypto slang \"wen\" mean?",
+  "o": [
+   "A playful misspelling of \"when\"",
+   "A Chinese coin",
+   "A Solana validator",
+   "An exchange code"
+  ],
+  "f": "\"Wen moon?\" and \"wen lambo?\" — impatient questions that gave a cat coin its name.",
+  "l": "posts/crypto-eras-2025-with-wen-crypto-and-history.html#word"
+ },
+ {
+  "lv": "fun",
+  "q": "What is the story behind MEW, the Solana cat coin?",
+  "o": [
+   "A cat in a dogs' world",
+   "A cat on the Moon",
+   "A robot cat",
+   "A cat from Egypt"
+  ],
+  "f": "MEW, launched in March 2024, tells of a cat standing up to a world ruled by dog coins.",
+  "l": "posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#mew"
+ },
+ {
+  "lv": "world",
+  "q": "Where was one of the earliest cats buried next to a person, about 9,500 years ago?",
+  "o": [
+   "Cyprus",
+   "Egypt",
+   "Norway",
+   "Japan"
+  ],
+  "f": "A burial at Shillourokambos, Cyprus, is among the earliest signs of cats living with people.",
+  "l": "posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#history"
+ },
+ {
+  "lv": "basic",
+  "q": "Which toy maker made Wen plush toys, according to the community list?",
+  "o": [
+   "Toymak3rs",
+   "Lego",
+   "Funko",
+   "Hasbro"
+  ],
+  "f": "Wen plushies were made with Toymak3rs — including the Wen x Bonk charity plush.",
+  "l": "posts/new-listings-october-2025-wen-crypto-start-next.html#list"
+ },
+ {
+  "lv": "tech",
+  "q": "What is wenSOL?",
+  "o": [
+   "A liquid staking token with a Wen validator, built with Sanctum",
+   "A stablecoin",
+   "An NFT standard",
+   "A Wen exchange"
+  ],
+  "f": "wenSOL lets SOL be staked through a Wen validator while staying liquid (community-reported).",
+  "l": "posts/new-listings-october-2025-wen-crypto-start-next.html#tech"
+ },
+ {
+  "lv": "safety",
+  "q": "On Solana, who can create new tokens of an existing mint?",
+  "o": [
+   "Whoever holds the mint authority, if it is not revoked",
+   "Anyone who pays a fee",
+   "Only validators",
+   "Nobody, ever"
+  ],
+  "f": "Check the mint authority on an explorer: if it is revoked, the supply can never grow.",
+  "l": "posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html#tech"
+ },
+ {
+  "lv": "safety",
+  "q": "Why is \"$1,000 to $100,000\" a warning sign?",
+  "o": [
+   "It relies on survivorship bias: we only hear from the few winners",
+   "It is illegal to say",
+   "Memecoins cannot grow",
+   "It is a tax rule"
+  ],
+  "f": "The winners speak, the many losers stay silent. A promise of multiplied money is an advert, not information.",
+  "l": "posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html#promise"
+ },
+ {
+  "lv": "tech",
+  "q": "Most transactions on Solana are…",
+  "o": [
+   "Validator votes",
+   "NFT mints",
+   "Memecoin trades",
+   "Stablecoin payments"
+  ],
+  "f": "Validators vote on blocks through transactions, so total TPS is much higher than user TPS.",
+  "l": "posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#metrics"
+ },
+ {
+  "lv": "safety",
+  "q": "What does a token's \"holders\" count NOT tell you?",
+  "o": [
+   "How many people hold it",
+   "How many wallets have a balance",
+   "Whether the count is above zero",
+   "That the token exists"
+  ],
+  "f": "One person can own many wallets, and airdrops create holders who never chose to hold.",
+  "l": "posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#metrics"
+ },
+ {
+  "lv": "world",
+  "q": "In September 2025, which filing did the SEC say crypto ETF issuers no longer needed?",
+  "o": [
+   "The 19b-4",
+   "The S-1",
+   "The 10-K",
+   "The 13F"
+  ],
+  "f": "After generic listing standards were approved, the SEC asked issuers to withdraw 19b-4s; only the S-1 remained.",
+  "l": "posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#etf"
+ },
+ {
+  "lv": "world",
+  "q": "IRS Notice 2025-49 let very large companies leave what out of the 15% minimum tax?",
+  "o": [
+   "Unrealized (paper) gains on certain fair-value assets",
+   "All crypto income",
+   "Individuals' Bitcoin gains",
+   "Stablecoin interest"
+  ],
+  "f": "An elective, interim rule for the corporate minimum tax — not a general crypto tax exemption.",
+  "l": "posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#tax"
+ },
+ {
+  "lv": "tech",
+  "q": "Where does WNS 0.0 keep an NFT's name, symbol and URI?",
+  "o": [
+   "In the mint account itself",
+   "On a separate server",
+   "In a marketplace database",
+   "In the wallet app"
+  ],
+  "f": "WNS uses Token-2022 metadata extensions, so the NFT carries its own name card on-chain.",
+  "l": "posts/wen-new-standard-wns-0-0-wen-crypto-inform.html#what"
+ },
+ {
+  "lv": "world",
+  "q": "Which partners started the WNS coalition?",
+  "o": [
+   "Ovols and Jupiter",
+   "Bonk and Raydium",
+   "Ethereum and Polygon",
+   "Magic Eden and Tensor"
+  ],
+  "f": "The WNS 0.0 proposal of January 25, 2024 named Ovols and Jupiter, supported by the Wen Foundation.",
+  "l": "posts/wen-new-standard-wns-0-0-wen-crypto-inform.html#origin"
+ },
+ {
+  "lv": "tech",
+  "q": "Which planned WNS feature lets royalties be paid on every transfer?",
+  "o": [
+   "Transfer hooks",
+   "Mint Closure",
+   "Metadata Pointer",
+   "CPI Guard"
+  ],
+  "f": "A transfer hook calls a royalty program whenever the token moves — royalties enforced by the token itself.",
+  "l": "posts/wen-new-standard-wns-0-0-wen-crypto-inform.html#planned"
+ },
+ {
+  "lv": "basic",
+  "q": "What is \"alt season\"?",
+  "o": [
+   "A period when other coins rise faster than Bitcoin",
+   "A new Solana upgrade",
+   "A tax period",
+   "A token unlock"
+  ],
+  "f": "Alt seasons are named afterwards — famous ones came at the end of 2017 and in early 2021.",
+  "l": "posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#alt"
+ },
+ {
+  "lv": "fun",
+  "q": "What does the Chinese character 温 (wēn, first tone) mean?",
+  "o": [
+   "Warm",
+   "To ask",
+   "Clouds",
+   "Gold"
+  ],
+  "f": "温 (wēn) means warm or mild; 问 is to ask, 文 is writing, 闻 is to hear.",
+  "l": "posts/wen-crypto.html#chinese"
+ },
+ {
+  "lv": "fun",
+  "q": "In Old English, the letter for the \"w\" sound (ƿ) was called…",
+  "o": [
+   "Wynn, also spelled wen",
+   "Thorn",
+   "Ash",
+   "Eth"
+  ],
+  "f": "The runic letter ƿ was named wynn or wen — the old name of W itself.",
+  "l": "posts/wen-crypto.html#letter"
+ },
+ {
+  "lv": "basic",
+  "q": "What happened to unclaimed WEN when the airdrop closed on January 29, 2024?",
+  "o": [
+   "More than 271 billion were burned — over 27% of supply",
+   "They went to the team",
+   "They were sold",
+   "They were airdropped again"
+  ],
+  "f": "Unclaimed tokens were burned for good: nearly 39% of the airdrop allocation (Decrypt).",
+  "l": "posts/wen-today-and-analyze-the-sharp-increase-of-50.html#facts"
+ },
+ {
+  "lv": "fun",
+  "q": "In crypto slang, what does \"PvP\" describe?",
+  "o": [
+   "A market where one trader's gain is another's loss",
+   "A Solana upgrade",
+   "A type of NFT",
+   "A wallet feature"
+  ],
+  "f": "Player versus player. The Wen community's \"PPP\" means the opposite: people making things for each other.",
+  "l": "posts/wen-today-and-analyze-the-sharp-increase-of-50.html#ppp"
+ },
+ {
+  "lv": "tech",
+  "q": "On Solana, what is a program ID?",
+  "o": [
+   "The address of an on-chain program",
+   "A wallet password",
+   "A token's ticker",
+   "A validator's name"
+  ],
+  "f": "Every swap, pool or game has a program ID; counting programs that use a token shows how widely it is built in.",
+  "l": "posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html#what"
+ },
+ {
+  "lv": "world",
+  "q": "In the September 2025 chart of most integrated program IDs, which token led?",
+  "o": [
+   "USDC",
+   "WEN",
+   "BONK",
+   "JUP"
+  ],
+  "f": "USDC led with 974 programs; WEN was eighth with 345, beside JitoSOL, PYTH and mSOL.",
+  "l": "posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html#chart"
+ },
+ {
+  "lv": "world",
+  "q": "When was BONK airdropped to Solana's community?",
+  "o": [
+   "Christmas 2022",
+   "January 2024",
+   "November 2023",
+   "December 2024"
+  ],
+  "f": "Bonk arrived at Christmas 2022 and helped bring life back to Solana after the crash.",
+  "l": "posts/wif-dog-coin-compare-with-wen-crypto-and-bonk-dog.html#four"
+ },
+ {
+  "lv": "safety",
+  "q": "Why is \"WEN's price if it had Bonk's market cap\" misleading?",
+  "o": [
+   "Supplies differ, and market value is not money inside a coin",
+   "It uses old data",
+   "Bonk is not on Solana",
+   "It is illegal"
+  ],
+  "f": "Market value is the last price times all tokens — nobody could ever sell at it.",
+  "l": "posts/wif-dog-coin-compare-with-wen-crypto-and-bonk-dog.html#calc"
+ },
+ {
+  "lv": "world",
+  "q": "Which U.S. law on payment stablecoins was signed on July 18, 2025?",
+  "o": [
+   "The GENIUS Act",
+   "The CLARITY Act",
+   "The Dodd-Frank Act",
+   "The FIT21 Act"
+  ],
+  "f": "GENIUS passed the Senate on June 17 and the House on July 17, 2025, and was signed the next day.",
+  "l": "posts/today-cryptocurrency-market.html#week"
+ },
+ {
+  "lv": "world",
+  "q": "What did the CLARITY Act propose?",
+  "o": [
+   "Splitting crypto oversight between the CFTC and the SEC",
+   "Banning stablecoins",
+   "A U.S. central bank digital currency",
+   "Taxing NFTs"
+  ],
+  "f": "CFTC for digital commodities, SEC for restricted digital assets — passed by the House, stalled in the Senate in 2026.",
+  "l": "posts/today-cryptocurrency-market.html#clarity"
+ },
+ {
+  "lv": "tech",
+  "q": "Under GENIUS, how must payment stablecoins be backed?",
+  "o": [
+   "One-to-one by safe, liquid assets like cash and T-bills",
+   "By Bitcoin",
+   "By company shares",
+   "They need no backing"
+  ],
+  "f": "Reserves must match the coins one for one, with regular public disclosure.",
+  "l": "posts/today-cryptocurrency-market.html#genius"
+ },
+ {
+  "lv": "world",
+  "q": "What happened to the CLARITY Act in the U.S. Senate on September 15, 2026?",
+  "o": [
+   "A procedural vote failed 49–50",
+   "It passed unanimously",
+   "It was signed into law",
+   "It was withdrawn by the House"
+  ],
+  "f": "Sixty votes were needed; disputes over stablecoin yield and ethics rules stopped it.",
+  "l": "posts/today-cryptocurrency-market.html#after"
+ },
+ {
+  "lv": "safety",
+  "q": "A summary says a token hit a record before it existed. What does that tell you?",
+  "o": [
+   "The summary is wrong — check dates against the launch",
+   "The token is very old",
+   "It was a pre-sale",
+   "Nothing important"
+  ],
+  "f": "WEN launched on January 26, 2024; any record dated earlier is an error.",
+  "l": "posts/wen-historical-today.html#checks"
+ },
+ {
+  "lv": "safety",
+  "q": "A token called \"WEN\" appears on another chain. What is it?",
+  "o": [
+   "A bridged copy or a different token with the same ticker",
+   "The same Solana WEN",
+   "An official upgrade",
+   "A WNS NFT"
+  ],
+  "f": "WEN is identified by one Solana mint address; tickers can be copied.",
+  "l": "posts/wen-historical-today.html#checks"
+ },
+ {
+  "lv": "fun",
+  "q": "What rule keeps community Wen art from turning into an advert?",
+  "o": [
+   "Never attach a buy link or price promise",
+   "Always add a logo",
+   "Only post on weekends",
+   "Use only gold colours"
+  ],
+  "f": "The open folders are culture: share freely, credit the community, keep prices out.",
+  "l": "posts/wen-coin-graphics-videos-from-cummunity.html#use"
+ },
+ {
+  "lv": "basic",
+  "q": "How many open folders did the community publish in July 2025?",
+  "o": [
+   "About a dozen, from wallpapers to GIFs",
+   "One",
+   "Three hundred",
+   "None — only links to exchanges"
+  ],
+  "f": "Phone backgrounds, post images, songs, photos, videos, GIFs and anime art, all free to reuse.",
+  "l": "posts/wen-coin-graphics-videos-from-cummunity.html#folders"
+ },
+ {
+  "lv": "world",
+  "q": "When did xStocks, tokenized U.S. shares backed 1:1, launch on Solana?",
+  "o": [
+   "June 30, 2025",
+   "January 26, 2024",
+   "December 25, 2022",
+   "October 28, 2025"
+  ],
+  "f": "Each xStock is backed by a real share held with a regulated custodian.",
+  "l": "posts/wen-prediction-and-price.html#stocks"
+ },
+ {
+  "lv": "basic",
+  "q": "Into how many tokens was Meow's poem split to create WEN?",
+  "o": [
+   "One trillion",
+   "One billion",
+   "One million",
+   "100 million"
+  ],
+  "f": "\"A Love Letter to Wen Bros\" became 1,000,000,000,000 WEN.",
+  "l": "posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html#timeline"
+ },
+ {
+  "lv": "basic",
+  "q": "Why did Jupiter launch WEN before its own token?",
+  "o": [
+   "As a dress rehearsal for its launchpad and airdrop",
+   "To raise money",
+   "To replace SOL",
+   "To test a new blockchain"
+  ],
+  "f": "WEN on January 26, 2024; $JUP on January 31, with the lessons applied.",
+  "l": "posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html#why"
+ },
+ {
+  "lv": "fun",
+  "q": "In game theory, what is a positive-sum game?",
+  "o": [
+   "One where the total grows, so many can gain",
+   "One where every win is a loss",
+   "A game with no rules",
+   "A game only bots play"
+  ],
+  "f": "Shared tools, standards and free archives make more pie — the sober meaning of PPP.",
+  "l": "posts/what-is-ppp-and-pvp-in-crypto.html#game"
+ },
+ {
+  "lv": "safety",
+  "q": "Which is a sign of a PvP trap?",
+  "o": [
+   "Hidden early supply and bots at launch",
+   "An open standard",
+   "A charity drop",
+   "Free community art"
+  ],
+  "f": "Also: urgency, promises of multiplied money, and nothing to use.",
+  "l": "posts/what-is-ppp-and-pvp-in-crypto.html#signs"
+ },
+ {
+  "lv": "tech",
+  "q": "What stands behind a tokenized share like an xStock?",
+  "o": [
+   "A real share held by a custodian",
+   "Nothing",
+   "A meme",
+   "A Solana validator"
+  ],
+  "f": "Unlike a culture token, a stock token is a claim on something outside the network.",
+  "l": "posts/wen-prediction-and-price.html#diff"
+ },
+ {
+  "lv": "basic",
+  "q": "Which studio partnered with Wen in June 2025 to develop comics, animation and products?",
+  "o": [
+   "Elevate",
+   "Pixar",
+   "Toei",
+   "Aardman"
+  ],
+  "f": "A U.S.–Irish co-production; the first outputs were planned as a comic and an animation pilot.",
+  "l": "posts/wen-partners-with-elevate-media-june-2025.html#news"
+ },
+ {
+  "lv": "world",
+  "q": "Which Irish animation studio in the Elevate family works on the Wen character?",
+  "o": [
+   "Adventurverse Studios",
+   "Cartoon Saloon",
+   "Brown Bag Films",
+   "Boulder Media"
+  ],
+  "f": "Dave Minogue and Adventurverse bring the character to life in art and animation.",
+  "l": "posts/wen-partners-with-elevate-media-june-2025.html#people"
+ },
+ {
+  "lv": "world",
+  "q": "What did Mastercard and Chainlink launch on June 24, 2025?",
+  "o": [
+   "Swapper Finance — buying crypto with a card directly on a DEX",
+   "A Mastercard blockchain",
+   "A Bitcoin ETF",
+   "A WEN debit card"
+  ],
+  "f": "Shift4 converts card money, zerohash handles compliance, Chainlink verifies the order.",
+  "l": "posts/mastercard-visa-with-crypto.html#news"
+ },
+ {
+  "lv": "safety",
+  "q": "Did the Mastercard news mean anyone could now pay in WEN by card?",
+  "o": [
+   "No — it was an on-ramp naming Uniswap; WEN is a Solana token",
+   "Yes, worldwide",
+   "Only in the U.S.",
+   "Only on weekends"
+  ],
+  "f": "An on-ramp turns card money into crypto; it is not a payment system for memecoins.",
+  "l": "posts/mastercard-visa-with-crypto.html#not"
+ },
+ {
+  "lv": "fun",
+  "q": "What is the Wen community song of June 2025 called?",
+  "o": [
+   "Be Happy",
+   "Wen Moon",
+   "Cat Season",
+   "Meow Forever"
+  ],
+  "f": "A song about a kind space cat who shares a piece of happiness with everyone.",
+  "l": "posts/song-wen-be-happy-new-rap-story-wen-wen-come.html#song"
+ },
+ {
+  "lv": "fun",
+  "q": "In the Wen song, where does everyone fly together?",
+  "o": [
+   "To Jupiter",
+   "To Mars",
+   "To the Moon",
+   "To Saturn"
+  ],
+  "f": "\"We refuel our spaceship — we all fly to Jupiter.\"",
+  "l": "posts/song-wen-be-happy-new-rap-story-wen-wen-come.html#song"
+ },
+ {
+  "lv": "basic",
+  "q": "Roughly how many WEN tokens remain after the January 2024 burn?",
+  "o": [
+   "About 729 billion",
+   "Exactly one trillion",
+   "747 billion",
+   "271 billion"
+  ],
+  "f": "One trillion minus more than 271 billion burned; the explorer shows today's exact total.",
+  "l": "posts/circulation-of-coin-747-b-all-of-wen-today-april-2025.html#wen"
+ },
+ {
+  "lv": "safety",
+  "q": "Which supply figure is a hard on-chain fact?",
+  "o": [
+   "Total supply, read from the mint",
+   "Circulating supply on a tracker",
+   "A number in a tweet",
+   "The market cap"
+  ],
+  "f": "Circulating supply is a third party's estimate; total supply is on-chain.",
+  "l": "posts/circulation-of-coin-747-b-all-of-wen-today-april-2025.html#words"
+ },
+ {
+  "lv": "basic",
+  "q": "What is the exact title of Meow's poem behind WEN?",
+  "o": [
+   "A Love Letter to Wen Bros",
+   "A Love Letter to the Wen Brothers",
+   "Ode to the Cat",
+   "Wen Moon"
+  ],
+  "f": "The poem was minted as an NFT and fractionalized into one trillion tokens.",
+  "l": "posts/wen-coin-origin-about-token-launched-on-the-solana-blockchain.html#fixes"
+ },
+ {
+  "lv": "tech",
+  "q": "When did Solana Mobile begin shipping the Seeker phone?",
+  "o": [
+   "August 4, 2025",
+   "January 26, 2024",
+   "June 30, 2025",
+   "December 25, 2022"
+  ],
+  "f": "Shipping went to customers in more than 50 countries.",
+  "l": "posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker"
+ },
+ {
+  "lv": "tech",
+  "q": "What does the Seeker's Seed Vault protect?",
+  "o": [
+   "The wallet's secret keys, in hardware",
+   "Photos",
+   "The phone's battery",
+   "Token prices"
+  ],
+  "f": "Keys in protected hardware, with fingerprint confirmation for signing.",
+  "l": "posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker"
+ },
+ {
+  "lv": "fun",
+  "q": "Where did the original Wen blog's very first post (March 2025) find the cat a home?",
+  "o": [
+   "Pinterest",
+   "LinkedIn",
+   "Reddit",
+   "Tumblr"
+  ],
+  "f": "Pictures are a gentle door into a culture — and every picture here leads to a fact.",
+  "l": "posts/hello-world.html#board"
+ },
+ {
+  "lv": "tech",
+  "q": "How do .wen domains relate to WNS?",
+  "o": [
+   "They are a separate, reported naming service; WNS is the Wen New Standard for NFTs",
+   "They are the same thing",
+   "WNS means Wen Name Service",
+   "Neither exists"
+  ],
+  "f": "A common mix-up corrected in the almanac.",
+  "l": "posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#fixes"
+ },
+ {
+  "lv": "tech",
+  "q": "Which WNS feature lets a token describe itself?",
+  "o": [
+   "Metadata in the mint",
+   "Mint closure",
+   "A transfer fee",
+   "A freeze authority"
+  ],
+  "f": "Name, symbol and link live inside the token — a receipt or certificate that explains itself.",
+  "l": "posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#features"
+ },
+ {
+  "lv": "tech",
+  "q": "Which kind of token suits a warranty card or attendance badge?",
+  "o": [
+   "A non-transferable token",
+   "A meme coin",
+   "A stablecoin",
+   "A governance token"
+  ],
+  "f": "It cannot be sold on, so it proves what it says about its holder.",
+  "l": "posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#features"
+ },
+ {
+  "lv": "basic",
+  "q": "How many tested models does Wen Open Lab offer for WNS uses?",
+  "o": [
+   "Six",
+   "One",
+   "Twenty",
+   "None"
+  ],
+  "f": "Receipts, royalties, B2B invoices, a payments bridge, a simulator and a devnet run.",
+  "l": "posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#lab"
+ },
+ {
+  "lv": "safety",
+  "q": "Where do the Wen Open Lab models run?",
+  "o": [
+   "On devnet, Solana's public test network",
+   "On a bank server",
+   "Only on paper",
+   "On Ethereum mainnet"
+  ],
+  "f": "Real-world use needs audits and legal checks; the Lab is for learning and testing.",
+  "l": "posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#limits"
+ },
+ {
+  "lv": "safety",
+  "q": "Why save an archived copy of a forum thread you rely on?",
+  "o": [
+   "Pages disappear; an archive keeps the record",
+   "To raise its rank",
+   "Archives add new facts",
+   "It is required by law"
+  ],
+  "f": "The Wayback Machine keeps copies of pages that may later vanish.",
+  "l": "posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html#find"
+ },
+ {
+  "lv": "safety",
+  "q": "A forum post says \"this partner is confirmed\". What should you check?",
+  "o": [
+   "The partner's own page or the official channel",
+   "The number of likes",
+   "The price chart",
+   "Nothing — forums are always right"
+  ],
+  "f": "Without the partner's own word, it stays \"reported\".",
+  "l": "posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html#checking"
+ },
+ {
+  "lv": "safety",
+  "q": "Which is a red flag in a forum post about a coin?",
+  "o": [
+   "A new account posting about one topic only",
+   "A link to the official site",
+   "A question about WNS",
+   "A thread from 2024"
+  ],
+  "f": "Often paid promotion; check the account's history.",
+  "l": "posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html#red"
+ },
+ {
+  "lv": "world",
+  "q": "Where did a regulated BONK exchange-traded product launch in late November 2025?",
+  "o": [
+   "The SIX Swiss Exchange",
+   "The New York Stock Exchange",
+   "The Tokyo Stock Exchange",
+   "Nasdaq"
+  ],
+  "f": "Issued by Bitcoin Capital — a dog memecoin reaching ordinary brokerage accounts.",
+  "l": "posts/wen-crypto-gold-coin-coinbase-roadmap-for-jupiter-bonk-memecoin-debuts-as-an-etp-today.html#news"
+ },
+ {
+  "lv": "fun",
+  "q": "What did the community release with the December 2025 gold Wen coin artwork?",
+  "o": [
+   "A free transparent PNG for anyone to use",
+   "A paid NFT",
+   "A trading signal",
+   "A new token"
+  ],
+  "f": "Like all community material it can be used, copied and adapted freely.",
+  "l": "posts/wen-crypto-gold-coin-coinbase-roadmap-for-jupiter-bonk-memecoin-debuts-as-an-etp-today.html#coin"
+ },
+ {
+  "lv": "world",
+  "q": "About how much in leveraged positions was liquidated on October 10–11, 2025?",
+  "o": [
+   "About $19 billion",
+   "About $19 million",
+   "About $1.9 trillion",
+   "Nothing"
+  ],
+  "f": "The largest liquidation weekend in crypto history — a lesson about borrowed money.",
+  "l": "posts/w-coin-wen-crypto-coin-expanding-the-gates.html#autumn"
+ },
+ {
+  "lv": "safety",
+  "q": "What does a token's \"active wallets\" number not tell you?",
+  "o": [
+   "Whether the activity is people or bots",
+   "That the token exists",
+   "That wallets moved it",
+   "The period it covers"
+  ],
+  "f": "Automated trading and airdrop farming inflate activity counts.",
+  "l": "posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#traps"
+ },
+ {
+  "lv": "world",
+  "q": "What did the Old English word \"wēn\" mean?",
+  "o": [
+   "Hope, expectation",
+   "Gold",
+   "A cat",
+   "Winter"
+  ],
+  "f": "The verb wēnan, \"to expect, to hope\", survives as the old-fashioned \"to ween\".",
+  "l": "posts/wen-crypto.html#hope"
+ },
+ {
+  "lv": "world",
+  "q": "In Welsh names like Olwen or Bronwen, what does \"-wen\" mean?",
+  "o": [
+   "White, fair, blessed",
+   "Small",
+   "Brave",
+   "Dark"
+  ],
+  "f": "Gwen is the feminine of gwyn — white, fair, blessed, holy.",
+  "l": "posts/wen-crypto.html#welsh"
+ },
+ {
+  "lv": "world",
+  "q": "Which ancient king is credited with arranging the hexagrams of the I Ching?",
+  "o": [
+   "King Wen of Zhou",
+   "King Arthur",
+   "Emperor Qin",
+   "King Solomon"
+  ],
+  "f": "Their classic order is still called the King Wen sequence.",
+  "l": "posts/wen-crypto.html#people"
+ },
+ {
+  "lv": "world",
+  "q": "Which writer called London \"the Great Wen\"?",
+  "o": [
+   "William Cobbett",
+   "Charles Dickens",
+   "William Shakespeare",
+   "Jane Austen"
+  ],
+  "f": "In the 1820s — a city grown swollen; a reminder that growth should serve people.",
+  "l": "posts/wen-crypto.html#cobbett"
+ },
+ {
+  "lv": "fun",
+  "q": "Which Chinese character \"wen\" is the root of the word for civilisation, 文明?",
+  "o": [
+   "文 (writing, culture)",
+   "问 (to ask)",
+   "温 (warm)",
+   "闻 (to hear)"
+  ],
+  "f": "文化 is culture and 文明 is civilisation — both built on 文.",
+  "l": "posts/wen-crypto.html#chinese"
+ },
+ {
+  "lv": "world",
+  "q": "In which year did the first DAO, \"The DAO\", show the promise and risk of code-run organisations?",
+  "o": [
+   "2016",
+   "2009",
+   "2022",
+   "2024"
+  ],
+  "f": "We corrected the original timeline, which placed DAOs in 2022.",
+  "l": "posts/crypto-eras-2025-with-wen-crypto-and-history.html#timeline"
+ },
+ {
+  "lv": "fun",
+  "q": "What was bought for 10,000 BTC on May 22, 2010?",
+  "o": [
+   "Two pizzas",
+   "A car",
+   "A house",
+   "A cat"
+  ],
+  "f": "The first famous real-world Bitcoin purchase — now Bitcoin Pizza Day.",
+  "l": "posts/crypto-eras-2025-with-wen-crypto-and-history.html#timeline"
+ },
+ {
+  "lv": "world",
+  "q": "In Norse myth, what pulls the goddess Freyja's chariot?",
+  "o": [
+   "Two cats",
+   "Two wolves",
+   "Eight horses",
+   "Ravens"
+  ],
+  "f": "Cats were Freyja's animals.",
+  "l": "posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#history"
+ },
+ {
+  "lv": "basic",
+  "q": "Which fitness event did the Wen community sponsor, according to its milestone list?",
+  "o": [
+   "Moonwalk",
+   "The Boston Marathon",
+   "Tour de France",
+   "Ironman"
+  ],
+  "f": "A community-reported milestone, beside parties, contests and plush toys.",
+  "l": "posts/new-listings-october-2025-wen-crypto-start-next.html#list"
+ },
+ {
+  "lv": "tech",
+  "q": "Roughly how many Solana programs integrated WEN in the September 2025 chart?",
+  "o": [
+   "345",
+   "3",
+   "34,500",
+   "974"
+  ],
+  "f": "Close to JitoSOL, PYTH and mSOL; USDC led with 974.",
+  "l": "posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html#chart"
+ },
+ {
+  "lv": "world",
+  "q": "When did WIF (dogwifhat) launch?",
+  "o": [
+   "November 2023",
+   "Christmas 2022",
+   "January 2024",
+   "December 2024"
+  ],
+  "f": "One simple, joyful internet image: a dog in a pink knitted hat.",
+  "l": "posts/wif-dog-coin-compare-with-wen-crypto-and-bonk-dog.html#four"
+ },
+ {
+  "lv": "basic",
+  "q": "What does \"Bitcoin dominance\" describe?",
+  "o": [
+   "Bitcoin's share of the whole crypto market",
+   "Bitcoin's price",
+   "The number of Bitcoin miners",
+   "Bitcoin's energy use"
+  ],
+  "f": "When it falls quickly, money is flowing into other coins — an \"alt season\".",
+  "l": "posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#alt"
+ },
+ {
+  "lv": "safety",
+  "q": "In chart analysis, what is the \"invalidation\" level?",
+  "o": [
+   "Where the analyst admits the idea was wrong",
+   "The price target",
+   "The all-time high",
+   "The launch price"
+  ],
+  "f": "The one place where an analysis admits its own limits.",
+  "l": "posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#words"
+ },
+ {
+  "lv": "world",
+  "q": "What did IRS Notice 2025-49 change for very large companies?",
+  "o": [
+   "They may leave unrealized gains on certain fair-value assets out of the 15% minimum tax",
+   "Crypto became tax-free",
+   "Bitcoin became legal tender",
+   "Stablecoins were banned"
+  ],
+  "f": "An elective, interim rule — not a general crypto tax exemption.",
+  "l": "posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#tax"
+ },
+ {
+  "lv": "safety",
+  "q": "Where does this almanac keep every external link it cites?",
+  "o": [
+   "On one sources page, grouped by article",
+   "Inside each article",
+   "Nowhere",
+   "In a private file"
+  ],
+  "f": "Every article links to its own section of the sources page for open checking.",
+  "l": "sources.html"
+ },
+ {
+  "lv": "safety",
+  "q": "What does the status \"Reported · official X\" mean in the trust chain?",
+  "o": [
+   "Announced or repeated by Wen's official X account — check the channel yourself",
+   "Proven by code",
+   "A rumour",
+   "A price forecast"
+  ],
+  "f": "The official X account is Wen's most active primary channel.",
+  "l": "lab/trust.html#reported-x"
+ },
+ {
+  "lv": "basic",
+  "q": "Which page explains how sure the almanac is about each claim?",
+  "o": [
+   "The trust chain",
+   "The price page",
+   "The exchange list",
+   "The FAQ of an exchange"
+  ],
+  "f": "Verified, primary source, reported, opinion, unverified, figures differ.",
+  "l": "lab/trust.html"
+ },
+ {
+  "lv": "world",
+  "q": "In Slavic villages, who stepped into a new house first?",
+  "o": [
+   "The cat",
+   "The youngest child",
+   "The priest",
+   "The dog"
+  ],
+  "f": "Folk belief held that the cat brings peace to the home and takes misfortune upon itself.",
+  "l": "posts/hello-world.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Which temple is linked by legend to the beckoning lucky cat, maneki-neko?",
+  "o": [
+   "Gotoku-ji in Tokyo",
+   "Notre-Dame in Paris",
+   "Angkor Wat",
+   "The Parthenon"
+  ],
+  "f": "A temple cat waved a lord inside just before lightning struck his tree.",
+  "l": "posts/song-wen-be-happy-new-rap-story-wen-wen-come.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "What could Kot Bayun of Russian fairy tales do with his songs?",
+  "o": [
+   "Lull travellers to sleep — or heal the sick",
+   "Make it rain gold",
+   "Turn into a dog",
+   "Fly to the Moon"
+  ],
+  "f": "A cat as the keeper of stories.",
+  "l": "posts/compared-wen-btc-solana.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Why did sailors keep a ship's cat?",
+  "o": [
+   "To guard food and ropes from rats — and for luck",
+   "To steer the ship",
+   "To catch fish",
+   "To warn of icebergs"
+  ],
+  "f": "Many crews believed a cat on board meant a safe voyage.",
+  "l": "posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Which Egyptian goddess protected the home, mothers and children?",
+  "o": [
+   "Bastet",
+   "Nut",
+   "Maat",
+   "Neith"
+  ],
+  "f": "Herodotus wrote that families shaved their eyebrows when a house cat died.",
+  "l": "posts/new-listings-october-2025-wen-crypto-start-next.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "In Britain and Ireland, what does a black cat at your door often mean?",
+  "o": [
+   "Good luck",
+   "Bad luck",
+   "Rain",
+   "Visitors leaving"
+  ],
+  "f": "The opposite of the belief in many other countries.",
+  "l": "posts/paypay-binance-alliance.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "What did Dick Whittington's cat win him in the English tale?",
+  "o": [
+   "A fortune — and he became Lord Mayor of London",
+   "A crown",
+   "A ship",
+   "Nothing"
+  ],
+  "f": "The cat rid a palace of rats far away.",
+  "l": "posts/mastercard-visa-with-crypto.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "Who wrote the tale of Puss in Boots in 1697?",
+  "o": [
+   "Charles Perrault",
+   "The Brothers Grimm",
+   "Hans Christian Andersen",
+   "Lewis Carroll"
+  ],
+  "f": "A miller's son inherits only a cat — whose wit wins him a castle.",
+  "l": "posts/jupiter-is-launching-its-own-stablecoin.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "What is left when the Cheshire Cat fades away?",
+  "o": [
+   "Its grin",
+   "Its tail",
+   "Its hat",
+   "Its shadow"
+  ],
+  "f": "From Lewis Carroll's Alice's Adventures in Wonderland, 1865.",
+  "l": "posts/wen-crypto-x-elevate-pictures-and-next-future.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Which navigator's cat, Trim, sailed around Australia in 1801–1803?",
+  "o": [
+   "Matthew Flinders",
+   "James Cook",
+   "Abel Tasman",
+   "Ferdinand Magellan"
+  ],
+  "f": "Trim's statue stands in Sydney beside his captain's.",
+  "l": "posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Which ship's cat received the Dickin Medal for bravery in 1949?",
+  "o": [
+   "Simon of HMS Amethyst",
+   "Larry of Downing Street",
+   "Trim",
+   "Hodge"
+  ],
+  "f": "He kept the crew's food safe from rats during a long siege.",
+  "l": "posts/wen-open-lab-review.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "What job did the calico cat Tama hold at Kishi Station in Japan?",
+  "o": [
+   "Station master",
+   "Ticket inspector",
+   "Train driver",
+   "Mayor"
+  ],
+  "f": "The visitors she drew are credited with helping to save the railway line.",
+  "l": "posts/wen-historical-today.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "What is unusual about many cats at Hemingway's house in Key West?",
+  "o": [
+   "They have six toes",
+   "They are all black",
+   "They can swim",
+   "They have no tails"
+  ],
+  "f": "Descendants of a cat given to the writer, still cared for today.",
+  "l": "posts/today-cryptocurrency-market.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "In the old Siamese Hae Nang Maew ceremony, what did villagers ask for while carrying a cat?",
+  "o": [
+   "Rain for the rice fields",
+   "Gold",
+   "A good king",
+   "Snow"
+  ],
+  "f": "The Tamra Maew, the Cat-Book Poems, described cats that bring good fortune.",
+  "l": "posts/back-to-the-future-wen-crypto.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Why did ancient Chinese farmers honour Li Shou, a cat spirit?",
+  "o": [
+   "Cats protected the grain from rats",
+   "Cats brought rain",
+   "Cats guarded gold",
+   "Cats chose the emperor"
+  ],
+  "f": "Keeping the granary safe was keeping the family safe.",
+  "l": "posts/bsol-new-york-stock-exchange-wall-street.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "In the Russian tale The Cat and the Fox, what name does the cat give himself?",
+  "o": [
+   "Kotofey Ivanovich",
+   "Kot Bayun",
+   "Vaska",
+   "Murzik"
+  ],
+  "f": "With the fox's help he frightens off a wolf and a bear.",
+  "l": "posts/wen-crypto-gears-up-for-global-expansion-partnership-with-elevate-pictures-signals-multimedia-revolution.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "What did Samuel Johnson buy for his cat Hodge himself?",
+  "o": [
+   "Oysters",
+   "A collar",
+   "A silk cushion",
+   "A portrait"
+  ],
+  "f": "So his servants would not resent the cat; Hodge's statue sits in London.",
+  "l": "posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html#cat-tale"
+ },
+ {
+  "lv": "fun",
+  "q": "What is Larry's official title at 10 Downing Street?",
+  "o": [
+   "Chief Mouser to the Cabinet Office",
+   "Prime Minister",
+   "Royal Cat",
+   "Keeper of the Door"
+  ],
+  "f": "He has held it since 2011.",
+  "l": "posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "What did Japanese sailors believe a three-coloured calico cat could do?",
+  "o": [
+   "Protect a ship from storms",
+   "Find fish",
+   "Predict prices",
+   "Steer the ship"
+  ],
+  "f": "A mike-neko on board was thought to bring a safe voyage.",
+  "l": "posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#cat-tale"
+ },
+ {
+  "lv": "world",
+  "q": "Which Korean asset manager signed a memorandum with the Solana Foundation for a tokenized won fund?",
+  "o": [
+   "Shinhan Asset Management",
+   "Samsung Pay",
+   "Kakao Bank",
+   "Hyundai Card"
+  ],
+  "f": "With Etherfuse and Orca: a tokenized ultra-short-term bond fund in Korean won.",
+  "l": "posts/wns-w-token-2022-and-economic-solana-wen.html"
+ },
+ {
+  "lv": "world",
+  "q": "Which company issues xStocks, the tokenized shares on Solana?",
+  "o": [
+   "Backed",
+   "Coinbase",
+   "Jupiter",
+   "Visa"
+  ],
+  "f": "One token per real share, held with a regulated custodian.",
+  "l": "posts/wen-prediction-and-price.html#stocks"
+ },
+ {
+  "lv": "tech",
+  "q": "In Swapper Finance, which partner converts card money into crypto?",
+  "o": [
+   "Shift4",
+   "Chainlink",
+   "zerohash",
+   "XSwap"
+  ],
+  "f": "Chainlink verifies the order; zerohash handles compliance; XSwap supplies liquidity.",
+  "l": "posts/mastercard-visa-with-crypto.html#news"
+ },
+ {
+  "lv": "world",
+  "q": "To how many countries did the Seeker phone first ship?",
+  "o": [
+   "More than 50",
+   "One",
+   "Five",
+   "Over 500"
+  ],
+  "f": "Shipping began on August 4, 2025.",
+  "l": "posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker"
+ },
+ {
+  "lv": "basic",
+  "q": "How many votes did the GENIUS Act get in the U.S. House on July 17, 2025?",
+  "o": [
+   "308 to 122",
+   "51 to 49",
+   "294 to 134",
+   "435 to 0"
+  ],
+  "f": "294–134 was the House vote for CLARITY the same day.",
+  "l": "posts/today-cryptocurrency-market.html#week"
+ },
+ {
+  "lv": "safety",
+  "q": "What makes a culture token like WEN different from a stock token?",
+  "o": [
+   "Nothing outside the network stands behind it — its value is what people make of it",
+   "It is backed by gold",
+   "A custodian holds shares for it",
+   "It pays dividends"
+  ],
+  "f": "Same rails, different promise: culture versus a claim on a company.",
+  "l": "posts/wen-prediction-and-price.html#diff"
  }
 ];
