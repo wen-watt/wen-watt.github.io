@@ -675,6 +675,8 @@
         var k=c.getAttribute('data-k'); chips.forEach(function(x){x.classList.toggle('is-on',x===c);});
         cards.forEach(function(card){ card.hidden = !(k==='all' || card.getAttribute('data-kind')===k); });
       }); });
+      var h=(location.hash||'').slice(1).toUpperCase(), pre=chips.filter(function(c){return c.getAttribute('data-k')===h;})[0];
+      if(pre) pre.click();
     })();
     </script>
     </article>
