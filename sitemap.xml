@@ -402,7 +402,7 @@
   </url>
   <url>
     <loc>https://wen-watt.github.io/sources.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
@@ -412,7 +412,7 @@
   </url>
   <url>
     <loc>https://wen-watt.github.io/navigation.html</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-20</lastmod>
     <priority>0.5</priority>
   </url>
   <url>
@@ -1669,5 +1669,9 @@
     <loc>https://wen-watt.github.io/image-story/wen-culture-more.html</loc>
     <lastmod>2026-10-16</lastmod>
     <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/originals.html</loc>
+    <lastmod>2026-10-20</lastmod>
   </url>
 </urlset>
