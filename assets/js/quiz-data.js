@@ -503,7 +503,7 @@ window.WEN_QUIZ = [
    "A Solana Saga badge"
   ],
   "f": "The legendary Wen poem was the first NFT ever minted on the Wen New Standard.",
-  "l": "links-wen-cat.html"
+  "l": "sources.html#tab-official"
  },
  {
   "lv": "basic",
@@ -515,7 +515,7 @@ window.WEN_QUIZ = [
    "jupiter-wen.org"
   ],
   "f": "wenwencoin.com is the official site, with the contract and core tokenomics.",
-  "l": "links-wen-cat.html"
+  "l": "sources.html#tab-official"
  },
  {
   "lv": "basic",
@@ -527,7 +527,7 @@ window.WEN_QUIZ = [
    "@wenmoon"
   ],
   "f": "@wenwencoin is the official account for Wen updates.",
-  "l": "links-wen-cat.html"
+  "l": "sources.html#tab-official"
  },
  {
   "lv": "basic",
@@ -539,7 +539,7 @@ window.WEN_QUIZ = [
    "jup.ag/docs/wen"
   ],
   "f": "docs.wenwencoin.com covers WNS, the validator and .wen domains.",
-  "l": "links-wen-cat.html"
+  "l": "sources.html#tab-official"
  },
  {
   "lv": "basic",
