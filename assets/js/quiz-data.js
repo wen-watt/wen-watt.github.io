@@ -1133,7 +1133,7 @@ window.WEN_QUIZ = [
   "lv": "safety",
   "q": "Where should you verify the WEN contract?",
   "o": [
-   "Solana Explorer or CoinMarketCap",
+   "Solana Explorer or Solscan",
    "A stranger's DM",
    "A random Telegram bot",
    "Nowhere, just trust it"

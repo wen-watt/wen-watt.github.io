@@ -40,7 +40,7 @@
   var sidebarHTML = ''
     + '<aside class="sidebar" id="site-menu" aria-label="Site menu">'
     + '  <button type="button" class="m-close" aria-label="Close menu">&times;</button>'
-    + '  <a class="brand" href="' + p + 'index.html"><img class="brand-logo" src="' + p + 'assets/icons/wen-logo-96.png" width="40" height="40" alt="Wen cat logo, the Wen Almanac sign"><span class="brand-text"><span class="brand-name">Wen <span>Almanac</span></span><small class="brand-tag">open your mind</small></span></a>'
+    + '  <a class="brand" href="' + p + 'lab/index.html"><img class="brand-logo" src="' + p + 'assets/icons/wen-logo-96.png" width="40" height="40" alt="Wen cat logo, the Wen Almanac sign"><span class="brand-text"><span class="brand-name">Wen <span>Almanac</span></span><small class="brand-tag">open your mind</small></span></a>'
 
     + '  <div class="sidebar-intro">'
     + '    <p class="intro-line">'
@@ -49,7 +49,7 @@
     + '    </p>'
     + '    <p class="intro-line">'
     + '      $Wen coin token <span class="sep">○</span> '
-    + '      <a href="' + p + 'originals.html#gif">Gif\'s open</a> &amp; '
+    + '      <a href="' + p + 'wen-media.html">Gif\'s open</a> &amp; '
     + '      <a href="https://wenwencoin.com/brand" target="_blank" rel="noopener">Wen Brand</a>'
     + '    </p>'
     + '    <p class="intro-desc">Wen is a movement of crypto coin cat. Wen is the internet\'s cutest cat and the heart of a growing global phenomenon. More than a brand, Wen is on a mission to become one of the world\'s most iconic and beloved IPs.</p>'
@@ -69,7 +69,6 @@
     + '      <li><a href="' + p + 'posts/wen-program-library-review.html">Wen Program Library</a></li>'
     + '      <li><a href="' + p + 'sources.html#tab-community">Sources and community links</a></li>'
     + '      <li><a href="' + p + 'wen-media.html">Wen Media</a></li>'
-    + '      <li><a href="' + p + 'originals.html">&#9733; Originals</a></li>'
     + '      <li><a href="' + p + 'search-video-wen.html">More Wen</a></li>'
     + '    </ul>'
     + '  </nav>'
@@ -175,7 +174,7 @@
     var head = document.createElement('div');
     head.className = 'm-head';
     head.innerHTML = '<div class="m-bar">'
-      + '<a class="m-brand" href="' + p + 'index.html"><img src="' + p + 'assets/icons/wen-logo-96.png" width="34" height="34" alt="Wen cat logo"><span>Wen <span>Almanac</span></span></a>'
+      + '<a class="m-brand" href="' + p + 'lab/index.html"><img src="' + p + 'assets/icons/wen-logo-96.png" width="34" height="34" alt="Wen cat logo"><span>Wen <span>Almanac</span></span></a>'
       + '<button type="button" class="m-burger" aria-controls="site-menu" aria-expanded="false"><span class="m-lines" aria-hidden="true"></span>Menu</button>'
       + '</div>'
       + '<nav class="m-crumbs" aria-label="You are here">' + crumbs + '</nav>';
