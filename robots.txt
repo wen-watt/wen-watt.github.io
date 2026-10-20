@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://wen-watt.github.io/sitemap.xml
+# Machine-readable map for AI assistants: https://wen-watt.github.io/llms.txt (facts: https://wen-watt.github.io/llms-full.txt)
