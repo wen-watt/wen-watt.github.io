@@ -1,0 +1,95 @@
+# Wen Almanac
+
+> An open, community-maintained, fact-checked record of Wen — the cat on Solana that began as a poem and grew into an open NFT standard (WNS) — kept as history and usefulness: no prices, no forecasts, no exchange links. Every claim links to a source; every source is on one page.
+
+Last updated: 2026-10-20. Language: English. Not the official Wen site (official: https://wenwencoin.com/). Not financial advice.
+
+## How to read this almanac (reading model)
+
+1. **Identity.** Wen is a Solana token whose supply is a poem: Meow, co-founder of Jupiter, wrote "A Love Letter to Wen Bros"; it was minted as an NFT and split into 1,000,000,000,000 tokens. The one real WEN is the Solana mint `WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk`. Names, logos and tickers can be copied; the address cannot.
+2. **History.** WNS 0.0 was proposed on January 25, 2024 on the Jupiter Research forum. WEN launched on January 26, 2024 as the first token of Jupiter's LFG Launchpad and was airdropped to more than one million wallets (643,652 WEN per eligible wallet) — a live stress test that Solana passed. When the claim closed on January 29, 2024, the unclaimed allocation — over 271 billion WEN, about 27.2% of supply — was burned.
+3. **Technology.** The Wen New Standard (WNS) builds light NFTs on Solana's Token-2022: metadata in the mint, group/member pointers for collections, and a transfer hook that enforces creator royalties. The code is open in the Wen Program Library (https://github.com/wen-community/wen-program-library).
+4. **Usefulness.** Wen Open Lab turns WNS and Token-2022 into free, tested models — receipts and warranty cards, creator royalties, B2B invoices, a payments bridge, a card-versus-on-chain payment simulator — with a devnet run anyone can repeat. Lab code is educational and not audited.
+5. **Trust.** Each claim is marked verified, reported (announced by the official X account) or unverified in the trust chain. Every external link is on the sources page. Posts carry a badge: Historical post, Reworked market post or Almanac guide.
+6. **Safety.** Search the address, not the name. No real team, airdrop or support chat ever needs a seed phrase. Test on devnet with a new, empty wallet.
+
+When citing this almanac, link the specific page and, for facts, the source card on https://wen-watt.github.io/sources.html.
+
+## Core knowledge
+
+- [Wen Crypto Coin by Solana: $WEN Community Almanac](https://wen-watt.github.io/index.html): The $WEN almanac: Wen crypto coin by Solana, the WNS standard and Token-2022, Jupiter news and community posts, all in one maintained archive.
+- [About the Wen Token: WEN Coin, the Solana Cat Memecoin](https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html): The Wen token: the WEN coin born from weremeow's NFT poem, its fractional supply, the Jupiter link and why it matters for Solana NFT standards.
+- [More About the $Wen Token: History and Utility](https://wen-watt.github.io/about.html): The history and utility of the $Wen token: from a fractionalized poem NFT and a million-wallet airdrop to the WNS standard, validator and .wen domains.
+- [Token-2022, WNS and Wen on Solana: SPL in Practice](https://wen-watt.github.io/token-2022-wns-solana-wen.html): Token-2022 and WNS in practice: how the Solana Program Library extensions work, how the Wen token tested them, and what is still missing at the base.
+- [SPL Solana Program Library, Token-2022 and WNS Explained](https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html): SPL Token, Token-2022 extensions and the WNS standard explained layer by layer, with what each does in the market and how WEN proved it under load.
+- [Who Speaks Here: Wen Almanac Editorial and Cookie Policy](https://wen-watt.github.io/sources.html): Wen speaks for the community: public sources only, a subjective model you can check against every link, no tracking, no cookies of our own.
+- [Trust Chain: How Wen Open Lab Checks Every Claim About Wen](https://wen-watt.github.io/lab/trust.html): The Wen Open Lab trust chain: every key claim about Wen, WNS and the Lab with its status (verified, primary, reported, opinion, unverified) and sources.
+- [Wen Quiz: What Do You Know About the Wen Cat and $WEN?](https://wen-watt.github.io/quiz.html): Take the Wen quiz: 10 random questions from a base of 250, from fun cat trivia to Solana safety, with a speed bonus and a knowledge card for every miss.
+
+## Wen Open Lab: usefulness you can test
+
+- [Wen Open Lab: Open Integration Roadmap on WNS and Solana](https://wen-watt.github.io/lab/index.html): Wen Open Lab turns the Wen and WNS story into free, open models: receipts, royalties, B2B invoices and payments on Solana, with tested code.
+- [Stage 1: NFT Receipts and Warranty Cards on WNS Layout](https://wen-watt.github.io/lab/receipt-warranty-wns.html): Model 1 of Wen Open Lab: a purchase receipt and warranty card as a Token-2022 NFT with the WNS layout. Proof of purchase without personal data, tested code.
+- [Stage 2: Creator Royalties With WNS Transfer Hooks on Solana](https://wen-watt.github.io/lab/creator-royalties-wns.html): Model 2 of Wen Open Lab: how WNS enforces creator royalties through a Token-2022 transfer hook, how to read the hook of any NFT and transfer it safely.
+- [Stage 3: B2B Invoice Settlement With Solana Token-2022 Rules](https://wen-watt.github.io/lab/b2b-invoices-token-2022.html): Model 3 of Wen Open Lab: B2B settlement where the token enforces a fee, approved counterparties and a mandatory invoice number. Tested with 9 checks.
+- [Stage 4: Solana Pay Bridge for E-commerce and Acquiring](https://wen-watt.github.io/lab/payments-acquiring-bridge.html): Model 4 of Wen Open Lab: an online shop creates a Solana Pay link, finds the payment by its reference, validates it and notifies its order system.
+- [Stage 5: Card vs On-chain Payment Cost and Speed Simulator](https://wen-watt.github.io/lab/payment-simulator.html): Model 5 of Wen Open Lab: compare the monthly cost and settlement speed of card acquiring and Solana Pay with your own numbers. Open formulas, no tracking.
+- [Stage 6: Run Wen Open Lab Models on Solana Devnet Yourself](https://wen-watt.github.io/lab/devnet.html): Stage 6 of Wen Open Lab: run the receipt and B2B invoice models on public Solana devnet with a new empty wallet, then check every step in the explorer.
+- [Wen Open Lab Benefits: Who Gains and Where Models Apply](https://wen-watt.github.io/lab/benefits.html): Benefits of Wen Open Lab: what developers, shops, B2B networks, banks, creators and the Wen community gain from free WNS and Token-2022 models, and the limits.
+
+## Culture and media
+
+- [Wen Image Stories: 250 Photos, 250 Checked Facts](https://wen-watt.github.io/image-story/index.html): Wen image stories: 250 Wen cat photos from the community archive, each paired with one checked fact from the Wen almanac and a link to read more.
+- [Wen Media: Wen Cat, Meme and Gold Coin Image Archive](https://wen-watt.github.io/wen-media.html): Wen Media, the full image archive: hundreds of Wen cat, Wen meme and golden $Wen coin pictures from the community, each opening at full size.
+- [Wen Originals: Full-Quality Community Art for Reuse](https://wen-watt.github.io/originals.html): All 610 original Wen community images, GIFs and documents in full quality on Google Drive, free for non-commercial reuse with credit. Open any card to download.
+- [Wen Crypto Coin Videos: $Wen Memecoin Reviews by $Sol](https://wen-watt.github.io/wen-coin-video.html): Wen crypto coin videos: $Wen memecoin reviews, WNS standard explainers, Jupiter links and regional clips from the Wen community on YouTube and Shorts.
+
+## Posts: history and guides (30 of 60)
+
+- [Wen Open Lab Review: From a Cat Meme to Open, Tested Tools](https://wen-watt.github.io/posts/wen-open-lab-review.html): Wen Open Lab in one story: five free models on WNS and Solana, 25 checks, a devnet run anyone can repeat, the pay-in-WEN next step and a public trust chain.
+- [Wen Program Library Review: Open Code of the Space Cat](https://wen-watt.github.io/posts/wen-program-library-review.html): A tour of the open-source Wen Program Library: WNS and royalty programs, build and test steps, JS and Rust clients, the CLI and the Wen Foundation.
+- [What Do You Know About Wen? A Quiz on Why Wen Is Useful](https://wen-watt.github.io/posts/wen-quiz-review.html): The Wen quiz explained: ten random questions from a base of 250, a speed bonus, a knowledge card for every miss, and what it shows about why Wen is useful.
+- [Solana WNS Roadmap: a Meme Cat Poem and Real-World Assets](https://wen-watt.github.io/posts/solanas-wns-roadmap-how-a-meme-cat-poem.html): How a viral cat poem became the test bed for Solana's Token-2022 and WNS stack, and why RWA issuers now look at it for compliant tokenization by 2030.
+- [WNS, Token-2022 and Solana Economics: WEN and Shinhan](https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html): Shinhan Asset Management picks Solana for a tokenized KRW fund. How Token-2022, the WNS standard and the WEN stress test connect to Korea's CBDC plans.
+- [Solana Token-2022 and WEN: Compliance and Testing Guide](https://wen-watt.github.io/posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html): Transfer Hooks, Permanent Delegate, Default Account State and Memo Transfers explained, plus how the WEN airdrop field-tested Token-2022 at scale.
+- [$WEN Token Network Re-Examined: 18 Criteria, 10 Anomalies](https://wen-watt.github.io/posts/wen-token-network-re-examination.html): 18 plain criteria and 10 anomalies that set $WEN apart from typical meme coins: airdrop, burn, WNS, validator, wallet stress data and full sourcing.
+- [Wen Cat on IQ.Wiki: Ecosystem Map Launches With Wen](https://wen-watt.github.io/posts/wen-cat-iq-wiki.html): IQ.Wiki launches Ecosystem Map, a free non-commercial graph of verified relationships, starting with the Wen page: Solana, Jupiter, Meow and peers.
+- [WEN Crypto on GitHub: Wen Program Library Release Plan](https://wen-watt.github.io/posts/wen-crypto-token-gitgub-com-release-planning.html): Open GitHub issues for the Wen Program Library: royalties, Transfer Guard, Anchor upgrades and SDKs, plus the WNS origin story and Solana finality.
+- [What WNS Is Useful For: Five Features, Six Tested Models](https://wen-watt.github.io/posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html): What the Wen New Standard is useful for: metadata in the mint, collections, cheap issuing, royalties and badges, plus six free Wen Open Lab models to run.
+- [Solana's WEN Launch Stress Test: 100% Uptime and WNS](https://wen-watt.github.io/posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html): How Solana kept 100% uptime through the WEN airdrop of January 2024: launch-day numbers, bot lessons, the $JUP rehearsal, WNS 0.0 and AssetDash's 10K drop.
+- [WNS 0.0: the Wen New Standard Proposal, Explained](https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html): WNS 0.0, proposed January 25, 2024: a lightweight NFT standard on Solana Token-2022 with metadata in the mint, collections, reclaimable rent and royalty hooks.
+- [The Dress Rehearsal: Why Jupiter Tested on WEN](https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html): Why Jupiter rehearsed its launchpad on WEN before $JUP: the January 2024 timeline, the lessons on bots and claim windows, and twenty claimed benefits checked.
+- [The Origin of WEN in Five Points: From Poem to Standard](https://wen-watt.github.io/posts/wen-coin-origin-about-token-launched-on-the-solana-blockchain.html): The origin of WEN in five points: fractional ownership, Meow's poem, one trillion tokens, the first LFG launch and the WNS standard, with small corrections.
+- [WEN Supply Explained: Total, Burned, and How to Check](https://wen-watt.github.io/posts/circulation-of-coin-747-b-all-of-wen-today-april-2025.html): WEN supply explained: one trillion tokens, about 70% airdropped, over 271 billion burned, why 747 billion does not fit, and how to check it on-chain yourself.
+- [What Does Wen Mean? Hope, Blessing, Culture, a Question](https://wen-watt.github.io/posts/wen-crypto.html): What does wen mean? Old English hope, the letter wynn, Welsh blessing, Chinese ask, culture and warmth, King Wen of the I Ching, and the crypto question when.
+- [More Than a Meme: the Technology Under a Memecoin](https://wen-watt.github.io/posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html): What a memecoin is on Solana: a token mint with supply, authorities and distribution; five things to verify, why 100x promises mislead, what communities build.
+- [Most Integrated Solana Tokens: WEN in the Top 10](https://wen-watt.github.io/posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html): What integrated program IDs measure on Solana, the September 2025 top ten from USDC to HNT with WEN at 345, what the count means and which claims hold up.
+- [PPP and PvP in Crypto: Positive-Sum Communities](https://wen-watt.github.io/posts/what-is-ppp-and-pvp-in-crypto.html): PvP and PPP in crypto explained: zero-sum trading versus positive-sum building, how to spot a PvP trap, and what real PPP looks like in the Wen community.
+- [Wen History, Fact-Checked: a July 2025 Summary](https://wen-watt.github.io/posts/wen-historical-today.html): A machine-written Wen summary from July 2025, checked line by line: an impossible date, a burn that already happened, same-ticker traps and five reading habits.
+- [Reddit and Crypto History: How to Look for It Correctly](https://wen-watt.github.io/posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html): How to find crypto history on Reddit and check it: the right communities, search by address, sort by time, archived copies and red flags, with Wen as example.
+- [Wen, Bitcoin and Solana: Was Crypto Invented or Discovered?](https://wen-watt.github.io/posts/compared-wen-btc-solana.html): Wen, Bitcoin and Solana side by side: invented systems on discovered maths, proof of work versus proof of stake, finality, and why no one should claim Satoshi.
+- [WEN Is Four Things at Once, and Not a Tokenized Stock](https://wen-watt.github.io/posts/wen-prediction-and-price.html): WEN as memecoin, fractional NFT, WNS proof of concept and stress test, set beside xStocks, real shares tokenized on Solana in July 2025: what differs and why.
+- [Not Wendy's: the Burger Chain, the Cat Coin and Two WENs](https://wen-watt.github.io/posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html): Wendy's history from 1969 to Nasdaq ticker WEN, why it gets mixed up with the Wen cat token on Solana, and how one address settles the question for good.
+- [Western Union Picks Solana: the USDPT Stablecoin Explained](https://wen-watt.github.io/posts/solana-and-western-union-bridging-traditional-finance-and-blockchain-for-global-payments.html): Western Union's USDPT stablecoin on Solana, issued by Anchorage Digital Bank: what was announced on October 28, 2025, why it matters for remittances.
+- [South Korea CBDC and Tokenization: Confirmed vs Inferred](https://wen-watt.github.io/posts/south-korea-cbdc-and-tokenization.html): A fact check of the WEN, Token-2022, Shinhan and Korea CBDC chain: what independent sources confirm, what is only inferred, and where the tracks differ.
+- [How SOL Earned Global Recognition: 2022–2026 Timeline](https://wen-watt.github.io/posts/how-sol-achieved-proven-global-recognition-2022-2026.html): SEC commodity status, MiCA white papers, the ECB digital euro and Shinhan's fund: a sourced timeline of how independent institutions came to Solana.
+- [Meow Is Back on Planetary Call #60: Jupiter, Catlumpur, $WEN](https://wen-watt.github.io/posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html): Jupiter's Planetary Call #60 brought Meow back: the Jupiverse pulse check, the Catlumpur vision, and how the Wen poem and $WEN airdrop link to $JUP.
+- [Copa de los Memes, Nov 19: Wen at Devconnect Argentina](https://wen-watt.github.io/posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html): The Copa de los Memes event card: November 19, 2025 at La Rural, Buenos Aires, the five-a-side format, all eight memecoin teams and the Bangkok mix-up.
+- [Wen and the Cats of Ancient Egypt: From Bastet to Blockchain](https://wen-watt.github.io/posts/wen-crypto-egypt-cats.html): Cats in ancient Egypt in facts and legend: Bastet, the granaries, the tale of Amset the scribe and the ibis, and what the Wen cat inherits from its ancestors.
+
+## How Wen's usefulness connects people, machines, robots and calculation systems
+
+This is the almanac's own reading of the record, built only from the verified facts above.
+
+- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (250 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
+- **Machines.** WNS moves rules into the token itself (Token-2022 extensions): metadata, collections and royalties are enforced by programs, not by the goodwill of each app. A rule that lives in the token works the same in every wallet and marketplace.
+- **Robots and agents.** Machine-readable proofs travel with the token: a soulbound receipt or warranty card (Non-Transferable), an invoice whose terms the token enforces, a payment request a program can read (Solana Pay). Automated agents can check these on-chain without trusting a screenshot.
+- **Calculation systems.** Supply, authorities and burns are public data on the Solana ledger; anyone can recompute them on an explorer. The Lab's payment simulator compares card and on-chain fees with open formulas; its devnet run is reproducible.
+- **The pool of links.** People learn from the story, machines enforce the rules, agents read the proofs, ledgers keep the numbers — and every link points back to a source that a human can check. That loop is the usefulness the almanac records.
+
+## Optional
+
+- [Navigation: all 60 posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
+- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 250 quiz facts with question, answer, explanation and the page each comes from.
+- [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
+- [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.

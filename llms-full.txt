@@ -1,0 +1,1055 @@
+# Wen Almanac
+
+> An open, community-maintained, fact-checked record of Wen — the cat on Solana that began as a poem and grew into an open NFT standard (WNS) — kept as history and usefulness: no prices, no forecasts, no exchange links. Every claim links to a source; every source is on one page.
+
+Last updated: 2026-10-20. Language: English. Not the official Wen site (official: https://wenwencoin.com/). Not financial advice.
+
+## How to read this almanac (reading model)
+
+1. **Identity.** Wen is a Solana token whose supply is a poem: Meow, co-founder of Jupiter, wrote "A Love Letter to Wen Bros"; it was minted as an NFT and split into 1,000,000,000,000 tokens. The one real WEN is the Solana mint `WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk`. Names, logos and tickers can be copied; the address cannot.
+2. **History.** WNS 0.0 was proposed on January 25, 2024 on the Jupiter Research forum. WEN launched on January 26, 2024 as the first token of Jupiter's LFG Launchpad and was airdropped to more than one million wallets (643,652 WEN per eligible wallet) — a live stress test that Solana passed. When the claim closed on January 29, 2024, the unclaimed allocation — over 271 billion WEN, about 27.2% of supply — was burned.
+3. **Technology.** The Wen New Standard (WNS) builds light NFTs on Solana's Token-2022: metadata in the mint, group/member pointers for collections, and a transfer hook that enforces creator royalties. The code is open in the Wen Program Library (https://github.com/wen-community/wen-program-library).
+4. **Usefulness.** Wen Open Lab turns WNS and Token-2022 into free, tested models — receipts and warranty cards, creator royalties, B2B invoices, a payments bridge, a card-versus-on-chain payment simulator — with a devnet run anyone can repeat. Lab code is educational and not audited.
+5. **Trust.** Each claim is marked verified, reported (announced by the official X account) or unverified in the trust chain. Every external link is on the sources page. Posts carry a badge: Historical post, Reworked market post or Almanac guide.
+6. **Safety.** Search the address, not the name. No real team, airdrop or support chat ever needs a seed phrase. Test on devnet with a new, empty wallet.
+
+When citing this almanac, link the specific page and, for facts, the source card on https://wen-watt.github.io/sources.html.
+
+
+## Checked facts (250)
+
+Each fact: question, correct answer, explanation, page. Source cards for every page are on https://wen-watt.github.io/sources.html.
+
+
+### Culture and the cat
+
+- Q: What kind of animal is Wen?
+  A: A cat
+  Why: Wen is a cat — the community calls it the internet's cutest cat. Its dog friend in memes is BONK.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: In crypto slang, what does "wen moon?" ask?
+  A: When will the price shoot up?
+  Why: "Wen" is a playful misspelling of "when". "Wen moon?" asks when a coin's price will take off, a phrase born in the crypto community around 2017.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Wen is proudly NOT which brand, despite the similar name?
+  A: Wendy's
+  Why: Wendy's is an American fast-food chain founded in 1969. "Wen is not Wendy's" — they have nothing to do with each other.
+  Page: https://wen-watt.github.io/wen-coin-with-pinterest.html
+- Q: What is the title of the poem behind WEN?
+  A: A Love Letter to Wen Bros
+  Why: Meow wrote "A Love Letter to Wen Bros" for everyone who kept asking "wen token?". The poem became WEN.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Who wrote the Wen poem?
+  A: Meow (weremeow), Jupiter's founder
+  Why: The poem was written by Meow, the pseudonymous founder of Jupiter Exchange, also known as weremeow.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Which cat accounts on X does Wen call its own?
+  A: @shouldhavecat and @postsofcats
+  Why: Wen describes itself as the proud owner of @shouldhavecat and @postsofcats, called the #1 and #2 cat accounts in the world.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Which maker produced the official Wen plush toys?
+  A: TOYMAK3RS
+  Why: Wen plushies were made with TOYMAK3RS, a maker that has produced for Adidas, Netflix and J Balvin.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: In crypto memes, Wen the cat is often paired with which dog coin?
+  A: BONK
+  Why: Wen and BONK are the Solana "cat and dog" duo; both grew from community airdrops.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What does the Chinese character 问 (wèn) mean?
+  A: To ask
+  Why: 问 (wèn) means "to ask" — a nice echo of everyone asking "wen?".
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What does 温 (wēn) mean in Chinese?
+  A: Warm
+  Why: 温 (wēn) means warm or mild. Other "wen" characters mean to ask (问) and culture or writing (文).
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What does 文 (wén) mean in Chinese?
+  A: Culture or writing
+  Why: 文 (wén) refers to culture, language and writing — fitting for a coin born from a poem.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Which creative company partnered with Wen to build an IP story world (animation, comics, products)?
+  A: Elevate
+  Why: Wen partnered with Elevate Media to build an IP story world across animation, comics and products, announced in June 2025.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What is the name of Jupiter's community summit in Kuala Lumpur?
+  A: Catlumpurr
+  Why: CatLumpurr is a pun on Kuala Lumpur: Jupiter's community-first summit organized by Meow.
+  Page: https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html
+- Q: When was CatLumpurr held in Kuala Lumpur?
+  A: January 30 – February 1, 2026
+  Why: CatLumpurr ran from January 30 to February 1, 2026, with an unconference format where attendees shaped the sessions.
+  Page: https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html
+- Q: What is Jupiter's recurring community audio/video show called?
+  A: Planetary Call
+  Why: The Planetary Call is Jupiter's recurring community series; Meow returned on Planetary Call #60.
+  Page: https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html
+- Q: Which number Planetary Call marked Meow's return in November 2025?
+  A: #60
+  Why: Planetary Call #60, on November 19, 2025, brought back Meow to talk about the Jupiverse and Catlumpur.
+  Page: https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html
+- Q: From which NFT community did the Wen Foundation emerge?
+  A: Ovols
+  Why: The Wen Foundation grew out of the Ovols NFT community; Ovols helped turn Meow's poem into his first NFT.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What is the name of Wen's liquid staking token made with Sanctum?
+  A: wenSOL
+  Why: Wen launched wenSOL with Sanctum, a liquid staking token that represents staked SOL.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: Which domain ending does the Wen ecosystem offer on Solana?
+  A: .wen
+  Why: .wen domains are human-readable names on Solana; thousands were created and used as wallet addresses.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: Which phone's "Genesis" token holders were included in the WEN airdrop?
+  A: Solana Saga
+  Why: Holders of the Solana Saga phone's Genesis token were among the eligible wallets.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What was the name of the memecoin football tournament on November 19, 2025 with a Wen team?
+  A: Copa De Los Memes
+  Why: Copa De Los Memes, organized by Bitso Onchain, was a 5v5 single-elimination memecoin football tournament.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: Who organized the Copa De Los Memes tournament?
+  A: Bitso Onchain
+  Why: Bitso Onchain organized it; teams included WEN, MOG, Pudgy Penguins and others.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: Wen describes itself as "the internet's cutest ___".
+  A: cat
+  Why: Wen calls itself the internet's cutest cat and aims to become one of the world's most beloved IPs.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What does a "wen bro" constantly ask creators?
+  A: "Wen" they will release something new
+  Why: Wen bros keep asking "wen token? wen airdrop?". Meow's poem was a love letter to exactly them.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What did Meow say he would do with his poem NFT anyway?
+  A: Break it into a trillion pieces
+  Why: In his launch thread Meow joked that the NFT standard did not need adoption because "we are gonna break this NFT into a trillion pieces anyway".
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What did the Copa de los Memes put memecoin communities into?
+  A: A five-a-side football tournament
+  Why: On November 19, 2025, eight memecoin communities, WEN among them, played a single-elimination five-a-side football tournament.
+  Page: https://wen-watt.github.io/posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html
+- Q: What is Jupiter's community called?
+  A: Catdets
+  Why: Jupiter's community members call themselves Catdets.
+  Page: https://wen-watt.github.io/posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html#call
+- Q: Which burger chain also trades under the ticker WEN?
+  A: Wendy's
+  Why: The Wendy's Company trades on Nasdaq as WEN — the same three letters as the Wen cat's token.
+  Page: https://wen-watt.github.io/posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html#ticker
+- Q: In the Inverted Almanac, what single transaction does Wen broadcast?
+  A: wen = now
+  Why: Instead of striking, Wen broadcasts one line: wen = now.
+  Page: https://wen-watt.github.io/posts/crypto-fantasy-or-the-inverted-almanac.html#part4
+- Q: What is the name of Wen's home moon in the tale?
+  A: Wen-9
+  Why: Wen grows up on Wen-9, an outer moon of forgotten airdrops.
+  Page: https://wen-watt.github.io/posts/crypto-fantasy-or-the-inverted-almanac.html#part1
+- Q: What did Wen and Bonk release together in Drop 001?
+  A: A limited plush toy
+  Why: Drop 001 on Playground was a limited Wen x Bonk plush made with Toymak3rs.
+  Page: https://wen-watt.github.io/posts/wen-x-bonk-playground-drops-toysmak-3rs-partners.html#drop
+- Q: Which animal pair are Wen and Bonk often called on Solana?
+  A: The cat and the dog
+  Why: Wen is the curious cat, Bonk the loyal dog: Solana's best-known mascot duo.
+  Page: https://wen-watt.github.io/posts/drop-001-wen-x-bonk-october-29-12-pm-et-2025.html#pair
+- Q: What practical job made cats precious in ancient Egypt?
+  A: Protecting grain from rodents
+  Why: Cats kept mice and snakes away from grain stores — the start of a 4,000-year friendship.
+  Page: https://wen-watt.github.io/posts/wen-crypto-egypt-cats.html#history
+- Q: What does the crypto slang "wen" mean?
+  A: A playful misspelling of "when"
+  Why: "Wen moon?" and "wen lambo?" — impatient questions that gave a cat coin its name.
+  Page: https://wen-watt.github.io/posts/crypto-eras-2025-with-wen-crypto-and-history.html#word
+- Q: What is the story behind MEW, the Solana cat coin?
+  A: A cat in a dogs' world
+  Why: MEW, launched in March 2024, tells of a cat standing up to a world ruled by dog coins.
+  Page: https://wen-watt.github.io/posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#mew
+- Q: What does the Chinese character 温 (wēn, first tone) mean?
+  A: Warm
+  Why: 温 (wēn) means warm or mild; 问 is to ask, 文 is writing, 闻 is to hear.
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#chinese
+- Q: In Old English, the letter for the "w" sound (ƿ) was called…
+  A: Wynn, also spelled wen
+  Why: The runic letter ƿ was named wynn or wen — the old name of W itself.
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#letter
+- Q: In crypto slang, what does "PvP" describe?
+  A: A market where one trader's gain is another's loss
+  Why: Player versus player. The Wen community's "PPP" means the opposite: people making things for each other.
+  Page: https://wen-watt.github.io/posts/wen-today-and-analyze-the-sharp-increase-of-50.html#ppp
+- Q: What rule keeps community Wen art from turning into an advert?
+  A: Never attach a buy link or price promise
+  Why: The open folders are culture: share freely, credit the community, keep prices out.
+  Page: https://wen-watt.github.io/posts/wen-coin-graphics-videos-from-cummunity.html#use
+- Q: In game theory, what is a positive-sum game?
+  A: One where the total grows, so many can gain
+  Why: Shared tools, standards and free archives make more pie — the sober meaning of PPP.
+  Page: https://wen-watt.github.io/posts/what-is-ppp-and-pvp-in-crypto.html#game
+- Q: What is the Wen community song of June 2025 called?
+  A: Be Happy
+  Why: A song about a kind space cat who shares a piece of happiness with everyone.
+  Page: https://wen-watt.github.io/posts/song-wen-be-happy-new-rap-story-wen-wen-come.html#song
+- Q: In the Wen song, where does everyone fly together?
+  A: To Jupiter
+  Why: "We refuel our spaceship — we all fly to Jupiter."
+  Page: https://wen-watt.github.io/posts/song-wen-be-happy-new-rap-story-wen-wen-come.html#song
+- Q: Where did the original Wen blog's very first post (March 2025) find the cat a home?
+  A: Pinterest
+  Why: Pictures are a gentle door into a culture — and every picture here leads to a fact.
+  Page: https://wen-watt.github.io/posts/hello-world.html#board
+- Q: What did the community release with the December 2025 gold Wen coin artwork?
+  A: A free transparent PNG for anyone to use
+  Why: Like all community material it can be used, copied and adapted freely.
+  Page: https://wen-watt.github.io/posts/wen-crypto-gold-coin-coinbase-roadmap-for-jupiter-bonk-memecoin-debuts-as-an-etp-today.html#coin
+- Q: Which Chinese character "wen" is the root of the word for civilisation, 文明?
+  A: 文 (writing, culture)
+  Why: 文化 is culture and 文明 is civilisation — both built on 文.
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#chinese
+- Q: What was bought for 10,000 BTC on May 22, 2010?
+  A: Two pizzas
+  Why: The first famous real-world Bitcoin purchase — now Bitcoin Pizza Day.
+  Page: https://wen-watt.github.io/posts/crypto-eras-2025-with-wen-crypto-and-history.html#timeline
+- Q: Who wrote the tale of Puss in Boots in 1697?
+  A: Charles Perrault
+  Why: A miller's son inherits only a cat — whose wit wins him a castle.
+  Page: https://wen-watt.github.io/posts/jupiter-is-launching-its-own-stablecoin.html#cat-tale
+- Q: What is left when the Cheshire Cat fades away?
+  A: Its grin
+  Why: From Lewis Carroll's Alice's Adventures in Wonderland, 1865.
+  Page: https://wen-watt.github.io/posts/wen-crypto-x-elevate-pictures-and-next-future.html#cat-tale
+- Q: What job did the calico cat Tama hold at Kishi Station in Japan?
+  A: Station master
+  Why: The visitors she drew are credited with helping to save the railway line.
+  Page: https://wen-watt.github.io/posts/wen-historical-today.html#cat-tale
+- Q: What is unusual about many cats at Hemingway's house in Key West?
+  A: They have six toes
+  Why: Descendants of a cat given to the writer, still cared for today.
+  Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#cat-tale
+- Q: In the Russian tale The Cat and the Fox, what name does the cat give himself?
+  A: Kotofey Ivanovich
+  Why: With the fox's help he frightens off a wolf and a bear.
+  Page: https://wen-watt.github.io/posts/wen-crypto-gears-up-for-global-expansion-partnership-with-elevate-pictures-signals-multimedia-revolution.html#cat-tale
+- Q: What did Samuel Johnson buy for his cat Hodge himself?
+  A: Oysters
+  Why: So his servants would not resent the cat; Hodge's statue sits in London.
+  Page: https://wen-watt.github.io/posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html#cat-tale
+- Q: What is Larry's official title at 10 Downing Street?
+  A: Chief Mouser to the Cabinet Office
+  Why: He has held it since 2011.
+  Page: https://wen-watt.github.io/posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#cat-tale
+
+### Basics
+
+- Q: On which blockchain does WEN live?
+  A: Solana
+  Why: WEN is a Solana token, launched on Jupiter, the leading Solana DEX aggregator.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What is WEN's total supply?
+  A: 1 trillion
+  Why: The poem NFT was split into 1 trillion fungible WEN tokens.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What share of WEN went to the airdrop?
+  A: 70%
+  Why: The allocation was 70% airdrop, 20% liquidity pool and 10% treasury.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What share of WEN went to the launch liquidity pool?
+  A: 20%
+  Why: 20% of WEN went to the launch DLMM liquidity pool.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What share of WEN went to the treasury?
+  A: 10%
+  Why: 10% went to the WEN treasury for liquidity, culture and moving WNS forward.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: How many WEN tokens did each eligible wallet receive?
+  A: 643,652
+  Why: Every wallet got the same amount: 643,652 WEN. No whales on day one.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: Roughly how many wallets were eligible for the WEN airdrop?
+  A: More than 1 million
+  Why: More than one million Solana wallets were eligible, one of the widest single-event distributions on Solana.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: In which month and year did WEN launch?
+  A: January 2024
+  Why: WEN launched in January 2024, a few days before Jupiter's own JUP airdrop.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: On which launchpad did WEN launch?
+  A: Jupiter's LFG Launchpad
+  Why: WEN was the first project on Jupiter's LFG (Launch, Farm, Grow) Launchpad.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What was WEN's main technical job for Jupiter?
+  A: A stress test before the JUP airdrop
+  Why: WEN was a deliberate, lower-stakes stress test of the launchpad and infrastructure before the JUP airdrop.
+  Page: https://wen-watt.github.io/about.html
+- Q: How long was the WEN claim window open?
+  A: 3 days
+  Why: The claim window lasted three days; unclaimed WEN was then burned.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What happened to unclaimed airdrop tokens?
+  A: They were burned
+  Why: Unclaimed WEN was burned after the claim window — a real supply cut, not just a promise.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: According to CoinDesk, what share of WEN's supply was burned?
+  A: 27%
+  Why: CoinDesk reported a burn of 27% of supply. Other texts say 300 billion; the trust chain shows both figures.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: What is Jupiter?
+  A: A DEX aggregator on Solana
+  Why: Jupiter finds the best token swaps across Solana and has grown into a broad DeFi platform.
+  Page: https://wen-watt.github.io/jupiter-mobile-exchange-with-wen.html
+- Q: Who founded Jupiter?
+  A: Meow
+  Why: Jupiter was founded by the pseudonymous Meow — the same person who wrote the Wen poem.
+  Page: https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html
+- Q: WEN calls itself the first community coin based on what?
+  A: A fractional NFT
+  Why: Each WEN token is a fractional share of the poem NFT "A Love Letter to Wen Bros".
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What was the very first NFT minted on WNS?
+  A: Meow's Wen poem
+  Why: The legendary Wen poem was the first NFT ever minted on the Wen New Standard.
+  Page: https://wen-watt.github.io/sources.html#tab-official
+- Q: What is the official Wen website?
+  A: wenwencoin.com
+  Why: wenwencoin.com is the official site, with the contract and core tokenomics.
+  Page: https://wen-watt.github.io/sources.html#tab-official
+- Q: What is Wen's official X handle?
+  A: @wenwencoin
+  Why: @wenwencoin is the official account for Wen updates.
+  Page: https://wen-watt.github.io/sources.html#tab-official
+- Q: Where are Wen's official docs?
+  A: docs.wenwencoin.com
+  Why: docs.wenwencoin.com covers WNS, the validator and .wen domains.
+  Page: https://wen-watt.github.io/sources.html#tab-official
+- Q: WEN is used for governance in which organization?
+  A: Wen DAO
+  Why: WEN is the governance token of the Wen DAO.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: What commission does the Wen validator charge?
+  A: 0%
+  Why: The Wen validator runs with zero commission and zero MEV fees.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: About how much SOL was delegated to the Wen validator?
+  A: Close to 100,000 SOL
+  Why: The Wen validator attracted close to 100,000 SOL in delegated stake.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: What was Solana's uptime during the WEN launch?
+  A: 100%
+  Why: Solana kept 100% uptime under the WEN launch traffic, as reported by SolanaFloor.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: Which wallet struggled under peak demand during the WEN launch?
+  A: Phantom
+  Why: Phantom faced challenges at peak demand, while Solflare and Backpack stayed stable.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: What peak load did Phantom see during the WEN airdrop?
+  A: About 8,000 requests per second
+  Why: Phantom reported about 8,000 requests per second at the WEN peak and used the lessons for the JUP airdrop.
+  Page: https://wen-watt.github.io/about.html
+- Q: What peak load did Phantom handle during the later JUP airdrop?
+  A: About 90,000 requests per second
+  Why: Thanks to lessons from WEN, Phantom handled about 90,000 RPS during the JUP airdrop with far fewer errors.
+  Page: https://wen-watt.github.io/about.html
+- Q: Roughly how long after WEN did the JUP launch happen?
+  A: About five days
+  Why: WEN absorbed the first wave of chaos just days before the JUP rollout.
+  Page: https://wen-watt.github.io/about.html
+- Q: How soon after WEN's launch did AssetDash mint the first 10K collection on WNS?
+  A: 18 days
+  Why: AssetDash minted the first 10,000-NFT collection on WNS just 18 days after WEN launched.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: What is the Wen Foundation's GitHub organization called?
+  A: wen-community
+  Why: The Wen Foundation's code lives under github.com/wen-community.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: What does the Wen Foundation say it supports?
+  A: Public goods on Solana
+  Why: Its stated purpose is supporting the development of public goods on Solana and giving back to the community.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: From the 10% treasury, how much went to the LFG Launchpad?
+  A: 1%
+  Why: Per Meow's thread: 1% to LFG Launchpad, 0.75% to the future Jupiter DAO and 0.25% to the team.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: About how much does minting a WNS NFT cost?
+  A: About 0.01 SOL, mostly refundable
+  Why: Minting on WNS costs around 0.01 SOL, much of it recoverable as rent.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: WEN's airdrop was designed so that...
+  A: Every wallet got the same amount
+  Why: Every eligible wallet received the same amount, making WEN widely distributed from day one.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Which IQ.wiki feature launched first on the Wen page?
+  A: Ecosystem Map
+  Why: IQ.Wiki introduced Ecosystem Map, a non-commercial relationship graph, starting with the Wen page.
+  Page: https://wen-watt.github.io/posts/wen-cat-iq-wiki.html
+- Q: Where did the Copa de los Memes take place on November 19, 2025?
+  A: La Rural, Buenos Aires (Devconnect Argentina)
+  Why: The venue was La Rural in Buenos Aires during Devconnect Argentina; early posts wrongly said Bangkok.
+  Page: https://wen-watt.github.io/posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#bangkok
+- Q: How many teams were in the official Copa de los Memes line-up?
+  A: Eight
+  Why: Eight teams: WEN, WIF, Pudgy Penguins, Ponke, Shiba Inu, MOG, Turbo and Baby Doge.
+  Page: https://wen-watt.github.io/posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#teams
+- Q: Which Planetary Call marked Meow's return in November 2025?
+  A: #60
+  Why: The Jupiter Group published it as "Meow is Back on the Planetary Call #60".
+  Page: https://wen-watt.github.io/posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html
+- Q: Which city is the pun "Catlumpur" based on?
+  A: Kuala Lumpur
+  Why: Catlumpur is Jupiter's gathering in Kuala Lumpur, Malaysia.
+  Page: https://wen-watt.github.io/posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html#catlumpur
+- Q: What tells the Wen cat token apart from Wendy's stock with the same ticker?
+  A: Its single Solana mint address
+  Why: Names and tickers can match; the Solana address cannot. Always check the address.
+  Page: https://wen-watt.github.io/posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html#ticker
+- Q: Which X account did WEN acquire, according to a 2025 newsletter?
+  A: @TweetsOfCats
+  Why: A Syndicate newsletter reported that WEN acquired the @TweetsOfCats account.
+  Page: https://wen-watt.github.io/posts/wen-crypto-nov-11-2025-new-open-source-crypto-community-material.html#factcheck
+- Q: On which exchange did BSOL, the Solana staking ETF, debut in October 2025?
+  A: New York Stock Exchange
+  Why: Bitwise's BSOL started trading on the NYSE on October 28, 2025.
+  Page: https://wen-watt.github.io/posts/bsol-new-york-stock-exchange-wall-street.html#what
+- Q: When was BONK airdropped to the Solana community?
+  A: Christmas Day 2022
+  Why: Bonk arrived on December 25, 2022, with half of its supply airdropped to the community.
+  Page: https://wen-watt.github.io/posts/drop-001-wen-x-bonk-october-29-12-pm-et-2025.html#pair
+- Q: Roughly how many blocks do people wait before treating a Bitcoin payment as settled?
+  A: About six
+  Why: Bitcoin finality is probabilistic; about six confirmations, roughly an hour, is the usual rule.
+  Page: https://wen-watt.github.io/posts/compared-wen-btc-solana.html#finality
+- Q: Which studio partnered with Wen in 2025 to build animation, comics and products?
+  A: Elevate Pictures
+  Why: Wen and Elevate Pictures announced a story world of animation, comics and products.
+  Page: https://wen-watt.github.io/posts/wen-crypto-gears-up-for-global-expansion-partnership-with-elevate-pictures-signals-multimedia-revolution.html#partner
+- Q: How many wallets were eligible for the WEN airdrop in January 2024?
+  A: More than one million
+  Why: WEN was airdropped to more than a million Solana wallets — one of the largest airdrops the network had seen.
+  Page: https://wen-watt.github.io/posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#day
+- Q: What was the first 10K collection minted on WNS called?
+  A: Elements (AssetDash)
+  Why: AssetDash minted its 10,000-piece Elements collection on the Wen New Standard.
+  Page: https://wen-watt.github.io/posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#assetdash
+- Q: On which date did Wen hold its "Meet the Team" Space with Elevate Pictures?
+  A: October 16, 2025
+  Why: Wen and Elevate Pictures met the community in an X Space on October 16, 2025.
+  Page: https://wen-watt.github.io/posts/wen-crypto-x-elevate-pictures-and-next-future.html
+- Q: Which toy maker made Wen plush toys, according to the community list?
+  A: Toymak3rs
+  Why: Wen plushies were made with Toymak3rs — including the Wen x Bonk charity plush.
+  Page: https://wen-watt.github.io/posts/new-listings-october-2025-wen-crypto-start-next.html#list
+- Q: What is "alt season"?
+  A: A period when other coins rise faster than Bitcoin
+  Why: Alt seasons are named afterwards — famous ones came at the end of 2017 and in early 2021.
+  Page: https://wen-watt.github.io/posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#alt
+- Q: What happened to unclaimed WEN when the airdrop closed on January 29, 2024?
+  A: More than 271 billion were burned — over 27% of supply
+  Why: Unclaimed tokens were burned for good: nearly 39% of the airdrop allocation (Decrypt).
+  Page: https://wen-watt.github.io/posts/wen-today-and-analyze-the-sharp-increase-of-50.html#facts
+- Q: How many open folders did the community publish in July 2025?
+  A: About a dozen, from wallpapers to GIFs
+  Why: Phone backgrounds, post images, songs, photos, videos, GIFs and anime art, all free to reuse.
+  Page: https://wen-watt.github.io/posts/wen-coin-graphics-videos-from-cummunity.html#folders
+- Q: Into how many tokens was Meow's poem split to create WEN?
+  A: One trillion
+  Why: "A Love Letter to Wen Bros" became 1,000,000,000,000 WEN.
+  Page: https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html#timeline
+- Q: Why did Jupiter launch WEN before its own token?
+  A: As a dress rehearsal for its launchpad and airdrop
+  Why: WEN on January 26, 2024; $JUP on January 31, with the lessons applied.
+  Page: https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html#why
+- Q: Which studio partnered with Wen in June 2025 to develop comics, animation and products?
+  A: Elevate
+  Why: A U.S.–Irish co-production; the first outputs were planned as a comic and an animation pilot.
+  Page: https://wen-watt.github.io/posts/wen-partners-with-elevate-media-june-2025.html#news
+- Q: Roughly how many WEN tokens remain after the January 2024 burn?
+  A: About 729 billion
+  Why: One trillion minus more than 271 billion burned; the explorer shows today's exact total.
+  Page: https://wen-watt.github.io/posts/circulation-of-coin-747-b-all-of-wen-today-april-2025.html#wen
+- Q: What is the exact title of Meow's poem behind WEN?
+  A: A Love Letter to Wen Bros
+  Why: The poem was minted as an NFT and fractionalized into one trillion tokens.
+  Page: https://wen-watt.github.io/posts/wen-coin-origin-about-token-launched-on-the-solana-blockchain.html#fixes
+- Q: How many tested models does Wen Open Lab offer for WNS uses?
+  A: Six
+  Why: Receipts, royalties, B2B invoices, a payments bridge, a simulator and a devnet run.
+  Page: https://wen-watt.github.io/posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#lab
+- Q: Which fitness event did the Wen community sponsor, according to its milestone list?
+  A: Moonwalk
+  Why: A community-reported milestone, beside parties, contests and plush toys.
+  Page: https://wen-watt.github.io/posts/new-listings-october-2025-wen-crypto-start-next.html#list
+- Q: What does "Bitcoin dominance" describe?
+  A: Bitcoin's share of the whole crypto market
+  Why: When it falls quickly, money is flowing into other coins — an "alt season".
+  Page: https://wen-watt.github.io/posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#alt
+- Q: Which page explains how sure the almanac is about each claim?
+  A: The trust chain
+  Why: Verified, primary source, reported, opinion, unverified, figures differ.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: How many votes did the GENIUS Act get in the U.S. House on July 17, 2025?
+  A: 308 to 122
+  Why: 294–134 was the House vote for CLARITY the same day.
+  Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#week
+
+### Technology
+
+- Q: What does WNS stand for?
+  A: Wen New Standard
+  Why: WNS is the Wen New Standard, an open NFT standard for Solana.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: WNS is built on top of which Solana token program?
+  A: Token-2022 (Token Extensions)
+  Why: WNS is a light layer on Solana's Token-2022, also called Token Extensions.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: How many metadata fields did WNS 0.0 start with?
+  A: 3: name, symbol, uri
+  Why: WNS 0.0 started extremely simple, with only name, symbol and uri.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: A WNS NFT has which supply and decimals?
+  A: Supply 1, decimals 0
+  Why: WNS creates an NFT by locking supply at 1 with 0 decimals.
+  Page: https://wen-watt.github.io/about-wen-token-wen-coin-crypto.html
+- Q: Which Token-2022 extension enforces royalties in WNS?
+  A: Transfer Hook
+  Why: The Transfer Hook calls a program on every transfer, so royalties travel with the token.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: How does WNS group NFTs into collections?
+  A: Token Group and Group Member extensions
+  Why: WNS uses Token-2022's Group and Member extensions instead of custom account links.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: Where does WNS store an NFT's metadata?
+  A: Inside the mint account
+  Why: Metadata lives inside the mint itself through Metadata Pointer and Token Metadata — no external metadata account.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: Which older approach does WNS avoid by keeping metadata in the mint?
+  A: External Metaplex metadata accounts
+  Why: Classic Solana NFTs needed several linked accounts (Metaplex metadata, master edition). WNS keeps it in the mint.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: The main WNS program ID begins with...
+  A: wns1g
+  Why: The wen_new_standard program ID is wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: What is the WNS royalty program called?
+  A: wen_royalty_distribution
+  Why: wen_royalty_distribution enforces royalty payouts for WNS assets through a transfer hook.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: Under which license is the Wen Program Library released?
+  A: Apache-2.0
+  Why: The library is open source under the Apache License 2.0.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: Which framework builds the Wen Program Library?
+  A: Anchor
+  Why: The programs are built with the Anchor framework: yarn install, then anchor build.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: Which command runs the Wen Program Library tests?
+  A: anchor test
+  Why: Tests live in the tests folder and run with anchor test.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: What is the Wen Program Library command-line tool called?
+  A: wpl_cli
+  Why: wpl_cli creates collections and runs asset operations from the terminal.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: Which tool generates the WPL JavaScript and Rust clients?
+  A: Kinobi
+  Why: The clients are generated from the programs' IDLs with Kinobi, so they stay in sync with the code.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: In which languages does WPL ship clients?
+  A: JavaScript and Rust
+  Why: Each program has autogenerated JavaScript and Rust clients.
+  Page: https://wen-watt.github.io/posts/wen-program-library-review.html
+- Q: What data structure do Token-2022 extensions use?
+  A: TLV (Type-Length-Value)
+  Why: Token-2022 adds extensions through a TLV structure at the mint or account level.
+  Page: https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html
+- Q: Which extension makes a token impossible to transfer (soulbound)?
+  A: Non-Transferable
+  Why: Non-Transferable makes a token soulbound — used in Wen Open Lab's warranty receipts.
+  Page: https://wen-watt.github.io/lab/receipt-warranty-wns.html
+- Q: Which account extension rejects incoming payments without a memo?
+  A: Required Memo (Memo Transfer)
+  Why: With Required Memo enabled, Token-2022 rejects a transfer that has no memo right before it.
+  Page: https://wen-watt.github.io/lab/b2b-invoices-token-2022.html
+- Q: Which extension makes new token accounts start frozen?
+  A: Default Account State
+  Why: Default Account State can start every new account frozen until the issuer thaws it.
+  Page: https://wen-watt.github.io/lab/b2b-invoices-token-2022.html
+- Q: Which extension lets an issuer move or burn tokens from any account?
+  A: Permanent Delegate
+  Why: Permanent Delegate is used by regulated issuers, for example to follow court orders.
+  Page: https://wen-watt.github.io/posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html
+- Q: Which extension lets a token charge a fee on every transfer?
+  A: Transfer Fees
+  Why: Transfer Fees takes a percentage (with an optional cap) on every transfer, enforced by the token.
+  Page: https://wen-watt.github.io/lab/b2b-invoices-token-2022.html
+- Q: Which encryption do Token-2022 Confidential Transfers use?
+  A: ElGamal
+  Why: Confidential Transfers hide balances and amounts using ElGamal encryption, with an optional auditor key.
+  Page: https://wen-watt.github.io/token-2022-wns-solana-wen.html
+- Q: How many independent audits has the Token-2022 program had, per Solana's FAQ?
+  A: 5
+  Why: Halborn, Zellic, NCC, Trail of Bits and OtterSec audited Token-2022.
+  Page: https://wen-watt.github.io/token-2022-wns-solana-wen.html
+- Q: Solana combines which two mechanisms for consensus?
+  A: Proof of History and Proof of Stake
+  Why: Solana's hybrid Proof of History and Proof of Stake gives near-instant finality.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: Which open standard does Wen Open Lab use for shop payments?
+  A: Solana Pay
+  Why: Model 4 of the Lab builds a payment bridge on the open Solana Pay standard.
+  Page: https://wen-watt.github.io/lab/payments-acquiring-bridge.html
+- Q: How does a Solana Pay shop find the payment for a specific order?
+  A: By a unique reference address
+  Why: Each order gets a unique random reference; the shop looks for the transaction that includes it.
+  Page: https://wen-watt.github.io/lab/payments-acquiring-bridge.html
+- Q: Inside what were Wen Open Lab's 25 checks run?
+  A: LiteSVM, a local Solana virtual machine
+  Why: LiteSVM runs the real Token-2022 and Memo programs locally — no network, no real funds.
+  Page: https://wen-watt.github.io/lab/index.html
+- Q: Which bank issues Western Union's USDPT?
+  A: Anchorage Digital Bank
+  Why: USDPT is issued by Anchorage Digital Bank, a federally chartered crypto bank.
+  Page: https://wen-watt.github.io/posts/solana-and-western-union-bridging-traditional-finance-and-blockchain-for-global-payments.html#what
+- Q: Which hash function does Bitcoin's proof of work use?
+  A: SHA-256
+  Why: Bitcoin miners race to find SHA-256 hashes below a target.
+  Page: https://wen-watt.github.io/posts/compared-wen-btc-solana.html#bitcoin
+- Q: Which elliptic curve signs Bitcoin transactions?
+  A: secp256k1
+  Why: Bitcoin keys use secp256k1, a curve defined years before Bitcoin existed.
+  Page: https://wen-watt.github.io/posts/compared-wen-btc-solana.html#question
+- Q: Which combination secures Solana?
+  A: Proof of stake with proof of history
+  Why: Validators stake SOL, and proof of history orders events like a clock.
+  Page: https://wen-watt.github.io/posts/compared-wen-btc-solana.html#consensus
+- Q: What peak throughput did SolanaFloor report during the WEN launch?
+  A: More than 2,300 transactions per second
+  Why: SolanaFloor reported a peak above 2,300 TPS while the network stayed up.
+  Page: https://wen-watt.github.io/posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html
+- Q: What mainly backs JupUSD at launch?
+  A: USDtb, a token holding mainly BlackRock's BUIDL fund
+  Why: About 90% of JupUSD's reserves were planned in USDtb, which holds mainly a tokenized Treasury fund.
+  Page: https://wen-watt.github.io/posts/jupiter-is-launching-its-own-stablecoin.html#backing
+- Q: What is wenSOL?
+  A: A liquid staking token with a Wen validator, built with Sanctum
+  Why: wenSOL lets SOL be staked through a Wen validator while staying liquid (community-reported).
+  Page: https://wen-watt.github.io/posts/new-listings-october-2025-wen-crypto-start-next.html#tech
+- Q: Most transactions on Solana are…
+  A: Validator votes
+  Why: Validators vote on blocks through transactions, so total TPS is much higher than user TPS.
+  Page: https://wen-watt.github.io/posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#metrics
+- Q: Where does WNS 0.0 keep an NFT's name, symbol and URI?
+  A: In the mint account itself
+  Why: WNS uses Token-2022 metadata extensions, so the NFT carries its own name card on-chain.
+  Page: https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html#what
+- Q: Which planned WNS feature lets royalties be paid on every transfer?
+  A: Transfer hooks
+  Why: A transfer hook calls a royalty program whenever the token moves — royalties enforced by the token itself.
+  Page: https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html#planned
+- Q: On Solana, what is a program ID?
+  A: The address of an on-chain program
+  Why: Every swap, pool or game has a program ID; counting programs that use a token shows how widely it is built in.
+  Page: https://wen-watt.github.io/posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html#what
+- Q: Under GENIUS, how must payment stablecoins be backed?
+  A: One-to-one by safe, liquid assets like cash and T-bills
+  Why: Reserves must match the coins one for one, with regular public disclosure.
+  Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#genius
+- Q: What stands behind a tokenized share like an xStock?
+  A: A real share held by a custodian
+  Why: Unlike a culture token, a stock token is a claim on something outside the network.
+  Page: https://wen-watt.github.io/posts/wen-prediction-and-price.html#diff
+- Q: When did Solana Mobile begin shipping the Seeker phone?
+  A: August 4, 2025
+  Why: Shipping went to customers in more than 50 countries.
+  Page: https://wen-watt.github.io/posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker
+- Q: What does the Seeker's Seed Vault protect?
+  A: The wallet's secret keys, in hardware
+  Why: Keys in protected hardware, with fingerprint confirmation for signing.
+  Page: https://wen-watt.github.io/posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker
+- Q: How do .wen domains relate to WNS?
+  A: They are a separate, reported naming service; WNS is the Wen New Standard for NFTs
+  Why: A common mix-up corrected in the almanac.
+  Page: https://wen-watt.github.io/posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#fixes
+- Q: Which WNS feature lets a token describe itself?
+  A: Metadata in the mint
+  Why: Name, symbol and link live inside the token — a receipt or certificate that explains itself.
+  Page: https://wen-watt.github.io/posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#features
+- Q: Which kind of token suits a warranty card or attendance badge?
+  A: A non-transferable token
+  Why: It cannot be sold on, so it proves what it says about its holder.
+  Page: https://wen-watt.github.io/posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#features
+- Q: Roughly how many Solana programs integrated WEN in the September 2025 chart?
+  A: 345
+  Why: Close to JitoSOL, PYTH and mSOL; USDC led with 974.
+  Page: https://wen-watt.github.io/posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html#chart
+- Q: In Swapper Finance, which partner converts card money into crypto?
+  A: Shift4
+  Why: Chainlink verifies the order; zerohash handles compliance; XSwap supplies liquidity.
+  Page: https://wen-watt.github.io/posts/mastercard-visa-with-crypto.html#news
+
+### World and history
+
+- Q: Which Korean asset manager signed an MOU with the Solana Foundation in August 2026?
+  A: Shinhan Asset Management
+  Why: Shinhan Asset Management signed a non-binding four-party MOU on August 21, 2026 to test a tokenized KRW fund.
+  Page: https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html
+- Q: Shinhan's tokenized fund pilot was modeled on which product?
+  A: BlackRock's BUIDL
+  Why: The KRW fund pilot follows the structure of BlackRock's BUIDL, the largest tokenized treasury fund.
+  Page: https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html
+- Q: Which partners joined Shinhan's MOU besides the Solana Foundation?
+  A: Etherfuse and Orca
+  Why: The four-party MOU was signed by Shinhan Asset Management, the Solana Foundation, Etherfuse and Orca.
+  Page: https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html
+- Q: What is BSOL?
+  A: Bitwise's U.S. spot Solana staking ETF
+  Why: BSOL debuted on the NYSE in October 2025 as the first U.S. spot Solana staking ETF.
+  Page: https://wen-watt.github.io/about.html
+- Q: How did the SEC's March 2026 taxonomy classify SOL, as reported?
+  A: As a digital commodity
+  Why: Reports describe the SEC's March 2026 taxonomy placing SOL among digital commodities.
+  Page: https://wen-watt.github.io/posts/how-sol-achieved-proven-global-recognition-2022-2026.html
+- Q: Which Copa de los Memes team came from BNB Chain?
+  A: Baby Doge
+  Why: The teams came from several chains: Solana, Ethereum and BNB Chain, where Baby Doge lives.
+  Page: https://wen-watt.github.io/posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#teams
+- Q: Where did Jupiter's earlier event Catstanbul take place?
+  A: Istanbul
+  Why: Before Catlumpur came Catstanbul, held in Istanbul.
+  Page: https://wen-watt.github.io/posts/meow-is-back-on-the-planetary-call-60-back-to-the-future-with-jup-friend-wen.html#catlumpur
+- Q: In which city was the Ethereum Foundation's Devcon held in November 2024?
+  A: Bangkok
+  Why: Devcon 2024 was in Bangkok; Devconnect 2025 moved to Buenos Aires, hence the mix-up.
+  Page: https://wen-watt.github.io/posts/football-tournament-nov-19-ethereum-bangkok-wen-bonk-bitso-onchain-web3-tech-efdevcon.html#bangkok
+- Q: Who was Wendy's named after?
+  A: Founder Dave Thomas's daughter Melinda Lou
+  Why: Dave Thomas named the restaurant after his daughter Melinda Lou, nicknamed Wendy.
+  Page: https://wen-watt.github.io/posts/what-is-wendys-backstory-and-what-is-new-world-wen-crypto.html#history
+- Q: Where did the proceeds of the Wen x Bonk plush go?
+  A: Buddies for Paws, an animal charity
+  Why: Wen announced that 100% of the proceeds would go to charity with Buddies for Paws.
+  Page: https://wen-watt.github.io/posts/wen-x-bonk-playground-drops-toysmak-3rs-partners.html#charity
+- Q: What is the name of Western Union's stablecoin on Solana?
+  A: USDPT
+  Why: Western Union announced the U.S. Dollar Payment Token, USDPT, on October 28, 2025.
+  Page: https://wen-watt.github.io/posts/solana-and-western-union-bridging-traditional-finance-and-blockchain-for-global-payments.html#what
+- Q: Who issued Hong Kong's first spot Solana ETF in October 2025?
+  A: ChinaAMC
+  Why: The ChinaAMC Solana ETF began trading on the Hong Kong Stock Exchange on October 27, 2025.
+  Page: https://wen-watt.github.io/posts/wen-crypto-gears-up-for-global-expansion-partnership-with-elevate-pictures-signals-multimedia-revolution.html#context
+- Q: Which Jupiter token launched five days after WEN, on January 31, 2024?
+  A: $JUP
+  Why: WEN was the dress rehearsal; $JUP followed on January 31, 2024.
+  Page: https://wen-watt.github.io/posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#jup
+- Q: Which Egyptian goddess was linked to cats?
+  A: Bastet
+  Why: Bastet, often shown as a cat or cat-headed woman, protected homes and families.
+  Page: https://wen-watt.github.io/posts/wen-crypto-egypt-cats.html#history
+- Q: Which bird was sacred to Thoth, the Egyptian god of wisdom?
+  A: The ibis
+  Why: Thoth, god of writing and wisdom, was shown with the head of an ibis.
+  Page: https://wen-watt.github.io/posts/wen-crypto-egypt-cats.html#ibis
+- Q: Which company built JupUSD together with Jupiter?
+  A: Ethena Labs
+  Why: Jupiter announced JupUSD with Ethena Labs in October 2025; it went live in January 2026.
+  Page: https://wen-watt.github.io/posts/jupiter-is-launching-its-own-stablecoin.html#what
+- Q: What is PayPay?
+  A: Japan's leading cashless payment app
+  Why: PayPay, with around 70 million users, took a 40% stake in a Japanese crypto exchange in October 2025.
+  Page: https://wen-watt.github.io/posts/paypay-binance-alliance.html#news
+- Q: In which year did Ethereum launch?
+  A: 2015
+  Why: Ethereum launched on July 30, 2015 and brought smart contracts — programmable money.
+  Page: https://wen-watt.github.io/posts/crypto-eras-2025-with-wen-crypto-and-history.html#timeline
+- Q: Where was one of the earliest cats buried next to a person, about 9,500 years ago?
+  A: Cyprus
+  Why: A burial at Shillourokambos, Cyprus, is among the earliest signs of cats living with people.
+  Page: https://wen-watt.github.io/posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#history
+- Q: In September 2025, which filing did the SEC say crypto ETF issuers no longer needed?
+  A: The 19b-4
+  Why: After generic listing standards were approved, the SEC asked issuers to withdraw 19b-4s; only the S-1 remained.
+  Page: https://wen-watt.github.io/posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#etf
+- Q: IRS Notice 2025-49 let very large companies leave what out of the 15% minimum tax?
+  A: Unrealized (paper) gains on certain fair-value assets
+  Why: An elective, interim rule for the corporate minimum tax — not a general crypto tax exemption.
+  Page: https://wen-watt.github.io/posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#tax
+- Q: Which partners started the WNS coalition?
+  A: Ovols and Jupiter
+  Why: The WNS 0.0 proposal of January 25, 2024 named Ovols and Jupiter, supported by the Wen Foundation.
+  Page: https://wen-watt.github.io/posts/wen-new-standard-wns-0-0-wen-crypto-inform.html#origin
+- Q: In the September 2025 chart of most integrated program IDs, which token led?
+  A: USDC
+  Why: USDC led with 974 programs; WEN was eighth with 345, beside JitoSOL, PYTH and mSOL.
+  Page: https://wen-watt.github.io/posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html#chart
+- Q: When was BONK airdropped to Solana's community?
+  A: Christmas 2022
+  Why: Bonk arrived at Christmas 2022 and helped bring life back to Solana after the crash.
+  Page: https://wen-watt.github.io/posts/wif-dog-coin-compare-with-wen-crypto-and-bonk-dog.html#four
+- Q: Which U.S. law on payment stablecoins was signed on July 18, 2025?
+  A: The GENIUS Act
+  Why: GENIUS passed the Senate on June 17 and the House on July 17, 2025, and was signed the next day.
+  Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#week
+- Q: What did the CLARITY Act propose?
+  A: Splitting crypto oversight between the CFTC and the SEC
+  Why: CFTC for digital commodities, SEC for restricted digital assets — passed by the House, stalled in the Senate in 2026.
+  Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#clarity
+- Q: What happened to the CLARITY Act in the U.S. Senate on September 15, 2026?
+  A: A procedural vote failed 49–50
+  Why: Sixty votes were needed; disputes over stablecoin yield and ethics rules stopped it.
+  Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#after
+- Q: When did xStocks, tokenized U.S. shares backed 1:1, launch on Solana?
+  A: June 30, 2025
+  Why: Each xStock is backed by a real share held with a regulated custodian.
+  Page: https://wen-watt.github.io/posts/wen-prediction-and-price.html#stocks
+- Q: Which Irish animation studio in the Elevate family works on the Wen character?
+  A: Adventurverse Studios
+  Why: Dave Minogue and Adventurverse bring the character to life in art and animation.
+  Page: https://wen-watt.github.io/posts/wen-partners-with-elevate-media-june-2025.html#people
+- Q: What did Mastercard and Chainlink launch on June 24, 2025?
+  A: Swapper Finance — buying crypto with a card directly on a DEX
+  Why: Shift4 converts card money, zerohash handles compliance, Chainlink verifies the order.
+  Page: https://wen-watt.github.io/posts/mastercard-visa-with-crypto.html#news
+- Q: Where did a regulated BONK exchange-traded product launch in late November 2025?
+  A: The SIX Swiss Exchange
+  Why: Issued by Bitcoin Capital — a dog memecoin reaching ordinary brokerage accounts.
+  Page: https://wen-watt.github.io/posts/wen-crypto-gold-coin-coinbase-roadmap-for-jupiter-bonk-memecoin-debuts-as-an-etp-today.html#news
+- Q: About how much in leveraged positions was liquidated on October 10–11, 2025?
+  A: About $19 billion
+  Why: The largest liquidation weekend in crypto history — a lesson about borrowed money.
+  Page: https://wen-watt.github.io/posts/w-coin-wen-crypto-coin-expanding-the-gates.html#autumn
+- Q: What did the Old English word "wēn" mean?
+  A: Hope, expectation
+  Why: The verb wēnan, "to expect, to hope", survives as the old-fashioned "to ween".
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#hope
+- Q: In Welsh names like Olwen or Bronwen, what does "-wen" mean?
+  A: White, fair, blessed
+  Why: Gwen is the feminine of gwyn — white, fair, blessed, holy.
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#welsh
+- Q: Which ancient king is credited with arranging the hexagrams of the I Ching?
+  A: King Wen of Zhou
+  Why: Their classic order is still called the King Wen sequence.
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#people
+- Q: Which writer called London "the Great Wen"?
+  A: William Cobbett
+  Why: In the 1820s — a city grown swollen; a reminder that growth should serve people.
+  Page: https://wen-watt.github.io/posts/wen-crypto.html#cobbett
+- Q: In which year did the first DAO, "The DAO", show the promise and risk of code-run organisations?
+  A: 2016
+  Why: We corrected the original timeline, which placed DAOs in 2022.
+  Page: https://wen-watt.github.io/posts/crypto-eras-2025-with-wen-crypto-and-history.html#timeline
+- Q: In Norse myth, what pulls the goddess Freyja's chariot?
+  A: Two cats
+  Why: Cats were Freyja's animals.
+  Page: https://wen-watt.github.io/posts/mew-crypto-cat-gave-the-signal-to-wen-crypto.html#history
+- Q: When did WIF (dogwifhat) launch?
+  A: November 2023
+  Why: One simple, joyful internet image: a dog in a pink knitted hat.
+  Page: https://wen-watt.github.io/posts/wif-dog-coin-compare-with-wen-crypto-and-bonk-dog.html#four
+- Q: What did IRS Notice 2025-49 change for very large companies?
+  A: They may leave unrealized gains on certain fair-value assets out of the 15% minimum tax
+  Why: An elective, interim rule — not a general crypto tax exemption.
+  Page: https://wen-watt.github.io/posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#tax
+- Q: In Slavic villages, who stepped into a new house first?
+  A: The cat
+  Why: Folk belief held that the cat brings peace to the home and takes misfortune upon itself.
+  Page: https://wen-watt.github.io/posts/hello-world.html#cat-tale
+- Q: Which temple is linked by legend to the beckoning lucky cat, maneki-neko?
+  A: Gotoku-ji in Tokyo
+  Why: A temple cat waved a lord inside just before lightning struck his tree.
+  Page: https://wen-watt.github.io/posts/song-wen-be-happy-new-rap-story-wen-wen-come.html#cat-tale
+- Q: What could Kot Bayun of Russian fairy tales do with his songs?
+  A: Lull travellers to sleep — or heal the sick
+  Why: A cat as the keeper of stories.
+  Page: https://wen-watt.github.io/posts/compared-wen-btc-solana.html#cat-tale
+- Q: Why did sailors keep a ship's cat?
+  A: To guard food and ropes from rats — and for luck
+  Why: Many crews believed a cat on board meant a safe voyage.
+  Page: https://wen-watt.github.io/posts/jupiter-jup-was-tested-on-wen-at-the-time-of-the-token-launch.html#cat-tale
+- Q: Which Egyptian goddess protected the home, mothers and children?
+  A: Bastet
+  Why: Herodotus wrote that families shaved their eyebrows when a house cat died.
+  Page: https://wen-watt.github.io/posts/new-listings-october-2025-wen-crypto-start-next.html#cat-tale
+- Q: In Britain and Ireland, what does a black cat at your door often mean?
+  A: Good luck
+  Why: The opposite of the belief in many other countries.
+  Page: https://wen-watt.github.io/posts/paypay-binance-alliance.html#cat-tale
+- Q: What did Dick Whittington's cat win him in the English tale?
+  A: A fortune — and he became Lord Mayor of London
+  Why: The cat rid a palace of rats far away.
+  Page: https://wen-watt.github.io/posts/mastercard-visa-with-crypto.html#cat-tale
+- Q: Which navigator's cat, Trim, sailed around Australia in 1801–1803?
+  A: Matthew Flinders
+  Why: Trim's statue stands in Sydney beside his captain's.
+  Page: https://wen-watt.github.io/posts/catlumpurr-kaula-lumpur-malaysia-jan-31-to-feb-1-2026-video-about-event.html#cat-tale
+- Q: Which ship's cat received the Dickin Medal for bravery in 1949?
+  A: Simon of HMS Amethyst
+  Why: He kept the crew's food safe from rats during a long siege.
+  Page: https://wen-watt.github.io/posts/wen-open-lab-review.html#cat-tale
+- Q: In the old Siamese Hae Nang Maew ceremony, what did villagers ask for while carrying a cat?
+  A: Rain for the rice fields
+  Why: The Tamra Maew, the Cat-Book Poems, described cats that bring good fortune.
+  Page: https://wen-watt.github.io/posts/back-to-the-future-wen-crypto.html#cat-tale
+- Q: Why did ancient Chinese farmers honour Li Shou, a cat spirit?
+  A: Cats protected the grain from rats
+  Why: Keeping the granary safe was keeping the family safe.
+  Page: https://wen-watt.github.io/posts/bsol-new-york-stock-exchange-wall-street.html#cat-tale
+- Q: What did Japanese sailors believe a three-coloured calico cat could do?
+  A: Protect a ship from storms
+  Why: A mike-neko on board was thought to bring a safe voyage.
+  Page: https://wen-watt.github.io/posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#cat-tale
+- Q: Which Korean asset manager signed a memorandum with the Solana Foundation for a tokenized won fund?
+  A: Shinhan Asset Management
+  Why: With Etherfuse and Orca: a tokenized ultra-short-term bond fund in Korean won.
+  Page: https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html
+- Q: Which company issues xStocks, the tokenized shares on Solana?
+  A: Backed
+  Why: One token per real share, held with a regulated custodian.
+  Page: https://wen-watt.github.io/posts/wen-prediction-and-price.html#stocks
+- Q: To how many countries did the Seeker phone first ship?
+  A: More than 50
+  Why: Shipping began on August 4, 2025.
+  Page: https://wen-watt.github.io/posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker
+
+### Safety and verification
+
+- Q: The official WEN token contract begins with...
+  A: WENWEN
+  Why: The WEN mint is WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk. Always verify it before use.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: Where should you verify the WEN contract?
+  A: Solana Explorer or Solscan
+  Why: Check the contract on authoritative explorers and indexers, never from messages or ads.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: Which npm package was removed by npm as malicious and must not be installed?
+  A: @wen-community/wen-new-standard
+  Why: npm replaced @wen-community/wen-new-standard with a security holding package. Build from official sources.
+  Page: https://wen-watt.github.io/lab/trust.html
+- Q: What are devnet SOL coins worth?
+  A: Nothing — they are test coins
+  Why: Devnet coins have no value. Anyone offering to sell them is a scammer.
+  Page: https://wen-watt.github.io/lab/devnet.html
+- Q: Which wallet should you use for a devnet test?
+  A: A new, empty wallet made only for devnet
+  Why: Always test with a throwaway devnet wallet and never reuse it on mainnet.
+  Page: https://wen-watt.github.io/lab/devnet.html
+- Q: What is the status of the WNS audit, according to Wen's own docs?
+  A: Not formally completed
+  Why: The docs say the WNS audit has not been formally completed and should be treated as such.
+  Page: https://wen-watt.github.io/posts/wen-token-network-re-examination.html
+- Q: What is the golden rule of Wen Open Lab?
+  A: Always verify your own model
+  Why: Lab code is free and educational but not audited: run the tests, use devnet, read the docs and get an audit.
+  Page: https://wen-watt.github.io/lab/index.html
+- Q: What does a genuine event or airdrop page never need from you?
+  A: Your seed phrase
+  Why: No real event, airdrop or team page ever needs your seed phrase or private key.
+  Page: https://wen-watt.github.io/posts/the-copa-de-los-memes-is-a-gamified-irl-football-tournament-nov-19-ethereum-devcon-bangkok-by-bitsoonchain-wen-wenwencoin-bonk.html#safety
+- Q: What should you never attach to shared Wen community art?
+  A: A buy link
+  Why: Art is a way into the story, not an advert: show the token address, never a trading link.
+  Page: https://wen-watt.github.io/posts/wen-crypto-nov-11-2025-new-open-source-crypto-community-material.html#how
+- Q: Does a Solana ETF like BSOL buy WEN tokens?
+  A: No, it holds SOL only
+  Why: An ETF like BSOL holds and stakes SOL; it does not buy meme coins.
+  Page: https://wen-watt.github.io/posts/bsol-new-york-stock-exchange-wall-street.html#wen
+- Q: What weak spot did Jupiter's co-founder admit after the WEN launch?
+  A: Bot mitigation
+  Why: "We did ok, but did not do that well on the bot mitigation front today" — honest lessons made the next launch better.
+  Page: https://wen-watt.github.io/posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html#lessons
+- Q: What should you search for to find the real WEN token?
+  A: Its contract address (ID)
+  Why: Names, logos and tickers are copied; the contract address is unique.
+  Page: https://wen-watt.github.io/posts/wen-crypto-x-elevate-pictures-and-next-future.html
+- Q: What does a crypto "fear and greed" index describe?
+  A: The mood of the market
+  Why: It summarises market mood from signals like volatility and volume — a thermometer, not a forecast.
+  Page: https://wen-watt.github.io/posts/wen-crypto-wen-to-reach-a-price-today.html#fear
+- Q: Which of these does no real project ever ask you for?
+  A: Your seed phrase
+  Why: A seed phrase is the key to everything in a wallet. No real team, support or event ever needs it.
+  Page: https://wen-watt.github.io/posts/wen-crypto-wen-to-reach-a-price-today.html#safe
+- Q: On Solana, who can create new tokens of an existing mint?
+  A: Whoever holds the mint authority, if it is not revoked
+  Why: Check the mint authority on an explorer: if it is revoked, the supply can never grow.
+  Page: https://wen-watt.github.io/posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html#tech
+- Q: Why is "$1,000 to $100,000" a warning sign?
+  A: It relies on survivorship bias: we only hear from the few winners
+  Why: The winners speak, the many losers stay silent. A promise of multiplied money is an advert, not information.
+  Page: https://wen-watt.github.io/posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html#promise
+- Q: What does a token's "holders" count NOT tell you?
+  A: How many people hold it
+  Why: One person can own many wallets, and airdrops create holders who never chose to hold.
+  Page: https://wen-watt.github.io/posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#metrics
+- Q: Why is "WEN's price if it had Bonk's market cap" misleading?
+  A: Supplies differ, and market value is not money inside a coin
+  Why: Market value is the last price times all tokens — nobody could ever sell at it.
+  Page: https://wen-watt.github.io/posts/wif-dog-coin-compare-with-wen-crypto-and-bonk-dog.html#calc
+- Q: A summary says a token hit a record before it existed. What does that tell you?
+  A: The summary is wrong — check dates against the launch
+  Why: WEN launched on January 26, 2024; any record dated earlier is an error.
+  Page: https://wen-watt.github.io/posts/wen-historical-today.html#checks
+- Q: A token called "WEN" appears on another chain. What is it?
+  A: A bridged copy or a different token with the same ticker
+  Why: WEN is identified by one Solana mint address; tickers can be copied.
+  Page: https://wen-watt.github.io/posts/wen-historical-today.html#checks
+- Q: Which is a sign of a PvP trap?
+  A: Hidden early supply and bots at launch
+  Why: Also: urgency, promises of multiplied money, and nothing to use.
+  Page: https://wen-watt.github.io/posts/what-is-ppp-and-pvp-in-crypto.html#signs
+- Q: Did the Mastercard news mean anyone could now pay in WEN by card?
+  A: No — it was an on-ramp naming Uniswap; WEN is a Solana token
+  Why: An on-ramp turns card money into crypto; it is not a payment system for memecoins.
+  Page: https://wen-watt.github.io/posts/mastercard-visa-with-crypto.html#not
+- Q: Which supply figure is a hard on-chain fact?
+  A: Total supply, read from the mint
+  Why: Circulating supply is a third party's estimate; total supply is on-chain.
+  Page: https://wen-watt.github.io/posts/circulation-of-coin-747-b-all-of-wen-today-april-2025.html#words
+- Q: Where do the Wen Open Lab models run?
+  A: On devnet, Solana's public test network
+  Why: Real-world use needs audits and legal checks; the Lab is for learning and testing.
+  Page: https://wen-watt.github.io/posts/the-wen-crypto-usefulness-of-the-wns-standard-for-cryptocurrency-implementation.html#limits
+- Q: Why save an archived copy of a forum thread you rely on?
+  A: Pages disappear; an archive keeps the record
+  Why: The Wayback Machine keeps copies of pages that may later vanish.
+  Page: https://wen-watt.github.io/posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html#find
+- Q: A forum post says "this partner is confirmed". What should you check?
+  A: The partner's own page or the official channel
+  Why: Without the partner's own word, it stays "reported".
+  Page: https://wen-watt.github.io/posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html#checking
+- Q: Which is a red flag in a forum post about a coin?
+  A: A new account posting about one topic only
+  Why: Often paid promotion; check the account's history.
+  Page: https://wen-watt.github.io/posts/reddit-com-and-the-cryptocurrency-section-were-looking-for-history-correctly.html#red
+- Q: What does a token's "active wallets" number not tell you?
+  A: Whether the activity is people or bots
+  Why: Automated trading and airdrop farming inflate activity counts.
+  Page: https://wen-watt.github.io/posts/new-in-cryptocurrency-market-october-2025-with-wen-crypto.html#traps
+- Q: In chart analysis, what is the "invalidation" level?
+  A: Where the analyst admits the idea was wrong
+  Why: The one place where an analysis admits its own limits.
+  Page: https://wen-watt.github.io/posts/wen-crypto-history-sep-2025-and-what-about-alt-season-2025.html#words
+- Q: Where does this almanac keep every external link it cites?
+  A: On one sources page, grouped by article
+  Why: Every article links to its own section of the sources page for open checking.
+  Page: https://wen-watt.github.io/sources.html
+- Q: What does the status "Reported · official X" mean in the trust chain?
+  A: Announced or repeated by Wen's official X account — check the channel yourself
+  Why: The official X account is Wen's most active primary channel.
+  Page: https://wen-watt.github.io/lab/trust.html#reported-x
+- Q: What makes a culture token like WEN different from a stock token?
+  A: Nothing outside the network stands behind it — its value is what people make of it
+  Why: Same rails, different promise: culture versus a claim on a company.
+  Page: https://wen-watt.github.io/posts/wen-prediction-and-price.html#diff
+
+## How Wen's usefulness connects people, machines, robots and calculation systems
+
+This is the almanac's own reading of the record, built only from the verified facts above.
+
+- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (250 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
+- **Machines.** WNS moves rules into the token itself (Token-2022 extensions): metadata, collections and royalties are enforced by programs, not by the goodwill of each app. A rule that lives in the token works the same in every wallet and marketplace.
+- **Robots and agents.** Machine-readable proofs travel with the token: a soulbound receipt or warranty card (Non-Transferable), an invoice whose terms the token enforces, a payment request a program can read (Solana Pay). Automated agents can check these on-chain without trusting a screenshot.
+- **Calculation systems.** Supply, authorities and burns are public data on the Solana ledger; anyone can recompute them on an explorer. The Lab's payment simulator compares card and on-chain fees with open formulas; its devnet run is reproducible.
+- **The pool of links.** People learn from the story, machines enforce the rules, agents read the proofs, ledgers keep the numbers — and every link points back to a source that a human can check. That loop is the usefulness the almanac records.
+
+## Optional
+
+- [Navigation: all 60 posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
+- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 250 quiz facts with question, answer, explanation and the page each comes from.
+- [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
+- [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.
+
