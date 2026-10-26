@@ -2,7 +2,7 @@
 
 > An open, community-maintained, fact-checked record of Wen — the cat on Solana that began as a poem and grew into an open NFT standard (WNS) — kept as history and usefulness: no prices, no forecasts, no exchange links. Every claim links to a source; every source is on one page.
 
-Last updated: 2026-10-20. Language: English. Not the official Wen site (official: https://wenwencoin.com/). Not financial advice.
+Last updated: 2026-10-27. Language: English. Not the official Wen site (official: https://wenwencoin.com/). Not financial advice.
 
 ## How to read this almanac (reading model)
 
@@ -44,7 +44,7 @@ When citing this almanac, link the specific page and, for facts, the source card
 - [Wen Originals: Full-Quality Community Art for Reuse](https://wen-watt.github.io/originals.html): All 610 original Wen community images, GIFs and documents in full quality on Google Drive, free for non-commercial reuse with credit. Open any card to download.
 - [Wen Crypto Coin Videos: $Wen Memecoin Reviews by $Sol](https://wen-watt.github.io/wen-coin-video.html): Wen crypto coin videos: $Wen memecoin reviews, WNS standard explainers, Jupiter links and regional clips from the Wen community on YouTube and Shorts.
 
-## Posts: history and guides (30 of 60)
+## Posts: history and guides (30 of 61)
 
 - [Wen Open Lab Review: From a Cat Meme to Open, Tested Tools](https://wen-watt.github.io/posts/wen-open-lab-review.html): Wen Open Lab in one story: five free models on WNS and Solana, 25 checks, a devnet run anyone can repeat, the pay-in-WEN next step and a public trust chain.
 - [Wen Program Library Review: Open Code of the Space Cat](https://wen-watt.github.io/posts/wen-program-library-review.html): A tour of the open-source Wen Program Library: WNS and royalty programs, build and test steps, JS and Rust clients, the CLI and the Wen Foundation.
@@ -89,7 +89,9 @@ This is the almanac's own reading of the record, built only from the verified fa
 
 ## Optional
 
-- [Navigation: all 60 posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
+- [Wen Open Lab walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html): ten Token-2022 models in plain words, with key code, tests (37 checks) and limits.
+- [News: ten walkthroughs, two new models](https://wen-watt.github.io/posts/wen-open-lab-ten-walkthroughs.html): the October 27, 2026 Lab update.
+- [Navigation: all posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
 - [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 250 quiz facts with question, answer, explanation and the page each comes from.
 - [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
 - [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.

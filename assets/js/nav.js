@@ -24,7 +24,8 @@
     ['payment-simulator.html', '5 · Simulator'],
     ['devnet.html', '6 · Devnet: repeat it'],
     ['trust.html', '&#10003; Trust chain'],
-    ['benefits.html', '&#9733; Benefits &amp; use']
+    ['benefits.html', '&#9733; Benefits &amp; use'],
+    ['walkthroughs.html', '&#9998; Ten walkthroughs']
   ];
   var path = (window.location && window.location.pathname) || '';
   var inLab = /\/lab\//.test(path);

@@ -2,7 +2,7 @@
 
 > An open, community-maintained, fact-checked record of Wen — the cat on Solana that began as a poem and grew into an open NFT standard (WNS) — kept as history and usefulness: no prices, no forecasts, no exchange links. Every claim links to a source; every source is on one page.
 
-Last updated: 2026-10-20. Language: English. Not the official Wen site (official: https://wenwencoin.com/). Not financial advice.
+Last updated: 2026-10-27. Language: English. Not the official Wen site (official: https://wenwencoin.com/). Not financial advice.
 
 ## How to read this almanac (reading model)
 
@@ -1048,7 +1048,9 @@ This is the almanac's own reading of the record, built only from the verified fa
 
 ## Optional
 
-- [Navigation: all 60 posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
+- [Wen Open Lab walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html): ten Token-2022 models in plain words, with key code, tests (37 checks) and limits.
+- [News: ten walkthroughs, two new models](https://wen-watt.github.io/posts/wen-open-lab-ten-walkthroughs.html): the October 27, 2026 Lab update.
+- [Navigation: all posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
 - [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 250 quiz facts with question, answer, explanation and the page each comes from.
 - [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
 - [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.
