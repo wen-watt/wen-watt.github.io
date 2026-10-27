@@ -1,4 +1,4 @@
-/* Wen quiz base: 250 questions. The first option is the correct one; options are shuffled at runtime.
+/* Wen quiz base: 260 questions. The first option is the correct one; options are shuffled at runtime.
    Facts come only from verified, primary or reported sources (see lab/trust.html). */
 window.WEN_QUIZ = [
  {
@@ -3000,5 +3000,125 @@ window.WEN_QUIZ = [
   ],
   "f": "Same rails, different promise: culture versus a claim on a company.",
   "l": "posts/wen-prediction-and-price.html#diff"
+ },
+ {
+  "lv": "tech",
+  "q": "What does the Lab's warranty card keep on-chain about the order?",
+  "o": [
+   "A SHA-256 hash of the order",
+   "The buyer's name and address",
+   "The card number",
+   "A photo of the receipt"
+  ],
+  "f": "The chain stores only a hash; the buyer keeps the order and can prove the match later, with no personal data on a public ledger.",
+  "l": "lab/walkthroughs.html#w1"
+ },
+ {
+  "lv": "tech",
+  "q": "Why does the Lab's receipt remove its mint authority after minting one token?",
+  "o": [
+   "So a second copy can never be minted",
+   "To lower the network fee",
+   "To hide who owns it",
+   "To switch on royalties"
+  ],
+  "f": "Zero decimals, supply 1 and no mint authority make a true one-of-one, the light-NFT layout WNS uses.",
+  "l": "lab/walkthroughs.html#w1"
+ },
+ {
+  "lv": "tech",
+  "q": "In the Lab's invoice token, why does every new account start frozen?",
+  "o": [
+   "The issuer must approve each counterparty first",
+   "To save storage",
+   "Because frozen tokens cost less",
+   "To stop the price from moving"
+  ],
+  "f": "Default Account State = Frozen: only accounts the issuer thaws after its own checks can send or receive.",
+  "l": "lab/walkthroughs.html#w2"
+ },
+ {
+  "lv": "safety",
+  "q": "Besides the hook's program, what should a buyer read from an NFT's transfer hook?",
+  "o": [
+   "Its authority: who can change the rule later",
+   "The NFT's price",
+   "The creator's email",
+   "The buyer's balance"
+  ],
+  "f": "The program is today's rule; the authority decides who can point the hook somewhere else tomorrow.",
+  "l": "lab/walkthroughs.html#w3"
+ },
+ {
+  "lv": "basic",
+  "q": "With Solana Pay, how does a shop find the payment for one order?",
+  "o": [
+   "By a random reference key unique to that order",
+   "By the buyer's name",
+   "By the amount alone",
+   "By the time of day"
+  ],
+  "f": "Each order gets a fresh reference key; the wallet adds it to the transfer, so the shop can find it on-chain.",
+  "l": "lab/walkthroughs.html#w4"
+ },
+ {
+  "lv": "safety",
+  "q": "Why must a shop call validateTransfer after findReference?",
+  "o": [
+   "Finding a transaction does not prove the right amount reached the right wallet",
+   "To speed up the network",
+   "To refund the buyer",
+   "It is only decoration"
+  ],
+  "f": "findReference only says a transaction mentions the key; validateTransfer checks recipient, amount, token, reference and memo.",
+  "l": "lab/walkthroughs.html#w4"
+ },
+ {
+  "lv": "tech",
+  "q": "What does LiteSVM do in Wen Open Lab's tests?",
+  "o": [
+   "Runs Solana programs locally, with no network",
+   "Mines SOL",
+   "Stores NFT pictures",
+   "Hosts the website"
+  ],
+  "f": "LiteSVM loads the real Token-2022 and Memo programs into the test process: the Lab's checks run in milliseconds, offline.",
+  "l": "lab/walkthroughs.html#w5"
+ },
+ {
+  "lv": "world",
+  "q": "In the Lab's fee simulator example, where does almost all of the on-chain cost sit?",
+  "o": [
+   "Converting the tokens to local money",
+   "The Solana network fee",
+   "Chargebacks",
+   "The card terminal"
+  ],
+  "f": "In the example the network part is 0.02 SOL for 2,000 payments a month; the 0.5% conversion is $400.",
+  "l": "lab/walkthroughs.html#w6"
+ },
+ {
+  "lv": "safety",
+  "q": "Which Token-2022 extension lets one key move or burn tokens from ANY holder?",
+  "o": [
+   "Permanent delegate",
+   "Metadata pointer",
+   "Non-transferable",
+   "Memo transfer"
+  ],
+  "f": "The Lab's token inspector flags it in plain words, so a holder knows the powers behind a token before receiving it.",
+  "l": "lab/walkthroughs.html#w8"
+ },
+ {
+  "lv": "basic",
+  "q": "Anyone can copy a token's name, ticker and logo. What can't be copied?",
+  "o": [
+   "Its mint address",
+   "Its ticker",
+   "Its picture",
+   "Its website design"
+  ],
+  "f": "The address is identity. The real WEN is WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk: search the address, not the name.",
+  "l": "lab/walkthroughs.html#w10"
  }
 ];

@@ -22,10 +22,10 @@
 <meta property="og:title" content="Wen Open Lab Walkthroughs: Ten Token-2022 Models Explained">
 <meta property="og:description" content="Ten Wen Open Lab walkthroughs: soulbound warranty cards, invoice payments, royalty hooks, Solana Pay, LiteSVM tests, a receipt verifier and a token inspector.">
 <meta property="og:url" content="https://wen-watt.github.io/lab/walkthroughs.html">
-<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-solana-memecoin-space-travel.jpeg">
-<meta property="og:image:alt" content="Wen cat travels through the Lab in space">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-memecoin-friends.jpeg">
+<meta property="og:image:alt" content="Wen cats celebrate open tools under fireworks">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-crypto-solana-memecoin-space-travel.jpeg">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-crypto-memecoin-friends.jpeg">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wen Open Lab Walkthroughs: Ten Token-2022 Models Explained", "description": "Ten Wen Open Lab walkthroughs: soulbound warranty cards, invoice payments, royalty hooks, Solana Pay, LiteSVM tests, a receipt verifier and a token inspector.", "url": "https://wen-watt.github.io/lab/walkthroughs.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
 <!-- seo:end -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -60,17 +60,17 @@
 
     <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html" aria-current="page">&#9998; · Ten walkthroughs</a></li></ul>
 
-    <figure><img src="../wen-media/wen-crypto-solana-memecoin-space-travel.jpeg" alt="Wen cat travels through the Lab in space" width="896" height="1344" style="max-height:520px;width:auto;margin:0 auto;"><figcaption>The Wen cat's journey through the Lab, one model at a time</figcaption></figure>
+    <figure><img src="../wen-media/wen-crypto-memecoin-friends.jpeg" alt="Wen cats celebrate open tools under fireworks" width="1200" height="992"><figcaption>The Wen cat's journey through the Lab, one model at a time</figcaption></figure>
 
     <p class="intro">Wen began as a poem split into a trillion tokens and grew into WNS, an open NFT standard on Solana's Token-2022. The Lab turns that heritage into small, tested tools. Wen was not made for a few: its standard, its code and its story are open to everyone, and every walkthrough below leads back to that source. This note gathers them into ten walkthroughs: each one starts with a "did you know", shows the few lines of code that matter, the test that proves them, who gains, and where the model stops. Two models are new today: a receipt verifier and a token inspector. 37 checks pass.</p>
 
     <nav aria-label="Contents" class="lab-box">
       <p style="margin:0 0 6px;color:var(--ink-dim);font-size:13px;letter-spacing:.06em;text-transform:uppercase;">The ten walkthroughs</p>
-      <ol style="margin:0;padding-left:20px;columns:2 250px;column-gap:28px;"><li><a href="#w1">A warranty card that lives in the wallet</a></li><li><a href="#w2">A payment that needs an invoice number</a></li><li><a href="#w3">A royalty rule inside the NFT</a></li><li><a href="#w4">One reference key per order</a></li><li><a href="#w5">Testing Token-2022 with no network</a></li><li><a href="#w6">Card fees and on-chain fees, in five formulas</a></li><li><a href="#w7">Checking a warranty card like a machine</a></li><li><a href="#w8">Reading any token like an auditor</a></li><li><a href="#w9">A devnet run anyone can repeat</a></li><li><a href="#w10">Search the address, not the name</a></li></ol>
+      <ol style="margin:0;padding-left:20px;columns:2 250px;column-gap:28px;"><li><a href="#w1">A warranty card that lives in the wallet</a></li><li><a href="#w2">A payment that needs an invoice number</a></li><li><a href="#w3">A royalty rule inside the NFT</a></li><li><a href="#w4">One reference key per order</a></li><li><a href="#w5">Testing Token-2022 with no network</a></li><li><a href="#w6">Card fees and on-chain fees, in five formulas</a></li><li><a href="#w7">Checking a warranty card like a machine</a></li><li><a href="#w8">Reading any token like an auditor</a></li><li><a href="#w9">A devnet run anyone can repeat</a></li><li><a href="#w10">Search the address, not the name</a></li><li><a href="#conclusion">What it means: from hidden to open</a></li></ol>
     </nav>
 
     <h2 id="w1">1 · A warranty card that lives in the wallet</h2>
-    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon1.jpg" alt="Wen cat with a soulbound warranty card in a crypto wallet" loading="lazy"><figcaption>A receipt that stays with the buyer</figcaption></figure>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon1.jpg" alt="Wen cat with a soulbound warranty card in a crypto wallet" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>A receipt that stays with the buyer</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>A warranty card can live in your wallet and refuse to be resold.</p>
@@ -97,7 +97,7 @@ PASS  M1 nobody can mint a second copy</code></pre>
     </div>
 
     <h2 id="w2">2 · A payment that needs an invoice number</h2>
-    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon2.jpg" alt="Wen cat checks an invoice before a token payment" loading="lazy"><figcaption>No invoice number, no payment</figcaption></figure>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon2.jpg" alt="Wen cat checks an invoice before a token payment" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>No invoice number, no payment</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>A payment can refuse to arrive without an invoice number.</p>
@@ -123,7 +123,7 @@ PASS  M3 fee cap works (fee on 100,000 is 50, not 250)</code></pre>
     </div>
 
     <h2 id="w3">3 · A royalty rule inside the NFT</h2>
-    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon3.jpg" alt="Wen cat reads the royalty rule of an NFT" loading="lazy"><figcaption>Read the rule before you move the token</figcaption></figure>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon3.jpg" alt="Wen cat reads the royalty rule of an NFT" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>Read the rule before you move the token</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>An NFT can carry its royalty rule inside the token.</p>
@@ -148,7 +148,7 @@ PASS  M2 hook program read from the mint = WNS royalty distribution</code></pre>
     </div>
 
     <h2 id="w4">4 · One reference key per order</h2>
-    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon4.jpg" alt="Wen cat matches a Solana Pay payment to its order" loading="lazy"><figcaption>Which order was that? The key knows</figcaption></figure>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon4.jpg" alt="Wen cat matches a Solana Pay payment to its order" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>Which order was that? The key knows</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>A small shop can match every payment to its order with no customer data.</p>
@@ -172,7 +172,7 @@ PASS  M4 every order gets a unique reference</code></pre>
     </div>
 
     <h2 id="w5">5 · Testing Token-2022 with no network</h2>
-    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon5.jpg" alt="Wen cat runs Token-2022 tests in a local Solana VM" loading="lazy"><figcaption>37 checks, one command, no network</figcaption></figure>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon5.jpg" alt="Wen cat runs Token-2022 tests in a local Solana VM" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>37 checks, one command, no network</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>A whole Solana runtime can run inside a test, in milliseconds.</p>
@@ -200,7 +200,7 @@ ALL CHECKS PASSED</code></pre>
     </div>
 
     <h2 id="w6">6 · Card fees and on-chain fees, in five formulas</h2>
-    <figure><img src="../wen-media/testing-jup-wen-solana.jpeg" alt="Wen network numbers on a world map" loading="lazy"><figcaption>Numbers instead of opinions</figcaption></figure>
+    <figure><img src="../wen-media/testing-jup-wen-solana.jpeg" alt="Wen network numbers on a world map" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>Numbers instead of opinions</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>On-chain, the network fee is usually the smallest part of the cost.</p>
@@ -223,7 +223,7 @@ calculation runs in the browser, nothing is sent</code></pre>
     </div>
 
     <h2 id="w7">7 · Checking a warranty card like a machine</h2>
-    <figure><img src="../wen-media/wen-space-crypto-cat.jpeg" alt="Wen cat in a space suit verifying a card" loading="lazy"><figcaption>Eight questions, one RPC call</figcaption></figure>
+    <figure><img src="../wen-media/wen-space-crypto-cat.jpeg" alt="Wen cat in a space suit verifying a card" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>Eight questions, one RPC call</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>A repair shop can verify a warranty card in one second, from public data only.</p>
@@ -252,7 +252,7 @@ PASS  M5 a transferable (not soulbound) card is flagged</code></pre>
     </div>
 
     <h2 id="w8">8 · Reading any token like an auditor</h2>
-    <figure><img src="../wen-media/new-crypto-standarts-wen-1.jpeg" alt="Wen cat next to the open Wen Program Library code" loading="lazy"><figcaption>Who can still mint, freeze or move your tokens?</figcaption></figure>
+    <figure><img src="../wen-media/new-crypto-standarts-wen-1.jpeg" alt="Wen cat next to the open Wen Program Library code" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>Who can still mint, freeze or move your tokens?</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>Some tokens let one key move or burn tokens from any holder.</p>
@@ -281,7 +281,7 @@ PASS  M6 a wallet address is refused, not parsed as a mint</code></pre>
     </div>
 
     <h2 id="w9">9 · A devnet run anyone can repeat</h2>
-    <figure><img src="../wen-media/wen-ufo-style-coin.jpeg" alt="Wen cat in a park with a UFO overhead" loading="lazy"><figcaption>From a throwaway wallet to Explorer links</figcaption></figure>
+    <figure><img src="../wen-media/wen-ufo-style-coin.jpeg" alt="Wen cat in a park with a UFO overhead" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>From a throwaway wallet to Explorer links</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>You can repeat the Lab's models on a public network with a wallet that holds nothing of value.</p>
@@ -304,7 +304,7 @@ payment WITHOUT invoice number was rejected, as designed</code></pre>
     </div>
 
     <h2 id="w10">10 · Search the address, not the name</h2>
-    <figure><img src="../wen-media/wen-crypto-memecoin-solana-ecosystem-angel.jpeg" alt="Wen cat on a cliff looking out carefully" loading="lazy"><figcaption>Names can be copied; the address cannot</figcaption></figure>
+    <figure><img src="../wen-media/wen-crypto-memecoin-solana-ecosystem-angel.jpeg" alt="Wen cat on a cliff looking out carefully" loading="lazy" style="max-height:600px;width:auto;margin:0 auto;"><figcaption>Names can be copied; the address cannot</figcaption></figure>
     <aside class="wen-note" aria-label="Did you know?">
       <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
       <p><span class="wen-note-kicker">Did you know? · Wen</span>Anyone can create a token with the same name, ticker and logo as a real one.</p>
@@ -327,6 +327,21 @@ the same check runs before every model</code></pre>
       <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>A correct address does not make a token a good idea; it only makes it the real one.</li><li>Official sources can be impersonated too: cross-check at least two.</li></ul>
       <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="../sources.html#tab-official">Official sources</a> · Full walkthrough on Hashnode: <em>coming soon</em></p>
     </div>
+
+
+    <h2 id="conclusion">What it means: from hidden to open</h2>
+    <h3>For people who work with money, code and transactions</h3>
+    <p>For decades the rules of commerce lived out of sight: in a card processor's contract, a marketplace's policy, a back office that matches payments by hand. The ten walkthroughs show the same rules moving into the token itself, where anyone can read them: who may hold it, what a transfer costs, which invoice it pays, who earns a royalty, whether a card is genuine. In the almanac's reading, this is where Wen stops being only a meme and works as a ready, open mechanism: a standard (WNS) that came out of its community, code that anyone may use under Apache-2.0, and one public address to anchor it. What used to be hidden in private systems becomes open, checkable infrastructure. That is a view, not a forecast; the models show the mechanics, and the tests show they work.</p>
+    <h3>For everyone else</h3>
+    <p>You do not need to write code to use what these models describe. The same ideas apply anywhere in the world:</p>
+    <ul>
+      <li><strong>Shopping:</strong> a receipt and warranty that live in your wallet and cannot be lost or faked.</li>
+      <li><strong>Work and business:</strong> payments between companies that always carry their invoice number.</li>
+      <li><strong>Art, music and photos:</strong> royalties that travel with the work instead of depending on each platform.</li>
+      <li><strong>Small shops and markets:</strong> payments matched to orders with no card numbers and no personal data collected.</li>
+      <li><strong>Everyday safety:</strong> checking a token by its address and reading its powers before you trust it.</li>
+    </ul>
+    <p><strong>Why Wen is unique.</strong> Wen began as a poem shared with more than a million wallets, not as a product sold to them. Its standard was proposed in public and its code is open to everyone; its launch was a live test that Solana passed in front of all; and the one real WEN is a single address anyone can check. Many tokens have a story. Wen left something everyone can use, which is why every walkthrough here leads back to it.</p>
 
     <h2 id="published">Where the full walkthroughs live</h2>
     <p>Each walkthrough is also written out in full for developers on dev.to and Hashnode, one at a time. This table is updated as they appear.</p>

@@ -14,7 +14,7 @@ The one real WEN is the Solana mint `WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk
 | [Sources and verification](https://wen-watt.github.io/sources.html) | every external link of the almanac on one page, grouped by post, plus official and community tabs |
 | [Trust chain](https://wen-watt.github.io/lab/trust.html) | each claim marked verified, reported or unverified |
 | [Wen Open Lab](https://wen-watt.github.io/lab/index.html) | free models on WNS and Token-2022 — receipts and warranty cards, creator royalties, B2B invoices, a payments bridge, a payment simulator — with a devnet run anyone can repeat; [ten walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html) explain them in plain words |
-| [Quiz](https://wen-watt.github.io/quiz.html) | 250 checked questions: history, technology, safety and cat folklore |
+| [Quiz](https://wen-watt.github.io/quiz.html) | 260 checked questions: history, technology, safety and cat folklore |
 | [Image stories](https://wen-watt.github.io/image-story/index.html) | 250 community pictures, each with one checked fact |
 | [Wen Media](https://wen-watt.github.io/wen-media.html) | the community picture archive, with full-quality originals for non-commercial reuse |
 

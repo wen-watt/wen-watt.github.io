@@ -24,7 +24,7 @@ When citing this almanac, link the specific page and, for facts, the source card
 - [SPL Solana Program Library, Token-2022 and WNS Explained](https://wen-watt.github.io/spl-solana-program-library-token-2022-wns.html): SPL Token, Token-2022 extensions and the WNS standard explained layer by layer, with what each does in the market and how WEN proved it under load.
 - [Who Speaks Here: Wen Almanac Editorial and Cookie Policy](https://wen-watt.github.io/sources.html): Wen speaks for the community: public sources only, a subjective model you can check against every link, no tracking, no cookies of our own.
 - [Trust Chain: How Wen Open Lab Checks Every Claim About Wen](https://wen-watt.github.io/lab/trust.html): The Wen Open Lab trust chain: every key claim about Wen, WNS and the Lab with its status (verified, primary, reported, opinion, unverified) and sources.
-- [Wen Quiz: What Do You Know About the Wen Cat and $WEN?](https://wen-watt.github.io/quiz.html): Take the Wen quiz: 10 random questions from a base of 250, from fun cat trivia to Solana safety, with a speed bonus and a knowledge card for every miss.
+- [Wen Quiz: What Do You Know About the Wen Cat and $WEN?](https://wen-watt.github.io/quiz.html): Take the Wen quiz: 10 random questions from a base of 260, from fun cat trivia to Solana safety, with a speed bonus and a knowledge card for every miss.
 
 ## Wen Open Lab: usefulness you can test
 
@@ -48,7 +48,7 @@ When citing this almanac, link the specific page and, for facts, the source card
 
 - [Wen Open Lab Review: From a Cat Meme to Open, Tested Tools](https://wen-watt.github.io/posts/wen-open-lab-review.html): Wen Open Lab in one story: five free models on WNS and Solana, 25 checks, a devnet run anyone can repeat, the pay-in-WEN next step and a public trust chain.
 - [Wen Program Library Review: Open Code of the Space Cat](https://wen-watt.github.io/posts/wen-program-library-review.html): A tour of the open-source Wen Program Library: WNS and royalty programs, build and test steps, JS and Rust clients, the CLI and the Wen Foundation.
-- [What Do You Know About Wen? A Quiz on Why Wen Is Useful](https://wen-watt.github.io/posts/wen-quiz-review.html): The Wen quiz explained: ten random questions from a base of 250, a speed bonus, a knowledge card for every miss, and what it shows about why Wen is useful.
+- [What Do You Know About Wen? A Quiz on Why Wen Is Useful](https://wen-watt.github.io/posts/wen-quiz-review.html): The Wen quiz explained: ten random questions from a base of 260, a speed bonus, a knowledge card for every miss, and what it shows about why Wen is useful.
 - [Solana WNS Roadmap: a Meme Cat Poem and Real-World Assets](https://wen-watt.github.io/posts/solanas-wns-roadmap-how-a-meme-cat-poem.html): How a viral cat poem became the test bed for Solana's Token-2022 and WNS stack, and why RWA issuers now look at it for compliant tokenization by 2030.
 - [WNS, Token-2022 and Solana Economics: WEN and Shinhan](https://wen-watt.github.io/posts/wns-w-token-2022-and-economic-solana-wen.html): Shinhan Asset Management picks Solana for a tokenized KRW fund. How Token-2022, the WNS standard and the WEN stress test connect to Korea's CBDC plans.
 - [Solana Token-2022 and WEN: Compliance and Testing Guide](https://wen-watt.github.io/posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html): Transfer Hooks, Permanent Delegate, Default Account State and Memo Transfers explained, plus how the WEN airdrop field-tested Token-2022 at scale.
@@ -81,7 +81,7 @@ When citing this almanac, link the specific page and, for facts, the source card
 
 This is the almanac's own reading of the record, built only from the verified facts above.
 
-- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (250 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
+- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (260 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
 - **Machines.** WNS moves rules into the token itself (Token-2022 extensions): metadata, collections and royalties are enforced by programs, not by the goodwill of each app. A rule that lives in the token works the same in every wallet and marketplace.
 - **Robots and agents.** Machine-readable proofs travel with the token: a soulbound receipt or warranty card (Non-Transferable), an invoice whose terms the token enforces, a payment request a program can read (Solana Pay). Automated agents can check these on-chain without trusting a screenshot.
 - **Calculation systems.** Supply, authorities and burns are public data on the Solana ledger; anyone can recompute them on an explorer. The Lab's payment simulator compares card and on-chain fees with open formulas; its devnet run is reproducible.
@@ -92,6 +92,6 @@ This is the almanac's own reading of the record, built only from the verified fa
 - [Wen Open Lab walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html): ten Token-2022 models in plain words, with key code, tests (37 checks) and limits.
 - [News: ten walkthroughs, two new models](https://wen-watt.github.io/posts/wen-open-lab-ten-walkthroughs.html): the October 27, 2026 Lab update.
 - [Navigation: all posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
-- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 250 quiz facts with question, answer, explanation and the page each comes from.
+- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 260 quiz facts with question, answer, explanation and the page each comes from.
 - [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
 - [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.

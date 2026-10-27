@@ -41,7 +41,7 @@
   var sidebarHTML = ''
     + '<aside class="sidebar" id="site-menu" aria-label="Site menu">'
     + '  <button type="button" class="m-close" aria-label="Close menu">&times;</button>'
-    + '  <a class="brand" href="' + p + 'lab/index.html"><img class="brand-logo" src="' + p + 'assets/icons/wen-logo-96.png" width="40" height="40" alt="Wen cat logo, the Wen Almanac sign"><span class="brand-text"><span class="brand-name">Wen <span>Almanac</span></span><small class="brand-tag">open your mind</small></span></a>'
+    + '  <a class="brand" href="' + p + 'index.html"><img class="brand-logo" src="' + p + 'assets/icons/wen-logo-96.png" width="40" height="40" alt="Wen cat logo, the Wen Almanac sign"><span class="brand-text"><span class="brand-name">Wen <span>Almanac</span></span><small class="brand-tag">open your mind</small></span></a>'
 
     + '  <div class="sidebar-intro">'
     + '    <p class="intro-line">'
@@ -175,7 +175,7 @@
     var head = document.createElement('div');
     head.className = 'm-head';
     head.innerHTML = '<div class="m-bar">'
-      + '<a class="m-brand" href="' + p + 'lab/index.html"><img src="' + p + 'assets/icons/wen-logo-96.png" width="34" height="34" alt="Wen cat logo"><span>Wen <span>Almanac</span></span></a>'
+      + '<a class="m-brand" href="' + p + 'index.html"><img src="' + p + 'assets/icons/wen-logo-96.png" width="34" height="34" alt="Wen cat logo"><span>Wen <span>Almanac</span></span></a>'
       + '<button type="button" class="m-burger" aria-controls="site-menu" aria-expanded="false"><span class="m-lines" aria-hidden="true"></span>Menu</button>'
       + '</div>'
       + '<nav class="m-crumbs" aria-label="You are here">' + crumbs + '</nav>';

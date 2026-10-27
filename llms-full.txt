@@ -16,7 +16,7 @@ Last updated: 2026-10-27. Language: English. Not the official Wen site (official
 When citing this almanac, link the specific page and, for facts, the source card on https://wen-watt.github.io/sources.html.
 
 
-## Checked facts (250)
+## Checked facts (260)
 
 Each fact: question, correct answer, explanation, page. Source cards for every page are on https://wen-watt.github.io/sources.html.
 
@@ -486,6 +486,14 @@ Each fact: question, correct answer, explanation, page. Source cards for every p
   A: 308 to 122
   Why: 294–134 was the House vote for CLARITY the same day.
   Page: https://wen-watt.github.io/posts/today-cryptocurrency-market.html#week
+- Q: With Solana Pay, how does a shop find the payment for one order?
+  A: By a random reference key unique to that order
+  Why: Each order gets a fresh reference key; the wallet adds it to the transfer, so the shop can find it on-chain.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w4
+- Q: Anyone can copy a token's name, ticker and logo. What can't be copied?
+  A: Its mint address
+  Why: The address is identity. The real WEN is WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk: search the address, not the name.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w10
 
 ### Technology
 
@@ -681,6 +689,22 @@ Each fact: question, correct answer, explanation, page. Source cards for every p
   A: Shift4
   Why: Chainlink verifies the order; zerohash handles compliance; XSwap supplies liquidity.
   Page: https://wen-watt.github.io/posts/mastercard-visa-with-crypto.html#news
+- Q: What does the Lab's warranty card keep on-chain about the order?
+  A: A SHA-256 hash of the order
+  Why: The chain stores only a hash; the buyer keeps the order and can prove the match later, with no personal data on a public ledger.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w1
+- Q: Why does the Lab's receipt remove its mint authority after minting one token?
+  A: So a second copy can never be minted
+  Why: Zero decimals, supply 1 and no mint authority make a true one-of-one, the light-NFT layout WNS uses.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w1
+- Q: In the Lab's invoice token, why does every new account start frozen?
+  A: The issuer must approve each counterparty first
+  Why: Default Account State = Frozen: only accounts the issuer thaws after its own checks can send or receive.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w2
+- Q: What does LiteSVM do in Wen Open Lab's tests?
+  A: Runs Solana programs locally, with no network
+  Why: LiteSVM loads the real Token-2022 and Memo programs into the test process: the Lab's checks run in milliseconds, offline.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w5
 
 ### World and history
 
@@ -904,6 +928,10 @@ Each fact: question, correct answer, explanation, page. Source cards for every p
   A: More than 50
   Why: Shipping began on August 4, 2025.
   Page: https://wen-watt.github.io/posts/what-is-wen-coin-price-one-coin-of-wen-historical-2025.html#seeker
+- Q: In the Lab's fee simulator example, where does almost all of the on-chain cost sit?
+  A: Converting the tokens to local money
+  Why: In the example the network part is 0.02 SOL for 2,000 payments a month; the 0.5% conversion is $400.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w6
 
 ### Safety and verification
 
@@ -1035,12 +1063,24 @@ Each fact: question, correct answer, explanation, page. Source cards for every p
   A: Nothing outside the network stands behind it — its value is what people make of it
   Why: Same rails, different promise: culture versus a claim on a company.
   Page: https://wen-watt.github.io/posts/wen-prediction-and-price.html#diff
+- Q: Besides the hook's program, what should a buyer read from an NFT's transfer hook?
+  A: Its authority: who can change the rule later
+  Why: The program is today's rule; the authority decides who can point the hook somewhere else tomorrow.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w3
+- Q: Why must a shop call validateTransfer after findReference?
+  A: Finding a transaction does not prove the right amount reached the right wallet
+  Why: findReference only says a transaction mentions the key; validateTransfer checks recipient, amount, token, reference and memo.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w4
+- Q: Which Token-2022 extension lets one key move or burn tokens from ANY holder?
+  A: Permanent delegate
+  Why: The Lab's token inspector flags it in plain words, so a holder knows the powers behind a token before receiving it.
+  Page: https://wen-watt.github.io/lab/walkthroughs.html#w8
 
 ## How Wen's usefulness connects people, machines, robots and calculation systems
 
 This is the almanac's own reading of the record, built only from the verified facts above.
 
-- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (250 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
+- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (260 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
 - **Machines.** WNS moves rules into the token itself (Token-2022 extensions): metadata, collections and royalties are enforced by programs, not by the goodwill of each app. A rule that lives in the token works the same in every wallet and marketplace.
 - **Robots and agents.** Machine-readable proofs travel with the token: a soulbound receipt or warranty card (Non-Transferable), an invoice whose terms the token enforces, a payment request a program can read (Solana Pay). Automated agents can check these on-chain without trusting a screenshot.
 - **Calculation systems.** Supply, authorities and burns are public data on the Solana ledger; anyone can recompute them on an explorer. The Lab's payment simulator compares card and on-chain fees with open formulas; its devnet run is reproducible.
@@ -1051,7 +1091,7 @@ This is the almanac's own reading of the record, built only from the verified fa
 - [Wen Open Lab walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html): ten Token-2022 models in plain words, with key code, tests (37 checks) and limits.
 - [News: ten walkthroughs, two new models](https://wen-watt.github.io/posts/wen-open-lab-ten-walkthroughs.html): the October 27, 2026 Lab update.
 - [Navigation: all posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
-- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 250 quiz facts with question, answer, explanation and the page each comes from.
+- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 260 quiz facts with question, answer, explanation and the page each comes from.
 - [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
 - [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.
 
