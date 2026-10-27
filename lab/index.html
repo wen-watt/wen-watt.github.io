@@ -31,7 +31,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261020">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
 </head>
 <body>
 <div class="space"></div>
@@ -58,7 +58,7 @@
     <p class="meta">Wen Open Lab · open integration</p>
     <h1>Wen Open Lab: Open Integration<span class="lab-badge">Stage 0 · Roadmap</span></h1>
 
-    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html" aria-current="page">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li></ul>
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html" aria-current="page">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html">&#9998; · Ten walkthroughs</a></li></ul>
 
     <figure><img src="../wen-media/wen-crypto-space-coin-solana.jpeg" alt="Wen space coin over Solana" width="1200" height="675"><figcaption>From story to tools: the Lab begins</figcaption></figure>
 
@@ -90,6 +90,7 @@
       <li class="done"><strong>★ · <a href="benefits.html">Benefits and use</a>.</strong> Who gains what, where it fits, and where it does not. <span class="lab-badge">live</span></li>
       <li class="done"><strong>6 · <a href="devnet.html">Devnet: repeat it yourself</a>.</strong> A published script runs Models 1 and 3 on public devnet and prints explorer links. Anyone can repeat it with a new, empty wallet. <span class="lab-badge">ready to run</span></li>
       <li class="done"><strong>✓ · <a href="trust.html">Trust chain</a>.</strong> Every key claim with its status and sources: verified, reported, opinion, unverified or conflicting. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>&#9998; · <a href="walkthroughs.html">Ten walkthroughs</a>.</strong> The Lab in plain words: ten "did you know" walkthroughs with key code, tests and limits; new Models 5 (receipt verifier) and 6 (token inspector). <span class="lab-badge">37 checks passed</span></li>
       <li class="next"><strong>6b · Public devnet run.</strong> Run the script in public and publish the addresses on the devnet page. <span class="lab-badge">next</span></li>
       <li class="next"><strong>7 · Pay in WEN, the shop receives USDC.</strong> The buyer pays in WEN, a Jupiter swap in the same transaction converts it, the shop receives a stablecoin. Builds on Stage 4. <span class="lab-badge">next model</span></li>
       <li class="next"><strong>8 · WNS group registration.</strong> Add receipts to a WNS collection through the official program, built from the official repository's IDL. <span class="lab-badge">planned</span></li>
@@ -125,7 +126,18 @@ PASS  M2 NFT mint created with a transfer hook
 PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
 PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
 PASS  M4 every order gets a unique reference
-
+PASS  M5 genuine soulbound card passes every check  — 8 checks
+PASS  M5 a different order is rejected (hash mismatch)  — order hash matches the buyer&#x27;s order
+PASS  M5 a card from another issuer is rejected  — issued by the expected shop (update authority)
+PASS  M5 an expired warranty is rejected  — warranty still valid
+PASS  M5 a wallet that does not hold the card is rejected  — held by the expected wallet
+PASS  M5 a transferable (not soulbound) card is flagged  — soulbound: NonTransferable extension present
+PASS  M6 classic SPL mint: no extensions, both authorities reported  — Mint authority is set / Freeze authority is set
+PASS  M6 Token-2022 mint created with permanent delegate and transfer fee
+PASS  M6 permanent delegate is flagged for holders
+PASS  M6 transfer fee is read from the mint (1% capped)  — PermanentDelegate, TransferFeeConfig
+PASS  M6 removed authorities are reported as none
+PASS  M6 a wallet address is refused, not parsed as a mint
 ALL CHECKS PASSED</code></pre>
     <p>Two real pitfalls were found while building, which is exactly why the rule is "verify your own model": the npm package <code>@wen-community/wen-new-standard</code> has been removed as malicious, and recent versions of <code>@solana/spl-memo</code> point to a different memo program than the canonical one Token-2022 checks. Both are handled in the code.</p>
 
@@ -204,7 +216,7 @@ npm test            # local Solana VM, no network, no real funds</code></pre>
   </main>
 </div>
 
-<script src="../assets/js/main.js?v=20261020"></script>
-<script src="../assets/js/nav.js?v=20261020" data-prefix="../"></script>
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
 </body>
 </html>

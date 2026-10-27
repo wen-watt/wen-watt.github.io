@@ -23,5 +23,16 @@ PASS  M2 NFT mint created with a transfer hook
 PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
 PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
 PASS  M4 every order gets a unique reference
-
+PASS  M5 genuine soulbound card passes every check  — 8 checks
+PASS  M5 a different order is rejected (hash mismatch)  — order hash matches the buyer's order
+PASS  M5 a card from another issuer is rejected  — issued by the expected shop (update authority)
+PASS  M5 an expired warranty is rejected  — warranty still valid
+PASS  M5 a wallet that does not hold the card is rejected  — held by the expected wallet
+PASS  M5 a transferable (not soulbound) card is flagged  — soulbound: NonTransferable extension present
+PASS  M6 classic SPL mint: no extensions, both authorities reported  — Mint authority is set / Freeze authority is set
+PASS  M6 Token-2022 mint created with permanent delegate and transfer fee
+PASS  M6 permanent delegate is flagged for holders
+PASS  M6 transfer fee is read from the mint (1% capped)  — PermanentDelegate, TransferFeeConfig
+PASS  M6 removed authorities are reported as none
+PASS  M6 a wallet address is refused, not parsed as a mint
 ALL CHECKS PASSED

@@ -12,7 +12,9 @@ use devnet first, read the official docs, and get an audit before mainnet.**
 | `src/02-royalty-transfer.ts` | Read the royalty hook of an NFT and transfer it with the hook |
 | `src/03-b2b-invoice.ts` | B2B settlement token: fee, approved counterparties, invoice memo |
 | `src/04-solana-pay-bridge.ts` | E-commerce payment link + payment watcher + webhook |
-| `test/run-litesvm.ts` | Runs the models inside LiteSVM (local Solana VM, no network) |
+| `src/05-verify-receipt.ts` | Verify a receipt card like a machine: issuer, one-of-one, soulbound, holder, order hash, warranty date |
+| `src/06-inspect-mint.ts` | Read any mint like an auditor: program, authorities, extensions, plain-language notes for holders |
+| `test/run-litesvm.ts` | Runs Models 1–6 inside LiteSVM (local Solana VM, no network) |
 | `test/results.txt` | Output of the last run |
 
 ```bash

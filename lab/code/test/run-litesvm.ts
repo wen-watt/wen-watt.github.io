@@ -1,4 +1,4 @@
-// Runs Models 1 and 3 inside LiteSVM (a local Solana VM with the real SPL Token-2022 and Memo programs).
+// Runs Models 1-6 inside LiteSVM (a local Solana VM with the real SPL Token-2022 and Memo programs).
 // No network needed. Each check prints PASS or FAIL.
 import { LiteSVM, FailedTransactionMetadata } from 'litesvm';
 import { parseURL } from '@solana/pay';
@@ -10,9 +10,13 @@ import {
   ExtensionType, TOKEN_2022_PROGRAM_ID, createAssociatedTokenAccountIdempotentInstruction, createMintToInstruction,
   createTransferCheckedInstruction, getAssociatedTokenAddressSync, getExtensionData, unpackAccount, unpackMint,
   getMintLen, createInitializeTransferHookInstruction, createInitializeMintInstruction, getTransferHook,
+  MINT_SIZE, TOKEN_PROGRAM_ID, AuthorityType, createSetAuthorityInstruction, createInitializePermanentDelegateInstruction,
+  createInitializeTransferFeeConfigInstruction,
 } from '@solana/spl-token';
 import { unpack as unpackMetadata } from '@solana/spl-token-metadata';
 import { buildReceiptInstructions, receiptLayout, orderHash, type Order } from '../src/01-receipt-nft.js';
+import { verifyReceipt } from '../src/05-verify-receipt.js';
+import { inspectMint } from '../src/06-inspect-mint.js';
 import {
   buildApproveCounterparty, buildInvoiceAccount, buildPayInvoice, buildSettlementMint, expectedFee,
   invoiceAccountSpace, settlementMintSpace, DECIMALS,
@@ -142,6 +146,74 @@ function account(pk: PublicKey) {
     (parsed.reference?.[0] ?? parsed.reference) === req.reference && parsed.memo === 'order:A-1001', req.url.slice(0, 60) + '…');
   const req2 = await createPaymentRequest('A-1002', ACCEPTED.WEN_MAINNET, 5, ACCEPTED.USDC_MAINNET);
   check('M4 every order gets a unique reference', req2.reference !== req.reference);
+}
+
+// ---------- Model 5: verify a receipt like a machine ----------
+{
+  const merchant = Keypair.generate(), buyer = Keypair.generate(), stranger = Keypair.generate();
+  [merchant, buyer].forEach(fund);
+  const order: Order = { orderId: 'A-2001', sku: 'WEN-PLUSH-02', priceMinorUnits: 1900, currency: 'USD', purchasedAt: '2026-10-10T00:00:00.000Z', warrantyMonths: 12 };
+  const issue = (soulbound: boolean) => {
+    const mint = Keypair.generate();
+    const opts = { soulbound, uri: 'https://example.com/receipts/A-2001.json' };
+    const { rentSpace } = receiptLayout(order, mint.publicKey, merchant.publicKey, opts);
+    const { instructions, buyerAta } = buildReceiptInstructions({ order, mint: mint.publicKey, merchant: merchant.publicKey, buyer: buyer.publicKey, opts, rentLamports: rent(rentSpace) });
+    const r = send(instructions, [merchant, mint]);
+    if (!r.ok) throw new Error(r.err);
+    return { mint: mint.publicKey, ata: buyerAta };
+  };
+  const info = (pk: PublicKey) => { try { return account(pk) as any; } catch { return null; } };
+  const run = (c: { mint: PublicKey; ata: PublicKey }, exp: any, ata = c.ata) => verifyReceipt(c.mint, info(c.mint), ata, info(ata), exp);
+  const failed = (r: { checks: { name: string; ok: boolean }[] }) => r.checks.filter(x => !x.ok).map(x => x.name).join('; ');
+
+  const card = issue(true);
+  const good = run(card, { merchant: merchant.publicKey, holder: buyer.publicKey, order, today: '2026-11-01' });
+  check('M5 genuine soulbound card passes every check', good.valid, `${good.checks.length} checks`);
+  const r1 = run(card, { merchant: merchant.publicKey, holder: buyer.publicKey, order: { ...order, priceMinorUnits: 1 }, today: '2026-11-01' });
+  check('M5 a different order is rejected (hash mismatch)', !r1.valid, failed(r1));
+  const r2 = run(card, { merchant: stranger.publicKey, holder: buyer.publicKey, today: '2026-11-01' });
+  check('M5 a card from another issuer is rejected', !r2.valid, failed(r2));
+  const r3 = run(card, { merchant: merchant.publicKey, holder: buyer.publicKey, today: '2027-12-01' });
+  check('M5 an expired warranty is rejected', !r3.valid, failed(r3));
+  const strangerAta = getAssociatedTokenAddressSync(card.mint, stranger.publicKey, false, TOKEN_2022_PROGRAM_ID);
+  const r4 = run(card, { merchant: merchant.publicKey, holder: stranger.publicKey, today: '2026-11-01' }, strangerAta);
+  check('M5 a wallet that does not hold the card is rejected', !r4.valid, failed(r4));
+  const loose = issue(false);
+  const r5 = run(loose, { merchant: merchant.publicKey, holder: buyer.publicKey, today: '2026-11-01' });
+  check('M5 a transferable (not soulbound) card is flagged', !r5.valid, failed(r5));
+}
+
+// ---------- Model 6: inspect any mint like an auditor ----------
+{
+  const issuer = Keypair.generate(), delegate = Keypair.generate(); fund(issuer);
+  const info = (pk: PublicKey) => account(pk) as any;
+  // a) classic SPL token, mint and freeze authority kept
+  const classic = Keypair.generate();
+  let r = send([
+    SystemProgram.createAccount({ fromPubkey: issuer.publicKey, newAccountPubkey: classic.publicKey, space: MINT_SIZE, lamports: rent(MINT_SIZE), programId: TOKEN_PROGRAM_ID }),
+    createInitializeMintInstruction(classic.publicKey, 6, issuer.publicKey, issuer.publicKey, TOKEN_PROGRAM_ID),
+  ], [issuer, classic]);
+  const a = inspectMint(classic.publicKey, info(classic.publicKey));
+  check('M6 classic SPL mint: no extensions, both authorities reported', r.ok && a.program === 'classic-spl' && a.extensions.length === 0 && a.notes.length === 2,
+    a.notes.map(n => n.split(':')[0]).join(' / '));
+  // b) Token-2022 mint with a permanent delegate and a transfer fee, authorities removed
+  const risky = Keypair.generate();
+  const space = getMintLen([ExtensionType.PermanentDelegate, ExtensionType.TransferFeeConfig]);
+  r = send([
+    SystemProgram.createAccount({ fromPubkey: issuer.publicKey, newAccountPubkey: risky.publicKey, space, lamports: rent(space), programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializePermanentDelegateInstruction(risky.publicKey, delegate.publicKey, TOKEN_2022_PROGRAM_ID),
+    createInitializeTransferFeeConfigInstruction(risky.publicKey, issuer.publicKey, issuer.publicKey, 100, 1_000_000n, TOKEN_2022_PROGRAM_ID),
+    createInitializeMintInstruction(risky.publicKey, 6, issuer.publicKey, null, TOKEN_2022_PROGRAM_ID),
+    createSetAuthorityInstruction(risky.publicKey, issuer.publicKey, AuthorityType.MintTokens, null, [], TOKEN_2022_PROGRAM_ID),
+  ], [issuer, risky]);
+  const b = inspectMint(risky.publicKey, info(risky.publicKey));
+  check('M6 Token-2022 mint created with permanent delegate and transfer fee', r.ok, r.ok ? '' : r.err);
+  check('M6 permanent delegate is flagged for holders', b.notes.some(n => n.includes('ANY holder') && n.includes(delegate.publicKey.toBase58())));
+  check('M6 transfer fee is read from the mint (1% capped)', b.notes.some(n => n.startsWith('Transfer fee: 1%')), b.extensions.join(', '));
+  check('M6 removed authorities are reported as none', b.mintAuthority === null && b.freezeAuthority === null);
+  // c) a non-mint account is refused
+  let refused = false; try { inspectMint(issuer.publicKey, info(issuer.publicKey)); } catch { refused = true; }
+  check('M6 a wallet address is refused, not parsed as a mint', refused);
 }
 
 console.log(failures === 0 ? '\nALL CHECKS PASSED' : `\n${failures} CHECK(S) FAILED`);

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Open Lab Walkthroughs: Ten Token-2022 Models Explained</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/walkthroughs.html">
+<meta name="description" content="Ten Wen Open Lab walkthroughs: soulbound warranty cards, invoice payments, royalty hooks, Solana Pay, LiteSVM tests, a receipt verifier and a token inspector.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Open Lab, walkthroughs, Token-2022, WNS, soulbound token, transfer hook, Solana Pay, LiteSVM, token verifier, Wen">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Open Lab Walkthroughs: Ten Token-2022 Models Explained">
+<meta property="og:description" content="Ten Wen Open Lab walkthroughs: soulbound warranty cards, invoice payments, royalty hooks, Solana Pay, LiteSVM tests, a receipt verifier and a token inspector.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/walkthroughs.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-solana-memecoin-space-travel.jpeg">
+<meta property="og:image:alt" content="Wen cat travels through the Lab in space">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-crypto-solana-memecoin-space-travel.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Wen Open Lab Walkthroughs: Ten Token-2022 Models Explained", "description": "Ten Wen Open Lab walkthroughs: soulbound warranty cards, invoice payments, royalty hooks, Solana Pay, LiteSVM tests, a receipt verifier and a token inspector.", "url": "https://wen-watt.github.io/lab/walkthroughs.html", "inLanguage": "en", "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+        <article>
+    <p class="meta">Wen Open Lab · open integration · October 27, 2026</p>
+    <h1>Ten Walkthroughs: the Lab in Plain Words<span class="lab-badge">&#9998;</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html" aria-current="page">&#9998; · Ten walkthroughs</a></li></ul>
+
+    <figure><img src="../wen-media/wen-crypto-solana-memecoin-space-travel.jpeg" alt="Wen cat travels through the Lab in space" width="896" height="1344" style="max-height:520px;width:auto;margin:0 auto;"><figcaption>The Wen cat's journey through the Lab, one model at a time</figcaption></figure>
+
+    <p class="intro">Wen began as a poem split into a trillion tokens and grew into WNS, an open NFT standard on Solana's Token-2022. The Lab turns that heritage into small, tested tools. Wen was not made for a few: its standard, its code and its story are open to everyone, and every walkthrough below leads back to that source. This note gathers them into ten walkthroughs: each one starts with a "did you know", shows the few lines of code that matter, the test that proves them, who gains, and where the model stops. Two models are new today: a receipt verifier and a token inspector. 37 checks pass.</p>
+
+    <nav aria-label="Contents" class="lab-box">
+      <p style="margin:0 0 6px;color:var(--ink-dim);font-size:13px;letter-spacing:.06em;text-transform:uppercase;">The ten walkthroughs</p>
+      <ol style="margin:0;padding-left:20px;columns:2 250px;column-gap:28px;"><li><a href="#w1">A warranty card that lives in the wallet</a></li><li><a href="#w2">A payment that needs an invoice number</a></li><li><a href="#w3">A royalty rule inside the NFT</a></li><li><a href="#w4">One reference key per order</a></li><li><a href="#w5">Testing Token-2022 with no network</a></li><li><a href="#w6">Card fees and on-chain fees, in five formulas</a></li><li><a href="#w7">Checking a warranty card like a machine</a></li><li><a href="#w8">Reading any token like an auditor</a></li><li><a href="#w9">A devnet run anyone can repeat</a></li><li><a href="#w10">Search the address, not the name</a></li></ol>
+    </nav>
+
+    <h2 id="w1">1 · A warranty card that lives in the wallet</h2>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon1.jpg" alt="Wen cat with a soulbound warranty card in a crypto wallet" loading="lazy"><figcaption>A receipt that stays with the buyer</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>A warranty card can live in your wallet and refuse to be resold.</p>
+    </aside>
+    <p>Paper cards get lost and PDF receipts sink in an inbox. Token-2022 turns a purchase into a one-of-one token: zero decimals, supply locked at 1, the details stored inside the mint itself, and the <code>NonTransferable</code> extension so the warranty stays with the buyer. The chain keeps only a SHA-256 hash of the order, never the order: the buyer keeps the JSON and can prove the match later. It is the same light-NFT layout the Wen New Standard (WNS) uses.</p>
+    <p><strong>The Wen thread.</strong> The layout is the Wen New Standard's: the same light NFT that WNS, born in the Wen community, put on Token-2022. Wen opened it for everyone, so a shop's receipt can use it as freely as a meme.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/01-receipt-nft.ts">lab/code/src/01-receipt-nft.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>// extensions first, then the mint, then the metadata
+createInitializeMetadataPointerInstruction(mint, merchant, mint, TOKEN_2022_PROGRAM_ID),
+createInitializeNonTransferableMintInstruction(mint, TOKEN_2022_PROGRAM_ID),
+createInitializeMintInstruction(mint, 0, merchant, null, TOKEN_2022_PROGRAM_ID),
+// ... metadata fields: order_hash, warranty_until, sku
+createMintToInstruction(mint, buyerAta, merchant, 1, [], TOKEN_2022_PROGRAM_ID),
+// lock supply at exactly 1
+createSetAuthorityInstruction(mint, merchant, AuthorityType.MintTokens, null, [], TOKEN_2022_PROGRAM_ID),</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 soulbound receipt cannot be transferred
+PASS  M1 nobody can mint a second copy</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Buyers: a warranty that cannot be lost or forged with an edited PDF.</li><li>Shops: proof of purchase without storing personal data on a public ledger.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>The token is a proof; warranty terms still follow the shop's policy and consumer law.</li><li>Soulbound is not unlosable: a lost wallet loses the card, and the shop reissues it after its own checks.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="receipt-warranty-wns.html">Stage 1 · Receipts and warranty</a> · Full walkthrough on dev.to: <a href="../sources.html#lab-walkthroughs-1" class="src-ref">How to model a warranty card as a soulbound Token-2022 token (devnet walkthrough)</a></p>
+    </div>
+
+    <h2 id="w2">2 · A payment that needs an invoice number</h2>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon2.jpg" alt="Wen cat checks an invoice before a token payment" loading="lazy"><figcaption>No invoice number, no payment</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>A payment can refuse to arrive without an invoice number.</p>
+    </aside>
+    <p>Accountants lose hours matching payments that arrive without a reference. Three Token-2022 extensions turn a plain token into a settlement rail with rules: the receiving account demands a memo (<code>MemoTransfer</code>), every new account starts frozen until the issuer approves it (<code>DefaultAccountState</code>), and a capped percentage fee is withheld by the token program itself (<code>TransferFeeConfig</code>). No custom on-chain program is needed. The memo must be the instruction right before the transfer.</p>
+    <p><strong>The Wen thread.</strong> WNS showed that rules can live inside the token, not in each app. The invoice rail takes the same idea from the Wen community to bookkeeping: the token itself refuses a payment without a number.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/03-b2b-invoice.ts">lab/code/src/03-b2b-invoice.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>export function buildPayInvoice(args) {
+  return [
+    ...(args.invoiceId ? [memoInstruction(`invoice:${args.invoiceId}`, args.payer)] : []),
+    createTransferCheckedWithFeeInstruction(args.from, args.mint, args.to, args.payer,
+      args.amount, DECIMALS, expectedFee(args.amount), [], TOKEN_2022_PROGRAM_ID),
+  ];
+}</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M3 payment WITHOUT invoice number is rejected
+PASS  M3 payment to a NOT approved company is rejected (account frozen)
+PASS  M3 fee cap works (fee on 100,000 is 50, not 250)</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Bookkeeping: every payment carries its invoice number on-chain.</li><li>Business networks: only approved counterparties can hold the token.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>A memo is public: an invoice number, never names or personal details.</li><li>A real settlement token is issued by a licensed entity; this is a model, not a stablecoin.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="b2b-invoices-token-2022.html">Stage 3 · B2B invoices</a> · Full walkthrough on Hashnode: <a href="../sources.html#lab-walkthroughs-2" class="src-ref">A payment that refuses to arrive without an invoice number</a></p>
+    </div>
+
+    <h2 id="w3">3 · A royalty rule inside the NFT</h2>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon3.jpg" alt="Wen cat reads the royalty rule of an NFT" loading="lazy"><figcaption>Read the rule before you move the token</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>An NFT can carry its royalty rule inside the token.</p>
+    </aside>
+    <p>A Token-2022 mint can carry a <code>TransferHook</code>: the address of a program that runs on every transfer, in every wallet and marketplace. If the program says no, the transfer does not happen. WNS uses this for creator royalties. The walkthrough shows the step every buyer and wallet should take first: read the hook, and also read its authority, because the authority decides who can change the rule tomorrow. Moving a hooked token needs <code>TransferChecked</code> with the hook's extra accounts.</p>
+    <p><strong>The Wen thread.</strong> This is where Wen began technically: WNS enforces creator royalties with a transfer hook. The code uses the WNS royalty program address published in the open Wen Program Library.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/02-royalty-transfer.ts">lab/code/src/02-royalty-transfer.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>const info = await getMint(connection, mint, &#x27;confirmed&#x27;, TOKEN_2022_PROGRAM_ID);
+const hook = getTransferHook(info);          // { programId, authority }
+const isWnsRoyalty = hook?.programId.equals(WNS_ROYALTY_PROGRAM_ID) ?? false;
+
+// transfer so that the hook runs: extra accounts are resolved on-chain
+const ix = await createTransferCheckedWithTransferHookInstruction(
+  connection, source, mint, destination, owner.publicKey, 1n, 0, [], &#x27;confirmed&#x27;, TOKEN_2022_PROGRAM_ID);</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M2 NFT mint created with a transfer hook
+PASS  M2 hook program read from the mint = WNS royalty distribution</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Creators: a rule that travels with the work, not a promise from each marketplace.</li><li>Buyers and agents: the rule is machine-readable in one RPC call.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>The local test reads the hook; the WNS royalty program itself is not executed in the local VM.</li><li>A hook enforces whatever its program says, mistakes included: read the code and audits.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="creator-royalties-wns.html">Stage 2 · Creator royalties</a> · Full walkthrough on dev.to: <a href="../sources.html#lab-walkthroughs-3" class="src-ref">How to read a Token-2022 transfer hook before you move an NFT</a></p>
+    </div>
+
+    <h2 id="w4">4 · One reference key per order</h2>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon4.jpg" alt="Wen cat matches a Solana Pay payment to its order" loading="lazy"><figcaption>Which order was that? The key knows</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>A small shop can match every payment to its order with no customer data.</p>
+    </aside>
+    <p>Solana Pay gives each order a fresh random <code>reference</code> key. The wallet adds it to the transfer as a read-only account, so the shop can find the transaction by that key, then validate recipient, amount, token, reference and memo before marking the order paid. Finding is not trusting: <code>findReference</code> only says a transaction mentions the key; <code>validateTransfer</code> checks the money. A webhook then tells the shop's own system, the role a card acquirer's callback plays.</p>
+    <p><strong>The Wen thread.</strong> A Solana Pay link works for any token, and the Lab's code lists WEN by its one real address. The rule that comes from Wen applies here too: the shop checks the address, never the name.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/04-solana-pay-bridge.ts">lab/code/src/04-solana-pay-bridge.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>const reference = (await generateKeyPairSigner()).address;   // random, never reused
+const url = encodeURL({ recipient, amount, splToken, reference,
+  label: &#x27;Wen Open Lab demo shop&#x27;, message: `Order ${orderId}`, memo: `order:${orderId}` });
+// later
+const found = await findReference(rpc, req.reference, { commitment: &#x27;confirmed&#x27; });
+await validateTransfer(rpc, found.signature, { recipient, amount, splToken, reference, memo }, { commitment: &#x27;confirmed&#x27; });</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M4 payment link round-trips: recipient, amount, token, reference, memo
+PASS  M4 every order gets a unique reference</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Small sellers: reconciliation without a processor account.</li><li>Customers: no card number and no personal data go to the shop's server.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>A shop that needs stable amounts should accept a stable asset; the model converts nothing.</li><li>Refunds, disputes and taxes stay the shop's responsibility.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="payments-acquiring-bridge.html">Stage 4 · Payments bridge</a> · Full walkthrough on Hashnode: <a href="../sources.html#lab-walkthroughs-4" class="src-ref">One reference key per order: matching Solana Pay payments without guesswork</a></p>
+    </div>
+
+    <h2 id="w5">5 · Testing Token-2022 with no network</h2>
+    <figure><img src="../wen-media/wen-lab-payment-nft-web3-methon5.jpg" alt="Wen cat runs Token-2022 tests in a local Solana VM" loading="lazy"><figcaption>37 checks, one command, no network</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>A whole Solana runtime can run inside a test, in milliseconds.</p>
+    </aside>
+    <p>LiteSVM loads the real SPL Token-2022 and Memo programs into the test process. The Lab's harness is five helpers: <code>send</code>, <code>fund</code>, <code>rent</code>, <code>account</code> and <code>check</code>. One decoder bridges <code>@solana/web3.js</code> transactions to LiteSVM, the blockhash is expired after every send so repeated steps stay independent, and failures come back as values with their logs. The useful tests are the ones that expect a refusal and check the program log that explains it.</p>
+    <p><strong>The Wen thread.</strong> Wen's launch was a public stress test that Solana passed. Testing in public, then repeating it, is the habit the Lab keeps from that day.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/test/run-litesvm.ts">lab/code/test/run-litesvm.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>function send(ixs, signers) {
+  const tx = new Transaction().add(...ixs);
+  tx.feePayer = signers[0].publicKey;
+  tx.recentBlockhash = svm.latestBlockhash();
+  tx.sign(...signers);
+  const res = svm.sendTransaction(getTransactionDecoder().decode(tx.serialize()));
+  svm.expireBlockhash();
+  return res instanceof FailedTransactionMetadata
+    ? { ok: false, err: res.toString(), logs: res.meta().logs() } : { ok: true, logs: res.logs() };
+}</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>37 checks across six models
+ALL CHECKS PASSED</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Developers: a fast test loop for Token-2022 without airdrops or rate limits.</li><li>Reviewers: every claim on these pages has a test line behind it.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>Programs that are not loaded are not executed: test what you can see, and say what you cannot.</li><li>Local green is not mainnet-ready: devnet, review and audit still come after.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="index.html#verification-log">Verification log</a> · Full walkthrough on dev.to: <em>coming soon</em></p>
+    </div>
+
+    <h2 id="w6">6 · Card fees and on-chain fees, in five formulas</h2>
+    <figure><img src="../wen-media/testing-jup-wen-solana.jpeg" alt="Wen network numbers on a world map" loading="lazy"><figcaption>Numbers instead of opinions</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>On-chain, the network fee is usually the smallest part of the cost.</p>
+    </aside>
+    <p>The Lab simulator compares card acquiring and on-chain payments with five public formulas and runs in the browser. With illustrative inputs (2,000 orders a month, $40 average, 2.9% + $0.30 card price, 0.5% chargebacks at $15, two settlement days) the card side costs about $3,470 a month and keeps about $5,333 in transit. On the on-chain side the network part is 0.02 SOL for the whole month, and almost the entire cost is the 0.5% conversion to fiat: $400. The point is not who wins; it is where the cost actually sits.</p>
+    <p><strong>The Wen thread.</strong> If a shop ever accepts WEN, the simulator says it plainly: WEN brings community and attention to the checkout, stable amounts belong to stablecoins. Usefulness first, no promises.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="payment-simulator.html">the simulator page</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>Revenue                      = orders × average order
+Card payment fees            = revenue × card fee % + orders × fixed fee
+Chargeback costs             = orders × chargeback rate × (average order + fee per chargeback)
+On-chain fees                = orders × network fee in SOL × SOL price + revenue × conversion %
+Money waiting for settlement = revenue ÷ 30 × settlement days</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>formulas shown on the page
+calculation runs in the browser, nothing is sent</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Small businesses: a decision from arithmetic, not from adverts.</li><li>Everyone: a clear list of what the comparison leaves out.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>Illustrative defaults, not a quote: use your own contract terms and today's prices.</li><li>Left out: setup and compliance costs, wallet adoption, the buyer protection that chargebacks give, price movement.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="payment-simulator.html">Stage 5 · Simulator</a> · Full walkthrough on Hashnode: <em>coming soon</em></p>
+    </div>
+
+    <h2 id="w7">7 · Checking a warranty card like a machine</h2>
+    <figure><img src="../wen-media/wen-space-crypto-cat.jpeg" alt="Wen cat in a space suit verifying a card" loading="lazy"><figcaption>Eight questions, one RPC call</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>A repair shop can verify a warranty card in one second, from public data only.</p>
+    </aside>
+    <p>New in the Lab: <strong>Model 5</strong>, the other half of walkthrough 1. A pure function takes the mint and the holder's account and answers eight questions: Token-2022 mint, one of one, soulbound, metadata inside the mint, issued by the expected shop, warranty still valid, order hash matches the buyer's order, held by the expected wallet. It returns every check with its name, so a person at the counter sees "expired" or "issued by someone else", not just "invalid". A thin wrapper reads both accounts in one RPC call.</p>
+    <p><strong>The Wen thread.</strong> The verifier checks exactly the WNS-style card from walkthrough 1. What Wen opened, anyone can now also verify, without asking anyone's permission.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/05-verify-receipt.ts">lab/code/src/05-verify-receipt.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>add(&#x27;one of one: supply 1, decimals 0, mint authority removed&#x27;,
+  m.supply === 1n &amp;&amp; m.decimals === 0 &amp;&amp; m.mintAuthority === null);
+add(&#x27;soulbound: NonTransferable extension present&#x27;,
+  getExtensionTypes(m.tlvData).includes(ExtensionType.NonTransferable));
+add(&#x27;issued by the expected shop (update authority)&#x27;, !!md.updateAuthority?.equals(exp.merchant));
+add(&#x27;warranty still valid&#x27;, typeof f.warranty_until === &#x27;string&#x27; &amp;&amp; f.warranty_until &gt;= today);
+if (exp.order) add(&quot;order hash matches the buyer&#x27;s order&quot;, f.order_hash === orderHash(exp.order));</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M5 genuine soulbound card passes every check
+PASS  M5 a different order is rejected (hash mismatch)
+PASS  M5 a card from another issuer is rejected
+PASS  M5 an expired warranty is rejected
+PASS  M5 a wallet that does not hold the card is rejected
+PASS  M5 a transferable (not soulbound) card is flagged</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Shops: a check without a customer database.</li><li>Agents and robots: a proof they can verify themselves, without trusting a screenshot.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>The verifier trusts the shop's key; key management is the real security boundary.</li><li>Dates compare as ISO strings in UTC; grace periods are policy, not code.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="receipt-warranty-wns.html">Stage 1 · Receipts and warranty</a> · Full walkthrough on dev.to: <em>coming soon</em></p>
+    </div>
+
+    <h2 id="w8">8 · Reading any token like an auditor</h2>
+    <figure><img src="../wen-media/new-crypto-standarts-wen-1.jpeg" alt="Wen cat next to the open Wen Program Library code" loading="lazy"><figcaption>Who can still mint, freeze or move your tokens?</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>Some tokens let one key move or burn tokens from any holder.</p>
+    </aside>
+    <p>New in the Lab: <strong>Model 6</strong>, a read-only inspector for any mint. It tells which program owns the token, who can still mint or freeze, which Token-2022 extensions it carries, and what each one means for a holder in plain words: a permanent delegate that can move or burn anyone's tokens, a transfer fee, a transfer hook and who can change it, accounts that start frozen, soulbound tokens, a mint that can be closed. It refuses wallet addresses instead of misreading them.</p>
+    <p><strong>The Wen thread.</strong> Try it on the real WEN mint, WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk, and read its powers yourself instead of trusting anyone's words, ours included.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/06-inspect-mint.ts">lab/code/src/06-inspect-mint.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>if (t === ExtensionType.PermanentDelegate) {
+  const d = getPermanentDelegate(m);
+  notes.push(`Permanent delegate ${d?.delegate.toBase58()}: can transfer or burn tokens from ANY holder.`);
+} else if (t === ExtensionType.TransferHook) {
+  const h = getTransferHook(m);
+  notes.push(`Transfer hook: program ${h?.programId.toBase58()} runs on every transfer` +
+    (h?.authority ? `; authority ${h.authority.toBase58()} can change it.` : &#x27;; it cannot be changed.&#x27;));
+}</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M6 classic SPL mint: no extensions, both authorities reported
+PASS  M6 permanent delegate is flagged for holders
+PASS  M6 transfer fee is read from the mint (1% capped)
+PASS  M6 removed authorities are reported as none
+PASS  M6 a wallet address is refused, not parsed as a mint</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Holders: know the powers behind a token before receiving it.</li><li>Wallets and explorers: one function that turns extensions into plain language.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>An extension is not good or bad by itself: a permanent delegate can be a legal requirement for regulated assets.</li><li>The inspector reads the mint, not the programs behind a hook: those need their own review.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="trust.html">Trust chain</a> · Full walkthrough on Hashnode: <em>coming soon</em></p>
+    </div>
+
+    <h2 id="w9">9 · A devnet run anyone can repeat</h2>
+    <figure><img src="../wen-media/wen-ufo-style-coin.jpeg" alt="Wen cat in a park with a UFO overhead" loading="lazy"><figcaption>From a throwaway wallet to Explorer links</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>You can repeat the Lab's models on a public network with a wallet that holds nothing of value.</p>
+    </aside>
+    <p>Local tests run on one machine; devnet moves the same instructions onto a public network where every step gets a public link. The Lab's devnet script refuses to run outside devnet, checks the balance of a new, empty wallet, issues a soulbound receipt, then builds the invoice-only settlement token, approves two accounts, pays an invoice with its number and shows that a payment without a number is rejected. Every step prints a Solana Explorer link with <code>?cluster=devnet</code>.</p>
+    <p><strong>The Wen thread.</strong> The devnet run repeats in public what Wen's launch did on mainnet: ordinary people, one transaction each, and every step visible on an explorer.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/scripts/devnet-demo.ts">lab/code/scripts/devnet-demo.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>solana-keygen new -o devnet-wallet.json            # new throwaway wallet
+solana airdrop 2 $(solana-keygen pubkey devnet-wallet.json) --url devnet
+npm install
+npm test                                           # LiteSVM first
+KEYPAIR=./devnet-wallet.json npm run devnet        # then devnet: Explorer links for every step</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>refuses to run outside devnet
+payment WITHOUT invoice number was rejected, as designed</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Anyone: proof you can open in a browser instead of trusting a screenshot.</li><li>Teams: a shared, repeatable demo for reviews and classes.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>Devnet coins have no value and devnet can be reset.</li><li>Use a new, empty wallet only; never a key that has ever held real funds.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="devnet.html">Stage 6 · Devnet: repeat it</a> · Full walkthrough on dev.to: <em>coming soon</em></p>
+    </div>
+
+    <h2 id="w10">10 · Search the address, not the name</h2>
+    <figure><img src="../wen-media/wen-crypto-memecoin-solana-ecosystem-angel.jpeg" alt="Wen cat on a cliff looking out carefully" loading="lazy"><figcaption>Names can be copied; the address cannot</figcaption></figure>
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>Anyone can create a token with the same name, ticker and logo as a real one.</p>
+    </aside>
+    <p>The almanac's first safety rule, turned into three checks anyone can do. One: compare the mint address with the official source, character by character; the real WEN is <code>WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code>. Two: check which program owns the mint and what powers it carries, with the inspector from walkthrough 8 or on an explorer. Three: no real team, airdrop or support chat ever needs a seed phrase. Names, tickers and pictures are decoration; the address is identity.</p>
+    <p><strong>The Wen thread.</strong> The real WEN is one address: WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk. Wen is open to everyone, which is exactly why copies appear; the address is how the community stays itself.</p>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">Key lines · <a href="code/src/common.ts">lab/code/src/common.ts</a> · Apache-2.0</p>
+    <pre class="lab-code"><code>export async function detectTokenProgram(connection: Connection, mint: PublicKey): Promise&lt;PublicKey&gt; {
+  const info = await connection.getAccountInfo(mint);
+  if (!info) throw new Error(`Mint ${mint.toBase58()} not found on this cluster`);
+  if (info.owner.equals(TOKEN_2022_PROGRAM_ID)) return TOKEN_2022_PROGRAM_ID;
+  if (info.owner.equals(TOKEN_PROGRAM_ID)) return TOKEN_PROGRAM_ID;
+  throw new Error(`Account ${mint.toBase58()} is not a token mint`);
+}</code></pre>
+    <p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">How it was checked</p>
+    <pre class="lab-code"><code>PASS  M6 a wallet address is refused, not parsed as a mint
+the same check runs before every model</code></pre>
+    <div class="lab-box">
+      <p style="margin:0 0 6px;"><strong>Useful for</strong></p><ul style="margin:0 0 10px;"><li>Everyone: a habit that stops the most common token scams.</li><li>Communities: one address to repeat everywhere, instead of a name that can be copied.</li></ul>
+      <p style="margin:0 0 6px;"><strong>Limits, stated plainly</strong></p><ul style="margin:0 0 10px;"><li>A correct address does not make a token a good idea; it only makes it the real one.</li><li>Official sources can be impersonated too: cross-check at least two.</li></ul>
+      <p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Lab: <a href="../sources.html#tab-official">Official sources</a> · Full walkthrough on Hashnode: <em>coming soon</em></p>
+    </div>
+
+    <h2 id="published">Where the full walkthroughs live</h2>
+    <p>Each walkthrough is also written out in full for developers on dev.to and Hashnode, one at a time. This table is updated as they appear.</p>
+    <table class="lab-table">
+      <thead><tr><th>#</th><th>Walkthrough</th><th>Platform</th><th>Status</th></tr></thead>
+      <tbody><tr><td>1</td><td><a href="#w1">A warranty card that lives in the wallet</a></td><td>dev.to</td><td>published</td></tr><tr><td>2</td><td><a href="#w2">A payment that needs an invoice number</a></td><td>Hashnode</td><td>published</td></tr><tr><td>3</td><td><a href="#w3">A royalty rule inside the NFT</a></td><td>dev.to</td><td>published</td></tr><tr><td>4</td><td><a href="#w4">One reference key per order</a></td><td>Hashnode</td><td>published</td></tr><tr><td>5</td><td><a href="#w5">Testing Token-2022 with no network</a></td><td>dev.to</td><td>coming soon</td></tr><tr><td>6</td><td><a href="#w6">Card fees and on-chain fees, in five formulas</a></td><td>Hashnode</td><td>coming soon</td></tr><tr><td>7</td><td><a href="#w7">Checking a warranty card like a machine</a></td><td>dev.to</td><td>coming soon</td></tr><tr><td>8</td><td><a href="#w8">Reading any token like an auditor</a></td><td>Hashnode</td><td>coming soon</td></tr><tr><td>9</td><td><a href="#w9">A devnet run anyone can repeat</a></td><td>dev.to</td><td>coming soon</td></tr><tr><td>10</td><td><a href="#w10">Search the address, not the name</a></td><td>Hashnode</td><td>coming soon</td></tr></tbody>
+    </table>
+
+    <h2 id="log">The full test log</h2>
+    <pre class="lab-code"><code>PASS  M1 receipt minted (soulbound=true)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 soulbound receipt cannot be transferred  — rejected by Token-2022
+PASS  M1 nobody can mint a second copy
+PASS  M1 receipt minted (soulbound=false)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 transferable receipt can be resold or gifted
+PASS  M1 nobody can mint a second copy
+PASS  M3 settlement mint created (fee 0.25% cap 50, frozen by default)
+PASS  M3 seller account requires an invoice memo
+PASS  M3 issuer funds the buyer account
+PASS  M3 payment WITHOUT invoice number is rejected  — Program log: Error: No memo in previous instruction required for recipient to receive a transfer
+PASS  M3 payment to a NOT approved company is rejected (account frozen)  — Program log: Error: Account is frozen
+PASS  M3 invoice INV-2026-0042 paid with memo to approved company
+PASS  M3 invoice number is recorded on-chain (memo in logs)
+PASS  M3 seller received amount minus fee; fee withheld for the platform  — received 997.5, fee 2.5
+PASS  M3 fee cap works (fee on 100,000 is 50, not 250)
+PASS  M2 NFT mint created with a transfer hook
+PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
+PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
+PASS  M4 every order gets a unique reference
+PASS  M5 genuine soulbound card passes every check  — 8 checks
+PASS  M5 a different order is rejected (hash mismatch)  — order hash matches the buyer&#x27;s order
+PASS  M5 a card from another issuer is rejected  — issued by the expected shop (update authority)
+PASS  M5 an expired warranty is rejected  — warranty still valid
+PASS  M5 a wallet that does not hold the card is rejected  — held by the expected wallet
+PASS  M5 a transferable (not soulbound) card is flagged  — soulbound: NonTransferable extension present
+PASS  M6 classic SPL mint: no extensions, both authorities reported  — Mint authority is set / Freeze authority is set
+PASS  M6 Token-2022 mint created with permanent delegate and transfer fee
+PASS  M6 permanent delegate is flagged for holders
+PASS  M6 transfer fee is read from the mint (1% capped)  — PermanentDelegate, TransferFeeConfig
+PASS  M6 removed authorities are reported as none
+PASS  M6 a wallet address is refused, not parsed as a mint
+ALL CHECKS PASSED</code></pre>
+
+    <div class="lab-box">
+      <h3>Where Wen fits in this model</h3>
+      <p style="margin:0;">Every walkthrough uses the same machinery that carried WEN to more than a million wallets: Token-2022 extensions and the WNS layout. The meme opened the door; the walkthroughs show what can be built behind it, for free and in the open. No prices, no promises: utility you can test.</p>
+    </div>
+
+    <p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="code/README.md">all code</a> · <a href="../posts/wen-open-lab-ten-walkthroughs.html">the news post</a> · <a href="https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code">code on GitHub</a></p>
+    
+    <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>Every external source behind this page — for your own open study and checking — is collected on one page. <a href="../sources.html#lab-walkthroughs">Open the sources for this page &rarr;</a></p>
+    </aside><!-- /src:callout -->
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+</body>
+</html>
