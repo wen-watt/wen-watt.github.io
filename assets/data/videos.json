@@ -1,0 +1,26 @@
+[
+ {
+  "id": "9zRX8Hr6oME",
+  "page": "lab/index.html",
+  "kind": "short",
+  "title": "How to check a receipt on-chain · Wen Open Lab",
+  "desc": "Wen checks a receipt NFT the way a machine would, then six open Token-2022 models and 37 LiteSVM checks, all green. Open code under Apache-2.0, devnet only, not audited.",
+  "date": "2026-11-03",
+  "dur": "PT38S",
+  "poster": "assets/media/lab-short-v1-poster.jpg",
+  "heading": "Watch: the Lab in 38 seconds",
+  "text": "Wen checks a receipt the way a machine would, then the six models and the 37 checks behind them. Everything in the video is open code you can run yourself."
+ },
+ {
+  "id": "7JgpVGisQbg",
+  "page": "posts/how-to-check-wen-token-contract-address.html",
+  "kind": "video",
+  "title": "How to find the Wen contract ID",
+  "desc": "A short video: how to find the real Wen (WEN) contract ID on Solana.",
+  "date": "",
+  "dur": "",
+  "poster": "wen-media/wen-contract-id-search-official.jpeg",
+  "heading": "Video: how to find the contract ID",
+  "text": "A short walkthrough of where the real Wen contract ID is published and how to compare it before you send or receive anything."
+ }
+]
