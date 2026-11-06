@@ -89,6 +89,7 @@ This is the almanac's own reading of the record, built only from the verified fa
 
 ## Optional
 
+- [Wen Open Lab videos](https://wen-watt.github.io/lab/videos.html): short explainer videos for each Lab section; new ones appear on their release day.
 - [Wen Open Lab walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html): ten Token-2022 models in plain words, with key code, tests (37 checks) and limits.
 - [News: ten walkthroughs, two new models](https://wen-watt.github.io/posts/wen-open-lab-ten-walkthroughs.html): the October 27, 2026 Lab update.
 - [How to check the real Wen ($WEN) contract address](https://wen-watt.github.io/posts/how-to-check-wen-token-contract-address.html): the one Solana mint, three checks for any token, copycat names on other chains (November 6, 2026).
