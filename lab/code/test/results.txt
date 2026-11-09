@@ -13,12 +13,16 @@ PASS  M1 nobody can mint a second copy
 PASS  M3 settlement mint created (fee 0.25% cap 50, frozen by default)
 PASS  M3 seller account requires an invoice memo
 PASS  M3 issuer funds the buyer account
-PASS  M3 payment WITHOUT invoice number is rejected  — Program log: Error: No memo in previous instruction required for recipient to receive a transfer
+PASS  M3 payment WITHOUT an invoice memo is rejected  — Program log: Error: No memo in previous instruction required for recipient to receive a transfer
 PASS  M3 payment to a NOT approved company is rejected (account frozen)  — Program log: Error: Account is frozen
 PASS  M3 invoice INV-2026-0042 paid with memo to approved company
 PASS  M3 invoice number is recorded on-chain (memo in logs)
 PASS  M3 seller received amount minus fee; fee withheld for the platform  — received 997.5, fee 2.5
 PASS  M3 fee cap works (fee on 100,000 is 50, not 250)
+PASS  M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through
+PASS  M3 expectedFee equals the Token-2022 fee formula on edge amounts  — 10 amounts
+PASS  M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)
+PASS  M3 reconciliation accepts the right invoice and rejects the wrong one
 PASS  M2 NFT mint created with a transfer hook
 PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
 PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
@@ -35,4 +39,5 @@ PASS  M6 permanent delegate is flagged for holders
 PASS  M6 transfer fee is read from the mint (1% capped)  — PermanentDelegate, TransferFeeConfig
 PASS  M6 removed authorities are reported as none
 PASS  M6 a wallet address is refused, not parsed as a mint
+
 ALL CHECKS PASSED

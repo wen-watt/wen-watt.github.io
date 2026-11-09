@@ -11,7 +11,7 @@ import {
   createTransferCheckedInstruction, getAssociatedTokenAddressSync, getExtensionData, unpackAccount, unpackMint,
   getMintLen, createInitializeTransferHookInstruction, createInitializeMintInstruction, getTransferHook,
   MINT_SIZE, TOKEN_PROGRAM_ID, AuthorityType, createSetAuthorityInstruction, createInitializePermanentDelegateInstruction,
-  createInitializeTransferFeeConfigInstruction,
+  createInitializeTransferFeeConfigInstruction, calculateFee,
 } from '@solana/spl-token';
 import { unpack as unpackMetadata } from '@solana/spl-token-metadata';
 import { buildReceiptInstructions, receiptLayout, orderHash, type Order } from '../src/01-receipt-nft.js';
@@ -19,7 +19,7 @@ import { verifyReceipt } from '../src/05-verify-receipt.js';
 import { inspectMint } from '../src/06-inspect-mint.js';
 import {
   buildApproveCounterparty, buildInvoiceAccount, buildPayInvoice, buildSettlementMint, expectedFee,
-  invoiceAccountSpace, settlementMintSpace, DECIMALS,
+  invoiceAccountSpace, settlementMintSpace, DECIMALS, FEE_BPS, FEE_CAP, matchInvoicePayment,
 } from '../src/03-b2b-invoice.js';
 
 const svm = new LiteSVM();
@@ -102,7 +102,7 @@ function account(pk: PublicKey) {
   check('M3 issuer funds the buyer account', mt.ok, mt.ok ? '' : mt.err);
 
   const noMemo = send(buildPayInvoice({ mint: mint.publicKey, from: buyerAcc.publicKey, to: sellerAcc.publicKey, payer: buyerCo.publicKey, invoiceId: null, amount: 1_000n * unit }), [buyerCo]);
-  check('M3 payment WITHOUT invoice number is rejected', !noMemo.ok && (noMemo.logs ?? []).some(l => /memo/i.test(l)), (noMemo.logs ?? []).find(l => /memo/i.test(l)) ?? '');
+  check('M3 payment WITHOUT an invoice memo is rejected', !noMemo.ok && (noMemo.logs ?? []).some(l => /memo/i.test(l)), (noMemo.logs ?? []).find(l => /memo/i.test(l)) ?? '');
 
   const toStranger = send(buildPayInvoice({ mint: mint.publicKey, from: buyerAcc.publicKey, to: strangerAcc.publicKey, payer: buyerCo.publicKey, invoiceId: 'INV-7', amount: 1_000n * unit }), [buyerCo]);
   check('M3 payment to a NOT approved company is rejected (account frozen)', !toStranger.ok && (toStranger.logs ?? []).some(l => /frozen/i.test(l)), (toStranger.logs ?? []).find(l => /frozen/i.test(l)) ?? '');
@@ -120,6 +120,20 @@ function account(pk: PublicKey) {
 
   const big = 100_000n * unit; // fee cap check: 0.25% of 100k = 250 > cap 50
   check('M3 fee cap works (fee on 100,000 is 50, not 250)', expectedFee(big) === 50n * unit);
+
+  // Reader report 1 (2026-11-09): Token-2022 rounds the fee up; a floored fee makes TransferCheckedWithFee fail.
+  const odd = send(buildPayInvoice({ mint: mint.publicKey, from: buyerAcc.publicKey, to: sellerAcc.publicKey, payer: buyerCo.publicKey, invoiceId: 'INV-2026-0401', amount: 401n }), [buyerCo]);
+  check('M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through', expectedFee(401n) === 2n && odd.ok, odd.ok ? '' : (odd.logs ?? []).find(l => /fee/i.test(l)) ?? '');
+  const edge = [0n, 1n, 399n, 400n, 401n, 4_001n, 19_999_999_999n, 20_000_000_000n, 20_000_000_001n, 100_000n * unit];
+  const libFee = (a: bigint) => calculateFee({ epoch: 0n, maximumFee: FEE_CAP, transferFeeBasisPoints: FEE_BPS }, a);
+  const diff = edge.filter(a => expectedFee(a) !== libFee(a));
+  check('M3 expectedFee equals the Token-2022 fee formula on edge amounts', diff.length === 0, diff.length ? 'differs at ' + diff.join(', ') : `${edge.length} amounts`);
+
+  // Reader report 2 (2026-11-09): the memo rule checks that a memo exists, not that the invoice number is right.
+  const wrong = send(buildPayInvoice({ mint: mint.publicKey, from: buyerAcc.publicKey, to: sellerAcc.publicKey, payer: buyerCo.publicKey, invoiceId: 'INV-WRONG-999', amount: 10n * unit }), [buyerCo]);
+  check('M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)', wrong.ok);
+  check('M3 reconciliation accepts the right invoice and rejects the wrong one',
+    matchInvoicePayment(ok.logs ?? [], 'INV-2026-0042') && !matchInvoicePayment(wrong.logs ?? [], 'INV-2026-0043'));
 }
 
 // ---------- Model 2: which program enforces royalties ----------

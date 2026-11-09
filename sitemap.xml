@@ -180,6 +180,14 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/posts/proof-before-trust-safety-checkpoints-wen-open-lab.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/posts/how-to-check-wen-token-contract-address.html</loc>
     <image:image>
       <image:loc>https://wen-watt.github.io/wen-media/wen-crypto-id-contract-best-world-crypto.jpeg</image:loc>
@@ -194,6 +202,11 @@
     </image:image>
     <lastmod>2026-10-27</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/lab/findings.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://wen-watt.github.io/lab/videos.html</loc>

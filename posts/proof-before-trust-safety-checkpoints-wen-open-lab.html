@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Proof Before Trust: Safety Checkpoints for Digital Assets in the Wen Open Lab</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">
+<meta name="description" content="How the Wen Open Lab turns reader questions into tested answers, MathOverflow style, and seven safety checkpoints anyone can run before moving a token.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Open Lab, safety checkpoints, token safety, Token-2022, verify token, reader findings, open source review, MathOverflow, Solana devnet, asset safety">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Proof Before Trust: Safety Checkpoints for Digital Assets in the Wen Open Lab">
+<meta property="og:description" content="How the Wen Open Lab turns reader questions into tested answers, MathOverflow style, and seven safety checkpoints anyone can run before moving a token.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg">
+<meta property="og:image:alt" content="Small Wen in a space suit looks up at a giant glowing spirit of Wen among cosmic light">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg">
+<meta property="article:published_time" content="2026-11-09">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Proof Before Trust: Safety Checkpoints for Digital Assets in the Wen Open Lab", "description": "How the Wen Open Lab turns reader questions into tested answers, MathOverflow style, and seven safety checkpoints anyone can run before moving a token.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg", "caption": "Small Wen in a space suit looks up at a giant glowing spirit of Wen among cosmic light"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/proof-before-trust-safety-checkpoints-wen-open-lab.html", "inLanguage": "en", "keywords": "Wen Open Lab, safety checkpoints, token safety, Token-2022, verify token, reader findings, open source review, MathOverflow, Solana devnet, asset safety", "datePublished": "2026-11-09", "dateModified": "2026-11-09", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a safety checkpoint here?", "acceptedAnswer": {"@type": "Answer", "text": "A short, repeatable check that anyone can run before holding, sending or building on a token: the address, the owner program, the powers, exact fees, reconciliation, a devnet run and a test that proves the claim."}}, {"@type": "Question", "name": "Why compare the Lab with MathOverflow?", "acceptedAnswer": {"@type": "Answer", "text": "On MathOverflow a question gets an accepted answer with a proof. The Lab does the same with code: each reader question gets an answer, a status and a test anyone can run."}}, {"@type": "Question", "name": "Do these checkpoints make a token safe?", "acceptedAnswer": {"@type": "Answer", "text": "No checklist can promise that. They show which token you are looking at, what its rules are and whether the numbers add up. Value and intentions are a separate question, and this is not financial advice."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Proof Before Trust: Safety Checkpoints for Digital Assets in the Wen Open Lab", "item": "https://wen-watt.github.io/posts/proof-before-trust-safety-checkpoints-wen-open-lab.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+            <article>
+    <h1>Proof Before Trust: Safety Checkpoints for Digital Assets in the Wen Open Lab</h1>
+
+    <p class="meta">November 9, 2026</p><!-- retro:kind -->
+    <p class="post-kind post-kind-guide"><span class="post-kind-label">Almanac guide</span> Written by the almanac itself. Every claim links to a model you can run and check.</p>
+<!-- /retro:kind -->
+
+    <figure>
+      <img src="../wen-media/wen-open-heritage-guardian-spirit.jpeg" alt="Small Wen in a space suit looks up at a giant glowing spirit of Wen among cosmic light" width="800" height="1442" style="max-width:420px;margin:0 auto;display:block">
+      <figcaption>The open heritage of Wen watches over the Lab</figcaption>
+    </figure>
+
+    <p class="intro">Open code is only as strong as the questions people are allowed to ask it. On November 9, 2026 two readers looked closely at one of our models and found two real gaps. We did not hide them and we did not rebuild the design around them. We answered both with proof, fixed what was wrong, and turned the lesson into something everyone can use: safety checkpoints for digital assets.</p>
+
+    <h2 id="what-happened">What the readers found</h2>
+    <ol>
+      <li><strong>A fee that was off by one.</strong> Token-2022 rounds the transfer fee up; our example rounded it down. For 401 base units at 25 basis points the program expects a fee of 2, we passed 1, and the payment was rejected. It was a real bug. It is fixed, and two new tests prove it.</li>
+      <li><strong>A rule that checks less than it seems.</strong> A receiving account can require a memo on every payment, but Token-2022 only checks that a memo exists, not what it says. A payment with a wrong invoice number still passes. That is how the program is designed, so the architecture stays; we now say it plainly and added an off-chain reconciliation step with two tests.</li>
+    </ol>
+    <p>Both answers, with the exact tests, are on the new <a href="../lab/findings.html">Reader findings</a> page. The Lab now runs 41 checks, all green.</p>
+
+    <h2 id="mathoverflow">A MathOverflow for open code</h2>
+    <p>MathOverflow works because every question can earn an accepted answer, and every answer must hold up to proof. Nothing is settled by authority or by volume. The Lab borrows that idea and makes the proof executable:</p>
+    <ul>
+      <li><strong>One question, one accepted answer.</strong> The answer names the test that proves it.</li>
+      <li><strong>An honest status.</strong> <em>Fixed</em>, <em>Known limit</em> or <em>Not an issue</em>, with the reason.</li>
+      <li><strong>Credit to the reader.</strong> By name only if they agree.</li>
+      <li><strong>Nothing deleted.</strong> Old answers stay, with the date they changed.</li>
+    </ul>
+    <p>This keeps the original architecture intact. When the design is simply how Solana works, we do not bend it; we document the edge and add a check beside it. When the code is wrong, we fix it in the open. Either way, the next reader starts from proof, not from trust.</p>
+
+    <h2 id="checkpoints">Seven safety checkpoints before you move a token</h2>
+    <p>Each checkpoint comes from a model or a reader finding in the Lab, and each takes minutes:</p>
+    <ul class="checkpoints" style="list-style:none;padding-left:0">
+      <li><strong>1. Address.</strong> Take the address from two official sources and compare it character by character. Names and logos can be copied; the address cannot. <a href="../posts/how-to-check-wen-token-contract-address.html">How to check the real Wen address &rarr;</a></li>
+      <li><strong>2. Owner program.</strong> Confirm the account is a token mint owned by SPL Token or Token-2022. A wallet or anything else is not a token. <a href="../lab/walkthroughs.html#w10">Walkthrough 10 &rarr;</a></li>
+      <li><strong>3. Powers.</strong> Read who can still mint, freeze or move tokens: mint and freeze authority, permanent delegate, transfer hook, default frozen accounts. <a href="../lab/walkthroughs.html#w8">Walkthrough 8 · mint inspector &rarr;</a></li>
+      <li><strong>4. Exact numbers.</strong> Compute fees exactly as the program does. Token-2022 rounds the transfer fee up; a value that is off by one base unit makes the payment fail. <a href="../lab/findings.html#q1">Reader finding Q1 &rarr;</a></li>
+      <li><strong>5. Reconciliation.</strong> On-chain rules prove what they check and nothing more. The memo rule proves a memo exists, not that the invoice number is right, so match references off-chain. <a href="../lab/findings.html#q2">Reader finding Q2 &rarr;</a></li>
+      <li><strong>6. Safe place first.</strong> Repeat every step on devnet with a new, empty wallet before anything real. Devnet coins have no value, mistakes cost nothing. <a href="../lab/devnet.html">Run it on devnet &rarr;</a></li>
+      <li><strong>7. Proof, not promise.</strong> Every claim in the Lab has a test that anyone can run with npm test, including the cases that must fail. If a reader finds a gap, it becomes a new test. <a href="../lab/index.html#verification-log">Verification log, 41 checks &rarr;</a></li>
+      </ul>
+    <p>Together they answer three questions that protect any holder: <em>is this the right token, what can its issuer still do, and do the numbers add up?</em></p>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Did you know? · Wen</span>Wen was opened for everyone, not made for a few. The same idea runs through the Lab: open code, open questions, open proofs. <a href="../lab/index.html">Wen Open Lab &rarr;</a></p>
+    </aside>
+
+    <h2 id="ask">Ask the Lab a question</h2>
+    <p>Found something odd in a model or a walkthrough? Open an issue in the repository. If it holds up, it gets an answer, a test and a line in the changelog in the same update, and it joins the <a href="../lab/findings.html">Reader findings</a>.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+    <h3>What is a safety checkpoint here?</h3>
+    <p>A short, repeatable check that anyone can run before holding, sending or building on a token: the address, the owner program, the powers, exact fees, reconciliation, a devnet run and a test that proves the claim.</p>
+    <h3>Why compare the Lab with MathOverflow?</h3>
+    <p>On MathOverflow a question gets an accepted answer with a proof. The Lab does the same with code: each reader question gets an answer, a status and a test anyone can run.</p>
+    <h3>Do these checkpoints make a token safe?</h3>
+    <p>No checklist can promise that. They show which token you are looking at, what its rules are and whether the numbers add up. Value and intentions are a separate question, and this is not financial advice.</p>
+    
+    <p><em>Spoken by Wen, for the community. Example code, not audited. Devnet only, with a new empty wallet. Educational content, not financial advice.</em></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-float.js?v=20261106" data-watch="../lab/videos.html" defer></script>
+</body>
+</html>

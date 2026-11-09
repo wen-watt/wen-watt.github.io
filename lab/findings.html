@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Open Lab Reader Findings: Questions, Proofs and Fixes</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/findings.html">
+<meta name="description" content="Questions readers asked about the Wen Open Lab code, each with a tested answer: what Token-2022 really checks, what we fixed and what stays a known limit.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen trust chain, fact check, WEN token facts, WNS sources, IQ.wiki, verification">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Open Lab Reader Findings: Questions, Proofs and Fixes">
+<meta property="og:description" content="Questions readers asked about the Wen Open Lab code, each with a tested answer: what Token-2022 really checks, what we fixed and what stays a known limit.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/findings.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<meta property="og:image:alt" content="Wen cat wiki of checked facts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://wen-watt.github.io/lab/findings.html#page", "name": "Wen Open Lab Reader Findings: Questions, Proofs and Fixes", "description": "Questions readers asked about the Wen Open Lab code, each with a tested answer: what Token-2022 really checks, what we fixed and what stays a known limit.", "url": "https://wen-watt.github.io/lab/findings.html", "inLanguage": "en", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "dateModified": "2026-11-09", "mainEntity": [{"@type": "Question", "name": "Does Model 3 compute the Token-2022 transfer fee the same way the program does?", "acceptedAnswer": {"@type": "Answer", "text": "No, it did not. Token-2022 rounds the fee up; our expectedFee rounded down. Fixed on November 9, 2026. Token-2022 computes the fee as ceil(amount × basis points ÷ 10,000), capped at the maximum fee, and TransferCheckedWithFee rejects any other value. Our expectedFee used integer division. For 401 base units at 25 bps the program expects 2; we passed 1, and the payment failed with \"Calculated fee does not match expected fee\". Our earlier test paid exactly 1,000 units, where both formulas agree, so it did not catch this.Proof: M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through and M3 expectedFee equals the Token-2022 fee formula on edge amounts (ten amounts, compared with calculateFee from @solana/spl-token)."}}, {"@type": "Question", "name": "Does the Required Memo rule check that the invoice number is correct?", "acceptedAnswer": {"@type": "Answer", "text": "No. Token-2022 checks that a memo exists, not what it says. Match the invoice number off-chain, at reconciliation. The receiving account in Model 3 has the Required Memo extension. It rejects a transfer that has no memo instruction right before it, but it never reads the text. A payment with invoice:INV-WRONG-999, or even invoice:hello, passes on-chain. This is how Token-2022 is designed, so the architecture stays as it is; what changes is how we describe it and what we add next to it.The model now has matchInvoicePayment: it reads the memo from the transaction logs and accepts a payment for an invoice only if there is exactly one invoice memo and it is the expected one.Proof: M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain) and M3 reconciliation accepts the right invoice and rejects the wrong one."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/lab/"}, {"@type": "ListItem", "position": 3, "name": "Reader Findings", "item": "https://wen-watt.github.io/lab/findings.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <h1>Reader Findings<span class="lab-badge">?</span></h1>
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html">&#9998; · Ten walkthroughs</a></li><li><a href="videos.html">▶ · Videos</a></li><li><a aria-current="page" href="findings.html">? · Reader findings</a></li></ul>
+    <p class="intro">Good questions make open code better. Here every question a reader raised about the Lab gets an answer with proof: a test that anyone can run with <code>npm test</code>. We keep the original design when it is how Solana works, say its limits plainly, and fix what was wrong.</p>
+    <h2>How this page works</h2>
+    <ul>
+      <li><strong>One question, one accepted answer.</strong> The answer cites the exact test that proves it.</li>
+      <li><strong>Status is honest:</strong> <em>Fixed</em>, <em>Known limit</em> or <em>Not an issue</em>, with the reason.</li>
+      <li><strong>Credit goes to the reader</strong> who found it (by name only if they agree).</li>
+      <li><strong>Nothing is deleted.</strong> Old answers stay, with the date they changed.</li>
+    </ul>
+    <section class="finding" id="q1" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+      <h2 style="margin-top:0">Does Model 3 compute the Token-2022 transfer fee the same way the program does?</h2>
+      <p><strong>Short answer:</strong> No, it did not. Token-2022 rounds the fee up; our expectedFee rounded down. Fixed on November 9, 2026.</p>
+      <p>Token-2022 computes the fee as <code>ceil(amount × basis points ÷ 10,000)</code>, capped at the maximum fee, and <code>TransferCheckedWithFee</code> rejects any other value. Our <code>expectedFee</code> used integer division. For 401 base units at 25 bps the program expects 2; we passed 1, and the payment failed with <em>"Calculated fee does not match expected fee"</em>. Our earlier test paid exactly 1,000 units, where both formulas agree, so it did not catch this.</p><p><strong>Proof:</strong> <code>M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through</code> and <code>M3 expectedFee equals the Token-2022 fee formula on edge amounts</code> (ten amounts, compared with <code>calculateFee</code> from @solana/spl-token).</p>
+      <p style="color:var(--ink-dim);font-size:.9em">Status: Fixed · Found by a reader (report 1) · Model 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">see the model page</a> · code: lab/code/src/03-b2b-invoice.ts</p>
+    </section>
+    <section class="finding" id="q2" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+      <h2 style="margin-top:0">Does the Required Memo rule check that the invoice number is correct?</h2>
+      <p><strong>Short answer:</strong> No. Token-2022 checks that a memo exists, not what it says. Match the invoice number off-chain, at reconciliation.</p>
+      <p>The receiving account in Model 3 has the Required Memo extension. It rejects a transfer that has no memo instruction right before it, but it never reads the text. A payment with <code>invoice:INV-WRONG-999</code>, or even <code>invoice:hello</code>, passes on-chain. This is how Token-2022 is designed, so the architecture stays as it is; what changes is how we describe it and what we add next to it.</p><p>The model now has <code>matchInvoicePayment</code>: it reads the memo from the transaction logs and accepts a payment for an invoice only if there is exactly one invoice memo and it is the expected one.</p><p><strong>Proof:</strong> <code>M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)</code> and <code>M3 reconciliation accepts the right invoice and rejects the wrong one</code>.</p>
+      <p style="color:var(--ink-dim);font-size:.9em">Status: Known limit, now documented and tested · Found by a reader (report 2) · Model 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">see the model page</a> · code: lab/code/src/03-b2b-invoice.ts</p>
+    </section>
+    
+    <p>Why we work this way, and the seven safety checkpoints that came out of these findings: <a href="../posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">Proof before trust</a>.</p>
+    <h2>Ask a question</h2>
+    <p>Found something odd in the code or the walkthroughs? Open an issue in the repository (the GitHub link is in the site footer and on the <a href="../sources.html">sources page</a>). If it holds up, it lands here with a test.</p>
+    <p style="color:var(--ink-dim);font-size:.9em">Example code, not audited. Devnet only, with a new empty wallet. Educational content, not financial advice.</p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+</body>
+</html>
