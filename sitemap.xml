@@ -2895,9 +2895,18 @@
   <url>
     <loc>https://wen-watt.github.io/token-2022-wns-solana-wen.html</loc>
     <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/reader-findings-thank-you.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/reader-finding-2-memo-content.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/reader-finding-1-fee-rounding.png</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://wen-watt.github.io/wen-media/wen-w-coin-matrix-btc.jpeg</image:loc>
     </image:image>
-    <lastmod>2026-10-15</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>0.6</priority>
   </url>
   <url>
@@ -4774,9 +4783,18 @@
   <url>
     <loc>https://wen-watt.github.io/sources.html</loc>
     <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/reader-findings-thank-you.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/reader-finding-2-memo-content.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/reader-finding-1-fee-rounding.png</image:loc>
+    </image:image>
+    <image:image>
       <image:loc>https://wen-watt.github.io/wen-media/wen-crypto.jpeg</image:loc>
     </image:image>
-    <lastmod>2026-10-20</lastmod>
+    <lastmod>2026-11-09</lastmod>
     <priority>0.5</priority>
   </url>
   <url>

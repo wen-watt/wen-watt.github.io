@@ -147,7 +147,28 @@
     </div>
 
     <p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="code/README.md">all code</a> · <a href="../sources.html#lab-trust-1" class="src-ref">Wen Program Library on GitHub</a></p>
-    
+    <!--wlab-schema--><h2 id="one-idea">One idea, verified in the open</h2><div class="wns-almanac-schema" id="one-idea-schema">
+
+<p style="color:var(--ink-dim);max-width:70ch">Not a timeline of dates, a record of direction. Each layer answers the same question a little more completely: can an asset carry its own rules, instead of relying on trust between platforms?</p>
+<div class="roadmap"><div class="chain">
+ <div class="node"><p class="node-tag">Starting point</p><div class="node-card"><p class="node-title">SPL Token</p><p class="node-note">Solana's shared token standard: mint, transfer, burn. A simple balance model with no built-in behaviour.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Capability unlocked</p><div class="node-card"><p class="node-title">Token-2022</p><p class="node-note">Extensions inside the token: transfer hook, transfer fee, metadata, groups, required memo, permanent delegate, confidential transfers.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Standard formed</p><div class="node-card"><p class="node-title">WNS</p><p class="node-note">A Token-2022 configuration for NFTs: metadata, royalty rules and groups inside a single mint.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Put into practice</p><div class="node-card"><p class="node-title">WEN</p><p class="node-note">A poem by weremeow minted as an NFT with WNS and split into a trillion tokens: the first mass-scale use of the standard.</p></div></div>
+</div></div>
+<div class="branch-row"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">A parallel course</p><div class="node-card"><p class="node-title">RWA tokenization</p><p class="node-note">Uses the same Token-2022 layer directly (transfer hook, permanent delegate, default frozen accounts) for access and compliance rules, independent of the WNS NFT configuration.</p></div></div></div></div>
+<div class="branch-row" style="margin-top:14px"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">Open verification</p><div class="node-card"><p class="node-title"><a href="../lab/index.html">Wen Open Lab</a></p><p class="node-note">Six Token-2022 models, 41 tests, <a href="../lab/findings.html">reader findings</a> and <a href="../posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">seven safety checkpoints</a>: rules inside the token, checked in the open.</p></div></div></div></div>
+<div class="legend"><span><i class="swatch solid"></i> direct technical continuity</span><span><i class="swatch dash"></i> shared foundation, independent course</span></div>
+<div class="notes"><h2>Short notes</h2>
+ <div class="note-item"><p><span class="k">WEN is not RWA.</span> WEN shows what the protocol can do through one working asset: a proof of practice, not a compliance-grade financial instrument.</p></div>
+ <div class="note-item"><p><span class="k">WNS is a configuration, not a platform.</span> A set of Token-2022 settings tuned for NFTs, not a separate chain or layer.</p></div>
+ <div class="note-item"><p><span class="k">What changed is enforceability.</span> Rules that depended on a marketplace's goodwill can live inside the token, readable by anyone.</p></div>
+ <div class="note-item"><p><span class="k">Rules prove what they check, nothing more.</span> A required memo proves a memo exists; a fee must match the program's formula. Open tests make those edges visible.</p></div>
+</div></div><p>The same chain, explained on the <a href="../token-2022-wns-solana-wen.html#verified-in-the-open">Token-2022, WNS and Wen page</a>; the seven checks before you move a token are in <a href="../posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">Proof before trust</a>.</p><!--/wlab-schema-->
+
     <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
       <p class="src-callout-title">Confirmation of events · Sources</p>
       <p>Every external source behind this page — for your own open study and checking — is collected on one page. <a href="../sources.html#lab-trust">Open the sources for this page &rarr;</a></p>
