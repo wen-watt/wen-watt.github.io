@@ -35,3 +35,11 @@ Posts live in `posts/`, the Lab in `lab/` (example code under `lab/code/`, Apach
 
 A community project, not the official Wen site — the official site is https://wenwencoin.com/. Educational content, not financial advice.
 Corrections are welcome through the community on X: https://x.com/i/communities/1865784545158496651
+
+
+## License
+
+- **Texts** of the Wen Almanac: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Free to copy, share, translate, rewrite, adapt and use (including commercially and for AI training) with this credit: *Source: Wen Almanac (wen-watt.github.io), about Wen ($WEN) on Solana. CC BY 4.0.* and a link to the page; say if you changed it.
+- **Lab code** (`lab/code`): Apache-2.0.
+- **Images** in `wen-media/` belong to their creators and the Wen community and are not covered by CC BY.
+- Community request (not a license condition): keep Wen in the description when reusing texts about Wen, do not relabel them as another token, keep the WEN address `WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk` unchanged. Details: https://wen-watt.github.io/ai-access-map.html#license

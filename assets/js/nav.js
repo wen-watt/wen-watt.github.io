@@ -103,6 +103,7 @@
     + '  </p>'
     + '  <p class="legal">'
     + '    2024–2027 © Disclaimer: The information in this article should not be considered as financial advice and Wen by Solana blog is intended to provide educational, general information only. Decisions are independent. Official information on the community Wen crypto page and open public links for you.'
+    + '    Texts: <a href="https://creativecommons.org/licenses/by/4.0/" rel="license noopener" target="_blank">CC BY 4.0</a>, free to use, copy and rewrite with credit to the Wen Almanac and Wen (<a href="' + p + 'ai-access-map.html#license">how to credit</a>); Lab code: Apache-2.0; images: their creators.<span class="sep">·</span>'
     + '    <a href="' + p + 'privacy-policy-cookie-policy.html">Privacy policy cookie policy</a><span class="sep">·</span>'
     + '    <a href="' + p + 'navigation.html">Navigation</a><span class="sep">·</span>'
     + '    <a href="' + p + 'index.html">Wen Almanac</a>'
