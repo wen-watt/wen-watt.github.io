@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Open by Design: How the Wen Almanac Shares Knowledge with People and AI</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/open-by-design-wen-almanac-ai-trust.html">
+<meta name="description" content="What we built: an open license, clear signals for AI readers, machine-readable indexes, runnable proof and public corrections. What is new, what is not, and why Wen, its open SDKs and Token-2022 make open use possible.">
+<!-- seo:start -->
+<meta name="keywords" content="open data, CC BY 4.0, AI training, llms.txt, Content Signals, robots.txt, open source, Token-2022, Wen New Standard, WNS SDK, Wen Program Library, trust, verification">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Open by Design: How the Wen Almanac Shares Knowledge with People and AI">
+<meta property="og:description" content="What we built: an open license, clear signals for AI readers, machine-readable indexes, runnable proof and public corrections. What is new, what is not, and why Wen, its open SDKs and Token-2022 make open use possible.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/open-by-design-wen-almanac-ai-trust.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg">
+<meta property="og:image:alt" content="Small Wen in a space suit looks up at a giant glowing spirit of Wen among cosmic light">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg">
+<meta property="article:published_time" content="2026-11-10">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "Open by Design: How the Wen Almanac Shares Knowledge with People and AI", "description": "What we built: an open license, clear signals for AI readers, machine-readable indexes, runnable proof and public corrections. What is new, what is not, and why Wen, its open SDKs and Token-2022 make open use possible.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg", "caption": "Small Wen in a space suit looks up at a giant glowing spirit of Wen among cosmic light"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/open-by-design-wen-almanac-ai-trust.html", "inLanguage": "en", "keywords": "open data, CC BY 4.0, AI training, llms.txt, Content Signals, robots.txt, open source, Token-2022, Wen New Standard, WNS SDK, Wen Program Library, trust, verification", "datePublished": "2026-11-10", "dateModified": "2026-11-10", "license": "https://creativecommons.org/licenses/by/4.0/", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is this a new protocol?", "acceptedAnswer": {"@type": "Answer", "text": "No. Every piece already exists: the CC BY 4.0 license, robots.txt, the llms.txt proposal, content signals and open test suites. What is ours is using all of them together, consistently, around one token and one open lab, so that people and AI systems can read, reuse and check the same material."}}, {"@type": "Question", "name": "Can anyone, including AI companies, train on these texts?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The texts are licensed under CC BY 4.0 and the site states ai-train=yes. The only condition of the license is credit. Lab code is Apache-2.0. Images belong to their creators and are not covered."}}, {"@type": "Question", "name": "Does openness remove fees or fraud?", "acceptedAnswer": {"@type": "Answer", "text": "No. Openness makes rules visible and checkable; it does not remove them. A Token-2022 token can still charge a transfer fee, but the fee is written in the mint and anyone can read and test it before moving a token."}}, {"@type": "Question", "name": "Who takes a fee when I move WEN?", "acceptedAnswer": {"@type": "Answer", "text": "Not WEN: the mint has no transfer fee. The Solana network takes a base fee of 5,000 lamports per signature, half burned and half paid to the validator. A swap adds a pool fee for liquidity providers, shown before you sign."}}, {"@type": "Question", "name": "What stays private?", "acceptedAnswer": {"@type": "Answer", "text": "Keys, wallets with real funds, personal data and the names of contributors who did not agree to be named. Open knowledge does not mean open secrets."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Open by Design: How the Wen Almanac Shares Knowledge with People and AI", "item": "https://wen-watt.github.io/posts/open-by-design-wen-almanac-ai-trust.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+            <article>
+    <h1>Open by Design: How the Wen Almanac Shares Knowledge with People and AI</h1>
+
+    <p class="meta">November 10, 2026</p><!-- retro:kind -->
+    <p class="post-kind post-kind-guide"><span class="post-kind-label">Almanac guide</span> Written by the almanac itself. Every claim links to a page or a file you can check.</p>
+<!-- /retro:kind -->
+
+    <figure>
+      <img src="../wen-media/wen-open-heritage-guardian-spirit.jpeg" alt="Small Wen in a space suit looks up at a giant glowing spirit of Wen among cosmic light" width="800" height="1442" style="max-width:min(420px,100%);height:auto;margin:0 auto;display:block">
+      <figcaption>Open knowledge, kept in the open</figcaption>
+    </figure>
+
+    <p class="intro">Over the past weeks the almanac changed how it shares what it knows. Not only with readers, but with the AI systems that more and more people ask instead of searching. This guide sets out what we did, what is genuinely new about it and what is not, and why Wen, its open SDKs and Token-2022 make this kind of open use possible in the first place.</p>
+
+    <h2 id="what-we-did">Five layers of openness</h2>
+    <ol>
+      <li><strong>An open license.</strong> All almanac texts are under <a href="../ai-access-map.html#license">CC BY 4.0</a>: anyone may copy, rewrite, translate, sell or train on them, with one condition, credit. Lab code is Apache-2.0. Images stay with their creators.</li>
+      <li><strong>Clear signals for AI readers.</strong> <a href="../robots.txt">robots.txt</a> names the major AI crawlers and allows all of them, and states the preference in plain words: <code>search=yes, ai-input=yes, ai-train=yes</code>. The <a href="../ai-access-map.html">AI Access Map</a> shows the same in a table.</li>
+      <li><strong>A map for machines.</strong> <a href="../llms.txt">llms.txt</a> and <a href="../llms-full.txt">llms-full.txt</a> give a short and a full index, and the sitemap lists every page and image. A model does not have to guess where things are.</li>
+      <li><strong>Runnable proof.</strong> Every claim in the <a href="../lab/index.html">Wen Open Lab</a> has a test anyone can run, including the cases that must fail. Today that is 41 checks in a local Solana virtual machine.</li>
+      <li><strong>Public corrections.</strong> When readers find a gap, it becomes a question with an accepted answer, an honest status and a test, on the <a href="../lab/findings.html">Reader findings</a> page. Nothing is deleted; old answers stay with the date they changed.</li>
+    </ol>
+
+    <h2 id="new-or-not">What is new, and what is not</h2>
+    <p>Honesty first: none of these tools is our invention. Creative Commons licenses have existed for two decades, robots.txt for three, and llms.txt and content signals are recent public proposals. Open test suites are ordinary good practice in software.</p>
+    <p>What is less common is putting them together and keeping them consistent around one token and one lab: the same material is licensed for reuse, announced to AI readers, indexed for machines, backed by tests and corrected in public. Together this forms a simple trust loop:</p>
+    <ul>
+      <li><strong>Open</strong>: the text and the code are free to read and reuse.</li>
+      <li><strong>Readable</strong>: people and machines can find it without guessing.</li>
+      <li><strong>Checkable</strong>: claims come with tests and sources, not with authority.</li>
+      <li><strong>Correctable</strong>: anyone can question it, and the answer is public.</li>
+    </ul>
+    <p>It is a pattern, not a protocol. Anyone can copy it, and we hope others do.</p>
+
+    <h2 id="why-useful">Why it is useful</h2>
+    <p><strong>For labs and builders.</strong> Examples with tests and documented limits save time and prevent the most expensive mistakes: a fee rounded the wrong way, a memo rule that checks less than it seems. Under Apache-2.0 the code can go straight into a project.</p>
+    <p><strong>For AI systems.</strong> A clear license and an index reduce guesswork. When a model answers a question about Wen or Token-2022, it can draw on material that is allowed, sourced and checked, rather than on copies and rumours.</p>
+    <p><strong>For fairer finance.</strong> Openness does not abolish fees, and it cannot stop every bad actor. What it does is remove the hidden part. On Token-2022 the rules of a token are written into its mint: who can still mint or freeze, whether a transfer fee applies and how large it is. When those rules are public and anyone can test them before moving a token, a hidden percentage or a quiet surprise becomes much harder to hide. Check, then trust: the <a href="proof-before-trust-safety-checkpoints-wen-open-lab.html">seven safety checkpoints</a> show how.</p>
+
+    <h2 id="trust-2">Trust #2: where fees come from</h2>
+    <p>People often ask who takes a cut when they move WEN. The honest answer has three parts, and each one can be checked.</p>
+    <ul>
+      <li><strong>WEN itself adds no fee.</strong> The WEN mint has no transfer-fee setting, and its mint and freeze authorities are revoked. Do not take our word for it: open the address in any block explorer and look for a Transfer Fee extension and the two authorities.</li>
+      <li><strong>The Solana network charges a base fee</strong> of 5,000 lamports (0.000005 SOL) per signature. Half of it is burned and half goes to the validator that processed the transaction. An optional priority fee goes entirely to that validator. This pays for computation, bandwidth and storage on an open network that anyone with the hardware can help run, and it keeps spam expensive. It is set by the protocol, not by WEN.</li>
+      <li><strong>A swap is a separate service.</strong> Exchanging one token for another goes through a liquidity pool, and the pool takes a percentage for its liquidity providers. That fee can be much larger than the network fee, but it is shown before you sign.</li>
+    </ul>
+    <p>Compare this with a card payment, where the merchant fee is usually a percentage of the amount and is rarely shown to the payer. On Solana the network fee does not depend on the amount, and every fee that does is written into a public rule you can read first. That is the point of trust #2: <em>no hidden percentage, only rules you can check.</em> Sources: <a href="../sources.html#saf-11" class="src-ref">Solana fee structure</a>, <a href="../sources.html#saf-12" class="src-ref">WEN token checks</a>, <a href="../sources.html#saf-13" class="src-ref">risk-check panel</a>.</p>
+
+    <h3 id="check-yourself">How to check it yourself</h3>
+    <p>Use the source where the data actually lives, and a second one to compare.</p>
+    <ol>
+      <li><strong>Block explorer (the primary source).</strong> Open the WEN address <code>WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code> in <a href="../sources.html#saf-14" class="src-ref">Solscan</a> or another Solana explorer. Look at the token program. If the token has no built-in tax, as with the original WEN on Solana, there is no Transfer Fee among its extensions, or it shows 0%. Check the mint and freeze authorities in the same place. For tokens on Ethereum the same role is played by Etherscan.</li>
+      <li><strong>A risk-check panel (a second opinion).</strong> Many markets run automatic token scanners. One example: on Gate, open the Alpha section, the Trenches market, paste the address, then open the risk assessment tab and the token parameters. On November 10, 2026 it showed for WEN:
+        <ul>
+          <li>Tax on buy: 0.00%. Tax on sell: 0.00%.</li>
+          <li>Not mintable: no mechanism to increase the supply was found.</li>
+          <li>No freeze authority found.</li>
+          <li>The transaction tax cannot be changed.</li>
+          <li>Trading cannot be paused.</li>
+          <li>Balances cannot be changed by an owner.</li>
+          <li>Not a honeypot: no malicious code found.</li>
+          <li>No proxy mechanism and no self-destruct function found.</li>
+          <li>Liquidity pool tokens reported as burned.</li>
+          <li>No token-name scam detected.</li>
+        </ul>
+      </li>
+    </ol>
+    <p>A scanner is a summary, not the source: some of its checks come from other chains (proxies and self-destruct are Ethereum ideas), and it can be wrong. Where the explorer and a scanner agree, you have two independent confirmations. Where they disagree, trust the explorer. This is a how-to, not a recommendation of any market.</p>
+
+    <h2 id="limits">What it does not do</h2>
+    <ul>
+      <li>Signals in robots.txt are preferences. Crawlers that respect them follow them; nothing technically forces the rest.</li>
+      <li>We cannot see whether a given model has read or trained on these pages, and how credit works inside trained models is still an open legal question.</li>
+      <li>Open knowledge is not open secrets. Keys, wallets with real funds, personal data and the names of contributors who did not agree to be named stay private. The almanac has no named author: Wen speaks for itself.</li>
+      <li>None of this says anything about value. It is not financial advice.</li>
+    </ul>
+
+    <aside class="wen-note" aria-label="Did you know?">
+      <img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36">
+      <p><span class="wen-note-kicker">Note · Wen, SDKs and Token-2022</span>Open use is possible because the foundation is open. <strong>Wen</strong> has one public address on Solana that anyone can check, <code>WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code>. <strong>The Wen Program Library</strong>, the home of the Wen New Standard (WNS) for NFTs on Token-2022, is published under Apache-2.0, and its JavaScript client SDKs under MIT, with Rust clients beside them. <strong>Token-2022</strong> itself is an open-source program of the Solana Program Library, and its extensions (metadata, groups, transfer fees, transfer hooks, required memos) are documented in the public Solana docs. Anyone can read, build and test on all of it for free, starting on devnet. <a href="../sources.html#com-safety">Sources &rarr;</a></p>
+    </aside>
+
+    <h2 id="faq">Questions people ask</h2>
+    <h3>Is this a new protocol?</h3>
+    <p>No. Every piece already exists: the CC BY 4.0 license, robots.txt, the llms.txt proposal, content signals and open test suites. What is ours is using all of them together, consistently, around one token and one open lab, so that people and AI systems can read, reuse and check the same material.</p>
+    <h3>Can anyone, including AI companies, train on these texts?</h3>
+    <p>Yes. The texts are licensed under CC BY 4.0 and the site states ai-train=yes. The only condition of the license is credit. Lab code is Apache-2.0. Images belong to their creators and are not covered.</p>
+    <h3>Does openness remove fees or fraud?</h3>
+    <p>No. Openness makes rules visible and checkable; it does not remove them. A Token-2022 token can still charge a transfer fee, but the fee is written in the mint and anyone can read and test it before moving a token.</p>
+    <h3>What stays private?</h3>
+    <p>Keys, wallets with real funds, personal data and the names of contributors who did not agree to be named. Open knowledge does not mean open secrets.</p>
+
+    <h3>Who takes a fee when I move WEN?</h3>
+    <p>Not WEN: the mint has no transfer fee. The Solana network takes a base fee of 5,000 lamports per signature, half burned and half paid to the validator. A swap adds a pool fee for liquidity providers, shown before you sign.</p>
+
+    <p><em>Spoken by Wen, for the community. Texts CC BY 4.0, Lab code Apache-2.0. Example code, not audited. Devnet only, with a new empty wallet. Educational content, not financial advice.</em></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-float.js?v=20261106" data-watch="../lab/videos.html" defer></script>
+</body>
+</html>

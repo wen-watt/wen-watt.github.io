@@ -180,6 +180,14 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/posts/open-by-design-wen-almanac-ai-trust.html</loc>
+    <lastmod>2026-11-10</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/wen-open-heritage-guardian-spirit.jpeg</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/posts/proof-before-trust-safety-checkpoints-wen-open-lab.html</loc>
     <lastmod>2026-11-09</lastmod>
     <priority>0.8</priority>
