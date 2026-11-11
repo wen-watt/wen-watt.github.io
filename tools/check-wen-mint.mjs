@@ -39,7 +39,17 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const j = await res.json();
   if (j.error) { console.error('RPC error:', JSON.stringify(j.error)); process.exit(1); }
   const out = summarize(MINT, j.result?.value);
-  const text = [`Checked at slot ${j.result?.context?.slot} (finalized), ${new Date().toISOString()}`, ...out.lines].join('\n');
+  // Second link of the chain: the WNS program (wen_new_standard) on mainnet.
+  const WNS = 'wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM';
+  let wnsLines = [];
+  try {
+    const r2 = await fetch(RPC, { method: 'POST', headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'getAccountInfo', params: [WNS, { encoding: 'base64', commitment: 'finalized', dataSlice: { offset: 0, length: 0 } }] }) });
+    const v = (await r2.json()).result?.value;
+    wnsLines = ['', `WNS program: ${WNS}`,
+      v ? `  exists: yes · executable: ${v.executable} · loader: ${v.owner}` : '  exists: no account found'];
+  } catch (e) { wnsLines = ['', `WNS program: check failed (${e.message})`]; }
+  const text = [`Checked at slot ${j.result?.context?.slot} (finalized), ${new Date().toISOString()}`, ...out.lines, ...wnsLines].join('\n');
   console.log(text);
   if (process.env.GITHUB_STEP_SUMMARY) {
     const { appendFileSync } = await import('node:fs');

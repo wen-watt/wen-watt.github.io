@@ -180,6 +180,23 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://wen-watt.github.io/posts/verified-chain-wen-spl-token-wns-token-2022.html</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/wen-news-verified-chain-og.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/wen-card-verified-1-spl-token.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/wen-card-verified-2-chain.png</image:loc>
+    </image:image>
+    <image:image>
+      <image:loc>https://wen-watt.github.io/wen-media/wen-card-verified-3-trust-2.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://wen-watt.github.io/posts/open-by-design-wen-almanac-ai-trust.html</loc>
     <lastmod>2026-11-10</lastmod>
     <priority>0.8</priority>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>The Verified Chain: WEN Read On-Chain, from a Poem to a Token</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/verified-chain-wen-spl-token-wns-token-2022.html">
+<meta name="description" content="An open check read the WEN mint straight from Solana mainnet: original SPL Token, no extensions, no transfer fee, mint and freeze authorities revoked. How WEN connects to Token-2022 through WNS, what we corrected, and the code anyone can rerun.">
+<!-- seo:start -->
+<meta name="keywords" content="WEN, SPL Token, Token-2022, Wen New Standard, WNS, on-chain verification, getAccountInfo, transfer fee, mint authority, freeze authority, open check, GitHub Actions">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Verified Chain: WEN Read On-Chain, from a Poem to a Token">
+<meta property="og:description" content="An open check read the WEN mint straight from Solana mainnet: original SPL Token, no extensions, no transfer fee, mint and freeze authorities revoked. How WEN connects to Token-2022 through WNS, what we corrected, and the code anyone can rerun.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/verified-chain-wen-spl-token-wns-token-2022.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-news-verified-chain-og.png">
+<meta property="og:image:alt" content="WEN coins in space beside a two-step chain: poem NFT on WNS and Token-2022, then one trillion WEN on the original SPL Token">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-news-verified-chain-og.png">
+<meta property="article:published_time" content="2026-11-11">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "NewsArticle", "headline": "The Verified Chain: WEN Read On-Chain, from a Poem to a Token", "description": "An open check read the WEN mint straight from Solana mainnet: original SPL Token, no extensions, no transfer fee, mint and freeze authorities revoked. How WEN connects to Token-2022 through WNS, what we corrected, and the code anyone can rerun.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-news-verified-chain-og.png", "caption": "WEN coins in space beside a two-step chain: poem NFT on WNS and Token-2022, then one trillion WEN on the original SPL Token, read on-chain at slot 468049071"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/verified-chain-wen-spl-token-wns-token-2022.html", "inLanguage": "en", "keywords": "WEN, SPL Token, Token-2022, Wen New Standard, WNS, on-chain verification, getAccountInfo, transfer fee, mint authority, freeze authority, open check, GitHub Actions", "datePublished": "2026-11-11", "dateModified": "2026-11-11", "license": "https://creativecommons.org/licenses/by/4.0/", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is WEN a Token-2022 token?", "acceptedAnswer": {"@type": "Answer", "text": "No. The WEN mint is owned by the original SPL Token program (Tokenkeg…). WEN connects to Token-2022 through its origin: the poem behind it was minted as an NFT with WNS, a standard built on Token-2022."}}, {"@type": "Question", "name": "Can WEN charge a transfer fee?", "acceptedAnswer": {"@type": "Answer", "text": "No. The original SPL Token program has no extensions, so a transfer fee is technically impossible. The mint and freeze authorities are also revoked."}}, {"@type": "Question", "name": "How can I check this myself?", "acceptedAnswer": {"@type": "Answer", "text": "Open the WEN address in a block explorer and look at the token program and the two authorities, or run the open check: it calls getAccountInfo on Solana mainnet and prints the result with the slot it was read at."}}, {"@type": "Question", "name": "Why did the almanac change its pages?", "acceptedAnswer": {"@type": "Answer", "text": "Earlier pages said the WEN launch stress-tested Token-2022 itself. The on-chain check showed the launch stress-tested Solana and Jupiter's launchpad, while Token-2022 entered the story through WNS. The pages were corrected in the open on November 11, 2026."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "The Verified Chain: WEN Read On-Chain, from a Poem to a Token", "item": "https://wen-watt.github.io/posts/verified-chain-wen-spl-token-wns-token-2022.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+<style id="vc-fit">article li code,article p code{overflow-wrap:anywhere;word-break:break-all}article h1,.crumbs span,nav span{overflow-wrap:anywhere}</style>
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+            <article>
+    <h1>The Verified Chain: WEN Read On-Chain, from a Poem to a Token</h1>
+
+    <p class="meta">November 11, 2026</p><!-- retro:kind -->
+    <p class="post-kind post-kind-guide"><span class="post-kind-label">Almanac news</span> Written by the almanac itself. Every claim links to a page, a file or an on-chain read you can repeat.</p>
+<!-- /retro:kind -->
+
+    <figure>
+      <img src="../wen-media/wen-news-verified-chain-og.png" alt="WEN coins in space beside a two-step chain: poem NFT on WNS and Token-2022, then one trillion WEN on the original SPL Token, read on-chain at slot 468049071" width="1200" height="630" style="max-width:100%;height:auto">
+      <figcaption>Read on-chain on November 11, 2026, finalized slot 468049071</figcaption>
+    </figure>
+
+    <p class="intro">The almanac asked the Solana network directly. An open check read the WEN mint from mainnet and answered with facts, not opinions: the original SPL Token program, no extensions, no transfer fee, no mint authority, no freeze authority. The answer made the WEN story more exact, and we corrected our own pages in the open.</p>
+
+    <h2 id="result">What the network said</h2>
+    <ul>
+      <li><strong>Program:</strong> <code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code>, the original SPL Token program, which cannot carry extensions.</li>
+      <li><strong>Extensions:</strong> none, so no transfer fee, no transfer hook and no permanent delegate are possible.</li>
+      <li><strong>Mint authority:</strong> none (revoked): no one can create more WEN.</li>
+      <li><strong>Freeze authority:</strong> none (revoked): no one can freeze a holder&rsquo;s account.</li>
+      <li><strong>Read at:</strong> finalized slot 468049071, 08:02 UTC, by an <a href="../sources.html#saf-15" class="src-ref">open check that reruns every Monday</a>.</li>
+    </ul>
+
+    <figure>
+      <img src="../wen-media/wen-card-verified-1-spl-token.png" alt="Card: WEN lives on the original SPL Token, read from Solana mainnet at slot 468049071, no extensions, authorities revoked" width="1200" height="676" style="max-width:100%;height:auto">
+    </figure>
+
+    <h2 id="chain">The chain, link by link</h2>
+    <p>WEN is connected to Token-2022 through its history and its standard, not through its own mint:</p>
+    <ol>
+      <li><strong>January 5, 2024:</strong> Meow asks on X whether the JUP launch site should be tested with a meme coin; 83.5% of 14,581 votes say yes.</li>
+      <li><strong>Week of January 22, 2024:</strong> Solana&rsquo;s token extensions (Token-2022) go live; WNS becomes the first NFT standard built with them.</li>
+      <li><strong>January 24:</strong> first commit of the Wen Program Library, maintained by the WEN developer community: four programs, all on Token-2022.</li>
+      <li><strong>January 25:</strong> WNS 0.0 is proposed on the Jupiter forum.</li>
+      <li><strong>The poem:</strong> &ldquo;A Love Letter to Wen Bros&rdquo; by Meow, co-founder of Jupiter, is minted as a single NFT with WNS, at launch the first and only NFT on the standard, which began as a coalition of Ovols and Jupiter supported by the Wen Foundation.</li>
+      <li><strong>January 26:</strong> the poem is split into 1,000,000,000,000 fungible WEN tokens on the original SPL Token program, launched by a Jupiter developer and the Ovols team. The fractions &ldquo;trade just like any normal Solana token&rdquo;, as the Ovols side put it on launch eve (<a href="../sources.html#page-about-wen-token-wen-coin-crypto-3" class="src-ref">thread</a>).</li>
+      <li><strong>January 26&ndash;29:</strong> the airdrop to more than a million wallets stress-tests Jupiter&rsquo;s infrastructure, its bot protection and the Solana network: 70% airdropped in equal shares, 20% liquidity, 10% treasury, unclaimed tokens burned after three days.</li>
+    </ol>
+    <p>The full table, with a source for every link, is on the <a href="../token-2022-wns-solana-wen.html#verified-chain">Token-2022, WNS and Wen</a> page.</p>
+
+    <figure>
+      <img src="../wen-media/wen-card-verified-2-chain.png" alt="Card: poem, then WNS on Token-2022, then WEN on SPL Token, with the January 2024 dates" width="1200" height="676" style="max-width:100%;height:auto">
+    </figure>
+
+    <h2 id="corrected">What we corrected</h2>
+    <p>Some earlier pages said the WEN launch &ldquo;stress-tested Token-2022&rdquo; or proved its transfer hooks under load. The on-chain read refines this: the launch stress-tested Solana and Jupiter&rsquo;s launchpad, and Token-2022 entered the story through WNS. Twenty-three sentences across the almanac were updated on November 11, 2026. Nothing was deleted from history; the chain simply has more links now. One link is still open: the on-chain address of the poem NFT itself.</p>
+
+    <h2 id="code">Run it yourself</h2>
+    <p>The check needs no wallet, no keys and no library: one standard call, <code>getAccountInfo</code>, with parsed output.</p>
+    <pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>// tools/check-wen-mint.mjs (excerpt, Apache-2.0): read-only, no wallet, no keys
+const res = await fetch(&#x27;https://api.mainnet-beta.solana.com&#x27;, {
+  method: &#x27;POST&#x27;, headers: { &#x27;content-type&#x27;: &#x27;application/json&#x27; },
+  body: JSON.stringify({ jsonrpc: &#x27;2.0&#x27;, id: 1, method: &#x27;getAccountInfo&#x27;,
+    params: [&#x27;WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk&#x27;,
+             { encoding: &#x27;jsonParsed&#x27;, commitment: &#x27;finalized&#x27; }] }),
+});
+const { result } = await res.json();
+const v = result.value, info = v.data.parsed.info;
+const exts = info.extensions ?? [];
+console.log(&#x27;slot&#x27;, result.context.slot);
+console.log(&#x27;program&#x27;, v.owner);            // Tokenkeg… = SPL Token, TokenzQd… = Token-2022
+console.log(&#x27;mint authority&#x27;, info.mintAuthority ?? &#x27;none (revoked)&#x27;);
+console.log(&#x27;freeze authority&#x27;, info.freezeAuthority ?? &#x27;none (revoked)&#x27;);
+console.log(&#x27;transfer fee&#x27;, exts.find(e =&gt; e.extension === &#x27;transferFeeConfig&#x27;) ? &#x27;yes&#x27; : &#x27;none&#x27;);</code></pre>
+    <p>The full script and the weekly job are in the open repository (Apache-2.0). The same call works for any Solana token: replace the address and compare the program, the authorities and the extensions before you trust a token page.</p>
+
+    <figure>
+      <img src="../wen-media/wen-card-verified-3-trust-2.png" alt="Card: trust number two, no hidden percentage; WEN adds no fee, the network fee is 5,000 lamports per signature, swaps show a pool fee before signing" width="1200" height="676" style="max-width:100%;height:auto">
+    </figure>
+    <p>Why fees matter here, and where they really come from, is explained in <a href="open-by-design-wen-almanac-ai-trust.html#trust-2">trust #2</a>.</p>
+
+    <h2 id="faq">Questions people ask</h2>
+    <h3>Is WEN a Token-2022 token?</h3>
+    <p>No. The WEN mint is owned by the original SPL Token program (Tokenkeg…). WEN connects to Token-2022 through its origin: the poem behind it was minted as an NFT with WNS, a standard built on Token-2022.</p>
+    <h3>Can WEN charge a transfer fee?</h3>
+    <p>No. The original SPL Token program has no extensions, so a transfer fee is technically impossible. The mint and freeze authorities are also revoked.</p>
+    <h3>How can I check this myself?</h3>
+    <p>Open the WEN address in a block explorer and look at the token program and the two authorities, or run the open check: it calls getAccountInfo on Solana mainnet and prints the result with the slot it was read at.</p>
+    <h3>Why did the almanac change its pages?</h3>
+    <p>Earlier pages said the WEN launch stress-tested Token-2022 itself. The on-chain check showed the launch stress-tested Solana and Jupiter's launchpad, while Token-2022 entered the story through WNS. The pages were corrected in the open on November 11, 2026.</p>
+
+    <p><em>Spoken by Wen, for the community. Texts CC BY 4.0, code Apache-2.0. Read-only check, no wallet needed. Educational content, not financial advice.</em></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-float.js?v=20261106" data-watch="../lab/videos.html" defer></script>
+</body>
+</html>
