@@ -32,6 +32,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css?v=20261027">
+<style id="spl-fit">pre{max-width:calc(100vw - 32px);overflow-x:auto;box-sizing:border-box}pre code{white-space:pre}a.src-ref{overflow-wrap:anywhere}.lab-table td code,article p code,article li code{overflow-wrap:anywhere;word-break:break-all}</style>
 </head>
 <body>
 <div class="space"></div>
@@ -66,9 +67,9 @@
 <p>NFT marketplaces and the creator economy — royalties are enforced by the token itself, which makes them far harder to dodge through "gray market" platforms (see the zero-price transfer caveat below) (a long-standing industry problem since 2022). RWA (real-world asset) tokenization — Transfer Hooks let KYC and geo-restriction rules live inside the transfer itself, a must for regulated financial instruments (see <a href="posts/wns-w-token-2022-and-economic-solana-wen.html">WNS, Token-2022 and the Shinhan deal</a>). Compliant DeFi — Permanent Delegate and Transfer Hooks make it possible to issue tokens with built-in controls (essential, for example, for stablecoin or security-token issuers). Lower infrastructure costs — dropping third-party metadata programs (such as those Metaplex used before) cuts the cost and complexity of minting NFT collections.</p>
 <p>What global mechanism is behind this? Put simply, Solana is moving from "programmability through third-party programs" to programmability built into tokens at the protocol level (similar to what Ethereum attempts with ERC-1404/ERC-3643 for security tokens, except that here it is a native part of SPL rather than an extra layer).</p>
 <p>Now to the direct link with Wen — his space-traveling role and his direct part in the whole Solana ecosystem of WNS, Token-2022 and SPL.</p>
-<figure><img alt="Dancing party Wen crypto and Ricky and Morty cartoon" src="wen-media/wen-crypto-memecoin-friends.jpeg"/><figcaption>A Wen crypto dance party, cartoon crossover art</figcaption></figure>
+<figure><img alt="Wen in a space suit drives a white cat-faced van marked wen through space among planets and golden WEN coins" src="wen-media/wen-chain-van-front.jpg" width="508" height="509" loading="lazy" style="max-width:min(420px,100%);height:auto;display:block;margin:0 auto"/><figcaption>Wen on the road: from a poem to a token</figcaption></figure>
 <p>"Wen cat" is not a separate project but the brand identity of the WEN memecoin, which was the first real-world use of WNS. In January 2024 the pseudonymous founder of Jupiter Exchange — known as "weremeow" (with "meow" hinting at a cat) — wrote a playful poem, "A Love Letter to Wen Bros", in reply to the community's endless "wen token?" questions.</p>
-<p>The poem was minted as a unique NFT with the newly created WNS (Wen New Standard). Then, using Token-2022 extensions — Metadata Pointer, Group/Member and Transfer Hook — that single NFT was split into one trillion WEN tokens. They trade like ordinary SPL tokens, yet each one formally stands for a share of ownership in the original poem NFT. The longer story is in <a href="posts/solanas-wns-roadmap-how-a-meme-cat-poem.html">Solana's WNS roadmap</a>.</p>
+<p>The poem was minted as a unique NFT with the newly created WNS (Wen New Standard). The poem NFT itself carried Token-2022 extensions (Metadata Pointer, Group/Member and Transfer Hook). That single NFT was then split into one trillion WEN tokens issued on the original SPL Token program, which is why they trade like ordinary SPL tokens; each one stands for a share of ownership in the original poem NFT (read on-chain, <a href="#connected-roadmap">see the roadmap below</a>). The longer story is in <a href="posts/solanas-wns-roadmap-how-a-meme-cat-poem.html">Solana's WNS roadmap</a>.</p>
 <p>The cat theme — the mascot, the creator's handle and the community branding around the "cutest cat" — comes from the creator's name (weremeow), not from the standard's technical spec. In short, "Wen cat" is the marketing and cultural layer, WNS is the technology underneath, and the WEN token is the proof of concept that brought WNS and NFT fractionalization to a mass audience: the poem NFT used WNS on Token-2022, and the trillion fungible WEN tokens live on the original SPL Token program.</p>
 <p>Verifiable sources: <a href="sources.html#page-spl-solana-program-library-token-2022-wns-3" class="src-ref">Decrypt</a> — names weremeow as the poem's author and WNS as the minting tool <a href="sources.html#page-spl-solana-program-library-token-2022-wns-4" class="src-ref">nftnow</a> — weremeow's own account of where the poem and the nickname came from <a href="sources.html#page-spl-solana-program-library-token-2022-wns-5" class="src-ref">OpenSea</a> — describes the NFT split into 1 trillion tokens and the link to WNS and Token Extensions <a href="sources.html#off-11" class="src-ref">Jupiter Research forum</a> — the developers' original WNS specification <a href="sources.html#page-spl-solana-program-library-token-2022-wns-6" class="src-ref">Phantom Learn</a> — independent confirmation that WNS "was born from meow's poem", with the specific extensions listed</p>
 <p>One note: do not mix it up with other assets of the same name — there is a separate memecoin called "WEN (Stacks)" with a cat character on another ecosystem (Bitcoin/Stacks) that has nothing to do with Solana WNS; they are different projects that happen to share a ticker. Check the token contract on the Solana Explorer. Step by step: <a href="sources.html#page-spl-solana-program-library-token-2022-wns-7" class="src-ref">video</a></p>
@@ -219,6 +220,77 @@
 <p>Critical security review (attack vectors): before taking this template to production, keep in mind three key issues specific to Solana Token Extensions:</p>
 <p>Compute Unit (CU) limit: each hook run involves a CPI (Cross-Program Invocation). When a user trades through an aggregator (such as Jupiter), the CU limit can run out. Fix: optimize data structures and request extra CUs explicitly (through ComputeBudgetProgram) in the dApp frontend. Validation account substitution: the Token-2022 interface needs a specific validation PDA account. If an attacker passes a malicious validation account into the instruction, they may try to skip the hook. Fix: the #[interface_program_account] macro in Anchor 0.30+ partly automates this check, but in production always compare ctx.accounts.validation_account.key() with the PDA derived by Token-2022. Fee evasion through a "zero-cost" transfer: the hook only sees how many tokens move (amount), not what the trade is worth in SOL or USDC on the marketplace. If a marketplace sidesteps the hook (for example, sending the token as a "gift" for 0 SOL and settling payment through a separate contract), the royalty comes out as zero. Fix: WNS handles this by linking the hook to an oracle or by charging a fixed minimum fee in SOL on the token transfer itself.</p>
 <p>This is only an example that outlines the core of the task, and real implementation details may vary: which Solana CLI and Anchor versions do you run locally? Will you test on Devnet or on a local validator? Do you need a TypeScript script to set up the mint with this hook? The developer will build it based on those details and the actual requirements.</p>
+<!--wen-roadmap-->
+<h3 id="connected-roadmap">The connected roadmap: SOL, SPL Token, Token-2022, WNS, JUP and WEN</h3>
+<p>Verified provenance, rerunnable: read on-chain on November 11, 2026, and read again every Monday by an open check anyone can run. Online sources often blur these links. Here each one stands on its own, and the lines show how it connects to the next: a solid line means direct technical continuity, a dashed line means a shared foundation with an independent course.</p>
+<figure><img alt="WEN coins in space beside a two-step chain: poem NFT on WNS and Token-2022, then one trillion WEN on the original SPL Token, read on-chain at slot 468049071" src="wen-media/wen-news-verified-chain-og.png" width="1200" height="630" loading="lazy" style="max-width:100%;height:auto"/><figcaption>The verified chain, read straight from Solana mainnet</figcaption></figure>
+
+<div class="wns-almanac-schema" id="connected-roadmap-schema">
+<p class="roadmap-title">1 · The foundations</p>
+<div class="roadmap"><div class="chain">
+ <div class="node"><p class="node-tag">The network</p><div class="node-card"><p class="node-title">Solana (SOL)</p><p class="node-note">Runs every program below. Fees: 5,000 lamports per signature, half burned, half to the validator.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Original program</p><div class="node-card"><p class="node-title">SPL Token</p><p class="node-note"><code>Tokenkeg…</code> Mint, transfer, burn. No extensions possible. <strong>WEN lives here.</strong></p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Second program</p><div class="node-card"><p class="node-title">Token-2022</p><p class="node-note"><code>TokenzQd…</code> Extensions inside the token: metadata, groups, transfer hook, transfer fee, memo, delegate. Thirteen went live in January 2024.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Standard</p><div class="node-card"><p class="node-title">WNS</p><p class="node-note"><code>wns1gDLt…</code> An NFT standard on Token-2022. Wen Program Library (Apache-2.0), JS SDKs (MIT). First commit Jan 24, 2024; WNS 0.0 on Jan 25.</p></div></div>
+</div></div>
+
+<p class="roadmap-title" style="margin-top:28px">2 · The WEN story</p>
+<div class="roadmap"><div class="chain">
+ <div class="node"><p class="node-tag">Jan 5, 2024</p><div class="node-card"><p class="node-title">The idea</p><p class="node-note">A public poll by Meow: test the new launch site with a meme coin? 83.5% of 14,581 votes said yes.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">January 2024</p><div class="node-card"><p class="node-title">The poem NFT</p><p class="node-note">&ldquo;A Love Letter to Wen Bros&rdquo;, minted with WNS on Token-2022: the first and, at launch, only NFT on the standard.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Jan 26, 2024</p><div class="node-card"><p class="node-title">1T WEN</p><p class="node-note">The poem split into fungible tokens on the <strong>original SPL Token</strong>. 70% airdrop in equal shares to 1M+ wallets, 20% liquidity, 10% treasury.</p></div></div>
+ <div class="connector"></div>
+ <div class="node"><p class="node-tag">Nov 11, 2026</p><div class="node-card"><p class="node-title">Read on-chain</p><p class="node-note">Slot 468049071: no extensions, no transfer fee, mint and freeze authorities revoked.</p></div></div>
+</div></div>
+
+<div class="branch-row"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">Exchange and launchpad</p><div class="node-card"><p class="node-title">Jupiter (JUP)</p><p class="node-note">WEN was the first launch on Jupiter&rsquo;s LFG Launchpad. The airdrop stress-tested Jupiter&rsquo;s infrastructure, its bot protection and Solana ahead of the JUP airdrop. Unclaimed WEN was burned after three days.</p></div></div></div></div>
+<div class="branch-row" style="margin-top:14px"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">Open verification</p><div class="node-card"><p class="node-title"><a href="lab/index.html">Wen Open Lab</a></p><p class="node-note">Six Token-2022 models with 41 tests, and a read-only check of the WEN mint that reruns every Monday.</p></div></div></div></div>
+<div class="legend"><span><i class="swatch solid"></i> direct technical continuity</span><span><i class="swatch dash"></i> shared foundation, independent course</span></div>
+
+<div class="notes"><h2>Key notes</h2>
+ <div class="note-item"><p><span class="k">Do not confuse the links.</span> SOL is the network; SPL Token and Token-2022 are two separate programs; WNS is a standard on Token-2022; JUP is the exchange and launchpad; WEN is a token on the original SPL Token. Connected, each on its own.</p></div>
+ <div class="note-item"><p><span class="k">WEN reaches Token-2022 through its history.</span> The poem NFT used WNS on Token-2022; the trillion fractions use the original program, so a WEN transfer fee is impossible.</p></div>
+ <div class="note-item"><p><span class="k">Refined by a deeper check.</span> Earlier pages followed the widely shared account that the launch tested Token-2022 itself. The on-chain read adds precision; nothing was deleted.</p></div>
+ <div class="note-item"><p><span class="k">Still open.</span> The on-chain address of the poem NFT. When found, the same check will confirm its Token-2022 program.</p></div>
+</div></div>
+
+<h4>The numbers, in one place</h4>
+<div style="overflow-x:auto"><table class="lab-table">
+<thead><tr><th>Item</th><th>Value</th><th>How it is known</th></tr></thead>
+<tbody>
+<tr><td>WEN mint</td><td><code style="overflow-wrap:anywhere">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></td><td>Solana Explorer, Solscan</td></tr>
+<tr><td>Owner program</td><td>SPL Token, <code>TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA</code></td><td>On-chain read, slot 468049071</td></tr>
+<tr><td>Decimals</td><td>5</td><td>On-chain read</td></tr>
+<tr><td>Extensions · transfer fee · hook · delegate</td><td>none</td><td>On-chain read</td></tr>
+<tr><td>Mint authority · freeze authority</td><td>none (revoked)</td><td>On-chain read</td></tr>
+<tr><td>Token-2022 program</td><td><code>TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb</code></td><td>Solana docs</td></tr>
+<tr><td>WNS program</td><td><code>wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM</code></td><td>Wen Program Library code</td></tr>
+<tr><td>Initial supply</td><td>1,000,000,000,000 WEN</td><td>DL News, Decrypt, launch thread</td></tr>
+<tr><td>Allocation</td><td>70% airdrop (equal shares) · 20% liquidity · 10% treasury</td><td>Launch-eve thread from the Ovols side</td></tr>
+<tr><td>Launch · claim window</td><td>Jan 26, 2024, 15:00 UTC · three days, then unclaimed WEN burned</td><td>Launch thread, Decrypt</td></tr>
+<tr><td>Network fee</td><td>5,000 lamports per signature (half burned, half to the validator)</td><td>Solana docs</td></tr>
+</tbody></table></div>
+
+<p>The three verification cards, ready to share:</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px">
+<img alt="Card: WEN lives on the original SPL Token, read from Solana mainnet at slot 468049071" src="wen-media/wen-card-verified-1-spl-token.png" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+<img alt="Card: poem, then WNS on Token-2022, then WEN on SPL Token, with the January 2024 dates" src="wen-media/wen-card-verified-2-chain.png" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+<img alt="Card: trust number two, no hidden percentage" src="wen-media/wen-card-verified-3-trust-2.png" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:12px">
+<img alt="Golden WEN coins fly through space past a blue planet" src="wen-media/wen-chain-coins-space.jpg" width="765" height="510" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+<img alt="Two Wen astronauts ride a black rocket through a starry galaxy" src="wen-media/wen-chain-rocket-duo.jpg" width="513" height="509" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+<img alt="Wen drives the cat-faced van past flying saucers in space" src="wen-media/wen-chain-van-ufo.jpg" width="506" height="509" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+<img alt="Wen in a red climbing suit holds a Mount Everest summit sign" src="wen-media/wen-trip-everest-summit.jpg" width="415" height="414" loading="lazy" style="width:100%;height:auto;border-radius:10px"/>
+</div>
+<p>Full chain with a source for every link: <a href="token-2022-wns-solana-wen.html#verified-chain">Token-2022, WNS and Wen</a>. News and the code of the check: <a href="posts/verified-chain-wen-spl-token-wns-token-2022.html">The verified chain</a>. Sources: <a href="sources.html#saf-15" class="src-ref">open check</a>, <a href="sources.html#saf-17" class="src-ref">dev.to guide</a>, <a href="sources.html#saf-18" class="src-ref">Hashnode story</a>.</p>
+<!--/wen-roadmap-->
+
 <h3>WNS, SPL and Token-2022 at Global Scale</h3>
 <p>The big picture: the problem the Token-2022 + WNS pair solves. Before Token-2022 Token Extensions and the WNS (Wen New Standard) arrived, Solana had a basic protocol limit: the base SPL Token standard could do only three things — mint, burn and transfer.</p>
 <p>Any more complex business logic — royalties, regulatory freezes, confidential transfers — needed "wrapper" programs in between or heavy external metadata like Metaplex's.</p>
