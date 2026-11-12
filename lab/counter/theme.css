@@ -1,0 +1,20 @@
+/* Wen Counter · theme. Change this file to make the counter yours:
+ * colors, font, corner radius. Keep the variable names; the app uses them.
+ * The logo is the <img> in index.html (header) and the icons in manifest.webmanifest.
+ * The shop name shown in the buyer's wallet is set in Setup, not here. */
+:root{
+  --bg:#0b0e18;      /* page background */
+  --panel:#131a2b;   /* cards and inputs */
+  --line:#24304a;    /* borders */
+  --ink:#eef1f8;     /* main text */
+  --dim:#9aa6c2;     /* secondary text */
+  --teal:#5eead4;    /* accent: buttons, links, selected tab */
+  --amber:#fbbf24;   /* waiting status, curve */
+  --red:#f87171;     /* errors, mainnet badge */
+  --green:#22c55e;   /* paid */
+  --font:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  --radius:14px;
+}
+/* Example: a warm florist theme
+:root{--bg:#1a1112;--panel:#26191b;--line:#3d2a2d;--ink:#fff4f2;--dim:#d6b8b4;--teal:#f472b6;--amber:#fbbf24;--red:#f87171;--green:#4ade80;--radius:20px}
+*/

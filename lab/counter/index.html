@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https:; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wen Counter · open point of sale on Solana Pay</title>
+<meta name="description" content="A point of sale that lives in the browser: show a Solana Pay QR, watch the chain, mark the sale paid. No server, no app store, no card data. Devnet first. Apache-2.0.">
+<meta name="theme-color" content="#0b0e18">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../../assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wen Counter">
+<link rel="canonical" href="https://wen-watt.github.io/lab/counter/">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="counter.css">
+</head>
+<body>
+<header><img src="../../assets/icons/icon-192.png" alt="Wen cat logo"><b>Wen Counter</b><span class="badge" id="netBadge">devnet</span></header>
+<nav role="tablist">
+  <button role="tab" aria-selected="true" data-tab="sell" data-i18n="tab.sell">Sell</button>
+  <button role="tab" aria-selected="false" data-tab="ledger" data-i18n="tab.ledger">Ledger</button>
+  <button role="tab" aria-selected="false" data-tab="setup" data-i18n="tab.setup">Setup</button>
+</nav>
+<main>
+  <!-- SELL -->
+  <section id="sell">
+    <div id="needSetup" class="card warn" hidden>Add your shop's receiving address in <a href="#" data-go="setup">Setup</a> first. Only the public address: this page never asks for keys.</div>
+    <form id="saleForm">
+      <div id="deptRow" hidden><label for="dept">Department or branch</label><select id="dept"></select></div>
+      <label for="amount">Amount (<span id="tokLabel">USDC</span>)</label>
+      <input id="amount" class="big" inputmode="decimal" autocomplete="off" placeholder="0.00" required>
+      <label for="note" data-i18n="sell.whatFor">Comment: what for, product code or name (optional)</label>
+      <input id="note" maxlength="60" placeholder="SKU-42 · 2 roses · table 5">
+      <p class="note tight" data-i18n="sell.commentNote">Goes to your ledger and CSV. If the buyer's wallet supports it, it also travels with the payment as a public memo; if not, it stays only on your side.</p>
+      <button class="btn" type="submit" data-i18n="sell.showQr">Show QR</button>
+      <p class="note center"><b>Wen:</b> I built you a fluffy till. No percentages, no payments to me: just pet the cat.</p>
+    </form>
+    <div id="pay" hidden>
+      <div class="amount" id="payAmount"></div>
+      <p class="dim center mono" id="payTo"></p>
+      <div id="qrbox" aria-label="Solana Pay QR code"></div>
+      <div class="status wait" id="status">Waiting for payment…</div>
+      <p class="dim center">The buyer scans with any Solana Pay wallet and confirms. This screen checks the chain by itself.</p>
+      <div class="row"><button class="btn ghost" id="copyLink" type="button" data-i18n="pay.copyLink">Copy pay link</button><button class="btn ghost" id="cancel" type="button" data-i18n="pay.newSale">New sale</button></div>
+      <p class="mono" id="sigLine"></p>
+      <div id="receipt" class="card" hidden>
+        <b data-i18n="rcpt.title">Receipt for the buyer</b>
+        <p class="dim">Let the buyer keep what suits them: a QR to scan, the text, or the link to the transaction.</p>
+        <div class="row"><button class="btn ghost" id="rcptQr" type="button" data-i18n="rcpt.qr">Show receipt QR</button><button class="btn ghost" id="rcptCopy" type="button" data-i18n="rcpt.copy">Copy receipt</button></div>
+        <p class="note">Not a fiscal receipt: the counter is a simple aggregation tool, not a fiscal device. Follow your country's receipt rules. A receipt NFT can be issued from your wallet with <a href="../receipt-warranty-wns.html">Stage 1</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEDGER -->
+  <section id="ledger" hidden>
+    <div class="card save-hero" id="saveHero">
+      <span class="dim" data-i18n="led.today">Today you kept</span>
+      <b id="tKept">0.00</b>
+      <span id="tLine" class="dim">No confirmed sales today yet.</span>
+    </div>
+    <div class="card" id="estCard" hidden>
+      <b>At your turnover</b>
+      <p class="dim" id="estLine"></p>
+    </div>
+    <label for="deptFilter" data-i18n="led.show">Show</label>
+    <select id="deptFilter"><option value="">All wallets</option></select>
+    <p class="note">All time on this device:</p>
+    <div class="grid">
+      <div class="stat"><b id="sCount">0</b><span>confirmed sales</span></div>
+      <div class="stat"><b id="sVolume">0</b><span>volume</span></div>
+      <div class="stat"><b id="sCard">0</b><span>card fees this would have cost</span></div>
+      <div class="stat"><b id="sOff">0</b><span>off-ramp cost (your setting)</span></div>
+      <div class="stat hi"><b id="sNet">0</b><span>kept by the shop</span></div>
+      <div class="stat"><b id="sMix">0%</b><span>effective card rate of your ticket mix</span></div>
+    </div>
+    <p class="note" id="noCompare" hidden>Set “1 token equals” in Setup to compare these sales with card fees.</p>
+    <p class="note">Network fees paid by buyers so far: <b id="sLamports">0</b> lamports. Measured from confirmed transactions, not estimated.</p>
+    <div class="card">
+      <b>The micro-ticket curve</b>
+      <p class="dim">Effective card rate by ticket size under your card terms. The fixed part of the fee makes small sales the most expensive; the dot is your average ticket.</p>
+      <svg id="curve" viewBox="0 0 320 170" role="img" aria-label="Effective card rate by ticket size"></svg>
+    </div>
+    <div class="card" id="byWalletCard" hidden><b>By wallet · head office view</b>
+      <p class="dim">All confirmed sales on this device, per receiving wallet and token. Each wallet can also be read by anyone in a block explorer.</p>
+      <table><thead><tr><th>Wallet</th><th>Token</th><th>Sales</th><th>Amount</th></tr></thead><tbody id="byWallet"></tbody></table></div>
+    <table class="sales"><thead><tr><th>Time</th><th>Amount</th><th>Note</th><th>Tx</th><th title="Refund">↩</th></tr></thead><tbody id="rows"></tbody></table>
+    <div class="card"><b data-i18n="led.refunds">Refunds</b><p class="dim">Refunds are rarer than sales. Make a refund as a new payment from your wallet app, and put <span class="mono">refund:</span> plus the original transaction ID in the memo or note, so anyone can match the two. The ↩ button copies that text. Larger companies: also follow your internal refund rules.</p><p class="dim" id="refundMsg"></p></div>
+    <div class="card"><b data-i18n="led.export">Export for your accountant</b>
+      <label for="period" data-i18n="led.period">Period</label>
+      <select id="period"><option value="today">Today</option><option value="week">This week</option><option value="month">This month</option><option value="year">This year</option><option value="lastyear">Last year</option><option value="q1">Q1 (Jan–Mar)</option><option value="q2">Q2 (Apr–Jun)</option><option value="q3">Q3 (Jul–Sep)</option><option value="q4">Q4 (Oct–Dec)</option><option value="custom">Custom period</option><option value="all">Everything</option></select>
+      <div class="row" id="customRange" hidden><div><label for="from">From</label><input id="from" type="date"></div><div><label for="to">To</label><input id="to" type="date"></div></div>
+      <div class="row"><button class="btn ghost" id="exportCsv" type="button" data-i18n="led.exportCsv">Export CSV</button></div>
+      <p class="dim" id="exportMsg"></p>
+    </div>
+    <p class="note">The ledger lives only in this browser on this device. Export it regularly.</p>
+  </section>
+
+  <!-- SETUP -->
+  <section id="setup" hidden>
+    <form id="lockForm" class="card" autocomplete="off"><div id="lockCard">
+      <b data-i18n="lock.title">Setup is locked</b>
+      <p class="dim" id="lockHint"></p>
+      <label for="pinIn" data-i18n="lock.pin">Setup PIN</label>
+      <input id="pinIn" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
+      <button class="btn" id="unlock" type="submit" data-i18n="lock.unlock">Unlock</button>
+      <p class="dim" id="pinMsg"></p>
+      <p class="note tight" data-i18n="lock.why">Only the owner of this device sets the receiving wallets, so nobody at the till can put their own wallet in. Forgot the PIN? Reinstall the app on this device, enter the receiving wallets again and set a new PIN.</p>
+    </div></form>
+    <form id="setupForm" hidden>
+      <label for="shop" data-i18n="set.shop">Shop name (shown in the buyer's wallet)</label>
+      <input id="shop" maxlength="40" placeholder="Rose Corner">
+      <label for="mainLabel">Main wallet #1: type and name (for example: Main · Shop)</label>
+      <div class="row"><div class="narrow"><select id="mainType" aria-label="What the main wallet is for"><option>Main</option><option>Department</option><option>Branch</option><option>Till</option><option>Tips</option><option>Online</option><option>Events</option><option>Other</option></select></div><div><input id="mainLabel" maxlength="24" placeholder="Main" aria-label="Main wallet name"></div></div>
+      <label for="walletName" data-i18n="set.wallet">Your receiving wallet (Solana)</label>
+      <select id="walletName">
+        <option value="Jupiter">Jupiter Wallet</option>
+        <option value="Phantom">Phantom</option>
+        <option value="Solflare">Solflare</option>
+        <option value="Backpack">Backpack</option>
+        <option value="Squads">Squads (multisig, for teams)</option>
+        <option value="Other">Another Solana wallet</option>
+      </select>
+      <p class="note tight" id="walletHint"></p>
+      <label for="recipient" data-i18n="set.address">Receiving address (public key only)</label>
+      <input id="recipient" class="mono" autocomplete="off" spellcheck="false" placeholder="Paste the address your wallet shows under Receive">
+      <button class="btn ghost" id="checkAddr" type="button" data-i18n="set.check">Check this address on-chain</button>
+      <p class="dim" id="addrResult"></p>
+      <div class="card"><b data-i18n="set.more">More receiving wallets (optional)</b>
+        <p class="dim">One counter can take payments into several wallets: departments (furniture, toys, garden) or branches. Add them here; at the till you choose where each sale goes. Every wallet is checked on-chain and stays receive-only.</p>
+        <p class="note tight">Each wallet gets a number, a type and a name. For example:</p><ul class="note tight"><li>#1 · Main · Shop</li><li>#2 · Department · Furniture</li><li>#3 · Branch · Downtown</li><li>#4 · Tips · Bar tips</li><li>#5 · Online · Web orders</li></ul><p class="note tight">The ledger adds them up per wallet (head office view); the CSV carries the number, type, name and address.</p>
+        <div id="extraList"></div>
+        <button class="btn ghost" id="addExtra" type="button" data-i18n="set.add">+ Add a wallet</button>
+      </div>
+      <div class="card receive-only"><b>Receive-only by design</b><p class="dim">The counter only knows your public address. It never connects to your wallet, never asks it to sign and holds no key, so nothing outside your wallet can send your money. Refunds and transfers are your decision, made inside your wallet app.</p><p class="dim"><b>Wen:</b> keep your recovery phrase to yourself. I only need your address.</p></div>
+      <label for="network" data-i18n="set.network">Network</label>
+      <select id="network"><option value="devnet">Devnet: test, coins have no value</option><option value="mainnet">Mainnet: real money</option></select>
+      <div id="mainWarn" class="card warn" hidden>Mainnet moves real money. Run every step on devnet first, with a new empty wallet. Example code, not audited.<label class="ink"><input type="checkbox" id="mainOk" class="auto"> I understand</label></div>
+      <label for="rpc">RPC endpoint (optional, leave empty for the public one)</label>
+      <input id="rpc" class="mono" placeholder="https://…">
+      <p class="note tight">Many wallets, many tills or a busy shop? Use your own RPC endpoint from a provider: public endpoints have rate limits. Prepare the wallet side too (who holds which wallet, who approves transfers).</p>
+      <label for="token" data-i18n="set.accept">Accept</label>
+      <select id="token"></select>
+      <div id="customTok" hidden><div class="row"><div><label for="mint">Token mint</label><input id="mint" class="mono"></div><div class="narrow"><label for="dec">Decimals</label><input id="dec" inputmode="numeric" value="6"></div></div></div>
+      <label for="unit">For the ledger: 1 token equals, in your currency</label>
+      <input id="unit" inputmode="decimal" placeholder="1 for USDC; your own rate for other tokens">
+      <p class="note tight">USDC and USDT: 1. SOL, WEN, JUP: your own rate. Card fees are charged in your currency, so the ledger converts each sale at this rate when it is confirmed. Leave empty to keep the ledger in token units without the card comparison.</p>
+      <label for="turnover">Monthly card turnover (optional, for the estimate)</label>
+      <input id="turnover" inputmode="decimal" placeholder="e.g. 20000">
+      <label for="terms">Card terms to compare with</label>
+      <select id="terms"><option value="2.9|0.30">Online card: 2.9% + 0.30</option><option value="2.6|0.10">In person: 2.6% + 0.10</option><option value="custom">Custom</option></select>
+      <div class="row"><div><label for="pct">Card %</label><input id="pct" inputmode="decimal" value="2.9"></div><div><label for="fixed">Fixed per sale</label><input id="fixed" inputmode="decimal" value="0.30"></div><div><label for="off">Off-ramp %</label><input id="off" inputmode="decimal" value="0"></div></div>
+      <p class="note">Defaults are a typical published card plan; enter your own terms. Off-ramp is what converting to cash costs you, if you convert (often 0.5–1.5%).</p>
+      <button class="btn" type="submit" data-i18n="set.save">Save</button>
+      <p class="dim center" id="saved"></p>
+    </form>
+    <div class="card" id="pinCard" hidden><b data-i18n="pin.title">Setup PIN and device</b>
+      <p class="dim" data-i18n="pin.text">Set the PIN that protects these settings on this device (4 to 8 digits). Keep it with the owner, not at the till.</p>
+      <div class="row"><div><label for="newPin" data-i18n="pin.new">New PIN</label><input id="newPin" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div><div><label for="newPin2" data-i18n="pin.repeat">Repeat</label><input id="newPin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div></div>
+      <div class="row"><button class="btn ghost" id="setPin" type="button" data-i18n="pin.set">Save new PIN</button><button class="btn ghost" id="lockNow" type="button" data-i18n="pin.lock">Lock setup</button></div>
+      <p class="dim" id="pinSaved"></p>
+      <button class="btn ghost" id="clearLedger" type="button" data-i18n="led.clear">Clear ledger</button>
+      <p class="note tight" data-i18n="pin.clearNote">Clearing the ledger needs the PIN too. Export it first.</p>
+    </div>
+    <div class="card"><b>Taxes, receipts and your accountant</b>
+      <p class="dim">The counter does not declare anything and is not a fiscal device: it is a new, direct link between a buyer who pays by phone with a QR and you who receive. Before you rely on it, show it to your accountant or finance lead: say that you want to receive payments to a wallet and declare them. If your rules allow it, keep the wallet's statements for each period, declare the income and show receipts and refunds. Many countries do not forbid it, but the declaration procedure is yours to check. A useful tip, not legal or tax advice.</p>
+      <p class="dim">If your accountant says yes, scale it: you hold a modern, transparent and free way to accept payments.</p></div>
+    <div class="card"><b>Your responsibility</b>
+      <p class="dim">You use this solution on your own responsibility. We give the mechanism; we do not know how you use it or what you change in it. The mechanism itself does not take money, does not hold money and does not charge a fee. It follows the rules of the Solana network, strictly. The wallet is yours, and you use it yourself.</p>
+      <p class="dim">Found a problem? Check the code and tell us: the open audit is part of the solution.</p></div>
+    <div class="card"><b>Safety and law, in one picture</b>
+      <p class="dim">The Solana network is the Sun; wallets are planets that answer only to their owners; this counter is a telescope that watches payments arrive and writes them down. It never holds funds. Ownership, refunds, records and taxes are handled on your wallet's side, on your phone or desktop. The counter is free and takes nothing; you are responsible for your business and taxes under your country's rules.</p>
+      <p class="dim"><b>Growing?</b> Give each counter its own till wallet. The manager can refund buyers from it during the day and move the day's takings to your company wallet (for example a Squads multisig) every evening. The counter stays receive-only.</p></div>
+    <div class="card"><b data-i18n="set.install">Install</b><p class="dim">Open this page in your phone's browser and choose “Add to Home Screen”. It opens like an app, without an app store, and keeps the ledger on the device.</p></div>
+    <p class="note"><a href="../counter.html">How it works, the numbers behind it, and the code</a> · Wen Counter Protocol 1.0 (WCP-1) · Wen Open Lab · Apache-2.0 · Free, nothing is charged. You are responsible for your business and taxes. Example code, not audited.</p>
+  </section>
+</main>
+<script src="qrcode.js"></script>
+<script src="counter-core.js"></script>
+<script src="counter-i18n.js"></script>
+<script src="counter-deploy.js"></script>
+<script src="counter-app.js"></script>
+</body>
+</html>

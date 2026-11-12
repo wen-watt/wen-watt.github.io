@@ -1,4 +1,4 @@
-/* Wen quiz base: 260 questions. The first option is the correct one; options are shuffled at runtime.
+/* Wen quiz base: 270 questions. The first option is the correct one; options are shuffled at runtime.
    Facts come only from verified, primary or reported sources (see lab/trust.html). */
 window.WEN_QUIZ = [
  {
@@ -3120,5 +3120,125 @@ window.WEN_QUIZ = [
   ],
   "f": "The address is identity. The real WEN is WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk: search the address, not the name.",
   "l": "lab/walkthroughs.html#w10"
+ },
+ {
+  "lv": "tech",
+  "q": "Which token program owns the WEN mint, read on-chain on November 11, 2026?",
+  "o": [
+   "The original SPL Token program",
+   "Token-2022",
+   "The WNS program",
+   "The Jupiter program"
+  ],
+  "f": "An open check read the mint at slot 468049071: owner program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA, the original SPL Token program, with no extensions.",
+  "l": "token-2022-wns-solana-wen.html#verified-chain"
+ },
+ {
+  "lv": "tech",
+  "q": "How is WEN connected to Token-2022?",
+  "o": [
+   "Through the poem NFT, minted with WNS on Token-2022",
+   "The WEN token is itself a Token-2022 token",
+   "Through a transfer fee on every WEN transfer",
+   "It is not connected at all"
+  ],
+  "f": "The poem behind WEN was minted as an NFT with WNS, a standard on Token-2022; the trillion fungible WEN tokens live on the original SPL Token program.",
+  "l": "token-2022-wns-solana-wen.html#verified-chain"
+ },
+ {
+  "lv": "safety",
+  "q": "Can the WEN token charge a transfer fee?",
+  "o": [
+   "No: its program has no extensions, so it is impossible",
+   "Yes, 1% on every transfer",
+   "Only on weekends",
+   "Only when sent to an exchange"
+  ],
+  "f": "The original SPL Token program cannot carry extensions, so a transfer fee is technically impossible; the mint and freeze authorities are also revoked.",
+  "l": "posts/verified-chain-wen-spl-token-wns-token-2022.html"
+ },
+ {
+  "lv": "world",
+  "q": "In the January 5, 2024 poll, what share voted to test the new launch site with a meme coin?",
+  "o": [
+   "83.5%",
+   "51%",
+   "25%",
+   "99%"
+  ],
+  "f": "Meow asked whether to test the JUP launch site with a meme coin; 83.5% of 14,581 votes said yes.",
+  "l": "token-2022-wns-solana-wen.html#verified-chain"
+ },
+ {
+  "lv": "world",
+  "q": "At launch, how many NFTs had been minted on the WNS standard?",
+  "o": [
+   "One: the poem behind WEN",
+   "About a thousand",
+   "One million",
+   "None"
+  ],
+  "f": "The launch-eve thread from the Ovols side described the poem as the first and only NFT on WNS at the time.",
+  "l": "token-2022-wns-solana-wen.html#verified-chain"
+ },
+ {
+  "lv": "safety",
+  "q": "What can Wen Counter, the Lab's point of sale, do with a shop's money?",
+  "o": [
+   "Only receive it; it cannot send, sign or reach the wallet",
+   "Send refunds automatically",
+   "Hold it for a day",
+   "Convert it to cash"
+  ],
+  "f": "Wen Counter is receive-only by design: no wallet connection, no signing, no keys, and only three read requests in code. Refunds are made inside the shop's wallet.",
+  "l": "lab/counter-safety.html"
+ },
+ {
+  "lv": "basic",
+  "q": "How much does Wen Counter cost a shop?",
+  "o": [
+   "Nothing: the counter is free and takes no fee per sale",
+   "1% per sale",
+   "A monthly subscription",
+   "A terminal rental"
+  ],
+  "f": "The counter is free and open (Apache-2.0); the only on-chain cost of a sale is the Solana network fee, paid by the buyer's wallet.",
+  "l": "lab/counter.html"
+ },
+ {
+  "lv": "tech",
+  "q": "Who pays the Solana network fee when a buyer pays a shop through Wen Counter?",
+  "o": [
+   "The buyer's wallet, 5,000 lamports per signature",
+   "The shop, 2.9%",
+   "Wen",
+   "Nobody"
+  ],
+  "f": "The signer pays the fee: 5,000 lamports per signature, half burned and half to the validator. The shop receives the full amount.",
+  "l": "lab/counter.html"
+ },
+ {
+  "lv": "world",
+  "q": "With a card fee of 2.9% + 0.30, what share of a 3-dollar coffee goes to the card fee?",
+  "o": [
+   "About 12.9%",
+   "2.9%",
+   "0.3%",
+   "30%"
+  ],
+  "f": "0.087 plus 0.30 is 0.387, or 12.9% of 3. The fixed part makes small tickets the most expensive: the micro-ticket effect.",
+  "l": "lab/counter.html#micro-ticket"
+ },
+ {
+  "lv": "safety",
+  "q": "In Wen Counter, what is the shop's identity?",
+  "o": [
+   "Its own wallet's receiving address, checked on-chain",
+   "An account with Wen",
+   "A card number",
+   "A phone number"
+  ],
+  "f": "The shop pastes its wallet's public receiving address; the counter checks it on-chain at setup and shows it on every QR screen.",
+  "l": "lab/counter.html#receive-only"
  }
 ];

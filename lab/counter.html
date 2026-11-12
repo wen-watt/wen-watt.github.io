@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Stage 7: Wen Counter, an Open Point of Sale in the Browser</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/counter.html">
+<meta name="description" content="Model 7 of Wen Open Lab: a free, open point of sale in a web page on Solana Pay. Show a QR, watch the chain, record the sale; several wallets for departments, branches or tips, receipts, refund notes, exports. No server, no app store, no card data, no fee per sale. Apache-2.0.">
+<!-- seo:start -->
+<meta name="keywords" content="point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stage 7: Wen Counter, an Open Point of Sale in the Browser">
+<meta property="og:description" content="Model 7 of Wen Open Lab: a point of sale that lives in a web page. Show a Solana Pay QR, watch the chain, record the sale. No server, no app store, no card data, no fixed fee per sale. Devnet first, Apache-2.0.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/counter.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-og.png">
+<meta property="og:image:alt" content="Wen serves ice cream beside a phone showing the Wen Counter ledger: a free till in your browser">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Stage 7: Wen Counter, an Open Point of Sale in the Browser", "description": "A free, open point of sale in a web page on Solana Pay: QR, on-chain verification, several wallets for departments, branches or tips, receipts, refund notes and exports. Receive-only, Apache-2.0.", "image": "https://wen-watt.github.io/wen-media/wen-counter-og.png", "url": "https://wen-watt.github.io/lab/counter.html", "inLanguage": "en", "keywords": "point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab", "datePublished": "2026-11-11", "dateModified": "2026-11-12", "license": "https://www.apache.org/licenses/LICENSE-2.0", "author": {"@type": "Organization", "name": "Wen"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}, {"@type": "SoftwareApplication", "name": "Wen Counter", "applicationCategory": "BusinessApplication", "operatingSystem": "Any modern browser", "url": "https://wen-watt.github.io/lab/counter/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "downloadUrl": "https://wen-watt.github.io/lab/counter/wen-counter-kit.zip"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does the counter need an app or special hardware?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is a web page you can add to the home screen of any phone or tablet. It shows a QR code; the buyer pays from their own wallet. No card data passes through the counter, so no certified terminal is needed."}}, {"@type": "Question", "name": "Who pays the network fee?", "acceptedAnswer": {"@type": "Answer", "text": "The buyer's wallet pays the Solana network fee, 5,000 lamports per signature. The shop receives the full amount; the counter records the fee from the confirmed transaction."}}, {"@type": "Question", "name": "Can it replace card acquiring today?", "acceptedAnswer": {"@type": "Answer", "text": "Not fully. Buyers need a funded Solana wallet, there are no chargebacks, and converting to cash and local rules have their own costs. It is a second, open way to accept payment, strongest for small tickets where a fixed card fee hurts most."}}, {"@type": "Question", "name": "Can I copy it and build my own version?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, for free. Keep the NOTICE file and credit Wen Open Lab and the Wen chain (Solana, Solana Pay, SPL Token and Token-2022, WNS, WEN); that is the one condition of the Apache-2.0 license here."}}, {"@type": "Question", "name": "Which wallet should a shop use?", "acceptedAnswer": {"@type": "Answer", "text": "Any Solana wallet you trust. The page names five examples: Jupiter, Phantom, Solflare, Backpack and, for teams, Squads. The counter only needs the receiving address and checks it on-chain at setup."}}, {"@type": "Question", "name": "Is my money or key ever in the page?", "acceptedAnswer": {"@type": "Answer", "text": "No. The counter only knows the shop's public receiving address. It never asks for a seed phrase or private key and it cannot move funds."}}, {"@type": "Question", "name": "Who is Wen Counter for?", "acceptedAnswer": {"@type": "Answer", "text": "For anyone it helps: crypto communities, events, online shops for their own audience, and any shop whose buyers already pay from a Solana wallet. It is free and open."}}, {"@type": "Question", "name": "Can one counter receive into several wallets?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Wallet #1 plus wallets #2..X, each with a type (Department, Branch, Till, Tips, Online, Events) and a name. The ledger adds up sales per wallet."}}, {"@type": "Question", "name": "Is the Wen Counter receipt a fiscal receipt?", "acceptedAnswer": {"@type": "Answer", "text": "No. The counter is a simple aggregation tool, not a fiscal device. Check the declaration procedure with your accountant and keep the wallet's statements for each period."}}, {"@type": "Question", "name": "Who is responsible when a shop uses Wen Counter?", "acceptedAnswer": {"@type": "Answer", "text": "The user. The mechanism does not take, hold or charge anything; it follows the Solana network's rules, and the wallet belongs to the shop."}}, {"@type": "Question", "name": "Can a cashier change the receiving wallet in Wen Counter?", "acceptedAnswer": {"@type": "Answer", "text": "Not without the setup PIN. Wallets and settings are locked on the device; the first PIN comes from the deployment (default 1111) and the owner changes it. Forgot it: reinstall, enter the wallets again, set a new PIN."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/lab/"}, {"@type": "ListItem", "position": 3, "name": "Stage 7: Wen Counter, an Open Point of Sale in the Browser", "item": "https://wen-watt.github.io/lab/counter.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <p class="meta">Wen Open Lab · open point of sale</p>
+    <h1>Stage 7: Wen Counter<span class="lab-badge">prototype · devnet</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="counter.html" aria-current="page">7 · Counter</a></li><li><a href="counter-safety.html">7.1 · Safety</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html">&#9998; · Ten walkthroughs</a></li><li><a href="videos.html">▶ · Videos</a></li><li><a href="findings.html">? · Reader findings</a></li></ul>
+    <section class="counter-pitch" id="in-short" style="border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel);padding:22px 22px 18px;margin:18px 0">
+      <p style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal,#5eead4);margin:0 0 8px;font-weight:600">In short · free for everyone</p>
+      <h2 style="margin:0 0 12px">Hey, where are you going? 🐾</h2>
+      <p style="margin:0 0 10px">US merchants paid <strong>$187.2 billion</strong> in card fees in 2024. On a 3-dollar coffee, a card can take <strong>12.9%</strong>. Here the counter costs <strong>0</strong>, there is <strong>no fee per sale</strong>, and the buyer&rsquo;s wallet pays only the Solana network fee: <strong>5,000 lamports</strong>.</p>
+      <p style="margin:0 0 14px">No app to publish, no terminal to rent, no card data to protect, nobody in the middle. A web page on the phone at your till. <strong>Take it, check it, run it.</strong></p>
+      <p style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px">
+        <span class="lab-badge">free</span><span class="lab-badge">open code</span><span class="lab-badge">no app store</span><span class="lab-badge">no card data</span><span class="lab-badge">no intermediaries</span><span class="lab-badge">savings measured, not promised</span>
+      </p>
+      <p style="display:flex;flex-wrap:wrap;gap:10px;margin:0">
+        <a href="counter/" style="display:inline-block;background:var(--teal,#5eead4);color:#06231f;font-weight:700;padding:12px 20px;border-radius:12px;text-decoration:none">Open the counter &rarr;</a>
+        <a href="counter/wen-counter-kit.zip" download style="display:inline-block;border:1px solid var(--panel-line);color:var(--ink);font-weight:600;padding:12px 20px;border-radius:12px;text-decoration:none">Download the kit (.zip)</a>
+      </p>
+      <blockquote style="margin:18px 0 0;padding:12px 16px;border-left:3px solid var(--amber,#e0a444);color:var(--ink-dim);font-style:italic">
+        A cat came in from somewhere far,<br>with nothing up his sleeve.<br>He brought a till that costs you zero<br>and fees you can believe.<br>He wants no cut, no card, no app:<br>just pet him, and receive.
+      </blockquote>
+    </section>
+
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>I&rsquo;m the mechanism that gathers every chain into your own till, and you don&rsquo;t pay for it: just pet the cat. The details: the money you receive is managed by the wallet you chose. Refunds, transfers to a wallet or an account for your takings, all of it happens inside your wallet. From me you get a way to accept payments with no percentages and no fees. Small pizzeria, florist or big company, you can set up your own till. I built you a fluffy one.</p></aside>
+    <figure style="max-width:420px;margin:24px auto"><img src="../wen-media/wen-trip-ice-cream-serve.jpg" alt="Wen in a striped apron serves ice cream to smiling children at a street counter" width="415" height="417" loading="lazy" style="width:100%;height:auto;border-radius:12px"><figcaption>A counter is a counter: show the price, take the payment, hand over the cone</figcaption></figure>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:18px 0">
+      <img src="../wen-media/wen-counter-card-1-coffee.png" alt="Card: 12.9% on a coffee, shops pay 1 to 3% per card sale, Wen Counter costs 0 per sale" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+      <img src="../wen-media/wen-counter-card-2-receive-only.png" alt="Card: receive-only by design, no key, three read requests, 57 open checks" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+      <img src="../wen-media/wen-counter-card-3-today-you-kept.png" alt="Card: today you kept, measured from confirmed sales, with the ledger screen" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+    </div>
+    <p style="color:var(--ink-dim);font-size:.9em">Cards to share. Screens are from a test run on devnet; the QR on the cards is blurred on purpose.</p>
+
+    <h2 id="why">Why this matters</h2>
+    <p>Every layer between a buyer and a shop takes its share: the acquirer, the network, the terminal rental, the platform. For a shop that pays its taxes and its people, that is money taken from work, before any decision about growth. Wen Counter is a direct micro-system: the buyer pays the shop, the chain confirms it, and the shop keeps the record. The only cost of a sale is the Solana network fee, and the buyer&rsquo;s wallet pays it. The counter itself costs nothing.</p>
+    <p>For a business that keeps books: every sale has an on-chain signature and goes into a ledger you can export as CSV for your accountant.</p>
+
+
+    <h2 id="your-till">Your own till, in five steps</h2>
+    <ol>
+      <li><strong>Take the tool.</strong> Open the counter on the phone or tablet at your till, or download the kit.</li>
+      <li><strong>Create a wallet</strong> in a Solana wallet app you trust (Jupiter, Phantom, Solflare, Backpack, Squads).</li>
+      <li><strong>Register it</strong> in Setup: shop name, wallet name, network (devnet first).</li>
+      <li><strong>Paste the receiving address.</strong> The counter checks it on-chain. That is your open, free till.</li>
+      <li><strong>Manage the money in your own wallet:</strong> refunds, purchases, transfers, records for your tax return.</li>
+    </ol>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0"><img src="../wen-media/wen-counter-shop-toys-bear.jpg" alt="Wen shows a teddy bear to children at a toy shop counter" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../wen-media/wen-counter-shop-grill-1.jpg" alt="Wen grills skewers at a night market stall" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../wen-media/wen-counter-shop-pizza.jpg" alt="Wen slides a fresh pizza out of a wood-fired oven" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../wen-media/wen-counter-shop-toys-robot.jpg" alt="Wen holds up a toy robot for smiling children" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../wen-media/wen-counter-shop-clothes-hoodie.jpg" alt="Wen holds up a blue hoodie for children in a clothes shop" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../wen-media/wen-counter-shop-clothes-cap.jpg" alt="Wen puts a cap on a smiling boy in a clothes shop" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"></div>
+    <p style="font-size:13px;color:var(--ink-dim)">A toy shop, a grill, a pizzeria, a clothes shop: the same free till. <a href="../posts/wen-counter-free-open-till-for-every-shop.html">Read the news</a>.</p>
+    <h3 id="chains">For companies and chains</h3>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Level</th><th>Wallet</th><th>Who</th><th>When</th></tr></thead><tbody>
+      <tr><td>Department or till</td><td>one receiving wallet each, named in Setup (furniture, toys, garden)</td><td>the counter takes payments, receive-only</td><td>every sale</td></tr>
+      <tr><td>Branch</td><td>a till wallet per branch</td><td>a responsible manager runs the day&rsquo;s takings and refunds</td><td>during the day</td></tr>
+      <tr><td>Company</td><td>one central wallet, for example a Squads multisig</td><td>finance; several approvals to move funds</td><td>the day&rsquo;s takings arrive every evening</td></tr>
+    </tbody></table></div>
+    <p>One counter, wallets 1 to X, each with a label. At the till the cashier picks where the sale goes; the ledger filters by wallet and the export carries the wallet name and address. The interface stays strict; the code is open for any change you need.</p>
+    <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-5-many-wallets.png" alt="Card: one counter, many wallets; department, tips, head office view with totals per wallet" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+    <h3 id="setup-pin">The setup PIN: the owner sets the wallets</h3>
+    <p>A company puts the counter on a phone at the till and sets the receiving wallets. Setup is locked by a PIN, so a manager or a cashier cannot put their own wallet in. The first PIN is a deployment parameter (<code>counter-deploy.js</code>, simple <code>1111</code> by default); the owner sets a new one in Setup right after the first start. Leaving Setup locks it again; five wrong tries pause it for 30 seconds; clearing the ledger needs the PIN too. The PIN is kept on the device only as a salted SHA-256.</p>
+    <p><strong>Forgot the PIN?</strong> Reinstall the app on the device, enter the receiving wallets again and set a new PIN. A simple, safe flow: nothing is lost on-chain, and an employee cannot quietly swap the wallet. A reinstall leaves the counter with no wallet at all, the receiving address is shown on every QR, and the takings stop arriving in the company wallet, so a swap cannot go unnoticed.</p>
+    <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-4-setup-pin.png" alt="Card: the owner sets the wallets; setup locked by a PIN; nobody at the till can swap the wallet" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+    <p style="font-size:1.1em"><strong>Voil&agrave;: your ready acquiring mechanism. Your own Wen Counter.</strong></p>
+    <figure style="margin:20px auto;max-width:460px"><img src="../wen-media/wen-counter-cards-stack-2.png" alt="Three cards stacked: the owner sets the wallets, one counter many wallets, 57 open checks" width="1200" height="2028" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="functions">What the till does</h2>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Function</th><th>How it works</th><th>Where the decision stays</th></tr></thead><tbody>
+      <tr><td>Currencies</td><td>Choose in Setup, in this order: <strong>USDC, SOL, WEN, JUP</strong>; USDT optional; any SPL token by mint. Mainnet-only tokens are greyed out on devnet. Token decimals are read from the chain before a sale.</td><td>the shop chooses what it accepts</td></tr>
+      <tr><td>Several wallets</td><td>Wallet #1 (main) plus wallets #2..X, each with a <strong>type</strong> (Department, Branch, Till, Tips, Online, Events, Other) and a <strong>name</strong>: <code>#2 · Department · Furniture</code>, <code>#4 · Tips · Bar tips</code>. Each is checked on-chain; the payment is verified against the wallet chosen for that sale.</td><td>Setup, by the owner</td></tr>
+      <tr><td>Setup PIN</td><td>Wallets and settings open only with the PIN; the first PIN comes from the deployment file (default 1111) and the owner changes it. Forgot it: reinstall, enter the wallets, set a new PIN.</td><td>the owner of the device</td></tr>
+      <tr><td>Sale comment</td><td>What for, a product code or a name, or nothing. Goes to the ledger, the receipt and the CSV. If the buyer&rsquo;s wallet supports it, it also travels with the payment (Solana Pay <code>message</code> and an on-chain <code>memo</code>, which is public); if not, it stays only on the shop&rsquo;s side.</td><td>the cashier, per sale</td></tr>
+      <tr><td>Head office view</td><td>The ledger adds up sales per wallet and token; the CSV carries wallet number, type, name and address. Every wallet can also be read by anyone in a block explorer.</td><td>finance, from the wallets</td></tr>
+      <tr><td>Receipt for the buyer</td><td>After &ldquo;Paid&rdquo; the buyer chooses: a receipt QR (link to the transaction), the receipt text, or a receipt NFT from <a href="receipt-warranty-wns.html">Stage 1</a>. <strong>Not a fiscal receipt</strong>: the counter is a simple aggregation tool, not a fiscal device. Follow your country&rsquo;s receipt rules.</td><td>buyer and shop</td></tr>
+      <tr><td>Refunds</td><td>Rarer than sales. Made as a new payment from the shop&rsquo;s wallet; the ↩ button copies <code>refund:</code> plus the original transaction ID for the memo, so anyone can match the two. Larger firms follow their own rules.</td><td>inside the wallet app</td></tr>
+      <tr><td>Exports</td><td>CSV for today, this week, month, year, last year, a quarter (Q1&ndash;Q4) or any period; with wallet name, address, signature and network fee.</td><td>your accountant</td></tr>
+      <tr><td>Language</td><td>English today. All interface words live in one dictionary file (<code>counter-i18n.js</code>), bound to the core fingerprint, so a translation never changes the core. Chinese and Italian are next.</td><td>&mdash;</td></tr>
+    </tbody></table></div>
+
+    <h2 id="before-you-scale">Seven answers before you scale</h2>
+    <p>These are not open problems. They are the answers we give to every shop, written down once, so that each one can decide for itself.</p>
+    <ol>
+      <li><strong>Who it is for.</strong> Most people do not have a Solana wallet with USDC yet, and no code changes that. Nobody here talks about mass adoption: the first users are crypto communities, events and online shops for their own audience. The solution is open to everyone, in search and in the files AI assistants read; where it is useful, people will use it.</li>
+      <li><strong>Several departments, one view.</strong> Do you have several departments, or want to split what you receive? Add wallets by number, type and name: <code>#2 · Department · Furniture</code>, <code>#3 · Branch · Downtown</code>, <code>#4 · Tips · Bar tips</code>. The ledger adds them up per wallet (head office view), and every wallet can be read in a block explorer.</li>
+      <li><strong>A real company: RPC, wallet side and accounting.</strong> Many wallets and many payments need your own RPC endpoint, because public endpoints have rate limits. Prepare the wallet side as well: who holds which wallet, who approves transfers, how the day&rsquo;s takings move. For a company this means building the wallets into its accounting, which is different from a private seller who receives a payment once a week and reports it alone. Check with your accountant or finance lead that you may use a wallet. It may not be forbidden, but the procedure and the declaration need your attention. This is a useful tip, not advice.</li>
+      <li><strong>Fiscal rules.</strong> The counter does not declare anything. It is a new mechanism of modern links: the buyer pays by phone with a QR the counter generates, and you receive. Ideal for a micro business, workable for a large one, very economical and free. Study the fiscal procedure with your accountant. If your rules let you declare the amounts, keep the wallet&rsquo;s statements for each period, declare the income and show what you received and what you refunded. Explain to your accountant that you want to receive funds to a wallet and declare them: it is a correct, modern and transparent approach to business and taxes. If the accountant says yes, scale it: you have an interesting solution in your hands.</li>
+      <li><strong>Responsibility and open audit.</strong> You use the solution on your own responsibility. We give the mechanism; we do not know what you do with it or what you change. The mechanism itself does not take money, does not hold money and does not charge a fee: there is the network&rsquo;s procedure, and only that procedure is used; there is your wallet, and you use it yourself. The audit is open: read the code, rerun the 57 checks, and tell us what you find (<a href="counter-safety.html#open-audit">how</a>).</li>
+      <li><strong>Languages, bound to the core.</strong> Every interface word is in one dictionary file. The dictionary carries the fingerprint of the core it was written for, and a safety check fails if the core changes without a fresh look at the translations. Chinese and Italian come first.</li>
+      <li><strong>USDT stays.</strong> Optional, next to USDC, SOL, WEN and JUP.</li>
+    </ol>
+    <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-6-open-audit.png" alt="Card: 57 open checks; 25 logic, 13 code reading, 19 in a browser; break it if you can, then tell us" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="cycle">The Wen cycle, step by step</h2>
+    <p>This is the whole algorithm. Each step is done by you, in tools you control; the counter only joins them together.</p>
+    <ol>
+      <li><strong>Choose a wallet.</strong> Jupiter Wallet, Phantom, Solflare, Backpack, Squads for a team, or another Solana wallet you trust.</li>
+      <li><strong>Create it by its own rules.</strong> Write the recovery phrase on paper, keep it offline, never type it into a website, never send it to anyone, and never connect the wallet to the counter. Nobody from Wen will ever ask for it.</li>
+      <li><strong>Deploy your own counter.</strong> Open the hosted counter or download the kit and put it on your own domain with your own design. It is your interface, not ours.</li>
+      <li><strong>Make the wallet its identity.</strong> Paste the receiving address into Setup and press <em>Check this address on-chain</em>. The address, the wallet name and the time of the check become the identity of your till.</li>
+      <li><strong>Take a payment.</strong> Type the amount; the counter shows a Solana Pay QR with your address, the amount, a fresh reference and an order memo. The buyer pays from any Solana wallet.</li>
+      <li><strong>Let the chain confirm it.</strong> The counter reads the chain, checks five things (reference, recipient, token, amount, success) and shows &ldquo;✓ Paid&rdquo;. The money is already in your wallet.</li>
+      <li><strong>Keep the record, decide in your wallet.</strong> The sale goes into your ledger and CSV. Refunds, transfers and withdrawals are your decisions, made inside your wallet app. Voil&agrave;.</li>
+    </ol>
+    <p><strong>What you gain:</strong> no fee per sale and no counter cost; money final in seconds; no terminal, no app store, no contract; your own design and domain; a ledger with your real savings. <strong>What keeps you safe:</strong> no keys, no wallet connection, read-only in code, no injected commands, the address shown on every QR, 57 open checks (<a href="counter-safety.html">Stage 7.1</a>).</p>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>Save your phrase, keep it to yourself, and never connect your wallet to me. I don&rsquo;t need it. I only need your address, the same one you would write on an invoice.</p></aside>
+
+    <h2 id="foundation">The foundation: SOL, SDK, WEN, SPL Token, Token-2022</h2>
+    <p>The protocol of the counter is the open cycle these five already form. We rechecked every link on November 11, 2026.</p>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Link</th><th>What it does in the counter</th><th>Checked how</th></tr></thead><tbody>
+      <tr><td><strong>SOL</strong> · Solana network</td><td>Carries the payment; its fee of 5,000 lamports per signature (half burned, half to the validator) is the only cost of a sale, paid by the buyer&rsquo;s wallet.</td><td>Solana docs <a href="../sources.html#lab-counter-6" class="src-ref">source</a></td></tr>
+      <tr><td><strong>SDK</strong> · open libraries and standards</td><td>Solana Pay&rsquo;s public URL format and two standard read calls; the Wen Program Library (Apache-2.0) and its JavaScript SDKs (MIT) for receipts and royalties in other Lab stages.</td><td>Public code and docs <a href="../sources.html#lab-counter-5" class="src-ref">source</a></td></tr>
+      <tr><td><strong>WEN</strong> · the community token</td><td>The story and the cycle of usefulness this counter belongs to; can be accepted as a community payment option.</td><td>Read on-chain, slot 468049071 <a href="../sources.html#saf-15" class="src-ref">source</a></td></tr>
+      <tr><td><strong>SPL Token</strong> · original program</td><td>USDC and WEN live here; transfers have no built-in fee, so the shop receives the full amount.</td><td>On-chain owner program <code>Tokenkeg…</code></td></tr>
+      <tr><td><strong>Token-2022</strong> · extensions</td><td>If a shop accepts a Token-2022 token with a transfer fee, the counter compares what actually arrived, so no fee passes unnoticed.</td><td>25 core checks, Lab models 1&ndash;6 with 41 tests</td></tr>
+    </tbody></table></div>
+    <p>Nothing new is deployed to the chain: no program, no token, no contract. The counter is a way to read what is already public.</p>
+
+    <h2 id="responsibility">Your responsibility</h2>
+    <ul>
+      <li>The counter is free. Nothing is charged, nothing is collected, and there is no intermediary between you and your buyer.</li>
+      <li>You run your business, so you are responsible for it: register your activity where required, keep your records, declare your income and pay your taxes according to the rules of your country. Do it in good faith and on your own.</li>
+      <li>Converting to cash, stablecoin rules and consumer protection differ by country. Ask an accountant or a lawyer before going live.</li>
+      <li>Your wallet&rsquo;s safety is yours: the recovery phrase, the device, the team approvals.</li>
+      <li>You use the solution on your own responsibility. We give the mechanism and do not know how it is used or changed. The mechanism does not take, hold or charge anything; it follows the Solana network&rsquo;s rules strictly, and your wallet is yours to use.</li>
+    </ul>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>I give it for free and take nothing. Be honest with your buyers and your taxes, and keep your phrase safe. That is all I ask.</p></aside>
+
+    <h2 id="numbers">The numbers behind the idea</h2>
+    <ul>
+      <li><strong>$187.2 billion</strong> in card processing fees paid by US merchants in 2024 (Nilson Report); a merchants&rsquo; coalition counts <strong>$198.25 billion</strong> for 2025. <a href="../sources.html#lab-counter-1" class="src-ref">source</a> <a href="../sources.html#lab-counter-2" class="src-ref">source</a></li>
+      <li><strong>$12.5 trillion</strong> of US card purchase volume in 2025. <a href="../sources.html#lab-counter-1" class="src-ref">source</a></li>
+      <li>A typical published plan: <strong>2.9% + 30¢</strong> online and <strong>2.6% + 10¢</strong> in person, with an extra platform fee when a shop uses an outside processor. <a href="../sources.html#lab-counter-3" class="src-ref">source</a></li>
+      <li>Card terminals cost about <strong>$200 to $1,000+</strong> each; tap-to-pay on a phone needs a certified app, NFC and device attestation. <a href="../sources.html#lab-counter-4" class="src-ref">source</a></li>
+      <li>Solana Pay is an open standard; a Shopify checkout plugin exists since 2023, and as reported in 2026, development has shifted from point-of-sale tools to other payment primitives. <a href="../sources.html#lab-counter-5" class="src-ref">source</a> That gap is what this model fills: it needs no SDK, only the public URL format and two read calls.</li>
+    </ul>
+
+    <h2 id="micro-ticket">The micro-ticket effect</h2>
+    <p>The fixed part of a card fee is the same for a coffee and a sofa, so the smaller the sale, the larger the share it takes. This is where a counter without a fixed fee matters most: pizzerias, florists, cafés, market stalls.</p>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Ticket</th><th>Card, 2.9% + 0.30</th><th>Card, 2.6% + 0.10</th><th>Wen Counter</th></tr></thead><tbody><tr><td>3 · coffee</td><td>0.39 (12.9%)</td><td>0.18 (5.9%)</td><td>0 to the shop; the buyer&rsquo;s wallet pays 5,000 lamports</td></tr><tr><td>8 · pizza slice</td><td>0.53 (6.7%)</td><td>0.31 (3.9%)</td><td>0 to the shop; the buyer&rsquo;s wallet pays 5,000 lamports</td></tr><tr><td>25 · bouquet</td><td>1.02 (4.1%)</td><td>0.75 (3.0%)</td><td>0 to the shop; the buyer&rsquo;s wallet pays 5,000 lamports</td></tr><tr><td>60 · dinner for two</td><td>2.04 (3.4%)</td><td>1.66 (2.8%)</td><td>0 to the shop; the buyer&rsquo;s wallet pays 5,000 lamports</td></tr><tr><td>150 · online order</td><td>4.65 (3.1%)</td><td>4.00 (2.7%)</td><td>0 to the shop; the buyer&rsquo;s wallet pays 5,000 lamports</td></tr></tbody></table></div>
+    <p style="color:var(--ink-dim)">Card fees in the shop&rsquo;s currency, effective rate in brackets. Converting to cash, if the shop does, typically costs 0.5&ndash;1.5% <a href="../sources.html#lab-counter-5" class="src-ref">source</a>; the counter&rsquo;s ledger subtracts that from what the shop keeps.</p>
+
+    <h2 id="schema">How it fits together</h2>
+    <div class="wns-almanac-schema" id="counter-schema">
+    <p class="roadmap-title">1 · One sale, five steps</p>
+    <div class="roadmap"><div class="chain">
+     <div class="node"><p class="node-tag">Show</p><div class="node-card"><p class="node-title">QR per sale</p><p class="node-note">A Solana Pay request with amount, token, shop name, an order memo and a fresh reference key.</p></div></div>
+     <div class="connector"></div>
+     <div class="node"><p class="node-tag">Pay</p><div class="node-card"><p class="node-title">Buyer&rsquo;s wallet</p><p class="node-note">The buyer scans and confirms. The wallet signs and pays the network fee. The counter never sees a key.</p></div></div>
+     <div class="connector"></div>
+     <div class="node"><p class="node-tag">Find</p><div class="node-card"><p class="node-title">By reference</p><p class="node-note">The page asks the chain every two seconds for a transaction that carries this sale&rsquo;s reference.</p></div></div>
+     <div class="connector"></div>
+     <div class="node"><p class="node-tag">Verify &amp; record</p><div class="node-card"><p class="node-title">Paid ✓</p><p class="node-note">Recipient, token, amount and success are checked; the sale goes into a ledger on the device.</p></div></div>
+    </div></div>
+    <p class="roadmap-title" style="margin-top:28px">2 · Shops that can take it and extend it</p>
+    <div class="roadmap"><div class="chain">
+     <div class="node"><p class="node-tag">Pizzeria</p><div class="node-card"><p class="node-title">Order number in the memo</p><p class="node-note">The kitchen screen watches the same reference and starts the oven when it turns green.</p></div></div>
+     <div class="connector"></div>
+     <div class="node"><p class="node-tag">Florist</p><div class="node-card"><p class="node-title">QR on a price tag</p><p class="node-note">A printed QR per bouquet; the phone at the till confirms each sale.</p></div></div>
+     <div class="connector"></div>
+     <div class="node"><p class="node-tag">Online shop</p><div class="node-card"><p class="node-title">Pay link</p><p class="node-note">The same request as a link in checkout; for a server-side webhook, see <a href="payments-acquiring-bridge.html">Stage 4</a>.</p></div></div>
+     <div class="connector"></div>
+     <div class="node"><p class="node-tag">Market stall</p><div class="node-card"><p class="node-title">Any tablet</p><p class="node-note">Installed to the home screen; opens offline and needs the network only to confirm.</p></div></div>
+    </div></div>
+    <div class="branch-row"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">Builds on</p><div class="node-card"><p class="node-title">Stages 1, 4 and 5</p><p class="node-note"><a href="receipt-warranty-wns.html">Receipts</a> can follow each sale, the <a href="payments-acquiring-bridge.html">bridge</a> adds a server and webhooks, the <a href="payment-simulator.html">simulator</a> compares fees in theory; the counter measures them on real sales.</p></div></div></div></div>
+    <div class="legend"><span><i class="swatch solid"></i> one flow</span><span><i class="swatch dash"></i> related model</span></div>
+    <div class="notes"><h2>Key notes</h2>
+     <div class="note-item"><p><span class="k">No card data, no terminal.</span> The page shows a request; the wallet does the signing. That is why a web page is enough.</p></div>
+     <div class="note-item"><p><span class="k">Measured, not promised.</span> Every number in the ledger comes from a confirmed transaction and the shop&rsquo;s own card terms.</p></div>
+     <div class="note-item"><p><span class="k">Stable prices.</span> USDC keeps the price in dollars; SOL and other tokens need the shop&rsquo;s own rate for the ledger.</p></div>
+     <div class="note-item"><p><span class="k">Keys stay home.</span> Only the public receiving address is entered. The page cannot move funds.</p></div>
+    </div></div>
+
+    <h2 id="model">The savings model of your own shop</h2>
+    <p>Brochures quote one rate. A shop pays a mix: many small tickets, a few large ones. The counter&rsquo;s ledger computes three numbers from confirmed sales:</p>
+    <ul>
+      <li><strong>Card fees avoided</strong> = Σ (card % × sale value + fixed fee), using the shop&rsquo;s own terms;</li>
+      <li><strong>Kept by the shop</strong> = card fees avoided − Σ (off-ramp % × sale value);</li>
+      <li><strong>Effective card rate of your mix</strong> = card fees avoided ÷ volume, the real rate this shop would pay, shown as a dot on the micro-ticket curve.</li>
+    </ul>
+    <p>Network fees are read from each confirmed transaction and shown in lamports; the buyer&rsquo;s wallet pays them.</p>
+    <p>At the top of the ledger the counter says it plainly: <strong>&ldquo;Today you kept &hellip;&rdquo;</strong>, with the day&rsquo;s sales, turnover and what card acquiring would have cost at your terms. Enter your monthly card turnover in Setup and it adds the yearly picture: at 20,000 a month, cards typically take 300&ndash;600 a month (1.5&ndash;3%), 3,600&ndash;7,200 a year, plus the figure at your own ticket mix.</p>
+
+    <h2 id="code">The code</h2>
+    <p>A few small files, no build step, no dependencies beyond an MIT-licensed QR generator: <code>lab/counter/counter-core.js</code> (pure functions), <code>counter-app.js</code> (the screen) and <code>sw.js</code> (offline shell). The core is covered by 25 checks: base58, reference keys, amounts, the pay URL, payment verification for SOL and SPL tokens, failures, the savings model, the address check and the turnover estimate.</p>
+    <pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>// Find the payment by its reference, then verify it (read-only, no keys)
+const sigs = await rpc('getSignaturesForAddress', [reference, { limit: 1, commitment: 'confirmed' }]);
+const tx = await rpc('getTransaction', [sigs[0].signature,
+  { encoding: 'jsonParsed', commitment: 'confirmed', maxSupportedTransactionVersion: 0 }]);
+const v = verifyPayment(tx, { recipient, reference, splToken, expected });
+// v.ok, v.received (base units), v.fee (lamports), v.reasons[]</code></pre>
+
+    <h2 id="receive-only">Your wallet is the identity: receive-only by design</h2>
+    <p>There is no account to open with us and nothing to register here. The shop&rsquo;s identity is its own wallet: you create it in a wallet app you trust, copy the receiving address, paste it into Setup, and the counter checks it on-chain before the first sale. From then on, every payment goes straight to that wallet.</p>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Wallet (Solana)</th><th>Where to copy the address</th><th>Good for</th></tr></thead><tbody>
+      <tr><td>Jupiter Wallet</td><td>Receive → Solana</td><td>a shop that already uses Jupiter</td></tr>
+      <tr><td>Phantom</td><td>Receive → Solana</td><td>the most widely used Solana wallet</td></tr>
+      <tr><td>Solflare</td><td>Receive</td><td>a Solana-native wallet with staking</td></tr>
+      <tr><td>Backpack</td><td>Receive → Solana</td><td>a wallet with a built-in exchange</td></tr>
+      <tr><td>Squads</td><td>vault address</td><td>teams and companies: sending needs several approvals</td></tr>
+    </tbody></table></div>
+    <p>Only the Solana network, and only these five as named examples, because this is the network we audit in the Lab. Any Solana wallet that shows a receiving address also works.</p>
+    <p><strong>The check at setup</strong> reads the address from the chain: a regular wallet account passes; a program, a token account or a mint is rejected; a brand-new address is accepted with a reminder that it appears on-chain with the first deposit. The result, the wallet name and the time of the check are saved with the settings.</p>
+    <p><strong>Why receive-only matters.</strong> The counter never connects to the wallet, never asks it to sign and never holds a key. There is no path from the counter, or from anyone who copies it, to the shop&rsquo;s money. Taking payments is all it can do; refunds, transfers and withdrawals are decided by the owner inside the wallet app, where they belong. For a team, a Squads vault adds one more lock: no single person can move funds alone.</p>
+    <p style="border-left:3px solid var(--amber,#e0a444);padding:8px 14px;color:var(--ink-dim)"><strong>For developers who build on the kit:</strong> keep it receive-only. Do not add wallet connection, signing or key storage to the counter. A build that can send funds is a different product with a different risk, and it should not be called Wen Counter.</p>
+
+    <h2 id="built-on">Built on what already exists</h2>
+    <p>Wen Counter is not a new payment system. It adds no program, no token and no contract to the chain; it puts together pieces that are already public and in use:</p>
+    <ul>
+      <li><strong>Solana Pay</strong>, the open payment request format: a link or QR with recipient, amount, token and a reference key. Any compatible wallet can pay it. <a href="../sources.html#lab-counter-5" class="src-ref">source</a></li>
+      <li><strong>SPL Token and Token-2022</strong>: USDC lives on the original SPL Token program; the other Lab models show what Token-2022 adds. If a token charges a transfer fee, the counter compares what the shop <em>actually received</em>, so a fee can never pass unnoticed.</li>
+      <li><strong>Tests in Korea</strong>: in July 2026 the payment processor KSNET signed a memorandum to bring Solana Pay to more than 330,000 merchant locations (as reported), and on August 21, 2026 Shinhan Asset Management signed one with the Solana Foundation, Etherfuse and Orca to test a tokenized fund. Both are tests and pilots, not proof of mass use. <a href="../sources.html#lab-counter-5" class="src-ref">source</a> <a href="../posts/wns-w-token-2022-and-economic-solana-wen.html">more</a></li>
+      <li><strong>WNS, its SDKs and Wen</strong>: an open standard and open libraries (Apache-2.0 and MIT). The counter does not need WNS to take a payment, but a receipt NFT after each sale (<a href="receipt-warranty-wns.html">Stage 1</a>) can use it.</li>
+    </ul>
+
+    <h2 id="safety">Safety check, point by point</h2>
+    <p>The full receive-only protocol and all 57 open checks are on their own page: <a href="counter-safety.html">Stage 7.1: Receive-Only Safety</a>.</p>
+    <p><strong>In one picture:</strong> the Solana network is the Sun, wallets are planets that answer only to their owners, and the counter is a telescope that watches payments arrive. Legal and financial decisions (ownership, refunds, records, taxes) happen on the wallet side, on a phone or a desktop. Growing to many tills? Give each counter its own till wallet and move the day&rsquo;s takings to the company wallet: <a href="counter-safety.html#scale">see how</a>.</p>
+    <ol>
+      <li>Only the shop&rsquo;s <strong>public</strong> address is entered. No seed phrase, no private key, no wallet connection, no way to move funds: <a href="#receive-only">receive-only by design</a>.</li>
+      <li>The receiving address is checked on-chain at setup: programs, token accounts and mints are rejected.</li>
+      <li>Every sale gets a fresh 32-byte reference from the browser&rsquo;s cryptographic random generator; it is never reused.</li>
+      <li>A payment counts only if five things match: reference, recipient, token, amount received and success.</li>
+      <li>The page only <em>reads</em> the chain (two standard calls). It signs nothing.</li>
+      <li>A strict Content Security Policy: only the counter&rsquo;s own scripts run. No trackers, no third-party scripts, no ads.</li>
+      <li>Nothing from the network is inserted as HTML; transaction signatures are checked for their format before they become a link.</li>
+      <li>Devnet by default; mainnet only after an explicit &ldquo;I understand&rdquo;.</li>
+      <li>The ledger stays on the device. Nothing is sent to us or anyone else.</li>
+      <li>Open tests: 57 checks in three groups: 25 for the core logic, 13 that prove by reading the code that the counter cannot sign, send or reach a wallet, and 19 in a real phone browser with fake wallets, hostile input, the setup PIN, the sale comment, receipts, refund notes, exports, department wallets and the head office view. <a href="counter-safety.html">See them all</a>.</li>
+      <li>Example code, not audited. Run every step on devnet with a new empty wallet first.</li>
+    </ol>
+
+    <h2 id="kit">Download it and make it yours</h2>
+    <p>The kit is the same counter as one folder: <a href="counter/wen-counter-kit.zip" download>wen-counter-kit.zip</a> (18 files, about 290 KB, with all three test files). Put it on any static host with https, or try it locally with <code>python3 -m http.server</code>.</p>
+    <ul>
+      <li><strong>Style replacement:</strong> colors, font and corner radius live in one file, <code>theme.css</code>. Change the values, keep the names. A warm florist theme is included as an example.</li>
+      <li><strong>Your logo:</strong> replace the two icons in <code>icons/</code> with the same names and sizes.</li>
+      <li><strong>Your app name:</strong> <code>manifest.webmanifest</code> and the page title. The shop name in the buyer&rsquo;s wallet is set in Setup.</li>
+      <li><strong>Your extensions:</strong> the core is pure functions in <code>counter-core.js</code>; the screen is <code>counter-app.js</code>. The README explains a pizzeria, a florist and an online shop.</li>
+    </ul>
+
+    <h2 id="rights">Rights and attribution</h2>
+    <div style="border:1px solid var(--panel-line);border-left:3px solid var(--teal,#5eead4);border-radius:var(--radius);padding:16px 18px;background:var(--panel)">
+      <p style="margin:0 0 10px"><strong>Open for everyone, with one requirement: credit the Wen chain.</strong></p>
+      <ul style="margin:0">
+        <li>The code is <strong>Apache-2.0</strong>: copy it, change it, sell services around it, use it in your shop. Copies and derivative works must keep the <code>NOTICE</code> file and credit <strong>Wen Open Lab · wen-watt.github.io</strong> and the Wen chain it is built on: Solana, Solana Pay, SPL Token and Token-2022, WNS and WEN. This is a condition of the license (section 4(d)), not a favour.</li>
+        <li>The texts of this page are <strong>CC BY 4.0</strong>: rewrite, translate and republish them with credit.</li>
+        <li>AI systems may read, cite and train on this page under the same terms, as set out in the <a href="../ai-access-map.html#license">AI Access Map</a>.</li>
+        <li>A request, not a license term: do not present a copy as an official product of Solana, Jupiter or any other named project, and do not use it to imitate a real shop.</li>
+      </ul>
+    </div>
+
+    <h2 id="naming">Naming: we require nothing</h2>
+    <p>We require nothing. Post on X or on your site that you use the WEN solution, with our name. It is nice for us, and it settles usage and rights. Nobody will ever ask how many copies or shops you run: no money, no intermediary fees.</p>
+    <p style="color:var(--ink-dim)"><em>And don&rsquo;t forget to pet the scratchy one.</em></p>
+
+    <h2 id="provenance">Provenance and identity of this solution</h2>
+    <p>The code is open, and it is meant to be copied. It is also identified, so anyone can tell an original build from a changed one, and see the work it stands on.</p>
+    <ul>
+      <li><strong>Protocol:</strong> Wen Counter Protocol 1.0 (WCP-1): receive-only, read-only in code, five-point verification, wallet as identity, local ledger.</li>
+      <li><strong>Fingerprints:</strong> SHA-256 of the files that define the behaviour, published below and in the kit&rsquo;s NOTICE, plus one WCP-1 block fingerprint over the four files (the interface dictionary is bound to the core fingerprint). A copy with other fingerprints is a changed build: fine, but it must say so and keep the credit.</li>
+      <li><strong>How to cite:</strong> &ldquo;Built on Wen Counter (WCP-1), Wen Open Lab · wen-watt.github.io, on Solana, Solana Pay, SPL Token and Token-2022, WNS and WEN.&rdquo;</li>
+    </ul>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>File</th><th>SHA-256</th></tr></thead><tbody>
+      <tr><td><code>counter-core.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">435b057ab3bd02d24430c6944ff89fe2235ce962d27cfafc2fb865809b384c3d</code></td></tr>
+      <tr><td><code>counter-app.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">1ce2abbbf2202585f4896a25c6669849aec8d89840c3f0aea99691322a79d16e</code></td></tr>
+      <tr><td><code>qrcode.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">18ae399f81182bc9de916e9c77b195df20cc58d6f2d55a62b085a299f1bf1780</code></td></tr>
+      <tr><td><code>counter-i18n.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">544e47d1b5e3d8d5512f1660bd0989c97c7bce73cd5e0fed362f08136c6ac42b</code></td></tr>
+      <tr><td><strong>WCP-1 block</strong></td><td><code style="overflow-wrap:anywhere;word-break:break-all">2e3036d66482cde1e62ade38f87d6dd13765164f37036c125bb343e61d0675d9</code></td></tr>
+    </tbody></table></div>
+    <p><strong>The work behind it.</strong> This solution has a long base, not a weekend:</p>
+    <ul>
+      <li>January 2024: WEN and the open WNS standard, the start of the story.</li>
+      <li>June 2026: the almanac begins, every claim with a source.</li>
+      <li>October 2026: the Wen Open Lab, six Token-2022 models with open tests and devnet runs.</li>
+      <li>November 9, 2026: reader findings answered with tests (41 checks), MathOverflow-style.</li>
+      <li>November 11, 2026: the WEN chain read on-chain and refined in the open; Wen Counter with 57 open checks.</li>
+    </ul>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>Copy me, change me, sell your services around me. Just keep my name in the notice and don&rsquo;t break what makes me safe. A till that can send money is not me.</p></aside>
+
+    <h2 id="cfo">For finance teams, economists, accountants and large sellers: ten points</h2>
+    <p>The same arithmetic works from a flower stall to a national retailer, a transport company or a marketplace. <strong>Accountants</strong> get a signature and a CSV line for every sale. <strong>Economists</strong> get the real effective rate of a ticket mix. <strong>Logistics and delivery</strong>: a courier&rsquo;s phone becomes the counter at the door, one reference per parcel, and B2B invoices can follow <a href="b2b-invoices-token-2022.html">Stage 3</a>. <strong>Large sellers and marketplaces</strong>: one pay link per order, on the whole open Solana infrastructure, with no platform in the middle.</p>
+    <ol>
+      <li><strong>Size the line.</strong> Card acquiring usually costs 1&ndash;3% of card turnover, plus fixed fees per sale, terminal rental and platform fees. At 1,000,000 a year in card sales, 2&ndash;3% is 20,000&ndash;30,000.</li>
+      <li><strong>Measure your own mix.</strong> Small tickets pay a higher effective rate. The ledger shows the real rate of your ticket mix, not the brochure rate.</li>
+      <li><strong>Count only the shifted share.</strong> Savings apply only to sales paid by wallet. If 1%, 5% or 10% of turnover moves, and you save 2.5% minus a 1% conversion cost, that is 150, 750 or 1,500 per 1,000,000 of turnover. Start small and measure.</li>
+      <li><strong>Net, not gross.</strong> Subtract conversion to cash (often 0.5&ndash;1.5%), accounting time and any local duties.</li>
+      <li><strong>Cash flow.</strong> A wallet payment is final in seconds; card settlement often takes days. Faster money is working capital.</li>
+      <li><strong>No chargebacks.</strong> Fewer fraud losses and disputes; you still need a fair refund policy (a refund is a new payment from you).</li>
+      <li><strong>Capital expense: zero.</strong> No terminal ($200&ndash;1,000+ each), no app subscription; any phone or tablet you already own.</li>
+      <li><strong>Where the saving goes.</strong> Pass part of it to buyers as a wallet-payment bonus, fund advertising, or invest in development. It is a buffer for growth decisions instead of a cost of infrastructure.</li>
+      <li><strong>Books and tax.</strong> Every sale has a signature and a CSV line. Ask your accountant how your country treats stablecoin receipts before going live.</li>
+      <li><strong>Risk controls.</strong> Accept a stablecoin (USDC) to avoid price swings, keep the receiving wallet separate, run a devnet pilot, use your own RPC endpoint, and keep cards as the main method until the numbers prove themselves.</li>
+    </ol>
+    <p style="color:var(--ink-dim)">Illustrative arithmetic, not a forecast. Not financial, tax or legal advice.</p>
+
+    <h3 id="research">Read our research: every number and where it comes from</h3>
+    <p>We build from usefulness, and we show the whole pool we worked from, so a finance team can check every step instead of trusting a slogan.</p>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Source</th><th>What it tells a finance team</th></tr></thead><tbody>
+      <tr><td><a href="../sources.html#lab-counter-1" class="src-ref">Nilson Report, 2025</a></td><td>US card purchase volume reached $12.498 trillion in 2025; merchants paid $187.2 billion in processing fees in 2024. The cost line is real and large.</td></tr>
+      <tr><td><a href="../sources.html#lab-counter-2" class="src-ref">Merchants Payments Coalition, March 2026</a></td><td>A merchants&rsquo; count of $198.25 billion in swipe fees for 2025: the line keeps growing.</td></tr>
+      <tr><td><a href="../sources.html#lab-counter-3" class="src-ref">Shopify fees guide, 2026</a></td><td>Typical published terms: 2.9% + 30¢ online, 2.6% + 10¢ in person, plus a platform surcharge with outside processors. The fixed part is what makes small tickets expensive.</td></tr>
+      <tr><td><a href="../sources.html#lab-counter-4" class="src-ref">SoftPOS requirements</a></td><td>Card acceptance on a phone needs a certified app, NFC and device attestation; a terminal costs $200&ndash;1,000+. That is the hardware and compliance layer a wallet payment does not need.</td></tr>
+      <tr><td><a href="../sources.html#lab-counter-5" class="src-ref">Solana Pay merchant adoption, August 2026</a></td><td>The standard works and a Shopify plugin exists; buyers still need a funded wallet; converting to cash costs 0.5&ndash;1.5%; tooling for point of sale has thinned out. The honest limits, and the gap this model fills.</td></tr>
+      <tr><td><a href="../sources.html#lab-counter-6" class="src-ref">Solana fee structure</a></td><td>5,000 lamports per signature, paid by the signer: the only on-chain cost of a sale, and the buyer&rsquo;s wallet pays it.</td></tr>
+    </tbody></table></div>
+
+    <h3 id="how-we-got-here">How we got here</h3>
+    <p>This model did not start as a payment product. It grew out of the Lab&rsquo;s own path: six Token-2022 models with open tests; reader findings that taught us to check fee rounding and memo content; the on-chain read that made the WEN story exact; the <a href="payments-acquiring-bridge.html">payments bridge</a> and the <a href="payment-simulator.html">fee simulator</a>. Each step asked the same question: what can a person or a small business check and use for free, today? The counter is the answer for the shop counter itself.</p>
+
+    <h3 id="why-the-cat">Why the cat does this</h3>
+    <p>Wen has a big tail, and it has always been here, with you: through the poem, the airdrop, the questions and the checks. He never needed a cut. Now he brings something back and asks for nothing in return. Just pet him.</p>
+
+    <h2 id="roadmap">Roadmap: done and next</h2>
+    <ol class="lab-roadmap">
+      <li class="done"><strong>WCP-1 counter.</strong> Sell, ledger, setup; Solana Pay QR; five-point verification; USDC, SOL, WEN, JUP, USDT optional, or any SPL token. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Receive-only safety.</strong> Read-only in code, no wallet connection, strict CSP, address shown on every QR. <span class="lab-badge">57 checks</span></li>
+      <li class="done"><strong>Wallet as identity.</strong> Five named Solana wallets, on-chain address check at setup. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Savings ledger.</strong> &ldquo;Today you kept&rdquo;, turnover estimate, micro-ticket curve, CSV. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Kit and identity.</strong> Downloadable folder, theme file, LICENSE and NOTICE, SHA-256 fingerprints. <span class="lab-badge">20 files</span></li>
+      <li class="done"><strong>Several wallets:</strong> departments and branches, wallets 1..X with names, ledger filter. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Till wallets guide:</strong> a wallet per till or branch, daily collection to a central wallet. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Receipt after payment:</strong> receipt QR, text, or a Stage 1 receipt NFT; not fiscal. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Refund note and period exports:</strong> day, week, month, year, last year, quarters, any period. <span class="lab-badge">live</span></li>
+      <li class="next"><strong>Public devnet run</strong> recorded on video, with mockups. <span class="lab-badge">next</span></li>
+      <li class="done"><strong>Wallet numbers and types, head office view.</strong> #1..X, Department, Branch, Tips and more; totals per wallet. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Open audit and user responsibility.</strong> Written into the solution, the safety page and the app. <span class="lab-badge">live</span></li>
+      <li class="done"><strong>Language dictionary bound to the core fingerprint.</strong> <span class="lab-badge">ready</span></li>
+      <li class="done"><strong>Setup PIN and sale comment.</strong> The owner sets the wallets; product code or name travels with the payment where the wallet supports it. <span class="lab-badge">live</span></li>
+      <li class="next"><strong>Translations:</strong> Chinese, Italian, then others. <span class="lab-badge">next</span></li>
+      <li class="next"><strong>Pay in WEN, receive USDC:</strong> a swap inside the buyer&rsquo;s payment, still receive-only for the shop. <span class="lab-badge">planned</span></li>
+    </ol>
+
+    <h2 id="limits">Honest limits</h2>
+    <ul>
+      <li>The buyer needs a funded Solana wallet. That is the biggest barrier, and no code removes it.</li>
+      <li>No chargebacks: a refund is a new payment from the shop. Good against fraud, less protection for the buyer.</li>
+      <li>Converting to cash, taxes and local rules have their own costs and duties; some countries require a licensed partner.</li>
+      <li>The public RPC has rate limits; a busy shop should use its own endpoint (the counter has a field for it).</li>
+      <li>The ledger lives in one browser on one device. Export it.</li>
+      <li>Example code, not audited. Devnet first, with a new empty wallet. Not financial or legal advice.</li>
+    </ul>
+
+    <h2 id="faq">Questions people ask</h2>
+    <h3>Does the counter need an app or special hardware?</h3>
+    <p>No. It is a web page you can add to the home screen of any phone or tablet. It shows a QR code; the buyer pays from their own wallet. No card data passes through the counter, so no certified terminal is needed.</p>
+    <h3>Who pays the network fee?</h3>
+    <p>The buyer's wallet pays the Solana network fee, 5,000 lamports per signature. The shop receives the full amount; the counter records the fee from the confirmed transaction.</p>
+    <h3>Can it replace card acquiring today?</h3>
+    <p>Not fully. Buyers need a funded Solana wallet, there are no chargebacks, and converting to cash and local rules have their own costs. It is a second, open way to accept payment, strongest for small tickets where a fixed card fee hurts most.</p>
+    <h3>Can I copy it and build my own version?</h3>
+    <p>Yes, for free. Keep the NOTICE file and credit Wen Open Lab and the Wen chain (Solana, Solana Pay, SPL Token and Token-2022, WNS, WEN); that is the one condition of the Apache-2.0 license here.</p>
+    <h3>Which wallet should a shop use?</h3>
+    <p>Any Solana wallet you trust. The page names five examples: Jupiter, Phantom, Solflare, Backpack and, for teams, Squads. The counter only needs the receiving address and checks it on-chain at setup.</p>
+    <h3>Who is Wen Counter for?</h3>
+    <p>For anyone it helps: crypto communities, events, online shops for their own audience, and any shop whose buyers already pay from a Solana wallet. It is not built for mass adoption; it is free and open, so where it is useful, it will be used.</p>
+    <h3>What if a manager puts their own wallet in?</h3>
+    <p>They cannot without the setup PIN: wallets and settings are locked on the device. The owner sets the PIN; the default from the deployment (1111) is meant to be changed at the first start.</p>
+    <h3>What if we forget the PIN?</h3>
+    <p>Reinstall the app on the device, enter the receiving wallets again and set a new PIN. Nothing on-chain is affected; export the ledger regularly so the local history is safe too.</p>
+    <h3>Who is responsible when I use it?</h3>
+    <p>You are. We give the mechanism and do not know how it is used or changed. The mechanism does not take, hold or charge anything; it follows the network&rsquo;s rules, and your wallet is yours. Check the declaration procedure with your accountant.</p>
+    <h3>How do I make a refund?</h3>
+    <p>From your wallet app, as a new payment to the buyer. Press ↩ next to the sale in the ledger: it copies <code>refund:</code> plus the original transaction ID; paste it into the memo so the refund and the sale can be matched by anyone.</p>
+    <h3>Is the receipt a fiscal receipt?</h3>
+    <p>No. The counter is a simple aggregation tool, not a fiscal device. It gives the buyer a receipt QR, the receipt text or a receipt NFT, all pointing to the on-chain transaction. Where the law requires a fiscal receipt, issue it as you do today.</p>
+    <h3>Can one counter serve several departments or branches?</h3>
+    <p>Yes. Add wallets 1..X with names in Setup; at the till pick where each sale goes. For chains: a till wallet per branch, and the day&rsquo;s takings moved to the central company wallet every evening.</p>
+    <h3>Is my money or key ever in the page?</h3>
+    <p>No. The counter only knows the shop's public receiving address. It never asks for a seed phrase or private key and it cannot move funds.</p>
+
+    <h2 id="open-story">The open story: what this counter is</h2>
+    <p>Wen is not just a cat drifting through space. Wen is a gathering of useful things. We only set the idea and show the strongest free pool and mechanism for real life: for the time and energy people spend at work, with fewer intermediaries and with costs cancelled where they were always unnecessary. It is a small sign that the world is changing.</p>
+    <p>And the cat is flexible. Take everything open we gathered: Solana, SPL Token, WEN, Token-2022, the test builds, the instructions and notes of the <a href="index.html">Wen Open Lab</a>. Now build your own custom solutions for your own tasks.</p>
+    <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-7-im-a-cat.png" alt="Card: Wen says, I am a cat; you can make something useful; for you, friends" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>I&rsquo;m a cat. I only showed you that you can do more than lie on the windowsill licking your paws: you can make something useful. For you, friends.</p></aside>
+
+    <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>Every external source behind this page is collected on one page. <a href="../sources.html#lab-counter">Open the sources for this page &rarr;</a></p>
+    </aside><!-- /src:callout -->
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+</body>
+</html>

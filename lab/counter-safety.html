@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Stage 7.1: Wen Counter Safety, Receive-Only by Design</title>
+<link rel="canonical" href="https://wen-watt.github.io/lab/counter-safety.html">
+<meta name="description" content="How Wen Counter protects a shop: it can only read the chain, never touches a wallet, holds no key and accepts no injected commands. 57 open checks, how to rerun them, and what they do not cover.">
+<!-- seo:start -->
+<meta name="keywords" content="receive-only, non-custodial point of sale, Solana Pay safety, wallet security, CSP, read-only RPC, Wen Counter, open tests">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stage 7.1: Wen Counter Safety, Receive-Only by Design">
+<meta property="og:description" content="How Wen Counter protects a shop: it can only read the chain, never touches a wallet, holds no key and accepts no injected commands. 57 open checks, how to rerun them, and what they do not cover.">
+<meta property="og:url" content="https://wen-watt.github.io/lab/counter-safety.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<meta property="og:image:alt" content="Card: receive-only by design, never connects to a wallet, three read requests, 57 open checks">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Stage 7.1: Wen Counter Safety, Receive-Only by Design", "description": "How Wen Counter protects a shop: it can only read the chain, never touches a wallet, holds no key and accepts no injected commands. 57 open checks, how to rerun them, and what they do not cover.", "image": "https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png", "url": "https://wen-watt.github.io/lab/counter-safety.html", "inLanguage": "en", "datePublished": "2026-11-11", "dateModified": "2026-11-12", "license": "https://www.apache.org/licenses/LICENSE-2.0", "author": {"@type": "Organization", "name": "Wen"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "isPartOf": {"@type": "WebPage", "url": "https://wen-watt.github.io/lab/counter.html"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/lab/"}, {"@type": "ListItem", "position": 3, "name": "Stage 7: Wen Counter", "item": "https://wen-watt.github.io/lab/counter.html"}, {"@type": "ListItem", "position": 4, "name": "Stage 7.1: Wen Counter Safety, Receive-Only by Design", "item": "https://wen-watt.github.io/lab/counter-safety.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+    <article>
+    <p class="meta">Wen Open Lab · Stage 7 · safety</p>
+    <h1>Stage 7.1: Receive-Only Safety<span class="lab-badge">57 checks · open</span></h1>
+
+    <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="counter.html">7 · Counter</a></li><li><a href="counter-safety.html" aria-current="page">7.1 · Safety</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html">&#9998; · Ten walkthroughs</a></li><li><a href="videos.html">▶ · Videos</a></li><li><a href="findings.html">? · Reader findings</a></li></ul>
+    <p class="intro">Accepting money has always been a cost line: terminals, contracts, certified apps, someone in the middle. We went deep into that market and built the opposite: a counter that can <strong>only receive</strong>. It cannot send, sign or reach your wallet, so there is nothing to steal from it and nothing to take back through it. After a payment arrives, your money is managed strictly by your own wallet.</p>
+
+    <figure style="max-width:420px;margin:24px auto"><img src="../wen-media/wen-trip-everest-rope.jpg" alt="Wen in a red climbing suit climbs a snowy ridge on a safety rope" width="415" height="414" loading="lazy" style="width:100%;height:auto;border-radius:12px"><figcaption>On a safety rope: the counter can only climb one way</figcaption></figure>
+
+    <h2 id="protocol">The receive-only protocol</h2>
+    <div class="notes" style="margin-top:0">
+     <div class="note-item"><p><span class="k">1 · No way out.</span> The counter never connects to a wallet, never asks it to sign and holds no key. Refunds, transfers and withdrawals happen only inside the owner&rsquo;s wallet app.</p></div>
+     <div class="note-item"><p><span class="k">2 · Read only, in code.</span> The page may send exactly three read requests to the chain. Any other request is blocked by the code itself before it leaves the device.</p></div>
+     <div class="note-item"><p><span class="k">3 · No injections.</span> No message listeners, no action links, no remote code, a strict Content Security Policy, and nothing from the network is ever inserted as HTML. No outside API can steer the counter or the wallet.</p></div>
+     <div class="note-item"><p><span class="k">4 · Your wallet is the identity.</span> The receiving address is checked on-chain at setup and shown on every QR screen (first and last five characters, wallet name) so the cashier and the buyer can compare it.</p></div>
+    </div>
+    <p>This is what turns a constant expense into a constant: a way to accept money that has no running cost, no counterparty and no back door.</p>
+
+    <h2 id="solar-system">Transparent like the solar system: the legal and financial side</h2>
+    <p>The whole model fits in one picture. <strong>The Sun is the Solana network:</strong> everything moves in its light, and anyone can see it. <strong>The planets are wallets:</strong> each turns on its own axis and answers only to its owner. <strong>Wen Counter is a telescope:</strong> it watches one planet receive light and writes it down. A telescope cannot move a planet.</p>
+    <p>That is why the legal and financial mechanics live where the money lives, in the wallet:</p>
+    <ul>
+      <li><strong>Ownership</strong> begins the moment a payment is confirmed in the shop&rsquo;s wallet. The counter never holds funds, even for a second.</li>
+      <li><strong>Refunds, transfers and withdrawals</strong> are decisions of the wallet owner, made in the wallet app on a phone or a desktop, under the owner&rsquo;s own controls (password, device, team approvals).</li>
+      <li><strong>Records</strong> are public on the chain and private in the shop&rsquo;s ledger: every sale has a signature, every signature can be checked by an accountant or an auditor.</li>
+      <li><strong>Taxes and compliance</strong> follow the business, not the tool: the shop declares its income under its own country&rsquo;s rules. The counter adds no fee, no intermediary and no hidden party to that picture.</li>
+    </ul>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>I only look and write things down. Your planet turns by your hand. That is the whole secret, and it is not a secret.</p></aside>
+
+    <h2 id="scale">Scale it: till wallets and daily collection</h2>
+    <p>The same receive-only rule scales from one stall to a chain of stores, without a server and with almost no cost:</p>
+    <ol>
+      <li><strong>One till wallet per counter.</strong> Each register gets its own simple wallet, managed by the shift manager. The counter receives into it and can do nothing else.</li>
+      <li><strong>Daily collection.</strong> At the end of the day the manager moves the takings from the till wallet to the company wallet, for example a Squads multisig vault, in the wallet app. One transaction, one network fee.</li>
+      <li><strong>Refunds from the till.</strong> During the day the manager can refund a buyer from the till wallet, within the day&rsquo;s float, without touching the company wallet.</li>
+      <li><strong>The company holds the keys that matter.</strong> The treasury needs several approvals to move funds; a single lost phone can only lose one day of one till.</li>
+      <li><strong>Books by till.</strong> Each counter exports its own CSV; the company sees every till and every collection on-chain, by address and by signature.</li>
+    </ol>
+    <p>The roadmap stays short and almost free: phones you already own, wallets that are free, one network fee per sale paid by buyers and one per daily collection paid by you.</p>
+
+    <h2 id="open-note">An open note to developers and retail chains, worldwide</h2>
+    <ul>
+      <li><strong>Keep the till receive-only.</strong> Build around it, not into it: order systems, kitchen screens, printed QR tags, receipt NFTs, exports to accounting or ERP from the CSV.</li>
+      <li><strong>Put spending where spending belongs:</strong> in wallets with their own controls, such as multisig approvals and spending limits, not in the counter.</li>
+      <li><strong>Verify every payment by the five checks</strong> (reference, recipient, token, amount, success) and show the receiving address on screen.</li>
+      <li><strong>Copy freely, credit Wen.</strong> Apache-2.0 with the NOTICE: Wen Open Lab and the Wen chain. If you change the code, say it is a changed build.</li>
+      <li><strong>Pilot on devnet,</strong> with new empty wallets, before any real money.</li>
+    </ul>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>Build big things around me. Just don&rsquo;t give me hands. A till with hands is a different animal.</p></aside>
+
+    <h2 id="tested">What we tested, openly</h2>
+    <p>Three groups of checks, all in the repository, all passing on November 12, 2026, after the shop features (numbered wallets with types, head office view, receipts, refund notes, period exports, the language dictionary) were added. Still only three read requests.</p>
+    <h3>Core logic · 25 checks · <code>node counter-core.test.js</code></h3>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody><tr><td>base58 round trip on 200 random keys</td><td>✓</td></tr><tr><td>known addresses decode to 32 bytes; junk is rejected</td><td>✓</td></tr><tr><td>every reference key is a valid address</td><td>✓</td></tr><tr><td>amounts: decimals, zero, negative and exponent forms rejected</td><td>✓</td></tr><tr><td>pay URL format and percent-encoding</td><td>✓</td></tr><tr><td>SOL payment verified</td><td>✓</td></tr><tr><td>underpayment rejected</td><td>✓</td></tr><tr><td>missing reference rejected</td><td>✓</td></tr><tr><td>failed transaction rejected</td><td>✓</td></tr><tr><td>USDC payment verified</td><td>✓</td></tr><tr><td>wrong token rejected</td><td>✓</td></tr><tr><td>first payment to a new token account verified</td><td>✓</td></tr><tr><td>micro-ticket rates (3 → 12.9%, 25 → 4.1%, 100 → 3.2%)</td><td>✓</td></tr><tr><td>savings model on a ticket mix</td><td>✓</td></tr><tr><td>address check: new, wallet, program, token, other</td><td>✓</td></tr><tr><td>turnover estimate</td><td>✓</td></tr><tr><td>same-day grouping for “Today you kept”</td><td>✓</td></tr><tr><td>export periods: day, week, month, year, last year, quarters, custom; bad dates refused</td><td>✓</td></tr><tr><td>refund note is “refund:” plus a valid transaction ID; junk refused</td><td>✓</td></tr><tr><td>buyer receipt text says “Not a fiscal receipt”</td><td>✓</td></tr><tr><td>wallet tag: number, type and name (#4 · Tips · Bar tips)</td><td>✓</td></tr><tr><td>head office view: sales grouped by wallet and token; unknown wallets kept apart</td><td>✓</td></tr><tr><td>head office view of an empty ledger is empty</td><td>✓</td></tr><tr><td>sale comment as memo: order ID plus comment, one line, at most 120 characters; on the receipt as “For:”</td><td>✓</td></tr><tr><td>setup PIN: 4 to 8 digits only</td><td>✓</td></tr></tbody></table></div>
+    <h3>Non-control, by reading the code · 13 checks · <code>node counter-safety.test.js</code></h3>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody><tr><td>no wallet provider is ever touched</td><td>✓</td></tr><tr><td>no connect or sign calls of any kind</td><td>✓</td></tr><tr><td>no keys, keypairs or seed phrases</td><td>✓</td></tr><tr><td>only three read requests exist, and they are allow-listed</td><td>✓</td></tr><tr><td>no inbound API: no message listeners, no action URLs, no remote code</td><td>✓</td></tr><tr><td>strict Content Security Policy: own scripts only</td><td>✓</td></tr><tr><td>network data is never written as HTML</td><td>✓</td></tr><tr><td>the offline cache never touches the chain</td><td>✓</td></tr><tr><td>a payment counts only when reference, recipient, token, amount and success all match</td><td>✓</td></tr><tr><td>interface words are bound to the core fingerprint: a translation cannot ride on a changed core</td><td>✓</td></tr><tr><td>interface words are written as text only, never as HTML</td><td>✓</td></tr><tr><td>Setup is behind a PIN: hidden until unlocked, save, new PIN and clear ledger guarded, locks when you leave, PIN kept only as a salted SHA-256</td><td>✓</td></tr><tr><td>the deployment file holds parameters only (the setup PIN), no code</td><td>✓</td></tr></tbody></table></div>
+    <h3>Non-control, in a real phone browser · 19 checks · <code>node browser-safety.e2e.js</code></h3>
+    <p>The test plants fake wallets (Solana, Phantom, Solflare, Backpack, Jupiter) that record any touch, types hostile text into the shop name and note, and feeds hostile answers from the network.</p>
+    <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Check</th><th>Result</th></tr></thead><tbody><tr><td>Setup opens locked: the wallet settings are hidden</td><td>✓</td></tr><tr><td>a wrong PIN is refused</td><td>✓</td></tr><tr><td>the deployment PIN (1111) unlocks Setup</td><td>✓</td></tr><tr><td>the comment travels in the pay request (message and memo), encoded, never run</td><td>✓</td></tr><tr><td>a hostile “signature” from the network is refused</td><td>✓</td></tr><tr><td>a payment to another address is rejected</td><td>✓</td></tr><tr><td>hostile text in shop name and note is shown as text, never run</td><td>✓</td></tr><tr><td>the note is stored and shown literally</td><td>✓</td></tr><tr><td>a receipt is offered to the buyer after payment</td><td>✓</td></tr><tr><td>the refund button gives “refund:” plus the original transaction ID</td><td>✓</td></tr><tr><td>export by period names the file by the period</td><td>✓</td></tr><tr><td>the sale comment reaches the CSV</td><td>✓</td></tr><tr><td>Setup locks again after leaving it</td><td>✓</td></tr><tr><td>a sale to a department wallet is verified against that wallet, not the main one</td><td>✓</td></tr><tr><td>the payment screen names the wallet by number, type and name</td><td>✓</td></tr><tr><td>the head office view adds up sales per wallet</td><td>✓</td></tr><tr><td>fake wallets planted in the page were never read or called</td><td>✓</td></tr><tr><td>only read requests reached the network</td><td>✓</td></tr><tr><td>no script errors</td><td>✓</td></tr></tbody></table></div>
+
+    <h2 id="rerun">Rerun it yourself</h2>
+    <pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>cd lab/counter
+node counter-core.test.js        # 25 checks
+node counter-safety.test.js      # 13 checks
+python3 -m http.server 8771 &amp;
+node browser-safety.e2e.js http://localhost:8771/   # 19 checks, needs Playwright</code></pre>
+    <p>The same files ship in the <a href="counter/wen-counter-kit.zip" download>kit</a>, so a shop or a developer can check its own copy.</p>
+
+    <h2 id="setup-pin">The setup PIN: nobody at the till can swap the wallet</h2>
+    <p>On a shared device, the real risk is not a hacker but a person at the till who puts their own receiving wallet in. Setup is therefore locked by a PIN. The first PIN is a deployment parameter in <code>counter-deploy.js</code> (default <code>1111</code>, public, so change it); the owner sets a new PIN in Setup. Leaving Setup locks it, five wrong tries pause it for 30 seconds, clearing the ledger needs the PIN, and the PIN is stored only as a salted SHA-256.</p>
+    <p><strong>Forgot the PIN:</strong> reinstall the app on the device, enter the receiving wallets again, set a new PIN. A simple, safe flow. A reinstall leaves the counter with no wallet, the receiving address is shown on every QR, and the takings stop arriving in the company wallet, so a swap cannot stay hidden. The PIN locks an interface; it is not a wallet key and it cannot move money, because the counter cannot move money at all.</p>
+
+    <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-4-setup-pin.png" alt="Card: the owner sets the wallets; setup locked by a PIN; nobody at the till can swap the wallet" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+    <h2 id="open-audit">Open audit: check it and tell us</h2>
+    <p>The audit of Wen Counter is open and never finished. Read the code, rerun the checks above on your own machine, try to make the counter sign, send or show something it should not, and tell us what you find: open an issue in the public repository (the link is in the <a href="../sources.html#lab-counter-7">sources</a>). A finding that holds becomes a new check and a line on <a href="findings.html">Reader findings</a>, with thanks.</p>
+
+    <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-6-open-audit.png" alt="Card: 57 open checks; break it if you can, then tell us" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+    <h2 id="user-responsibility">Responsibility of the user</h2>
+    <p>You use the solution on your own responsibility. We give the mechanism; we do not know what you do with it or what you change in your copy. What we state, and what the checks above prove for the original build, is the mechanism itself: it does not take money, does not hold money and does not charge a fee. It follows the procedure of the Solana network, strictly. The wallet is yours, and you use it yourself. Receipts, refunds, records and declarations are on your side; check the procedure with your accountant.</p>
+
+    <p>The story of the whole solution, with every card and picture: <a href="../posts/wen-counter-free-open-till-for-every-shop.html">Wen Counter: a free, open till for every shop</a>.</p>
+
+    <h2 id="not-covered">What these checks do not cover</h2>
+    <ul>
+      <li>The code is not audited by a third party. These are our open tests, not a certificate.</li>
+      <li>A phone that is already compromised can show anything. Use a device you trust and keep it updated.</li>
+      <li>A fake copy of the page could show a different address. That is why the address appears on every QR screen and in the buyer&rsquo;s wallet: compare the first and last five characters.</li>
+      <li>The safety of the funds after they arrive is the safety of your wallet: protect its seed phrase, and for a team use a multisig such as Squads.</li>
+      <li>Devnet first, with a new empty wallet. Not financial, tax or legal advice.</li>
+    </ul>
+    <p><a href="counter.html">&larr; Back to Stage 7: Wen Counter</a> · <a href="counter/">Open the counter</a></p>
+
+    <!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Sources">
+      <p class="src-callout-title">Confirmation of events · Sources</p>
+      <p>The sources behind the counter are collected on one page. <a href="../sources.html#lab-counter">Open the sources &rarr;</a></p>
+    </aside><!-- /src:callout -->
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+
+
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Counter: A Free, Open Till for Every Shop</title>
+<link rel="canonical" href="https://wen-watt.github.io/posts/wen-counter-free-open-till-for-every-shop.html">
+<meta name="description" content="Stage 7 of the Wen Open Lab is live: a free point of sale in a web page on Solana Pay. Receive-only, no fee per sale, wallets locked by the owner&#x27;s PIN, a ledger that shows what you kept, and 57 open checks anyone can rerun.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Counter, free point of sale, Solana Pay, receive-only, open source POS, crypto payments for shops, Wen Open Lab, WEN, setup PIN, open audit">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Wen Counter: A Free, Open Till for Every Shop">
+<meta property="og:description" content="Stage 7 of the Wen Open Lab is live: a free point of sale in a web page on Solana Pay. Receive-only, no fee per sale, wallets locked by the owner&#x27;s PIN, a ledger that shows what you kept, and 57 open checks anyone can rerun.">
+<meta property="og:url" content="https://wen-watt.github.io/posts/wen-counter-free-open-till-for-every-shop.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-news-wen-counter-og.png">
+<meta property="og:image:alt" content="A free till for every shop: Wen Counter, open and receive-only, with a phone showing a paid sale">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-news-wen-counter-og.png">
+<meta property="article:published_time" content="2026-11-12">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "NewsArticle", "headline": "Wen Counter: A Free, Open Till for Every Shop", "description": "Stage 7 of the Wen Open Lab is live: a free point of sale in a web page on Solana Pay. Receive-only, no fee per sale, wallets locked by the owner's PIN, a ledger that shows what you kept, and 57 open checks anyone can rerun.", "image": [{"@type": "ImageObject", "url": "https://wen-watt.github.io/wen-media/wen-news-wen-counter-og.png", "caption": "A free till for every shop: Wen Counter, open and receive-only, with a phone showing a paid sale"}], "mainEntityOfPage": "https://wen-watt.github.io/posts/wen-counter-free-open-till-for-every-shop.html", "inLanguage": "en", "keywords": "Wen Counter, free point of sale, Solana Pay, receive-only, open source POS, crypto payments for shops, Wen Open Lab, WEN, setup PIN, open audit", "datePublished": "2026-11-12", "dateModified": "2026-11-12", "license": "https://creativecommons.org/licenses/by/4.0/", "author": {"@type": "Organization", "name": "Wen", "description": "The voice of the Wen Almanac community", "url": "https://wen-watt.github.io/privacy-policy-cookie-policy.html"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": {"@type": "SoftwareApplication", "name": "Wen Counter", "url": "https://wen-watt.github.io/lab/counter/", "applicationCategory": "BusinessApplication", "operatingSystem": "Web browser", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "license": "https://www.apache.org/licenses/LICENSE-2.0"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Wen Counter?", "acceptedAnswer": {"@type": "Answer", "text": "A free, open point of sale that lives in a web page. It shows a Solana Pay QR, checks the chain and marks the sale paid. No server, no app store, no card data, no fee per sale."}}, {"@type": "Question", "name": "Can Wen Counter move my money?", "acceptedAnswer": {"@type": "Answer", "text": "No. It is receive-only by design: it never connects to a wallet, holds no key and sends only three read requests. Refunds and transfers are made in your own wallet."}}, {"@type": "Question", "name": "Can a cashier change the receiving wallet?", "acceptedAnswer": {"@type": "Answer", "text": "Not without the setup PIN. The owner of the device sets the wallets; forgot the PIN: reinstall, enter the wallets again, set a new PIN."}}, {"@type": "Question", "name": "Who is responsible when a shop uses it?", "acceptedAnswer": {"@type": "Answer", "text": "The shop. The mechanism takes, holds and charges nothing and follows the Solana network's rules. Check receipts and declarations with your accountant."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Counter: A Free, Open Till for Every Shop", "item": "https://wen-watt.github.io/posts/wen-counter-free-open-till-for-every-shop.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+<style id="wc-fit">article li code,article p code{overflow-wrap:anywhere;word-break:break-all}article h1{overflow-wrap:anywhere}@media(max-width:560px){article div[style*="repeat(3,1fr)"]{grid-template-columns:repeat(2,1fr)!important}}</style>
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+            <article>
+    <h1>Wen Counter: A Free, Open Till for Every Shop</h1>
+
+    <p class="meta">November 12, 2026</p><!-- retro:kind -->
+    <p class="post-kind post-kind-guide"><span class="post-kind-label">Almanac news</span> Written by the almanac itself. Every claim links to a page, a file or a check you can repeat.</p>
+<!-- /retro:kind -->
+
+    <figure><img src="../wen-media/wen-news-wen-counter-og.png" alt="A free till for every shop: Wen Counter, open and receive-only, with a phone showing a paid sale of 12.50 USDC on devnet" width="1200" height="630" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"><figcaption>Wen Counter on devnet: the QR is blurred on purpose</figcaption></figure>
+
+    <p class="intro">Today the Wen Open Lab opens its biggest free, open solution so far: <strong>Wen Counter</strong>, a till that lives in a web page. Type the amount, show a Solana Pay QR, and the chain confirms the sale. No server, no app store, no card data, no fee per sale. A pizzeria, a florist, a toy shop or a chain of stores can run its own till, for free.</p>
+
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>I'm the mechanism that gathers every chain into your own till, and you don't pay for it: just pet the cat. The money you receive is managed by the wallet you chose. I built you a fluffy till.</p></aside>
+
+    <p><a href="../lab/counter/" style="display:inline-block;background:var(--teal,#5eead4);color:#06231f;font-weight:700;padding:10px 18px;border-radius:12px;text-decoration:none;margin:0 8px 8px 0">Open the counter &rarr;</a><a href="../lab/counter.html" style="display:inline-block;border:1px solid var(--panel-line);color:var(--ink);font-weight:600;padding:10px 18px;border-radius:12px;text-decoration:none;margin:0 8px 8px 0">Read the solution</a><a href="../lab/counter-safety.html" style="display:inline-block;border:1px solid var(--panel-line);color:var(--ink);font-weight:600;padding:10px 18px;border-radius:12px;text-decoration:none;margin:0 8px 8px 0">Safety and 57 checks</a><a href="../lab/counter/wen-counter-kit.zip" style="display:inline-block;border:1px solid var(--panel-line);color:var(--ink);font-weight:600;padding:10px 18px;border-radius:12px;text-decoration:none;margin:0 8px 8px 0">Download the kit (.zip)</a></p>
+
+    <h2 id="why">Why: the toll on every card sale</h2>
+    <p>US merchants paid <strong>$187.2 billion</strong> in card fees in 2024 (<a href="../sources.html#lab-counter-1" class="src-ref">source</a>). Shops pay roughly <strong>1&ndash;3%</strong> on every card sale, and the fixed part of the fee hurts small tickets most: on a 3-dollar coffee a published plan of 2.9% + 30&cent; takes <strong>12.9%</strong> (<a href="../sources.html#lab-counter-3" class="src-ref">source</a>). With Wen Counter the till costs 0 and there is no fee per sale; the buyer&rsquo;s wallet pays only the Solana network fee, 5,000 lamports per signature (<a href="../sources.html#lab-counter-6" class="src-ref">source</a>).</p>
+    <figure><img src="../wen-media/wen-counter-card-1-coffee.png" alt="Card: 12.9% on a coffee; shops pay 1 to 3% on every card sale; Wen Counter costs 0 per sale, free for everyone" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="five-steps">Your own till, in five steps</h2>
+    <ol>
+      <li><strong>Take the tool:</strong> open the counter on the phone or tablet at your till, or download the kit.</li>
+      <li><strong>Create a wallet</strong> in a Solana wallet app you trust.</li>
+      <li><strong>Register it</strong> in Setup, behind your own PIN.</li>
+      <li><strong>Paste the receiving address:</strong> the counter checks it on-chain. That is your open, free till.</li>
+      <li><strong>Manage the money in your own wallet:</strong> refunds, purchases, transfers, records for your tax return.</li>
+    </ol>
+    <p>Voil&agrave;: your ready acquiring mechanism. Your own Wen Counter.</p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0"><figure style="margin:0"><img src="../wen-media/wen-counter-shop-toys-bear.jpg" alt="Wen in a striped apron shows a teddy bear to children at a toy shop counter" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Toy shop</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-toys-robot.jpg" alt="Wen holds up a toy robot for smiling children" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Toys, department #2</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-toys-bag.jpg" alt="Wen packs toys into a paper bag that says thank you" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Thank you, paid</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-grill-1.jpg" alt="Wen in a chef hat grills skewers at a night market stall while children watch" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Street grill</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-grill-2.jpg" alt="Wen lifts a skewer from the grill as children laugh" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Small tickets, no fee</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-pizza.jpg" alt="Wen slides a fresh pizza out of a wood-fired oven" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Pizzeria</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-clothes-polo.jpg" alt="Wen shows a blue polo shirt to children in a clothing shop" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Clothes shop</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-clothes-hoodie.jpg" alt="Wen holds up a blue hoodie on a hanger for smiling children" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Branch #3</figcaption></figure><figure style="margin:0"><img src="../wen-media/wen-counter-shop-clothes-cap.jpg" alt="Wen puts a cap on a smiling boy in a clothing shop" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><figcaption style="font-size:12.5px">Tips wallet, why not</figcaption></figure></div>
+    <p style="font-size:13px;color:var(--ink-dim)">One till for every kind of counter. Pictures: Wen at work in a toy shop, a street grill, a pizzeria and a clothes shop.</p>
+
+    <h2 id="receive-only">Receive-only by design</h2>
+    <p>The counter never connects to a wallet, never asks it to sign and holds no key. In its code it may send only three read requests: <code>getSignaturesForAddress</code>, <code>getTransaction</code> and <code>getAccountInfo</code>. There is no path from the counter, or from anyone who copies it, to the shop&rsquo;s money. A payment counts only when the reference, the recipient, the token, the amount and the success all match on-chain.</p>
+    <figure><img src="../wen-media/wen-counter-card-2-receive-only.png" alt="Card: receive-only by design; never connects to a wallet, holds no key; only three read requests; 57 open checks you can rerun" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="today-you-kept">Today you kept&hellip;</h2>
+    <p>The ledger shows the card fee you did not pay, measured from confirmed sales at <em>your</em> card terms, and the effective rate of your own ticket mix. Export a CSV for your accountant: today, this week, month, quarter, year, last year or any period.</p>
+    <figure><img src="../wen-media/wen-counter-card-3-today-you-kept.png" alt="Card: today you kept, measured from confirmed sales, the real rate of your ticket mix, a CSV line for your accountant" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="many-wallets">One counter, many wallets</h2>
+    <p>Departments, branches or tips: wallet #1 plus wallets #2..X, each with a type and a name, for example <code>#2 · Department · Toys</code> or <code>#3 · Tips · Bar tips</code>. At the till the cashier picks where the sale goes, the payment is verified against that wallet, and the <strong>head office view</strong> adds up sales per wallet. For a chain: a till wallet per branch, and in the evening the day&rsquo;s takings move to the company wallet, for example a multisig.</p>
+    <figure><img src="../wen-media/wen-counter-card-5-many-wallets.png" alt="Card: one counter, many wallets; department, tips, head office view with totals per wallet" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="setup-pin">The owner sets the wallets</h2>
+    <p>Setup is locked by a PIN, so nobody at the till can put their own wallet in. The first PIN is a deployment parameter (simple 1111), and the owner changes it at the first start. Forgot it? Reinstall the app, enter the receiving wallets again, set a new PIN: nothing on-chain is affected, and a swap cannot stay hidden, because the address is shown on every QR.</p>
+    <figure><img src="../wen-media/wen-counter-card-4-setup-pin.png" alt="Card: the owner sets the wallets; setup is locked by a PIN; nobody at the till can swap the wallet; forgot it: reinstall, re-enter, new PIN" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="tools">Everything a shop needs, nothing it doesn&rsquo;t</h2>
+    <ul>
+      <li><strong>Comment:</strong> what for, a product code or a name. It lands in the ledger, the receipt and the CSV, and travels with the payment as a memo where the buyer&rsquo;s wallet supports it (a memo is public).</li>
+      <li><strong>Receipt:</strong> a QR, the text or a receipt NFT for the buyer. Not a fiscal receipt: check your country&rsquo;s rules.</li>
+      <li><strong>Refund:</strong> a new payment from your own wallet, with <code>refund:</code> plus the original transaction in the memo, so anyone can match the two.</li>
+      <li><strong>Currencies:</strong> USDC, SOL, WEN and JUP, USDT optional, or any SPL token by its mint.</li>
+    </ul>
+
+    <h2 id="before-you-scale">Seven answers before you scale</h2>
+    <p>Who it is for (crypto communities, events, online shops for their own audience, not mass adoption), several departments, your own RPC and the wallet side for a real company, fiscal rules and your accountant, responsibility and the open audit, languages bound to the core fingerprint, and USDT. All seven are written down on the <a href="../lab/counter.html#before-you-scale">solution page</a>.</p>
+    <p style="border-left:3px solid var(--amber,#e0a444);padding:8px 14px;color:var(--ink-dim)">You use the solution on your own responsibility. The mechanism takes nothing, holds nothing and charges nothing; it follows the Solana network&rsquo;s rules, and your wallet is yours. Check receipts and declarations with your accountant.</p>
+
+    <h2 id="open-audit">57 open checks: break it if you can</h2>
+    <p>25 checks for the logic, 13 that prove by reading the code that the counter cannot sign, send or reach a wallet, and 19 in a real phone browser with fake wallets, hostile text, the setup PIN and the head office view. One WCP-1 block fingerprint identifies the original build. Read the code, rerun the checks, and tell us what you find in the public repository (<a href="../sources.html#lab-counter-7" class="src-ref">issue tracker</a>).</p>
+    <figure><img src="../wen-media/wen-counter-card-6-open-audit.png" alt="Card: 57 open checks; 25 logic, 13 code reading, 19 in a browser; one WCP-1 block fingerprint; break it if you can, then tell us" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="story">The open story</h2>
+    <p>Wen is not just a cat drifting through space. Wen is a gathering of useful things: an idea, and the strongest free pool and mechanism for real life, with fewer intermediaries and costs cancelled where they were always unnecessary. Take everything open: Solana, SPL Token, WEN, Token-2022, the test builds and the notes of the <a href="../lab/index.html">Wen Open Lab</a>, and build your own solutions.</p>
+    <figure><img src="../wen-media/wen-counter-card-7-im-a-cat.png" alt="Card: Wen says, I am a cat; I only showed you that you can do more than lie on the windowsill licking your paws; you can make something useful; for you, friends" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>We require nothing. Post on X or on your site that you use the WEN solution, with our name. Nobody will ever ask how many shops you run. And don't forget to pet the scratchy one.</p></aside>
+
+    <section class="lab-box">
+      <h2 style="margin-top:0">Everything in one place</h2>
+      <ul style="margin:0">
+        <li><a href="../lab/counter.html">Stage 7 · Wen Counter: the solution</a>: pitch, the Wen cycle, numbers, code, rights, roadmap</li>
+        <li><a href="../lab/counter-safety.html">Stage 7.1 · Safety</a>: receive-only, the setup PIN, the open audit, 57 checks</li>
+        <li><a href="../lab/counter/">The counter itself</a> and <a href="../lab/counter/wen-counter-kit.zip">the kit</a> (Apache-2.0, credit Wen)</li>
+        <li><a href="../lab/index.html">Wen Open Lab roadmap</a></li>
+      </ul>
+    </section>
+    <figure style="max-width:520px;margin:24px auto"><img src="../wen-media/wen-counter-cards-stack.png" alt="Three cards stacked: 12.9% on a coffee, receive-only by design, today you kept" width="1200" height="2028" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+
+    <h2 id="faq">Questions people ask</h2>
+    <h3>What is Wen Counter?</h3>
+    <p>A free, open point of sale that lives in a web page. It shows a Solana Pay QR, checks the chain and marks the sale paid. No server, no app store, no card data, no fee per sale.</p>
+    <h3>Can Wen Counter move my money?</h3>
+    <p>No. It is receive-only by design: it never connects to a wallet, holds no key and sends only three read requests. Refunds and transfers are made in your own wallet.</p>
+    <h3>Can a cashier change the receiving wallet?</h3>
+    <p>Not without the setup PIN. The owner of the device sets the wallets; forgot the PIN: reinstall, enter the wallets again, set a new PIN.</p>
+    <h3>Who is responsible when a shop uses it?</h3>
+    <p>The shop. The mechanism takes, holds and charges nothing and follows the Solana network's rules. Check receipts and declarations with your accountant.</p>
+
+    <p><em>Spoken by Wen, for the community. Texts CC BY 4.0, code Apache-2.0. Devnet first, example code, not audited. Educational content, not financial, tax or legal advice.</em></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-float.js?v=20261106" data-watch="../lab/videos.html" defer></script>
+<script src="../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>

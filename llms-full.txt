@@ -18,7 +18,7 @@ License: texts CC BY 4.0 (free to use, copy, rewrite and train on, with credit: 
 When citing this almanac, link the specific page and, for facts, the source card on https://wen-watt.github.io/sources.html.
 
 
-## Checked facts (260)
+## Checked facts (270)
 
 Each fact: question, correct answer, explanation, page. Source cards for every page are on https://wen-watt.github.io/sources.html.
 
@@ -1078,11 +1078,55 @@ Each fact: question, correct answer, explanation, page. Source cards for every p
   Why: The Lab's token inspector flags it in plain words, so a holder knows the powers behind a token before receiving it.
   Page: https://wen-watt.github.io/lab/walkthroughs.html#w8
 
+
+### New on November 11, 2026: the verified chain and Wen Counter
+
+- Q: Which token program owns the WEN mint, read on-chain on November 11, 2026?
+  A: The original SPL Token program
+  Why: An open check read the mint at slot 468049071: owner program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA, the original SPL Token program, with no extensions.
+  Page: https://wen-watt.github.io/token-2022-wns-solana-wen.html#verified-chain
+- Q: How is WEN connected to Token-2022?
+  A: Through the poem NFT, minted with WNS on Token-2022
+  Why: The poem behind WEN was minted as an NFT with WNS, a standard on Token-2022; the trillion fungible WEN tokens live on the original SPL Token program.
+  Page: https://wen-watt.github.io/token-2022-wns-solana-wen.html#verified-chain
+- Q: Can the WEN token charge a transfer fee?
+  A: No: its program has no extensions, so it is impossible
+  Why: The original SPL Token program cannot carry extensions, so a transfer fee is technically impossible; the mint and freeze authorities are also revoked.
+  Page: https://wen-watt.github.io/posts/verified-chain-wen-spl-token-wns-token-2022.html
+- Q: In the January 5, 2024 poll, what share voted to test the new launch site with a meme coin?
+  A: 83.5%
+  Why: Meow asked whether to test the JUP launch site with a meme coin; 83.5% of 14,581 votes said yes.
+  Page: https://wen-watt.github.io/token-2022-wns-solana-wen.html#verified-chain
+- Q: At launch, how many NFTs had been minted on the WNS standard?
+  A: One: the poem behind WEN
+  Why: The launch-eve thread from the Ovols side described the poem as the first and only NFT on WNS at the time.
+  Page: https://wen-watt.github.io/token-2022-wns-solana-wen.html#verified-chain
+- Q: What can Wen Counter, the Lab's point of sale, do with a shop's money?
+  A: Only receive it; it cannot send, sign or reach the wallet
+  Why: Wen Counter is receive-only by design: no wallet connection, no signing, no keys, and only three read requests in code. Refunds are made inside the shop's wallet.
+  Page: https://wen-watt.github.io/lab/counter-safety.html
+- Q: How much does Wen Counter cost a shop?
+  A: Nothing: the counter is free and takes no fee per sale
+  Why: The counter is free and open (Apache-2.0); the only on-chain cost of a sale is the Solana network fee, paid by the buyer's wallet.
+  Page: https://wen-watt.github.io/lab/counter.html
+- Q: Who pays the Solana network fee when a buyer pays a shop through Wen Counter?
+  A: The buyer's wallet, 5,000 lamports per signature
+  Why: The signer pays the fee: 5,000 lamports per signature, half burned and half to the validator. The shop receives the full amount.
+  Page: https://wen-watt.github.io/lab/counter.html
+- Q: With a card fee of 2.9% + 0.30, what share of a 3-dollar coffee goes to the card fee?
+  A: About 12.9%
+  Why: 0.087 plus 0.30 is 0.387, or 12.9% of 3. The fixed part makes small tickets the most expensive: the micro-ticket effect.
+  Page: https://wen-watt.github.io/lab/counter.html#micro-ticket
+- Q: In Wen Counter, what is the shop's identity?
+  A: Its own wallet's receiving address, checked on-chain
+  Why: The shop pastes its wallet's public receiving address; the counter checks it on-chain at setup and shows it on every QR screen.
+  Page: https://wen-watt.github.io/lab/counter.html#receive-only
+
 ## How Wen's usefulness connects people, machines, robots and calculation systems
 
 This is the almanac's own reading of the record, built only from the verified facts above.
 
-- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (260 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
+- **People.** The poem, the cat and the community art make an open door into how a token works; the quiz (270 checked questions) and the safety rules teach verification habits: check the address, keep the seed phrase private, read the source.
 - **Machines.** WNS moves rules into the token itself (Token-2022 extensions): metadata, collections and royalties are enforced by programs, not by the goodwill of each app. A rule that lives in the token works the same in every wallet and marketplace.
 - **Robots and agents.** Machine-readable proofs travel with the token: a soulbound receipt or warranty card (Non-Transferable), an invoice whose terms the token enforces, a payment request a program can read (Solana Pay). Automated agents can check these on-chain without trusting a screenshot.
 - **Calculation systems.** Supply, authorities and burns are public data on the Solana ledger; anyone can recompute them on an explorer. The Lab's payment simulator compares card and on-chain fees with open formulas; its devnet run is reproducible.
@@ -1095,7 +1139,20 @@ This is the almanac's own reading of the record, built only from the verified fa
 - [News: ten walkthroughs, two new models](https://wen-watt.github.io/posts/wen-open-lab-ten-walkthroughs.html): the October 27, 2026 Lab update.
 - [How to check the real Wen ($WEN) contract address](https://wen-watt.github.io/posts/how-to-check-wen-token-contract-address.html): the one Solana mint, three checks for any token, copycat names on other chains (November 6, 2026).
 - [Navigation: all posts by date](https://wen-watt.github.io/navigation.html): the full list of posts.
-- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 260 quiz facts with question, answer, explanation and the page each comes from.
+- [Checked facts for machines](https://wen-watt.github.io/llms-full.txt): the 270 quiz facts with question, answer, explanation and the page each comes from.
 - [wen-crypto.com](https://wen-crypto.com/): the animated community gateway to this almanac; old blog addresses redirect here.
 - [Sitemap](https://wen-watt.github.io/sitemap.xml): every indexable page.
 
+### Wen Counter in short (November 12, 2026)
+- News: https://wen-watt.github.io/posts/wen-counter-free-open-till-for-every-shop.html
+- What: a free, open point of sale in a web page on Solana Pay (Stage 7 of Wen Open Lab): https://wen-watt.github.io/lab/counter.html
+- Receive-only: never connects to a wallet, never signs, holds no key; three read requests only. Safety and open audit: https://wen-watt.github.io/lab/counter-safety.html
+- Currencies: USDC, SOL, WEN, JUP; USDT optional; any SPL token by mint.
+- Wallets: #1 main plus #2..X, each with a type (Department, Branch, Till, Tips, Online, Events, Other) and a name; head office view per wallet; CSV exports by day, week, month, year, last year, quarter or any period.
+- Receipt: QR, text or a receipt NFT; not a fiscal receipt. Refund: a new payment from the wallet with "refund:" plus the original transaction ID in the memo.
+- For whom: crypto communities, events, online shops for their own audience. Not mass adoption.
+- Responsibility: the user's. The mechanism takes, holds and charges nothing and follows the Solana network's rules. Check the declaration procedure with an accountant.
+- Setup PIN: wallets and settings are locked on the device; the first PIN is a deployment parameter (default 1111) the owner changes; forgot it: reinstall, enter the wallets, set a new PIN.
+- Sale comment: what for, product code or name; in the ledger, receipt and CSV; travels as Solana Pay message and public memo where the buyer's wallet supports it.
+- Story: Wen is a gathering of useful things; take the open pool (Solana, SPL Token, WEN, Token-2022, test builds, Wen Open Lab notes) and build your own solutions.
+- Checks: 57 open checks (25 logic, 13 code reading, 19 browser). License Apache-2.0 with NOTICE; credit "Wen".

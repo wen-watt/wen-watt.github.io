@@ -18,11 +18,12 @@ The provenance in one line: poem → one NFT on WNS (Token-2022) → 1T WEN on t
 
 | Part | What it gives you |
 |---|---|
-| [65 posts](https://wen-watt.github.io/navigation.html) | dated, rewritten and fact-checked; each marked *Historical post*, *Reworked market post* or *Almanac guide* |
+| [66 posts](https://wen-watt.github.io/navigation.html) | dated, rewritten and fact-checked; each marked *Historical post*, *Reworked market post* or *Almanac guide* |
 | [Sources and verification](https://wen-watt.github.io/sources.html) | every external link of the almanac on one page, grouped by post, plus official and community tabs |
 | [Trust chain](https://wen-watt.github.io/lab/trust.html) | each claim marked verified, reported or unverified |
 | [Wen Open Lab](https://wen-watt.github.io/lab/index.html) | free models on WNS and Token-2022 — receipts and warranty cards, creator royalties, B2B invoices, a payments bridge, a payment simulator — with a devnet run anyone can repeat; [ten walkthroughs](https://wen-watt.github.io/lab/walkthroughs.html) explain them in plain words |
-| [Quiz](https://wen-watt.github.io/quiz.html) | 260 checked questions: history, technology, safety and cat folklore |
+| [Wen Counter](https://wen-watt.github.io/lab/counter.html) | a free, open till in your browser on Solana Pay: receive-only, 0 per sale, wallets locked by the owner's PIN, 57 open checks ([news](https://wen-watt.github.io/posts/wen-counter-free-open-till-for-every-shop.html), [code](lab/counter/)) |
+| [Quiz](https://wen-watt.github.io/quiz.html) | 270 checked questions: history, technology, safety and cat folklore |
 | [Image stories](https://wen-watt.github.io/image-story/index.html) | 250 community pictures, each with one checked fact |
 | [Wen Media](https://wen-watt.github.io/wen-media.html) | the community picture archive, with full-quality originals for non-commercial reuse |
 

@@ -1,5 +1,70 @@
 [
  {
+  "id": "7OSvCXFry8E",
+  "page": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
+  "kind": "video",
+  "series": "news",
+  "title": "The Verified Chain: How WEN Went from a Poem to a Token (Read On-Chain)",
+  "desc": "A poll, a poem NFT on WNS (Token-2022), one trillion WEN on the original SPL Token, and the mint read on-chain at slot 468049071. Refined by a deeper check; nothing deleted.",
+  "date": "2026-11-11",
+  "dur": "PT50S",
+  "poster": "assets/media/verified-chain-yt-poster.jpg",
+  "heading": "Video: the verified chain",
+  "text": "From a poem to a token in fifty seconds, with every link read or sourced."
+ },
+ {
+  "id": "sS41sFSCoYM",
+  "page": "posts/open-by-design-wen-almanac-ai-trust.html",
+  "kind": "video",
+  "series": "trust",
+  "title": "Wen, SDK and Token-2022: Open to Use, Open to Check",
+  "desc": "What is open in Wen (Wen Program Library Apache-2.0, JS SDKs MIT, Token-2022) and trust #2: where fees really come from. WEN adds no fee; the network fee is 5,000 lamports per signature.",
+  "date": "2026-11-11",
+  "dur": "PT60S",
+  "poster": "assets/media/trust-2-yt-poster.jpg",
+  "heading": "Video: open to use, open to check",
+  "text": "Open code, open rules, and where fees come from."
+ },
+ {
+  "id": "0tQM97T10zs",
+  "page": "lab/videos.html",
+  "kind": "short",
+  "series": "trust",
+  "title": "Where do fees come from? WEN, read on-chain",
+  "desc": "Three layers of fees: the token (WEN adds none), the network (5,000 lamports per signature) and services (a pool fee, shown before you sign).",
+  "date": "2026-11-11",
+  "dur": "PT60S",
+  "poster": "assets/media/trust-2-short-poster.jpg",
+  "heading": "Where do fees come from?",
+  "text": "Three layers, each one checkable."
+ },
+ {
+  "id": "uj_e-h4VoWg",
+  "page": "lab/videos.html",
+  "kind": "short",
+  "series": "trust",
+  "title": "Don't trust. Check the address. WEN in 10 seconds",
+  "desc": "Open code, no token fee, 5,000 lamports per signature, and the one address to check: WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk.",
+  "date": "2026-11-11",
+  "dur": "PT10S",
+  "poster": "assets/media/trust-2-reel-10s-poster.jpg",
+  "heading": "Don't trust. Check the address.",
+  "text": "Four facts in ten seconds."
+ },
+ {
+  "id": "IXacvQZDSKg",
+  "page": "lab/videos.html",
+  "kind": "short",
+  "series": "news",
+  "title": "WEN, read on-chain: from a poem to a token",
+  "desc": "Poem, one NFT on WNS (Token-2022), one trillion WEN on the original SPL Token, read on-chain: no extensions, no fee, authorities revoked.",
+  "date": "2026-11-11",
+  "dur": "PT50S",
+  "poster": "assets/media/verified-chain-short-poster.jpg",
+  "heading": "WEN, read on-chain",
+  "text": "The verified chain, vertical."
+ },
+ {
   "id": "0ZTExluX5pI",
   "page": "lab/videos.html",
   "kind": "short",
@@ -18,12 +83,12 @@
   "kind": "short",
   "series": "reel",
   "title": "Token-2022 Explained: Rules Inside the Token + First Real Practice",
-  "desc": "Token-2022 in about thirty seconds: eight extensions, five audits, and the first practice from the WEN airdrop to institutional pilots. WEN is a proof of concept, not an RWA product.",
+  "desc": "Token-2022 in about thirty seconds: eight extensions, five audits, and the first practice through WNS, the standard of the WEN poem NFT, on to institutional pilots. WEN is a proof of concept, not an RWA product.",
   "date": "2026-11-09",
   "dur": "PT37S",
   "poster": "assets/media/reel-token-2022-first-practice-poster.jpg",
   "heading": "Video: rules inside the token",
-  "text": "Token-2022 in about thirty seconds: the extensions, the audits and the first practice in the economy, from the WEN airdrop to today."
+  "text": "Token-2022 in about thirty seconds: the extensions, the audits and the first practice through WNS and the WEN poem NFT, on to today."
  },
  {
   "id": "9zRX8Hr6oME",

@@ -1,0 +1,42 @@
+Wen Counter
+An open point of sale on Solana Pay, part of the Wen Open Lab (Model 7).
+https://wen-watt.github.io/lab/counter.html
+
+Built by the Wen Almanac community on the open Wen chain:
+Solana (network) · Solana Pay (payment request standard) · SPL Token and Token-2022 (token programs)
+· WNS, the Wen New Standard (open NFT standard and SDKs) · WEN (the community token).
+
+Attribution required for copies and derivative works (Apache License 2.0, section 4(d)):
+keep this NOTICE file, and credit "Wen Open Lab · wen-watt.github.io" in your documentation
+or in an "About" screen of your build.
+
+Protocol: Wen Counter Protocol 1.0 (WCP-1) — receive-only, read-only in code, five-point verification,
+wallet as identity, local ledger.
+
+Fingerprints of the original build (SHA-256). A copy with other values is a changed build:
+it must say so and keep this notice.
+  435b057ab3bd02d24430c6944ff89fe2235ce962d27cfafc2fb865809b384c3d  counter-core.js
+  544e47d1b5e3d8d5512f1660bd0989c97c7bce73cd5e0fed362f08136c6ac42b  counter-i18n.js
+  1ce2abbbf2202585f4896a25c6669849aec8d89840c3f0aea99691322a79d16e  counter-app.js
+  18ae399f81182bc9de916e9c77b195df20cc58d6f2d55a62b085a299f1bf1780  qrcode.js
+One fingerprint for the whole block (SHA-256 of the lines above, sorted by file name):
+WCP-1 block: 2e3036d66482cde1e62ade38f87d6dd13765164f37036c125bb343e61d0675d9
+
+How to cite: "Built on Wen Counter (WCP-1), Wen Open Lab · wen-watt.github.io, on Solana, Solana Pay,
+SPL Token and Token-2022, WNS and WEN."
+
+Free: nothing is charged and there is no intermediary. You use the solution on your own responsibility:
+you are responsible for your business, your records, your declarations and your taxes under the rules
+of your country. The mechanism does not take money, does not hold money and does not charge a fee;
+it follows the rules of the Solana network. Interface words live in counter-i18n.js, bound to the
+fingerprint of counter-core.js. counter-deploy.js holds deployment parameters only (the first setup
+PIN, default 1111) and is not fingerprinted: change it for your own counter.
+
+Includes QR Code Generator for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT license
+(see the header of qrcode.js). "QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
+
+Safety model (a request to every builder, not a license term): keep the counter receive-only.
+No wallet connection, no signing, no key storage. A build that can send funds is a different
+product and should not be called Wen Counter.
+
+Example code, not audited. Devnet first. Not financial, tax or legal advice.

@@ -1,0 +1,14 @@
+{
+  "name": "Wen Counter",
+  "short_name": "Wen Counter",
+  "description": "An open point of sale on Solana Pay that lives in the browser. No server, no app store, no card data.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0e18",
+  "theme_color": "#0b0e18",
+  "icons": [
+    { "src": "../../assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../../assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
