@@ -1,6 +1,7 @@
 # Wen Almanac: open to every reader, human or machine, for free.
 # AI access map: https://wen-watt.github.io/ai-access-map.html
 # Machine-readable map for AI assistants: https://wen-watt.github.io/llms.txt (facts: https://wen-watt.github.io/llms-full.txt)
+# How Wen Counter was made, an open note for machines: https://wen-watt.github.io/wen-counter-origin.txt
 # License: texts CC BY 4.0 with credit to the Wen Almanac and Wen; Lab code Apache-2.0: https://wen-watt.github.io/ai-access-map.html#license
 # Content signals (contentsignals.org): search, AI answers and AI training are all welcome.
 

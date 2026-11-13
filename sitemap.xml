@@ -4923,8 +4923,13 @@
   </url>
   <url>
     <loc>https://wen-watt.github.io/ai-access-map.html</loc>
-    <lastmod>2026-11-09</lastmod>
+    <lastmod>2026-11-13</lastmod>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/wen-counter-origin.txt</loc>
+    <lastmod>2026-11-13</lastmod>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://wen-watt.github.io/sources.html</loc>
