@@ -1,5 +1,18 @@
 [
  {
+  "id": "Li4hKvZV9Y4",
+  "page": "lab/counter.html",
+  "kind": "short",
+  "series": "counter",
+  "title": "Signal Received · A free till in your browser: QR → ✓ Paid",
+  "desc": "Wen Counter in 17 seconds: type the amount, show a Solana Pay QR, the chain confirms ✓ Paid. No app store, no card data, 0 per sale, receive-only.",
+  "date": "2026-11-13",
+  "dur": "PT18S",
+  "poster": "assets/media/wen-counter-07-poster.jpg",
+  "heading": "Video: QR → ✓ Paid",
+  "text": "Wen Counter in 17 seconds: amount, Solana Pay QR, the chain confirms."
+ },
+ {
   "id": "7OSvCXFry8E",
   "page": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
   "kind": "video",

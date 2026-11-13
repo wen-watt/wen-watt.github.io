@@ -177,6 +177,8 @@ export async function mintReceipt(order: Order, buyer: PublicKey, opts: ReceiptO
     <h2>What was verified</h2>
     <p>In LiteSVM, for both the soulbound and the transferable version: the receipt is minted; supply is exactly 1 with 0 decimals and no mint authority; name, order hash and warranty date are read back from inside the mint; the buyer holds it; a soulbound receipt refuses to move (rejected by Token-2022 itself), a transferable one can be gifted or resold; and nobody can mint a second copy. See the <a href="index.html#verification-log">verification log</a>.</p>
 
+    <figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="HUuGefvoRsU" aria-label="Play: A receipt nobody can fake · Wen Open Lab 01/10" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../assets/media/wen-lab-01-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>Video 01/10: a receipt nobody can fake, in thirty seconds. The player loads from YouTube only after you press play.</figcaption></figure>
+
     <h2>Where it is useful</h2>
     <ul>
       <li>Electronics and appliances: warranty claims without paper.</li>
@@ -238,5 +240,6 @@ export async function mintReceipt(order: Order, buyer: PublicKey, opts: ReceiptO
 
 <script src="../assets/js/main.js?v=20261027"></script>
 <script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-video.js?v=20261106" defer></script>
 </body>
 </html>
