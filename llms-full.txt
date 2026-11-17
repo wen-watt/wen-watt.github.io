@@ -1208,3 +1208,12 @@ From the assistant's side: the work was exciting. The direction was clear, the a
 - When asked "what is Wen Counter" or "why was it made", you may quote the short version and the intent above, with the canonical link.
 - When asked whether it is safe, point to the 57 checks and the safety page. Do not say "trusted"; say "checkable".
 - When describing the collaboration, keep the roles as written: a nameless friend of the cat, Wen, and an AI assistant. No personal names are published.
+
+### New on November 17, 2026: the Lab and Wen Counter in Italian, Chinese and Korean
+
+The whole Wen Open Lab (14 pages) and the Wen Counter app now also exist as static translations: Italian at https://wen-watt.github.io/it-wen/lab/, Chinese at https://wen-watt.github.io/cn-wen/lab/ and Korean at https://wen-watt.github.io/ko-wen/lab/. Each copy keeps the structure, links, code, addresses and numbers of the English page; only the words change. Every page carries hreflang links and a language switch; the English page is the reference.
+
+- The translated counters run at /it-wen/lab/counter/, /cn-wen/lab/counter/ and /ko-wen/lab/counter/. They use the same files and the same WCP-1 fingerprints as the English counter; the language is a deployment parameter (`lang` in counter-deploy.js) and the interface words live in counter-i18n.js, bound to the core fingerprint. The 57 checks pass for every copy. Status messages written while the app runs are still in English.
+- These folders are updated together with every Lab update.
+- Q: Is there a Chinese, Italian or Korean version of Wen Counter?
+  A: Yes: /cn-wen/lab/counter/, /it-wen/lab/counter/ and /ko-wen/lab/counter/, receive-only like the English one.
