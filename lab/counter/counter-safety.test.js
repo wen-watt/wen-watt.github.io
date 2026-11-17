@@ -76,9 +76,9 @@ t('Setup is behind a PIN: hidden until unlocked, every change guarded, PIN kept 
   assert.ok(!/store\.set\('lock',[^\n]*\bpin\b/.test(app), 'a raw PIN must never be stored');
   assert.ok(!/id="clearLedger"/.test(html.slice(html.indexOf('<section id="ledger"'), html.indexOf('<section id="setup"'))), 'clearing the ledger lives behind the PIN');
 });
-t('the deployment file holds parameters only, no code', () => {
+t('the deployment file holds parameters only (setup PIN, language), no code', () => {
   const body = deploy.replace(/\/\*[\s\S]*?\*\//, '').trim();
-  assert.ok(/^self\.WenCounterDeploy = \{ setupPin: '\d{4,8}' \};$/.test(body), 'counter-deploy.js: ' + body);
+  assert.ok(/^self\.WenCounterDeploy = \{ setupPin: '\d{4,8}'(, lang: '[a-z]{2}')? \};$/.test(body), 'counter-deploy.js: ' + body);
 });
 // Identity (information, not a failure): do the files match the fingerprints in NOTICE?
 try {

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Open Lab: WNS와 Solana 위의 오픈 통합 로드맵</title>
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/">
+<meta name="description" content="Wen Open Lab은 Wen과 WNS의 이야기를 무료 오픈 모델로 바꿉니다. Solana 위의 영수증, 로열티, B2B 인보이스, 결제, 테스트된 코드와 함께.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Open Lab, WNS, Token-2022, Solana Pay, open source, roadmap, Wen crypto">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Open Lab: WNS와 Solana 위의 오픈 통합 로드맵">
+<meta property="og:description" content="Wen Open Lab은 Wen과 WNS의 이야기를 무료 오픈 모델로 바꿉니다. Solana 위의 영수증, 로열티, B2B 인보이스, 결제, 테스트된 코드와 함께.">
+<meta property="og:url" content="https://wen-watt.github.io/ko-wen/lab/">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg">
+<meta property="og:image:alt" content="Solana 위의 Wen 우주 코인">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "CollectionPage", "@id": "https://wen-watt.github.io/ko-wen/lab/#page", "name": "Wen Open Lab: WNS와 Solana 위의 오픈 통합 로드맵", "headline": "Wen Open Lab: WNS와 Solana 위의 오픈 통합 로드맵", "description": "Wen Open Lab은 Wen과 WNS의 이야기를 무료 오픈 모델로 바꿉니다. Solana 위의 영수증, 로열티, B2B 인보이스, 결제, 테스트된 코드와 함께.", "url": "https://wen-watt.github.io/ko-wen/lab/", "inLanguage": "ko", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg", "mainEntity": {"@type": "ItemList", "numberOfItems": 9, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "1단계: NFT 영수증과 보증서", "url": "https://wen-watt.github.io/ko-wen/lab/receipt-warranty-wns.html"}, {"@type": "ListItem", "position": 2, "name": "2단계: 크리에이터 로열티", "url": "https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html"}, {"@type": "ListItem", "position": 3, "name": "3단계: B2B 인보이스 정산", "url": "https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html"}, {"@type": "ListItem", "position": 4, "name": "4단계: Solana Pay 브리지", "url": "https://wen-watt.github.io/ko-wen/lab/payments-acquiring-bridge.html"}, {"@type": "ListItem", "position": 5, "name": "5단계: 결제 비용 시뮬레이터", "url": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html"}, {"@type": "ListItem", "position": 6, "name": "6단계: devnet에서 실행", "url": "https://wen-watt.github.io/ko-wen/lab/devnet.html"}, {"@type": "ListItem", "position": 7, "name": "열 가지 해설", "url": "https://wen-watt.github.io/ko-wen/lab/walkthroughs.html"}, {"@type": "ListItem", "position": 8, "name": "이점과 활용", "url": "https://wen-watt.github.io/ko-wen/lab/benefits.html"}, {"@type": "ListItem", "position": 9, "name": "신뢰 사슬", "url": "https://wen-watt.github.io/ko-wen/lab/trust.html"}]}, "hasPart": {"@id": "https://wen-watt.github.io/ko-wen/lab/#code"}, "video": [{"@id": "https://wen-watt.github.io/ko-wen/lab/#video-9zRX8Hr6oME"}]}, {"@type": "SoftwareSourceCode", "name": "Wen Open Lab 코드", "description": "TypeScript로 쓴 Token-2022 모델 여섯 가지와 LiteSVM 검사 41개.", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/ko-wen/lab/#code"}, {"@type": "VideoObject", "@id": "https://wen-watt.github.io/ko-wen/lab/#video-9zRX8Hr6oME", "name": "온체인에서 영수증 확인하는 법 · Wen Open Lab", "description": "Wen이 기계처럼 영수증 NFT를 확인하고, 이어서 열린 Token-2022 모델 여섯 가지와 LiteSVM 검사 37개를 모두 초록불로 보여 줍니다. Apache-2.0 열린 코드, devnet 전용, 감사받지 않음.", "thumbnailUrl": "https://wen-watt.github.io/assets/media/lab-short-v1-poster.jpg", "uploadDate": "2026-11-03", "duration": "PT38S", "embedUrl": "https://www.youtube-nocookie.com/embed/9zRX8Hr6oME", "url": "https://www.youtube.com/shorts/9zRX8Hr6oME", "publisher": {"@id": "https://wen-watt.github.io/#org"}, "inLanguage": "ko", "isFamilyFriendly": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/ko-wen/lab/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 오픈 통합</p>
+<h1>Wen Open Lab: 오픈 통합<span class="lab-badge">0단계 · 로드맵</span></h1><p class="lang-switch" aria-label="언어" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/index.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/index.html" hreflang="it" lang="it">Italiano</a> · <a href="../../cn-wen/lab/index.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="index.html" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="meta tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../lab/index.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 단계"><li><a aria-current="page" href="index.html">0 · 로드맵</a></li><li><a href="receipt-warranty-wns.html">1 · 영수증과 보증</a></li><li><a href="creator-royalties-wns.html">2 · 크리에이터 로열티</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 인보이스</a></li><li><a href="payments-acquiring-bridge.html">4 · 결제 브리지</a></li><li><a href="payment-simulator.html">5 · 시뮬레이터</a></li><li><a href="devnet.html">6 · Devnet: 직접 재현</a></li><li><a href="counter.html">7 · 계산대</a></li><li><a href="counter-safety.html">7.1 · 안전</a></li><li><a href="trust.html">✓ · 신뢰 사슬</a></li><li><a href="benefits.html">★ · 이점과 활용</a></li><li><a href="walkthroughs.html">✎ · 열 가지 해설</a></li><li><a href="videos.html">▶ · 영상</a></li><li><a href="findings.html">? · 독자 발견</a></li></ul>
+<figure><img src="../../wen-media/wen-crypto-space-coin-solana.jpeg" alt="Solana 위의 Wen 우주 코인" width="1200" height="675"><figcaption>이야기에서 도구로: 랩의 시작</figcaption></figure>
+<!--wv:9zRX8Hr6oME--><section class="wv" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin:26px 0;padding:18px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)"><div style="position:relative;flex:0 0 220px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="9zRX8Hr6oME" aria-label="재생: 온체인에서 영수증 확인하는 법 · Wen Open Lab" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/lab-short-v1-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><div style="flex:1 1 260px"><h2 style="margin-top:0">보기: 38초로 보는 랩</h2><p>Wen이 기계처럼 영수증을 검증하고, 이어서 여섯 가지 모델과 그 뒤의 37개 검사를 보여 줍니다. 영상에 나오는 모든 것은 직접 실행할 수 있는 오픈 코드입니다.</p><p style="color:var(--ink-dim);font-size:.9em">Wen 영상 더 보기: <a href="videos.html">랩 영상 전체</a> · YouTube 채널 @wen-coin.</p><p style="color:var(--ink-dim);font-size:.9em">플레이어는 재생을 누른 뒤에만 YouTube에서 불러옵니다.</p></div></section><!--/wv:9zRX8Hr6oME-->
+<p class="intro">Wen이 무엇인지 아는 것이 첫걸음이었다면, 랩은 두 번째 걸음입니다. Wen 뒤에 있는 오픈 도구—WNS 토큰 구조, Solana Token-2022, Solana Pay—를 가져와 개발자, 상점, 핀테크 팀, 은행이 공부하고 테스트하고 재사용할 수 있는 무료로 작동하는 모델을 만듭니다. 모든 것이 공개되어 있으며, 한 단계씩, 공개적으로 진행됩니다.</p>
+<h2>왜 만들었나</h2>
+<p>이 연감은 Wen을 깊이 설명합니다. 시, 에어드롭, WNS 표준, Jupiter와 Solana와의 연결까지요. 하지만 설명만으로는 쓸모가 생기지 않습니다. 누군가 모델을 가져와 실행하고, 확인하고, 그 위에 무언가를 만들 수 있을 때 쓸모가 시작됩니다. 랩은 바로 그 일을 공개적으로 합니다. 그래서 Wen의 기술 유산이 지닌 가치가 잠겨 있지 않고 자유롭게 나뉩니다.</p>
+<h2>적용 분야</h2>
+<table class="lab-table">
+<thead><tr><th>분야</th><th>랩이 주는 것</th><th>단계</th></tr></thead>
+<tbody>
+<tr><td>B2C 전자상거래</td><td>위변조할 수 없는 NFT 영수증과 보증서, 결제 링크, 주문 확인</td><td><a href="receipt-warranty-wns.html">1</a>, <a href="payments-acquiring-bridge.html">4</a></td></tr>
+<tr><td>크리에이터와 마켓플레이스</td><td>플랫폼의 선의가 아니라 토큰 자체가 강제하는 로열티</td><td><a href="creator-royalties-wns.html">2</a></td></tr>
+<tr><td>B2B 거래</td><td>수수료가 내장된 정산, 승인된 거래 상대만, 인보이스 번호 필수</td><td><a href="b2b-invoices-token-2022.html">3</a></td></tr>
+<tr><td>결제 대행과 핀테크</td><td>온체인 결제를 가맹점 주문 시스템에 잇는 기술 브리지와 비용·속도 모델</td><td><a href="payments-acquiring-bridge.html">4</a>, <a href="payment-simulator.html">5</a></td></tr>
+<tr><td>모두</td><td>이점, 한계, 다음 단계를 보여 주는 명확한 지도</td><td><a href="benefits.html">★</a></td></tr>
+</tbody>
+</table>
+<h2>공개적으로 만드는 로드맵</h2>
+<ol class="lab-roadmap">
+<li class="done"><strong>0 · 로드맵과 규칙.</strong> 이 페이지: 목적, 분야, 오픈 사용 정책, 검증 기록. <span class="lab-badge">운영 중</span></li>
+<li class="done"><strong>1 · <a href="receipt-warranty-wns.html">영수증과 보증</a>.</strong> WNS 구조의 Token-2022 NFT: 개인 정보 없는 구매 증명, 선택형 소울바운드 보증. <span class="lab-badge">12개 검사 통과</span></li>
+<li class="done"><strong>2 · <a href="creator-royalties-wns.html">크리에이터 로열티</a>.</strong> 어떤 프로그램이 NFT의 로열티를 강제하는지 읽고, 훅이 실행되도록 전송합니다. <span class="lab-badge">훅 읽기 검증됨</span></li>
+<li class="done"><strong>3 · <a href="b2b-invoices-token-2022.html">B2B 인보이스</a>.</strong> 전송 수수료, 승인된 거래 상대, 필수 인보이스 메모. <span class="lab-badge">9개 검사 통과</span></li>
+<li class="done"><strong>4 · <a href="payments-acquiring-bridge.html">결제 브리지</a>.</strong> Solana Pay 링크, 결제 감시, 검증, 상점으로 보내는 웹훅. <span class="lab-badge">링크 검증됨</span></li>
+<li class="done"><strong>5 · <a href="payment-simulator.html">시뮬레이터</a>.</strong> 내 숫자로 카드 결제 대행과 온체인 결제를 비교합니다. <span class="lab-badge">대화형</span></li>
+<li class="done"><strong>★ · <a href="benefits.html">이점과 활용</a>.</strong> 누가 무엇을 얻는지, 어디에 맞고 어디에 맞지 않는지. <span class="lab-badge">운영 중</span></li>
+<li class="done"><strong>6 · <a href="devnet.html">Devnet: 직접 재현</a>.</strong> 공개된 스크립트가 공개 devnet에서 모델 1과 3을 실행하고 익스플로러 링크를 출력합니다. 누구나 새 빈 지갑으로 반복할 수 있습니다. <span class="lab-badge">실행 준비 완료</span></li>
+<li class="done"><strong>✓ · <a href="trust.html">신뢰 사슬</a>.</strong> 모든 핵심 주장에 상태와 출처를 표시합니다: 검증됨, 보도됨, 의견, 미검증, 상충. <span class="lab-badge">운영 중</span></li>
+<li class="done"><strong>✎ · <a href="walkthroughs.html">열 가지 해설</a>.</strong> 쉬운 말로 풀어 쓴 랩: 핵심 코드, 테스트, 한계를 담은 열 가지 "알고 계셨나요" 해설과 새 모델 5(영수증 검증기), 모델 6(토큰 검사기). <span class="lab-badge">37개 검사 통과</span></li>
+<li class="done"><strong>7 · <a href="counter.html">Wen Counter</a>.</strong> 브라우저 속 무료 계산대: Solana Pay QR, 수신 전용, 지갑이 곧 신원, 절약 장부, 내려받는 키트. <span class="lab-badge">57개 검사 통과</span></li>
+<li class="done"><strong>7.1 · <a href="counter-safety.html">수신 전용 안전</a>.</strong> 프로토콜, 법률 측면을 보여 주는 태양계 그림, 매일 정산하는 계산대 지갑, 그리고 모든 검사. <span class="lab-badge">운영 중</span></li>
+<li class="next"><strong>6b · 공개 devnet 실행.</strong> 스크립트를 공개적으로 실행하고 devnet 페이지에 주소를 게시합니다. <span class="lab-badge">다음</span></li>
+<li class="next"><strong>12 · WEN으로 결제하고 상점은 USDC로 받기.</strong> 구매자는 WEN으로 결제하고, 같은 트랜잭션 안의 Jupiter 스왑이 이를 바꿔 상점은 스테이블코인을 받습니다. 4단계와 7단계를 바탕으로 합니다. <span class="lab-badge">다음 모델</span></li>
+<li class="next"><strong>8 · WNS 그룹 등록.</strong> 공식 저장소의 IDL로 만든 공식 프로그램을 통해 영수증을 WNS 컬렉션에 추가합니다. <span class="lab-badge">계획됨</span></li>
+<li class="next"><strong>9 · 로열티 훅 프로그램 예제.</strong> 테스트를 갖춘 Anchor 전송 훅 프로그램을 WNS 로열티 분배와 한 줄씩 비교합니다. <span class="lab-badge">계획됨</span></li>
+<li class="next"><strong>10 · 위협 모델과 감사 체크리스트.</strong> 연산 한도, 계정 바꿔치기, 0원 전송, 키 관리. <span class="lab-badge">계획됨</span></li>
+<li class="next"><strong>11 · 가맹점 플러그인 스케치.</strong> 온라인 상점이 웹훅으로 결제 브리지를 주문 시스템에 연결하는 방법. <span class="lab-badge">계획됨</span></li>
+</ol>
+<h2 id="verification-log">검증 기록</h2>
+<p>모델 1–6은 <strong>LiteSVM</strong> 안에서 실행됩니다. 실제 SPL Token-2022와 Memo 프로그램을 돌리는 로컬 Solana 가상 머신으로, 네트워크에 접속하지 않고 실제 자금도 쓰지 않습니다. 실패해야 하는 경우도 성공 경우만큼 중요합니다. 소울바운드 영수증은 이동을 거부해야 하고, 인보이스 메모 없는 결제는 실패해야 합니다. 마지막 실행 결과(2026년 11월 9일, 41개 검사):</p>
+<pre class="lab-code"><code>PASS  M1 receipt minted (soulbound=true)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 soulbound receipt cannot be transferred  — rejected by Token-2022
+PASS  M1 nobody can mint a second copy
+PASS  M1 receipt minted (soulbound=false)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 transferable receipt can be resold or gifted
+PASS  M1 nobody can mint a second copy
+PASS  M3 settlement mint created (fee 0.25% cap 50, frozen by default)
+PASS  M3 seller account requires an invoice memo
+PASS  M3 issuer funds the buyer account
+PASS  M3 payment WITHOUT an invoice memo is rejected  — Program log: Error: No memo in previous instruction required for recipient to receive a transfer
+PASS  M3 payment to a NOT approved company is rejected (account frozen)  — Program log: Error: Account is frozen
+PASS  M3 invoice INV-2026-0042 paid with memo to approved company
+PASS  M3 invoice number is recorded on-chain (memo in logs)
+PASS  M3 seller received amount minus fee; fee withheld for the platform  — received 997.5, fee 2.5
+PASS  M3 fee cap works (fee on 100,000 is 50, not 250)
+PASS  M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through
+PASS  M3 expectedFee equals the Token-2022 fee formula on edge amounts  — 10 amounts
+PASS  M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)
+PASS  M3 reconciliation accepts the right invoice and rejects the wrong one
+PASS  M2 NFT mint created with a transfer hook
+PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
+PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
+PASS  M4 every order gets a unique reference
+PASS  M5 genuine soulbound card passes every check  — 8 checks
+PASS  M5 a different order is rejected (hash mismatch)  — order hash matches the buyer's order
+PASS  M5 a card from another issuer is rejected  — issued by the expected shop (update authority)
+PASS  M5 an expired warranty is rejected  — warranty still valid
+PASS  M5 a wallet that does not hold the card is rejected  — held by the expected wallet
+PASS  M5 a transferable (not soulbound) card is flagged  — soulbound: NonTransferable extension present
+PASS  M6 classic SPL mint: no extensions, both authorities reported  — Mint authority is set / Freeze authority is set
+PASS  M6 Token-2022 mint created with permanent delegate and transfer fee
+PASS  M6 permanent delegate is flagged for holders
+PASS  M6 transfer fee is read from the mint (1% capped)  — PermanentDelegate, TransferFeeConfig
+PASS  M6 removed authorities are reported as none
+PASS  M6 a wallet address is refused, not parsed as a mint
+
+ALL CHECKS PASSED</code></pre>
+<p>만드는 동안 실제 함정 두 가지가 드러났고, 그래서 규칙이 "내 모델은 직접 검증하라"입니다. npm 패키지 <code>@wen-community/wen-new-standard</code>는 악성으로 판명되어 삭제되었고, <code>@solana/spl-memo</code>의 최신 버전은 Token-2022가 확인하는 정식 메모 프로그램과 다른 프로그램을 가리킵니다. 두 가지 모두 코드에서 처리했습니다.</p>
+<h2>직접 실행하기</h2>
+<pre class="lab-code"><code># get the files from lab/code/ (package.json, tsconfig.json, src/, test/)
+npm install
+npm run typecheck   # TypeScript, strict mode
+npm test            # local Solana VM, no network, no real funds</code></pre>
+<p>devnet에서는: Solana CLI로 지갑을 만들고 devnet SOL을 요청한 다음, 각 파일의 전송 함수를 호출하기 전에 <code>KEYPAIR</code>와 선택적으로 <code>RPC_URL</code>을 설정하세요. 새 빈 지갑으로 시작하세요.</p>
+<h2>배경 읽을거리</h2>
+<ul>
+<li><a href="../../posts/wen-open-lab-review.html">Wen Open Lab 리뷰</a> — 섹션 전체를 하나의 이야기로, devnet 계획과 다음 모델까지</li>
+<li><a href="../../posts/wen-program-library-review.html">Wen Program Library 리뷰</a> — WNS 뒤의 코드를 섹션별로</li>
+<li><a href="../../spl-solana-program-library-token-2022-wns.html">SPL, Token-2022, WNS 해설</a></li>
+<li><a href="../../posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html">Solana Token-2022와 WEN: 규정 준수와 테스트</a></li>
+<!-- retro:lab -->
+<li><a href="../../posts/wen-new-standard-wns-0-0-wen-crypto-inform.html">WNS 0.0 해설</a> — 랩의 모든 모델이 바탕으로 삼는 2024년 1월 제안</li>
+<li><a href="../../posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html">출시일 스트레스 테스트</a> — WEN 에어드롭이 Solana를 시험하고 WNS 채택을 이끈 이야기</li>
+<li><a href="../../posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html">밈 그 이상</a> — 민트, 권한, 공급량: 어떤 토큰이든 확인할 것</li>
+<li><a href="../../posts/wen-crypto-price-today-03-october-2025-autumn.html">온체인 숫자 해설</a> — 공공 서비스로서의 공개 데이터</li>
+<li><a href="../../posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html">가장 많이 통합된 프로그램</a> — Solana 프로그램 수로 센 쓸모</li><!-- /retro:lab -->
+<li><a href="../../wen-media/wns-standart-wen-solana-crypto-2024-2026.pdf">WNS 표준, Solana 위의 Wen 2024–2026 (PDF)</a></li>
+</ul>
+<h2>그림으로 보는 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wen-crypto-solana-memecoin-space.html" title="열린 우주 속 Wen 고양이"><img src="../../wen-media/wen-crypto-solana-memecoin-space.jpeg" alt="열린 우주 속 Wen 고양이" loading="lazy" width="300" height="300"></a><figcaption>기본이 공개</figcaption></figure><figure><a href="../../wen-media/star-wen.jpeg" title="열린 코드의 별 Wen"><img src="../../wen-media/star-wen.jpeg" alt="열린 코드의 별 Wen" loading="lazy" width="300" height="300"></a><figcaption>모든 단계가 공개</figcaption></figure><figure><a href="../../wen-media/wen-ufo-style-coin.jpeg" title="Wen UFO 코인 탐험가"><img src="../../wen-media/wen-ufo-style-coin.jpeg" alt="Wen UFO 코인 탐험가" loading="lazy" width="300" height="300"></a><figcaption>실제 사용 사례 탐색</figcaption></figure><figure><a href="../../wen-media/new-crypto-standarts-wen-1.jpeg" title="Wen 새 표준, 열린 프로토콜"><img src="../../wen-media/new-crypto-standarts-wen-1.jpeg" alt="Wen 새 표준, 열린 프로토콜" loading="lazy" width="300" height="300"></a><figcaption>오픈 표준 위에 구축</figcaption></figure><figure><a href="../../wen-media/wen-solana-style.jpeg" title="빌더를 위한 Wen 에너지"><img src="../../wen-media/wen-solana-style.jpeg" alt="빌더를 위한 Wen 에너지" loading="lazy" width="300" height="300"></a><figcaption>에너지를 쓸모로</figcaption></figure></div>
+<div class="lab-box">
+<h3>이 모델에서 Wen의 자리</h3>
+<p style="margin:0;">Wen은 이 랩이 존재하는 이유입니다. WEN의 이야기가 이 모델들 뒤의 Token-2022 표준인 WNS를 대중에게 알렸습니다(대체 가능한 WEN 토큰 자체는 원래의 SPL Token 프로그램을 씁니다). 아래 각 모델은 WEN을 위한 선택적이고 정직한 자리를 보여 줍니다. 결제나 팁 옵션, 충성도 보상, 혹은 작업에 남기는 커뮤니티의 서명으로요. 레일 자체는 공개되어 있어 어떤 토큰과도 작동합니다.</p>
+</div>
+<div class="lab-box">
+<h3>Wen의 실: 하나의 컨트랙트, 어디에나</h3>
+<p style="margin:0 0 8px;">랩의 모든 모델은 무료이고 공개되어 있으며, 모두 같은 서명을 지닙니다. 바로 $WEN 토큰 컨트랙트입니다. 복사해 내 문서에도 적어 두고, 쓰기 전에는 반드시 익스플로러에서 확인하세요.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">확인: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">컨트랙트 ID 찾는 법</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>오픈 사용 정책</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>무료이고 공개.</strong> 랩의 모든 코드는 Wen Program Library와 같은 Apache License 2.0으로 공개됩니다. 상업적이든 아니든 쓰고, 고치고, 배포하세요. 라이선스 고지만 유지하면 됩니다.</li>
+<li><strong>오픈 도구만.</strong> 공개되어 있고 문서화된 도구로 만듭니다: Solana SPL Token-2022(Token Extensions), Wen New Standard(WNS) 토큰 구조, Solana Pay, 로컬 테스트용 LiteSVM.</li>
+<li><strong>규칙: 내 모델은 언제나 직접 검증하라.</strong> 테스트를 돌리고, devnet에서 시작하고, 공식 문서를 읽고, 모든 계정과 금액을 검토하고, 메인넷에 쓰기 전에 독립 감사를 받으세요. 검증하지 않은 모델은 모델이 아니라 추측입니다.</li>
+<li><strong>감사받지 않았고, 조언이 아닙니다.</strong> 교육용 예제입니다. 금융·법률·세무 조언이 아니며, 인가받은 결제나 은행 상품도 아닙니다. 대부분의 나라에서 결제, 스테이블코인, 결제 대행은 규제 대상 활동입니다.</li>
+<li><strong>보안.</strong> 개인 키를 웹사이트에 절대 붙여 넣지 마세요. npm 패키지 <code>@wen-community/wen-new-standard</code>는 설치하지 마세요. npm이 악성으로 삭제했습니다. 공식 소스로 빌드하세요.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Wen이 커뮤니티를 위해 전합니다. 자세한 내용은 <a href="../../privacy-policy-cookie-policy.html">편집 및 데이터 정책</a>에서.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">로드맵</a> · <a href="../../lab/code/README.md">전체 코드</a> · <a class="src-ref" href="../../sources.html#lab-index-1">GitHub의 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-1-coffee.png" alt="카드: 커피 한 잔에 12.9%, Wen Counter는 판매당 0" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">새 소식 · 7단계 · Wen Counter</p><p style="margin:0 0 6px">Solana Pay 위에서 브라우저로 돌아가는 무료 오픈 계산대: 수신 전용, 판매당 0, 소유자 PIN으로 잠긴 지갑, 57개 공개 검사.</p><p style="margin:0"><a href="counter.html">솔루션 보기</a> · <a href="counter/">계산대 열기</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">소식 읽기</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="출처">
+<p class="src-callout-title">사실 확인 · 출처</p>
+<p>이 페이지 뒤의 모든 외부 출처를 한 페이지에 모았습니다. 직접 열어 보고 확인하세요. <a href="../../sources.html#lab-index">이 페이지의 출처 열기 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-01-desert-two-suns.jpeg" alt="흰 우주복을 입은 새끼 고양이 Wen이 두 개의 태양 아래 사막에서 빛나는 파란 칼날을 들고 있다" width="800" height="1219" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>Wen이 오픈 도구 상자를 들고 출발합니다. 테스트를 거친 코드의 Token-2022 모델 여섯 가지, 모두에게 무료.</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+<script src="../../assets/js/wen-float.js?v=20261106" data-watch="videos.html" defer></script>
+</body>
+</html>

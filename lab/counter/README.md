@@ -54,7 +54,7 @@ Voilà: your ready acquiring mechanism. Your own Wen Counter.
 3. **A real company**: use your own RPC endpoint (public ones have rate limits); prepare the wallet side (who holds which wallet, who approves transfers); build the wallets into your accounting and check with your accountant that you may use a wallet and how to declare. A useful tip, not advice.
 4. **Fiscal rules**: the counter declares nothing and is not a fiscal device. If your rules allow it, keep the wallet statements per period, declare the income, show receipts and refunds. If your accountant says yes, scale it.
 5. **Responsibility and open audit**: you use it on your own responsibility; we do not know what you change. The mechanism takes nothing, holds nothing and charges nothing, and follows the Solana network's rules. Read the code, rerun the checks, open an issue with what you find.
-6. **Languages**: all interface words are in `counter-i18n.js`, bound to the core fingerprint (`FOR_CORE`). Translations go there only; the safety test fails if the core changed without a fresh look.
+6. **Languages**: English, Italian, Chinese and Korean today; all interface words are in `counter-i18n.js`, bound to the core fingerprint (`FOR_CORE`). Translations go there only; the safety test fails if the core changed without a fresh look.
 7. **USDT** stays optional.
 
 ## The open story
@@ -65,7 +65,8 @@ Wen is not just a cat drifting through space. Wen is a gathering of useful thing
 We require nothing. Post on X or on your site that you use the WEN solution, with our name. It is nice for us and it settles usage and rights. Nobody will ever ask how many copies or shops you run: no money, no intermediary fees. And don't forget to pet the scratchy one.
 
 ## Translate it
-Add a dictionary next to `en` in `counter-i18n.js` (same keys), keep `FOR_CORE` equal to the SHA-256 of `counter-core.js`, run `node counter-safety.test.js`. Words are text, never HTML.
+The dictionary already holds English, Italian (`it`), Chinese (`zh`) and Korean (`ko`). To run a translated copy, set the language in `counter-deploy.js`, for example `self.WenCounterDeploy = { setupPin: '1111', lang: 'it' };`, and translate the words of `index.html` (the hosted copies live at `/it-wen/lab/counter/`, `/cn-wen/lab/counter/` and `/ko-wen/lab/counter/`). Status messages written while the app runs are still in English.
+To add a language: add a dictionary next to `en` in `counter-i18n.js` (same keys), keep `FOR_CORE` equal to the SHA-256 of `counter-core.js`, run `node counter-safety.test.js`. Words are text, never HTML.
 
 ## License and attribution
 Apache License 2.0 (`LICENSE`). Copies and derivative works must keep `NOTICE` and credit **Wen Open Lab · wen-watt.github.io**.

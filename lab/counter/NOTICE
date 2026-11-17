@@ -16,11 +16,11 @@ wallet as identity, local ledger.
 Fingerprints of the original build (SHA-256). A copy with other values is a changed build:
 it must say so and keep this notice.
   435b057ab3bd02d24430c6944ff89fe2235ce962d27cfafc2fb865809b384c3d  counter-core.js
-  544e47d1b5e3d8d5512f1660bd0989c97c7bce73cd5e0fed362f08136c6ac42b  counter-i18n.js
-  1ce2abbbf2202585f4896a25c6669849aec8d89840c3f0aea99691322a79d16e  counter-app.js
+  868a9982200bfcce468f90a5c73febdcdcade143d4d81a604550539270bc7b05  counter-i18n.js
+  702acd6966aa291bc53e760d2487ad35b4e17810c65094bf7f3206530985ae58  counter-app.js
   18ae399f81182bc9de916e9c77b195df20cc58d6f2d55a62b085a299f1bf1780  qrcode.js
 One fingerprint for the whole block (SHA-256 of the lines above, sorted by file name):
-WCP-1 block: 2e3036d66482cde1e62ade38f87d6dd13765164f37036c125bb343e61d0675d9
+WCP-1 block: 14bcbaa768edf8f25265af65a4ca45305f98d3915e261dd4cafaae42b3645968
 
 How to cite: "Built on Wen Counter (WCP-1), Wen Open Lab · wen-watt.github.io, on Solana, Solana Pay,
 SPL Token and Token-2022, WNS and WEN."

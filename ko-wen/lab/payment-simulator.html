@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>5단계: 카드 대 온체인 결제 비용·속도 시뮬레이터</title>
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/payment-simulator.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/payment-simulator.html">
+<meta name="description" content="Wen Open Lab 모델 5: 내 숫자로 카드 결제 대행과 Solana Pay의 월 비용과 정산 속도를 비교합니다. 열린 공식, 추적 없음.">
+<!-- seo:start -->
+<meta name="keywords" content="payment cost calculator, card fees vs crypto, Solana Pay, settlement speed, simulator">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="5단계: 카드 대 온체인 결제 비용·속도 시뮬레이터">
+<meta property="og:description" content="Wen Open Lab 모델 5: 내 숫자로 카드 결제 대행과 Solana Pay의 월 비용과 정산 속도를 비교합니다. 열린 공식, 추적 없음.">
+<meta property="og:url" content="https://wen-watt.github.io/ko-wen/lab/payment-simulator.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-market-run.jpeg">
+<meta property="og:image:alt" content="Wen 시장 스피드런">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-market-run.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": ["WebPage"], "@id": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html#page", "name": "5단계: 카드 대 온체인 결제 비용·속도 시뮬레이터", "headline": "5단계: 카드 대 온체인 결제 비용·속도 시뮬레이터", "description": "Wen Open Lab 모델 5: 내 숫자로 카드 결제 대행과 Solana Pay의 월 비용과 정산 속도를 비교합니다. 열린 공식, 추적 없음.", "url": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html", "inLanguage": "ko", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-market-run.jpeg", "mainEntity": {"@id": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html#app"}}, {"@type": "WebApplication", "@id": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html#app", "name": "카드 대 온체인 결제 비용 시뮬레이터", "url": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://wen-watt.github.io/#org"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/ko-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "5단계: 카드 대 온체인 결제 비용·속도 시뮬레이터", "item": "https://wen-watt.github.io/ko-wen/lab/payment-simulator.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 오픈 통합</p>
+<h1>5단계: 결제 시뮬레이터<span class="lab-badge">대화형</span></h1><p class="lang-switch" aria-label="언어" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/payment-simulator.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/payment-simulator.html" hreflang="it" lang="it">Italiano</a> · <a href="../../cn-wen/lab/payment-simulator.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="payment-simulator.html" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="meta tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../lab/payment-simulator.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 단계"><li><a href="index.html">0 · 로드맵</a></li><li><a href="receipt-warranty-wns.html">1 · 영수증과 보증</a></li><li><a href="creator-royalties-wns.html">2 · 크리에이터 로열티</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 인보이스</a></li><li><a href="payments-acquiring-bridge.html">4 · 결제 브리지</a></li><li><a aria-current="page" href="payment-simulator.html">5 · 시뮬레이터</a></li><li><a href="devnet.html">6 · Devnet: 직접 재현</a></li><li><a href="counter.html">7 · 계산대</a></li><li><a href="counter-safety.html">7.1 · 안전</a></li><li><a href="trust.html">✓ · 신뢰 사슬</a></li><li><a href="benefits.html">★ · 이점과 활용</a></li><li><a href="walkthroughs.html">✎ · 열 가지 해설</a></li><li><a href="videos.html">▶ · 영상</a></li><li><a href="findings.html">? · 독자 발견</a></li></ul>
+<figure><img src="../../wen-media/wen-market-run.jpeg" alt="Wen 시장 스피드런" width="1200" height="675"><figcaption>잴 수 있는 속도</figcaption></figure>
+<p class="intro">모델은 실제 숫자를 만날 때 쓸모가 생깁니다. 상점의 거래량, 카드 조건, 체인 비용을 넣으면 시뮬레이터가 월 비용과 정산을 기다리는 돈을 비교합니다. 모든 공식이 보이고, 아무것도 어디로 보내지 않습니다. 계산은 브라우저 안에서 이루어집니다.</p>
+<h2>내 숫자</h2>
+<p>어떤 칸이든 바꾸세요. 기본값은 예시일 뿐 어떤 사업자의 견적도 아닙니다. 내 계약 조건과 오늘 가격으로 바꾸세요.</p>
+<form class="lab-sim" id="sim" onsubmit="return false;">
+<label>월 주문 수<input id="orders" min="0" type="number" value="2000"></label>
+<label>평균 주문액, $<input id="ticket" min="0" step="0.01" type="number" value="40"></label>
+<label>카드 수수료, %<input id="mdr" min="0" step="0.01" type="number" value="2.9"></label>
+<label>카드 주문당 고정 수수료, $<input id="fixed" min="0" step="0.01" type="number" value="0.30"></label>
+<label>카드 정산, 일<input id="days" min="0" type="number" value="2"></label>
+<label>지불 거절률, %<input id="cbr" min="0" step="0.01" type="number" value="0.5"></label>
+<label>지불 거절 건당 비용, $<input id="cbf" min="0" step="0.01" type="number" value="15"></label>
+<label>결제당 네트워크 수수료, SOL<input id="netfee" min="0" step="0.000001" type="number" value="0.00001"></label>
+<label>SOL 가격, $<input id="sol" min="0" step="0.01" type="number" value="150"></label>
+<label>법정화폐 환전, %<input id="offramp" min="0" step="0.01" type="number" value="0.5"></label>
+</form>
+<table class="lab-table" id="sim-out">
+<thead><tr><th>월별</th><th>카드</th><th>온체인(Solana Pay)</th></tr></thead>
+<tbody>
+<tr><td>매출</td><td id="o-rev1"></td><td id="o-rev2"></td></tr>
+<tr><td>결제 수수료</td><td id="o-fee1"></td><td id="o-fee2"></td></tr>
+<tr><td>지불 거절 비용</td><td id="o-cb1"></td><td id="o-cb2"></td></tr>
+<tr><td><strong>총비용</strong></td><td id="o-tot1"></td><td id="o-tot2"></td></tr>
+<tr><td>주문당 비용</td><td id="o-per1"></td><td id="o-per2"></td></tr>
+<tr><td>정산을 기다리는 돈</td><td id="o-wait1"></td><td id="o-wait2"></td></tr>
+</tbody>
+</table>
+<p id="o-sum" style="font-size:15px;"></p>
+<script>
+    (function(){
+      var ids=['orders','ticket','mdr','fixed','days','cbr','cbf','netfee','sol','offramp'];
+      function v(id){var x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>=0?x:0;}
+      function m(x){return '$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+      function set(id,t){document.getElementById(id).textContent=t;}
+      function run(){
+        var n=v('orders'),t=v('ticket'),rev=n*t;
+        var fee1=rev*v('mdr')/100+n*v('fixed');
+        var cb1=n*v('cbr')/100*(t+v('cbf'));
+        var fee2=n*v('netfee')*v('sol')+rev*v('offramp')/100;
+        var tot1=fee1+cb1,tot2=fee2;
+        var wait1=rev/30*v('days');
+        set('o-rev1',m(rev));set('o-rev2',m(rev));
+        set('o-fee1',m(fee1));set('o-fee2',m(fee2));
+        set('o-cb1',m(cb1));set('o-cb2','none (refunds are new payments)');
+        set('o-tot1',m(tot1));set('o-tot2',m(tot2));
+        set('o-per1',n?m(tot1/n):'—');set('o-per2',n?m(tot2/n):'—');
+        set('o-wait1',m(wait1)+' ('+v('days')+' days)');set('o-wait2','≈ $0 (seconds)');
+        var diff=tot1-tot2;
+        set('o-sum',diff>=0?('With these numbers, on-chain payments cost '+m(diff)+' less per month, '+m(diff*12)+' per year, before any setup, compliance or refund-handling costs.')
+                          :('With these numbers, cards cost '+m(-diff)+' less per month. Check the conversion fee and volume assumptions.'));
+      }
+      ids.forEach(function(id){document.getElementById(id).addEventListener('input',run);});
+      run();
+    })();
+    </script>
+<noscript><p>The simulator needs JavaScript. The formulas are listed below so you can use a spreadsheet instead.</p></noscript>
+<h2>공식</h2>
+<ul>
+<li>매출 = 주문 수 × 평균 주문액.</li>
+<li>카드 결제 수수료 = 매출 × 카드 수수료 % + 주문 수 × 고정 수수료.</li>
+<li>지불 거절 비용 = 주문 수 × 지불 거절률 × (평균 주문액 + 건당 비용).</li>
+<li>온체인 수수료 = 주문 수 × SOL 기준 네트워크 수수료 × SOL 가격 + 매출 × 환전 %.</li>
+<li>정산을 기다리는 돈 = 매출 ÷ 30 × 정산 일수.</li>
+</ul>
+<h2>시뮬레이터가 빼놓은 것</h2>
+<ul>
+<li>구축, 통합, 규정 준수, 인허가 비용.</li>
+<li>내 고객 중 이미 Solana 지갑을 가진 사람이 얼마나 되는지.</li>
+<li>지불 거절이 주는 구매자 보호 가치. 고객에게는 실제로 의미가 있습니다.</li>
+<li>결제와 환전 사이에 생기는 비안정 토큰의 가격 변동.</li>
+</ul>
+<p>핵심은 어느 한 레일이 늘 이긴다는 것이 아닙니다. 의견을 확인할 수 있는 숫자로 바꾸고, 이긴 쪽을 <a href="payments-acquiring-bridge.html">4단계</a>로 devnet에서 시험하는 것입니다.</p>
+<h2>그림으로 보는 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-1.html" title="밤을 달리는 Wen 고양이"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-1.jpeg" alt="밤을 달리는 Wen 고양이" loading="lazy" width="300" height="300"></a><figcaption>며칠이 아니라 몇 초</figcaption></figure><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-2.html" title="전속력의 Wen 레이서"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-2.jpeg" alt="전속력의 Wen 레이서" loading="lazy" width="300" height="300"></a><figcaption>실시간 정산</figcaption></figure><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-3.html" title="결승선의 Wen 고양이"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-3.jpeg" alt="결승선의 Wen 고양이" loading="lazy" width="300" height="300"></a><figcaption>먼저 모델, 그다음 결정</figcaption></figure><figure><a href="../../image-story/testing-jup-wen-solana.html" title="Jupiter와 Wen 테스트"><img src="../../wen-media/testing-jup-wen-solana.jpeg" alt="Jupiter와 Wen 테스트" loading="lazy" width="300" height="300"></a><figcaption>믿기 전에 시험하라</figcaption></figure><figure><a href="../../image-story/crypto-game-solana-memecoin-wen.html" title="Wen 숫자 게임"><img src="../../wen-media/crypto-game-solana-memecoin-wen.jpeg" alt="Wen 숫자 게임" loading="lazy" width="300" height="300"></a><figcaption>숫자로 놀아 보기</figcaption></figure></div>
+<div class="lab-box">
+<h3>이 모델에서 Wen의 자리</h3>
+<p style="margin:0;">상점이 WEN을 결제 옵션 중 하나로 받는다면 변동성이 중요합니다. 환전 칸에 실제 환전 비용을 넣고, WEN 결제의 가치는 받은 때와 환전한 때 사이에 움직일 수 있음을 기억하세요. 안정적인 가격은 스테이블코인의 몫이고, WEN은 계산대에 커뮤니티와 관심을 가져옵니다.</p>
+</div>
+<div class="lab-box">
+<h3>Wen의 실: 하나의 컨트랙트, 어디에나</h3>
+<p style="margin:0 0 8px;">랩의 모든 모델은 무료이고 공개되어 있으며, 모두 같은 서명을 지닙니다. 바로 $WEN 토큰 컨트랙트입니다. 복사해 내 문서에도 적어 두고, 쓰기 전에는 반드시 익스플로러에서 확인하세요.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">확인: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">컨트랙트 ID 찾는 법</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>오픈 사용 정책</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>무료이고 공개.</strong> 랩의 모든 코드는 Wen Program Library와 같은 Apache License 2.0으로 공개됩니다. 상업적이든 아니든 쓰고, 고치고, 배포하세요. 라이선스 고지만 유지하면 됩니다.</li>
+<li><strong>오픈 도구만.</strong> 공개되어 있고 문서화된 도구로 만듭니다: Solana SPL Token-2022(Token Extensions), Wen New Standard(WNS) 토큰 구조, Solana Pay, 로컬 테스트용 LiteSVM.</li>
+<li><strong>규칙: 내 모델은 언제나 직접 검증하라.</strong> 테스트를 돌리고, devnet에서 시작하고, 공식 문서를 읽고, 모든 계정과 금액을 검토하고, 메인넷에 쓰기 전에 독립 감사를 받으세요. 검증하지 않은 모델은 모델이 아니라 추측입니다.</li>
+<li><strong>감사받지 않았고, 조언이 아닙니다.</strong> 교육용 예제입니다. 금융·법률·세무 조언이 아니며, 인가받은 결제나 은행 상품도 아닙니다. 대부분의 나라에서 결제, 스테이블코인, 결제 대행은 규제 대상 활동입니다.</li>
+<li><strong>보안.</strong> 개인 키를 웹사이트에 절대 붙여 넣지 마세요. npm 패키지 <code>@wen-community/wen-new-standard</code>는 설치하지 마세요. npm이 악성으로 삭제했습니다. 공식 소스로 빌드하세요.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Wen이 커뮤니티를 위해 전합니다. 자세한 내용은 <a href="../../privacy-policy-cookie-policy.html">편집 및 데이터 정책</a>에서.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">로드맵</a> · <a href="../../lab/code/README.md">전체 코드</a> · <a class="src-ref" href="../../sources.html#lab-payment-simulator-1">GitHub의 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-3-today-you-kept.png" alt="카드: 오늘 당신이 지킨 돈, 확인된 판매로 측정" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">새 소식 · 7단계 · Wen Counter</p><p style="margin:0 0 6px">Solana Pay 위에서 브라우저로 돌아가는 무료 오픈 계산대: 수신 전용, 판매당 0, 소유자 PIN으로 잠긴 지갑, 57개 공개 검사.</p><p style="margin:0"><a href="counter.html">솔루션 보기</a> · <a href="counter/">계산대 열기</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">소식 읽기</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="출처">
+<p class="src-callout-title">사실 확인 · 출처</p>
+<p>이 페이지 뒤의 모든 외부 출처를 한 페이지에 모았습니다. 직접 열어 보고 확인하세요. <a href="../../sources.html#lab-payment-simulator">이 페이지의 출처 열기 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-08-snow-ride.jpeg" alt="Wen이 커다란 털복숭이 생물을 타고 설산을 건너고 머리 위로 우주선이 난다" width="800" height="1202" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>차가운 숫자 속에서도 흔들림 없이: 다섯 공식이 카드 수수료와 온체인 수수료를 비교하고, 정직한 한계도 함께 보여 줍니다.</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

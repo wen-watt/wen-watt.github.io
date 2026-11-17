@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Fase 4: ponte Solana Pay per e-commerce e acquiring</title>
+<link rel="canonical" href="https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/payments-acquiring-bridge.html">
+<meta name="description" content="Modello 4 del Wen Open Lab: un negozio online crea un link Solana Pay, trova il pagamento tramite il suo riferimento, lo convalida e avvisa il suo sistema ordini.">
+<!-- seo:start -->
+<meta name="keywords" content="Solana Pay, e-commerce payments, acquiring, payment webhook, USDC, WEN, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fase 4: ponte Solana Pay per e-commerce e acquiring">
+<meta property="og:description" content="Modello 4 del Wen Open Lab: un negozio online crea un link Solana Pay, trova il pagamento tramite il suo riferimento, lo convalida e avvisa il suo sistema ordini.">
+<meta property="og:url" content="https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/behance-crypto-wen-payment-method.jpeg">
+<meta property="og:image:alt" content="Design del metodo di pagamento Wen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/behance-crypto-wen-payment-method.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html#page", "name": "Fase 4: ponte Solana Pay per e-commerce e acquiring", "headline": "Fase 4: ponte Solana Pay per e-commerce e acquiring", "description": "Modello 4 del Wen Open Lab: un negozio online crea un link Solana Pay, trova il pagamento tramite il suo riferimento, lo convalida e avvisa il suo sistema ordini.", "url": "https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html", "inLanguage": "it", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/behance-crypto-wen-payment-method.jpeg", "proficiencyLevel": "Beginner", "dependencies": "Node.js 20, @solana/web3.js, @solana/spl-token", "hasPart": {"@id": "https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html#code"}}, {"@type": "SoftwareSourceCode", "name": "Modello 4: ponte di pagamento Solana Pay", "description": "Link Solana Pay con un riferimento unico per ordine, convalidato on-chain.", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/blob/main/lab/code/src/04-solana-pay-bridge.ts", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html#code"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/it-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "Fase 4: ponte Solana Pay per e-commerce e acquiring", "item": "https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · integrazione aperta</p>
+<h1>Fase 4: ponte pagamenti<span class="lab-badge">link verificato</span></h1><p class="lang-switch" aria-label="Lingua" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/payments-acquiring-bridge.html" hreflang="en" lang="en">English</a> · <a href="payments-acquiring-bridge.html" hreflang="it" lang="it" aria-current="page">Italiano</a> · <a href="../../cn-wen/lab/payments-acquiring-bridge.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../../ko-wen/lab/payments-acquiring-bridge.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">Tradotto dall’inglese da Wen insieme all’AI. Il riferimento è la <a href="../../lab/payments-acquiring-bridge.html" hreflang="en" lang="en">pagina inglese</a>; le correzioni sono benvenute.</p>
+<ul class="lab-strip" aria-label="Fasi del Wen Open Lab"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Ricevute e garanzia</a></li><li><a href="creator-royalties-wns.html">2 · Royalty per i creatori</a></li><li><a href="b2b-invoices-token-2022.html">3 · Fatture B2B</a></li><li><a aria-current="page" href="payments-acquiring-bridge.html">4 · Ponte pagamenti</a></li><li><a href="payment-simulator.html">5 · Simulatore</a></li><li><a href="devnet.html">6 · Devnet: ripetilo</a></li><li><a href="counter.html">7 · Cassa</a></li><li><a href="counter-safety.html">7.1 · Sicurezza</a></li><li><a href="trust.html">✓ · Catena della fiducia</a></li><li><a href="benefits.html">★ · Vantaggi e usi</a></li><li><a href="walkthroughs.html">✎ · Dieci guide</a></li><li><a href="videos.html">▶ · Video</a></li><li><a href="findings.html">? · Scoperte dei lettori</a></li></ul>
+<figure><img src="../../wen-media/behance-crypto-wen-payment-method.jpeg" alt="Design del metodo di pagamento Wen" width="1200" height="675"><figcaption>Un nuovo metodo di pagamento, aperto a tutti</figcaption></figure>
+<p class="intro">L'acquiring con carta fa tre cose per un negozio: incassa il pagamento, lo conferma e lo comunica al sistema del negozio. Questo modello fa lo stesso su Solana con lo standard aperto Solana Pay: un link di pagamento o un QR per ordine, un osservatore che trova il pagamento tramite un riferimento unico, una convalida rigorosa e un webhook verso il negozio.</p>
+<h2>Il compito</h2>
+<p>Permettere a un negozio online di accettare pagamenti su Solana e segnare gli ordini come pagati automaticamente, con la stessa affidabilità che il negozio si aspetta da un acquirer di carte.</p>
+<h2>Il modello</h2>
+<ol>
+<li><strong>Crea.</strong> Per ogni ordine il negozio genera un link Solana Pay con destinatario, importo, token, un indirizzo <em>reference</em> casuale e unico, un'etichetta e un memo <code>order:ID</code>. Il link diventa un pulsante o un QR.</li>
+<li><strong>Paga.</strong> Il cliente lo apre in qualsiasi portafoglio Solana Pay e conferma.</li>
+<li><strong>Trova.</strong> Il server del negozio chiede alla catena la transazione che include l'indirizzo di riferimento.</li>
+<li><strong>Convalida.</strong> Controlla destinatario, importo, token, riferimento e memo. Qualsiasi errore genera un'eccezione.</li>
+<li><strong>Notifica.</strong> Invia <code>{orderId, status: "paid", signature}</code> al webhook del negozio. Il sistema ordini spedisce la merce.</li>
+</ol>
+<table class="lab-table">
+<thead><tr><th></th><th>Acquiring con carta</th><th>Questo ponte</th></tr></thead>
+<tbody>
+<tr><td>Conferma</td><td>Autorizzazione in secondi, denaro regolato in giorni</td><td>Confermato in secondi, definitivo in circa 13 secondi</td></tr>
+<tr><td>Commissione</td><td>Percentuale più commissione fissa per pagamento</td><td>Commissione di rete, una frazione di centesimo, più eventuali costi di conversione</td></tr>
+<tr><td>Chargeback</td><td>Sì: protegge l'acquirente, rischio per il negozio</td><td>No: i rimborsi sono un nuovo pagamento dal negozio</td></tr>
+<tr><td>Regolamentazione</td><td>Se ne occupa l'acquirer autorizzato</td><td>Dipende dal paese; può richiedere un partner autorizzato</td></tr>
+</tbody>
+</table>
+<h2>Il codice</h2>
+<p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">File: <a href="../../lab/code/src/04-solana-pay-bridge.ts">lab/code/src/04-solana-pay-bridge.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 4: a payment bridge for e-commerce. The shop creates a Solana Pay link/QR for an order,
+// watches the chain for the payment by its unique reference, validates amount and token,
+// then notifies its own order system (the same role a card acquirer's callback plays).
+// License: Apache-2.0. Example code, not audited. Devnet first. Built on @solana/pay + @solana/kit.
+import { encodeURL, findReference, validateTransfer, FindReferenceError } from '@solana/pay';
+import { address, createSolanaRpc, generateKeyPairSigner, type Address } from '@solana/kit';
+
+/** Tokens a shop may accept. USDC for stable prices; $WEN as an optional community payment. */
+export const ACCEPTED = {
+  USDC_MAINNET: address('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'),
+  WEN_MAINNET: address('WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk'),
+} as const;
+
+export interface PaymentRequest {
+  orderId: string;
+  recipient: Address;      // the shop's wallet
+  amount: number;          // in token units, e.g. 24.99
+  splToken?: Address;      // omit for SOL
+  reference: Address;      // unique per order: how the shop finds the payment
+  url: string;             // solana: URL to show as a link or QR
+}
+
+export async function createPaymentRequest(orderId: string, recipient: Address, amount: number, splToken?: Address): Promise&lt;PaymentRequest&gt; {
+  const reference = (await generateKeyPairSigner()).address;   // random, never reused
+  const url = encodeURL({
+    recipient, amount, splToken, reference,
+    label: 'Wen Open Lab demo shop',
+    message: `Order ${orderId}`,
+    memo: `order:${orderId}`,
+  });
+  return { orderId, recipient, amount, splToken, reference, url: url.toString() };
+}
+
+/** Poll until the payment appears, then validate it and call the shop's webhook. */
+export async function waitForPayment(req: PaymentRequest, opts: { rpcUrl: string; webhook: string; timeoutMs?: number }) {
+  const rpc = createSolanaRpc(opts.rpcUrl);
+  const deadline = Date.now() + (opts.timeoutMs ?? 5 * 60_000);
+  while (Date.now() &lt; deadline) {
+    try {
+      const found = await findReference(rpc, req.reference, { commitment: 'confirmed' });
+      // Throws if recipient, amount, token, reference or memo do not match the request.
+      await validateTransfer(rpc, found.signature, {
+        recipient: req.recipient, amount: req.amount, splToken: req.splToken, reference: req.reference, memo: `order:${req.orderId}`,
+      }, { commitment: 'confirmed' });
+      await fetch(opts.webhook, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ orderId: req.orderId, status: 'paid', signature: found.signature }),
+      });
+      return found.signature;
+    } catch (e) {
+      if (!(e instanceof FindReferenceError)) throw e;   // not found yet: keep waiting
+      await new Promise(r =&gt; setTimeout(r, 1500));
+    }
+  }
+  throw new Error(`Order ${req.orderId}: payment not found before timeout`);
+}</code></pre>
+<h2>Cosa è stato verificato</h2>
+<p>Il link di pagamento fa andata e ritorno attraverso il parser ufficiale di Solana Pay con gli stessi destinatario, importo, token, riferimento e memo, e ogni ordine riceve un riferimento unico. L'osservatore e la convalida usano le funzioni ufficiali <code>findReference</code> e <code>validateTransfer</code> e sono controllati nei tipi; eseguirli su una catena reale fa parte della fase devnet.</p>
+<h2>Dove è utile</h2>
+<ul>
+<li>Negozi online che vendono a clienti cripto-nativi in tutto il mondo.</li>
+<li>Beni digitali, biglietti e abbonamenti dove conta il regolamento istantaneo.</li>
+<li>Fornitori di pagamento e banche che esplorano l'accettazione di stablecoin accanto alle carte.</li>
+</ul>
+<h2>Limiti e rischi</h2>
+<ul>
+<li>Volatilità del prezzo: indica i prezzi in una stablecoin o converti alla cassa.</li>
+<li>La conversione in valuta fiat (off-ramp) ha le sue commissioni e regole.</li>
+<li>Niente chargeback significa che il negozio deve offrire una politica di rimborso chiara.</li>
+<li>In produzione usa un tuo endpoint RPC; gli endpoint pubblici hanno limiti di frequenza.</li>
+</ul>
+<p>Vuoi i numeri per il tuo negozio? Prova il <a href="payment-simulator.html">simulatore</a>.</p>
+<h2>Wen in immagini</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wen-jup-mobile.html" title="Wen su Jupiter Mobile"><img src="../../wen-media/wen-jup-mobile.jpeg" alt="Wen su Jupiter Mobile" loading="lazy" width="300" height="300"></a><figcaption>Paga dal telefono</figcaption></figure><figure><a href="../../wen-media/solana-seeker-wen-coin.jpeg" title="Solana Seeker con la moneta Wen"><img src="../../wen-media/solana-seeker-wen-coin.jpeg" alt="Solana Seeker con la moneta Wen" loading="lazy" width="300" height="300"></a><figcaption>Il portafoglio in tasca</figcaption></figure><figure><a href="../../image-story/wen-crypto-wallet-2.html" title="Pagamento con portafoglio cripto Wen"><img src="../../wen-media/wen-crypto-wallet-2.jpeg" alt="Pagamento con portafoglio cripto Wen" loading="lazy" width="300" height="300"></a><figcaption>Pagamento in pochi secondi</figcaption></figure><figure><a href="../../image-story/jup-exchange-wallet.html" title="Pagamento con portafoglio Jupiter"><img src="../../wen-media/jup-exchange-wallet.jpeg" alt="Pagamento con portafoglio Jupiter" loading="lazy" width="300" height="300"></a><figcaption>Qualsiasi token, un unico standard</figcaption></figure><figure><a href="../../image-story/wen-crypto-memecoin-solana-ecosystem-jupiter-mobile.html" title="Pagamenti mobili nell'ecosistema Wen"><img src="../../wen-media/wen-crypto-memecoin-solana-ecosystem-jupiter-mobile.jpeg" alt="Pagamenti mobili nell'ecosistema Wen" loading="lazy" width="300" height="300"></a><figcaption>Dal QR all'ordine confermato</figcaption></figure></div>
+<div class="lab-box">
+<h3>Dove si colloca Wen in questo modello</h3>
+<p style="margin:0;">Il negozio sceglie quali token accettare. USDC mantiene stabili i prezzi; WEN può essere offerto come opzione di pagamento della comunità, con il suo contratto scritto nel codice come <code>ACCEPTED.WEN_MAINNET</code>. Prima di accettare qualsiasi token, controlla quale programma di token possiede il suo mint (lo fa l'helper <code>detectTokenProgram</code> in <a href="../../lab/code/src/common.ts">common.ts</a>) e prova l'intero flusso sulla devnet.</p>
+</div>
+<div class="lab-box">
+<h3>Il filo di Wen: un contratto, ovunque</h3>
+<p style="margin:0 0 8px;">Ogni modello del Lab è gratuito e aperto, e ognuno porta la stessa firma: il contratto del token $WEN. Copialo, ripetilo nei tuoi documenti e verificalo sempre su un explorer prima di usarlo.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Verifica: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">come trovare l'ID del contratto</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>Politica di uso aperto</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>Gratuito e aperto.</strong> Tutto il codice del Lab è rilasciato con licenza Apache 2.0, la stessa della Wen Program Library. Usalo, modificalo, distribuiscilo, a fini commerciali o no; mantieni l'avviso di licenza.</li>
+<li><strong>Solo strumenti aperti.</strong> Costruito su strumenti pubblici e documentati: Solana SPL Token-2022 (Token Extensions), il layout dei token del Wen New Standard (WNS), Solana Pay e LiteSVM per i test locali.</li>
+<li><strong>La regola: verifica sempre il tuo modello.</strong> Esegui i test, inizia sulla devnet, leggi la documentazione ufficiale, rivedi ogni account e importo e ottieni un audit indipendente prima di qualsiasi uso su mainnet. Un modello non verificato non è un modello, è un'ipotesi.</li>
+<li><strong>Non sottoposto ad audit, non è una consulenza.</strong> Questi sono esempi didattici. Non costituiscono consulenza finanziaria, legale o fiscale, né un prodotto di pagamento o bancario autorizzato. Pagamenti, stablecoin e acquiring sono attività regolamentate nella maggior parte dei paesi.</li>
+<li><strong>Sicurezza.</strong> Non incollare mai una chiave privata in un sito web. Non installare il pacchetto npm <code>@wen-community/wen-new-standard</code>: npm lo ha rimosso perché malevolo. Costruisci da fonti ufficiali.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Parla Wen, per la comunità. Altro nella nostra <a href="../../privacy-policy-cookie-policy.html">politica editoriale e sui dati</a>.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="../../lab/code/README.md">tutto il codice</a> · <a class="src-ref" href="../../sources.html#lab-payments-acquiring-bridge-1">Wen Program Library su GitHub</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-1-coffee.png" alt="Scheda: 12,9% su un caffè; Wen Counter costa 0 per vendita" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">Novità · Fase 7 · Wen Counter</p><p style="margin:0 0 6px">Una cassa gratuita e aperta nel tuo browser su Solana Pay: solo ricezione, 0 per vendita, portafogli bloccati dal PIN del proprietario, 57 verifiche aperte.</p><p style="margin:0"><a href="counter.html">Guarda la soluzione</a> · <a href="counter/">apri la cassa</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">leggi la notizia</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Fonti">
+<p class="src-callout-title">Conferma degli eventi · Fonti</p>
+<p>Tutte le fonti esterne dietro questa pagina — per il tuo studio e le tue verifiche aperte — sono raccolte in un'unica pagina. <a href="../../sources.html#lab-payments-acquiring-bridge">Apri le fonti di questa pagina →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-02-cockpit-hyperspace.jpeg" alt="Wen pilota un'astronave tra scie di luce nello spazio profondo" width="800" height="1221" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>Pagamenti alla velocità di un blocco: un riferimento per ordine, così il negozio trova ogni pagamento senza indovinare.</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

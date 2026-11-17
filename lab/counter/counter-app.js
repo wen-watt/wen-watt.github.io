@@ -368,7 +368,7 @@
   // ---- PWA ----
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 
-  if (I) I.apply(document, cfg.lang || 'en');
+  if (I) I.apply(document, (self.WenCounterDeploy && self.WenCounterDeploy.lang) || cfg.lang || 'en');
   setLocked(true);
   loadSetup();
   if (!wallets().length) show('setup');

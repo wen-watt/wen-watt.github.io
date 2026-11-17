@@ -14,6 +14,11 @@
 <!-- icons:end -->
 <title>Stage 7: Wen Counter, an Open Point of Sale in the Browser</title>
 <link rel="canonical" href="https://wen-watt.github.io/lab/counter.html">
+<link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter.html">
+<link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter.html">
+<link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter.html">
+<link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter.html">
+<link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter.html">
 <meta name="description" content="Model 7 of Wen Open Lab: a free, open point of sale in a web page on Solana Pay. Show a QR, watch the chain, record the sale; several wallets for departments, branches or tips, receipts, refund notes, exports. No server, no app store, no card data, no fee per sale. Apache-2.0.">
 <!-- seo:start -->
 <meta name="keywords" content="point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab">
@@ -57,6 +62,7 @@
     <article>
     <p class="meta">Wen Open Lab · open point of sale</p>
     <h1>Stage 7: Wen Counter<span class="lab-badge">prototype · devnet</span></h1>
+    <p class="lang-switch" aria-label="Language" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="counter.html" hreflang="en" lang="en" aria-current="page">English</a> · <a href="../it-wen/lab/counter.html" hreflang="it" lang="it">Italiano</a> · <a href="../cn-wen/lab/counter.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../ko-wen/lab/counter.html" hreflang="ko" lang="ko">한국어</a></p>
 
     <ul class="lab-strip" aria-label="Wen Open Lab stages"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Receipts &amp; warranty</a></li><li><a href="creator-royalties-wns.html">2 · Creator royalties</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B invoices</a></li><li><a href="payments-acquiring-bridge.html">4 · Payments bridge</a></li><li><a href="payment-simulator.html">5 · Simulator</a></li><li><a href="devnet.html">6 · Devnet: repeat it</a></li><li><a href="counter.html" aria-current="page">7 · Counter</a></li><li><a href="counter-safety.html">7.1 · Safety</a></li><li><a href="trust.html">✓ · Trust chain</a></li><li><a href="benefits.html">★ · Benefits &amp; use</a></li><li><a href="walkthroughs.html">&#9998; · Ten walkthroughs</a></li><li><a href="videos.html">▶ · Videos</a></li><li><a href="findings.html">? · Reader findings</a></li></ul>
     <section class="counter-pitch" id="in-short" style="border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel);padding:22px 22px 18px;margin:18px 0">
@@ -130,7 +136,7 @@
       <tr><td>Receipt for the buyer</td><td>After &ldquo;Paid&rdquo; the buyer chooses: a receipt QR (link to the transaction), the receipt text, or a receipt NFT from <a href="receipt-warranty-wns.html">Stage 1</a>. <strong>Not a fiscal receipt</strong>: the counter is a simple aggregation tool, not a fiscal device. Follow your country&rsquo;s receipt rules.</td><td>buyer and shop</td></tr>
       <tr><td>Refunds</td><td>Rarer than sales. Made as a new payment from the shop&rsquo;s wallet; the ↩ button copies <code>refund:</code> plus the original transaction ID for the memo, so anyone can match the two. Larger firms follow their own rules.</td><td>inside the wallet app</td></tr>
       <tr><td>Exports</td><td>CSV for today, this week, month, year, last year, a quarter (Q1&ndash;Q4) or any period; with wallet name, address, signature and network fee.</td><td>your accountant</td></tr>
-      <tr><td>Language</td><td>English today. All interface words live in one dictionary file (<code>counter-i18n.js</code>), bound to the core fingerprint, so a translation never changes the core. Chinese and Italian are next.</td><td>&mdash;</td></tr>
+      <tr><td>Language</td><td>English, Italian, Chinese and Korean. All interface words live in one dictionary file (<code>counter-i18n.js</code>), bound to the core fingerprint, so a translation never changes the core.</td><td>&mdash;</td></tr>
     </tbody></table></div>
 
     <h2 id="before-you-scale">Seven answers before you scale</h2>
@@ -141,7 +147,7 @@
       <li><strong>A real company: RPC, wallet side and accounting.</strong> Many wallets and many payments need your own RPC endpoint, because public endpoints have rate limits. Prepare the wallet side as well: who holds which wallet, who approves transfers, how the day&rsquo;s takings move. For a company this means building the wallets into its accounting, which is different from a private seller who receives a payment once a week and reports it alone. Check with your accountant or finance lead that you may use a wallet. It may not be forbidden, but the procedure and the declaration need your attention. This is a useful tip, not advice.</li>
       <li><strong>Fiscal rules.</strong> The counter does not declare anything. It is a new mechanism of modern links: the buyer pays by phone with a QR the counter generates, and you receive. Ideal for a micro business, workable for a large one, very economical and free. Study the fiscal procedure with your accountant. If your rules let you declare the amounts, keep the wallet&rsquo;s statements for each period, declare the income and show what you received and what you refunded. Explain to your accountant that you want to receive funds to a wallet and declare them: it is a correct, modern and transparent approach to business and taxes. If the accountant says yes, scale it: you have an interesting solution in your hands.</li>
       <li><strong>Responsibility and open audit.</strong> You use the solution on your own responsibility. We give the mechanism; we do not know what you do with it or what you change. The mechanism itself does not take money, does not hold money and does not charge a fee: there is the network&rsquo;s procedure, and only that procedure is used; there is your wallet, and you use it yourself. The audit is open: read the code, rerun the 57 checks, and tell us what you find (<a href="counter-safety.html#open-audit">how</a>).</li>
-      <li><strong>Languages, bound to the core.</strong> Every interface word is in one dictionary file. The dictionary carries the fingerprint of the core it was written for, and a safety check fails if the core changes without a fresh look at the translations. Chinese and Italian come first.</li>
+      <li><strong>Languages, bound to the core.</strong> Every interface word is in one dictionary file. The dictionary carries the fingerprint of the core it was written for, and a safety check fails if the core changes without a fresh look at the translations. Italian, Chinese and Korean come first.</li>
       <li><strong>USDT stays.</strong> Optional, next to USDC, SOL, WEN and JUP.</li>
     </ol>
     <figure style="margin:20px 0"><img src="../wen-media/wen-counter-card-6-open-audit.png" alt="Card: 57 open checks; 25 logic, 13 code reading, 19 in a browser; break it if you can, then tell us" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
@@ -288,7 +294,7 @@ const v = verifyPayment(tx, { recipient, reference, splToken, expected });
     </ol>
 
     <h2 id="kit">Download it and make it yours</h2>
-    <p>The kit is the same counter as one folder: <a href="counter/wen-counter-kit.zip" download>wen-counter-kit.zip</a> (18 files, about 290 KB, with all three test files). Put it on any static host with https, or try it locally with <code>python3 -m http.server</code>.</p>
+    <p>The kit is the same counter as one folder: <a href="counter/wen-counter-kit.zip" download>wen-counter-kit.zip</a> (20 files, about 230 KB, with all three test files). Put it on any static host with https, or try it locally with <code>python3 -m http.server</code>.</p>
     <ul>
       <li><strong>Style replacement:</strong> colors, font and corner radius live in one file, <code>theme.css</code>. Change the values, keep the names. A warm florist theme is included as an example.</li>
       <li><strong>Your logo:</strong> replace the two icons in <code>icons/</code> with the same names and sizes.</li>
@@ -320,10 +326,10 @@ const v = verifyPayment(tx, { recipient, reference, splToken, expected });
     </ul>
     <div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>File</th><th>SHA-256</th></tr></thead><tbody>
       <tr><td><code>counter-core.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">435b057ab3bd02d24430c6944ff89fe2235ce962d27cfafc2fb865809b384c3d</code></td></tr>
-      <tr><td><code>counter-app.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">1ce2abbbf2202585f4896a25c6669849aec8d89840c3f0aea99691322a79d16e</code></td></tr>
+      <tr><td><code>counter-app.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">702acd6966aa291bc53e760d2487ad35b4e17810c65094bf7f3206530985ae58</code></td></tr>
       <tr><td><code>qrcode.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">18ae399f81182bc9de916e9c77b195df20cc58d6f2d55a62b085a299f1bf1780</code></td></tr>
-      <tr><td><code>counter-i18n.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">544e47d1b5e3d8d5512f1660bd0989c97c7bce73cd5e0fed362f08136c6ac42b</code></td></tr>
-      <tr><td><strong>WCP-1 block</strong></td><td><code style="overflow-wrap:anywhere;word-break:break-all">2e3036d66482cde1e62ade38f87d6dd13765164f37036c125bb343e61d0675d9</code></td></tr>
+      <tr><td><code>counter-i18n.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">868a9982200bfcce468f90a5c73febdcdcade143d4d81a604550539270bc7b05</code></td></tr>
+      <tr><td><strong>WCP-1 block</strong></td><td><code style="overflow-wrap:anywhere;word-break:break-all">14bcbaa768edf8f25265af65a4ca45305f98d3915e261dd4cafaae42b3645968</code></td></tr>
     </tbody></table></div>
     <p><strong>The work behind it.</strong> This solution has a long base, not a weekend:</p>
     <ul>
@@ -384,7 +390,7 @@ const v = verifyPayment(tx, { recipient, reference, splToken, expected });
       <li class="done"><strong>Open audit and user responsibility.</strong> Written into the solution, the safety page and the app. <span class="lab-badge">live</span></li>
       <li class="done"><strong>Language dictionary bound to the core fingerprint.</strong> <span class="lab-badge">ready</span></li>
       <li class="done"><strong>Setup PIN and sale comment.</strong> The owner sets the wallets; product code or name travels with the payment where the wallet supports it. <span class="lab-badge">live</span></li>
-      <li class="next"><strong>Translations:</strong> Chinese, Italian, then others. <span class="lab-badge">next</span></li>
+      <li class="done"><strong>Translations:</strong> Italian, Chinese and Korean for the whole Lab and the counter; others next. <span class="lab-badge">live</span></li>
       <li class="next"><strong>Pay in WEN, receive USDC:</strong> a swap inside the buyer&rsquo;s payment, still receive-only for the shop. <span class="lab-badge">planned</span></li>
     </ol>
 

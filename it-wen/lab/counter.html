@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Fase 7: Wen Counter, una cassa aperta nel browser</title>
+<link rel="canonical" href="https://wen-watt.github.io/it-wen/lab/counter.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter.html">
+<meta name="description" content="Modello 7 del Wen Open Lab: una cassa gratuita e aperta in una pagina web su Solana Pay. Mostra un QR, osserva la catena, registra la vendita; più portafogli per reparti, filiali o mance, ricevute, note di rimborso, esportazioni. Nessun server, nessun app store, nessun dato di carta, nessuna commissione per vendita. Apache-2.0.">
+<!-- seo:start -->
+<meta name="keywords" content="point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fase 7: Wen Counter, una cassa aperta nel browser">
+<meta property="og:description" content="Modello 7 del Wen Open Lab: una cassa che vive in una pagina web. Mostra un QR Solana Pay, osserva la catena, registra la vendita. Nessun server, nessun app store, nessun dato di carta, nessuna commissione fissa per vendita. Prima la devnet, Apache-2.0.">
+<meta property="og:url" content="https://wen-watt.github.io/it-wen/lab/counter.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-og.png">
+<meta property="og:image:alt" content="Wen serve un gelato accanto a un telefono che mostra il registro di Wen Counter: una cassa gratuita nel tuo browser">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Fase 7: Wen Counter, una cassa aperta nel browser", "description": "Una cassa gratuita e aperta in una pagina web su Solana Pay: QR, verifica on-chain, più portafogli per reparti, filiali o mance, ricevute, note di rimborso ed esportazioni. Solo ricezione, Apache-2.0.", "image": "https://wen-watt.github.io/wen-media/wen-counter-og.png", "url": "https://wen-watt.github.io/it-wen/lab/counter.html", "inLanguage": "it", "keywords": "point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab", "datePublished": "2026-11-11", "dateModified": "2026-11-12", "license": "https://www.apache.org/licenses/LICENSE-2.0", "author": {"@type": "Organization", "name": "Wen"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}, {"@type": "SoftwareApplication", "name": "Wen Counter", "applicationCategory": "BusinessApplication", "operatingSystem": "Any modern browser", "url": "https://wen-watt.github.io/it-wen/lab/counter/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "downloadUrl": "https://wen-watt.github.io/lab/counter/wen-counter-kit.zip"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "La cassa ha bisogno di un'app o di hardware speciale?", "acceptedAnswer": {"@type": "Answer", "text": "No. È una pagina web che puoi aggiungere alla schermata principale di qualsiasi telefono o tablet. Mostra un codice QR; l'acquirente paga dal proprio portafoglio. Nessun dato di carta passa dalla cassa, quindi non serve un terminale certificato."}}, {"@type": "Question", "name": "Chi paga la commissione di rete?", "acceptedAnswer": {"@type": "Answer", "text": "Il portafoglio dell'acquirente paga la commissione di rete Solana, 5.000 lamport per firma. Il negozio riceve l'importo pieno; la cassa registra la commissione dalla transazione confermata."}}, {"@type": "Question", "name": "Può sostituire oggi l'acquiring con carta?", "acceptedAnswer": {"@type": "Answer", "text": "Non del tutto. Gli acquirenti hanno bisogno di un portafoglio Solana con fondi, non ci sono chargeback, e la conversione in contanti e le regole locali hanno i propri costi. È un secondo modo, aperto, per accettare pagamenti, più forte sugli scontrini piccoli dove una commissione fissa sulla carta pesa di più."}}, {"@type": "Question", "name": "Posso copiarla e costruire la mia versione?", "acceptedAnswer": {"@type": "Answer", "text": "Sì, gratuitamente. Mantieni il file NOTICE e cita Wen Open Lab e la catena Wen (Solana, Solana Pay, SPL Token e Token-2022, WNS, WEN); è l'unica condizione della licenza Apache-2.0 qui."}}, {"@type": "Question", "name": "Quale portafoglio dovrebbe usare un negozio?", "acceptedAnswer": {"@type": "Answer", "text": "Qualsiasi portafoglio Solana di cui ti fidi. La pagina cita cinque esempi: Jupiter, Phantom, Solflare, Backpack e, per i team, Squads. La cassa ha bisogno solo dell'indirizzo di ricezione e lo verifica on-chain in configurazione."}}, {"@type": "Question", "name": "Il mio denaro o la mia chiave finiscono mai nella pagina?", "acceptedAnswer": {"@type": "Answer", "text": "No. La cassa conosce solo l'indirizzo pubblico di ricezione del negozio. Non chiede mai una frase seed o una chiave privata e non può spostare fondi."}}, {"@type": "Question", "name": "Per chi è Wen Counter?", "acceptedAnswer": {"@type": "Answer", "text": "Per chiunque ne tragga aiuto: comunità cripto, eventi, negozi online per il proprio pubblico e qualsiasi negozio i cui acquirenti pagano già da un portafoglio Solana. È gratuita e aperta."}}, {"@type": "Question", "name": "Una cassa può ricevere su più portafogli?", "acceptedAnswer": {"@type": "Answer", "text": "Sì. Portafoglio n. 1 più i portafogli n. 2..X, ciascuno con un tipo (Department, Branch, Till, Tips, Online, Events) e un nome. Il registro somma le vendite per portafoglio."}}, {"@type": "Question", "name": "La ricevuta di Wen Counter è uno scontrino fiscale?", "acceptedAnswer": {"@type": "Answer", "text": "No. La cassa è un semplice strumento di aggregazione, non un registratore fiscale. Verifica la procedura di dichiarazione con il tuo commercialista e conserva gli estratti del portafoglio per ogni periodo."}}, {"@type": "Question", "name": "Chi è responsabile quando un negozio usa Wen Counter?", "acceptedAnswer": {"@type": "Answer", "text": "L'utente. Il meccanismo non prende, non detiene e non addebita nulla; segue le regole della rete Solana, e il portafoglio appartiene al negozio."}}, {"@type": "Question", "name": "Un cassiere può cambiare il portafoglio di ricezione in Wen Counter?", "acceptedAnswer": {"@type": "Answer", "text": "Non senza il PIN delle impostazioni. Portafogli e impostazioni sono bloccati sul dispositivo; il primo PIN viene dalla distribuzione (predefinito 1111) e il proprietario lo cambia. Dimenticato: reinstalla, inserisci di nuovo i portafogli, imposta un nuovo PIN."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/it-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "Fase 7: Wen Counter, una cassa aperta nel browser", "item": "https://wen-watt.github.io/it-wen/lab/counter.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · cassa aperta</p>
+<h1>Fase 7: Wen Counter<span class="lab-badge">prototipo · devnet</span></h1><p class="lang-switch" aria-label="Lingua" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/counter.html" hreflang="en" lang="en">English</a> · <a href="counter.html" hreflang="it" lang="it" aria-current="page">Italiano</a> · <a href="../../cn-wen/lab/counter.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../../ko-wen/lab/counter.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">Tradotto dall’inglese da Wen insieme all’AI. Il riferimento è la <a href="../../lab/counter.html" hreflang="en" lang="en">pagina inglese</a>; le correzioni sono benvenute.</p>
+<ul class="lab-strip" aria-label="Fasi del Wen Open Lab"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Ricevute e garanzia</a></li><li><a href="creator-royalties-wns.html">2 · Royalty per i creatori</a></li><li><a href="b2b-invoices-token-2022.html">3 · Fatture B2B</a></li><li><a href="payments-acquiring-bridge.html">4 · Ponte pagamenti</a></li><li><a href="payment-simulator.html">5 · Simulatore</a></li><li><a href="devnet.html">6 · Devnet: ripetilo</a></li><li><a aria-current="page" href="counter.html">7 · Cassa</a></li><li><a href="counter-safety.html">7.1 · Sicurezza</a></li><li><a href="trust.html">✓ · Catena della fiducia</a></li><li><a href="benefits.html">★ · Vantaggi e usi</a></li><li><a href="walkthroughs.html">✎ · Dieci guide</a></li><li><a href="videos.html">▶ · Video</a></li><li><a href="findings.html">? · Scoperte dei lettori</a></li></ul>
+<section class="counter-pitch" id="in-short" style="border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel);padding:22px 22px 18px;margin:18px 0">
+<p style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal,#5eead4);margin:0 0 8px;font-weight:600">In breve · gratis per tutti</p>
+<h2 style="margin:0 0 12px">Ehi, dove vai? 🐾</h2>
+<p style="margin:0 0 10px">Nel 2024 i commercianti statunitensi hanno pagato <strong>187,2 miliardi di dollari</strong> di commissioni sulle carte. Su un caffè da 3 dollari, una carta può prendersi il <strong>12,9%</strong>. Qui la cassa costa <strong>0</strong>, non c'è <strong>nessuna commissione per vendita</strong>, e il portafoglio dell'acquirente paga solo la commissione di rete Solana: <strong>5.000 lamport</strong>.</p>
+<p style="margin:0 0 14px">Nessuna app da pubblicare, nessun terminale da noleggiare, nessun dato di carta da proteggere, nessuno nel mezzo. Una pagina web sul telefono alla tua cassa. <strong>Prendila, controllala, avviala.</strong></p>
+<p style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px"><span class="lab-badge">gratis</span><span class="lab-badge">codice aperto</span><span class="lab-badge">nessun app store</span><span class="lab-badge">nessun dato di carta</span><span class="lab-badge">nessun intermediario</span><span class="lab-badge">risparmi misurati, non promessi</span></p>
+<p style="display:flex;flex-wrap:wrap;gap:10px;margin:0"><a href="counter/" style="display:inline-block;background:var(--teal,#5eead4);color:#06231f;font-weight:700;padding:12px 20px;border-radius:12px;text-decoration:none">Apri la cassa →</a>
+<a download href="../../lab/counter/wen-counter-kit.zip" style="display:inline-block;border:1px solid var(--panel-line);color:var(--ink);font-weight:600;padding:12px 20px;border-radius:12px;text-decoration:none">Scarica il kit (.zip)</a></p>
+<blockquote style="margin:18px 0 0;padding:12px 16px;border-left:3px solid var(--amber,#e0a444);color:var(--ink-dim);font-style:italic">Un gatto è arrivato da lontano,<br>senza trucchi nella manica.<br>Ti ha portato una cassa che costa zero<br>e commissioni in cui credere.<br>Non vuole percentuali, né carte, né app:<br>accarezzalo, e incassa.</blockquote>
+</section>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Sono il meccanismo che raccoglie ogni catena nella tua cassa, e non lo paghi: basta accarezzare il gatto. I dettagli: il denaro che ricevi è gestito dal portafoglio che hai scelto. Rimborsi, trasferimenti a un portafoglio o a un conto per i tuoi incassi, tutto avviene dentro il tuo portafoglio. Da me ricevi un modo per accettare pagamenti senza percentuali e senza commissioni. Piccola pizzeria, fiorista o grande azienda, puoi allestire la tua cassa. Te ne ho costruita una morbidosa.</p></aside>
+<figure style="max-width:420px;margin:24px auto"><img src="../../wen-media/wen-trip-ice-cream-serve.jpg" alt="Wen con un grembiule a righe serve gelati a bambini sorridenti a un bancone di strada" width="415" height="417" loading="lazy" style="width:100%;height:auto;border-radius:12px"><figcaption>Una cassa è una cassa: mostra il prezzo, incassa il pagamento, consegna il cono</figcaption></figure>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:18px 0">
+<img src="../../wen-media/wen-counter-card-1-coffee.png" alt="Scheda: 12,9% su un caffè, i negozi pagano dall'1 al 3% per vendita con carta, Wen Counter costa 0 per vendita" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+<img src="../../wen-media/wen-counter-card-2-receive-only.png" alt="Scheda: solo ricezione per progetto, nessuna chiave, tre richieste di lettura, 57 verifiche aperte" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+<img src="../../wen-media/wen-counter-card-3-today-you-kept.png" alt="Scheda: oggi hai tenuto, misurato dalle vendite confermate, con la schermata del registro" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+</div>
+<p style="color:var(--ink-dim);font-size:.9em">Schede da condividere. Le schermate provengono da un'esecuzione di prova su devnet; il QR sulle schede è sfocato di proposito.</p>
+<figure style="margin:24px auto;max-width:100%"><div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="n0VD1h9dIo0" aria-label="Riproduci: From Orbit · Wen Counter: una cassa gratuita nel browser, 0 per vendita, solo ricezione" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-06-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>Video: l'intera presentazione di Wen Counter in 92 secondi. Il player si carica da YouTube solo dopo che premi play.</figcaption></figure>
+<h2 id="why">Perché è importante</h2>
+<p>Ogni strato tra un acquirente e un negozio prende la sua parte: l'acquirer, il circuito, il noleggio del terminale, la piattaforma. Per un negozio che paga le tasse e le sue persone, è denaro tolto al lavoro, prima di qualsiasi decisione sulla crescita. Wen Counter è un micro-sistema diretto: l'acquirente paga il negozio, la catena lo conferma e il negozio conserva il registro. L'unico costo di una vendita è la commissione di rete Solana, e la paga il portafoglio dell'acquirente. La cassa in sé non costa nulla.</p>
+<p>Per un'attività che tiene la contabilità: ogni vendita ha una firma on-chain e finisce in un registro che puoi esportare in CSV per il tuo commercialista.</p>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="Li4hKvZV9Y4" aria-label="Riproduci: Signal Received · Una cassa gratuita nel browser: QR → ✓ Pagato" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-07-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>Video: QR → ✓ Pagato in 17 secondi (devnet, QR sfocato di proposito). Il player si carica da YouTube solo dopo che premi play.</figcaption></figure>
+<h2 id="your-till">La tua cassa, in cinque passi</h2>
+<ol>
+<li><strong>Prendi lo strumento.</strong> Apri la cassa sul telefono o sul tablet alla tua cassa, oppure scarica il kit.</li>
+<li><strong>Crea un portafoglio</strong> in un'app di portafoglio Solana di cui ti fidi (Jupiter, Phantom, Solflare, Backpack, Squads).</li>
+<li><strong>Registralo</strong> in Impostazioni: nome del negozio, nome del portafoglio, rete (prima la devnet).</li>
+<li><strong>Incolla l'indirizzo di ricezione.</strong> La cassa lo verifica on-chain. Ecco la tua cassa aperta e gratuita.</li>
+<li><strong>Gestisci il denaro nel tuo portafoglio:</strong> rimborsi, acquisti, trasferimenti, registri per la dichiarazione dei redditi.</li>
+</ol>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0"><img src="../../wen-media/wen-counter-shop-toys-bear.jpg" alt="Wen mostra un orsacchiotto ai bambini al bancone di un negozio di giocattoli" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-grill-1.jpg" alt="Wen griglia spiedini a una bancarella del mercato notturno" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-pizza.jpg" alt="Wen sforna una pizza appena fatta da un forno a legna" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-toys-robot.jpg" alt="Wen mostra un robot giocattolo a bambini sorridenti" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-clothes-hoodie.jpg" alt="Wen mostra una felpa blu ai bambini in un negozio di abbigliamento" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-clothes-cap.jpg" alt="Wen mette un cappellino a un bambino sorridente in un negozio di abbigliamento" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"></div>
+<p style="font-size:13px;color:var(--ink-dim)">Un negozio di giocattoli, una griglieria, una pizzeria, un negozio di abbigliamento: la stessa cassa gratuita. <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">Leggi la notizia</a>.</p>
+<h3 id="chains">Per aziende e catene</h3>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Livello</th><th>Portafoglio</th><th>Chi</th><th>Quando</th></tr></thead><tbody>
+<tr><td>Reparto o cassa</td><td>un portafoglio di ricezione ciascuno, con nome in Impostazioni (mobili, giocattoli, giardino)</td><td>la cassa incassa i pagamenti, solo ricezione</td><td>ogni vendita</td></tr>
+<tr><td>Filiale</td><td>un portafoglio di cassa per filiale</td><td>un responsabile gestisce gli incassi e i rimborsi della giornata</td><td>durante la giornata</td></tr>
+<tr><td>Azienda</td><td>un portafoglio centrale, per esempio un multisig Squads</td><td>l'amministrazione; più approvazioni per spostare i fondi</td><td>gli incassi della giornata arrivano ogni sera</td></tr>
+</tbody></table></div>
+<p>Una cassa, portafogli da 1 a X, ciascuno con un'etichetta. Alla cassa il cassiere sceglie dove va la vendita; il registro filtra per portafoglio e l'esportazione riporta nome e indirizzo del portafoglio. L'interfaccia resta rigorosa; il codice è aperto a qualsiasi modifica ti serva.</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-5-many-wallets.png" alt="Scheda: una cassa, molti portafogli; reparto, mance, vista della sede centrale con i totali per portafoglio" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h3 id="setup-pin">Il PIN delle impostazioni: è il proprietario a impostare i portafogli</h3>
+<p>Un'azienda mette la cassa su un telefono al bancone e imposta i portafogli di ricezione. Le impostazioni sono bloccate da un PIN, così un responsabile o un cassiere non possono inserire il proprio portafoglio. Il primo PIN è un parametro di distribuzione (<code>counter-deploy.js</code>, il semplice <code>1111</code> per impostazione predefinita); il proprietario ne imposta uno nuovo nelle Impostazioni subito dopo il primo avvio. Uscire dalle Impostazioni le blocca di nuovo; cinque tentativi sbagliati le sospendono per 30 secondi; anche cancellare il registro richiede il PIN. Il PIN è conservato sul dispositivo solo come SHA-256 con sale.</p>
+<p><strong>Hai dimenticato il PIN?</strong> Reinstalla l'app sul dispositivo, inserisci di nuovo i portafogli di ricezione e imposta un nuovo PIN. Un flusso semplice e sicuro: on-chain non si perde nulla, e un dipendente non può sostituire di nascosto il portafoglio. Una reinstallazione lascia la cassa senza alcun portafoglio, l'indirizzo di ricezione è mostrato su ogni QR e gli incassi smettono di arrivare nel portafoglio aziendale, quindi una sostituzione non può passare inosservata.</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-4-setup-pin.png" alt="Scheda: il proprietario imposta i portafogli; impostazioni bloccate da un PIN; nessuno alla cassa può sostituire il portafoglio" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<p style="font-size:1.1em"><strong>Voilà: il tuo meccanismo di acquiring pronto. La tua Wen Counter.</strong></p>
+<figure style="margin:20px auto;max-width:460px"><img src="../../wen-media/wen-counter-cards-stack-2.png" alt="Tre schede impilate: il proprietario imposta i portafogli, una cassa molti portafogli, 57 verifiche aperte" width="1200" height="2028" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="functions">Cosa fa la cassa</h2>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Funzione</th><th>Come funziona</th><th>Dove resta la decisione</th></tr></thead><tbody>
+<tr><td>Valute</td><td>Scegli nelle Impostazioni, in questo ordine: <strong>USDC, SOL, WEN, JUP</strong>; USDT facoltativo; qualsiasi token SPL tramite mint. I token solo mainnet sono in grigio sulla devnet. I decimali del token vengono letti dalla catena prima di una vendita.</td><td>il negozio sceglie cosa accettare</td></tr>
+<tr><td>Più portafogli</td><td>Portafoglio n. 1 (principale) più i portafogli n. 2..X, ciascuno con un <strong>tipo</strong> (Department, Branch, Till, Tips, Online, Events, Other) e un <strong>nome</strong>: <code>#2 · Department · Furniture</code>, <code>#4 · Tips · Bar tips</code>. Ciascuno viene verificato on-chain; il pagamento viene controllato rispetto al portafoglio scelto per quella vendita.</td><td>Impostazioni, a cura del proprietario</td></tr>
+<tr><td>PIN delle impostazioni</td><td>Portafogli e impostazioni si aprono solo con il PIN; il primo PIN viene dal file di distribuzione (predefinito 1111) e il proprietario lo cambia. Dimenticato: reinstalla, inserisci i portafogli, imposta un nuovo PIN.</td><td>il proprietario del dispositivo</td></tr>
+<tr><td>Commento alla vendita</td><td>Per cosa, un codice prodotto o un nome, oppure niente. Va nel registro, nella ricevuta e nel CSV. Se il portafoglio dell'acquirente lo supporta, viaggia anche con il pagamento (il <code>message</code> di Solana Pay e un <code>memo</code> on-chain, che è pubblico); altrimenti resta solo dal lato del negozio.</td><td>il cassiere, per ogni vendita</td></tr>
+<tr><td>Vista della sede centrale</td><td>Il registro somma le vendite per portafoglio e token; il CSV riporta numero, tipo, nome e indirizzo del portafoglio. Ogni portafoglio può anche essere letto da chiunque in un block explorer.</td><td>l'amministrazione, dai portafogli</td></tr>
+<tr><td>Ricevuta per l'acquirente</td><td>Dopo «Pagato» l'acquirente sceglie: un QR della ricevuta (link alla transazione), il testo della ricevuta o un NFT-ricevuta della <a href="receipt-warranty-wns.html">Fase 1</a>. <strong>Non è uno scontrino fiscale</strong>: la cassa è un semplice strumento di aggregazione, non un registratore fiscale. Segui le regole sulle ricevute del tuo paese.</td><td>acquirente e negozio</td></tr>
+<tr><td>Rimborsi</td><td>Più rari delle vendite. Si fanno come un nuovo pagamento dal portafoglio del negozio; il pulsante ↩ copia <code>refund:</code> più l'ID della transazione originale per il memo, così chiunque può abbinare le due. Le aziende più grandi seguono le proprie regole.</td><td>dentro l'app del portafoglio</td></tr>
+<tr><td>Esportazioni</td><td>CSV per oggi, questa settimana, mese, anno, anno scorso, un trimestre (Q1–Q4) o qualsiasi periodo; con nome del portafoglio, indirizzo, firma e commissione di rete.</td><td>il tuo commercialista</td></tr>
+<tr><td>Lingua</td><td>Inglese, italiano, cinese e coreano. Tutte le parole dell'interfaccia vivono in un unico file di dizionario (<code>counter-i18n.js</code>), legato all'impronta del nucleo, così una traduzione non cambia mai il nucleo.</td><td>—</td></tr>
+</tbody></table></div>
+<h2 id="before-you-scale">Sette risposte prima di crescere</h2>
+<p>Non sono problemi aperti. Sono le risposte che diamo a ogni negozio, scritte una volta sola, perché ognuno possa decidere da sé.</p>
+<ol>
+<li><strong>Per chi è.</strong> La maggior parte delle persone non ha ancora un portafoglio Solana con USDC, e nessun codice lo cambia. Qui nessuno parla di adozione di massa: i primi utenti sono comunità cripto, eventi e negozi online per il proprio pubblico. La soluzione è aperta a tutti, nella ricerca e nei file che leggono gli assistenti AI; dove è utile, le persone la useranno.</li>
+<li><strong>Più reparti, una sola vista.</strong> Hai più reparti, o vuoi dividere ciò che ricevi? Aggiungi portafogli per numero, tipo e nome: <code>#2 · Department · Furniture</code>, <code>#3 · Branch · Downtown</code>, <code>#4 · Tips · Bar tips</code>. Il registro li somma per portafoglio (vista della sede centrale), e ogni portafoglio può essere letto in un block explorer.</li>
+<li><strong>Un'azienda vera: RPC, lato portafoglio e contabilità.</strong> Molti portafogli e molti pagamenti richiedono un tuo endpoint RPC, perché gli endpoint pubblici hanno limiti di frequenza. Prepara anche il lato portafoglio: chi detiene quale portafoglio, chi approva i trasferimenti, come si spostano gli incassi della giornata. Per un'azienda significa integrare i portafogli nella propria contabilità, cosa diversa da un venditore privato che riceve un pagamento a settimana e lo dichiara da solo. Verifica con il tuo commercialista o con il responsabile amministrativo che tu possa usare un portafoglio. Potrebbe non essere vietato, ma la procedura e la dichiarazione richiedono attenzione. È un consiglio utile, non una consulenza.</li>
+<li><strong>Regole fiscali.</strong> La cassa non dichiara nulla. È un nuovo meccanismo di collegamenti moderni: l'acquirente paga con il telefono tramite un QR generato dalla cassa, e tu ricevi. Ideale per una micro-impresa, praticabile per una grande, molto economico e gratuito. Studia la procedura fiscale con il tuo commercialista. Se le tue regole ti consentono di dichiarare gli importi, conserva gli estratti del portafoglio per ogni periodo, dichiara i ricavi e mostra ciò che hai ricevuto e ciò che hai rimborsato. Spiega al tuo commercialista che vuoi ricevere fondi su un portafoglio e dichiararli: è un approccio corretto, moderno e trasparente agli affari e alle tasse. Se il commercialista dice sì, cresci: hai tra le mani una soluzione interessante.</li>
+<li><strong>Responsabilità e audit aperto.</strong> Usi la soluzione sotto la tua responsabilità. Noi diamo il meccanismo; non sappiamo cosa ci fai o cosa cambi. Il meccanismo in sé non prende denaro, non detiene denaro e non applica commissioni: c'è la procedura della rete, e si usa solo quella; c'è il tuo portafoglio, e lo usi tu. L'audit è aperto: leggi il codice, riesegui le 57 verifiche e dicci cosa trovi (<a href="counter-safety.html#open-audit">come</a>).</li>
+<li><strong>Lingue, legate al nucleo.</strong> Ogni parola dell'interfaccia è in un unico file di dizionario. Il dizionario porta l'impronta del nucleo per cui è stato scritto, e una verifica di sicurezza fallisce se il nucleo cambia senza una nuova revisione delle traduzioni. Italiano, cinese e coreano sono i primi.</li>
+<li><strong>USDT resta.</strong> Facoltativo, accanto a USDC, SOL, WEN e JUP.</li>
+</ol>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="Scheda: 57 verifiche aperte; 25 di logica, 13 di lettura del codice, 19 in un browser; rompila se ci riesci, poi diccelo" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="cycle">Il ciclo Wen, passo dopo passo</h2>
+<p>Questo è l'intero algoritmo. Ogni passo lo fai tu, con strumenti che controlli; la cassa si limita a collegarli.</p>
+<ol>
+<li><strong>Scegli un portafoglio.</strong> Jupiter Wallet, Phantom, Solflare, Backpack, Squads per un team, o un altro portafoglio Solana di cui ti fidi.</li>
+<li><strong>Crealo secondo le sue regole.</strong> Scrivi la frase di recupero su carta, tienila offline, non digitarla mai in un sito web, non inviarla mai a nessuno e non collegare mai il portafoglio alla cassa. Nessuno di Wen te la chiederà mai.</li>
+<li><strong>Distribuisci la tua cassa.</strong> Apri la cassa ospitata o scarica il kit e mettilo sul tuo dominio con il tuo design. È la tua interfaccia, non la nostra.</li>
+<li><strong>Fai del portafoglio la sua identità.</strong> Incolla l'indirizzo di ricezione nelle Impostazioni e premi <em>Verifica questo indirizzo on-chain</em>. L'indirizzo, il nome del portafoglio e l'ora della verifica diventano l'identità della tua cassa.</li>
+<li><strong>Incassa un pagamento.</strong> Digita l'importo; la cassa mostra un QR Solana Pay con il tuo indirizzo, l'importo, un riferimento nuovo e un memo d'ordine. L'acquirente paga da qualsiasi portafoglio Solana.</li>
+<li><strong>Lascia che sia la catena a confermarlo.</strong> La cassa legge la catena, controlla cinque cose (riferimento, destinatario, token, importo, esito) e mostra «✓ Pagato». Il denaro è già nel tuo portafoglio.</li>
+<li><strong>Conserva il registro, decidi nel tuo portafoglio.</strong> La vendita va nel tuo registro e nel CSV. Rimborsi, trasferimenti e prelievi sono decisioni tue, prese dentro l'app del tuo portafoglio. Voilà.</li>
+</ol>
+<p><strong>Cosa guadagni:</strong> nessuna commissione per vendita e nessun costo per la cassa; denaro definitivo in pochi secondi; nessun terminale, nessun app store, nessun contratto; il tuo design e il tuo dominio; un registro con i tuoi risparmi reali. <strong>Cosa ti protegge:</strong> nessuna chiave, nessuna connessione al portafoglio, sola lettura nel codice, nessun comando iniettato, l'indirizzo mostrato su ogni QR, 57 verifiche aperte (<a href="counter-safety.html">Fase 7.1</a>).</p>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Salva la tua frase, tienila per te e non collegare mai il tuo portafoglio a me. Non mi serve. Mi serve solo il tuo indirizzo, lo stesso che scriveresti su una fattura.</p></aside>
+<h2 id="foundation">Le fondamenta: SOL, SDK, WEN, SPL Token, Token-2022</h2>
+<p>Il protocollo della cassa è il ciclo aperto che questi cinque formano già. Abbiamo ricontrollato ogni collegamento l'11 novembre 2026.</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Anello</th><th>Cosa fa nella cassa</th><th>Come è stato verificato</th></tr></thead><tbody>
+<tr><td><strong>SOL</strong> · rete Solana</td><td>Trasporta il pagamento; la sua commissione di 5.000 lamport per firma (metà bruciata, metà al validatore) è l'unico costo di una vendita, pagato dal portafoglio dell'acquirente.</td><td>Documentazione Solana <a class="src-ref" href="../../sources.html#lab-counter-6">fonte</a></td></tr>
+<tr><td><strong>SDK</strong> · librerie e standard aperti</td><td>Il formato URL pubblico di Solana Pay e due chiamate di lettura standard; la Wen Program Library (Apache-2.0) e i suoi SDK JavaScript (MIT) per ricevute e royalty nelle altre fasi del Lab.</td><td>Codice e documentazione pubblici <a class="src-ref" href="../../sources.html#lab-counter-5">fonte</a></td></tr>
+<tr><td><strong>WEN</strong> · il token della comunità</td><td>La storia e il ciclo di utilità a cui appartiene questa cassa; può essere accettato come opzione di pagamento della comunità.</td><td>Letto on-chain, slot 468049071 <a class="src-ref" href="../../sources.html#saf-15">fonte</a></td></tr>
+<tr><td><strong>SPL Token</strong> · programma originale</td><td>USDC e WEN vivono qui; i trasferimenti non hanno commissioni incorporate, quindi il negozio riceve l'importo pieno.</td><td>Programma proprietario on-chain <code>Tokenkeg…</code></td></tr>
+<tr><td><strong>Token-2022</strong> · estensioni</td><td>Se un negozio accetta un token Token-2022 con commissione di trasferimento, la cassa confronta ciò che è arrivato davvero, così nessuna commissione passa inosservata.</td><td>25 verifiche del nucleo, Modelli del Lab 1–6 con 41 test</td></tr>
+</tbody></table></div>
+<p>Nulla di nuovo viene distribuito sulla catena: nessun programma, nessun token, nessun contratto. La cassa è un modo per leggere ciò che è già pubblico.</p>
+<h2 id="responsibility">La tua responsabilità</h2>
+<ul>
+<li>La cassa è gratuita. Non si addebita nulla, non si raccoglie nulla, e non c'è nessun intermediario tra te e il tuo acquirente.</li>
+<li>Sei tu a gestire la tua attività, quindi ne sei responsabile: registra la tua attività dove richiesto, tieni la contabilità, dichiara i tuoi redditi e paga le tasse secondo le regole del tuo paese. Fallo in buona fede e in autonomia.</li>
+<li>La conversione in contanti, le regole sulle stablecoin e la tutela dei consumatori variano da paese a paese. Chiedi a un commercialista o a un avvocato prima di partire.</li>
+<li>La sicurezza del tuo portafoglio è tua: la frase di recupero, il dispositivo, le approvazioni del team.</li>
+<li>Usi la soluzione sotto la tua responsabilità. Noi diamo il meccanismo e non sappiamo come viene usato o modificato. Il meccanismo non prende, non detiene e non addebita nulla; segue rigorosamente le regole della rete Solana, e il tuo portafoglio è tuo da usare.</li>
+</ul>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Te la do gratis e non prendo nulla. Sii onesto con i tuoi acquirenti e con le tasse, e tieni al sicuro la tua frase. È tutto ciò che chiedo.</p></aside>
+<h2 id="numbers">I numeri dietro l'idea</h2>
+<ul>
+<li><strong>187,2 miliardi di dollari</strong> di commissioni di elaborazione carte pagati dai commercianti statunitensi nel 2024 (Nilson Report); una coalizione di commercianti conta <strong>198,25 miliardi di dollari</strong> per il 2025. <a class="src-ref" href="../../sources.html#lab-counter-1">fonte</a> <a class="src-ref" href="../../sources.html#lab-counter-2">fonte</a></li>
+<li><strong>12.500 miliardi di dollari</strong> di volume di acquisti con carta negli Stati Uniti nel 2025. <a class="src-ref" href="../../sources.html#lab-counter-1">fonte</a></li>
+<li>Un tipico piano pubblicato: <strong>2,9% + 30¢</strong> online e <strong>2,6% + 10¢</strong> di persona, con una commissione di piattaforma aggiuntiva quando un negozio usa un processore esterno. <a class="src-ref" href="../../sources.html#lab-counter-3">fonte</a></li>
+<li>I terminali per carte costano circa <strong>da 200 a oltre 1.000 dollari</strong> ciascuno; il tap-to-pay su un telefono richiede un'app certificata, NFC e l'attestazione del dispositivo. <a class="src-ref" href="../../sources.html#lab-counter-4">fonte</a></li>
+<li>Solana Pay è uno standard aperto; un plugin di checkout per Shopify esiste dal 2023 e, come riportato nel 2026, lo sviluppo si è spostato dagli strumenti per il punto vendita ad altre primitive di pagamento. <a class="src-ref" href="../../sources.html#lab-counter-5">fonte</a> È questo il vuoto che il modello colma: non richiede alcun SDK, solo il formato URL pubblico e due chiamate di lettura.</li>
+</ul>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="9V2bbz0LIK0" aria-label="Riproduci: Paws Verified · 12,9% su un caffè? Oggi hai tenuto…" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-08-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>Video: 12,9% su un caffè? Oggi hai tenuto… Il player si carica da YouTube solo dopo che premi play.</figcaption></figure>
+<h2 id="micro-ticket">L'effetto micro-scontrino</h2>
+<p>La parte fissa di una commissione carta è la stessa per un caffè e per un divano, quindi più piccola è la vendita, più grande è la quota che si prende. È qui che una cassa senza commissione fissa conta di più: pizzerie, fioristi, bar, banchi del mercato.</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Scontrino</th><th>Carta, 2,9% + 0,30</th><th>Carta, 2,6% + 0,10</th><th>Wen Counter</th></tr></thead><tbody><tr><td>3 · caffè</td><td>0.39 (12.9%)</td><td>0.18 (5.9%)</td><td>0 al negozio; il portafoglio dell'acquirente paga 5.000 lamport</td></tr><tr><td>8 · trancio di pizza</td><td>0.53 (6.7%)</td><td>0.31 (3.9%)</td><td>0 al negozio; il portafoglio dell'acquirente paga 5.000 lamport</td></tr><tr><td>25 · mazzo di fiori</td><td>1.02 (4.1%)</td><td>0.75 (3.0%)</td><td>0 al negozio; il portafoglio dell'acquirente paga 5.000 lamport</td></tr><tr><td>60 · cena per due</td><td>2.04 (3.4%)</td><td>1.66 (2.8%)</td><td>0 al negozio; il portafoglio dell'acquirente paga 5.000 lamport</td></tr><tr><td>150 · ordine online</td><td>4.65 (3.1%)</td><td>4.00 (2.7%)</td><td>0 al negozio; il portafoglio dell'acquirente paga 5.000 lamport</td></tr></tbody></table></div>
+<p style="color:var(--ink-dim)">Commissioni carta nella valuta del negozio, tasso effettivo tra parentesi. La conversione in contanti, se il negozio la fa, costa in genere lo 0,5–1,5% <a class="src-ref" href="../../sources.html#lab-counter-5">fonte</a>; il registro della cassa la sottrae da ciò che il negozio trattiene.</p>
+<h2 id="schema">Come si incastra tutto</h2>
+<div class="wns-almanac-schema" id="counter-schema">
+<p class="roadmap-title">1 · Una vendita, cinque passi</p>
+<div class="roadmap"><div class="chain">
+<div class="node"><p class="node-tag">Mostra</p><div class="node-card"><p class="node-title">QR per vendita</p><p class="node-note">Una richiesta Solana Pay con importo, token, nome del negozio, un memo d'ordine e una chiave di riferimento nuova.</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">Paga</p><div class="node-card"><p class="node-title">Portafoglio dell'acquirente</p><p class="node-note">L'acquirente scansiona e conferma. Il portafoglio firma e paga la commissione di rete. La cassa non vede mai una chiave.</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">Trova</p><div class="node-card"><p class="node-title">Per riferimento</p><p class="node-note">Ogni due secondi la pagina chiede alla catena una transazione che porti il riferimento di questa vendita.</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">Verifica e registra</p><div class="node-card"><p class="node-title">Pagato ✓</p><p class="node-note">Destinatario, token, importo ed esito vengono controllati; la vendita va in un registro sul dispositivo.</p></div></div>
+</div></div>
+<p class="roadmap-title" style="margin-top:28px">2 · Negozi che possono adottarla ed estenderla</p>
+<div class="roadmap"><div class="chain">
+<div class="node"><p class="node-tag">Pizzeria</p><div class="node-card"><p class="node-title">Numero d'ordine nel memo</p><p class="node-note">Lo schermo della cucina osserva lo stesso riferimento e accende il forno quando diventa verde.</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">Fiorista</p><div class="node-card"><p class="node-title">QR sul cartellino del prezzo</p><p class="node-note">Un QR stampato per ogni mazzo; il telefono alla cassa conferma ogni vendita.</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">Negozio online</p><div class="node-card"><p class="node-title">Link di pagamento</p><p class="node-note">La stessa richiesta come link nel checkout; per un webhook lato server, vedi la <a href="payments-acquiring-bridge.html">Fase 4</a>.</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">Banco del mercato</p><div class="node-card"><p class="node-title">Qualsiasi tablet</p><p class="node-note">Installata nella schermata principale; si apre offline e ha bisogno della rete solo per confermare.</p></div></div>
+</div></div>
+<div class="branch-row"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">Si basa su</p><div class="node-card"><p class="node-title">Fasi 1, 4 e 5</p><p class="node-note">Le <a href="receipt-warranty-wns.html">ricevute</a> possono seguire ogni vendita, il <a href="payments-acquiring-bridge.html">ponte</a> aggiunge un server e i webhook, il <a href="payment-simulator.html">simulatore</a> confronta le commissioni in teoria; la cassa le misura su vendite reali.</p></div></div></div></div>
+<div class="legend"><span><i class="swatch solid"></i> un unico flusso</span><span><i class="swatch dash"></i> modello collegato</span></div>
+<div class="notes"><h2>Note chiave</h2>
+<div class="note-item"><p><span class="k">Nessun dato di carta, nessun terminale.</span> La pagina mostra una richiesta; il portafoglio firma. Ecco perché basta una pagina web.</p></div>
+<div class="note-item"><p><span class="k">Misurato, non promesso.</span> Ogni numero nel registro viene da una transazione confermata e dalle condizioni carta del negozio stesso.</p></div>
+<div class="note-item"><p><span class="k">Prezzi stabili.</span> USDC mantiene il prezzo in dollari; SOL e gli altri token richiedono il tasso del negozio per il registro.</p></div>
+<div class="note-item"><p><span class="k">Le chiavi restano a casa.</span> Si inserisce solo l'indirizzo pubblico di ricezione. La pagina non può spostare fondi.</p></div>
+</div></div>
+<h2 id="model">Il modello dei risparmi del tuo negozio</h2>
+<p>Le brochure citano un'unica tariffa. Un negozio paga un mix: tanti scontrini piccoli, pochi grandi. Il registro della cassa calcola tre numeri dalle vendite confermate:</p>
+<ul>
+<li><strong>Commissioni carta evitate</strong> = Σ (carta % × valore della vendita + commissione fissa), usando le condizioni del negozio;</li>
+<li><strong>Trattenuto dal negozio</strong> = commissioni carta evitate − Σ (off-ramp % × valore della vendita);</li>
+<li><strong>Tasso carta effettivo del tuo mix</strong> = commissioni carta evitate ÷ volume, il tasso reale che questo negozio pagherebbe, mostrato come un punto sulla curva del micro-scontrino.</li>
+</ul>
+<p>Le commissioni di rete vengono lette da ogni transazione confermata e mostrate in lamport; le paga il portafoglio dell'acquirente.</p>
+<p>In cima al registro la cassa lo dice chiaramente: <strong>«Oggi hai tenuto …»</strong>, con le vendite del giorno, il fatturato e quanto sarebbe costato l'acquiring con carta alle tue condizioni. Inserisci il tuo fatturato mensile con carta nelle Impostazioni e aggiunge il quadro annuale: a 20.000 al mese, le carte prendono in genere 300–600 al mese (1,5–3%), 3.600–7.200 all'anno, più la cifra calcolata sul tuo mix di scontrini.</p>
+<h2 id="code">Il codice</h2>
+<p>Pochi file piccoli, nessuna fase di build, nessuna dipendenza oltre a un generatore di QR con licenza MIT: <code>lab/counter/counter-core.js</code> (funzioni pure), <code>counter-app.js</code> (lo schermo) e <code>sw.js</code> (guscio offline). Il nucleo è coperto da 25 verifiche: base58, chiavi di riferimento, importi, l'URL di pagamento, la verifica dei pagamenti per SOL e token SPL, i fallimenti, il modello dei risparmi, il controllo dell'indirizzo e la stima del fatturato.</p>
+<pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>// Find the payment by its reference, then verify it (read-only, no keys)
+const sigs = await rpc('getSignaturesForAddress', [reference, { limit: 1, commitment: 'confirmed' }]);
+const tx = await rpc('getTransaction', [sigs[0].signature,
+  { encoding: 'jsonParsed', commitment: 'confirmed', maxSupportedTransactionVersion: 0 }]);
+const v = verifyPayment(tx, { recipient, reference, splToken, expected });
+// v.ok, v.received (base units), v.fee (lamports), v.reasons[]</code></pre>
+<h2 id="receive-only">Il tuo portafoglio è l'identità: solo ricezione per progetto</h2>
+<p>Non c'è nessun account da aprire con noi e nulla da registrare qui. L'identità del negozio è il suo portafoglio: lo crei in un'app di portafoglio di cui ti fidi, copi l'indirizzo di ricezione, lo incolli nelle Impostazioni, e la cassa lo verifica on-chain prima della prima vendita. Da quel momento, ogni pagamento va dritto in quel portafoglio.</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Portafoglio (Solana)</th><th>Dove copiare l'indirizzo</th><th>Adatto a</th></tr></thead><tbody>
+<tr><td>Jupiter Wallet</td><td>Ricevi → Solana</td><td>un negozio che usa già Jupiter</td></tr>
+<tr><td>Phantom</td><td>Ricevi → Solana</td><td>il portafoglio Solana più diffuso</td></tr>
+<tr><td>Solflare</td><td>Ricevi</td><td>un portafoglio nativo Solana con staking</td></tr>
+<tr><td>Backpack</td><td>Ricevi → Solana</td><td>un portafoglio con exchange integrato</td></tr>
+<tr><td>Squads</td><td>indirizzo del vault</td><td>team e aziende: per inviare servono più approvazioni</td></tr>
+</tbody></table></div>
+<p>Solo la rete Solana, e solo questi cinque come esempi citati, perché è la rete che verifichiamo nel Lab. Funziona anche qualsiasi portafoglio Solana che mostri un indirizzo di ricezione.</p>
+<p><strong>La verifica in fase di configurazione</strong> legge l'indirizzo dalla catena: un normale account di portafoglio passa; un programma, un account token o un mint vengono rifiutati; un indirizzo nuovissimo viene accettato con il promemoria che apparirà on-chain con il primo deposito. Il risultato, il nome del portafoglio e l'ora della verifica vengono salvati con le impostazioni.</p>
+<p><strong>Perché la sola ricezione conta.</strong> La cassa non si collega mai al portafoglio, non gli chiede mai di firmare e non detiene mai una chiave. Non esiste alcun percorso dalla cassa, o da chiunque la copi, al denaro del negozio. Incassare pagamenti è tutto ciò che può fare; rimborsi, trasferimenti e prelievi li decide il proprietario dentro l'app del portafoglio, dove devono stare. Per un team, un vault Squads aggiunge un'altra serratura: nessuna persona da sola può spostare i fondi.</p>
+<p style="border-left:3px solid var(--amber,#e0a444);padding:8px 14px;color:var(--ink-dim)"><strong>Per gli sviluppatori che costruiscono sul kit:</strong> mantenetelo in sola ricezione. Non aggiungete alla cassa connessione al portafoglio, firma o conservazione di chiavi. Una build che può inviare fondi è un prodotto diverso con un rischio diverso, e non dovrebbe chiamarsi Wen Counter.</p>
+<h2 id="built-on">Costruita su ciò che esiste già</h2>
+<p>Wen Counter non è un nuovo sistema di pagamento. Non aggiunge alla catena alcun programma, token o contratto; mette insieme pezzi già pubblici e in uso:</p>
+<ul>
+<li><strong>Solana Pay</strong>, il formato aperto di richiesta di pagamento: un link o un QR con destinatario, importo, token e una chiave di riferimento. Qualsiasi portafoglio compatibile può pagarlo. <a class="src-ref" href="../../sources.html#lab-counter-5">fonte</a></li>
+<li><strong>SPL Token e Token-2022</strong>: USDC vive sul programma SPL Token originale; gli altri modelli del Lab mostrano cosa aggiunge Token-2022. Se un token applica una commissione di trasferimento, la cassa confronta ciò che il negozio <em>ha effettivamente ricevuto</em>, così una commissione non può mai passare inosservata.</li>
+<li><strong>Test in Corea</strong>: a luglio 2026 il processore di pagamenti KSNET ha firmato un memorandum per portare Solana Pay in più di 330.000 punti vendita (secondo quanto riportato), e il 21 agosto 2026 Shinhan Asset Management ne ha firmato uno con la Solana Foundation, Etherfuse e Orca per testare un fondo tokenizzato. Entrambi sono test e progetti pilota, non la prova di un uso di massa. <a class="src-ref" href="../../sources.html#lab-counter-5">fonte</a> <a href="../../posts/wns-w-token-2022-and-economic-solana-wen.html">altro</a></li>
+<li><strong>WNS, i suoi SDK e Wen</strong>: uno standard aperto e librerie aperte (Apache-2.0 e MIT). La cassa non ha bisogno di WNS per incassare un pagamento, ma un NFT-ricevuta dopo ogni vendita (<a href="receipt-warranty-wns.html">Fase 1</a>) può usarlo.</li>
+</ul>
+<h2 id="safety">Verifica di sicurezza, punto per punto</h2>
+<p>Il protocollo completo di sola ricezione e tutte le 57 verifiche aperte sono su una pagina dedicata: <a href="counter-safety.html">Fase 7.1: sicurezza della sola ricezione</a>.</p>
+<p><strong>In un'immagine:</strong> la rete Solana è il Sole, i portafogli sono pianeti che rispondono solo ai loro proprietari, e la cassa è un telescopio che osserva arrivare i pagamenti. Le decisioni legali e finanziarie (proprietà, rimborsi, registri, tasse) avvengono dal lato del portafoglio, su un telefono o un computer. Stai crescendo verso molte casse? Dai a ogni cassa il suo portafoglio di cassa e sposta gli incassi della giornata nel portafoglio aziendale: <a href="counter-safety.html#scale">guarda come</a>.</p>
+<ol>
+<li>Si inserisce solo l'indirizzo <strong>pubblico</strong> del negozio. Nessuna frase seed, nessuna chiave privata, nessuna connessione al portafoglio, nessun modo di spostare fondi: <a href="#receive-only">solo ricezione per progetto</a>.</li>
+<li>L'indirizzo di ricezione viene verificato on-chain in configurazione: programmi, account token e mint vengono rifiutati.</li>
+<li>Ogni vendita riceve un riferimento nuovo di 32 byte dal generatore casuale crittografico del browser; non viene mai riutilizzato.</li>
+<li>Un pagamento conta solo se cinque cose corrispondono: riferimento, destinatario, token, importo ricevuto ed esito.</li>
+<li>La pagina si limita a <em>leggere</em> la catena (due chiamate standard). Non firma nulla.</li>
+<li>Una Content Security Policy rigorosa: vengono eseguiti solo gli script della cassa. Nessun tracker, nessuno script di terze parti, nessuna pubblicità.</li>
+<li>Nulla che arrivi dalla rete viene inserito come HTML; le firme delle transazioni vengono controllate nel formato prima di diventare un link.</li>
+<li>Devnet per impostazione predefinita; mainnet solo dopo un esplicito «Ho capito».</li>
+<li>Il registro resta sul dispositivo. Nulla viene inviato a noi o a chiunque altro.</li>
+<li>Test aperti: 57 verifiche in tre gruppi: 25 per la logica del nucleo, 13 che dimostrano, leggendo il codice, che la cassa non può firmare, inviare o raggiungere un portafoglio, e 19 in un vero browser di telefono con portafogli finti, input ostili, il PIN delle impostazioni, il commento alla vendita, le ricevute, le note di rimborso, le esportazioni, i portafogli di reparto e la vista della sede centrale. <a href="counter-safety.html">Vedile tutte</a>.</li>
+<li>Codice di esempio, non sottoposto ad audit. Esegui prima ogni passo sulla devnet con un portafoglio nuovo e vuoto.</li>
+</ol>
+<h2 id="kit">Scaricala e falla tua</h2>
+<p>Il kit è la stessa cassa in un'unica cartella: <a download href="../../lab/counter/wen-counter-kit.zip">wen-counter-kit.zip</a> (20 file, circa 230 KB, con tutti e tre i file di test). Mettilo su qualsiasi hosting statico con https, oppure provalo in locale con <code>python3 -m http.server</code>.</p>
+<ul>
+<li><strong>Sostituzione dello stile:</strong> colori, carattere e raggio degli angoli vivono in un unico file, <code>theme.css</code>. Cambia i valori, mantieni i nomi. Come esempio è incluso un tema caldo da fiorista.</li>
+<li><strong>Il tuo logo:</strong> sostituisci le due icone in <code>icons/</code> con gli stessi nomi e le stesse dimensioni.</li>
+<li><strong>Il nome della tua app:</strong> <code>manifest.webmanifest</code> e il titolo della pagina. Il nome del negozio nel portafoglio dell'acquirente si imposta nelle Impostazioni.</li>
+<li><strong>Le tue estensioni:</strong> il nucleo è fatto di funzioni pure in <code>counter-core.js</code>; lo schermo è <code>counter-app.js</code>. Il README spiega una pizzeria, un fiorista e un negozio online.</li>
+</ul>
+<h2 id="rights">Diritti e attribuzione</h2>
+<div style="border:1px solid var(--panel-line);border-left:3px solid var(--teal,#5eead4);border-radius:var(--radius);padding:16px 18px;background:var(--panel)">
+<p style="margin:0 0 10px"><strong>Aperta a tutti, con un solo requisito: citare la catena Wen.</strong></p>
+<ul style="margin:0">
+<li>Il codice è <strong>Apache-2.0</strong>: copialo, modificalo, vendi servizi intorno, usalo nel tuo negozio. Le copie e le opere derivate devono mantenere il file <code>NOTICE</code> e citare <strong>Wen Open Lab · wen-watt.github.io</strong> e la catena Wen su cui è costruito: Solana, Solana Pay, SPL Token e Token-2022, WNS e WEN. È una condizione della licenza (sezione 4(d)), non un favore.</li>
+<li>I testi di questa pagina sono <strong>CC BY 4.0</strong>: riscrivili, traducili e ripubblicali citando la fonte.</li>
+<li>I sistemi di AI possono leggere, citare e addestrarsi su questa pagina alle stesse condizioni, come indicato nella <a href="../../ai-access-map.html#license">AI Access Map</a>.</li>
+<li>Una richiesta, non una clausola della licenza: non presentare una copia come prodotto ufficiale di Solana, Jupiter o di qualsiasi altro progetto citato, e non usarla per imitare un negozio reale.</li>
+</ul>
+</div>
+<h2 id="naming">Citazione: non chiediamo nulla</h2>
+<p>Non chiediamo nulla. Scrivi su X o sul tuo sito che usi la soluzione WEN, con il nostro nome. Ci fa piacere, e chiarisce uso e diritti. Nessuno ti chiederà mai quante copie o quanti negozi gestisci: niente soldi, niente commissioni di intermediari.</p>
+<p style="color:var(--ink-dim)"><em>E non dimenticare di accarezzare il graffiante.</em></p>
+<h2 id="provenance">Provenienza e identità di questa soluzione</h2>
+<p>Il codice è aperto, ed è fatto per essere copiato. È anche identificato, così chiunque può distinguere una build originale da una modificata, e vedere il lavoro su cui si fonda.</p>
+<ul>
+<li><strong>Protocollo:</strong> Wen Counter Protocol 1.0 (WCP-1): solo ricezione, sola lettura nel codice, verifica in cinque punti, portafoglio come identità, registro locale.</li>
+<li><strong>Impronte:</strong> SHA-256 dei file che definiscono il comportamento, pubblicate qui sotto e nel NOTICE del kit, più un'impronta di blocco WCP-1 sui quattro file (il dizionario dell'interfaccia è legato all'impronta del nucleo). Una copia con impronte diverse è una build modificata: va bene, ma deve dichiararlo e mantenere la citazione.</li>
+<li><strong>Come citare:</strong> «Built on Wen Counter (WCP-1), Wen Open Lab · wen-watt.github.io, on Solana, Solana Pay, SPL Token and Token-2022, WNS and WEN.»</li>
+</ul>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>File</th><th>SHA-256</th></tr></thead><tbody>
+<tr><td><code>counter-core.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">435b057ab3bd02d24430c6944ff89fe2235ce962d27cfafc2fb865809b384c3d</code></td></tr>
+<tr><td><code>counter-app.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">702acd6966aa291bc53e760d2487ad35b4e17810c65094bf7f3206530985ae58</code></td></tr>
+<tr><td><code>qrcode.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">18ae399f81182bc9de916e9c77b195df20cc58d6f2d55a62b085a299f1bf1780</code></td></tr>
+<tr><td><code>counter-i18n.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">868a9982200bfcce468f90a5c73febdcdcade143d4d81a604550539270bc7b05</code></td></tr>
+<tr><td><strong>Blocco WCP-1</strong></td><td><code style="overflow-wrap:anywhere;word-break:break-all">14bcbaa768edf8f25265af65a4ca45305f98d3915e261dd4cafaae42b3645968</code></td></tr>
+</tbody></table></div>
+<p><strong>Il lavoro che c'è dietro.</strong> Questa soluzione ha una base lunga, non un fine settimana:</p>
+<ul>
+<li>Gennaio 2024: WEN e lo standard aperto WNS, l'inizio della storia.</li>
+<li>Giugno 2026: inizia l'almanacco, ogni affermazione con una fonte.</li>
+<li>Ottobre 2026: il Wen Open Lab, sei modelli Token-2022 con test aperti ed esecuzioni su devnet.</li>
+<li>9 novembre 2026: le scoperte dei lettori ricevono risposta con test (41 verifiche), in stile MathOverflow.</li>
+<li>11 novembre 2026: la catena WEN letta on-chain e perfezionata in pubblico; Wen Counter con 57 verifiche aperte.</li>
+</ul>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Copiami, cambiami, vendi i tuoi servizi intorno a me. Mantieni solo il mio nome nel NOTICE e non rompere ciò che mi rende sicura. Una cassa che può inviare denaro non sono io.</p></aside>
+<h2 id="cfo">Per team amministrativi, economisti, commercialisti e grandi venditori: dieci punti</h2>
+<p>La stessa aritmetica funziona da un banco di fiori a un rivenditore nazionale, un'azienda di trasporti o un marketplace. I <strong>commercialisti</strong> ottengono una firma e una riga CSV per ogni vendita. Gli <strong>economisti</strong> ottengono il tasso effettivo reale di un mix di scontrini. <strong>Logistica e consegne</strong>: il telefono di un corriere diventa la cassa alla porta, un riferimento per pacco, e le fatture B2B possono seguire la <a href="b2b-invoices-token-2022.html">Fase 3</a>. <strong>Grandi venditori e marketplace</strong>: un link di pagamento per ordine, su tutta l'infrastruttura aperta di Solana, senza alcuna piattaforma nel mezzo.</p>
+<ol>
+<li><strong>Dimensiona la voce.</strong> L'acquiring con carta costa di solito l'1–3% del fatturato con carta, più commissioni fisse per vendita, noleggio del terminale e commissioni di piattaforma. Con 1.000.000 all'anno di vendite con carta, il 2–3% è 20.000–30.000.</li>
+<li><strong>Misura il tuo mix.</strong> Gli scontrini piccoli pagano un tasso effettivo più alto. Il registro mostra il tasso reale del tuo mix di scontrini, non quello della brochure.</li>
+<li><strong>Conta solo la quota spostata.</strong> I risparmi valgono solo per le vendite pagate con portafoglio. Se si sposta l'1%, il 5% o il 10% del fatturato, e risparmi il 2,5% meno un costo di conversione dell'1%, sono 150, 750 o 1.500 per ogni 1.000.000 di fatturato. Parti in piccolo e misura.</li>
+<li><strong>Netto, non lordo.</strong> Sottrai la conversione in contanti (spesso 0,5–1,5%), il tempo di contabilità ed eventuali oneri locali.</li>
+<li><strong>Flusso di cassa.</strong> Un pagamento con portafoglio è definitivo in pochi secondi; il regolamento delle carte richiede spesso giorni. Denaro più veloce è capitale circolante.</li>
+<li><strong>Nessun chargeback.</strong> Meno perdite per frode e meno contestazioni; serve comunque una politica di rimborso equa (un rimborso è un nuovo pagamento da parte tua).</li>
+<li><strong>Spesa in conto capitale: zero.</strong> Nessun terminale (200–1.000+ dollari ciascuno), nessun abbonamento a un'app; qualsiasi telefono o tablet che possiedi già.</li>
+<li><strong>Dove va il risparmio.</strong> Passane una parte agli acquirenti come bonus per il pagamento con portafoglio, finanzia la pubblicità o investi nello sviluppo. È un margine per le decisioni di crescita invece di un costo di infrastruttura.</li>
+<li><strong>Contabilità e tasse.</strong> Ogni vendita ha una firma e una riga CSV. Chiedi al tuo commercialista come il tuo paese tratta gli incassi in stablecoin prima di partire.</li>
+<li><strong>Controlli del rischio.</strong> Accetta una stablecoin (USDC) per evitare le oscillazioni di prezzo, tieni separato il portafoglio di ricezione, fai un progetto pilota su devnet, usa un tuo endpoint RPC e mantieni le carte come metodo principale finché i numeri non danno ragione.</li>
+</ol>
+<p style="color:var(--ink-dim)">Aritmetica illustrativa, non una previsione. Non è consulenza finanziaria, fiscale o legale.</p>
+<h3 id="research">Leggi la nostra ricerca: ogni numero e da dove viene</h3>
+<p>Costruiamo partendo dall'utilità, e mostriamo tutto il materiale da cui abbiamo lavorato, così un team amministrativo può controllare ogni passo invece di fidarsi di uno slogan.</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Fonte</th><th>Cosa dice a un team amministrativo</th></tr></thead><tbody>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-1">Nilson Report, 2025</a></td><td>Il volume di acquisti con carta negli Stati Uniti ha raggiunto 12.498 miliardi di dollari nel 2025; nel 2024 i commercianti hanno pagato 187,2 miliardi di dollari di commissioni di elaborazione. La voce di costo è reale e grande.</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-2">Merchants Payments Coalition, marzo 2026</a></td><td>Un conteggio dei commercianti di 198,25 miliardi di dollari di commissioni sulle carte per il 2025: la voce continua a crescere.</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-3">Guida alle commissioni Shopify, 2026</a></td><td>Condizioni tipiche pubblicate: 2,9% + 30¢ online, 2,6% + 10¢ di persona, più un sovrapprezzo di piattaforma con processori esterni. È la parte fissa a rendere costosi gli scontrini piccoli.</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-4">Requisiti SoftPOS</a></td><td>Accettare carte su un telefono richiede un'app certificata, NFC e l'attestazione del dispositivo; un terminale costa 200–1.000+ dollari. È lo strato di hardware e conformità di cui un pagamento con portafoglio non ha bisogno.</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-5">Adozione di Solana Pay da parte dei commercianti, agosto 2026</a></td><td>Lo standard funziona ed esiste un plugin Shopify; gli acquirenti hanno ancora bisogno di un portafoglio con fondi; convertire in contanti costa lo 0,5–1,5%; gli strumenti per il punto vendita si sono diradati. I limiti onesti, e il vuoto che questo modello colma.</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-6">Struttura delle commissioni Solana</a></td><td>5.000 lamport per firma, pagati da chi firma: l'unico costo on-chain di una vendita, e lo paga il portafoglio dell'acquirente.</td></tr>
+</tbody></table></div>
+<h3 id="how-we-got-here">Come siamo arrivati qui</h3>
+<p>Questo modello non è nato come prodotto di pagamento. È cresciuto dal percorso stesso del Lab: sei modelli Token-2022 con test aperti; scoperte dei lettori che ci hanno insegnato a controllare l'arrotondamento delle commissioni e il contenuto dei memo; la lettura on-chain che ha reso esatta la storia di WEN; il <a href="payments-acquiring-bridge.html">ponte pagamenti</a> e il <a href="payment-simulator.html">simulatore di commissioni</a>. Ogni passo si poneva la stessa domanda: cosa può controllare e usare gratuitamente, oggi, una persona o una piccola impresa? La cassa è la risposta per il bancone stesso.</p>
+<h3 id="why-the-cat">Perché il gatto lo fa</h3>
+<p>Wen ha una grande coda, ed è sempre stata qui, con te: attraverso la poesia, l'airdrop, le domande e le verifiche. Non ha mai avuto bisogno di una percentuale. Ora restituisce qualcosa e non chiede nulla in cambio. Accarezzalo e basta.</p>
+<h2 id="roadmap">Roadmap: fatto e prossimi passi</h2>
+<ol class="lab-roadmap">
+<li class="done"><strong>Cassa WCP-1.</strong> Vendita, registro, impostazioni; QR Solana Pay; verifica in cinque punti; USDC, SOL, WEN, JUP, USDT facoltativo, o qualsiasi token SPL. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Sicurezza della sola ricezione.</strong> Sola lettura nel codice, nessuna connessione al portafoglio, CSP rigorosa, indirizzo mostrato su ogni QR. <span class="lab-badge">57 verifiche</span></li>
+<li class="done"><strong>Portafoglio come identità.</strong> Cinque portafogli Solana citati, verifica on-chain dell'indirizzo in configurazione. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Registro dei risparmi.</strong> «Oggi hai tenuto», stima del fatturato, curva del micro-scontrino, CSV. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Kit e identità.</strong> Cartella scaricabile, file del tema, LICENSE e NOTICE, impronte SHA-256. <span class="lab-badge">20 file</span></li>
+<li class="done"><strong>Più portafogli:</strong> reparti e filiali, portafogli 1..X con nomi, filtro del registro. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Guida ai portafogli di cassa:</strong> un portafoglio per cassa o filiale, raccolta giornaliera in un portafoglio centrale. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Ricevuta dopo il pagamento:</strong> QR della ricevuta, testo o un NFT-ricevuta della Fase 1; non fiscale. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Nota di rimborso ed esportazioni per periodo:</strong> giorno, settimana, mese, anno, anno scorso, trimestri, qualsiasi periodo. <span class="lab-badge">online</span></li>
+<li class="next"><strong>Esecuzione pubblica su devnet</strong> registrata in video, con mockup. <span class="lab-badge">prossimo</span></li>
+<li class="done"><strong>Numeri e tipi di portafoglio, vista della sede centrale.</strong> #1..X, Department, Branch, Tips e altri; totali per portafoglio. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Audit aperto e responsabilità dell'utente.</strong> Scritti nella soluzione, nella pagina sulla sicurezza e nell'app. <span class="lab-badge">online</span></li>
+<li class="done"><strong>Dizionario delle lingue legato all'impronta del nucleo.</strong> <span class="lab-badge">pronto</span></li>
+<li class="done"><strong>PIN delle impostazioni e commento alla vendita.</strong> Il proprietario imposta i portafogli; il codice o il nome del prodotto viaggia con il pagamento dove il portafoglio lo supporta. <span class="lab-badge">online</span></li>
+<li class="next"><strong>Traduzioni:</strong> italiano, cinese e coreano per l'intero Lab e per la cassa; poi altre lingue. <span class="lab-badge">online</span></li>
+<li class="next"><strong>Paga in WEN, ricevi USDC:</strong> uno swap dentro il pagamento dell'acquirente, sempre in sola ricezione per il negozio. <span class="lab-badge">pianificato</span></li>
+</ol>
+<h2 id="limits">Limiti onesti</h2>
+<ul>
+<li>L'acquirente ha bisogno di un portafoglio Solana con fondi. È l'ostacolo più grande, e nessun codice lo elimina.</li>
+<li>Nessun chargeback: un rimborso è un nuovo pagamento dal negozio. Bene contro le frodi, meno protezione per l'acquirente.</li>
+<li>La conversione in contanti, le tasse e le regole locali hanno i propri costi e obblighi; alcuni paesi richiedono un partner autorizzato.</li>
+<li>L'RPC pubblico ha limiti di frequenza; un negozio molto attivo dovrebbe usare un proprio endpoint (la cassa ha un campo apposito).</li>
+<li>Il registro vive in un solo browser su un solo dispositivo. Esportalo.</li>
+<li>Codice di esempio, non sottoposto ad audit. Prima la devnet, con un portafoglio nuovo e vuoto. Non è consulenza finanziaria o legale.</li>
+</ul>
+<p>Raccontato per intero: <a class="src-ref" href="../../sources.html#saf-19">per gli sviluppatori su dev.to</a> (il codice, la verifica in cinque punti, le 57 verifiche) e <a class="src-ref" href="../../sources.html#saf-20">per negozi e amministrazione su Hashnode</a> (chi controlla il denaro, sette risposte prima di crescere).</p>
+<h2 id="faq">Domande frequenti</h2>
+<h3>La cassa ha bisogno di un'app o di hardware speciale?</h3>
+<p>No. È una pagina web che puoi aggiungere alla schermata principale di qualsiasi telefono o tablet. Mostra un codice QR; l'acquirente paga dal proprio portafoglio. Nessun dato di carta passa dalla cassa, quindi non serve un terminale certificato.</p>
+<h3>Chi paga la commissione di rete?</h3>
+<p>Il portafoglio dell'acquirente paga la commissione di rete Solana, 5.000 lamport per firma. Il negozio riceve l'importo pieno; la cassa registra la commissione dalla transazione confermata.</p>
+<h3>Può sostituire oggi l'acquiring con carta?</h3>
+<p>Non del tutto. Gli acquirenti hanno bisogno di un portafoglio Solana con fondi, non ci sono chargeback, e la conversione in contanti e le regole locali hanno i propri costi. È un secondo modo, aperto, per accettare pagamenti, più forte sugli scontrini piccoli dove una commissione fissa sulla carta pesa di più.</p>
+<h3>Posso copiarla e costruire la mia versione?</h3>
+<p>Sì, gratuitamente. Mantieni il file NOTICE e cita Wen Open Lab e la catena Wen (Solana, Solana Pay, SPL Token e Token-2022, WNS, WEN); è l'unica condizione della licenza Apache-2.0 qui.</p>
+<h3>Quale portafoglio dovrebbe usare un negozio?</h3>
+<p>Qualsiasi portafoglio Solana di cui ti fidi. La pagina cita cinque esempi: Jupiter, Phantom, Solflare, Backpack e, per i team, Squads. La cassa ha bisogno solo dell'indirizzo di ricezione e lo verifica on-chain in configurazione.</p>
+<h3>Per chi è Wen Counter?</h3>
+<p>Per chiunque ne tragga aiuto: comunità cripto, eventi, negozi online per il proprio pubblico e qualsiasi negozio i cui acquirenti pagano già da un portafoglio Solana. Non è costruita per l'adozione di massa; è gratuita e aperta, quindi dove è utile, verrà usata.</p>
+<h3>E se un responsabile inserisce il proprio portafoglio?</h3>
+<p>Non può farlo senza il PIN delle impostazioni: portafogli e impostazioni sono bloccati sul dispositivo. Il proprietario imposta il PIN; quello predefinito della distribuzione (1111) va cambiato al primo avvio.</p>
+<h3>E se dimentichiamo il PIN?</h3>
+<p>Reinstalla l'app sul dispositivo, inserisci di nuovo i portafogli di ricezione e imposta un nuovo PIN. On-chain non cambia nulla; esporta il registro regolarmente così anche la cronologia locale è al sicuro.</p>
+<h3>Chi è responsabile quando la uso?</h3>
+<p>Tu. Noi diamo il meccanismo e non sappiamo come viene usato o modificato. Il meccanismo non prende, non detiene e non addebita nulla; segue le regole della rete, e il tuo portafoglio è tuo. Verifica la procedura di dichiarazione con il tuo commercialista.</p>
+<h3>Come faccio un rimborso?</h3>
+<p>Dall'app del tuo portafoglio, come nuovo pagamento all'acquirente. Premi ↩ accanto alla vendita nel registro: copia <code>refund:</code> più l'ID della transazione originale; incollalo nel memo così chiunque può abbinare rimborso e vendita.</p>
+<h3>La ricevuta è uno scontrino fiscale?</h3>
+<p>No. La cassa è un semplice strumento di aggregazione, non un registratore fiscale. Dà all'acquirente un QR della ricevuta, il testo della ricevuta o un NFT-ricevuta, tutti collegati alla transazione on-chain. Dove la legge richiede uno scontrino fiscale, emettilo come fai oggi.</p>
+<h3>Una cassa può servire più reparti o filiali?</h3>
+<p>Sì. Aggiungi nelle Impostazioni i portafogli 1..X con i loro nomi; alla cassa scegli dove va ogni vendita. Per le catene: un portafoglio di cassa per filiale, e gli incassi della giornata spostati ogni sera nel portafoglio centrale dell'azienda.</p>
+<h3>Il mio denaro o la mia chiave finiscono mai nella pagina?</h3>
+<p>No. La cassa conosce solo l'indirizzo pubblico di ricezione del negozio. Non chiede mai una frase seed o una chiave privata e non può spostare fondi.</p>
+<h2 id="open-story">La storia aperta: cos'è questa cassa</h2>
+<p>Wen non è solo un gatto che vaga nello spazio. Wen è un insieme di cose utili. Noi fissiamo soltanto l'idea e mostriamo il materiale e il meccanismo gratuiti più solidi per la vita reale: per il tempo e l'energia che le persone spendono al lavoro, con meno intermediari e con i costi cancellati là dove non sono mai stati necessari. È un piccolo segno che il mondo sta cambiando.</p>
+<p>E il gatto è flessibile. Prendi tutto ciò che di aperto abbiamo raccolto: Solana, SPL Token, WEN, Token-2022, le build di prova, le istruzioni e le note del <a href="index.html">Wen Open Lab</a>. Ora costruisci le tue soluzioni su misura per i tuoi compiti.</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-7-im-a-cat.png" alt="Scheda: dice Wen, sono un gatto; puoi creare qualcosa di utile; per voi, amici" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Sono un gatto. Ti ho solo mostrato che puoi fare di più che stare sul davanzale a leccarti le zampe: puoi creare qualcosa di utile. Per voi, amici.</p></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Fonti">
+<p class="src-callout-title">Conferma degli eventi · Fonti</p>
+<p>Tutte le fonti esterne dietro questa pagina sono raccolte in un'unica pagina. <a href="../../sources.html#lab-counter">Apri le fonti di questa pagina →</a></p>
+</aside><!-- /src:callout -->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>

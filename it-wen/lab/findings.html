@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Scoperte dei lettori del Wen Open Lab: domande, prove e correzioni</title>
+<link rel="canonical" href="https://wen-watt.github.io/it-wen/lab/findings.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/findings.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/findings.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/findings.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/findings.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/findings.html">
+<meta name="description" content="Domande dei lettori sul codice del Wen Open Lab, ciascuna con una risposta testata: cosa controlla davvero Token-2022, cosa abbiamo corretto e cosa resta un limite noto.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen trust chain, fact check, WEN token facts, WNS sources, IQ.wiki, verification">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Scoperte dei lettori del Wen Open Lab: domande, prove e correzioni">
+<meta property="og:description" content="Domande dei lettori sul codice del Wen Open Lab, ciascuna con una risposta testata: cosa controlla davvero Token-2022, cosa abbiamo corretto e cosa resta un limite noto.">
+<meta property="og:url" content="https://wen-watt.github.io/it-wen/lab/findings.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<meta property="og:image:alt" content="Wiki del gatto Wen dei fatti verificati">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://wen-watt.github.io/it-wen/lab/findings.html#page", "name": "Scoperte dei lettori del Wen Open Lab: domande, prove e correzioni", "description": "Domande dei lettori sul codice del Wen Open Lab, ciascuna con una risposta testata: cosa controlla davvero Token-2022, cosa abbiamo corretto e cosa resta un limite noto.", "url": "https://wen-watt.github.io/it-wen/lab/findings.html", "inLanguage": "it", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "dateModified": "2026-11-09", "mainEntity": [{"@type": "Question", "name": "Il Modello 3 calcola la commissione di trasferimento Token-2022 nello stesso modo del programma?", "acceptedAnswer": {"@type": "Answer", "text": "No, non lo faceva. Token-2022 arrotonda la commissione per eccesso; il nostro expectedFee arrotondava per difetto. Corretto il 9 novembre 2026. Token-2022 calcola la commissione come ceil(amount × basis points ÷ 10,000), con un tetto alla commissione massima, e TransferCheckedWithFee rifiuta qualsiasi altro valore. Il nostro expectedFee usava la divisione intera. Per 401 unità base a 25 bps il programma si aspetta 2; noi passavamo 1, e il pagamento falliva con \"Calculated fee does not match expected fee\". Il nostro test precedente pagava esattamente 1.000 unità, dove le due formule coincidono, quindi non lo rilevava. Prova: M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through e M3 expectedFee equals the Token-2022 fee formula on edge amounts (dieci importi, confrontati con calculateFee di @solana/spl-token)."}}, {"@type": "Question", "name": "La regola Required Memo controlla che il numero di fattura sia corretto?", "acceptedAnswer": {"@type": "Answer", "text": "No. Token-2022 controlla che un memo esista, non cosa dice. Verifica il numero di fattura off-chain, in fase di riconciliazione. L'account ricevente nel Modello 3 ha l'estensione Required Memo. Rifiuta un trasferimento che non ha un'istruzione memo immediatamente prima, ma non ne legge mai il testo. Un pagamento con invoice:INV-WRONG-999, o perfino invoice:hello, passa on-chain. Token-2022 è progettato così, quindi l'architettura resta com'è; cambia il modo in cui lo descriviamo e ciò che aggiungiamo accanto. Il modello ora ha matchInvoicePayment: legge il memo dai log della transazione e accetta un pagamento per una fattura solo se c'è esattamente un memo di fattura ed è quello atteso. Prova: M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain) e M3 reconciliation accepts the right invoice and rejects the wrong one."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/it-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "Scoperte dei lettori", "item": "https://wen-watt.github.io/it-wen/lab/findings.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<h1>Scoperte dei lettori<span class="lab-badge">?</span></h1><p class="lang-switch" aria-label="Lingua" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/findings.html" hreflang="en" lang="en">English</a> · <a href="findings.html" hreflang="it" lang="it" aria-current="page">Italiano</a> · <a href="../../cn-wen/lab/findings.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../../ko-wen/lab/findings.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">Tradotto dall’inglese da Wen insieme all’AI. Il riferimento è la <a href="../../lab/findings.html" hreflang="en" lang="en">pagina inglese</a>; le correzioni sono benvenute.</p>
+<ul class="lab-strip" aria-label="Fasi del Wen Open Lab"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Ricevute e garanzia</a></li><li><a href="creator-royalties-wns.html">2 · Royalty per i creatori</a></li><li><a href="b2b-invoices-token-2022.html">3 · Fatture B2B</a></li><li><a href="payments-acquiring-bridge.html">4 · Ponte pagamenti</a></li><li><a href="payment-simulator.html">5 · Simulatore</a></li><li><a href="devnet.html">6 · Devnet: ripetilo</a></li><li><a href="counter.html">7 · Cassa</a></li><li><a href="counter-safety.html">7.1 · Sicurezza</a></li><li><a href="trust.html">✓ · Catena della fiducia</a></li><li><a href="benefits.html">★ · Vantaggi e usi</a></li><li><a href="walkthroughs.html">✎ · Dieci guide</a></li><li><a href="videos.html">▶ · Video</a></li><li><a aria-current="page" href="findings.html">? · Scoperte dei lettori</a></li></ul>
+<p class="intro">Le buone domande migliorano il codice aperto. Qui ogni domanda sollevata da un lettore sul Lab riceve una risposta con una prova: un test che chiunque può eseguire con <code>npm test</code>. Manteniamo il progetto originale quando è così che funziona Solana, ne diciamo chiaramente i limiti e correggiamo ciò che era sbagliato.</p>
+<h2>Come funziona questa pagina</h2>
+<ul>
+<li><strong>Una domanda, una risposta accettata.</strong> La risposta cita il test esatto che la dimostra.</li>
+<li><strong>Lo stato è onesto:</strong> <em>Corretto</em>, <em>Limite noto</em> o <em>Non è un problema</em>, con il motivo.</li>
+<li><strong>Il merito va al lettore</strong> che l'ha trovato (con il nome solo se è d'accordo).</li>
+<li><strong>Nulla viene cancellato.</strong> Le vecchie risposte restano, con la data in cui sono cambiate.</li>
+</ul>
+<section class="finding" id="q1" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+<h2 style="margin-top:0">Il Modello 3 calcola la commissione di trasferimento Token-2022 nello stesso modo del programma?</h2>
+<p><strong>Risposta breve:</strong> No, non lo faceva. Token-2022 arrotonda la commissione per eccesso; il nostro expectedFee arrotondava per difetto. Corretto il 9 novembre 2026.</p>
+<p>Token-2022 calcola la commissione come <code>ceil(amount × basis points ÷ 10,000)</code>, con un tetto alla commissione massima, e <code>TransferCheckedWithFee</code> rifiuta qualsiasi altro valore. Il nostro <code>expectedFee</code> usava la divisione intera. Per 401 unità base a 25 bps il programma si aspetta 2; noi passavamo 1, e il pagamento falliva con <em>"Calculated fee does not match expected fee"</em>. Il nostro test precedente pagava esattamente 1.000 unità, dove le due formule coincidono, quindi non lo rilevava.</p><p><strong>Prova:</strong> <code>M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through</code> e <code>M3 expectedFee equals the Token-2022 fee formula on edge amounts</code> (dieci importi, confrontati con <code>calculateFee</code> di @solana/spl-token).</p>
+<p style="color:var(--ink-dim);font-size:.9em">Stato: Corretto · Trovato da un lettore (segnalazione 1) · Modello 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">vedi la pagina del modello</a> · codice: lab/code/src/03-b2b-invoice.ts</p>
+</section>
+<section class="finding" id="q2" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+<h2 style="margin-top:0">La regola Required Memo controlla che il numero di fattura sia corretto?</h2>
+<p><strong>Risposta breve:</strong> No. Token-2022 controlla che un memo esista, non cosa dice. Verifica il numero di fattura off-chain, in fase di riconciliazione.</p>
+<p>L'account ricevente nel Modello 3 ha l'estensione Required Memo. Rifiuta un trasferimento che non ha un'istruzione memo immediatamente prima, ma non ne legge mai il testo. Un pagamento con <code>invoice:INV-WRONG-999</code>, o perfino <code>invoice:hello</code>, passa on-chain. Token-2022 è progettato così, quindi l'architettura resta com'è; cambia il modo in cui lo descriviamo e ciò che aggiungiamo accanto.</p><p>Il modello ora ha <code>matchInvoicePayment</code>: legge il memo dai log della transazione e accetta un pagamento per una fattura solo se c'è esattamente un memo di fattura ed è quello atteso.</p><p><strong>Prova:</strong> <code>M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)</code> e <code>M3 reconciliation accepts the right invoice and rejects the wrong one</code>.</p>
+<p style="color:var(--ink-dim);font-size:.9em">Stato: Limite noto, ora documentato e testato · Trovato da un lettore (segnalazione 2) · Modello 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">vedi la pagina del modello</a> · codice: lab/code/src/03-b2b-invoice.ts</p>
+</section>
+<p>Perché lavoriamo così, e i sette punti di controllo di sicurezza nati da queste scoperte: <a href="../../posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">Prova prima della fiducia</a>.</p>
+<p>Raccontato per gli sviluppatori e per tutti: <em>Two Token-2022 edges our tests missed</em> su dev.to e <em>Proof before trust: seven safety checkpoints</em> su Hashnode, entrambi collegati nella <a href="../../sources.html#com-safety">pagina delle fonti</a>.</p>
+<h2>Fai una domanda</h2>
+<p>Hai trovato qualcosa di strano nel codice o nelle guide? Apri una issue nel repository (il link a GitHub è nel piè di pagina del sito e nella <a href="../../sources.html">pagina delle fonti</a>). Se regge, arriva qui con un test.</p>
+<p style="color:var(--ink-dim);font-size:.9em">Codice di esempio, non sottoposto ad audit. Solo devnet, con un portafoglio nuovo e vuoto. Contenuto educativo, non consulenza finanziaria.</p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="Scheda: 57 verifiche aperte, rompila se ci riesci" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">Novità · Fase 7 · Wen Counter</p><p style="margin:0 0 6px">Una cassa gratuita e aperta nel tuo browser su Solana Pay: solo ricezione, 0 per vendita, portafogli bloccati dal PIN del proprietario, 57 verifiche aperte.</p><p style="margin:0"><a href="counter.html">Guarda la soluzione</a> · <a href="counter/">apri la cassa</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">leggi la notizia</a></p></div></aside>
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Fase 5: simulatore di costi e velocità, carta contro pagamenti on-chain</title>
+<link rel="canonical" href="https://wen-watt.github.io/it-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/payment-simulator.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/payment-simulator.html">
+<meta name="description" content="Modello 5 del Wen Open Lab: confronta il costo mensile e la velocità di regolamento dell'acquiring con carta e di Solana Pay con i tuoi numeri. Formule aperte, nessun tracciamento.">
+<!-- seo:start -->
+<meta name="keywords" content="payment cost calculator, card fees vs crypto, Solana Pay, settlement speed, simulator">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fase 5: simulatore di costi e velocità, carta contro pagamenti on-chain">
+<meta property="og:description" content="Modello 5 del Wen Open Lab: confronta il costo mensile e la velocità di regolamento dell'acquiring con carta e di Solana Pay con i tuoi numeri. Formule aperte, nessun tracciamento.">
+<meta property="og:url" content="https://wen-watt.github.io/it-wen/lab/payment-simulator.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-market-run.jpeg">
+<meta property="og:image:alt" content="Wen, corsa veloce al mercato">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-market-run.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": ["WebPage"], "@id": "https://wen-watt.github.io/it-wen/lab/payment-simulator.html#page", "name": "Fase 5: simulatore di costi e velocità, carta contro pagamenti on-chain", "headline": "Fase 5: simulatore di costi e velocità, carta contro pagamenti on-chain", "description": "Modello 5 del Wen Open Lab: confronta il costo mensile e la velocità di regolamento dell'acquiring con carta e di Solana Pay con i tuoi numeri. Formule aperte, nessun tracciamento.", "url": "https://wen-watt.github.io/it-wen/lab/payment-simulator.html", "inLanguage": "it", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-market-run.jpeg", "mainEntity": {"@id": "https://wen-watt.github.io/it-wen/lab/payment-simulator.html#app"}}, {"@type": "WebApplication", "@id": "https://wen-watt.github.io/it-wen/lab/payment-simulator.html#app", "name": "Simulatore dei costi di pagamento, carta contro on-chain", "url": "https://wen-watt.github.io/it-wen/lab/payment-simulator.html", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://wen-watt.github.io/#org"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/it-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "Fase 5: simulatore di costi e velocità, carta contro pagamenti on-chain", "item": "https://wen-watt.github.io/it-wen/lab/payment-simulator.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · integrazione aperta</p>
+<h1>Fase 5: simulatore di pagamenti<span class="lab-badge">interattivo</span></h1><p class="lang-switch" aria-label="Lingua" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/payment-simulator.html" hreflang="en" lang="en">English</a> · <a href="payment-simulator.html" hreflang="it" lang="it" aria-current="page">Italiano</a> · <a href="../../cn-wen/lab/payment-simulator.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../../ko-wen/lab/payment-simulator.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">Tradotto dall’inglese da Wen insieme all’AI. Il riferimento è la <a href="../../lab/payment-simulator.html" hreflang="en" lang="en">pagina inglese</a>; le correzioni sono benvenute.</p>
+<ul class="lab-strip" aria-label="Fasi del Wen Open Lab"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Ricevute e garanzia</a></li><li><a href="creator-royalties-wns.html">2 · Royalty per i creatori</a></li><li><a href="b2b-invoices-token-2022.html">3 · Fatture B2B</a></li><li><a href="payments-acquiring-bridge.html">4 · Ponte pagamenti</a></li><li><a aria-current="page" href="payment-simulator.html">5 · Simulatore</a></li><li><a href="devnet.html">6 · Devnet: ripetilo</a></li><li><a href="counter.html">7 · Cassa</a></li><li><a href="counter-safety.html">7.1 · Sicurezza</a></li><li><a href="trust.html">✓ · Catena della fiducia</a></li><li><a href="benefits.html">★ · Vantaggi e usi</a></li><li><a href="walkthroughs.html">✎ · Dieci guide</a></li><li><a href="videos.html">▶ · Video</a></li><li><a href="findings.html">? · Scoperte dei lettori</a></li></ul>
+<figure><img src="../../wen-media/wen-market-run.jpeg" alt="Wen, corsa veloce al mercato" width="1200" height="675"><figcaption>Velocità che puoi misurare</figcaption></figure>
+<p class="intro">I modelli diventano utili quando incontrano numeri reali. Inserisci il volume del tuo negozio, le condizioni delle carte e i costi della catena, e il simulatore confronta il costo mensile e il denaro in attesa di regolamento. Ogni formula è mostrata, nulla viene inviato da nessuna parte: il calcolo avviene nel tuo browser.</p>
+<h2>I tuoi numeri</h2>
+<p>Modifica qualsiasi campo. I valori predefiniti sono illustrativi, non un preventivo di alcun fornitore: sostituiscili con le condizioni del tuo contratto e i prezzi di oggi.</p>
+<form class="lab-sim" id="sim" onsubmit="return false;">
+<label>Ordini al mese<input id="orders" min="0" type="number" value="2000"></label>
+<label>Ordine medio, $<input id="ticket" min="0" step="0.01" type="number" value="40"></label>
+<label>Commissione carta, %<input id="mdr" min="0" step="0.01" type="number" value="2.9"></label>
+<label>Commissione fissa carta per ordine, $<input id="fixed" min="0" step="0.01" type="number" value="0.30"></label>
+<label>Regolamento carta, giorni<input id="days" min="0" type="number" value="2"></label>
+<label>Tasso di chargeback, %<input id="cbr" min="0" step="0.01" type="number" value="0.5"></label>
+<label>Costo per chargeback, $<input id="cbf" min="0" step="0.01" type="number" value="15"></label>
+<label>Commissione di rete per pagamento, SOL<input id="netfee" min="0" step="0.000001" type="number" value="0.00001"></label>
+<label>Prezzo di SOL, $<input id="sol" min="0" step="0.01" type="number" value="150"></label>
+<label>Conversione in fiat, %<input id="offramp" min="0" step="0.01" type="number" value="0.5"></label>
+</form>
+<table class="lab-table" id="sim-out">
+<thead><tr><th>Al mese</th><th>Carte</th><th>On-chain (Solana Pay)</th></tr></thead>
+<tbody>
+<tr><td>Ricavi</td><td id="o-rev1"></td><td id="o-rev2"></td></tr>
+<tr><td>Commissioni di pagamento</td><td id="o-fee1"></td><td id="o-fee2"></td></tr>
+<tr><td>Costi dei chargeback</td><td id="o-cb1"></td><td id="o-cb2"></td></tr>
+<tr><td><strong>Costo totale</strong></td><td id="o-tot1"></td><td id="o-tot2"></td></tr>
+<tr><td>Costo per ordine</td><td id="o-per1"></td><td id="o-per2"></td></tr>
+<tr><td>Denaro in attesa di regolamento</td><td id="o-wait1"></td><td id="o-wait2"></td></tr>
+</tbody>
+</table>
+<p id="o-sum" style="font-size:15px;"></p>
+<script>
+    (function(){
+      var ids=['orders','ticket','mdr','fixed','days','cbr','cbf','netfee','sol','offramp'];
+      function v(id){var x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>=0?x:0;}
+      function m(x){return '$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+      function set(id,t){document.getElementById(id).textContent=t;}
+      function run(){
+        var n=v('orders'),t=v('ticket'),rev=n*t;
+        var fee1=rev*v('mdr')/100+n*v('fixed');
+        var cb1=n*v('cbr')/100*(t+v('cbf'));
+        var fee2=n*v('netfee')*v('sol')+rev*v('offramp')/100;
+        var tot1=fee1+cb1,tot2=fee2;
+        var wait1=rev/30*v('days');
+        set('o-rev1',m(rev));set('o-rev2',m(rev));
+        set('o-fee1',m(fee1));set('o-fee2',m(fee2));
+        set('o-cb1',m(cb1));set('o-cb2','none (refunds are new payments)');
+        set('o-tot1',m(tot1));set('o-tot2',m(tot2));
+        set('o-per1',n?m(tot1/n):'—');set('o-per2',n?m(tot2/n):'—');
+        set('o-wait1',m(wait1)+' ('+v('days')+' days)');set('o-wait2','≈ $0 (seconds)');
+        var diff=tot1-tot2;
+        set('o-sum',diff>=0?('With these numbers, on-chain payments cost '+m(diff)+' less per month, '+m(diff*12)+' per year, before any setup, compliance or refund-handling costs.')
+                          :('With these numbers, cards cost '+m(-diff)+' less per month. Check the conversion fee and volume assumptions.'));
+      }
+      ids.forEach(function(id){document.getElementById(id).addEventListener('input',run);});
+      run();
+    })();
+    </script>
+<noscript><p>The simulator needs JavaScript. The formulas are listed below so you can use a spreadsheet instead.</p></noscript>
+<h2>Le formule</h2>
+<ul>
+<li>Ricavi = ordini × ordine medio.</li>
+<li>Commissioni carta = ricavi × commissione carta % + ordini × commissione fissa.</li>
+<li>Costi dei chargeback = ordini × tasso di chargeback × (ordine medio + costo per chargeback).</li>
+<li>Commissioni on-chain = ordini × commissione di rete in SOL × prezzo di SOL + ricavi × conversione %.</li>
+<li>Denaro in attesa di regolamento = ricavi ÷ 30 × giorni di regolamento.</li>
+</ul>
+<h2>Cosa il simulatore non considera</h2>
+<ul>
+<li>Costi di avvio, integrazione, conformità e licenze.</li>
+<li>Quanti dei tuoi clienti hanno già un portafoglio Solana.</li>
+<li>Il valore di protezione dell'acquirente dei chargeback, che per i clienti è reale.</li>
+<li>Il movimento di prezzo dei token non stabili tra pagamento e conversione.</li>
+</ul>
+<p>Il punto non è che un binario vinca sempre. Il punto è sostituire le opinioni con numeri che puoi controllare, e poi testare il vincitore sulla devnet con la <a href="payments-acquiring-bridge.html">Fase 4</a>.</p>
+<h2>Wen in immagini</h2>
+<div class="lab-grid"><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-1.html" title="Il gatto Wen in corsa notturna"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-1.jpeg" alt="Il gatto Wen in corsa notturna" loading="lazy" width="300" height="300"></a><figcaption>Secondi, non giorni</figcaption></figure><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-2.html" title="Wen pilota a tutta velocità"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-2.jpeg" alt="Wen pilota a tutta velocità" loading="lazy" width="300" height="300"></a><figcaption>Regolamento in tempo reale</figcaption></figure><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-3.html" title="Il gatto Wen al traguardo"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-3.jpeg" alt="Il gatto Wen al traguardo" loading="lazy" width="300" height="300"></a><figcaption>Prima il modello, poi la decisione</figcaption></figure><figure><a href="../../image-story/testing-jup-wen-solana.html" title="Test di Jupiter e Wen"><img src="../../wen-media/testing-jup-wen-solana.jpeg" alt="Test di Jupiter e Wen" loading="lazy" width="300" height="300"></a><figcaption>Prova prima di fidarti</figcaption></figure><figure><a href="../../image-story/crypto-game-solana-memecoin-wen.html" title="Il gioco dei numeri di Wen"><img src="../../wen-media/crypto-game-solana-memecoin-wen.jpeg" alt="Il gioco dei numeri di Wen" loading="lazy" width="300" height="300"></a><figcaption>Gioca con i numeri</figcaption></figure></div>
+<div class="lab-box">
+<h3>Dove si colloca Wen in questo modello</h3>
+<p style="margin:0;">Se un negozio accetta WEN come una delle opzioni di pagamento, la volatilità conta: imposta il campo della conversione al tuo costo reale di conversione e ricorda che il valore di un pagamento in WEN può cambiare tra l'incasso e la conversione. I prezzi stabili sono compito delle stablecoin; WEN porta alla cassa comunità e attenzione.</p>
+</div>
+<div class="lab-box">
+<h3>Il filo di Wen: un contratto, ovunque</h3>
+<p style="margin:0 0 8px;">Ogni modello del Lab è gratuito e aperto, e ognuno porta la stessa firma: il contratto del token $WEN. Copialo, ripetilo nei tuoi documenti e verificalo sempre su un explorer prima di usarlo.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Verifica: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">come trovare l'ID del contratto</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>Politica di uso aperto</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>Gratuito e aperto.</strong> Tutto il codice del Lab è rilasciato con licenza Apache 2.0, la stessa della Wen Program Library. Usalo, modificalo, distribuiscilo, a fini commerciali o no; mantieni l'avviso di licenza.</li>
+<li><strong>Solo strumenti aperti.</strong> Costruito su strumenti pubblici e documentati: Solana SPL Token-2022 (Token Extensions), il layout dei token del Wen New Standard (WNS), Solana Pay e LiteSVM per i test locali.</li>
+<li><strong>La regola: verifica sempre il tuo modello.</strong> Esegui i test, inizia sulla devnet, leggi la documentazione ufficiale, rivedi ogni account e importo e ottieni un audit indipendente prima di qualsiasi uso su mainnet. Un modello non verificato non è un modello, è un'ipotesi.</li>
+<li><strong>Non sottoposto ad audit, non è una consulenza.</strong> Questi sono esempi didattici. Non costituiscono consulenza finanziaria, legale o fiscale, né un prodotto di pagamento o bancario autorizzato. Pagamenti, stablecoin e acquiring sono attività regolamentate nella maggior parte dei paesi.</li>
+<li><strong>Sicurezza.</strong> Non incollare mai una chiave privata in un sito web. Non installare il pacchetto npm <code>@wen-community/wen-new-standard</code>: npm lo ha rimosso perché malevolo. Costruisci da fonti ufficiali.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Parla Wen, per la comunità. Altro nella nostra <a href="../../privacy-policy-cookie-policy.html">politica editoriale e sui dati</a>.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">roadmap</a> · <a href="../../lab/code/README.md">tutto il codice</a> · <a class="src-ref" href="../../sources.html#lab-payment-simulator-1">Wen Program Library su GitHub</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-3-today-you-kept.png" alt="Scheda: oggi hai tenuto, misurato dalle vendite confermate" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">Novità · Fase 7 · Wen Counter</p><p style="margin:0 0 6px">Una cassa gratuita e aperta nel tuo browser su Solana Pay: solo ricezione, 0 per vendita, portafogli bloccati dal PIN del proprietario, 57 verifiche aperte.</p><p style="margin:0"><a href="counter.html">Guarda la soluzione</a> · <a href="counter/">apri la cassa</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">leggi la notizia</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Fonti">
+<p class="src-callout-title">Conferma degli eventi · Fonti</p>
+<p>Tutte le fonti esterne dietro questa pagina — per il tuo studio e le tue verifiche aperte — sono raccolte in un'unica pagina. <a href="../../sources.html#lab-payment-simulator">Apri le fonti di questa pagina →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-08-snow-ride.jpeg" alt="Wen cavalca una grande creatura pelosa tra montagne innevate mentre una nave vola sopra" width="800" height="1202" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>Saldi tra numeri freddi: cinque formule confrontano le commissioni delle carte con quelle on-chain, limiti onesti inclusi.</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

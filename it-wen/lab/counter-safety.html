@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Fase 7.1: sicurezza di Wen Counter, solo ricezione per progetto</title>
+<link rel="canonical" href="https://wen-watt.github.io/it-wen/lab/counter-safety.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter-safety.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter-safety.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter-safety.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter-safety.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter-safety.html">
+<meta name="description" content="Come Wen Counter protegge un negozio: può solo leggere la catena, non tocca mai un portafoglio, non detiene chiavi e non accetta comandi iniettati. 57 verifiche aperte, come rieseguirle e cosa non coprono.">
+<!-- seo:start -->
+<meta name="keywords" content="receive-only, non-custodial point of sale, Solana Pay safety, wallet security, CSP, read-only RPC, Wen Counter, open tests">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fase 7.1: sicurezza di Wen Counter, solo ricezione per progetto">
+<meta property="og:description" content="Come Wen Counter protegge un negozio: può solo leggere la catena, non tocca mai un portafoglio, non detiene chiavi e non accetta comandi iniettati. 57 verifiche aperte, come rieseguirle e cosa non coprono.">
+<meta property="og:url" content="https://wen-watt.github.io/it-wen/lab/counter-safety.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<meta property="og:image:alt" content="Scheda: solo ricezione per progetto, non si collega mai a un portafoglio, tre richieste di lettura, 57 verifiche aperte">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "Fase 7.1: sicurezza di Wen Counter, solo ricezione per progetto", "description": "Come Wen Counter protegge un negozio: può solo leggere la catena, non tocca mai un portafoglio, non detiene chiavi e non accetta comandi iniettati. 57 verifiche aperte, come rieseguirle e cosa non coprono.", "image": "https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png", "url": "https://wen-watt.github.io/it-wen/lab/counter-safety.html", "inLanguage": "it", "datePublished": "2026-11-11", "dateModified": "2026-11-12", "license": "https://www.apache.org/licenses/LICENSE-2.0", "author": {"@type": "Organization", "name": "Wen"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "isPartOf": {"@type": "WebPage", "url": "https://wen-watt.github.io/it-wen/lab/counter.html"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/it-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "Fase 7: Wen Counter", "item": "https://wen-watt.github.io/it-wen/lab/counter.html"}, {"@type": "ListItem", "position": 4, "name": "Fase 7.1: sicurezza di Wen Counter, solo ricezione per progetto", "item": "https://wen-watt.github.io/it-wen/lab/counter-safety.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · Fase 7 · sicurezza</p>
+<h1>Fase 7.1: sicurezza della sola ricezione<span class="lab-badge">57 verifiche · aperte</span></h1><p class="lang-switch" aria-label="Lingua" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/counter-safety.html" hreflang="en" lang="en">English</a> · <a href="counter-safety.html" hreflang="it" lang="it" aria-current="page">Italiano</a> · <a href="../../cn-wen/lab/counter-safety.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../../ko-wen/lab/counter-safety.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">Tradotto dall’inglese da Wen insieme all’AI. Il riferimento è la <a href="../../lab/counter-safety.html" hreflang="en" lang="en">pagina inglese</a>; le correzioni sono benvenute.</p>
+<ul class="lab-strip" aria-label="Fasi del Wen Open Lab"><li><a href="index.html">0 · Roadmap</a></li><li><a href="receipt-warranty-wns.html">1 · Ricevute e garanzia</a></li><li><a href="creator-royalties-wns.html">2 · Royalty per i creatori</a></li><li><a href="b2b-invoices-token-2022.html">3 · Fatture B2B</a></li><li><a href="payments-acquiring-bridge.html">4 · Ponte pagamenti</a></li><li><a href="payment-simulator.html">5 · Simulatore</a></li><li><a href="devnet.html">6 · Devnet: ripetilo</a></li><li><a href="counter.html">7 · Cassa</a></li><li><a aria-current="page" href="counter-safety.html">7.1 · Sicurezza</a></li><li><a href="trust.html">✓ · Catena della fiducia</a></li><li><a href="benefits.html">★ · Vantaggi e usi</a></li><li><a href="walkthroughs.html">✎ · Dieci guide</a></li><li><a href="videos.html">▶ · Video</a></li><li><a href="findings.html">? · Scoperte dei lettori</a></li></ul>
+<p class="intro">Accettare denaro è sempre stato una voce di costo: terminali, contratti, app certificate, qualcuno nel mezzo. Siamo andati a fondo in quel mercato e abbiamo costruito l'opposto: una cassa che può <strong>solo ricevere</strong>. Non può inviare, firmare né raggiungere il tuo portafoglio, quindi non c'è nulla da rubarle e nulla da riprendersi attraverso di lei. Dopo che un pagamento arriva, il tuo denaro è gestito rigorosamente dal tuo portafoglio.</p>
+<figure style="max-width:420px;margin:24px auto"><img src="../../wen-media/wen-trip-everest-rope.jpg" alt="Wen in tuta rossa da arrampicata sale una cresta innevata legato a una corda di sicurezza" width="415" height="414" loading="lazy" style="width:100%;height:auto;border-radius:12px"><figcaption>Con la corda di sicurezza: la cassa può salire in una sola direzione</figcaption></figure>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="fKwSTznVAp4" aria-label="Riproduci: Useful Anomaly · Una cassa che non può inviare il tuo denaro" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-09-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>Video: una cassa che non può inviare il tuo denaro, in 25 secondi. Il player si carica da YouTube solo dopo che premi play.</figcaption></figure>
+<h2 id="protocol">Il protocollo della sola ricezione</h2>
+<div class="notes" style="margin-top:0">
+<div class="note-item"><p><span class="k">1 · Nessuna via d'uscita.</span> La cassa non si collega mai a un portafoglio, non gli chiede mai di firmare e non detiene alcuna chiave. Rimborsi, trasferimenti e prelievi avvengono solo dentro l'app del portafoglio del proprietario.</p></div>
+<div class="note-item"><p><span class="k">2 · Sola lettura, nel codice.</span> La pagina può inviare alla catena esattamente tre richieste di lettura. Qualsiasi altra richiesta viene bloccata dal codice stesso prima di lasciare il dispositivo.</p></div>
+<div class="note-item"><p><span class="k">3 · Nessuna iniezione.</span> Nessun listener di messaggi, nessun link di azione, nessun codice remoto, una Content Security Policy rigorosa, e nulla che arrivi dalla rete viene mai inserito come HTML. Nessuna API esterna può pilotare la cassa o il portafoglio.</p></div>
+<div class="note-item"><p><span class="k">4 · Il tuo portafoglio è l'identità.</span> L'indirizzo di ricezione viene verificato on-chain in configurazione e mostrato su ogni schermata QR (primi e ultimi cinque caratteri, nome del portafoglio) così cassiere e acquirente possono confrontarlo.</p></div>
+</div>
+<p>È questo che trasforma una spesa costante in una costante: un modo di accettare denaro senza costi di gestione, senza controparte e senza porta sul retro.</p>
+<h2 id="solar-system">Trasparente come il sistema solare: il lato legale e finanziario</h2>
+<p>L'intero modello sta in un'immagine. <strong>Il Sole è la rete Solana:</strong> tutto si muove nella sua luce, e chiunque può vederlo. <strong>I pianeti sono i portafogli:</strong> ciascuno ruota sul proprio asse e risponde solo al suo proprietario. <strong>Wen Counter è un telescopio:</strong> osserva un pianeta ricevere luce e lo annota. Un telescopio non può spostare un pianeta.</p>
+<p>Ecco perché i meccanismi legali e finanziari vivono dove vive il denaro, nel portafoglio:</p>
+<ul>
+<li>La <strong>proprietà</strong> comincia nel momento in cui un pagamento è confermato nel portafoglio del negozio. La cassa non detiene mai fondi, nemmeno per un secondo.</li>
+<li><strong>Rimborsi, trasferimenti e prelievi</strong> sono decisioni del proprietario del portafoglio, prese nell'app del portafoglio su un telefono o un computer, sotto i controlli del proprietario stesso (password, dispositivo, approvazioni del team).</li>
+<li>I <strong>registri</strong> sono pubblici sulla catena e privati nel registro del negozio: ogni vendita ha una firma, ogni firma può essere controllata da un commercialista o da un revisore.</li>
+<li><strong>Tasse e conformità</strong> seguono l'attività, non lo strumento: il negozio dichiara i propri redditi secondo le regole del proprio paese. La cassa non aggiunge a questo quadro né commissioni, né intermediari, né parti nascoste.</li>
+</ul>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Io guardo e annoto, nient'altro. Il tuo pianeta gira per mano tua. È tutto il segreto, e non è un segreto.</p></aside>
+<h2 id="scale">Crescere: portafogli di cassa e raccolta giornaliera</h2>
+<p>La stessa regola della sola ricezione cresce da un banco a una catena di negozi, senza server e quasi senza costi:</p>
+<ol>
+<li><strong>Un portafoglio di cassa per ogni cassa.</strong> Ogni registratore ha il suo semplice portafoglio, gestito dal responsabile di turno. La cassa riceve su di esso e non può fare altro.</li>
+<li><strong>Raccolta giornaliera.</strong> A fine giornata il responsabile sposta gli incassi dal portafoglio di cassa al portafoglio aziendale, per esempio un vault multisig Squads, nell'app del portafoglio. Una transazione, una commissione di rete.</li>
+<li><strong>Rimborsi dalla cassa.</strong> Durante la giornata il responsabile può rimborsare un acquirente dal portafoglio di cassa, entro il fondo cassa del giorno, senza toccare il portafoglio aziendale.</li>
+<li><strong>L'azienda tiene le chiavi che contano.</strong> La tesoreria richiede più approvazioni per spostare i fondi; un telefono perso può far perdere al massimo un giorno di una cassa.</li>
+<li><strong>Contabilità per cassa.</strong> Ogni cassa esporta il proprio CSV; l'azienda vede ogni cassa e ogni raccolta on-chain, per indirizzo e per firma.</li>
+</ol>
+<p>La roadmap resta breve e quasi gratuita: telefoni che hai già, portafogli gratuiti, una commissione di rete per vendita pagata dagli acquirenti e una per raccolta giornaliera pagata da te.</p>
+<h2 id="open-note">Una nota aperta a sviluppatori e catene di negozi, in tutto il mondo</h2>
+<ul>
+<li><strong>Mantenete la cassa in sola ricezione.</strong> Costruite intorno a lei, non dentro: sistemi ordini, schermi di cucina, cartellini QR stampati, NFT-ricevuta, esportazioni verso la contabilità o l'ERP dal CSV.</li>
+<li><strong>Mettete la spesa dove deve stare:</strong> nei portafogli con i loro controlli, come approvazioni multisig e limiti di spesa, non nella cassa.</li>
+<li><strong>Verificate ogni pagamento con le cinque verifiche</strong> (riferimento, destinatario, token, importo, esito) e mostrate l'indirizzo di ricezione sullo schermo.</li>
+<li><strong>Copiate liberamente, citate Wen.</strong> Apache-2.0 con il NOTICE: Wen Open Lab e la catena Wen. Se cambiate il codice, dite che è una build modificata.</li>
+<li><strong>Fate un progetto pilota su devnet,</strong> con portafogli nuovi e vuoti, prima di qualsiasi denaro reale.</li>
+</ul>
+<aside class="wen-note" aria-label="Dice Wen"><img src="../../assets/icons/wen-logo-96.png" alt="Logo del gatto Wen" width="36" height="36"><p><span class="wen-note-kicker">Dice Wen</span>Costruite grandi cose intorno a me. Solo, non datemi le mani. Una cassa con le mani è un altro animale.</p></aside>
+<h2 id="tested">Cosa abbiamo testato, apertamente</h2>
+<p>Tre gruppi di verifiche, tutte nel repository, tutte superate il 12 novembre 2026, dopo l'aggiunta delle funzioni per i negozi (portafogli numerati con tipi, vista della sede centrale, ricevute, note di rimborso, esportazioni per periodo, il dizionario delle lingue). Sempre solo tre richieste di lettura.</p>
+<h3>Logica del nucleo · 25 verifiche · <code>node counter-core.test.js</code></h3>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Verifica</th><th>Risultato</th></tr></thead><tbody><tr><td>andata e ritorno base58 su 200 chiavi casuali</td><td>✓</td></tr><tr><td>gli indirizzi noti si decodificano in 32 byte; la spazzatura viene rifiutata</td><td>✓</td></tr><tr><td>ogni chiave di riferimento è un indirizzo valido</td><td>✓</td></tr><tr><td>importi: decimali, zero, negativi e forme esponenziali rifiutati</td><td>✓</td></tr><tr><td>formato dell'URL di pagamento e percent-encoding</td><td>✓</td></tr><tr><td>pagamento in SOL verificato</td><td>✓</td></tr><tr><td>pagamento insufficiente rifiutato</td><td>✓</td></tr><tr><td>riferimento mancante rifiutato</td><td>✓</td></tr><tr><td>transazione fallita rifiutata</td><td>✓</td></tr><tr><td>pagamento in USDC verificato</td><td>✓</td></tr><tr><td>token sbagliato rifiutato</td><td>✓</td></tr><tr><td>primo pagamento a un nuovo account token verificato</td><td>✓</td></tr><tr><td>tassi del micro-scontrino (3 → 12,9%, 25 → 4,1%, 100 → 3,2%)</td><td>✓</td></tr><tr><td>modello dei risparmi su un mix di scontrini</td><td>✓</td></tr><tr><td>controllo dell'indirizzo: nuovo, portafoglio, programma, token, altro</td><td>✓</td></tr><tr><td>stima del fatturato</td><td>✓</td></tr><tr><td>raggruppamento nello stesso giorno per «Oggi hai tenuto»</td><td>✓</td></tr><tr><td>periodi di esportazione: giorno, settimana, mese, anno, anno scorso, trimestri, personalizzato; date errate rifiutate</td><td>✓</td></tr><tr><td>la nota di rimborso è «refund:» più un ID di transazione valido; la spazzatura viene rifiutata</td><td>✓</td></tr><tr><td>il testo della ricevuta per l'acquirente dice «Non è uno scontrino fiscale»</td><td>✓</td></tr><tr><td>etichetta del portafoglio: numero, tipo e nome (#4 · Tips · Bar tips)</td><td>✓</td></tr><tr><td>vista della sede centrale: vendite raggruppate per portafoglio e token; i portafogli sconosciuti tenuti a parte</td><td>✓</td></tr><tr><td>la vista della sede centrale di un registro vuoto è vuota</td><td>✓</td></tr><tr><td>commento alla vendita come memo: ID ordine più commento, una riga, al massimo 120 caratteri; sulla ricevuta come «Per:»</td><td>✓</td></tr><tr><td>PIN delle impostazioni: solo da 4 a 8 cifre</td><td>✓</td></tr></tbody></table></div>
+<h3>Nessun controllo, leggendo il codice · 13 verifiche · <code>node counter-safety.test.js</code></h3>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Verifica</th><th>Risultato</th></tr></thead><tbody><tr><td>nessun provider di portafoglio viene mai toccato</td><td>✓</td></tr><tr><td>nessuna chiamata di connessione o firma di alcun tipo</td><td>✓</td></tr><tr><td>nessuna chiave, coppia di chiavi o frase seed</td><td>✓</td></tr><tr><td>esistono solo tre richieste di lettura, ed è un elenco consentito</td><td>✓</td></tr><tr><td>nessuna API in ingresso: nessun listener di messaggi, nessun URL di azione, nessun codice remoto</td><td>✓</td></tr><tr><td>Content Security Policy rigorosa: solo script propri</td><td>✓</td></tr><tr><td>i dati della rete non vengono mai scritti come HTML</td><td>✓</td></tr><tr><td>la cache offline non tocca mai la catena</td><td>✓</td></tr><tr><td>un pagamento conta solo quando riferimento, destinatario, token, importo ed esito corrispondono tutti</td><td>✓</td></tr><tr><td>le parole dell'interfaccia sono legate all'impronta del nucleo: una traduzione non può viaggiare su un nucleo modificato</td><td>✓</td></tr><tr><td>le parole dell'interfaccia vengono scritte solo come testo, mai come HTML</td><td>✓</td></tr><tr><td>le Impostazioni sono dietro un PIN: nascoste finché non sbloccate, salvataggio, nuovo PIN e cancellazione del registro protetti, si bloccano quando esci, PIN conservato solo come SHA-256 con sale</td><td>✓</td></tr><tr><td>il file di distribuzione contiene solo parametri (il PIN delle impostazioni e la lingua), nessun codice</td><td>✓</td></tr></tbody></table></div>
+<h3>Nessun controllo, in un vero browser di telefono · 19 verifiche · <code>node browser-safety.e2e.js</code></h3>
+<p>Il test pianta portafogli finti (Solana, Phantom, Solflare, Backpack, Jupiter) che registrano ogni contatto, digita testo ostile nel nome del negozio e nella nota, e fornisce risposte ostili dalla rete.</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>Verifica</th><th>Risultato</th></tr></thead><tbody><tr><td>le Impostazioni si aprono bloccate: le impostazioni del portafoglio sono nascoste</td><td>✓</td></tr><tr><td>un PIN sbagliato viene rifiutato</td><td>✓</td></tr><tr><td>il PIN di distribuzione (1111) sblocca le Impostazioni</td><td>✓</td></tr><tr><td>il commento viaggia nella richiesta di pagamento (message e memo), codificato, mai eseguito</td><td>✓</td></tr><tr><td>una «firma» ostile dalla rete viene rifiutata</td><td>✓</td></tr><tr><td>un pagamento a un altro indirizzo viene rifiutato</td><td>✓</td></tr><tr><td>il testo ostile nel nome del negozio e nella nota viene mostrato come testo, mai eseguito</td><td>✓</td></tr><tr><td>la nota viene salvata e mostrata alla lettera</td><td>✓</td></tr><tr><td>all'acquirente viene offerta una ricevuta dopo il pagamento</td><td>✓</td></tr><tr><td>il pulsante di rimborso dà «refund:» più l'ID della transazione originale</td><td>✓</td></tr><tr><td>l'esportazione per periodo dà al file il nome del periodo</td><td>✓</td></tr><tr><td>il commento alla vendita arriva nel CSV</td><td>✓</td></tr><tr><td>le Impostazioni si bloccano di nuovo dopo l'uscita</td><td>✓</td></tr><tr><td>una vendita su un portafoglio di reparto viene verificata rispetto a quel portafoglio, non a quello principale</td><td>✓</td></tr><tr><td>la schermata di pagamento indica il portafoglio per numero, tipo e nome</td><td>✓</td></tr><tr><td>la vista della sede centrale somma le vendite per portafoglio</td><td>✓</td></tr><tr><td>i portafogli finti piantati nella pagina non sono mai stati letti né chiamati</td><td>✓</td></tr><tr><td>solo richieste di lettura hanno raggiunto la rete</td><td>✓</td></tr><tr><td>nessun errore di script</td><td>✓</td></tr></tbody></table></div>
+<h2 id="rerun">Rieseguilo tu stesso</h2>
+<pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>cd lab/counter
+node counter-core.test.js        # 25 checks
+node counter-safety.test.js      # 13 checks
+python3 -m http.server 8771 &amp;
+node browser-safety.e2e.js http://localhost:8771/   # 19 checks, needs Playwright</code></pre>
+<p>Gli stessi file sono inclusi nel <a download href="../../lab/counter/wen-counter-kit.zip">kit</a>, così un negozio o uno sviluppatore può controllare la propria copia.</p>
+<h2 id="setup-pin">Il PIN delle impostazioni: nessuno alla cassa può sostituire il portafoglio</h2>
+<p>Su un dispositivo condiviso, il rischio reale non è un hacker ma una persona alla cassa che inserisce il proprio portafoglio di ricezione. Per questo le Impostazioni sono bloccate da un PIN. Il primo PIN è un parametro di distribuzione in <code>counter-deploy.js</code> (predefinito <code>1111</code>, pubblico, quindi cambialo); il proprietario imposta un nuovo PIN nelle Impostazioni. Uscire dalle Impostazioni le blocca, cinque tentativi sbagliati le sospendono per 30 secondi, cancellare il registro richiede il PIN, e il PIN è salvato solo come SHA-256 con sale.</p>
+<p><strong>PIN dimenticato:</strong> reinstalla l'app sul dispositivo, inserisci di nuovo i portafogli di ricezione, imposta un nuovo PIN. Un flusso semplice e sicuro. Una reinstallazione lascia la cassa senza portafoglio, l'indirizzo di ricezione è mostrato su ogni QR, e gli incassi smettono di arrivare nel portafoglio aziendale, quindi una sostituzione non può restare nascosta. Il PIN blocca un'interfaccia; non è una chiave del portafoglio e non può spostare denaro, perché la cassa non può spostare denaro affatto.</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-4-setup-pin.png" alt="Scheda: il proprietario imposta i portafogli; impostazioni bloccate da un PIN; nessuno alla cassa può sostituire il portafoglio" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="open-audit">Audit aperto: controllalo e diccelo</h2>
+<p>L'audit di Wen Counter è aperto e non finisce mai. Leggi il codice, riesegui le verifiche qui sopra sulla tua macchina, prova a far firmare, inviare o mostrare alla cassa qualcosa che non dovrebbe, e dicci cosa trovi: apri una issue nel repository pubblico (il link è nelle <a href="../../sources.html#lab-counter-7">fonti</a>). Una scoperta che regge diventa una nuova verifica e una riga in <a href="findings.html">Scoperte dei lettori</a>, con un ringraziamento.</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="Scheda: 57 verifiche aperte; rompila se ci riesci, poi diccelo" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="user-responsibility">Responsabilità dell'utente</h2>
+<p>Usi la soluzione sotto la tua responsabilità. Noi diamo il meccanismo; non sappiamo cosa ci fai o cosa cambi nella tua copia. Ciò che dichiariamo, e che le verifiche qui sopra dimostrano per la build originale, è il meccanismo stesso: non prende denaro, non detiene denaro e non applica commissioni. Segue la procedura della rete Solana, rigorosamente. Il portafoglio è tuo, e lo usi tu. Ricevute, rimborsi, registri e dichiarazioni sono dalla tua parte; verifica la procedura con il tuo commercialista.</p>
+<p>La storia dell'intera soluzione, con ogni scheda e immagine: <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">Wen Counter: una cassa gratuita e aperta per ogni negozio</a>.</p>
+<p>Raccontato per intero: <a class="src-ref" href="../../sources.html#saf-19">per gli sviluppatori su dev.to</a> (il codice, la verifica in cinque punti, le 57 verifiche) e <a class="src-ref" href="../../sources.html#saf-20">per negozi e amministrazione su Hashnode</a> (chi controlla il denaro, sette risposte prima di crescere).</p>
+<h2 id="not-covered">Cosa queste verifiche non coprono</h2>
+<ul>
+<li>Il codice non è sottoposto ad audit da terzi. Sono i nostri test aperti, non un certificato.</li>
+<li>Un telefono già compromesso può mostrare qualsiasi cosa. Usa un dispositivo di cui ti fidi e tienilo aggiornato.</li>
+<li>Una copia falsa della pagina potrebbe mostrare un indirizzo diverso. Ecco perché l'indirizzo appare su ogni schermata QR e nel portafoglio dell'acquirente: confronta i primi e gli ultimi cinque caratteri.</li>
+<li>La sicurezza dei fondi dopo che arrivano è la sicurezza del tuo portafoglio: proteggi la sua frase seed, e per un team usa un multisig come Squads.</li>
+<li>Prima la devnet, con un portafoglio nuovo e vuoto. Non è consulenza finanziaria, fiscale o legale.</li>
+</ul>
+<p><a href="counter.html">← Torna alla Fase 7: Wen Counter</a> · <a href="counter/">Apri la cassa</a></p>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="Fonti">
+<p class="src-callout-title">Conferma degli eventi · Fonti</p>
+<p>Le fonti dietro la cassa sono raccolte in un'unica pagina. <a href="../../sources.html#lab-counter">Apri le fonti →</a></p>
+</aside><!-- /src:callout -->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>

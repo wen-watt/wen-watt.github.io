@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https:; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wen Counter · cassa aperta su Solana Pay</title>
+<meta name="description" content="Una cassa che vive nel browser: mostra un QR Solana Pay, osserva la catena, segna la vendita come pagata. Nessun server, nessun app store, nessun dato di carta. Prima la devnet. Apache-2.0.">
+<meta name="theme-color" content="#0b0e18">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../../../assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wen Counter">
+<link rel="canonical" href="https://wen-watt.github.io/it-wen/lab/counter/"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter/"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter/"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter/"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter/"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter/">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="counter.css">
+</head>
+<body>
+<header><img alt="Logo del gatto Wen" src="../../../assets/icons/icon-192.png"><b>Wen Counter</b><span class="badge" id="netBadge">devnet</span></header>
+<nav role="tablist">
+<button role="tab" aria-selected="true" data-tab="sell" data-i18n="tab.sell">Vendi</button>
+<button role="tab" aria-selected="false" data-tab="ledger" data-i18n="tab.ledger">Registro</button>
+<button role="tab" aria-selected="false" data-tab="setup" data-i18n="tab.setup">Impostazioni</button>
+</nav>
+<main>
+<!-- SELL -->
+<section id="sell">
+<div id="needSetup" class="card warn" hidden>Aggiungi prima l'indirizzo di ricezione del tuo negozio nelle <a data-go="setup" href="#">Impostazioni</a>. Solo l'indirizzo pubblico: questa pagina non chiede mai chiavi.</div>
+<form id="saleForm">
+<div id="deptRow" hidden><label for="dept">Reparto o filiale</label><select id="dept"></select></div>
+<label for="amount">Importo (<span id="tokLabel">USDC</span>)</label>
+<input id="amount" class="big" inputmode="decimal" autocomplete="off" placeholder="0.00" required>
+<label for="note" data-i18n="sell.whatFor">Commento: per cosa, codice o nome del prodotto (facoltativo)</label>
+<input id="note" maxlength="60" placeholder="SKU-42 · 2 rose · tavolo 5">
+<p class="note tight" data-i18n="sell.commentNote">Va nel tuo registro e nel CSV. Se il portafoglio dell'acquirente lo supporta, viaggia anche con il pagamento come memo pubblico; altrimenti resta solo dalla tua parte.</p>
+<button class="btn" type="submit" data-i18n="sell.showQr">Mostra QR</button>
+<p class="note center"><b>Wen:</b> ti ho costruito una cassa morbidosa. Niente percentuali, niente pagamenti a me: accarezza il gatto e basta.</p>
+</form>
+<div id="pay" hidden>
+<div class="amount" id="payAmount"></div>
+<p class="dim center mono" id="payTo"></p>
+<div id="qrbox" aria-label="Codice QR Solana Pay"></div>
+<div class="status wait" id="status">In attesa del pagamento…</div>
+<p class="dim center">L'acquirente scansiona con qualsiasi portafoglio Solana Pay e conferma. Questa schermata controlla la catena da sola.</p>
+<div class="row"><button class="btn ghost" id="copyLink" type="button" data-i18n="pay.copyLink">Copia il link di pagamento</button><button class="btn ghost" id="cancel" type="button" data-i18n="pay.newSale">Nuova vendita</button></div>
+<p class="mono" id="sigLine"></p>
+<div id="receipt" class="card" hidden>
+<b data-i18n="rcpt.title">Ricevuta per l'acquirente</b>
+<p class="dim">Lascia che l'acquirente tenga ciò che preferisce: un QR da scansionare, il testo o il link alla transazione.</p>
+<div class="row"><button class="btn ghost" id="rcptQr" type="button" data-i18n="rcpt.qr">Mostra il QR della ricevuta</button><button class="btn ghost" id="rcptCopy" type="button" data-i18n="rcpt.copy">Copia la ricevuta</button></div>
+<p class="note">Non è uno scontrino fiscale: la cassa è un semplice strumento di aggregazione, non un registratore fiscale. Segui le regole sulle ricevute del tuo paese. Un NFT-ricevuta può essere emesso dal tuo portafoglio con la <a href="../receipt-warranty-wns.html">Fase 1</a>.</p>
+</div>
+</div>
+</section>
+<!-- LEDGER -->
+<section id="ledger" hidden>
+<div class="card save-hero" id="saveHero"><span class="dim" data-i18n="led.today">Oggi hai tenuto</span>
+<b id="tKept">0.00</b>
+<span class="dim" id="tLine">Ancora nessuna vendita confermata oggi.</span></div>
+<div class="card" id="estCard" hidden>
+<b>Al tuo fatturato</b>
+<p class="dim" id="estLine"></p>
+</div>
+<label for="deptFilter" data-i18n="led.show">Mostra</label>
+<select id="deptFilter"><option value="">Tutti i portafogli</option></select>
+<p class="note">Da sempre su questo dispositivo:</p>
+<div class="grid">
+<div class="stat"><b id="sCount">0</b><span>vendite confermate</span></div>
+<div class="stat"><b id="sVolume">0</b><span>volume</span></div>
+<div class="stat"><b id="sCard">0</b><span>commissioni carta che sarebbero costate</span></div>
+<div class="stat"><b id="sOff">0</b><span>costo di off-ramp (la tua impostazione)</span></div>
+<div class="stat hi"><b id="sNet">0</b><span>trattenuto dal negozio</span></div>
+<div class="stat"><b id="sMix">0%</b><span>tasso carta effettivo del tuo mix di scontrini</span></div>
+</div>
+<p class="note" id="noCompare" hidden>Imposta «1 token equivale a» nelle Impostazioni per confrontare queste vendite con le commissioni carta.</p>
+<p class="note">Commissioni di rete pagate finora dagli acquirenti: <b id="sLamports">0</b> lamport. Misurate dalle transazioni confermate, non stimate.</p>
+<div class="card">
+<b>La curva del micro-scontrino</b>
+<p class="dim">Tasso carta effettivo per dimensione dello scontrino con le tue condizioni carta. La parte fissa della commissione rende le vendite piccole le più costose; il punto è il tuo scontrino medio.</p>
+<svg id="curve" viewbox="0 0 320 170" role="img" aria-label="Tasso carta effettivo per dimensione dello scontrino"></svg>
+</div>
+<div class="card" id="byWalletCard" hidden><b>Per portafoglio · vista della sede centrale</b>
+<p class="dim">Tutte le vendite confermate su questo dispositivo, per portafoglio di ricezione e token. Ogni portafoglio può anche essere letto da chiunque in un block explorer.</p>
+<table><thead><tr><th>Portafoglio</th><th>Token</th><th>Vendite</th><th>Importo</th></tr></thead><tbody id="byWallet"></tbody></table></div>
+<table class="sales"><thead><tr><th>Ora</th><th>Importo</th><th>Nota</th><th>Tx</th><th title="Rimborso">↩</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="card"><b data-i18n="led.refunds">Rimborsi</b><p class="dim">I rimborsi sono più rari delle vendite. Fai un rimborso come nuovo pagamento dall'app del tuo portafoglio, e metti <span class="mono">refund:</span> più l'ID della transazione originale nel memo o nella nota, così chiunque può abbinare le due. Il pulsante ↩ copia quel testo. Aziende più grandi: seguite anche le vostre regole interne sui rimborsi.</p><p class="dim" id="refundMsg"></p></div>
+<div class="card"><b data-i18n="led.export">Esporta per il tuo commercialista</b>
+<label for="period" data-i18n="led.period">Periodo</label>
+<select id="period"><option value="today">Oggi</option><option value="week">Questa settimana</option><option value="month">Questo mese</option><option value="year">Quest'anno</option><option value="lastyear">Anno scorso</option><option value="q1">Q1 (gen–mar)</option><option value="q2">Q2 (apr–giu)</option><option value="q3">Q3 (lug–set)</option><option value="q4">Q4 (ott–dic)</option><option value="custom">Periodo personalizzato</option><option value="all">Tutto</option></select>
+<div class="row" id="customRange" hidden><div><label for="from">Da</label><input id="from" type="date"></div><div><label for="to">A</label><input id="to" type="date"></div></div>
+<div class="row"><button class="btn ghost" id="exportCsv" type="button" data-i18n="led.exportCsv">Esporta CSV</button></div>
+<p class="dim" id="exportMsg"></p>
+</div>
+<p class="note">Il registro vive solo in questo browser su questo dispositivo. Esportalo regolarmente.</p>
+</section>
+<!-- SETUP -->
+<section id="setup" hidden>
+<form id="lockForm" class="card" autocomplete="off"><div id="lockCard">
+<b data-i18n="lock.title">Le impostazioni sono bloccate</b>
+<p class="dim" id="lockHint"></p>
+<label for="pinIn" data-i18n="lock.pin">PIN delle impostazioni</label>
+<input id="pinIn" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
+<button class="btn" id="unlock" type="submit" data-i18n="lock.unlock">Sblocca</button>
+<p class="dim" id="pinMsg"></p>
+<p class="note tight" data-i18n="lock.why">Solo il proprietario di questo dispositivo imposta i portafogli di ricezione, così nessuno alla cassa può inserire il proprio portafoglio. Hai dimenticato il PIN? Reinstalla l'app su questo dispositivo, inserisci di nuovo i portafogli di ricezione e imposta un nuovo PIN.</p>
+</div></form>
+<form id="setupForm" hidden>
+<label for="shop" data-i18n="set.shop">Nome del negozio (mostrato nel portafoglio dell'acquirente)</label>
+<input id="shop" maxlength="40" placeholder="Angolo delle Rose">
+<label for="mainLabel">Portafoglio principale n. 1: tipo e nome (per esempio: Main · Negozio)</label>
+<div class="row"><div class="narrow"><select id="mainType" aria-label="A cosa serve il portafoglio principale"><option value="Main">Principale</option><option value="Department">Reparto</option><option value="Branch">Filiale</option><option value="Till">Cassa</option><option value="Tips">Mance</option><option value="Online">Online</option><option value="Events">Eventi</option><option value="Other">Altro</option></select></div><div><input id="mainLabel" maxlength="24" placeholder="Principale" aria-label="Nome del portafoglio principale"></div></div>
+<label for="walletName" data-i18n="set.wallet">Il tuo portafoglio di ricezione (Solana)</label>
+<select id="walletName">
+<option value="Jupiter">Jupiter Wallet</option>
+<option value="Phantom">Phantom</option>
+<option value="Solflare">Solflare</option>
+<option value="Backpack">Backpack</option>
+<option value="Squads">Squads (multisig, per i team)</option>
+<option value="Other">Un altro portafoglio Solana</option>
+</select>
+<p class="note tight" id="walletHint"></p>
+<label for="recipient" data-i18n="set.address">Indirizzo di ricezione (solo chiave pubblica)</label>
+<input id="recipient" class="mono" autocomplete="off" spellcheck="false" placeholder="Incolla l'indirizzo che il tuo portafoglio mostra in Ricevi">
+<button class="btn ghost" id="checkAddr" type="button" data-i18n="set.check">Verifica questo indirizzo on-chain</button>
+<p class="dim" id="addrResult"></p>
+<div class="card"><b data-i18n="set.more">Altri portafogli di ricezione (facoltativo)</b>
+<p class="dim">Una cassa può incassare pagamenti su più portafogli: reparti (mobili, giocattoli, giardino) o filiali. Aggiungili qui; alla cassa scegli dove va ogni vendita. Ogni portafoglio viene verificato on-chain e resta in sola ricezione.</p>
+<p class="note tight">Ogni portafoglio ha un numero, un tipo e un nome. Per esempio:</p><ul class="note tight"><li>#1 · Main · Negozio</li><li>#2 · Department · Mobili</li><li>#3 · Branch · Centro</li><li>#4 · Tips · Mance del bar</li><li>#5 · Online · Ordini web</li></ul><p class="note tight">Il registro li somma per portafoglio (vista della sede centrale); il CSV riporta numero, tipo, nome e indirizzo.</p>
+<div id="extraList"></div>
+<button class="btn ghost" id="addExtra" type="button" data-i18n="set.add">+ Aggiungi un portafoglio</button>
+</div>
+<div class="card receive-only"><b>Solo ricezione per progetto</b><p class="dim">La cassa conosce solo il tuo indirizzo pubblico. Non si collega mai al tuo portafoglio, non gli chiede mai di firmare e non detiene alcuna chiave, quindi nulla al di fuori del tuo portafoglio può inviare il tuo denaro. Rimborsi e trasferimenti sono una tua decisione, presa dentro l'app del tuo portafoglio.</p><p class="dim"><b>Wen:</b> tieni per te la tua frase di recupero. Mi serve solo il tuo indirizzo.</p></div>
+<label for="network" data-i18n="set.network">Rete</label>
+<select id="network"><option value="devnet">Devnet: test, le monete non hanno valore</option><option value="mainnet">Mainnet: denaro reale</option></select>
+<div id="mainWarn" class="card warn" hidden>La mainnet muove denaro reale. Esegui ogni passo prima sulla devnet, con un portafoglio nuovo e vuoto. Codice di esempio, non sottoposto ad audit.<label class="ink"><input class="auto" id="mainOk" type="checkbox"> Ho capito</label></div>
+<label for="rpc">Endpoint RPC (facoltativo, lascia vuoto per quello pubblico)</label>
+<input id="rpc" class="mono" placeholder="https://…">
+<p class="note tight">Molti portafogli, molte casse o un negozio molto attivo? Usa un tuo endpoint RPC di un fornitore: gli endpoint pubblici hanno limiti di frequenza. Prepara anche il lato portafoglio (chi detiene quale portafoglio, chi approva i trasferimenti).</p>
+<label for="token" data-i18n="set.accept">Accetta</label>
+<select id="token"></select>
+<div id="customTok" hidden><div class="row"><div><label for="mint">Mint del token</label><input id="mint" class="mono"></div><div class="narrow"><label for="dec">Decimali</label><input id="dec" inputmode="numeric" value="6"></div></div></div>
+<label for="unit">Per il registro: 1 token equivale, nella tua valuta, a</label>
+<input id="unit" inputmode="decimal" placeholder="1 per USDC; il tuo tasso per gli altri token">
+<p class="note tight">USDC e USDT: 1. SOL, WEN, JUP: il tuo tasso. Le commissioni carta si pagano nella tua valuta, quindi il registro converte ogni vendita a questo tasso quando viene confermata. Lascia vuoto per tenere il registro in unità di token senza il confronto con le carte.</p>
+<label for="turnover">Fatturato mensile con carta (facoltativo, per la stima)</label>
+<input id="turnover" inputmode="decimal" placeholder="e.g. 20000">
+<label for="terms">Condizioni carta da confrontare</label>
+<select id="terms"><option value="2.9|0.30">Carta online: 2,9% + 0,30</option><option value="2.6|0.10">Di persona: 2,6% + 0,10</option><option value="custom">Personalizzate</option></select>
+<div class="row"><div><label for="pct">Carta %</label><input id="pct" inputmode="decimal" value="2.9"></div><div><label for="fixed">Fisso per vendita</label><input id="fixed" inputmode="decimal" value="0.30"></div><div><label for="off">Off-ramp %</label><input id="off" inputmode="decimal" value="0"></div></div>
+<p class="note">I valori predefiniti sono un tipico piano carta pubblicato; inserisci le tue condizioni. L'off-ramp è quanto ti costa convertire in contanti, se converti (spesso 0,5–1,5%).</p>
+<button class="btn" type="submit" data-i18n="set.save">Salva</button>
+<p class="dim center" id="saved"></p>
+</form>
+<div class="card" id="pinCard" hidden><b data-i18n="pin.title">PIN delle impostazioni e dispositivo</b>
+<p class="dim" data-i18n="pin.text">Imposta il PIN che protegge queste impostazioni su questo dispositivo (da 4 a 8 cifre). Tienilo presso il proprietario, non alla cassa.</p>
+<div class="row"><div><label for="newPin" data-i18n="pin.new">Nuovo PIN</label><input id="newPin" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div><div><label for="newPin2" data-i18n="pin.repeat">Ripeti</label><input id="newPin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div></div>
+<div class="row"><button class="btn ghost" id="setPin" type="button" data-i18n="pin.set">Salva il nuovo PIN</button><button class="btn ghost" id="lockNow" type="button" data-i18n="pin.lock">Blocca le impostazioni</button></div>
+<p class="dim" id="pinSaved"></p>
+<button class="btn ghost" id="clearLedger" type="button" data-i18n="led.clear">Cancella il registro</button>
+<p class="note tight" data-i18n="pin.clearNote">Anche cancellare il registro richiede il PIN. Esportalo prima.</p>
+</div>
+<div class="card"><b>Tasse, ricevute e il tuo commercialista</b>
+<p class="dim">La cassa non dichiara nulla e non è un registratore fiscale: è un nuovo collegamento diretto tra un acquirente che paga con il telefono tramite un QR e te che ricevi. Prima di farci affidamento, mostrala al tuo commercialista o al responsabile amministrativo: di' che vuoi ricevere pagamenti su un portafoglio e dichiararli. Se le tue regole lo consentono, conserva gli estratti del portafoglio per ogni periodo, dichiara i ricavi e mostra ricevute e rimborsi. Molti paesi non lo vietano, ma la procedura di dichiarazione spetta a te verificarla. Un consiglio utile, non una consulenza legale o fiscale.</p>
+<p class="dim">Se il tuo commercialista dice sì, cresci: hai in mano un modo moderno, trasparente e gratuito di accettare pagamenti.</p></div>
+<div class="card"><b>La tua responsabilità</b>
+<p class="dim">Usi questa soluzione sotto la tua responsabilità. Noi diamo il meccanismo; non sappiamo come lo usi o cosa ci cambi. Il meccanismo in sé non prende denaro, non detiene denaro e non applica commissioni. Segue le regole della rete Solana, rigorosamente. Il portafoglio è tuo, e lo usi tu.</p>
+<p class="dim">Hai trovato un problema? Controlla il codice e diccelo: l'audit aperto fa parte della soluzione.</p></div>
+<div class="card"><b>Sicurezza e legge, in un'immagine</b>
+<p class="dim">La rete Solana è il Sole; i portafogli sono pianeti che rispondono solo ai loro proprietari; questa cassa è un telescopio che osserva arrivare i pagamenti e li annota. Non detiene mai fondi. Proprietà, rimborsi, registri e tasse si gestiscono dal lato del tuo portafoglio, sul telefono o sul computer. La cassa è gratuita e non prende nulla; sei tu il responsabile della tua attività e delle tue tasse secondo le regole del tuo paese.</p>
+<p class="dim"><b>Stai crescendo?</b> Dai a ogni cassa il suo portafoglio di cassa. Il responsabile può rimborsare gli acquirenti da lì durante la giornata e spostare gli incassi del giorno nel portafoglio aziendale (per esempio un multisig Squads) ogni sera. La cassa resta in sola ricezione.</p></div>
+<div class="card"><b data-i18n="set.install">Installa</b><p class="dim">Apri questa pagina nel browser del telefono e scegli «Aggiungi alla schermata Home». Si apre come un'app, senza app store, e tiene il registro sul dispositivo.</p></div>
+<p class="note"><a href="../counter.html">Come funziona, i numeri dietro e il codice</a> · Wen Counter Protocol 1.0 (WCP-1) · Wen Open Lab · Apache-2.0 · Gratis, non si paga nulla. Sei responsabile della tua attività e delle tue tasse. Codice di esempio, non sottoposto ad audit.</p><p class="note lang-switch" aria-label="Lingua"><a href="../../../lab/counter/" hreflang="en" lang="en">English</a> · <a href="./" hreflang="it" lang="it" aria-current="page">Italiano</a> · <a href="../../../cn-wen/lab/counter/" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="../../../ko-wen/lab/counter/" hreflang="ko" lang="ko">한국어</a></p><p class="note tr-note">Tradotto dall’inglese da Wen insieme all’AI. Il riferimento è la <a href="../../../lab/counter/index.html" hreflang="en" lang="en">pagina inglese</a>; le correzioni sono benvenute.</p>
+</section>
+</main>
+<script src="qrcode.js"></script>
+<script src="counter-core.js"></script>
+<script src="counter-i18n.js"></script>
+<script src="counter-deploy.js"></script>
+<script src="counter-app.js"></script>
+</body>
+</html>

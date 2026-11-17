@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>3단계: Solana Token-2022 규칙으로 하는 B2B 인보이스 정산</title>
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/b2b-invoices-token-2022.html">
+<meta name="description" content="Wen Open Lab 모델 3: 토큰이 수수료, 승인된 거래 상대, 필수 인보이스 메모를 강제하는 B2B 정산. 검사 13개로 테스트.">
+<!-- seo:start -->
+<meta name="keywords" content="B2B payments, invoice settlement, Token-2022, transfer fee, required memo, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="3단계: Solana Token-2022 규칙으로 하는 B2B 인보이스 정산">
+<meta property="og:description" content="Wen Open Lab 모델 3: 토큰이 수수료, 승인된 거래 상대, 필수 인보이스 메모를 강제하는 B2B 정산. 검사 13개로 테스트.">
+<meta property="og:url" content="https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg">
+<meta property="og:image:alt" content="월가의 Wen, B2B 정산">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html#page", "name": "3단계: Solana Token-2022 규칙으로 하는 B2B 인보이스 정산", "headline": "3단계: Solana Token-2022 규칙으로 하는 B2B 인보이스 정산", "description": "Wen Open Lab 모델 3: 토큰이 수수료, 승인된 거래 상대, 필수 인보이스 메모를 강제하는 B2B 정산. 검사 13개로 테스트.", "url": "https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html", "inLanguage": "ko", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg", "proficiencyLevel": "Beginner", "dependencies": "Node.js 20, @solana/web3.js, @solana/spl-token", "hasPart": {"@id": "https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html#code"}}, {"@type": "SoftwareSourceCode", "name": "모델 3: B2B 인보이스 정산 토큰", "description": "전송 수수료, 기본 동결 계정, 필수 인보이스 메모를 갖춘 Token-2022 정산 토큰.", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/blob/main/lab/code/src/03-b2b-invoice.ts", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html#code"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/ko-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "3단계: Solana Token-2022 규칙으로 하는 B2B 인보이스 정산", "item": "https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 오픈 통합</p>
+<h1>3단계: B2B 인보이스<span class="lab-badge">13개 검사 통과</span></h1><p class="lang-switch" aria-label="언어" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/b2b-invoices-token-2022.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/b2b-invoices-token-2022.html" hreflang="it" lang="it">Italiano</a> · <a href="../../cn-wen/lab/b2b-invoices-token-2022.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="b2b-invoices-token-2022.html" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="meta tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../lab/b2b-invoices-token-2022.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 단계"><li><a href="index.html">0 · 로드맵</a></li><li><a href="receipt-warranty-wns.html">1 · 영수증과 보증</a></li><li><a href="creator-royalties-wns.html">2 · 크리에이터 로열티</a></li><li><a aria-current="page" href="b2b-invoices-token-2022.html">3 · B2B 인보이스</a></li><li><a href="payments-acquiring-bridge.html">4 · 결제 브리지</a></li><li><a href="payment-simulator.html">5 · 시뮬레이터</a></li><li><a href="devnet.html">6 · Devnet: 직접 재현</a></li><li><a href="counter.html">7 · 계산대</a></li><li><a href="counter-safety.html">7.1 · 안전</a></li><li><a href="trust.html">✓ · 신뢰 사슬</a></li><li><a href="benefits.html">★ · 이점과 활용</a></li><li><a href="walkthroughs.html">✎ · 열 가지 해설</a></li><li><a href="videos.html">▶ · 영상</a></li><li><a href="findings.html">? · 독자 발견</a></li></ul>
+<figure><img src="../../wen-media/wen-wallstreet.jpeg" alt="월가의 Wen, B2B 정산" width="1200" height="675"><figcaption>토큰 안의 비즈니스 규칙</figcaption></figure>
+<p class="intro">기업 간 결제에서 어려운 것은 돈을 옮기는 일이 아니라 올바르게 옮기는 일입니다. 맞는 상대에게, 맞는 참조 번호로, 수수료까지 반영해서요. Token-2022는 이런 규칙을 토큰 안에 담을 수 있습니다. 이 모델은 인보이스 메모가 없는 결제와 아무도 승인하지 않은 거래 상대를 거부하는 정산 토큰을 만듭니다.</p>
+<aside class="wen-note" aria-label="독자 수정" id="reader-fixes"><p><span class="wen-note-kicker">독자 수정 · 2026년 11월 9일</span>독자 두 분이 이 모델을 확인하고 우리가 놓친 두 가지를 찾아 주셨습니다. 감사합니다. <strong>1. 수수료 반올림.</strong> Token-2022는 전송 수수료를 <em>올림</em>합니다. 우리 <code>expectedFee</code>는 내림을 했습니다. 25 bps에서 기본 단위 401일 때 수수료를 2가 아니라 1로 넘겼고, <code>TransferCheckedWithFee</code>는 그 결제를 거부합니다. 수정: 이제 수수료는 같은 올림 공식을 쓰며, 테스트가 기본 단위 401을 지불하고 경계 금액 열 개를 Token-2022 공식과 비교합니다. <strong>2. 메모 내용.</strong> 메모 규칙은 메모가 <em>있는지</em>만 확인하고 내용은 보지 않습니다. 인보이스 번호가 틀린 결제도 온체인에서는 통과합니다. Token-2022가 원래 그렇게 동작하므로 이제 이를 분명히 밝히고, 이를 보여 주는 테스트를 더하고, <code>matchInvoicePayment</code>를 추가했습니다. 정산은 결제에 인보이스 메모가 정확히 하나 있고 그것이 기대한 번호일 때만 받아들입니다. 증명과 함께 모든 독자 질문: <a href="findings.html">독자 발견</a>.</p></aside>
+<h2>과제</h2>
+<p>여러 회사가 서로 인보이스를 정산합니다. 모든 결제는 인보이스를 참조해야 하고, 검증된 회사만 자금을 받을 수 있으며, 네트워크 운영자는 상한이 있는 작은 수수료를 받습니다.</p>
+<h2>모델</h2>
+<table class="lab-table">
+<thead><tr><th>규칙</th><th>Token-2022 확장</th><th>효과</th></tr></thead>
+<tbody>
+<tr><td>플랫폼 수수료 0.25%, 상한 50단위</td><td>Transfer Fees</td><td>토큰이 전송할 때마다 수수료를 원천 징수</td></tr>
+<tr><td>승인된 회사만</td><td>Default Account State = Frozen</td><td>새 계정은 동결 상태로 시작하고, 발행자가 자체 KYB 확인 후 해제</td></tr>
+<tr><td>인보이스 메모 필수</td><td>Required Memo(수신 계정에)</td><td>바로 앞에 메모가 없는 결제는 거부됩니다. 메모 텍스트 자체는 온체인에서 확인하지 않으니, 정산할 때 인보이스 번호를 맞춰 보세요.</td></tr>
+</tbody>
+</table>
+<p>흐름: 발행자가 민트를 만들고, 각 회사는 메모를 요구하는 수신 계정을 열고, 발행자는 검증된 회사를 승인(동결 해제)하고, 지불자는 같은 트랜잭션 안에서 메모 <code>invoice:INV-…</code>와 전송을 보냅니다.</p>
+<h2>코드</h2>
+<p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">파일: <a href="../../lab/code/src/03-b2b-invoice.ts">lab/code/src/03-b2b-invoice.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 3: B2B settlement token with built-in rules (Token-2022, not the WNS program itself):
+//   - Transfer Fees: a platform fee taken by the token itself;
+//   - Default Account State = Frozen: only accounts the issuer thaws (verified counterparties) can hold it;
+//   - Required Memo: the receiving account rejects any payment that carries no memo at all.
+//     Token-2022 checks THAT a memo exists, not WHAT it says: a wrong invoice number still passes on-chain.
+//     Matching the invoice number is done off-chain, at reconciliation (see matchInvoicePayment below).
+// License: Apache-2.0. Example code, not audited. Devnet first. A real stablecoin issuer is a licensed entity.
+import { Keypair, PublicKey, SystemProgram, Transaction, TransactionInstruction, sendAndConfirmTransaction } from '@solana/web3.js';
+import {
+  AccountState, ExtensionType, TOKEN_2022_PROGRAM_ID,
+  createEnableRequiredMemoTransfersInstruction, createInitializeAccount3Instruction,
+  createInitializeDefaultAccountStateInstruction, createInitializeMintInstruction,
+  createInitializeTransferFeeConfigInstruction, createThawAccountInstruction,
+  createTransferCheckedWithFeeInstruction, getAccountLen, getMintLen,
+} from '@solana/spl-token';
+import { getConnection, loadKeypair } from './common.js';
+
+export const DECIMALS = 6;
+
+/** The canonical SPL Memo program that Token-2022 checks for "required memo" accounts.
+ *  Note: newer @solana/spl-memo releases default to a different program ID, so we build the memo ourselves. */
+export const SPL_MEMO_PROGRAM_ID = new PublicKey('MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr');
+
+export function memoInstruction(text: string, signer: PublicKey): TransactionInstruction {
+  return new TransactionInstruction({
+    programId: SPL_MEMO_PROGRAM_ID,
+    keys: [{ pubkey: signer, isSigner: true, isWritable: false }],
+    data: Buffer.from(text, 'utf8'),
+  });
+}
+export const FEE_BPS: number = 25;                                   // 0.25%
+export const FEE_CAP = 50n * 10n ** BigInt(DECIMALS);        // at most 50 units per transfer
+
+export const settlementMintSpace = () =&gt; getMintLen([ExtensionType.TransferFeeConfig, ExtensionType.DefaultAccountState]);
+export const invoiceAccountSpace = () =&gt; getAccountLen([ExtensionType.TransferFeeAmount, ExtensionType.MemoTransfer]);
+
+/** Issuer creates the settlement mint. It keeps the freeze authority: thawing = approving a counterparty. */
+export function buildSettlementMint(issuer: PublicKey, mint: PublicKey, rentLamports: number): TransactionInstruction[] {
+  return [
+    SystemProgram.createAccount({ fromPubkey: issuer, newAccountPubkey: mint, space: settlementMintSpace(), lamports: rentLamports, programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializeTransferFeeConfigInstruction(mint, issuer, issuer, FEE_BPS, FEE_CAP, TOKEN_2022_PROGRAM_ID),
+    createInitializeDefaultAccountStateInstruction(mint, AccountState.Frozen, TOKEN_2022_PROGRAM_ID),
+    createInitializeMintInstruction(mint, DECIMALS, issuer, issuer, TOKEN_2022_PROGRAM_ID),
+  ];
+}
+
+/** A company opens an account that demands an invoice memo on every incoming payment. */
+export function buildInvoiceAccount(company: PublicKey, account: PublicKey, mint: PublicKey, rentLamports: number, requireMemo = true): TransactionInstruction[] {
+  return [
+    SystemProgram.createAccount({ fromPubkey: company, newAccountPubkey: account, space: invoiceAccountSpace(), lamports: rentLamports, programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializeAccount3Instruction(account, mint, company, TOKEN_2022_PROGRAM_ID),
+    ...(requireMemo ? [createEnableRequiredMemoTransfersInstruction(account, company, [], TOKEN_2022_PROGRAM_ID)] : []),
+  ];
+}
+
+/** Issuer approves (thaws) an account after its own KYB checks off-chain. */
+export function buildApproveCounterparty(issuer: PublicKey, mint: PublicKey, account: PublicKey): TransactionInstruction[] {
+  return [createThawAccountInstruction(account, mint, issuer, [], TOKEN_2022_PROGRAM_ID)];
+}
+
+/** Fee the token will take: 0.25% capped at 50 units. Must match the mint config exactly.
+ *  Token-2022 rounds the fee UP (ceiling division), and TransferCheckedWithFee rejects any other value.
+ *  Example: 401 base units at 25 bps = 1.0025 -&gt; fee 2, not 1.  (Fixed 2026-11-09, reported by a reader.) */
+export function expectedFee(amount: bigint): bigint {
+  if (amount === 0n || FEE_BPS === 0) return 0n;
+  const raw = (amount * BigInt(FEE_BPS) + 9_999n) / 10_000n;
+  return raw &gt; FEE_CAP ? FEE_CAP : raw;
+}
+
+export const invoiceMemo = (invoiceId: string) =&gt; `invoice:${invoiceId}`;
+
+/** Memos written by the Memo program, read from transaction logs. The Memo program logs
+ *  'Program log: Memo (len N)' and then the text on the next line (older versions: 'Memo (len N): "text"'). */
+export function memosFromLogs(logs: string[]): string[] {
+  const out: string[] = [];
+  logs.forEach((l, i) =&gt; {
+    const m = /Memo \(len (\d+)\)(?:: "(.*)")?$/.exec(l);
+    if (!m) return;
+    if (m[2] !== undefined) out.push(m[2]);
+    else if (logs[i + 1]?.startsWith('Program log: ')) out.push(logs[i + 1].slice('Program log: '.length));
+  });
+  return out;
+}
+
+/** Reconciliation (off-chain): the on-chain rule only proves that SOME memo was attached.
+ *  Accept a payment for an invoice only if it carries exactly one invoice memo and it is the expected one. */
+export function matchInvoicePayment(logs: string[], invoiceId: string): boolean {
+  const inv = memosFromLogs(logs).filter(m =&gt; m.startsWith('invoice:'));
+  return inv.length === 1 &amp;&amp; inv[0] === invoiceMemo(invoiceId);
+}
+
+/** Pay an invoice: the memo instruction must come right before the transfer. */
+export function buildPayInvoice(args: { mint: PublicKey; from: PublicKey; to: PublicKey; payer: PublicKey; invoiceId: string | null; amount: bigint }): TransactionInstruction[] {
+  return [
+    ...(args.invoiceId ? [memoInstruction(invoiceMemo(args.invoiceId), args.payer)] : []),
+    createTransferCheckedWithFeeInstruction(args.from, args.mint, args.to, args.payer, args.amount, DECIMALS, expectedFee(args.amount), [], TOKEN_2022_PROGRAM_ID),
+  ];
+}
+
+/** Example of sending one step on a real cluster (devnet by default). */
+export async function createSettlementMint() {
+  const connection = getConnection();
+  const issuer = loadKeypair();
+  const mint = Keypair.generate();
+  const rent = await connection.getMinimumBalanceForRentExemption(settlementMintSpace());
+  await sendAndConfirmTransaction(connection, new Transaction().add(...buildSettlementMint(issuer.publicKey, mint.publicKey, rent)), [issuer, mint]);
+  return mint.publicKey;
+}</code></pre>
+<p><strong>테스트 중 발견한 실제 함정:</strong> <code>@solana/spl-memo</code>의 최신 버전은 기본값으로 다른 프로그램 ID를 씁니다. Token-2022는 정식 SPL Memo 프로그램(<code>MemoSq4g…</code>)을 확인하므로, 코드가 메모 명령을 직접 만듭니다. 패키지 이름만이 아니라 프로그램 ID를 늘 확인하세요.</p>
+<h2>검증한 내용</h2>
+<p>LiteSVM에서: 수수료 규칙과 기본 동결 규칙으로 민트를 만들고, 판매자 계정은 메모를 요구하며, 발행자가 구매자에게 자금을 넣고, 인보이스 메모가 <strong>없는</strong> 결제는 거부되고("No memo in previous instruction"), <strong>승인되지 않은</strong> 회사로의 결제는 거부되며("Account is frozen"), 인보이스 INV-2026-0042가 지급되고, 인보이스 번호가 온체인에 기록되고, 판매자는 1,000 중 997.5를 받고 2.5는 수수료로 원천 징수되며, 100,000 결제에서도 수수료 상한 50이 유지됩니다. 11월 9일부터: 수수료는 Token-2022와 똑같이 올림하고(기본 단위 401은 수수료 2), 인보이스 번호가 <strong>틀린</strong> 결제는 온체인에서는 통과하지만 정산에서 거부됩니다.</p>
+<h2>쓸모 있는 곳</h2>
+<ul>
+<li>작은 인보이스가 많은 공급망과 마켓플레이스.</li>
+<li>명확한 감사 추적이 필요한 국경 간 B2B 결제.</li>
+<li>토큰화 예금이나 스테이블코인을 쓰는 기업 자금 관리 시범 사업(<a href="../../posts/wns-w-token-2022-and-economic-solana-wen.html">신한 사례</a>처럼).</li>
+</ul>
+<h2>한계와 위험</h2>
+<ul>
+<li>안정적인 정산 토큰 발행은 규제 대상입니다. 여기서는 기술 계층만 다룹니다.</li>
+<li>발행자의 동결 권한은 강력합니다. 멀티시그와 명확한 거버넌스를 쓰세요.</li>
+<li>메모는 공개됩니다. 인보이스 번호만 쓰고 인보이스 내용은 절대 쓰지 마세요.</li>
+<li>Token-2022는 메모가 있는지만 확인하고 내용은 보지 않습니다. 틀린 인보이스 번호도 온체인에서는 통과하니, 결제는 늘 인보이스 목록과 대조하세요(<code>matchInvoicePayment</code>).</li>
+<li>수수료는 올림합니다. Token-2022와 같은 공식으로 계산하거나 민트에서 읽으세요. 단순한 정수 나눗셈은 절대 쓰지 마세요.</li>
+<li>계정에 원천 징수된 수수료는 수수료 권한자가 회수해야 합니다. 이 작업을 계획하세요.</li>
+</ul>
+<h2>그림으로 보는 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wall-street.html" title="월가가 Solana를 만나다"><img src="../../wen-media/wall-street.jpeg" alt="월가가 Solana를 만나다" loading="lazy" width="300" height="300"></a><figcaption>전통 금융, 새로운 레일</figcaption></figure><figure><a href="../../image-story/wen-market-wall-street.html" title="Wen 시장 정산 데스크"><img src="../../wen-media/wen-market-wall-street.jpeg" alt="Wen 시장 정산 데스크" loading="lazy" width="300" height="300"></a><figcaption>사라질 수 없는 인보이스</figcaption></figure><figure><a href="../../image-story/meow-wen-coin-market-wallet-exchange-wall-street.html" title="Meow Wen 비즈니스 지갑"><img src="../../wen-media/meow-wen-coin-market-wallet-exchange-wall-street.jpeg" alt="Meow Wen 비즈니스 지갑" loading="lazy" width="300" height="300"></a><figcaption>승인된 거래 상대만</figcaption></figure><figure><a href="../../image-story/jupiter-stable-coin.html" title="Jupiter 레일 위의 안정적인 정산"><img src="../../wen-media/jupiter-stable-coin.jpeg" alt="Jupiter 레일 위의 안정적인 정산" loading="lazy" width="300" height="300"></a><figcaption>안정적인 가치, 프로그래밍 가능한 규칙</figcaption></figure><figure><a href="../../image-story/wen-gold-market-coin-crypto-2025.html" title="황금 Wen 비즈니스 코인"><img src="../../wen-media/wen-gold-market-coin-crypto-2025.jpeg" alt="황금 Wen 비즈니스 코인" loading="lazy" width="300" height="300"></a><figcaption>모든 결제에 참조 번호를</figcaption></figure></div>
+<div class="lab-box">
+<h3>이 모델에서 Wen의 자리</h3>
+<p style="margin:0;">여기서 정산 토큰은 규제받는 주체가 발행한 안정적인 단위이며, WEN은 인보이스 통화로 쓰려는 것이 아닙니다. Wen의 역할은 이야기입니다. WEN 시 NFT 뒤의 표준인 WNS가 많은 사람에게 이 모델이 쓰는 Token-2022 장치를 처음 알렸습니다. 그래도 커뮤니티나 비즈니스 네트워크는 인보이스 흐름 밖에서 회원 간 소액 서비스 수수료나 팁을 WEN으로 정산할 수 있습니다.</p>
+</div>
+<div class="lab-box">
+<h3>Wen의 실: 하나의 컨트랙트, 어디에나</h3>
+<p style="margin:0 0 8px;">랩의 모든 모델은 무료이고 공개되어 있으며, 모두 같은 서명을 지닙니다. 바로 $WEN 토큰 컨트랙트입니다. 복사해 내 문서에도 적어 두고, 쓰기 전에는 반드시 익스플로러에서 확인하세요.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">확인: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">컨트랙트 ID 찾는 법</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>오픈 사용 정책</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>무료이고 공개.</strong> 랩의 모든 코드는 Wen Program Library와 같은 Apache License 2.0으로 공개됩니다. 상업적이든 아니든 쓰고, 고치고, 배포하세요. 라이선스 고지만 유지하면 됩니다.</li>
+<li><strong>오픈 도구만.</strong> 공개되어 있고 문서화된 도구로 만듭니다: Solana SPL Token-2022(Token Extensions), Wen New Standard(WNS) 토큰 구조, Solana Pay, 로컬 테스트용 LiteSVM.</li>
+<li><strong>규칙: 내 모델은 언제나 직접 검증하라.</strong> 테스트를 돌리고, devnet에서 시작하고, 공식 문서를 읽고, 모든 계정과 금액을 검토하고, 메인넷에 쓰기 전에 독립 감사를 받으세요. 검증하지 않은 모델은 모델이 아니라 추측입니다.</li>
+<li><strong>감사받지 않았고, 조언이 아닙니다.</strong> 교육용 예제입니다. 금융·법률·세무 조언이 아니며, 인가받은 결제나 은행 상품도 아닙니다. 대부분의 나라에서 결제, 스테이블코인, 결제 대행은 규제 대상 활동입니다.</li>
+<li><strong>보안.</strong> 개인 키를 웹사이트에 절대 붙여 넣지 마세요. npm 패키지 <code>@wen-community/wen-new-standard</code>는 설치하지 마세요. npm이 악성으로 삭제했습니다. 공식 소스로 빌드하세요.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Wen이 커뮤니티를 위해 전합니다. 자세한 내용은 <a href="../../privacy-policy-cookie-policy.html">편집 및 데이터 정책</a>에서.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">로드맵</a> · <a href="../../lab/code/README.md">전체 코드</a> · <a class="src-ref" href="../../sources.html#lab-b2b-invoices-token-2022-1">GitHub의 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-5-many-wallets.png" alt="카드: 계산대 하나, 여러 지갑, 본사 보기" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">새 소식 · 7단계 · Wen Counter</p><p style="margin:0 0 6px">Solana Pay 위에서 브라우저로 돌아가는 무료 오픈 계산대: 수신 전용, 판매당 0, 소유자 PIN으로 잠긴 지갑, 57개 공개 검사.</p><p style="margin:0"><a href="counter.html">솔루션 보기</a> · <a href="counter/">계산대 열기</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">소식 읽기</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="출처">
+<p class="src-callout-title">사실 확인 · 출처</p>
+<p>이 페이지 뒤의 모든 외부 출처를 한 페이지에 모았습니다. 직접 열어 보고 확인하세요. <a href="../../sources.html#lab-b2b-invoices-token-2022">이 페이지의 출처 열기 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-03-city-of-towers-friend.jpeg" alt="Wen이 다정한 초록 생물과 함께 높은 탑들의 도시를 걷는다" width="800" height="1202" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>대도시의 비즈니스: 인보이스 번호가 없으면 결제도 없고, 승인된 회사만 받을 수 있습니다.</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

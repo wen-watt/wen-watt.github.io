@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https:; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wen Counter · Solana Pay 위의 오픈 계산대</title>
+<meta name="description" content="브라우저에 사는 계산대: Solana Pay QR을 보여 주고, 체인을 지켜보고, 판매를 결제 완료로 표시합니다. 서버도, 앱스토어도, 카드 정보도 없음. devnet 먼저. Apache-2.0.">
+<meta name="theme-color" content="#0b0e18">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../../../assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wen Counter">
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/counter/"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter/"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter/"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter/"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter/"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter/">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="counter.css">
+</head>
+<body>
+<header><img alt="Wen 고양이 로고" src="../../../assets/icons/icon-192.png"><b>Wen Counter</b><span class="badge" id="netBadge">devnet</span></header>
+<nav role="tablist">
+<button role="tab" aria-selected="true" data-tab="sell" data-i18n="tab.sell">판매</button>
+<button role="tab" aria-selected="false" data-tab="ledger" data-i18n="tab.ledger">장부</button>
+<button role="tab" aria-selected="false" data-tab="setup" data-i18n="tab.setup">설정</button>
+</nav>
+<main>
+<!-- SELL -->
+<section id="sell">
+<div id="needSetup" class="card warn" hidden>먼저 <a data-go="setup" href="#">설정</a>에서 상점의 수신 주소를 추가하세요. 공개 주소만 필요하며, 이 페이지는 절대 키를 묻지 않습니다.</div>
+<form id="saleForm">
+<div id="deptRow" hidden><label for="dept">부서나 지점</label><select id="dept"></select></div>
+<label for="amount">금액(<span id="tokLabel">USDC</span>)</label>
+<input id="amount" class="big" inputmode="decimal" autocomplete="off" placeholder="0.00" required>
+<label for="note" data-i18n="sell.whatFor">메모: 용도, 상품 코드나 이름(선택)</label>
+<input id="note" maxlength="60" placeholder="SKU-42 · 장미 2송이 · 5번 테이블">
+<p class="note tight" data-i18n="sell.commentNote">장부와 CSV에 들어갑니다. 구매자의 지갑이 지원하면 공개 메모로 결제와 함께 전달되고, 아니면 당신 쪽에만 남습니다.</p>
+<button class="btn" type="submit" data-i18n="sell.showQr">QR 보기</button>
+<p class="note center"><b>Wen:</b> 폭신한 계산대를 만들어 뒀어요. 비율도, 나에게 내는 돈도 없어요. 고양이만 쓰다듬어 주세요.</p>
+</form>
+<div id="pay" hidden>
+<div class="amount" id="payAmount"></div>
+<p class="dim center mono" id="payTo"></p>
+<div id="qrbox" aria-label="Solana Pay QR 코드"></div>
+<div class="status wait" id="status">결제를 기다리는 중…</div>
+<p class="dim center">구매자가 Solana Pay를 지원하는 아무 지갑으로 스캔하고 확인합니다. 이 화면이 스스로 체인을 확인합니다.</p>
+<div class="row"><button class="btn ghost" id="copyLink" type="button" data-i18n="pay.copyLink">결제 링크 복사</button><button class="btn ghost" id="cancel" type="button" data-i18n="pay.newSale">새 판매</button></div>
+<p class="mono" id="sigLine"></p>
+<div id="receipt" class="card" hidden>
+<b data-i18n="rcpt.title">구매자 영수증</b>
+<p class="dim">구매자가 편한 것을 갖게 하세요. 스캔할 QR, 텍스트, 또는 트랜잭션 링크.</p>
+<div class="row"><button class="btn ghost" id="rcptQr" type="button" data-i18n="rcpt.qr">영수증 QR 보기</button><button class="btn ghost" id="rcptCopy" type="button" data-i18n="rcpt.copy">영수증 복사</button></div>
+<p class="note">세무 영수증이 아닙니다. 계산대는 단순한 집계 도구이지 세무 장치가 아닙니다. 해당 국가의 영수증 규정을 따르세요. 영수증 NFT는 <a href="../receipt-warranty-wns.html">1단계</a>로 지갑에서 발행할 수 있습니다.</p>
+</div>
+</div>
+</section>
+<!-- LEDGER -->
+<section id="ledger" hidden>
+<div class="card save-hero" id="saveHero"><span class="dim" data-i18n="led.today">오늘 당신이 지킨 돈</span>
+<b id="tKept">0.00</b>
+<span class="dim" id="tLine">오늘은 아직 확인된 판매가 없습니다.</span></div>
+<div class="card" id="estCard" hidden>
+<b>내 매출 기준</b>
+<p class="dim" id="estLine"></p>
+</div>
+<label for="deptFilter" data-i18n="led.show">보여 주기</label>
+<select id="deptFilter"><option value="">모든 지갑</option></select>
+<p class="note">이 기기의 전체 기간:</p>
+<div class="grid">
+<div class="stat"><b id="sCount">0</b><span>확인된 판매</span></div>
+<div class="stat"><b id="sVolume">0</b><span>거래액</span></div>
+<div class="stat"><b id="sCard">0</b><span>들었을 카드 수수료</span></div>
+<div class="stat"><b id="sOff">0</b><span>오프램프 비용(내 설정)</span></div>
+<div class="stat hi"><b id="sNet">0</b><span>상점이 지킨 돈</span></div>
+<div class="stat"><b id="sMix">0%</b><span>내 결제 조합의 실효 카드 요율</span></div>
+</div>
+<p class="note" id="noCompare" hidden>이 판매를 카드 수수료와 비교하려면 설정에서 "토큰 1개 ="를 정하세요.</p>
+<p class="note">지금까지 구매자가 낸 네트워크 수수료: <b id="sLamports">0</b> lamports. 추정이 아니라 확인된 트랜잭션에서 측정.</p>
+<div class="card">
+<b>소액 결제 곡선</b>
+<p class="dim">내 카드 조건에서 결제액 크기별 실효 카드 요율. 수수료의 고정 부분 때문에 작은 판매가 가장 비쌉니다. 점은 내 평균 결제액입니다.</p>
+<svg id="curve" viewbox="0 0 320 170" role="img" aria-label="결제액 크기별 실효 카드 요율"></svg>
+</div>
+<div class="card" id="byWalletCard" hidden><b>지갑별 · 본사 보기</b>
+<p class="dim">이 기기의 모든 확인된 판매, 수신 지갑과 토큰별. 모든 지갑은 누구나 블록 익스플로러에서 볼 수도 있습니다.</p>
+<table><thead><tr><th>지갑</th><th>토큰</th><th>판매</th><th>금액</th></tr></thead><tbody id="byWallet"></tbody></table></div>
+<table class="sales"><thead><tr><th>시간</th><th>금액</th><th>메모</th><th>Tx</th><th title="환불">↩</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="card"><b data-i18n="led.refunds">환불</b><p class="dim">환불은 판매보다 드뭅니다. 지갑 앱에서 새 결제로 환불하고, 메모에 <span class="mono">refund:</span>와 원래 트랜잭션 ID를 넣으면 누구나 두 건을 맞춰 볼 수 있습니다. ↩ 버튼이 그 텍스트를 복사합니다. 큰 회사라면 내부 환불 규칙도 따르세요.</p><p class="dim" id="refundMsg"></p></div>
+<div class="card"><b data-i18n="led.export">회계사용 내보내기</b>
+<label for="period" data-i18n="led.period">기간</label>
+<select id="period"><option value="today">오늘</option><option value="week">이번 주</option><option value="month">이번 달</option><option value="year">올해</option><option value="lastyear">작년</option><option value="q1">1분기(1–3월)</option><option value="q2">2분기(4–6월)</option><option value="q3">3분기(7–9월)</option><option value="q4">4분기(10–12월)</option><option value="custom">사용자 지정 기간</option><option value="all">전체</option></select>
+<div class="row" id="customRange" hidden><div><label for="from">시작</label><input id="from" type="date"></div><div><label for="to">끝</label><input id="to" type="date"></div></div>
+<div class="row"><button class="btn ghost" id="exportCsv" type="button" data-i18n="led.exportCsv">CSV 내보내기</button></div>
+<p class="dim" id="exportMsg"></p>
+</div>
+<p class="note">장부는 이 기기의 이 브라우저에만 있습니다. 정기적으로 내보내세요.</p>
+</section>
+<!-- SETUP -->
+<section id="setup" hidden>
+<form id="lockForm" class="card" autocomplete="off"><div id="lockCard">
+<b data-i18n="lock.title">설정이 잠겨 있습니다</b>
+<p class="dim" id="lockHint"></p>
+<label for="pinIn" data-i18n="lock.pin">설정 PIN</label>
+<input id="pinIn" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
+<button class="btn" id="unlock" type="submit" data-i18n="lock.unlock">잠금 해제</button>
+<p class="dim" id="pinMsg"></p>
+<p class="note tight" data-i18n="lock.why">이 기기의 소유자만 수신 지갑을 정하므로, 계산대의 누구도 자기 지갑을 넣을 수 없습니다. PIN을 잊으셨나요? 이 기기에 앱을 다시 설치하고, 수신 지갑을 다시 입력하고, 새 PIN을 정하세요.</p>
+</div></form>
+<form id="setupForm" hidden>
+<label for="shop" data-i18n="set.shop">상점 이름(구매자 지갑에 표시)</label>
+<input id="shop" maxlength="40" placeholder="로즈 코너">
+<label for="mainLabel">기본 지갑 #1: 유형과 이름(예: Main · 상점)</label>
+<div class="row"><div class="narrow"><select id="mainType" aria-label="기본 지갑의 용도"><option value="Main">기본</option><option value="Department">부서</option><option value="Branch">지점</option><option value="Till">계산대</option><option value="Tips">팁</option><option value="Online">온라인</option><option value="Events">이벤트</option><option value="Other">기타</option></select></div><div><input id="mainLabel" maxlength="24" placeholder="기본" aria-label="기본 지갑 이름"></div></div>
+<label for="walletName" data-i18n="set.wallet">내 수신 지갑(Solana)</label>
+<select id="walletName">
+<option value="Jupiter">Jupiter Wallet</option>
+<option value="Phantom">Phantom</option>
+<option value="Solflare">Solflare</option>
+<option value="Backpack">Backpack</option>
+<option value="Squads">Squads(멀티시그, 팀용)</option>
+<option value="Other">다른 Solana 지갑</option>
+</select>
+<p class="note tight" id="walletHint"></p>
+<label for="recipient" data-i18n="set.address">수신 주소(공개 키만)</label>
+<input id="recipient" class="mono" autocomplete="off" spellcheck="false" placeholder="지갑의 받기 화면에 보이는 주소를 붙여 넣으세요">
+<button class="btn ghost" id="checkAddr" type="button" data-i18n="set.check">이 주소를 온체인에서 확인</button>
+<p class="dim" id="addrResult"></p>
+<div class="card"><b data-i18n="set.more">수신 지갑 더 추가(선택)</b>
+<p class="dim">계산대 하나로 여러 지갑에 결제를 받을 수 있습니다. 부서(가구, 장난감, 정원)나 지점. 여기서 추가하고, 계산할 때 판매마다 갈 곳을 고르세요. 모든 지갑은 온체인에서 확인하며 수신 전용으로 남습니다.</p>
+<p class="note tight">지갑마다 번호, 유형, 이름이 있습니다. 예를 들어:</p><ul class="note tight"><li>#1 · Main · 상점</li><li>#2 · Department · 가구</li><li>#3 · Branch · 도심점</li><li>#4 · Tips · 바 팁</li><li>#5 · Online · 웹 주문</li></ul><p class="note tight">장부가 지갑별로 합산하고(본사 보기), CSV에는 번호, 유형, 이름, 주소가 담깁니다.</p>
+<div id="extraList"></div>
+<button class="btn ghost" id="addExtra" type="button" data-i18n="set.add">+ 지갑 추가</button>
+</div>
+<div class="card receive-only"><b>설계부터 수신 전용</b><p class="dim">계산대는 당신의 공개 주소만 압니다. 지갑에 연결하지 않고, 서명을 요청하지 않으며, 키를 갖지 않으므로 지갑 밖의 어떤 것도 당신의 돈을 보낼 수 없습니다. 환불과 이체는 지갑 앱 안에서 당신이 내리는 결정입니다.</p><p class="dim"><b>Wen:</b> 복구 문구는 혼자만 간직하세요. 나는 주소만 있으면 돼요.</p></div>
+<label for="network" data-i18n="set.network">네트워크</label>
+<select id="network"><option value="devnet">Devnet: 테스트, 코인은 가치 없음</option><option value="mainnet">메인넷: 실제 돈</option></select>
+<div id="mainWarn" class="card warn" hidden>메인넷에서는 실제 돈이 움직입니다. 모든 단계를 먼저 새 빈 지갑으로 devnet에서 실행하세요. 감사받지 않은 예제 코드입니다.<label class="ink"><input class="auto" id="mainOk" type="checkbox"> 이해했습니다</label></div>
+<label for="rpc">RPC 엔드포인트(선택, 비워 두면 공개 엔드포인트)</label>
+<input id="rpc" class="mono" placeholder="https://…">
+<p class="note tight">지갑이 많거나, 계산대가 많거나, 바쁜 상점인가요? 공급자의 자체 RPC 엔드포인트를 쓰세요. 공개 엔드포인트에는 호출 제한이 있습니다. 지갑 쪽도 준비하세요(누가 어느 지갑을 갖고, 누가 이체를 승인하는지).</p>
+<label for="token" data-i18n="set.accept">받을 토큰</label>
+<select id="token"></select>
+<div id="customTok" hidden><div class="row"><div><label for="mint">토큰 민트</label><input id="mint" class="mono"></div><div class="narrow"><label for="dec">소수 자릿수</label><input id="dec" inputmode="numeric" value="6"></div></div></div>
+<label for="unit">장부용: 토큰 1개 = 내 통화로</label>
+<input id="unit" inputmode="decimal" placeholder="USDC는 1, 다른 토큰은 내가 정한 환율">
+<p class="note tight">USDC와 USDT: 1. SOL, WEN, JUP: 내가 정한 환율. 카드 수수료는 내 통화로 부과되므로, 장부는 판매가 확인될 때 이 환율로 환산합니다. 비워 두면 카드 비교 없이 토큰 단위로 장부를 씁니다.</p>
+<label for="turnover">월 카드 매출(선택, 추정용)</label>
+<input id="turnover" inputmode="decimal" placeholder="e.g. 20000">
+<label for="terms">비교할 카드 조건</label>
+<select id="terms"><option value="2.9|0.30">온라인 카드: 2.9% + 0.30</option><option value="2.6|0.10">대면: 2.6% + 0.10</option><option value="custom">사용자 지정</option></select>
+<div class="row"><div><label for="pct">카드 %</label><input id="pct" inputmode="decimal" value="2.9"></div><div><label for="fixed">판매당 고정</label><input id="fixed" inputmode="decimal" value="0.30"></div><div><label for="off">오프램프 %</label><input id="off" inputmode="decimal" value="0"></div></div>
+<p class="note">기본값은 흔히 공개된 카드 요금제입니다. 내 조건을 넣으세요. 오프램프는 현금으로 바꿀 때 드는 비용입니다(바꾼다면, 흔히 0.5–1.5%).</p>
+<button class="btn" type="submit" data-i18n="set.save">저장</button>
+<p class="dim center" id="saved"></p>
+</form>
+<div class="card" id="pinCard" hidden><b data-i18n="pin.title">설정 PIN과 기기</b>
+<p class="dim" data-i18n="pin.text">이 기기에서 이 설정을 지키는 PIN을 정하세요(숫자 4~8자리). 계산대가 아니라 소유자가 보관하세요.</p>
+<div class="row"><div><label for="newPin" data-i18n="pin.new">새 PIN</label><input id="newPin" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div><div><label for="newPin2" data-i18n="pin.repeat">다시 입력</label><input id="newPin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div></div>
+<div class="row"><button class="btn ghost" id="setPin" type="button" data-i18n="pin.set">새 PIN 저장</button><button class="btn ghost" id="lockNow" type="button" data-i18n="pin.lock">설정 잠그기</button></div>
+<p class="dim" id="pinSaved"></p>
+<button class="btn ghost" id="clearLedger" type="button" data-i18n="led.clear">장부 지우기</button>
+<p class="note tight" data-i18n="pin.clearNote">장부를 지울 때도 PIN이 필요합니다. 먼저 내보내세요.</p>
+</div>
+<div class="card"><b>세금, 영수증, 그리고 회계사</b>
+<p class="dim">계산대는 아무것도 신고하지 않으며 세무 장치도 아닙니다. QR로 휴대폰 결제를 하는 구매자와 받는 당신 사이의 새롭고 직접적인 연결입니다. 믿고 쓰기 전에 회계사나 재무 책임자에게 보여 주세요. 지갑으로 결제를 받고 신고하고 싶다고 말하세요. 규정이 허용한다면 기간마다 지갑 내역을 보관하고, 수입을 신고하고, 영수증과 환불을 보여 주세요. 금지하지 않는 나라가 많지만, 신고 절차는 직접 확인해야 합니다. 법률·세무 조언이 아니라 유용한 팁입니다.</p>
+<p class="dim">회계사가 좋다고 하면 키워 보세요. 현대적이고 투명하며 무료인 결제 수단이 손에 있습니다.</p></div>
+<div class="card"><b>당신의 책임</b>
+<p class="dim">이 솔루션은 본인 책임으로 사용합니다. 우리는 장치를 줄 뿐, 당신이 어떻게 쓰고 무엇을 바꾸는지 모릅니다. 장치 자체는 돈을 가져가지도, 보관하지도, 수수료를 받지도 않습니다. Solana 네트워크의 규칙을 엄격히 따릅니다. 지갑은 당신의 것이고 당신이 씁니다.</p>
+<p class="dim">문제를 찾으셨나요? 코드를 확인하고 알려 주세요. 공개 감사도 솔루션의 일부입니다.</p></div>
+<div class="card"><b>안전과 법, 그림 하나로</b>
+<p class="dim">Solana 네트워크는 태양, 지갑은 주인의 말만 듣는 행성, 이 계산대는 결제가 도착하는 것을 지켜보고 적는 망원경입니다. 자금을 보관하지 않습니다. 소유, 환불, 기록, 세금은 휴대폰이나 컴퓨터의 지갑 쪽에서 처리합니다. 계산대는 무료이고 아무것도 가져가지 않으며, 사업과 세금은 나라의 규칙에 따라 당신이 책임집니다.</p>
+<p class="dim"><b>키우는 중인가요?</b> 계산대마다 전용 지갑을 주세요. 책임자는 낮에 그 지갑으로 구매자에게 환불하고, 매일 저녁 그날 매출을 회사 지갑(예: Squads 멀티시그)으로 옮길 수 있습니다. 계산대는 수신 전용으로 남습니다.</p></div>
+<div class="card"><b data-i18n="set.install">설치</b><p class="dim">휴대폰 브라우저에서 이 페이지를 열고 "홈 화면에 추가"를 고르세요. 앱스토어 없이 앱처럼 열리고, 장부를 기기에 보관합니다.</p></div>
+<p class="note"><a href="../counter.html">작동 방식, 그 뒤의 숫자, 코드</a> · Wen Counter Protocol 1.0(WCP-1) · Wen Open Lab · Apache-2.0 · 무료, 아무것도 청구하지 않습니다. 사업과 세금은 당신의 책임입니다. 감사받지 않은 예제 코드.</p><p class="note lang-switch" aria-label="언어"><a href="../../../lab/counter/" hreflang="en" lang="en">English</a> · <a href="../../../it-wen/lab/counter/" hreflang="it" lang="it">Italiano</a> · <a href="../../../cn-wen/lab/counter/" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="./" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="note tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../../lab/counter/index.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+</section>
+</main>
+<script src="qrcode.js"></script>
+<script src="counter-core.js"></script>
+<script src="counter-i18n.js"></script>
+<script src="counter-deploy.js"></script>
+<script src="counter-app.js"></script>
+</body>
+</html>

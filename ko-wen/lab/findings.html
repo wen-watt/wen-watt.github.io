@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Open Lab 독자 발견: 질문, 증명, 수정</title>
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/findings.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/findings.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/findings.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/findings.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/findings.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/findings.html">
+<meta name="description" content="Wen Open Lab 코드에 대한 독자 질문, 각각 테스트된 답과 함께: Token-2022가 실제로 확인하는 것, 우리가 고친 것, 알려진 한계로 남는 것.">
+<!-- seo:start -->
+<meta name="keywords" content="Wen trust chain, fact check, WEN token facts, WNS sources, IQ.wiki, verification">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Open Lab 독자 발견: 질문, 증명, 수정">
+<meta property="og:description" content="Wen Open Lab 코드에 대한 독자 질문, 각각 테스트된 답과 함께: Token-2022가 실제로 확인하는 것, 우리가 고친 것, 알려진 한계로 남는 것.">
+<meta property="og:url" content="https://wen-watt.github.io/ko-wen/lab/findings.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<meta property="og:image:alt" content="검증된 사실을 모은 Wen 고양이 위키">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://wen-watt.github.io/ko-wen/lab/findings.html#page", "name": "Wen Open Lab 독자 발견: 질문, 증명, 수정", "description": "Wen Open Lab 코드에 대한 독자 질문, 각각 테스트된 답과 함께: Token-2022가 실제로 확인하는 것, 우리가 고친 것, 알려진 한계로 남는 것.", "url": "https://wen-watt.github.io/ko-wen/lab/findings.html", "inLanguage": "ko", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "dateModified": "2026-11-09", "mainEntity": [{"@type": "Question", "name": "모델 3은 Token-2022 전송 수수료를 프로그램과 같은 방식으로 계산하나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요, 그렇지 않았습니다. Token-2022는 수수료를 올림하는데 우리 expectedFee는 내림했습니다. 2026년 11월 9일에 수정했습니다. Token-2022는 수수료를 ceil(amount × basis points ÷ 10,000)로 계산하고 최대 수수료로 상한을 두며, TransferCheckedWithFee는 다른 값을 모두 거부합니다. 우리 expectedFee는 정수 나눗셈을 썼습니다. 25 bps에서 기본 단위 401이면 프로그램은 2를 기대하는데 우리는 1을 넘겼고, 결제는 \"Calculated fee does not match expected fee\"로 실패했습니다. 이전 테스트는 두 공식이 같은 값이 나오는 정확히 1,000단위를 지불했기 때문에 이를 잡지 못했습니다. 증명: M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through와 M3 expectedFee equals the Token-2022 fee formula on edge amounts(금액 열 개를 @solana/spl-token의 calculateFee와 비교)."}}, {"@type": "Question", "name": "Required Memo 규칙은 인보이스 번호가 맞는지 확인하나요?", "acceptedAnswer": {"@type": "Answer", "text": "아니요. Token-2022는 메모가 있는지만 확인하고 내용은 보지 않습니다. 인보이스 번호는 오프체인에서 정산할 때 맞춰 보세요. 모델 3의 수신 계정에는 Required Memo 확장이 있습니다. 바로 앞에 메모 명령이 없는 전송은 거부하지만, 텍스트는 절대 읽지 않습니다. invoice:INV-WRONG-999는 물론 invoice:hello가 붙은 결제도 온체인에서 통과합니다. Token-2022가 그렇게 설계되었으므로 구조는 그대로 두고, 바뀌는 것은 설명 방식과 그 옆에 더하는 것입니다. 이제 모델에는 matchInvoicePayment가 있습니다. 트랜잭션 로그에서 메모를 읽고, 인보이스 메모가 정확히 하나이며 기대한 것일 때만 그 인보이스의 결제를 받아들입니다. 증명: M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)와 M3 reconciliation accepts the right invoice and rejects the wrong one."}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/ko-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "독자 발견", "item": "https://wen-watt.github.io/ko-wen/lab/findings.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<h1>독자 발견<span class="lab-badge">?</span></h1><p class="lang-switch" aria-label="언어" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/findings.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/findings.html" hreflang="it" lang="it">Italiano</a> · <a href="../../cn-wen/lab/findings.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="findings.html" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="meta tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../lab/findings.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 단계"><li><a href="index.html">0 · 로드맵</a></li><li><a href="receipt-warranty-wns.html">1 · 영수증과 보증</a></li><li><a href="creator-royalties-wns.html">2 · 크리에이터 로열티</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 인보이스</a></li><li><a href="payments-acquiring-bridge.html">4 · 결제 브리지</a></li><li><a href="payment-simulator.html">5 · 시뮬레이터</a></li><li><a href="devnet.html">6 · Devnet: 직접 재현</a></li><li><a href="counter.html">7 · 계산대</a></li><li><a href="counter-safety.html">7.1 · 안전</a></li><li><a href="trust.html">✓ · 신뢰 사슬</a></li><li><a href="benefits.html">★ · 이점과 활용</a></li><li><a href="walkthroughs.html">✎ · 열 가지 해설</a></li><li><a href="videos.html">▶ · 영상</a></li><li><a aria-current="page" href="findings.html">? · 독자 발견</a></li></ul>
+<p class="intro">좋은 질문이 열린 코드를 더 낫게 만듭니다. 여기서는 독자가 랩에 대해 던진 모든 질문이 증명과 함께 답을 얻습니다. 누구나 <code>npm test</code>로 돌릴 수 있는 테스트입니다. Solana가 원래 그렇게 동작한다면 원래 설계를 유지하고, 그 한계를 분명히 말하고, 틀린 것은 고칩니다.</p>
+<h2>이 페이지의 방식</h2>
+<ul>
+<li><strong>질문 하나, 채택된 답 하나.</strong> 답은 그것을 증명하는 정확한 테스트를 인용합니다.</li>
+<li><strong>상태는 정직하게:</strong> <em>수정됨</em>, <em>알려진 한계</em>, <em>문제 아님</em>, 그리고 이유.</li>
+<li><strong>공은 찾아낸 독자에게</strong> (동의할 때만 이름을).</li>
+<li><strong>아무것도 지우지 않습니다.</strong> 예전 답은 바뀐 날짜와 함께 남습니다.</li>
+</ul>
+<section class="finding" id="q1" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+<h2 style="margin-top:0">모델 3은 Token-2022 전송 수수료를 프로그램과 같은 방식으로 계산하나요?</h2>
+<p><strong>짧은 답:</strong> 아니요, 그렇지 않았습니다. Token-2022는 수수료를 올림하는데 우리 expectedFee는 내림했습니다. 2026년 11월 9일에 수정했습니다.</p>
+<p>Token-2022는 수수료를 <code>ceil(amount × basis points ÷ 10,000)</code>로 계산하고 최대 수수료로 상한을 두며, <code>TransferCheckedWithFee</code>는 다른 값을 모두 거부합니다. 우리 <code>expectedFee</code>는 정수 나눗셈을 썼습니다. 25 bps에서 기본 단위 401이면 프로그램은 2를 기대하는데 우리는 1을 넘겼고, 결제는 <em>"Calculated fee does not match expected fee"</em>로 실패했습니다. 이전 테스트는 두 공식이 같은 값이 나오는 정확히 1,000단위를 지불했기 때문에 이를 잡지 못했습니다.</p><p><strong>증명:</strong> <code>M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through</code>와 <code>M3 expectedFee equals the Token-2022 fee formula on edge amounts</code>(금액 열 개를 @solana/spl-token의 <code>calculateFee</code>와 비교).</p>
+<p style="color:var(--ink-dim);font-size:.9em">상태: 수정됨 · 독자가 발견(보고 1) · 모델 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">모델 페이지 보기</a> · 코드: lab/code/src/03-b2b-invoice.ts</p>
+</section>
+<section class="finding" id="q2" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+<h2 style="margin-top:0">Required Memo 규칙은 인보이스 번호가 맞는지 확인하나요?</h2>
+<p><strong>짧은 답:</strong> 아니요. Token-2022는 메모가 있는지만 확인하고 내용은 보지 않습니다. 인보이스 번호는 오프체인에서 정산할 때 맞춰 보세요.</p>
+<p>모델 3의 수신 계정에는 Required Memo 확장이 있습니다. 바로 앞에 메모 명령이 없는 전송은 거부하지만, 텍스트는 절대 읽지 않습니다. <code>invoice:INV-WRONG-999</code>는 물론 <code>invoice:hello</code>가 붙은 결제도 온체인에서 통과합니다. Token-2022가 그렇게 설계되었으므로 구조는 그대로 두고, 바뀌는 것은 설명 방식과 그 옆에 더하는 것입니다.</p><p>이제 모델에는 <code>matchInvoicePayment</code>가 있습니다. 트랜잭션 로그에서 메모를 읽고, 인보이스 메모가 정확히 하나이며 기대한 것일 때만 그 인보이스의 결제를 받아들입니다.</p><p><strong>증명:</strong> <code>M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)</code>와 <code>M3 reconciliation accepts the right invoice and rejects the wrong one</code>.</p>
+<p style="color:var(--ink-dim);font-size:.9em">상태: 알려진 한계, 이제 문서화되고 테스트됨 · 독자가 발견(보고 2) · 모델 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">모델 페이지 보기</a> · 코드: lab/code/src/03-b2b-invoice.ts</p>
+</section>
+<p>우리가 이렇게 일하는 이유와 이 발견에서 나온 일곱 가지 안전 점검: <a href="../../posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">신뢰 전에 증명</a>.</p>
+<p>개발자와 모두를 위해 쓴 글: dev.to의 <em>Two Token-2022 edges our tests missed</em>와 Hashnode의 <em>Proof before trust: seven safety checkpoints</em>, 둘 다 <a href="../../sources.html#com-safety">출처 페이지</a>에 링크되어 있습니다.</p>
+<h2>질문하기</h2>
+<p>코드나 해설에서 이상한 것을 찾으셨나요? 저장소에 이슈를 열어 주세요(GitHub 링크는 사이트 하단과 <a href="../../sources.html">출처 페이지</a>에 있습니다). 맞다면 테스트와 함께 여기 올라옵니다.</p>
+<p style="color:var(--ink-dim);font-size:.9em">감사받지 않은 예제 코드입니다. devnet에서만, 새 빈 지갑으로. 교육용 콘텐츠이며 금융 조언이 아닙니다.</p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="카드: 공개 검사 57개, 망가뜨릴 수 있으면 해 보세요" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">새 소식 · 7단계 · Wen Counter</p><p style="margin:0 0 6px">Solana Pay 위에서 브라우저로 돌아가는 무료 오픈 계산대: 수신 전용, 판매당 0, 소유자 PIN으로 잠긴 지갑, 57개 공개 검사.</p><p style="margin:0"><a href="counter.html">솔루션 보기</a> · <a href="counter/">계산대 열기</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">소식 읽기</a></p></div></aside>
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

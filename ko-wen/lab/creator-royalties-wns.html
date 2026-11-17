@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>2단계: Solana 위 WNS 전송 훅으로 구현하는 크리에이터 로열티</title>
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/creator-royalties-wns.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/creator-royalties-wns.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/creator-royalties-wns.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/creator-royalties-wns.html">
+<meta name="description" content="Wen Open Lab 모델 2: WNS가 Token-2022 전송 훅으로 창작자 로열티를 강제하는 방법, 어떤 NFT든 훅을 읽고 안전하게 전송하는 방법.">
+<!-- seo:start -->
+<meta name="keywords" content="NFT royalties, transfer hook, WNS royalty distribution, Token-2022, creators, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2단계: Solana 위 WNS 전송 훅으로 구현하는 크리에이터 로열티">
+<meta property="og:description" content="Wen Open Lab 모델 2: WNS가 Token-2022 전송 훅으로 창작자 로열티를 강제하는 방법, 어떤 NFT든 훅을 읽고 안전하게 전송하는 방법.">
+<meta property="og:url" content="https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-coin-style-2-3.jpeg">
+<meta property="og:image:alt" content="Wen 크리에이터 코인 아트">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-coin-style-2-3.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html#page", "name": "2단계: Solana 위 WNS 전송 훅으로 구현하는 크리에이터 로열티", "headline": "2단계: Solana 위 WNS 전송 훅으로 구현하는 크리에이터 로열티", "description": "Wen Open Lab 모델 2: WNS가 Token-2022 전송 훅으로 창작자 로열티를 강제하는 방법, 어떤 NFT든 훅을 읽고 안전하게 전송하는 방법.", "url": "https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html", "inLanguage": "ko", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-coin-style-2-3.jpeg", "proficiencyLevel": "Beginner", "dependencies": "Node.js 20, @solana/web3.js, @solana/spl-token", "hasPart": {"@id": "https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html#code"}}, {"@type": "SoftwareSourceCode", "name": "모델 2: 전송 훅으로 구현하는 크리에이터 로열티", "description": "어떤 프로그램이 NFT의 로열티를 강제하는지 읽고, 훅이 실행되도록 전송합니다.", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/blob/main/lab/code/src/02-royalty-transfer.ts", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html#code"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/ko-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "2단계: Solana 위 WNS 전송 훅으로 구현하는 크리에이터 로열티", "item": "https://wen-watt.github.io/ko-wen/lab/creator-royalties-wns.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+<style id="code-fit">article p code,article li code,article td code{overflow-wrap:anywhere;word-break:break-all}article pre{max-width:100%;overflow-x:auto}</style>
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 오픈 통합</p>
+<h1>2단계: 크리에이터 로열티<span class="lab-badge">훅 읽기 검증됨</span></h1><p class="lang-switch" aria-label="언어" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/creator-royalties-wns.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/creator-royalties-wns.html" hreflang="it" lang="it">Italiano</a> · <a href="../../cn-wen/lab/creator-royalties-wns.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="creator-royalties-wns.html" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="meta tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../lab/creator-royalties-wns.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 단계"><li><a href="index.html">0 · 로드맵</a></li><li><a href="receipt-warranty-wns.html">1 · 영수증과 보증</a></li><li><a aria-current="page" href="creator-royalties-wns.html">2 · 크리에이터 로열티</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 인보이스</a></li><li><a href="payments-acquiring-bridge.html">4 · 결제 브리지</a></li><li><a href="payment-simulator.html">5 · 시뮬레이터</a></li><li><a href="devnet.html">6 · Devnet: 직접 재현</a></li><li><a href="counter.html">7 · 계산대</a></li><li><a href="counter-safety.html">7.1 · 안전</a></li><li><a href="trust.html">✓ · 신뢰 사슬</a></li><li><a href="benefits.html">★ · 이점과 활용</a></li><li><a href="walkthroughs.html">✎ · 열 가지 해설</a></li><li><a href="videos.html">▶ · 영상</a></li><li><a href="findings.html">? · 독자 발견</a></li></ul>
+<figure><img src="../../wen-media/wen-coin-style-2-3.jpeg" alt="Wen 크리에이터 코인 아트" width="1200" height="675"><figcaption>창작자에게 돈을 돌려주는 예술</figcaption></figure>
+<p class="intro">오랫동안 NFT 로열티는 마켓플레이스가 지급할 마음이 있는지에 달려 있었습니다. WNS는 그 규칙을 토큰 안으로 옮겼습니다. 전송할 때마다 전송 훅이 실행되어 창작자 몫을 강제합니다. 이 모델은 어떤 프로그램이 NFT를 지키는지 보는 법과, 그 장치가 실제로 실행되도록 NFT를 옮기는 법을 보여 줍니다.</p>
+<h2>과제</h2>
+<p>NFT가 큰 마켓플레이스에서 팔리든, 작은 곳에서 팔리든, 지갑끼리 직접 오가든, 되팔릴 때마다 창작자가 자기 몫을 받게 합니다.</p>
+<h2>모델</h2>
+<ol>
+<li>NFT 민트에는 훅 프로그램을 지정하는 Token-2022 <strong>Transfer Hook</strong> 확장이 있습니다. WNS 자산에서는 그 프로그램이 WNS 로열티 분배입니다: <code>diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay</code>.</li>
+<li>전송할 때마다 Token-2022가 훅을 호출합니다. 훅의 조건이 충족되지 않으면 트랜잭션 전체가 되돌려집니다.</li>
+<li>훅에는 추가 계정이 필요합니다. 공식 헬퍼 <code>createTransferCheckedWithTransferHookInstruction</code>이 체인에서 읽어 오므로 지갑과 마켓플레이스가 추측할 필요가 없습니다.</li>
+</ol>
+<table class="lab-table">
+<thead><tr><th></th><th>이전(기존 NFT)</th><th>WNS 전송 훅과 함께</th></tr></thead>
+<tbody>
+<tr><td>누가 로열티를 강제하나</td><td>각 마켓플레이스, 원할 때만</td><td>토큰 자체가, 전송할 때마다</td></tr>
+<tr><td>지갑 간 판매</td><td>로열티를 쉽게 건너뜀</td><td>훅은 여전히 실행됨</td></tr>
+<tr><td>통합</td><td>마켓플레이스마다 따로</td><td>모두를 위한 하나의 표준 흐름</td></tr>
+</tbody>
+</table>
+<h2>코드</h2>
+<p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">파일: <a href="../../lab/code/src/02-royalty-transfer.ts">lab/code/src/02-royalty-transfer.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 2: creator royalties. Inspect which program enforces royalties on an NFT,
+// then transfer it so that the transfer hook (e.g. WNS royalty distribution) runs.
+// License: Apache-2.0. Example code, not audited. Devnet first.
+import { PublicKey, Transaction, sendAndConfirmTransaction } from '@solana/web3.js';
+import {
+  TOKEN_2022_PROGRAM_ID, createAssociatedTokenAccountIdempotentInstruction,
+  createTransferCheckedWithTransferHookInstruction, getAssociatedTokenAddressSync, getMint, getTransferHook,
+} from '@solana/spl-token';
+import { WNS_ROYALTY_PROGRAM_ID, detectTokenProgram, getConnection, loadKeypair } from './common.js';
+
+/** Read the transfer-hook program attached to a mint. */
+export async function inspectRoyaltyHook(mintAddress: string) {
+  const connection = getConnection();
+  const mint = new PublicKey(mintAddress);
+  const program = await detectTokenProgram(connection, mint);
+  if (!program.equals(TOKEN_2022_PROGRAM_ID)) return { mint: mintAddress, hook: null, note: 'Classic SPL token: no transfer hooks' };
+  const info = await getMint(connection, mint, 'confirmed', TOKEN_2022_PROGRAM_ID);
+  const hook = getTransferHook(info);
+  const hookProgram = hook?.programId ?? null;
+  return {
+    mint: mintAddress,
+    hook: hookProgram?.toBase58() ?? null,
+    isWnsRoyalty: hookProgram ? hookProgram.equals(WNS_ROYALTY_PROGRAM_ID) : false,
+  };
+}
+
+/** Transfer one NFT. The helper resolves the hook's extra accounts on-chain, so royalties logic runs. */
+export async function transferWithRoyalties(mintAddress: string, to: string) {
+  const connection = getConnection();
+  const owner = loadKeypair();
+  const mint = new PublicKey(mintAddress);
+  const recipient = new PublicKey(to);
+  const source = getAssociatedTokenAddressSync(mint, owner.publicKey, false, TOKEN_2022_PROGRAM_ID);
+  const destination = getAssociatedTokenAddressSync(mint, recipient, false, TOKEN_2022_PROGRAM_ID);
+
+  const transferIx = await createTransferCheckedWithTransferHookInstruction(
+    connection, source, mint, destination, owner.publicKey, 1n, 0, [], 'confirmed', TOKEN_2022_PROGRAM_ID,
+  );
+  const tx = new Transaction().add(
+    createAssociatedTokenAccountIdempotentInstruction(owner.publicKey, destination, recipient, mint, TOKEN_2022_PROGRAM_ID),
+    transferIx,
+  );
+  // If the hook rejects the transfer (for example, royalties not approved), the whole transaction rolls back.
+  return sendAndConfirmTransaction(connection, tx, [owner]);
+}
+
+// Example: npx tsx src/02-royalty-transfer.ts &lt;MINT_ADDRESS&gt;
+if (process.argv[2]) inspectRoyaltyHook(process.argv[2]).then(r =&gt; console.log(r)).catch(e =&gt; { console.error(e); process.exit(1); });</code></pre>
+<h2>검증한 내용</h2>
+<p>LiteSVM에서: WNS 로열티 프로그램을 가리키는 전송 훅이 있는 NFT 민트를 만들고, 검사 로직이 민트에서 그 프로그램을 정확히 다시 읽어 냅니다. 전송 함수는 공식 <code>@solana/spl-token</code> API로 타입 검사를 마쳤고, 처음부터 끝까지 실행하려면 실제 WNS 프로그램이 필요합니다. 이것은 <a href="index.html">로드맵</a>의 devnet 단계가 할 일입니다.</p>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="Zvk0RLFRqJk" aria-label="재생: NFT에 새겨진 로열티 · Wen Open Lab 02/10" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-lab-02-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>영상 02/10: NFT에 새겨진 로열티, 30초. 플레이어는 재생을 누른 뒤에만 YouTube에서 불러옵니다.</figcaption></figure>
+<h2>쓸모 있는 곳</h2>
+<ul>
+<li>디지털 아트, 음악, 영상 NFT.</li>
+<li>디자이너가 2차 시장에서 수익을 얻는 게임 아이템.</li>
+<li>라이선스 비가 모든 판매를 따라가는 브랜드 라이선스 수집품.</li>
+</ul>
+<h2>한계와 위험</h2>
+<ul>
+<li>훅이 보는 것은 옮겨진 토큰 수이지 가격이 아닙니다. 별도 트랜잭션으로 정산한 판매("0 SOL짜리 선물")는 비율 로열티를 피해 갈 수 있습니다. WNS는 승인 로직으로 이를 다룹니다. 믿기 전에 프로그램을 읽어 보세요.</li>
+<li>훅을 호출할 때마다 연산 단위가 듭니다. 애그리게이터는 더 요청해야 할 수 있습니다.</li>
+<li>WNS 감사는 공식적으로 완료되지 않은 것으로 기록되어 있습니다. 그에 맞게 다루세요.</li>
+</ul>
+<h2>그림으로 보는 Wen</h2>
+<div class="lab-grid"><figure><a href="../../wen-media/wen-coin-style-2-5.jpeg" title="Wen 로열티 코인 디자인"><img src="../../wen-media/wen-coin-style-2-5.jpeg" alt="Wen 로열티 코인 디자인" loading="lazy" width="300" height="300"></a><figcaption>토큰에 새겨진 로열티</figcaption></figure><figure><a href="../../image-story/best-crypto-memes-cats-we.html" title="Wen 밈 작가 갤러리"><img src="../../wen-media/best-crypto-memes-cats-we.jpeg" alt="Wen 밈 작가 갤러리" loading="lazy" width="300" height="300"></a><figcaption>밈 문화, 공정한 보상</figcaption></figure><figure><a href="../../image-story/anime-cat-crypto-wen-solana.html" title="애니메이션 풍 Wen 고양이 크리에이터"><img src="../../wen-media/anime-cat-crypto-wen-solana.jpeg" alt="애니메이션 풍 Wen 고양이 크리에이터" loading="lazy" width="300" height="300"></a><figcaption>창작자 먼저</figcaption></figure><figure><a href="../../image-story/wen-cat-anime-crypto.html" title="Wen 로열티 애니메이션 이야기"><img src="../../wen-media/wen-cat-anime-crypto.jpeg" alt="Wen 로열티 애니메이션 이야기" loading="lazy" width="300" height="300"></a><figcaption>되팔 때마다 예술가를 기억한다</figcaption></figure><figure><a href="../../image-story/memes-cats-best-crypto-wen-idol-crypto-cat.html" title="Wen 아이돌 고양이 컬렉션"><img src="../../wen-media/memes-cats-best-crypto-wen-idol-crypto-cat.jpeg" alt="Wen 아이돌 고양이 컬렉션" loading="lazy" width="300" height="300"></a><figcaption>양심 있는 컬렉션</figcaption></figure></div>
+<div class="lab-box">
+<h3>이 모델에서 Wen의 자리</h3>
+<p style="margin:0;">여기서 Wen의 발명이 작동합니다. <code>wen_royalty_distribution</code>은 Wen Program Library의 두 프로그램 중 하나입니다. 창작자 커뮤니티는 WEN으로 가격을 매기거나 팁을 줄 수 있고, 로열티 규칙 자체는 토큰 안에 남습니다. 전체 그림은 <a href="../../posts/wen-program-library-review.html">Wen Program Library 리뷰</a>에서.</p>
+</div>
+<div class="lab-box">
+<h3>Wen의 실: 하나의 컨트랙트, 어디에나</h3>
+<p style="margin:0 0 8px;">랩의 모든 모델은 무료이고 공개되어 있으며, 모두 같은 서명을 지닙니다. 바로 $WEN 토큰 컨트랙트입니다. 복사해 내 문서에도 적어 두고, 쓰기 전에는 반드시 익스플로러에서 확인하세요.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">확인: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">컨트랙트 ID 찾는 법</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>오픈 사용 정책</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>무료이고 공개.</strong> 랩의 모든 코드는 Wen Program Library와 같은 Apache License 2.0으로 공개됩니다. 상업적이든 아니든 쓰고, 고치고, 배포하세요. 라이선스 고지만 유지하면 됩니다.</li>
+<li><strong>오픈 도구만.</strong> 공개되어 있고 문서화된 도구로 만듭니다: Solana SPL Token-2022(Token Extensions), Wen New Standard(WNS) 토큰 구조, Solana Pay, 로컬 테스트용 LiteSVM.</li>
+<li><strong>규칙: 내 모델은 언제나 직접 검증하라.</strong> 테스트를 돌리고, devnet에서 시작하고, 공식 문서를 읽고, 모든 계정과 금액을 검토하고, 메인넷에 쓰기 전에 독립 감사를 받으세요. 검증하지 않은 모델은 모델이 아니라 추측입니다.</li>
+<li><strong>감사받지 않았고, 조언이 아닙니다.</strong> 교육용 예제입니다. 금융·법률·세무 조언이 아니며, 인가받은 결제나 은행 상품도 아닙니다. 대부분의 나라에서 결제, 스테이블코인, 결제 대행은 규제 대상 활동입니다.</li>
+<li><strong>보안.</strong> 개인 키를 웹사이트에 절대 붙여 넣지 마세요. npm 패키지 <code>@wen-community/wen-new-standard</code>는 설치하지 마세요. npm이 악성으로 삭제했습니다. 공식 소스로 빌드하세요.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Wen이 커뮤니티를 위해 전합니다. 자세한 내용은 <a href="../../privacy-policy-cookie-policy.html">편집 및 데이터 정책</a>에서.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">로드맵</a> · <a href="../../lab/code/README.md">전체 코드</a> · <a class="src-ref" href="../../sources.html#lab-creator-royalties-wns-1">GitHub의 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-7-im-a-cat.png" alt="카드: Wen의 말, 나는 고양이, 쓸모 있는 걸 만드세요" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">새 소식 · 7단계 · Wen Counter</p><p style="margin:0 0 6px">Solana Pay 위에서 브라우저로 돌아가는 무료 오픈 계산대: 수신 전용, 판매당 0, 소유자 PIN으로 잠긴 지갑, 57개 공개 검사.</p><p style="margin:0"><a href="counter.html">솔루션 보기</a> · <a href="counter/">계산대 열기</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">소식 읽기</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="출처">
+<p class="src-callout-title">사실 확인 · 출처</p>
+<p>이 페이지 뒤의 모든 외부 출처를 한 페이지에 모았습니다. 직접 열어 보고 확인하세요. <a href="../../sources.html#lab-creator-royalties-wns">이 페이지의 출처 열기 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-07-ancient-temple.jpeg" alt="빛나는 칼날을 든 Wen이 안개 낀 숲속 오래된 조각 사원의 문 앞에 서 있다" width="800" height="1221" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>돌에 새긴 규칙: 로열티 규칙은 NFT 안에 있습니다. 토큰을 옮기기 전에 읽어 보세요.</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>
