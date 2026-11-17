@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Open Lab：基于 WNS 和 Solana 的开放集成路线图</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/">
+<meta name="description" content="Wen Open Lab 把 Wen 和 WNS 的故事变成免费、开放的模型：Solana 上的收据、版税、B2B 发票和支付，代码经过测试。">
+<!-- seo:start -->
+<meta name="keywords" content="Wen Open Lab, WNS, Token-2022, Solana Pay, open source, roadmap, Wen crypto">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Open Lab：基于 WNS 和 Solana 的开放集成路线图">
+<meta property="og:description" content="Wen Open Lab 把 Wen 和 WNS 的故事变成免费、开放的模型：Solana 上的收据、版税、B2B 发票和支付，代码经过测试。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg">
+<meta property="og:image:alt" content="Solana 上空的 Wen 太空币">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "CollectionPage", "@id": "https://wen-watt.github.io/cn-wen/lab/#page", "name": "Wen Open Lab：基于 WNS 和 Solana 的开放集成路线图", "headline": "Wen Open Lab：基于 WNS 和 Solana 的开放集成路线图", "description": "Wen Open Lab 把 Wen 和 WNS 的故事变成免费、开放的模型：Solana 上的收据、版税、B2B 发票和支付，代码经过测试。", "url": "https://wen-watt.github.io/cn-wen/lab/", "inLanguage": "zh-CN", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-crypto-space-coin-solana.jpeg", "mainEntity": {"@type": "ItemList", "numberOfItems": 9, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "第 1 阶段：NFT 收据与保修卡", "url": "https://wen-watt.github.io/cn-wen/lab/receipt-warranty-wns.html"}, {"@type": "ListItem", "position": 2, "name": "第 2 阶段：创作者版税", "url": "https://wen-watt.github.io/cn-wen/lab/creator-royalties-wns.html"}, {"@type": "ListItem", "position": 3, "name": "第 3 阶段：B2B 发票结算", "url": "https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html"}, {"@type": "ListItem", "position": 4, "name": "第 4 阶段：Solana Pay 桥", "url": "https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html"}, {"@type": "ListItem", "position": 5, "name": "第 5 阶段：支付成本模拟器", "url": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html"}, {"@type": "ListItem", "position": 6, "name": "第 6 阶段：在 devnet 上运行", "url": "https://wen-watt.github.io/cn-wen/lab/devnet.html"}, {"@type": "ListItem", "position": 7, "name": "十篇导读", "url": "https://wen-watt.github.io/cn-wen/lab/walkthroughs.html"}, {"@type": "ListItem", "position": 8, "name": "益处与应用", "url": "https://wen-watt.github.io/cn-wen/lab/benefits.html"}, {"@type": "ListItem", "position": 9, "name": "信任链", "url": "https://wen-watt.github.io/cn-wen/lab/trust.html"}]}, "hasPart": {"@id": "https://wen-watt.github.io/cn-wen/lab/#code"}, "video": [{"@id": "https://wen-watt.github.io/cn-wen/lab/#video-9zRX8Hr6oME"}]}, {"@type": "SoftwareSourceCode", "name": "Wen Open Lab 代码", "description": "六个用 TypeScript 编写的 Token-2022 模型，附 41 项 LiteSVM 检查。", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/cn-wen/lab/#code"}, {"@type": "VideoObject", "@id": "https://wen-watt.github.io/cn-wen/lab/#video-9zRX8Hr6oME", "name": "如何在链上核验收据 · Wen Open Lab", "description": "Wen 像机器一样核验一张收据 NFT，随后展示六个开放的 Token-2022 模型和 37 项 LiteSVM 检查，全部通过。Apache-2.0 开源代码，仅限 devnet，未经审计。", "thumbnailUrl": "https://wen-watt.github.io/assets/media/lab-short-v1-poster.jpg", "uploadDate": "2026-11-03", "duration": "PT38S", "embedUrl": "https://www.youtube-nocookie.com/embed/9zRX8Hr6oME", "url": "https://www.youtube.com/shorts/9zRX8Hr6oME", "publisher": {"@id": "https://wen-watt.github.io/#org"}, "inLanguage": "zh-CN", "isFamilyFriendly": true}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 开放集成</p>
+<h1>Wen Open Lab：开放集成<span class="lab-badge">第 0 阶段 · 路线图</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/index.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/index.html" hreflang="it" lang="it">Italiano</a> · <a href="index.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/index.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/index.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a aria-current="page" href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<figure><img src="../../wen-media/wen-crypto-space-coin-solana.jpeg" alt="Solana 上空的 Wen 太空币" width="1200" height="675"><figcaption>从故事到工具：实验室启程</figcaption></figure>
+<!--wv:9zRX8Hr6oME--><section class="wv" style="display:flex;gap:22px;align-items:center;flex-wrap:wrap;margin:26px 0;padding:18px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)"><div style="position:relative;flex:0 0 220px;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="9zRX8Hr6oME" aria-label="播放：如何在链上核验收据 · Wen Open Lab" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/lab-short-v1-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><div style="flex:1 1 260px"><h2 style="margin-top:0">观看：38 秒了解实验室</h2><p>Wen 像机器一样核验一张收据，随后展示六个模型及其背后的 37 项检查。视频中的一切都是开源代码，你可以亲自运行。</p><p style="color:var(--ink-dim);font-size:.9em">更多 Wen 视频：<a href="videos.html">全部实验室视频</a> · YouTube 频道 @wen-coin。</p><p style="color:var(--ink-dim);font-size:.9em">播放器只会在你点击播放后才从 YouTube 加载。</p></div></section><!--/wv:9zRX8Hr6oME-->
+<p class="intro">了解 Wen 是什么只是第一步，实验室是第二步：我们采用 Wen 背后的开放工具——WNS 代币布局、Solana Token-2022 和 Solana Pay——构建免费、可运行的模型，供开发者、商店、金融科技团队或银行学习、测试和复用。一切都是开放的，一步一步，公开进行。</p>
+<h2>为什么要做这件事</h2>
+<p>年鉴深入介绍了 Wen：那首诗、空投、WNS 标准，以及与 Jupiter 和 Solana 的联系。但仅有描述并不等于实用。当有人能拿起一个模型，运行它、检查它并在其上构建时，实用才真正开始。实验室正是这样做的，而且是公开地做，让 Wen 的技术遗产的价值被自由分享，而不是被锁起来。</p>
+<h2>适用领域</h2>
+<table class="lab-table">
+<thead><tr><th>领域</th><th>实验室提供什么</th><th>阶段</th></tr></thead>
+<tbody>
+<tr><td>B2C 电子商务</td><td>以 NFT 形式发放的防篡改收据和保修卡、支付链接以及订单确认</td><td><a href="receipt-warranty-wns.html">1</a>, <a href="payments-acquiring-bridge.html">4</a></td></tr>
+<tr><td>创作者与交易市场</td><td>版税由代币本身强制执行，而不是靠平台的善意</td><td><a href="creator-royalties-wns.html">2</a></td></tr>
+<tr><td>B2B 贸易</td><td>内置手续费的结算、仅限获批交易对手、强制填写发票号</td><td><a href="b2b-invoices-token-2022.html">3</a></td></tr>
+<tr><td>收单与金融科技</td><td>从链上支付通往商户订单系统的技术桥梁，外加成本与速度模型</td><td><a href="payments-acquiring-bridge.html">4</a>, <a href="payment-simulator.html">5</a></td></tr>
+<tr><td>所有人</td><td>一份清晰的益处、局限与下一步地图</td><td><a href="benefits.html">★</a></td></tr>
+</tbody>
+</table>
+<h2>公开构建的路线图</h2>
+<ol class="lab-roadmap">
+<li class="done"><strong>0 · 路线图与规则。</strong>本页：目的、领域、开放使用政策、核验记录。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>1 · <a href="receipt-warranty-wns.html">收据与保修</a>。</strong>采用 WNS 布局的 Token-2022 NFT：不含个人数据的购买凭证，可选灵魂绑定保修。<span class="lab-badge">12 项检查通过</span></li>
+<li class="done"><strong>2 · <a href="creator-royalties-wns.html">创作者版税</a>。</strong>读取由哪个程序在 NFT 上执行版税，并以触发钩子的方式转移它。<span class="lab-badge">钩子读取已验证</span></li>
+<li class="done"><strong>3 · <a href="b2b-invoices-token-2022.html">B2B 发票</a>。</strong>转账手续费、获批交易对手、强制发票备注。<span class="lab-badge">9 项检查通过</span></li>
+<li class="done"><strong>4 · <a href="payments-acquiring-bridge.html">支付桥</a>。</strong>Solana Pay 链接、支付监听、校验、向商店发送 webhook。<span class="lab-badge">链接已验证</span></li>
+<li class="done"><strong>5 · <a href="payment-simulator.html">模拟器</a>。</strong>用你自己的数字比较银行卡收单与链上支付。<span class="lab-badge">可交互</span></li>
+<li class="done"><strong>★ · <a href="benefits.html">益处与用途</a>。</strong>谁获得什么、适合哪里、不适合哪里。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>6 · <a href="devnet.html">Devnet：亲自复现</a>。</strong>一个已发布的脚本在公共 devnet 上运行模型 1 和 3，并打印浏览器链接。任何人都可以用一个全新的空钱包复现。<span class="lab-badge">可直接运行</span></li>
+<li class="done"><strong>✓ · <a href="trust.html">信任链</a>。</strong>每个关键论断都标明状态和来源：已验证、据报道、观点、未验证或存在矛盾。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>✎ · <a href="walkthroughs.html">十篇导读</a>。</strong>用平实的语言介绍实验室：十篇“你知道吗”导读，附关键代码、测试与局限；新增模型 5（收据核验器）和模型 6（代币检查器）。<span class="lab-badge">37 项检查通过</span></li>
+<li class="done"><strong>7 · <a href="counter.html">Wen Counter</a>。</strong>浏览器里的免费收银台：Solana Pay 二维码、仅收款、钱包即身份、节省账本、可下载套件。<span class="lab-badge">57 项检查通过</span></li>
+<li class="done"><strong>7.1 · <a href="counter-safety.html">仅收款的安全性</a>。</strong>协议、用太阳系比喻说明法律层面、每日归集的收银钱包，以及每一项检查。<span class="lab-badge">已上线</span></li>
+<li class="next"><strong>6b · 公开 devnet 运行。</strong>公开运行脚本，并在 devnet 页面公布地址。<span class="lab-badge">下一步</span></li>
+<li class="next"><strong>12 · 用 WEN 支付，商店收到 USDC。</strong>买家用 WEN 支付，同一笔交易中的 Jupiter 兑换将其转换，商店收到稳定币。基于第 4 和第 7 阶段。<span class="lab-badge">下一个模型</span></li>
+<li class="next"><strong>8 · WNS 群组注册。</strong>通过官方程序将收据加入 WNS 合集，基于官方仓库的 IDL 构建。<span class="lab-badge">计划中</span></li>
+<li class="next"><strong>9 · 版税钩子程序示例。</strong>带测试的 Anchor 转账钩子程序，逐行对照 WNS 版税分配。<span class="lab-badge">计划中</span></li>
+<li class="next"><strong>10 · 威胁模型与审计清单。</strong>计算限制、账户替换、零价格转账、密钥管理。<span class="lab-badge">计划中</span></li>
+<li class="next"><strong>11 · 商户插件草图。</strong>网店如何通过 webhook 将支付桥连接到自己的订单系统。<span class="lab-badge">计划中</span></li>
+</ol>
+<h2 id="verification-log">核验记录</h2>
+<p>模型 1–6 在 <strong>LiteSVM</strong> 中执行。这是一个本地 Solana 虚拟机，运行真实的 SPL Token-2022 和 Memo 程序，不联网，也不使用真实资金。反例与正例同样重要：灵魂绑定收据必须拒绝转移，没有发票备注的付款必须失败。最近一次运行的输出（2026 年 11 月 9 日，41 项检查）：</p>
+<pre class="lab-code"><code>PASS  M1 receipt minted (soulbound=true)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 soulbound receipt cannot be transferred  — rejected by Token-2022
+PASS  M1 nobody can mint a second copy
+PASS  M1 receipt minted (soulbound=false)
+PASS  M1 supply is exactly 1, decimals 0, mint authority removed
+PASS  M1 metadata inside the mint: name, order hash, warranty date  — warranty_until=2027-10-10
+PASS  M1 buyer holds the receipt
+PASS  M1 transferable receipt can be resold or gifted
+PASS  M1 nobody can mint a second copy
+PASS  M3 settlement mint created (fee 0.25% cap 50, frozen by default)
+PASS  M3 seller account requires an invoice memo
+PASS  M3 issuer funds the buyer account
+PASS  M3 payment WITHOUT an invoice memo is rejected  — Program log: Error: No memo in previous instruction required for recipient to receive a transfer
+PASS  M3 payment to a NOT approved company is rejected (account frozen)  — Program log: Error: Account is frozen
+PASS  M3 invoice INV-2026-0042 paid with memo to approved company
+PASS  M3 invoice number is recorded on-chain (memo in logs)
+PASS  M3 seller received amount minus fee; fee withheld for the platform  — received 997.5, fee 2.5
+PASS  M3 fee cap works (fee on 100,000 is 50, not 250)
+PASS  M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through
+PASS  M3 expectedFee equals the Token-2022 fee formula on edge amounts  — 10 amounts
+PASS  M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)
+PASS  M3 reconciliation accepts the right invoice and rejects the wrong one
+PASS  M2 NFT mint created with a transfer hook
+PASS  M2 hook program read from the mint = WNS royalty distribution  — diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay
+PASS  M4 payment link round-trips: recipient, amount, token, reference, memo  — solana:WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk?amount=10…
+PASS  M4 every order gets a unique reference
+PASS  M5 genuine soulbound card passes every check  — 8 checks
+PASS  M5 a different order is rejected (hash mismatch)  — order hash matches the buyer's order
+PASS  M5 a card from another issuer is rejected  — issued by the expected shop (update authority)
+PASS  M5 an expired warranty is rejected  — warranty still valid
+PASS  M5 a wallet that does not hold the card is rejected  — held by the expected wallet
+PASS  M5 a transferable (not soulbound) card is flagged  — soulbound: NonTransferable extension present
+PASS  M6 classic SPL mint: no extensions, both authorities reported  — Mint authority is set / Freeze authority is set
+PASS  M6 Token-2022 mint created with permanent delegate and transfer fee
+PASS  M6 permanent delegate is flagged for holders
+PASS  M6 transfer fee is read from the mint (1% capped)  — PermanentDelegate, TransferFeeConfig
+PASS  M6 removed authorities are reported as none
+PASS  M6 a wallet address is refused, not parsed as a mint
+
+ALL CHECKS PASSED</code></pre>
+<p>构建过程中发现了两个真实的陷阱，这正是“核验你自己的模型”这条规则的由来：npm 包 <code>@wen-community/wen-new-standard</code> 因恶意已被移除；而 <code>@solana/spl-memo</code> 的新版本指向的备注程序，并不是 Token-2022 所检查的规范程序。代码中已处理这两点。</p>
+<h2>亲自运行</h2>
+<pre class="lab-code"><code># get the files from lab/code/ (package.json, tsconfig.json, src/, test/)
+npm install
+npm run typecheck   # TypeScript, strict mode
+npm test            # local Solana VM, no network, no real funds</code></pre>
+<p>在 devnet 上：用 Solana CLI 创建钱包，申领 devnet SOL，然后在调用各文件中的发送函数之前设置 <code>KEYPAIR</code>，并可选设置 <code>RPC_URL</code>。请从一个全新的空钱包开始。</p>
+<h2>延伸阅读</h2>
+<ul>
+<li><a href="../../posts/wen-open-lab-review.html">Wen Open Lab 综述</a>——用一个故事讲完整个板块，附 devnet 计划和下一个模型</li>
+<li><a href="../../posts/wen-program-library-review.html">Wen Program Library 综述</a>——WNS 背后的代码，逐节解读</li>
+<li><a href="../../spl-solana-program-library-token-2022-wns.html">SPL、Token-2022 与 WNS 详解</a></li>
+<li><a href="../../posts/ultimate-solana-token-2022-and-wen-compliance-and-testing.html">Solana Token-2022 与 WEN：合规与测试</a></li>
+<!-- retro:lab -->
+<li><a href="../../posts/wen-new-standard-wns-0-0-wen-crypto-inform.html">WNS 0.0 详解</a>——2024 年 1 月的提案，实验室的每个模型都以它为基础</li>
+<li><a href="../../posts/solana-successfully-endures-peak-traffic-stress-test-during-wen-token-launch-catalyzing-wns-adoption.html">发行日压力测试</a>——WEN 空投如何考验 Solana，并带动了 WNS 的采用</li>
+<li><a href="../../posts/new-wen-crypto-listing-and-alt-cat-season-begins-soon.html">不止是梗</a>——铸币地址、权限和供应量：任何代币都该核验什么</li>
+<li><a href="../../posts/wen-crypto-price-today-03-october-2025-autumn.html">链上数字解读</a>——公开数据作为公共服务</li>
+<li><a href="../../posts/tokens-with-the-most-integrated-program-ids-is-wen-coin.html">集成程序最多</a>——以 Solana 程序数量衡量的实用性</li><!-- /retro:lab -->
+<li><a href="../../wen-media/wns-standart-wen-solana-crypto-2024-2026.pdf">WNS 标准，Solana 上的 Wen 2024–2026（PDF）</a></li>
+</ul>
+<h2>图说 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wen-crypto-solana-memecoin-space.html" title="开放太空中的 Wen 猫"><img src="../../wen-media/wen-crypto-solana-memecoin-space.jpeg" alt="开放太空中的 Wen 猫" loading="lazy" width="300" height="300"></a><figcaption>默认开放</figcaption></figure><figure><a href="../../wen-media/star-wen.jpeg" title="Wen，开源代码之星"><img src="../../wen-media/star-wen.jpeg" alt="Wen，开源代码之星" loading="lazy" width="300" height="300"></a><figcaption>每个阶段都公开</figcaption></figure><figure><a href="../../wen-media/wen-ufo-style-coin.jpeg" title="Wen 飞碟硬币探索者"><img src="../../wen-media/wen-ufo-style-coin.jpeg" alt="Wen 飞碟硬币探索者" loading="lazy" width="300" height="300"></a><figcaption>探索真实用例</figcaption></figure><figure><a href="../../wen-media/new-crypto-standarts-wen-1.jpeg" title="Wen 新标准，开放协议"><img src="../../wen-media/new-crypto-standarts-wen-1.jpeg" alt="Wen 新标准，开放协议" loading="lazy" width="300" height="300"></a><figcaption>基于开放标准构建</figcaption></figure><figure><a href="../../wen-media/wen-solana-style.jpeg" title="给建设者的 Wen 能量"><img src="../../wen-media/wen-solana-style.jpeg" alt="给建设者的 Wen 能量" loading="lazy" width="300" height="300"></a><figcaption>把能量变成实用</figcaption></figure></div>
+<div class="lab-box">
+<h3>Wen 在此模型中的位置</h3>
+<p style="margin:0;">Wen 是这个实验室存在的原因。WEN 的故事让 WNS——这些模型背后的 Token-2022 标准——走向了大众（同质化代币 WEN 本身使用的是原始 SPL Token 程序）。下面每个模型都为 WEN 留出了一个可选、诚实的位置：作为支付或小费选项、忠诚度奖励，或仅仅作为社区对这项工作的签名。轨道本身是开放的，适用于任何代币。</p>
+</div>
+<div class="lab-box">
+<h3>Wen 的主线：一个合约，处处可见</h3>
+<p style="margin:0 0 8px;">实验室的每个模型都免费且开放，并带着同一个签名：$WEN 代币合约。复制它，在你自己的文档中重复它，使用前务必在浏览器上核验。</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">核验：<a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">如何找到合约 ID</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>开放使用政策</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>免费且开放。</strong>实验室的全部代码以 Apache License 2.0 发布，与 Wen Program Library 相同。无论是否商用，都可以使用、修改、发布；请保留许可声明。</li>
+<li><strong>只用开放工具。</strong>基于公开且有文档的工具构建：Solana SPL Token-2022（Token Extensions）、Wen New Standard（WNS）的代币布局、Solana Pay，以及用于本地测试的 LiteSVM。</li>
+<li><strong>规则：始终核验你自己的模型。</strong>运行测试，从 devnet 开始，阅读官方文档，检查每个账户和金额，并在任何主网使用之前获得独立审计。未经核验的模型不是模型，而是猜测。</li>
+<li><strong>未经审计，不构成建议。</strong>这些是教学示例，不构成金融、法律或税务建议，也不是持牌的支付或银行产品。在大多数国家，支付、稳定币和收单都是受监管的活动。</li>
+<li><strong>安全。</strong>切勿把私钥粘贴到任何网站。不要安装 npm 包 <code>@wen-community/wen-new-standard</code>：npm 已因恶意将其移除。请从官方来源构建。</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">由 Wen 为社区讲述。更多内容见我们的<a href="../../privacy-policy-cookie-policy.html">编辑与数据政策</a>。</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">路线图</a> · <a href="../../lab/code/README.md">全部代码</a> · <a class="src-ref" href="../../sources.html#lab-index-1">GitHub 上的 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-1-coffee.png" alt="卡片：一杯咖啡被抽 12.9%；Wen Counter 每笔 0 费用" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">新上线 · 第 7 阶段 · Wen Counter</p><p style="margin:0 0 6px">在浏览器中运行于 Solana Pay 的免费开放收银台：仅收款、每笔 0 费用、钱包由店主 PIN 锁定、57 项公开检查。</p><p style="margin:0"><a href="counter.html">查看方案</a> · <a href="counter/">打开收银台</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>本页背后的所有外部来源都汇集在一个页面上，供你自行公开研究和核验。<a href="../../sources.html#lab-index">打开本页来源 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-01-desert-two-suns.jpeg" alt="穿白色宇航服的小猫 Wen 在两个太阳下的沙漠里举着一把发光的蓝色光刃" width="800" height="1219" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>Wen 带着一套开放工具出发：六个经过测试的 Token-2022 模型，人人免费。</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+<script src="../../assets/js/wen-float.js?v=20261106" data-watch="videos.html" defer></script>
+</body>
+</html>

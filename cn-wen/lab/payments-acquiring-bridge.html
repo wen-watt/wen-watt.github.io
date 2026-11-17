@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>第 4 阶段：面向电商与收单的 Solana Pay 桥</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/payments-acquiring-bridge.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/payments-acquiring-bridge.html">
+<meta name="description" content="Wen Open Lab 模型 4：网店创建 Solana Pay 链接，凭参考号找到付款、校验并通知自己的订单系统。">
+<!-- seo:start -->
+<meta name="keywords" content="Solana Pay, e-commerce payments, acquiring, payment webhook, USDC, WEN, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第 4 阶段：面向电商与收单的 Solana Pay 桥">
+<meta property="og:description" content="Wen Open Lab 模型 4：网店创建 Solana Pay 链接，凭参考号找到付款、校验并通知自己的订单系统。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/behance-crypto-wen-payment-method.jpeg">
+<meta property="og:image:alt" content="Wen 支付方式设计">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/behance-crypto-wen-payment-method.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html#page", "name": "第 4 阶段：面向电商与收单的 Solana Pay 桥", "headline": "第 4 阶段：面向电商与收单的 Solana Pay 桥", "description": "Wen Open Lab 模型 4：网店创建 Solana Pay 链接，凭参考号找到付款、校验并通知自己的订单系统。", "url": "https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html", "inLanguage": "zh-CN", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/behance-crypto-wen-payment-method.jpeg", "proficiencyLevel": "Beginner", "dependencies": "Node.js 20, @solana/web3.js, @solana/spl-token", "hasPart": {"@id": "https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html#code"}}, {"@type": "SoftwareSourceCode", "name": "模型 4：Solana Pay 支付桥", "description": "每笔订单带唯一参考号、并在链上校验的 Solana Pay 链接。", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/blob/main/lab/code/src/04-solana-pay-bridge.ts", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html#code"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "第 4 阶段：面向电商与收单的 Solana Pay 桥", "item": "https://wen-watt.github.io/cn-wen/lab/payments-acquiring-bridge.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 开放集成</p>
+<h1>第 4 阶段：支付桥<span class="lab-badge">链接已验证</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/payments-acquiring-bridge.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/payments-acquiring-bridge.html" hreflang="it" lang="it">Italiano</a> · <a href="payments-acquiring-bridge.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/payments-acquiring-bridge.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/payments-acquiring-bridge.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a aria-current="page" href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<figure><img src="../../wen-media/behance-crypto-wen-payment-method.jpeg" alt="Wen 支付方式设计" width="1200" height="675"><figcaption>一种向所有人开放的新支付方式</figcaption></figure>
+<p class="intro">银行卡收单为商店做三件事：收款、确认、通知商店系统。这个模型在 Solana 上用开放的 Solana Pay 标准做同样的事：每笔订单一个支付链接或二维码，一个通过唯一参考号找到付款的监听器，一套严格的校验，以及发往商店的 webhook。</p>
+<h2>任务</h2>
+<p>让网店在 Solana 上收款，并自动把订单标记为已付款，可靠程度与商店对银行卡收单机构的期望相同。</p>
+<h2>模型</h2>
+<ol>
+<li><strong>创建。</strong>商店为每笔订单生成一个 Solana Pay 链接，包含收款方、金额、代币、一个唯一的随机 <em>reference</em> 地址、一个标签和备注 <code>order:ID</code>。链接会变成按钮或二维码。</li>
+<li><strong>支付。</strong>顾客在任意支持 Solana Pay 的钱包中打开并确认。</li>
+<li><strong>查找。</strong>商店服务器向链查询包含该参考地址的交易。</li>
+<li><strong>校验。</strong>检查收款方、金额、代币、参考号和备注。任何不对都会抛出错误。</li>
+<li><strong>通知。</strong>把 <code>{orderId, status: "paid", signature}</code> 发送到商店的 webhook。订单系统随即发货。</li>
+</ol>
+<table class="lab-table">
+<thead><tr><th></th><th>银行卡收单</th><th>这座桥</th></tr></thead>
+<tbody>
+<tr><td>确认</td><td>数秒内授权，数天后到账</td><td>数秒内确认，约 13 秒最终确定</td></tr>
+<tr><td>费用</td><td>按比例收费，外加每笔固定费用</td><td>网络费，不到一美分，外加可能的兑换成本</td></tr>
+<tr><td>拒付</td><td>有：保护买家，商店承担风险</td><td>没有：退款是商店发起的一笔新付款</td></tr>
+<tr><td>监管</td><td>由持牌收单机构处理</td><td>视国家而定；可能需要持牌合作方</td></tr>
+</tbody>
+</table>
+<h2>代码</h2>
+<p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">文件：<a href="../../lab/code/src/04-solana-pay-bridge.ts">lab/code/src/04-solana-pay-bridge.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 4: a payment bridge for e-commerce. The shop creates a Solana Pay link/QR for an order,
+// watches the chain for the payment by its unique reference, validates amount and token,
+// then notifies its own order system (the same role a card acquirer's callback plays).
+// License: Apache-2.0. Example code, not audited. Devnet first. Built on @solana/pay + @solana/kit.
+import { encodeURL, findReference, validateTransfer, FindReferenceError } from '@solana/pay';
+import { address, createSolanaRpc, generateKeyPairSigner, type Address } from '@solana/kit';
+
+/** Tokens a shop may accept. USDC for stable prices; $WEN as an optional community payment. */
+export const ACCEPTED = {
+  USDC_MAINNET: address('EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'),
+  WEN_MAINNET: address('WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk'),
+} as const;
+
+export interface PaymentRequest {
+  orderId: string;
+  recipient: Address;      // the shop's wallet
+  amount: number;          // in token units, e.g. 24.99
+  splToken?: Address;      // omit for SOL
+  reference: Address;      // unique per order: how the shop finds the payment
+  url: string;             // solana: URL to show as a link or QR
+}
+
+export async function createPaymentRequest(orderId: string, recipient: Address, amount: number, splToken?: Address): Promise&lt;PaymentRequest&gt; {
+  const reference = (await generateKeyPairSigner()).address;   // random, never reused
+  const url = encodeURL({
+    recipient, amount, splToken, reference,
+    label: 'Wen Open Lab demo shop',
+    message: `Order ${orderId}`,
+    memo: `order:${orderId}`,
+  });
+  return { orderId, recipient, amount, splToken, reference, url: url.toString() };
+}
+
+/** Poll until the payment appears, then validate it and call the shop's webhook. */
+export async function waitForPayment(req: PaymentRequest, opts: { rpcUrl: string; webhook: string; timeoutMs?: number }) {
+  const rpc = createSolanaRpc(opts.rpcUrl);
+  const deadline = Date.now() + (opts.timeoutMs ?? 5 * 60_000);
+  while (Date.now() &lt; deadline) {
+    try {
+      const found = await findReference(rpc, req.reference, { commitment: 'confirmed' });
+      // Throws if recipient, amount, token, reference or memo do not match the request.
+      await validateTransfer(rpc, found.signature, {
+        recipient: req.recipient, amount: req.amount, splToken: req.splToken, reference: req.reference, memo: `order:${req.orderId}`,
+      }, { commitment: 'confirmed' });
+      await fetch(opts.webhook, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ orderId: req.orderId, status: 'paid', signature: found.signature }),
+      });
+      return found.signature;
+    } catch (e) {
+      if (!(e instanceof FindReferenceError)) throw e;   // not found yet: keep waiting
+      await new Promise(r =&gt; setTimeout(r, 1500));
+    }
+  }
+  throw new Error(`Order ${req.orderId}: payment not found before timeout`);
+}</code></pre>
+<h2>已验证的内容</h2>
+<p>支付链接经过官方 Solana Pay 解析器往返一次后，收款方、金额、代币、参考号和备注保持不变，每笔订单都获得唯一的参考号。监听和校验使用官方的 <code>findReference</code> 与 <code>validateTransfer</code>，并已通过类型检查；在真实链上运行它们属于 devnet 阶段。</p>
+<h2>用在哪里</h2>
+<ul>
+<li>面向全球加密原生顾客的网店。</li>
+<li>即时结算很重要的数字商品、门票和订阅。</li>
+<li>在银行卡之外探索接受稳定币的支付服务商和银行。</li>
+</ul>
+<h2>局限与风险</h2>
+<ul>
+<li>价格波动：用稳定币标价，或在结账时兑换。</li>
+<li>兑换成法币（出金）有自己的费用和规则。</li>
+<li>没有拒付意味着商店必须提供清晰的退款政策。</li>
+<li>生产环境请使用自己的 RPC 端点；公共端点有频率限制。</li>
+</ul>
+<p>想知道你店里的数字？试试<a href="payment-simulator.html">模拟器</a>。</p>
+<h2>图说 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wen-jup-mobile.html" title="Jupiter Mobile 上的 Wen"><img src="../../wen-media/wen-jup-mobile.jpeg" alt="Jupiter Mobile 上的 Wen" loading="lazy" width="300" height="300"></a><figcaption>用手机支付</figcaption></figure><figure><a href="../../wen-media/solana-seeker-wen-coin.jpeg" title="带 Wen 币的 Solana Seeker"><img src="../../wen-media/solana-seeker-wen-coin.jpeg" alt="带 Wen 币的 Solana Seeker" loading="lazy" width="300" height="300"></a><figcaption>钱包就在口袋里</figcaption></figure><figure><a href="../../image-story/wen-crypto-wallet-2.html" title="Wen 加密钱包结账"><img src="../../wen-media/wen-crypto-wallet-2.jpeg" alt="Wen 加密钱包结账" loading="lazy" width="300" height="300"></a><figcaption>数秒完成结账</figcaption></figure><figure><a href="../../image-story/jup-exchange-wallet.html" title="Jupiter 钱包支付"><img src="../../wen-media/jup-exchange-wallet.jpeg" alt="Jupiter 钱包支付" loading="lazy" width="300" height="300"></a><figcaption>任何代币，一个标准</figcaption></figure><figure><a href="../../image-story/wen-crypto-memecoin-solana-ecosystem-jupiter-mobile.html" title="Wen 生态移动支付"><img src="../../wen-media/wen-crypto-memecoin-solana-ecosystem-jupiter-mobile.jpeg" alt="Wen 生态移动支付" loading="lazy" width="300" height="300"></a><figcaption>从二维码到确认订单</figcaption></figure></div>
+<div class="lab-box">
+<h3>Wen 在此模型中的位置</h3>
+<p style="margin:0;">商店自己选择接受哪些代币。USDC 让价格保持稳定；WEN 可以作为社区支付选项提供，其合约在代码中写作 <code>ACCEPTED.WEN_MAINNET</code>。接受任何代币之前，先检查是哪个代币程序拥有它的铸币（<a href="../../lab/code/src/common.ts">common.ts</a> 中的辅助函数 <code>detectTokenProgram</code> 可以做到），并在 devnet 上测试完整流程。</p>
+</div>
+<div class="lab-box">
+<h3>Wen 的主线：一个合约，处处可见</h3>
+<p style="margin:0 0 8px;">实验室的每个模型都免费且开放，并带着同一个签名：$WEN 代币合约。复制它，在你自己的文档中重复它，使用前务必在浏览器上核验。</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">核验：<a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">如何找到合约 ID</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>开放使用政策</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>免费且开放。</strong>实验室的全部代码以 Apache License 2.0 发布，与 Wen Program Library 相同。无论是否商用，都可以使用、修改、发布；请保留许可声明。</li>
+<li><strong>只用开放工具。</strong>基于公开且有文档的工具构建：Solana SPL Token-2022（Token Extensions）、Wen New Standard（WNS）的代币布局、Solana Pay，以及用于本地测试的 LiteSVM。</li>
+<li><strong>规则：始终核验你自己的模型。</strong>运行测试，从 devnet 开始，阅读官方文档，检查每个账户和金额，并在任何主网使用之前获得独立审计。未经核验的模型不是模型，而是猜测。</li>
+<li><strong>未经审计，不构成建议。</strong>这些是教学示例，不构成金融、法律或税务建议，也不是持牌的支付或银行产品。在大多数国家，支付、稳定币和收单都是受监管的活动。</li>
+<li><strong>安全。</strong>切勿把私钥粘贴到任何网站。不要安装 npm 包 <code>@wen-community/wen-new-standard</code>：npm 已因恶意将其移除。请从官方来源构建。</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">由 Wen 为社区讲述。更多内容见我们的<a href="../../privacy-policy-cookie-policy.html">编辑与数据政策</a>。</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">路线图</a> · <a href="../../lab/code/README.md">全部代码</a> · <a class="src-ref" href="../../sources.html#lab-payments-acquiring-bridge-1">GitHub 上的 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-1-coffee.png" alt="卡片：一杯咖啡被抽 12.9%；Wen Counter 每笔 0 费用" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">新上线 · 第 7 阶段 · Wen Counter</p><p style="margin:0 0 6px">在浏览器中运行于 Solana Pay 的免费开放收银台：仅收款、每笔 0 费用、钱包由店主 PIN 锁定、57 项公开检查。</p><p style="margin:0"><a href="counter.html">查看方案</a> · <a href="counter/">打开收银台</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>本页背后的所有外部来源都汇集在一个页面上，供你自行公开研究和核验。<a href="../../sources.html#lab-payments-acquiring-bridge">打开本页来源 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-02-cockpit-hyperspace.jpeg" alt="Wen 驾驶星舰穿过深空中的光带" width="800" height="1221" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>以一个区块的速度支付：每笔订单一个参考号，商店无需猜测就能找到每一笔付款。</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

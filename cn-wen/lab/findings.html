@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Open Lab 读者发现：问题、证明与修正</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/findings.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/findings.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/findings.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/findings.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/findings.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/findings.html">
+<meta name="description" content="读者关于 Wen Open Lab 代码的提问，每个都有经过测试的回答：Token-2022 真正检查什么、我们修复了什么、什么仍是已知局限。">
+<!-- seo:start -->
+<meta name="keywords" content="Wen trust chain, fact check, WEN token facts, WNS sources, IQ.wiki, verification">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Open Lab 读者发现：问题、证明与修正">
+<meta property="og:description" content="读者关于 Wen Open Lab 代码的提问，每个都有经过测试的回答：Token-2022 真正检查什么、我们修复了什么、什么仍是已知局限。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/findings.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<meta property="og:image:alt" content="Wen 猫的已核实事实百科">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/roadmap-wen-cat-wiki.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "FAQPage", "@id": "https://wen-watt.github.io/cn-wen/lab/findings.html#page", "name": "Wen Open Lab 读者发现：问题、证明与修正", "description": "读者关于 Wen Open Lab 代码的提问，每个都有经过测试的回答：Token-2022 真正检查什么、我们修复了什么、什么仍是已知局限。", "url": "https://wen-watt.github.io/cn-wen/lab/findings.html", "inLanguage": "zh-CN", "isAccessibleForFree": true, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "dateModified": "2026-11-09", "mainEntity": [{"@type": "Question", "name": "模型 3 计算 Token-2022 转账手续费的方式与程序一致吗？", "acceptedAnswer": {"@type": "Answer", "text": "不一致。Token-2022 对手续费向上取整；我们的 expectedFee 向下取整。已于 2026 年 11 月 9 日修复。 Token-2022 按 ceil(amount × basis points ÷ 10,000) 计算手续费，并以最高手续费为上限，TransferCheckedWithFee 会拒绝任何其他值。我们的 expectedFee 用的是整数除法。对 401 个基本单位、25 bps，程序期望 2，我们传了 1，付款失败并报 \"Calculated fee does not match expected fee\"。我们之前的测试恰好支付 1,000 个单位，两个公式在这里结果一致，所以没发现问题。 证明：M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through 和 M3 expectedFee equals the Token-2022 fee formula on edge amounts（十个金额，与 @solana/spl-token 的 calculateFee 对比）。"}}, {"@type": "Question", "name": "Required Memo 规则会检查发票号是否正确吗？", "acceptedAnswer": {"@type": "Answer", "text": "不会。Token-2022 只检查备注是否存在，不检查内容。请在链下对账时核对发票号。 模型 3 的收款账户带有 Required Memo 扩展。它会拒绝紧邻之前没有备注指令的转账，但从不读取文本。带 invoice:INV-WRONG-999、甚至 invoice:hello 的付款都能在链上通过。Token-2022 就是这样设计的，所以架构保持不变；改变的是我们的描述方式，以及我们在旁边增加的东西。 模型现在有了 matchInvoicePayment：它从交易日志中读取备注，只有当恰好有一条发票备注且正是预期的那一条时，才接受该发票的付款。 证明：M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain) 和 M3 reconciliation accepts the right invoice and rejects the wrong one。"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "读者发现", "item": "https://wen-watt.github.io/cn-wen/lab/findings.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<h1>读者发现<span class="lab-badge">?</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/findings.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/findings.html" hreflang="it" lang="it">Italiano</a> · <a href="findings.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/findings.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/findings.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a aria-current="page" href="findings.html">? · 读者发现</a></li></ul>
+<p class="intro">好问题让开源代码变得更好。在这里，读者对实验室提出的每个问题都会得到附有证明的回答：一个任何人都能用 <code>npm test</code> 运行的测试。当原设计本就是 Solana 的工作方式时我们保留它，坦白说明其局限，并修正错误的地方。</p>
+<h2>本页如何运作</h2>
+<ul>
+<li><strong>一个问题，一个采纳的回答。</strong>回答会引用证明它的具体测试。</li>
+<li><strong>状态是诚实的：</strong><em>已修复</em>、<em>已知局限</em>或<em>不是问题</em>，并附理由。</li>
+<li><strong>功劳归于发现它的读者</strong>（只有本人同意时才署名）。</li>
+<li><strong>什么都不删除。</strong>旧回答保留，并注明修改日期。</li>
+</ul>
+<section class="finding" id="q1" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+<h2 style="margin-top:0">模型 3 计算 Token-2022 转账手续费的方式与程序一致吗？</h2>
+<p><strong>简短回答：</strong>不一致。Token-2022 对手续费向上取整；我们的 expectedFee 向下取整。已于 2026 年 11 月 9 日修复。</p>
+<p>Token-2022 按 <code>ceil(amount × basis points ÷ 10,000)</code> 计算手续费，并以最高手续费为上限，<code>TransferCheckedWithFee</code> 会拒绝任何其他值。我们的 <code>expectedFee</code> 用的是整数除法。对 401 个基本单位、25 bps，程序期望 2，我们传了 1，付款失败并报 <em>"Calculated fee does not match expected fee"</em>。我们之前的测试恰好支付 1,000 个单位，两个公式在这里结果一致，所以没发现问题。</p><p><strong>证明：</strong><code>M3 fee rounds up like Token-2022 (401 base units: fee 2, not 1) and the payment goes through</code> 和 <code>M3 expectedFee equals the Token-2022 fee formula on edge amounts</code>（十个金额，与 @solana/spl-token 的 <code>calculateFee</code> 对比）。</p>
+<p style="color:var(--ink-dim);font-size:.9em">状态：已修复 · 由读者发现（报告 1）· 模型 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">查看模型页面</a> · 代码：lab/code/src/03-b2b-invoice.ts</p>
+</section>
+<section class="finding" id="q2" style="margin:26px 0;padding:18px 20px;border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel)">
+<h2 style="margin-top:0">Required Memo 规则会检查发票号是否正确吗？</h2>
+<p><strong>简短回答：</strong>不会。Token-2022 只检查备注是否存在，不检查内容。请在链下对账时核对发票号。</p>
+<p>模型 3 的收款账户带有 Required Memo 扩展。它会拒绝紧邻之前没有备注指令的转账，但从不读取文本。带 <code>invoice:INV-WRONG-999</code>、甚至 <code>invoice:hello</code> 的付款都能在链上通过。Token-2022 就是这样设计的，所以架构保持不变；改变的是我们的描述方式，以及我们在旁边增加的东西。</p><p>模型现在有了 <code>matchInvoicePayment</code>：它从交易日志中读取备注，只有当恰好有一条发票备注且正是预期的那一条时，才接受该发票的付款。</p><p><strong>证明：</strong><code>M3 a WRONG invoice number still passes the on-chain memo rule (known limit: reconcile off-chain)</code> 和 <code>M3 reconciliation accepts the right invoice and rejects the wrong one</code>。</p>
+<p style="color:var(--ink-dim);font-size:.9em">状态：已知局限，现已记录并测试 · 由读者发现（报告 2）· 模型 3 · <a href="b2b-invoices-token-2022.html#reader-fixes">查看模型页面</a> · 代码：lab/code/src/03-b2b-invoice.ts</p>
+</section>
+<p>我们为什么这样工作，以及从这些发现中得出的七个安全检查点：<a href="../../posts/proof-before-trust-safety-checkpoints-wen-open-lab.html">先证明，再信任</a>。</p>
+<p>为开发者和所有人写的文章：dev.to 上的 <em>Two Token-2022 edges our tests missed</em> 和 Hashnode 上的 <em>Proof before trust: seven safety checkpoints</em>，链接都在<a href="../../sources.html#com-safety">来源页面</a>上。</p>
+<h2>提问</h2>
+<p>在代码或导读中发现了奇怪的地方？在代码仓库提交 issue（GitHub 链接在网站页脚和<a href="../../sources.html">来源页面</a>上）。如果站得住脚，它就会带着测试出现在这里。</p>
+<p style="color:var(--ink-dim);font-size:.9em">示例代码，未经审计。只用 devnet，配全新的空钱包。教育内容，不构成财务建议。</p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="卡片：57 项公开检查，能弄坏就弄坏它" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">新上线 · 第 7 阶段 · Wen Counter</p><p style="margin:0 0 6px">在浏览器中运行于 Solana Pay 的免费开放收银台：仅收款、每笔 0 费用、钱包由店主 PIN 锁定、57 项公开检查。</p><p style="margin:0"><a href="counter.html">查看方案</a> · <a href="counter/">打开收银台</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a></p></div></aside>
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

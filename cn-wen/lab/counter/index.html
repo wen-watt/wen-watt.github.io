@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https:; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wen Counter · 基于 Solana Pay 的开放收银台</title>
+<meta name="description" content="住在浏览器里的收银台：显示 Solana Pay 二维码、监听链、把销售标记为已付款。无服务器，无应用商店，无银行卡数据。先用 devnet。Apache-2.0。">
+<meta name="theme-color" content="#0b0e18">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="../../../assets/icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Wen Counter">
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/counter/"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter/"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter/"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter/"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter/"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter/">
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="counter.css">
+</head>
+<body>
+<header><img alt="Wen 猫标志" src="../../../assets/icons/icon-192.png"><b>Wen Counter</b><span class="badge" id="netBadge">devnet</span></header>
+<nav role="tablist">
+<button role="tab" aria-selected="true" data-tab="sell" data-i18n="tab.sell">销售</button>
+<button role="tab" aria-selected="false" data-tab="ledger" data-i18n="tab.ledger">账本</button>
+<button role="tab" aria-selected="false" data-tab="setup" data-i18n="tab.setup">设置</button>
+</nav>
+<main>
+<!-- SELL -->
+<section id="sell">
+<div id="needSetup" class="card warn" hidden>请先在<a data-go="setup" href="#">设置</a>中添加你店铺的收款地址。只需公开地址：本页从不索要密钥。</div>
+<form id="saleForm">
+<div id="deptRow" hidden><label for="dept">部门或分店</label><select id="dept"></select></div>
+<label for="amount">金额（<span id="tokLabel">USDC</span>）</label>
+<input id="amount" class="big" inputmode="decimal" autocomplete="off" placeholder="0.00" required>
+<label for="note" data-i18n="sell.whatFor">备注：用途、商品编码或名称（可选）</label>
+<input id="note" maxlength="60" placeholder="SKU-42 · 2 支玫瑰 · 5 号桌">
+<p class="note tight" data-i18n="sell.commentNote">写入你的账本和 CSV。如果买家的钱包支持，它还会作为公开备注随付款传送；否则只留在你这一侧。</p>
+<button class="btn" type="submit" data-i18n="sell.showQr">显示二维码</button>
+<p class="note center"><b>Wen：</b>我给你做了一个毛茸茸的收银台。不抽成，不用付我钱：摸摸猫就好。</p>
+</form>
+<div id="pay" hidden>
+<div class="amount" id="payAmount"></div>
+<p class="dim center mono" id="payTo"></p>
+<div id="qrbox" aria-label="Solana Pay 二维码"></div>
+<div class="status wait" id="status">等待付款……</div>
+<p class="dim center">买家用任意 Solana Pay 钱包扫码并确认。本界面会自动检查链上状态。</p>
+<div class="row"><button class="btn ghost" id="copyLink" type="button" data-i18n="pay.copyLink">复制支付链接</button><button class="btn ghost" id="cancel" type="button" data-i18n="pay.newSale">新销售</button></div>
+<p class="mono" id="sigLine"></p>
+<div id="receipt" class="card" hidden>
+<b data-i18n="rcpt.title">给买家的收据</b>
+<p class="dim">让买家留下最合适的：可扫描的二维码、文本，或交易链接。</p>
+<div class="row"><button class="btn ghost" id="rcptQr" type="button" data-i18n="rcpt.qr">显示收据二维码</button><button class="btn ghost" id="rcptCopy" type="button" data-i18n="rcpt.copy">复制收据</button></div>
+<p class="note">这不是税务收据：收银台只是简单的汇总工具，不是税控设备。请遵守你所在国家的收据规定。可以用<a href="../receipt-warranty-wns.html">第 1 阶段</a>从你的钱包发放收据 NFT。</p>
+</div>
+</div>
+</section>
+<!-- LEDGER -->
+<section id="ledger" hidden>
+<div class="card save-hero" id="saveHero"><span class="dim" data-i18n="led.today">今天你留下了</span>
+<b id="tKept">0.00</b>
+<span class="dim" id="tLine">今天还没有已确认的销售。</span></div>
+<div class="card" id="estCard" hidden>
+<b>按你的营业额</b>
+<p class="dim" id="estLine"></p>
+</div>
+<label for="deptFilter" data-i18n="led.show">展示</label>
+<select id="deptFilter"><option value="">全部钱包</option></select>
+<p class="note">本设备上的全部记录：</p>
+<div class="grid">
+<div class="stat"><b id="sCount">0</b><span>笔已确认销售</span></div>
+<div class="stat"><b id="sVolume">0</b><span>交易额</span></div>
+<div class="stat"><b id="sCard">0</b><span>本该支付的银行卡费用</span></div>
+<div class="stat"><b id="sOff">0</b><span>出金成本（你的设置）</span></div>
+<div class="stat hi"><b id="sNet">0</b><span>商店留存</span></div>
+<div class="stat"><b id="sMix">0%</b><span>你订单组合的实际银行卡费率</span></div>
+</div>
+<p class="note" id="noCompare" hidden>在设置中设定“1 个代币等于”，即可把这些销售与银行卡费用比较。</p>
+<p class="note">买家迄今支付的网络费：<b id="sLamports">0</b> lamports。根据已确认交易测量，而非估算。</p>
+<div class="card">
+<b>小额订单曲线</b>
+<p class="dim">按你的银行卡条款，不同订单额对应的实际银行卡费率。费用中的固定部分让小额销售最贵；圆点是你的平均订单额。</p>
+<svg id="curve" viewbox="0 0 320 170" role="img" aria-label="按订单额计的实际银行卡费率"></svg>
+</div>
+<div class="card" id="byWalletCard" hidden><b>按钱包 · 总部视图</b>
+<p class="dim">本设备上所有已确认的销售，按收款钱包和代币分列。任何人也都可以在区块浏览器中查看每个钱包。</p>
+<table><thead><tr><th>钱包</th><th>代币</th><th>销售</th><th>金额</th></tr></thead><tbody id="byWallet"></tbody></table></div>
+<table class="sales"><thead><tr><th>时间</th><th>金额</th><th>备注</th><th>交易</th><th title="退款">↩</th></tr></thead><tbody id="rows"></tbody></table>
+<div class="card"><b data-i18n="led.refunds">退款</b><p class="dim">退款比销售少见。请在钱包应用中以一笔新付款完成退款，并在备注中写上 <span class="mono">refund:</span> 加原交易 ID，任何人都能把两笔对应起来。↩ 按钮会复制这段文字。较大的公司：还请遵守内部退款规定。</p><p class="dim" id="refundMsg"></p></div>
+<div class="card"><b data-i18n="led.export">导出给会计</b>
+<label for="period" data-i18n="led.period">时段</label>
+<select id="period"><option value="today">今天</option><option value="week">本周</option><option value="month">本月</option><option value="year">今年</option><option value="lastyear">去年</option><option value="q1">Q1（1–3 月）</option><option value="q2">Q2（4–6 月）</option><option value="q3">Q3（7–9 月）</option><option value="q4">Q4（10–12 月）</option><option value="custom">自定义时段</option><option value="all">全部</option></select>
+<div class="row" id="customRange" hidden><div><label for="from">从</label><input id="from" type="date"></div><div><label for="to">到</label><input id="to" type="date"></div></div>
+<div class="row"><button class="btn ghost" id="exportCsv" type="button" data-i18n="led.exportCsv">导出 CSV</button></div>
+<p class="dim" id="exportMsg"></p>
+</div>
+<p class="note">账本只存在于本设备的这个浏览器中。请定期导出。</p>
+</section>
+<!-- SETUP -->
+<section id="setup" hidden>
+<form id="lockForm" class="card" autocomplete="off"><div id="lockCard">
+<b data-i18n="lock.title">设置已锁定</b>
+<p class="dim" id="lockHint"></p>
+<label for="pinIn" data-i18n="lock.pin">设置 PIN</label>
+<input id="pinIn" type="password" inputmode="numeric" maxlength="8" autocomplete="off">
+<button class="btn" id="unlock" type="submit" data-i18n="lock.unlock">解锁</button>
+<p class="dim" id="pinMsg"></p>
+<p class="note tight" data-i18n="lock.why">只有本设备的所有者才能设定收款钱包，收银台的任何人都无法换上自己的钱包。忘记 PIN？在本设备上重装应用，重新输入收款钱包，设定新 PIN。</p>
+</div></form>
+<form id="setupForm" hidden>
+<label for="shop" data-i18n="set.shop">店名（显示在买家钱包中）</label>
+<input id="shop" maxlength="40" placeholder="玫瑰角">
+<label for="mainLabel">主钱包 #1：类型和名称（例如：Main · 店铺）</label>
+<div class="row"><div class="narrow"><select id="mainType" aria-label="主钱包的用途"><option value="Main">主</option><option value="Department">部门</option><option value="Branch">分店</option><option value="Till">收银台</option><option value="Tips">小费</option><option value="Online">线上</option><option value="Events">活动</option><option value="Other">其他</option></select></div><div><input id="mainLabel" maxlength="24" placeholder="主钱包" aria-label="主钱包名称"></div></div>
+<label for="walletName" data-i18n="set.wallet">你的收款钱包（Solana）</label>
+<select id="walletName">
+<option value="Jupiter">Jupiter Wallet</option>
+<option value="Phantom">Phantom</option>
+<option value="Solflare">Solflare</option>
+<option value="Backpack">Backpack</option>
+<option value="Squads">Squads（多签，适合团队）</option>
+<option value="Other">其他 Solana 钱包</option>
+</select>
+<p class="note tight" id="walletHint"></p>
+<label for="recipient" data-i18n="set.address">收款地址（仅公钥）</label>
+<input id="recipient" class="mono" autocomplete="off" spellcheck="false" placeholder="粘贴钱包在“接收”下显示的地址">
+<button class="btn ghost" id="checkAddr" type="button" data-i18n="set.check">在链上核验此地址</button>
+<p class="dim" id="addrResult"></p>
+<div class="card"><b data-i18n="set.more">更多收款钱包（可选）</b>
+<p class="dim">一个收银台可以把款项收进多个钱包：部门（家具、玩具、园艺）或分店。在这里添加；结账时选择每笔销售进入哪里。每个钱包都在链上核验，并保持仅收款。</p>
+<p class="note tight">每个钱包都有编号、类型和名称。例如：</p><ul class="note tight"><li>#1 · Main · 店铺</li><li>#2 · Department · 家具</li><li>#3 · Branch · 市中心</li><li>#4 · Tips · 吧台小费</li><li>#5 · Online · 网上订单</li></ul><p class="note tight">账本按钱包汇总（总部视图）；CSV 带有编号、类型、名称和地址。</p>
+<div id="extraList"></div>
+<button class="btn ghost" id="addExtra" type="button" data-i18n="set.add">+ 添加钱包</button>
+</div>
+<div class="card receive-only"><b>设计上仅收款</b><p class="dim">收银台只知道你的公开地址。它从不连接你的钱包，从不请求签名，也不持有任何密钥，所以钱包之外的任何东西都无法转出你的钱。退款和转账由你决定，在你的钱包应用里完成。</p><p class="dim"><b>Wen：</b>助记词只留给自己。我只需要你的地址。</p></div>
+<label for="network" data-i18n="set.network">网络</label>
+<select id="network"><option value="devnet">Devnet：测试，币没有价值</option><option value="mainnet">主网：真实资金</option></select>
+<div id="mainWarn" class="card warn" hidden>主网转移的是真实资金。请先用全新的空钱包在 devnet 上运行每一步。示例代码，未经审计。<label class="ink"><input class="auto" id="mainOk" type="checkbox"> 我明白</label></div>
+<label for="rpc">RPC 端点（可选，留空则使用公共端点）</label>
+<input id="rpc" class="mono" placeholder="https://…">
+<p class="note tight">钱包多、收银台多，或者店铺很忙？请使用服务商提供的自有 RPC 端点：公共端点有频率限制。钱包端也要准备好（谁持有哪个钱包，谁批准转账）。</p>
+<label for="token" data-i18n="set.accept">接受</label>
+<select id="token"></select>
+<div id="customTok" hidden><div class="row"><div><label for="mint">代币铸币地址</label><input id="mint" class="mono"></div><div class="narrow"><label for="dec">小数位</label><input id="dec" inputmode="numeric" value="6"></div></div></div>
+<label for="unit">用于账本：1 个代币等于多少你的货币</label>
+<input id="unit" inputmode="decimal" placeholder="USDC 填 1；其他代币填你自己的汇率">
+<p class="note tight">USDC 和 USDT：1。SOL、WEN、JUP：用你自己的汇率。银行卡费用以你的货币收取，所以账本在每笔销售确认时按此汇率换算。留空则账本以代币单位记录，不做银行卡比较。</p>
+<label for="turnover">每月银行卡营业额（可选，用于估算）</label>
+<input id="turnover" inputmode="decimal" placeholder="e.g. 20000">
+<label for="terms">用于比较的银行卡条款</label>
+<select id="terms"><option value="2.9|0.30">线上刷卡：2.9% + 0.30</option><option value="2.6|0.10">线下：2.6% + 0.10</option><option value="custom">自定义</option></select>
+<div class="row"><div><label for="pct">银行卡 %</label><input id="pct" inputmode="decimal" value="2.9"></div><div><label for="fixed">每笔固定费用</label><input id="fixed" inputmode="decimal" value="0.30"></div><div><label for="off">出金 %</label><input id="off" inputmode="decimal" value="0"></div></div>
+<p class="note">默认值是典型的公开银行卡费率；请填入你自己的条款。出金是你兑换现金的成本（如果你兑换的话，通常 0.5–1.5%）。</p>
+<button class="btn" type="submit" data-i18n="set.save">保存</button>
+<p class="dim center" id="saved"></p>
+</form>
+<div class="card" id="pinCard" hidden><b data-i18n="pin.title">设置 PIN 与设备</b>
+<p class="dim" data-i18n="pin.text">设定在本设备上保护这些设置的 PIN（4 到 8 位数字）。由店主保管，不要放在收银台。</p>
+<div class="row"><div><label for="newPin" data-i18n="pin.new">新 PIN</label><input id="newPin" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div><div><label for="newPin2" data-i18n="pin.repeat">再次输入</label><input id="newPin2" type="password" inputmode="numeric" maxlength="8" autocomplete="new-password"></div></div>
+<div class="row"><button class="btn ghost" id="setPin" type="button" data-i18n="pin.set">保存新 PIN</button><button class="btn ghost" id="lockNow" type="button" data-i18n="pin.lock">锁定设置</button></div>
+<p class="dim" id="pinSaved"></p>
+<button class="btn ghost" id="clearLedger" type="button" data-i18n="led.clear">清空账本</button>
+<p class="note tight" data-i18n="pin.clearNote">清空账本也需要 PIN。请先导出。</p>
+</div>
+<div class="card"><b>税务、收据和你的会计</b>
+<p class="dim">收银台不做任何申报，也不是税控设备：它是用手机扫码付款的买家和收款的你之间一条新的直接连接。在依赖它之前，先给你的会计或财务负责人看看：说明你想把款项收进钱包并如实申报。如果你的规定允许，就保存每个时段的钱包流水，申报收入，并列出收据和退款。很多国家并不禁止，但申报流程需要你自己确认。这是实用提示，不是法律或税务建议。</p>
+<p class="dim">如果你的会计同意，就扩大规模吧：你手里有一种现代、透明、免费的收款方式。</p></div>
+<div class="card"><b>你的责任</b>
+<p class="dim">你使用本方案，责任自负。我们提供机制；我们不知道你如何使用它，也不知道你改了什么。机制本身不拿钱、不持有钱、不收手续费。它严格遵循 Solana 网络的规则。钱包属于你，由你自己使用。</p>
+<p class="dim">发现问题了？检查代码并告诉我们：公开审计是方案的一部分。</p></div>
+<div class="card"><b>安全与法律，一幅图说明</b>
+<p class="dim">Solana 网络是太阳；钱包是只听命于主人的行星；这个收银台是一架望远镜，看着付款到达并记录下来。它从不持有资金。所有权、退款、记录和税务都在你的钱包一侧处理，在你的手机或电脑上。收银台免费，什么都不拿；你按本国规定为自己的生意和税务负责。</p>
+<p class="dim"><b>在扩张？</b>给每个收银台配一个专属收银钱包。经理白天可以从中给买家退款，每晚把当天营业款转入公司钱包（例如 Squads 多签）。收银台始终仅收款。</p></div>
+<div class="card"><b data-i18n="set.install">安装</b><p class="dim">在手机浏览器中打开本页，选择“添加到主屏幕”。它会像应用一样打开，无需应用商店，并把账本保存在设备上。</p></div>
+<p class="note"><a href="../counter.html">工作原理、背后的数字和代码</a> · Wen Counter Protocol 1.0（WCP-1）· Wen Open Lab · Apache-2.0 · 免费，不收任何费用。你对自己的生意和税务负责。示例代码，未经审计。</p><p class="note lang-switch" aria-label="语言"><a href="../../../lab/counter/" hreflang="en" lang="en">English</a> · <a href="../../../it-wen/lab/counter/" hreflang="it" lang="it">Italiano</a> · <a href="./" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../../ko-wen/lab/counter/" hreflang="ko" lang="ko">한국어</a></p><p class="note tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../../lab/counter/index.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+</section>
+</main>
+<script src="qrcode.js"></script>
+<script src="counter-core.js"></script>
+<script src="counter-i18n.js"></script>
+<script src="counter-deploy.js"></script>
+<script src="counter-app.js"></script>
+</body>
+</html>

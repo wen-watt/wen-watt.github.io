@@ -31,6 +31,18 @@
     ['videos.html', '&#9654; Videos'],
     ['findings.html', '? Reader findings']
   ];
+  // Translated copies of the Lab (/it-wen/, /cn-wen/, /ko-wen/) set data-lab="" so the Lab links stay in their language
+  var labAttr = scriptEl ? scriptEl.getAttribute('data-lab') : null;
+  var labBase = labAttr === null ? p + 'lab/' : labAttr;
+  var LAB_I18N = {
+    'it': ['0 · Roadmap', '1 · Ricevute e garanzia', '2 · Royalty per i creatori', '3 · Fatture B2B', '4 · Ponte pagamenti', '5 · Simulatore', '6 · Devnet: ripetilo', '7 · Cassa', '7.1 · Sicurezza', '&#10003; Catena della fiducia', '&#9733; Vantaggi e usi', '&#9998; Dieci guide', '&#9654; Video', '? Scoperte dei lettori'],
+    'zh-CN': ['0 · 路线图', '1 · 收据与保修', '2 · 创作者版税', '3 · B2B 发票', '4 · 支付桥', '5 · 模拟器', '6 · Devnet：亲自复现', '7 · 收银台', '7.1 · 安全', '&#10003; 信任链', '&#9733; 益处与用途', '&#9998; 十篇导读', '&#9654; 视频', '? 读者发现'],
+    'ko': ['0 · 로드맵', '1 · 영수증과 보증', '2 · 크리에이터 로열티', '3 · B2B 인보이스', '4 · 결제 브리지', '5 · 시뮬레이터', '6 · Devnet: 직접 재현', '7 · 계산대', '7.1 · 안전', '&#10003; 신뢰 사슬', '&#9733; 이점과 활용', '&#9998; 열 가지 해설', '&#9654; 영상', '? 독자 발견']
+  };
+  var docLang = (document.documentElement.getAttribute('lang') || 'en');
+  if (labAttr !== null && LAB_I18N[docLang]) {
+    for (var li = 0; li < LAB_STAGES.length; li++) LAB_STAGES[li][1] = LAB_I18N[docLang][li] || LAB_STAGES[li][1];
+  }
   var path = (window.location && window.location.pathname) || '';
   var inLab = /\/lab\//.test(path);
   var here = path.split('/').pop() || 'index.html';
@@ -38,7 +50,7 @@
   var labSub = '<ul class="lab-sub" id="lab-sub">';
   for (var i = 0; i < LAB_STAGES.length; i++) {
     var cur = (inLab && LAB_STAGES[i][0] === here) ? ' aria-current="page"' : '';
-    labSub += '<li><a href="' + p + 'lab/' + LAB_STAGES[i][0] + '"' + cur + '>' + LAB_STAGES[i][1] + '</a></li>';
+    labSub += '<li><a href="' + labBase + LAB_STAGES[i][0] + '"' + cur + '>' + LAB_STAGES[i][1] + '</a></li>';
   }
   labSub += '</ul>';
 
@@ -63,7 +75,7 @@
     + '  <nav class="key-pages" aria-label="Key pages">'
     + '    <ul>'
     + '      <li><a href="' + p + 'about-wen-token-wen-coin-crypto.html#wen-crypto">About Wen token, WEN coin crypto</a></li>'
-    + '      <li class="has-sub' + (inLab ? ' open' : '') + '"><a href="' + p + 'lab/index.html"><strong>&#9733; Wen Open Lab</strong></a><button type="button" class="sub-toggle" aria-controls="lab-sub" aria-expanded="' + (inLab ? 'true' : 'false') + '" aria-label="Show Wen Open Lab stages"></button>' + labSub + '</li>'
+    + '      <li class="has-sub' + (inLab ? ' open' : '') + '"><a href="' + labBase + 'index.html"><strong>&#9733; Wen Open Lab</strong></a><button type="button" class="sub-toggle" aria-controls="lab-sub" aria-expanded="' + (inLab ? 'true' : 'false') + '" aria-label="Show Wen Open Lab stages"></button>' + labSub + '</li>'
     + '      <li><a href="' + p + 'quiz.html"><strong>&#10067; What do you know about Wen?</strong></a></li>'
     + '      <li><a href="' + p + 'about.html#wen-token">More about Wen ($Wen) token</a></li>'
     + '      <li><a href="' + p + 'token-2022-wns-solana-wen.html">Token 2022 WNS Solana Wen</a></li>'
@@ -153,7 +165,7 @@
     var h1 = document.querySelector('main h1');
     var title = h1 ? h1.textContent.trim() : document.title;
     if (inLab) {
-      trail.push(['Wen Open Lab', p + 'lab/index.html']);
+      trail.push(['Wen Open Lab', labBase + 'index.html']);
       for (var k = 0; k < LAB_STAGES.length; k++) {
         if (LAB_STAGES[k][0] === here && here !== 'index.html') {
           trail.push([LAB_STAGES[k][1].replace(/&amp;/g, '&').replace(/&#\d+;\s*/g, '').replace(/^\d+\s\u00b7\s/, ''), null]);

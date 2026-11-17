@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>第 7.1 阶段：Wen Counter 的安全性，设计上仅收款</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/counter-safety.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter-safety.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter-safety.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter-safety.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter-safety.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter-safety.html">
+<meta name="description" content="Wen Counter 如何保护商店：它只能读取链，从不接触钱包，不持有密钥，不接受注入的命令。57 项公开检查、如何重新运行，以及它们不覆盖什么。">
+<!-- seo:start -->
+<meta name="keywords" content="receive-only, non-custodial point of sale, Solana Pay safety, wallet security, CSP, read-only RPC, Wen Counter, open tests">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第 7.1 阶段：Wen Counter 的安全性，设计上仅收款">
+<meta property="og:description" content="Wen Counter 如何保护商店：它只能读取链，从不接触钱包，不持有密钥，不接受注入的命令。57 项公开检查、如何重新运行，以及它们不覆盖什么。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/counter-safety.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<meta property="og:image:alt" content="卡片：设计上仅收款，从不连接钱包，三种读取请求，57 项公开检查">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "第 7.1 阶段：Wen Counter 的安全性，设计上仅收款", "description": "Wen Counter 如何保护商店：它只能读取链，从不接触钱包，不持有密钥，不接受注入的命令。57 项公开检查、如何重新运行，以及它们不覆盖什么。", "image": "https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png", "url": "https://wen-watt.github.io/cn-wen/lab/counter-safety.html", "inLanguage": "zh-CN", "datePublished": "2026-11-11", "dateModified": "2026-11-12", "license": "https://www.apache.org/licenses/LICENSE-2.0", "author": {"@type": "Organization", "name": "Wen"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "isPartOf": {"@type": "WebPage", "url": "https://wen-watt.github.io/cn-wen/lab/counter.html"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "第 7 阶段：Wen Counter", "item": "https://wen-watt.github.io/cn-wen/lab/counter.html"}, {"@type": "ListItem", "position": 4, "name": "第 7.1 阶段：Wen Counter 的安全性，设计上仅收款", "item": "https://wen-watt.github.io/cn-wen/lab/counter-safety.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 第 7 阶段 · 安全</p>
+<h1>第 7.1 阶段：仅收款的安全性<span class="lab-badge">57 项检查 · 公开</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/counter-safety.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/counter-safety.html" hreflang="it" lang="it">Italiano</a> · <a href="counter-safety.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/counter-safety.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/counter-safety.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a aria-current="page" href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<p class="intro">收款一直是一项成本：终端、合同、认证应用、中间有人。我们深入研究了这个市场，造出了相反的东西：一个<strong>只能收款</strong>的收银台。它不能转出、不能签名、也接触不到你的钱包，所以它身上没有可偷的东西，也无法通过它把钱拿回去。付款到账后，你的钱严格由你自己的钱包管理。</p>
+<figure style="max-width:420px;margin:24px auto"><img src="../../wen-media/wen-trip-everest-rope.jpg" alt="穿红色登山服的 Wen 系着安全绳攀登雪脊" width="415" height="414" loading="lazy" style="width:100%;height:auto;border-radius:12px"><figcaption>系着安全绳：收银台只能朝一个方向爬</figcaption></figure>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="fKwSTznVAp4" aria-label="播放：Useful Anomaly · 无法转出你的钱的收银台" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-09-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>视频：25 秒看懂一个无法转出你的钱的收银台。播放器只会在你点击播放后才从 YouTube 加载。</figcaption></figure>
+<h2 id="protocol">仅收款协议</h2>
+<div class="notes" style="margin-top:0">
+<div class="note-item"><p><span class="k">1 · 没有出口。</span>收银台从不连接钱包，从不请求签名，也不持有任何密钥。退款、转账和提现只在店主的钱包应用中进行。</p></div>
+<div class="note-item"><p><span class="k">2 · 代码层面只读。</span>页面只能向链发送恰好三种读取请求。任何其他请求在离开设备之前就会被代码本身拦截。</p></div>
+<div class="note-item"><p><span class="k">3 · 无注入。</span>没有消息监听器，没有动作链接，没有远程代码，严格的内容安全策略，来自网络的任何内容都不会作为 HTML 插入。任何外部 API 都无法操纵收银台或钱包。</p></div>
+<div class="note-item"><p><span class="k">4 · 你的钱包就是身份。</span>收款地址在设置时于链上核验，并显示在每个二维码界面上（前五位和后五位字符、钱包名称），收银员和买家都可以比对。</p></div>
+</div>
+<p>正是这一点把持续的开支变成了一个常量：一种没有运行成本、没有交易对手、没有后门的收款方式。</p>
+<h2 id="solar-system">像太阳系一样透明：法律与财务层面</h2>
+<p>整个模型可以放进一幅图里。<strong>太阳是 Solana 网络：</strong>一切都在它的光中运行，任何人都看得见。<strong>行星是钱包：</strong>每颗都绕着自己的轴转动，只听命于主人。<strong>Wen Counter 是一架望远镜：</strong>它看着一颗行星接收光，并记录下来。望远镜无法移动行星。</p>
+<p>所以法律与财务机制存在于钱所在的地方，也就是钱包里：</p>
+<ul>
+<li><strong>所有权</strong>在付款于商店钱包中确认的那一刻开始。收银台从不持有资金，一秒钟也不。</li>
+<li><strong>退款、转账和提现</strong>由钱包所有者决定，在手机或电脑上的钱包应用中完成，受所有者自己的控制（密码、设备、团队审批）。</li>
+<li><strong>记录</strong>在链上公开，在商店账本中私密：每笔销售都有签名，每个签名都可以由会计或审计师核查。</li>
+<li><strong>税务与合规</strong>跟随经营者，而不是工具：商店按本国规定申报收入。收银台不会在其中增加任何费用、中间人或隐藏方。</li>
+</ul>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>我只是看着，记下来。你的行星由你亲手转动。这就是全部秘密，而它并不是秘密。</p></aside>
+<h2 id="scale">扩展：收银钱包与每日归集</h2>
+<p>同样的仅收款规则可以从一个摊位扩展到一整条连锁店，不需要服务器，几乎没有成本：</p>
+<ol>
+<li><strong>每个收银台一个收银钱包。</strong>每台收银机都有自己的简单钱包，由当班经理管理。收银台往里收款，除此之外什么也做不了。</li>
+<li><strong>每日归集。</strong>每天结束时，经理在钱包应用中把营业款从收银钱包转入公司钱包，例如 Squads 多签金库。一笔交易，一次网络费。</li>
+<li><strong>从收银台退款。</strong>白天经理可以在当天备用金范围内，从收银钱包给买家退款，而不必动用公司钱包。</li>
+<li><strong>公司掌握关键的密钥。</strong>资金库转移资金需要多重批准；丢一部手机最多只会损失一个收银台一天的钱。</li>
+<li><strong>按收银台记账。</strong>每个收银台导出自己的 CSV；公司可以在链上按地址和签名看到每个收银台和每次归集。</li>
+</ol>
+<p>路线图依然简短且几乎免费：用你已有的手机，免费的钱包，每笔销售一次由买家支付的网络费，每次每日归集一次由你支付的网络费。</p>
+<h2 id="open-note">致全球开发者和零售连锁的一封公开信</h2>
+<ul>
+<li><strong>保持收银台仅收款。</strong>围绕它构建，而不是改造它：订单系统、厨房屏幕、打印的二维码标签、收据 NFT、从 CSV 导出到会计或 ERP。</li>
+<li><strong>把支出放在该放的地方：</strong>放在有自身控制的钱包里，比如多签审批和支出限额，而不是放在收银台里。</li>
+<li><strong>用五项检查核验每笔付款</strong>（参考号、收款方、代币、金额、成功），并在屏幕上显示收款地址。</li>
+<li><strong>自由复制，注明 Wen。</strong>Apache-2.0 加 NOTICE：Wen Open Lab 和 Wen 链条。如果你修改了代码，请说明这是修改版。</li>
+<li><strong>在 devnet 上试点，</strong>用全新的空钱包，再碰任何真钱。</li>
+</ul>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>围绕我去建大东西吧。只是别给我装上手。长了手的收银台就是另一种动物了。</p></aside>
+<h2 id="tested">我们公开测试了什么</h2>
+<p>三组检查，全部在代码仓库中，在加入商店功能（带类型的编号钱包、总部视图、收据、退款备注、按时段导出、语言词典）之后，于 2026 年 11 月 12 日全部通过。依然只有三种读取请求。</p>
+<h3>核心逻辑 · 25 项检查 · <code>node counter-core.test.js</code></h3>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>检查项</th><th>结果</th></tr></thead><tbody><tr><td>200 个随机密钥的 base58 往返</td><td>✓</td></tr><tr><td>已知地址解码为 32 字节；乱码被拒绝</td><td>✓</td></tr><tr><td>每个参考密钥都是有效地址</td><td>✓</td></tr><tr><td>金额：小数位、零、负数和指数形式被拒绝</td><td>✓</td></tr><tr><td>支付 URL 格式与百分号编码</td><td>✓</td></tr><tr><td>SOL 付款已核验</td><td>✓</td></tr><tr><td>付款不足被拒绝</td><td>✓</td></tr><tr><td>缺少参考号被拒绝</td><td>✓</td></tr><tr><td>失败的交易被拒绝</td><td>✓</td></tr><tr><td>USDC 付款已核验</td><td>✓</td></tr><tr><td>错误代币被拒绝</td><td>✓</td></tr><tr><td>向新代币账户的首笔付款已核验</td><td>✓</td></tr><tr><td>小额订单费率（3 → 12.9%，25 → 4.1%，100 → 3.2%）</td><td>✓</td></tr><tr><td>订单组合的节省模型</td><td>✓</td></tr><tr><td>地址检查：新地址、钱包、程序、代币、其他</td><td>✓</td></tr><tr><td>营业额估算</td><td>✓</td></tr><tr><td>“今天你留下了”的同日分组</td><td>✓</td></tr><tr><td>导出时段：日、周、月、年、去年、季度、自定义；错误日期被拒绝</td><td>✓</td></tr><tr><td>退款备注是“refund:”加有效的交易 ID；乱码被拒绝</td><td>✓</td></tr><tr><td>买家收据文本写明“非税务收据”</td><td>✓</td></tr><tr><td>钱包标签：编号、类型和名称（#4 · Tips · Bar tips）</td><td>✓</td></tr><tr><td>总部视图：按钱包和代币分组的销售；未知钱包单独列出</td><td>✓</td></tr><tr><td>空账本的总部视图为空</td><td>✓</td></tr><tr><td>销售备注作为 memo：订单 ID 加备注，一行，最多 120 个字符；在收据上显示为“用途：”</td><td>✓</td></tr><tr><td>设置 PIN：仅限 4 到 8 位数字</td><td>✓</td></tr></tbody></table></div>
+<h3>无控制权，通过阅读代码证明 · 13 项检查 · <code>node counter-safety.test.js</code></h3>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>检查项</th><th>结果</th></tr></thead><tbody><tr><td>从不触碰任何钱包提供者</td><td>✓</td></tr><tr><td>没有任何连接或签名调用</td><td>✓</td></tr><tr><td>没有密钥、密钥对或助记词</td><td>✓</td></tr><tr><td>只存在三种读取请求，并且都在允许列表中</td><td>✓</td></tr><tr><td>没有入站 API：没有消息监听器、没有动作 URL、没有远程代码</td><td>✓</td></tr><tr><td>严格的内容安全策略：只运行自己的脚本</td><td>✓</td></tr><tr><td>网络数据从不作为 HTML 写入</td><td>✓</td></tr><tr><td>离线缓存从不接触链</td><td>✓</td></tr><tr><td>只有参考号、收款方、代币、金额和成功全部匹配，付款才算数</td><td>✓</td></tr><tr><td>界面文字与核心指纹绑定：翻译不能搭载在被修改的核心上</td><td>✓</td></tr><tr><td>界面文字只作为文本写入，从不作为 HTML</td><td>✓</td></tr><tr><td>设置在 PIN 之后：解锁前隐藏，保存、新 PIN 和清空账本受保护，离开即锁定，PIN 只以加盐 SHA-256 保存</td><td>✓</td></tr><tr><td>部署文件只包含参数（设置 PIN 和语言），不含代码</td><td>✓</td></tr></tbody></table></div>
+<h3>无控制权，在真实手机浏览器中验证 · 19 项检查 · <code>node browser-safety.e2e.js</code></h3>
+<p>测试会植入记录任何触碰的假钱包（Solana、Phantom、Solflare、Backpack、Jupiter），在店名和备注中输入恶意文本，并从网络返回恶意响应。</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>检查项</th><th>结果</th></tr></thead><tbody><tr><td>设置打开时是锁定的：钱包设置被隐藏</td><td>✓</td></tr><tr><td>错误的 PIN 被拒绝</td><td>✓</td></tr><tr><td>部署 PIN（1111）可解锁设置</td><td>✓</td></tr><tr><td>备注经编码后随支付请求传送（message 和 memo），从不被执行</td><td>✓</td></tr><tr><td>来自网络的恶意“签名”被拒绝</td><td>✓</td></tr><tr><td>付给其他地址的款项被拒绝</td><td>✓</td></tr><tr><td>店名和备注中的恶意文本作为文本显示，从不被执行</td><td>✓</td></tr><tr><td>备注按原样保存和显示</td><td>✓</td></tr><tr><td>付款后向买家提供收据</td><td>✓</td></tr><tr><td>退款按钮给出“refund:”加原交易 ID</td><td>✓</td></tr><tr><td>按时段导出时，文件以时段命名</td><td>✓</td></tr><tr><td>销售备注进入 CSV</td><td>✓</td></tr><tr><td>离开设置后再次锁定</td><td>✓</td></tr><tr><td>进入部门钱包的销售，对照该钱包而不是主钱包核验</td><td>✓</td></tr><tr><td>付款界面按编号、类型和名称显示钱包</td><td>✓</td></tr><tr><td>总部视图按钱包汇总销售</td><td>✓</td></tr><tr><td>植入页面的假钱包从未被读取或调用</td><td>✓</td></tr><tr><td>只有读取请求到达了网络</td><td>✓</td></tr><tr><td>没有脚本错误</td><td>✓</td></tr></tbody></table></div>
+<h2 id="rerun">亲自重新运行</h2>
+<pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>cd lab/counter
+node counter-core.test.js        # 25 checks
+node counter-safety.test.js      # 13 checks
+python3 -m http.server 8771 &amp;
+node browser-safety.e2e.js http://localhost:8771/   # 19 checks, needs Playwright</code></pre>
+<p>同样的文件也包含在<a download href="../../lab/counter/wen-counter-kit.zip">套件</a>里，商店或开发者可以检查自己的副本。</p>
+<h2 id="setup-pin">设置 PIN：收银台的任何人都无法更换钱包</h2>
+<p>在共用设备上，真正的风险不是黑客，而是收银台的某个人换上自己的收款钱包。因此设置由 PIN 锁定。第一个 PIN 是 <code>counter-deploy.js</code> 中的部署参数（默认 <code>1111</code>，是公开的，所以请修改）；店主在设置中设定新 PIN。离开设置即锁定，连续五次输错暂停 30 秒，清空账本需要 PIN，PIN 只以加盐 SHA-256 保存。</p>
+<p><strong>忘记 PIN：</strong>在设备上重装应用，重新输入收款钱包，设定新 PIN。流程简单安全。重装后收银台没有钱包，收款地址显示在每个二维码上，营业款也不再进入公司钱包，因此任何更换都藏不住。PIN 锁的是界面；它不是钱包密钥，也不能转移资金，因为收银台根本不能转移资金。</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-4-setup-pin.png" alt="卡片：店主设定钱包；设置由 PIN 锁定；收银台的任何人都无法更换钱包" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="open-audit">公开审计：检查并告诉我们</h2>
+<p>Wen Counter 的审计是公开的，永不结束。阅读代码，在你自己的机器上重新运行上面的检查，试着让收银台签名、转出或显示它不该显示的东西，然后告诉我们你的发现：在公共代码仓库中提交 issue（链接在<a href="../../sources.html#lab-counter-7">来源</a>中）。站得住脚的发现会变成一项新检查，并在<a href="findings.html">读者发现</a>中记上一笔，附上感谢。</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="卡片：57 项公开检查；能弄坏就弄坏它，然后告诉我们" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="user-responsibility">用户的责任</h2>
+<p>你使用这个方案，责任自负。我们提供机制；我们不知道你用它做什么，也不知道你在副本中改了什么。我们所声明的、以及上面的检查为原始版本所证明的，是机制本身：它不拿钱、不持有钱、不收手续费。它严格遵循 Solana 网络的流程。钱包属于你，由你自己使用。收据、退款、记录和申报都在你这一侧；请与会计确认流程。</p>
+<p>整个方案的故事，附每一张卡片和图片：<a href="../../posts/wen-counter-free-open-till-for-every-shop.html">Wen Counter：给每家店的免费开放收银台</a>。</p>
+<p>完整文章：<a class="src-ref" href="../../sources.html#saf-19">dev.to 上的开发者版</a>（代码、五点核验、57 项检查）和 <a class="src-ref" href="../../sources.html#saf-20">Hashnode 上的商店与财务版</a>（谁掌控资金、扩大规模前的七个回答）。</p>
+<h2 id="not-covered">这些检查没有覆盖什么</h2>
+<ul>
+<li>代码未经第三方审计。这些是我们的公开测试，不是证书。</li>
+<li>已经被入侵的手机可以显示任何东西。请使用你信任的设备并保持更新。</li>
+<li>页面的假冒副本可能显示不同的地址。所以地址会出现在每个二维码界面和买家钱包里：请比对前五位和后五位字符。</li>
+<li>资金到账后的安全就是你钱包的安全：保护好助记词，团队请使用 Squads 这类多签。</li>
+<li>先用全新的空钱包在 devnet 上运行。不构成金融、税务或法律建议。</li>
+</ul>
+<p><a href="counter.html">← 返回第 7 阶段：Wen Counter</a> · <a href="counter/">打开收银台</a></p>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>收银台背后的来源汇集在一个页面上。<a href="../../sources.html#lab-counter">打开来源 →</a></p>
+</aside><!-- /src:callout -->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>

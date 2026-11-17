@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>第 6 阶段：亲自在 Solana devnet 上运行 Wen Open Lab 模型</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/devnet.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/devnet.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/devnet.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/devnet.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/devnet.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/devnet.html">
+<meta name="description" content="Wen Open Lab 第 6 阶段：用全新的空钱包在公共 Solana devnet 上运行收据和 B2B 发票模型，然后在浏览器中检查每一步。">
+<!-- seo:start -->
+<meta name="keywords" content="Solana devnet, Wen Open Lab, test wallet, explorer, Token-2022, receipt NFT, B2B invoice">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第 6 阶段：亲自在 Solana devnet 上运行 Wen Open Lab 模型">
+<meta property="og:description" content="Wen Open Lab 第 6 阶段：用全新的空钱包在公共 Solana devnet 上运行收据和 B2B 发票模型，然后在浏览器中检查每一步。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/devnet.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/testing-jup-wen-solana.jpeg">
+<meta property="og:image:alt" content="在 Solana devnet 上测试 Wen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/testing-jup-wen-solana.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/cn-wen/lab/devnet.html#page", "name": "第 6 阶段：亲自在 Solana devnet 上运行 Wen Open Lab 模型", "headline": "第 6 阶段：亲自在 Solana devnet 上运行 Wen Open Lab 模型", "description": "Wen Open Lab 第 6 阶段：用全新的空钱包在公共 Solana devnet 上运行收据和 B2B 发票模型，然后在浏览器中检查每一步。", "url": "https://wen-watt.github.io/cn-wen/lab/devnet.html", "inLanguage": "zh-CN", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/testing-jup-wen-solana.jpeg", "hasPart": [{"@id": "https://wen-watt.github.io/cn-wen/lab/devnet.html#howto"}, {"@id": "https://wen-watt.github.io/cn-wen/lab/devnet.html#code"}]}, {"@type": "HowTo", "@id": "https://wen-watt.github.io/cn-wen/lab/devnet.html#howto", "name": "在 Solana devnet 上运行 Wen Open Lab 模型", "description": "五条命令，用全新的空钱包在公共 devnet 上复现模型 1 和 3，并打印浏览器链接。", "totalTime": "PT15M", "tool": [{"@type": "HowToTool", "name": "Node.js 20"}, {"@type": "HowToTool", "name": "Solana CLI"}], "step": [{"@type": "HowToStep", "position": 1, "name": "安装示例项目", "text": "npm install"}, {"@type": "HowToStep", "position": 2, "name": "创建一次性 devnet 钱包", "text": "solana-keygen new -o devnet-wallet.json --no-bip39-passphrase（它从不存放真实资金）"}, {"@type": "HowToStep", "position": 3, "name": "领取免费的 devnet SOL", "text": "solana airdrop 2 <wallet> --url devnet，或使用 faucet.solana.com；devnet 币没有价值"}, {"@type": "HowToStep", "position": 4, "name": "先运行本地检查", "text": "npm test（LiteSVM 中的 41 项检查）"}, {"@type": "HowToStep", "position": 5, "name": "运行公开 devnet 演示", "text": "KEYPAIR=./devnet-wallet.json npm run devnet；脚本拒绝 devnet 以外的任何集群"}]}, {"@type": "SoftwareSourceCode", "name": "devnet 演示脚本", "description": "在公共 devnet 上运行模型 1 和 3，并打印浏览器链接。", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/blob/main/lab/code/scripts/devnet-demo.ts", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/cn-wen/lab/devnet.html#code"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "第 6 阶段：亲自在 Solana devnet 上运行 Wen Open Lab 模型", "item": "https://wen-watt.github.io/cn-wen/lab/devnet.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 开放集成</p>
+<h1>第 6 阶段：Devnet——亲自复现<span class="lab-badge">可直接运行</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/devnet.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/devnet.html" hreflang="it" lang="it">Italiano</a> · <a href="devnet.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/devnet.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/devnet.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a aria-current="page" href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<figure><img src="../../wen-media/testing-jup-wen-solana.jpeg" alt="在 Solana devnet 上测试 Wen" width="1200" height="675"><figcaption>公开测试，而非纸上谈兵</figcaption></figure>
+<p class="intro">本地测试证明逻辑，公共网络则向所有人证明。Devnet 是 Solana 的开放测试网：程序与主网相同，但币没有价值。本页是一份可重复的配方。运行一次也好，运行一百次也好——每次运行都会生成任何人都能在浏览器中打开的新地址。</p>
+<h2>为什么 devnet 很重要</h2>
+<p><a href="index.html#verification-log">核验记录</a>显示有 41 项检查在 LiteSVM（Solana 运行时的本地副本）中通过。这是有力的证据，但只发生在一台机器上。devnet 运行把同样的模型搬到公共网络上，每笔交易都有公开链接。没有人需要相信我们：打开链接，就能看到供应量为一的收据、带备注的发票付款，以及没有备注而被拒绝的付款。</p>
+<h2>你需要什么</h2>
+<ul>
+<li>Node.js 20 或更新版本，以及 <a href="../../lab/code/README.md">lab/code</a> 中的文件。</li>
+<li>Solana 命令行工具（<code>solana</code>、<code>solana-keygen</code>）。</li>
+<li>一个<strong>只为 devnet 创建的全新空钱包</strong>。绝不要使用存有真实资金的钱包。</li>
+</ul>
+<h2>复现：五条命令</h2>
+<pre class="lab-code"><code># 1. install the example project
+npm install
+
+# 2. create a throwaway devnet wallet (it never holds real money)
+solana-keygen new -o devnet-wallet.json --no-bip39-passphrase
+
+# 3. get free devnet SOL (test coins with no value; use faucet.solana.com if the CLI is rate-limited)
+solana airdrop 2 $(solana-keygen pubkey devnet-wallet.json) --url devnet
+
+# 4. run the local checks first
+npm test
+
+# 5. run the public devnet demo
+KEYPAIR=./devnet-wallet.json npm run devnet</code></pre>
+<p>脚本拒绝在 devnet 以外的任何网络上运行，如果钱包里的 devnet SOL 少于 0.2，也会停止。</p>
+<h2>脚本做什么</h2>
+<ol>
+<li><strong>模型 1：</strong>为一位新的测试买家铸造一张灵魂绑定收据 NFT，订单哈希和保修日期都在铸币内，然后把供应量锁定为一。</li>
+<li><strong>模型 3：</strong>创建一种手续费 0.25%、上限 50 个单位、账户默认冻结的结算代币，开设买方和卖方账户（卖方要求发票备注），批准双方，为买方注资，支付发票 <code>INV-DEVNET-0001</code>，然后尝试一笔没有发票号的付款，并展示它被拒绝。</li>
+<li>为每笔交易和每个地址打印浏览器链接。</li>
+</ol>
+<p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">文件：<a href="../../lab/code/scripts/devnet-demo.ts">lab/code/scripts/devnet-demo.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Wen Open Lab: run Models 1 and 3 on PUBLIC DEVNET and print explorer links anyone can open.
+// Devnet only. Use a NEW, EMPTY wallet created just for this. No real funds are ever needed.
+// License: Apache-2.0. Example code, not audited.
+//
+//   solana-keygen new -o devnet-wallet.json          # new throwaway wallet
+//   solana airdrop 2 $(solana-keygen pubkey devnet-wallet.json) --url devnet
+//   KEYPAIR=./devnet-wallet.json npx tsx scripts/devnet-demo.ts
+import { Keypair, LAMPORTS_PER_SOL, Transaction, sendAndConfirmTransaction, type TransactionInstruction } from '@solana/web3.js';
+import { TOKEN_2022_PROGRAM_ID, createMintToInstruction } from '@solana/spl-token';
+import { getConnection, loadKeypair } from '../src/common.js';
+import { buildReceiptInstructions, receiptLayout, type Order } from '../src/01-receipt-nft.js';
+import {
+  buildApproveCounterparty, buildInvoiceAccount, buildPayInvoice, buildSettlementMint,
+  invoiceAccountSpace, settlementMintSpace, DECIMALS,
+} from '../src/03-b2b-invoice.js';
+
+const connection = getConnection();
+const wallet = loadKeypair();
+const link = (kind: 'tx' | 'address', id: string) =&gt; `https://explorer.solana.com/${kind}/${id}?cluster=devnet`;
+
+async function send(label: string, ixs: TransactionInstruction[], signers: Keypair[]) {
+  const sig = await sendAndConfirmTransaction(connection, new Transaction().add(...ixs), signers);
+  console.log(`  ${label}\n    ${link('tx', sig)}`);
+  return sig;
+}
+
+async function main() {
+  const endpoint = (connection as unknown as { rpcEndpoint: string }).rpcEndpoint;
+  if (!/devnet/.test(endpoint)) throw new Error(`Refusing to run outside devnet: ${endpoint}`);
+  const balance = await connection.getBalance(wallet.publicKey);
+  console.log(`Wallet ${wallet.publicKey.toBase58()} has ${balance / LAMPORTS_PER_SOL} devnet SOL`);
+  if (balance &lt; 0.2 * LAMPORTS_PER_SOL) throw new Error('Need at least 0.2 devnet SOL: run `solana airdrop 2 &lt;address&gt; --url devnet`');
+
+  // ---- Model 1: receipt NFT (soulbound) to a fresh "buyer" address ----
+  console.log('\nModel 1 — receipt and warranty NFT');
+  const buyer = Keypair.generate();
+  const mint = Keypair.generate();
+  const order: Order = { orderId: `DEVNET-${Date.now()}`, sku: 'WEN-PLUSH-01', priceMinorUnits: 2500, currency: 'USD', purchasedAt: new Date().toISOString(), warrantyMonths: 12 };
+  const opts = { soulbound: true, uri: 'https://wen-watt.github.io/lab/receipt-warranty-wns.html' };
+  const { rentSpace } = receiptLayout(order, mint.publicKey, wallet.publicKey, opts);
+  const rent = await connection.getMinimumBalanceForRentExemption(rentSpace);
+  const { instructions, buyerAta } = buildReceiptInstructions({ order, mint: mint.publicKey, merchant: wallet.publicKey, buyer: buyer.publicKey, opts, rentLamports: rent });
+  await send('receipt minted, supply locked at 1', instructions, [wallet, mint]);
+  console.log(`    receipt mint: ${link('address', mint.publicKey.toBase58())}`);
+  console.log(`    buyer holds it in: ${link('address', buyerAta.toBase58())}`);
+
+  // ---- Model 3: B2B settlement token with fee, allowlist and invoice memo ----
+  console.log('\nModel 3 — B2B invoice settlement');
+  const settle = Keypair.generate();
+  await send('settlement mint created (fee 0.25% cap 50, frozen by default)',
+    buildSettlementMint(wallet.publicKey, settle.publicKey, await connection.getMinimumBalanceForRentExemption(settlementMintSpace())), [wallet, settle]);
+  const accRent = await connection.getMinimumBalanceForRentExemption(invoiceAccountSpace());
+  const payerAcc = Keypair.generate(), sellerAcc = Keypair.generate();
+  // In this demo one wallet plays both companies; in real life they are different owners.
+  await send('buyer account opened', buildInvoiceAccount(wallet.publicKey, payerAcc.publicKey, settle.publicKey, accRent, false), [wallet, payerAcc]);
+  await send('seller account opened (invoice memo required)', buildInvoiceAccount(wallet.publicKey, sellerAcc.publicKey, settle.publicKey, accRent, true), [wallet, sellerAcc]);
+  await send('both companies approved by the issuer', [
+    ...buildApproveCounterparty(wallet.publicKey, settle.publicKey, payerAcc.publicKey),
+    ...buildApproveCounterparty(wallet.publicKey, settle.publicKey, sellerAcc.publicKey),
+  ], [wallet]);
+  const unit = 10n ** BigInt(DECIMALS);
+  await send('buyer funded with 10,000 test units', [createMintToInstruction(settle.publicKey, payerAcc.publicKey, wallet.publicKey, 10_000n * unit, [], TOKEN_2022_PROGRAM_ID)], [wallet]);
+  await send('invoice INV-DEVNET-0001 paid: 1,000 units, memo on-chain',
+    buildPayInvoice({ mint: settle.publicKey, from: payerAcc.publicKey, to: sellerAcc.publicKey, payer: wallet.publicKey, invoiceId: 'INV-DEVNET-0001', amount: 1_000n * unit }), [wallet]);
+
+  try {
+    await send('payment WITHOUT invoice number (must fail)',
+      buildPayInvoice({ mint: settle.publicKey, from: payerAcc.publicKey, to: sellerAcc.publicKey, payer: wallet.publicKey, invoiceId: null, amount: 1n * unit }), [wallet]);
+    console.log('  !! unexpected: payment without memo succeeded');
+  } catch {
+    console.log('  payment WITHOUT invoice number was rejected, as designed');
+  }
+  console.log(`    settlement mint: ${link('address', settle.publicKey.toBase58())}`);
+  console.log('\nDone. Paste these links into the Lab devnet page so anyone can inspect them.');
+}
+
+main().catch(e =&gt; { console.error(e); process.exit(1); });</code></pre>
+<h2>已公布的运行</h2>
+<table class="lab-table">
+<thead><tr><th>运行</th><th>日期</th><th>收据铸币</th><th>结算铸币</th><th>发票付款</th></tr></thead>
+<tbody><tr><td>#1</td><td colspan="4">待定——首次公开运行将连同浏览器链接在此公布</td></tr></tbody>
+</table>
+<p>自己运行过了？在 X 上与社区分享你的链接（<a class="src-ref" href="../../sources.html#off-4">@wenwencoin</a>）。独立运行是最好的证明。</p>
+<h2>安全规则</h2>
+<ul>
+<li>devnet 币没有价值，也不能出售。任何声称“出售” devnet SOL 的人都是骗局。</li>
+<li>不要把 <code>devnet-wallet.json</code> 放进任何代码仓库，也绝不要在主网上重复使用。</li>
+<li>devnet 有时会被重置或变慢；如果某一步失败，稍等再运行——每次运行都是全新开始。</li>
+</ul>
+<h2>图说 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wen-up-seeker.html" title="Wen 在 Seeker 上的 devnet 运行"><img src="../../wen-media/wen-up-seeker.jpeg" alt="Wen 在 Seeker 上的 devnet 运行" loading="lazy" width="300" height="300"></a><figcaption>你自己的运行，你自己的证明</figcaption></figure><figure><a href="../../image-story/wen-up-seeker-3.html" title="Wen 猫查看浏览器"><img src="../../wen-media/wen-up-seeker-3.jpeg" alt="Wen 猫查看浏览器" loading="lazy" width="300" height="300"></a><figcaption>每一步都有链接</figcaption></figure><figure><a href="../../wen-media/wen-up-seeker-5.jpeg" title="建设者 Wen 复现测试"><img src="../../wen-media/wen-up-seeker-5.jpeg" alt="建设者 Wen 复现测试" loading="lazy" width="300" height="300"></a><figcaption>随时复现</figcaption></figure><figure><a href="../../wen-media/1-phone-cryptocurrency-news-prediction-reddit-wen-solana-blockchain-solana-meme-coins.jpeg" title="手机上的 Wen，devnet 链接"><img src="../../wen-media/1-phone-cryptocurrency-news-prediction-reddit-wen-solana-blockchain-solana-meme-coins.jpeg" alt="手机上的 Wen，devnet 链接" loading="lazy" width="300" height="300"></a><figcaption>分享链接</figcaption></figure><figure><a href="../../image-story/wen-wns-solana-jup-crypto.html" title="devnet 上的 Wen 开发者"><img src="../../wen-media/wen-wns-solana-jup-crypto.jpeg" alt="devnet 上的 Wen 开发者" loading="lazy" width="300" height="300"></a><figcaption>欢迎建设者</figcaption></figure></div>
+<div class="lab-box">
+<h3>Wen 在此模型中的位置</h3>
+<p style="margin:0;">真正的 WEN 代币只存在于主网；devnet 上没有 WEN。因此脚本会创建自己的测试代币，并清楚标明是测试。当一个模型准备好用于 WEN——例如第 7 阶段，用 WEN 支付、收到 USDC——它只有在完成 devnet 运行和独立审查后才会上主网。</p>
+</div>
+<div class="lab-box">
+<h3>Wen 的主线：一个合约，处处可见</h3>
+<p style="margin:0 0 8px;">实验室的每个模型都免费且开放，并带着同一个签名：$WEN 代币合约。复制它，在你自己的文档中重复它，使用前务必在浏览器上核验。</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">核验：<a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">如何找到合约 ID</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>开放使用政策</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>免费且开放。</strong>实验室的全部代码以 Apache License 2.0 发布，与 Wen Program Library 相同。无论是否商用，都可以使用、修改、发布；请保留许可声明。</li>
+<li><strong>只用开放工具。</strong>基于公开且有文档的工具构建：Solana SPL Token-2022（Token Extensions）、Wen New Standard（WNS）的代币布局、Solana Pay，以及用于本地测试的 LiteSVM。</li>
+<li><strong>规则：始终核验你自己的模型。</strong>运行测试，从 devnet 开始，阅读官方文档，检查每个账户和金额，并在任何主网使用之前获得独立审计。未经核验的模型不是模型，而是猜测。</li>
+<li><strong>未经审计，不构成建议。</strong>这些是教学示例，不构成金融、法律或税务建议，也不是持牌的支付或银行产品。在大多数国家，支付、稳定币和收单都是受监管的活动。</li>
+<li><strong>安全。</strong>切勿把私钥粘贴到任何网站。不要安装 npm 包 <code>@wen-community/wen-new-standard</code>：npm 已因恶意将其移除。请从官方来源构建。</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">由 Wen 为社区讲述。更多内容见我们的<a href="../../privacy-policy-cookie-policy.html">编辑与数据政策</a>。</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">路线图</a> · <a href="../../lab/code/README.md">全部代码</a> · <a class="src-ref" href="../../sources.html#lab-devnet-1">GitHub 上的 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-4-setup-pin.png" alt="卡片：店主设定钱包，设置由 PIN 锁定" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">新上线 · 第 7 阶段 · Wen Counter</p><p style="margin:0 0 6px">在浏览器中运行于 Solana Pay 的免费开放收银台：仅收款、每笔 0 费用、钱包由店主 PIN 锁定、57 项公开检查。</p><p style="margin:0"><a href="counter.html">查看方案</a> · <a href="counter/">打开收银台</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>本页背后的所有外部来源都汇集在一个页面上，供你自行公开研究和核验。<a href="../../sources.html#lab-devnet">打开本页来源 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-06-spacewalk-repair.jpeg" alt="Wen 在地球上空太空行走，系着安全绳修理飞船外壳" width="800" height="1219" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>系着安全绳练习：只用 devnet，一个全新的空钱包，真实的链，零风险。</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

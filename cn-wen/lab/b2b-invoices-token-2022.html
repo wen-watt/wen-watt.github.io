@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>第 3 阶段：用 Solana Token-2022 规则结算 B2B 发票</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/b2b-invoices-token-2022.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/b2b-invoices-token-2022.html">
+<meta name="description" content="Wen Open Lab 模型 3：由代币强制执行手续费、获批交易对手和必填发票备注的 B2B 结算。经过 13 项检查。">
+<!-- seo:start -->
+<meta name="keywords" content="B2B payments, invoice settlement, Token-2022, transfer fee, required memo, Solana">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第 3 阶段：用 Solana Token-2022 规则结算 B2B 发票">
+<meta property="og:description" content="Wen Open Lab 模型 3：由代币强制执行手续费、获批交易对手和必填发票备注的 B2B 结算。经过 13 项检查。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg">
+<meta property="og:image:alt" content="华尔街上的 Wen，B2B 结算">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html#page", "name": "第 3 阶段：用 Solana Token-2022 规则结算 B2B 发票", "headline": "第 3 阶段：用 Solana Token-2022 规则结算 B2B 发票", "description": "Wen Open Lab 模型 3：由代币强制执行手续费、获批交易对手和必填发票备注的 B2B 结算。经过 13 项检查。", "url": "https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html", "inLanguage": "zh-CN", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-wallstreet.jpeg", "proficiencyLevel": "Beginner", "dependencies": "Node.js 20, @solana/web3.js, @solana/spl-token", "hasPart": {"@id": "https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html#code"}}, {"@type": "SoftwareSourceCode", "name": "模型 3：B2B 发票结算代币", "description": "带转账手续费、账户默认冻结和必填发票备注的 Token-2022 结算代币。", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/lab/code", "url": "https://github.com/wen-watt/wen-watt.github.io/blob/main/lab/code/src/03-b2b-invoice.ts", "programmingLanguage": "TypeScript", "runtimePlatform": "Node.js 20", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}, "@id": "https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html#code"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "第 3 阶段：用 Solana Token-2022 规则结算 B2B 发票", "item": "https://wen-watt.github.io/cn-wen/lab/b2b-invoices-token-2022.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 开放集成</p>
+<h1>第 3 阶段：B2B 发票<span class="lab-badge">13 项检查通过</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/b2b-invoices-token-2022.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/b2b-invoices-token-2022.html" hreflang="it" lang="it">Italiano</a> · <a href="b2b-invoices-token-2022.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/b2b-invoices-token-2022.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/b2b-invoices-token-2022.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a aria-current="page" href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<figure><img src="../../wen-media/wen-wallstreet.jpeg" alt="华尔街上的 Wen，B2B 结算" width="1200" height="675"><figcaption>装进代币的商业规则</figcaption></figure>
+<p class="intro">在企业间支付中，难的不是转移资金，而是正确地转移：转给正确的交易对手、带上正确的参考号、算好手续费。Token-2022 可以把这些规则放进代币。这个模型构建了一种结算代币，它会拒绝没有发票备注的付款，也会拒绝未经批准的交易对手。</p>
+<aside class="wen-note" aria-label="读者修正" id="reader-fixes"><p><span class="wen-note-kicker">读者修正 · 2026 年 11 月 9 日</span>两位读者检查了这个模型，发现了我们遗漏的两点。谢谢。<strong>1. 手续费取整。</strong>Token-2022 对转账手续费<em>向上</em>取整；我们的 <code>expectedFee</code> 却向下取整。对 401 个基本单位、25 bps 的情况，它传入的手续费是 1 而不是 2，<code>TransferCheckedWithFee</code> 会拒绝这笔付款。已修复：手续费现在采用同样的向上取整公式，并有一项测试支付 401 个基本单位，再把十个边界金额与 Token-2022 公式对比。<strong>2. 备注内容。</strong>备注规则只检查备注是否<em>存在</em>，不检查内容：发票号错误的付款在链上照样通过。Token-2022 就是这样工作的，我们现在明确写出这一点，增加一项展示它的测试，并新增 <code>matchInvoicePayment</code>：只有当付款恰好带有一条发票备注且正是预期的那一条时，对账才会接受。全部读者问题及证明：<a href="findings.html">读者发现</a>。</p></aside>
+<h2>任务</h2>
+<p>一组公司之间相互结算发票。每笔付款都必须引用一张发票，只有经过核实的公司才能收款，网络运营方收取一笔有上限的小额手续费。</p>
+<h2>模型</h2>
+<table class="lab-table">
+<thead><tr><th>规则</th><th>Token-2022 扩展</th><th>效果</th></tr></thead>
+<tbody>
+<tr><td>平台手续费 0.25%，上限 50 个单位</td><td>Transfer Fees</td><td>代币在每次转移时预扣手续费</td></tr>
+<tr><td>仅限获批公司</td><td>Default Account State = Frozen</td><td>新账户初始为冻结状态；发行方完成自己的 KYB 检查后再解冻</td></tr>
+<tr><td>发票备注必填</td><td>Required Memo（在收款账户上）</td><td>紧邻其前没有备注的付款会被拒绝。备注文本本身不在链上检查：请在对账时核对发票号。</td></tr>
+</tbody>
+</table>
+<p>流程：发行方创建铸币；每家公司开设一个要求备注的收款账户；发行方批准（解冻）经核实的公司；付款方在同一笔交易中发送备注 <code>invoice:INV-…</code> 和转账。</p>
+<h2>代码</h2>
+<p style="font-size:13px;color:var(--ink-dim);margin:0 0 6px;">文件：<a href="../../lab/code/src/03-b2b-invoice.ts">lab/code/src/03-b2b-invoice.ts</a> · Apache-2.0</p><pre class="lab-code"><code>// Model 3: B2B settlement token with built-in rules (Token-2022, not the WNS program itself):
+//   - Transfer Fees: a platform fee taken by the token itself;
+//   - Default Account State = Frozen: only accounts the issuer thaws (verified counterparties) can hold it;
+//   - Required Memo: the receiving account rejects any payment that carries no memo at all.
+//     Token-2022 checks THAT a memo exists, not WHAT it says: a wrong invoice number still passes on-chain.
+//     Matching the invoice number is done off-chain, at reconciliation (see matchInvoicePayment below).
+// License: Apache-2.0. Example code, not audited. Devnet first. A real stablecoin issuer is a licensed entity.
+import { Keypair, PublicKey, SystemProgram, Transaction, TransactionInstruction, sendAndConfirmTransaction } from '@solana/web3.js';
+import {
+  AccountState, ExtensionType, TOKEN_2022_PROGRAM_ID,
+  createEnableRequiredMemoTransfersInstruction, createInitializeAccount3Instruction,
+  createInitializeDefaultAccountStateInstruction, createInitializeMintInstruction,
+  createInitializeTransferFeeConfigInstruction, createThawAccountInstruction,
+  createTransferCheckedWithFeeInstruction, getAccountLen, getMintLen,
+} from '@solana/spl-token';
+import { getConnection, loadKeypair } from './common.js';
+
+export const DECIMALS = 6;
+
+/** The canonical SPL Memo program that Token-2022 checks for "required memo" accounts.
+ *  Note: newer @solana/spl-memo releases default to a different program ID, so we build the memo ourselves. */
+export const SPL_MEMO_PROGRAM_ID = new PublicKey('MemoSq4gqABAXKb96qnH8TysNcWxMyWCqXgDLGmfcHr');
+
+export function memoInstruction(text: string, signer: PublicKey): TransactionInstruction {
+  return new TransactionInstruction({
+    programId: SPL_MEMO_PROGRAM_ID,
+    keys: [{ pubkey: signer, isSigner: true, isWritable: false }],
+    data: Buffer.from(text, 'utf8'),
+  });
+}
+export const FEE_BPS: number = 25;                                   // 0.25%
+export const FEE_CAP = 50n * 10n ** BigInt(DECIMALS);        // at most 50 units per transfer
+
+export const settlementMintSpace = () =&gt; getMintLen([ExtensionType.TransferFeeConfig, ExtensionType.DefaultAccountState]);
+export const invoiceAccountSpace = () =&gt; getAccountLen([ExtensionType.TransferFeeAmount, ExtensionType.MemoTransfer]);
+
+/** Issuer creates the settlement mint. It keeps the freeze authority: thawing = approving a counterparty. */
+export function buildSettlementMint(issuer: PublicKey, mint: PublicKey, rentLamports: number): TransactionInstruction[] {
+  return [
+    SystemProgram.createAccount({ fromPubkey: issuer, newAccountPubkey: mint, space: settlementMintSpace(), lamports: rentLamports, programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializeTransferFeeConfigInstruction(mint, issuer, issuer, FEE_BPS, FEE_CAP, TOKEN_2022_PROGRAM_ID),
+    createInitializeDefaultAccountStateInstruction(mint, AccountState.Frozen, TOKEN_2022_PROGRAM_ID),
+    createInitializeMintInstruction(mint, DECIMALS, issuer, issuer, TOKEN_2022_PROGRAM_ID),
+  ];
+}
+
+/** A company opens an account that demands an invoice memo on every incoming payment. */
+export function buildInvoiceAccount(company: PublicKey, account: PublicKey, mint: PublicKey, rentLamports: number, requireMemo = true): TransactionInstruction[] {
+  return [
+    SystemProgram.createAccount({ fromPubkey: company, newAccountPubkey: account, space: invoiceAccountSpace(), lamports: rentLamports, programId: TOKEN_2022_PROGRAM_ID }),
+    createInitializeAccount3Instruction(account, mint, company, TOKEN_2022_PROGRAM_ID),
+    ...(requireMemo ? [createEnableRequiredMemoTransfersInstruction(account, company, [], TOKEN_2022_PROGRAM_ID)] : []),
+  ];
+}
+
+/** Issuer approves (thaws) an account after its own KYB checks off-chain. */
+export function buildApproveCounterparty(issuer: PublicKey, mint: PublicKey, account: PublicKey): TransactionInstruction[] {
+  return [createThawAccountInstruction(account, mint, issuer, [], TOKEN_2022_PROGRAM_ID)];
+}
+
+/** Fee the token will take: 0.25% capped at 50 units. Must match the mint config exactly.
+ *  Token-2022 rounds the fee UP (ceiling division), and TransferCheckedWithFee rejects any other value.
+ *  Example: 401 base units at 25 bps = 1.0025 -&gt; fee 2, not 1.  (Fixed 2026-11-09, reported by a reader.) */
+export function expectedFee(amount: bigint): bigint {
+  if (amount === 0n || FEE_BPS === 0) return 0n;
+  const raw = (amount * BigInt(FEE_BPS) + 9_999n) / 10_000n;
+  return raw &gt; FEE_CAP ? FEE_CAP : raw;
+}
+
+export const invoiceMemo = (invoiceId: string) =&gt; `invoice:${invoiceId}`;
+
+/** Memos written by the Memo program, read from transaction logs. The Memo program logs
+ *  'Program log: Memo (len N)' and then the text on the next line (older versions: 'Memo (len N): "text"'). */
+export function memosFromLogs(logs: string[]): string[] {
+  const out: string[] = [];
+  logs.forEach((l, i) =&gt; {
+    const m = /Memo \(len (\d+)\)(?:: "(.*)")?$/.exec(l);
+    if (!m) return;
+    if (m[2] !== undefined) out.push(m[2]);
+    else if (logs[i + 1]?.startsWith('Program log: ')) out.push(logs[i + 1].slice('Program log: '.length));
+  });
+  return out;
+}
+
+/** Reconciliation (off-chain): the on-chain rule only proves that SOME memo was attached.
+ *  Accept a payment for an invoice only if it carries exactly one invoice memo and it is the expected one. */
+export function matchInvoicePayment(logs: string[], invoiceId: string): boolean {
+  const inv = memosFromLogs(logs).filter(m =&gt; m.startsWith('invoice:'));
+  return inv.length === 1 &amp;&amp; inv[0] === invoiceMemo(invoiceId);
+}
+
+/** Pay an invoice: the memo instruction must come right before the transfer. */
+export function buildPayInvoice(args: { mint: PublicKey; from: PublicKey; to: PublicKey; payer: PublicKey; invoiceId: string | null; amount: bigint }): TransactionInstruction[] {
+  return [
+    ...(args.invoiceId ? [memoInstruction(invoiceMemo(args.invoiceId), args.payer)] : []),
+    createTransferCheckedWithFeeInstruction(args.from, args.mint, args.to, args.payer, args.amount, DECIMALS, expectedFee(args.amount), [], TOKEN_2022_PROGRAM_ID),
+  ];
+}
+
+/** Example of sending one step on a real cluster (devnet by default). */
+export async function createSettlementMint() {
+  const connection = getConnection();
+  const issuer = loadKeypair();
+  const mint = Keypair.generate();
+  const rent = await connection.getMinimumBalanceForRentExemption(settlementMintSpace());
+  await sendAndConfirmTransaction(connection, new Transaction().add(...buildSettlementMint(issuer.publicKey, mint.publicKey, rent)), [issuer, mint]);
+  return mint.publicKey;
+}</code></pre>
+<p><strong>测试中发现的真实陷阱：</strong><code>@solana/spl-memo</code> 的新版本默认使用不同的程序 ID。Token-2022 检查的是规范的 SPL Memo 程序（<code>MemoSq4g…</code>），所以代码自己构造备注指令。务必核对程序 ID，而不只是包名。</p>
+<h2>已验证的内容</h2>
+<p>在 LiteSVM 中：创建带手续费和默认冻结规则的铸币；卖方账户要求备注；发行方为买方注资；<strong>没有</strong>发票备注的付款被拒绝（"No memo in previous instruction"）；付给<strong>未获批</strong>公司的款项被拒绝（"Account is frozen"）；发票 INV-2026-0042 已支付；发票号记录在链上；卖方从 1,000 中收到 997.5，2.5 作为手续费被预扣；对 100,000 的付款，手续费上限稳定在 50。自 11 月 9 日起：手续费与 Token-2022 完全一样向上取整（401 个基本单位支付 2 的手续费），发票号<strong>错误</strong>的付款在链上通过，但会被对账拒绝。</p>
+<h2>用在哪里</h2>
+<ul>
+<li>有大量小额发票的供应商网络和交易市场。</li>
+<li>需要清晰审计轨迹的跨境 B2B 支付。</li>
+<li>使用代币化存款或稳定币的企业资金管理试点（如<a href="../../posts/wns-w-token-2022-and-economic-solana-wen.html">新韩案例</a>）。</li>
+</ul>
+<h2>局限与风险</h2>
+<ul>
+<li>发行稳定的结算代币受到监管；这里只是技术层。</li>
+<li>发行方的冻结权限很大。请使用多签和清晰的治理。</li>
+<li>备注是公开的。只写发票号，绝不写发票内容。</li>
+<li>Token-2022 只检查备注是否存在，不检查内容。错误的发票号在链上照样通过；请始终将付款与你的发票清单对账（<code>matchInvoicePayment</code>）。</li>
+<li>手续费向上取整。请用与 Token-2022 相同的公式计算，或从铸币读取，绝不要用简单的整数除法。</li>
+<li>留存在账户中的手续费必须由手续费权限方收取；请规划这项操作。</li>
+</ul>
+<h2>图说 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/wall-street.html" title="华尔街遇见 Solana"><img src="../../wen-media/wall-street.jpeg" alt="华尔街遇见 Solana" loading="lazy" width="300" height="300"></a><figcaption>传统金融，新的轨道</figcaption></figure><figure><a href="../../image-story/wen-market-wall-street.html" title="Wen 市场结算台"><img src="../../wen-media/wen-market-wall-street.jpeg" alt="Wen 市场结算台" loading="lazy" width="300" height="300"></a><figcaption>不会丢失的发票</figcaption></figure><figure><a href="../../image-story/meow-wen-coin-market-wallet-exchange-wall-street.html" title="Meow Wen 商业钱包"><img src="../../wen-media/meow-wen-coin-market-wallet-exchange-wall-street.jpeg" alt="Meow Wen 商业钱包" loading="lazy" width="300" height="300"></a><figcaption>仅限获批交易对手</figcaption></figure><figure><a href="../../image-story/jupiter-stable-coin.html" title="在 Jupiter 轨道上的稳定结算"><img src="../../wen-media/jupiter-stable-coin.jpeg" alt="在 Jupiter 轨道上的稳定结算" loading="lazy" width="300" height="300"></a><figcaption>稳定的价值，可编程的规则</figcaption></figure><figure><a href="../../image-story/wen-gold-market-coin-crypto-2025.html" title="金色 Wen 商业硬币"><img src="../../wen-media/wen-gold-market-coin-crypto-2025.jpeg" alt="金色 Wen 商业硬币" loading="lazy" width="300" height="300"></a><figcaption>每笔付款都有参考号</figcaption></figure></div>
+<div class="lab-box">
+<h3>Wen 在此模型中的位置</h3>
+<p style="margin:0;">这里的结算代币是由受监管方发行的稳定单位；WEN 并不打算作为发票货币。Wen 的角色是故事：WNS——WEN 诗歌 NFT 背后的标准——让很多人第一次接触到这个模型所用的 Token-2022 机制。社区或商业网络仍可以在发票流程之外，用 WEN 结算成员之间的小额服务费或小费。</p>
+</div>
+<div class="lab-box">
+<h3>Wen 的主线：一个合约，处处可见</h3>
+<p style="margin:0 0 8px;">实验室的每个模型都免费且开放，并带着同一个签名：$WEN 代币合约。复制它，在你自己的文档中重复它，使用前务必在浏览器上核验。</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">核验：<a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">如何找到合约 ID</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>开放使用政策</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>免费且开放。</strong>实验室的全部代码以 Apache License 2.0 发布，与 Wen Program Library 相同。无论是否商用，都可以使用、修改、发布；请保留许可声明。</li>
+<li><strong>只用开放工具。</strong>基于公开且有文档的工具构建：Solana SPL Token-2022（Token Extensions）、Wen New Standard（WNS）的代币布局、Solana Pay，以及用于本地测试的 LiteSVM。</li>
+<li><strong>规则：始终核验你自己的模型。</strong>运行测试，从 devnet 开始，阅读官方文档，检查每个账户和金额，并在任何主网使用之前获得独立审计。未经核验的模型不是模型，而是猜测。</li>
+<li><strong>未经审计，不构成建议。</strong>这些是教学示例，不构成金融、法律或税务建议，也不是持牌的支付或银行产品。在大多数国家，支付、稳定币和收单都是受监管的活动。</li>
+<li><strong>安全。</strong>切勿把私钥粘贴到任何网站。不要安装 npm 包 <code>@wen-community/wen-new-standard</code>：npm 已因恶意将其移除。请从官方来源构建。</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">由 Wen 为社区讲述。更多内容见我们的<a href="../../privacy-policy-cookie-policy.html">编辑与数据政策</a>。</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">路线图</a> · <a href="../../lab/code/README.md">全部代码</a> · <a class="src-ref" href="../../sources.html#lab-b2b-invoices-token-2022-1">GitHub 上的 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-5-many-wallets.png" alt="卡片：一个收银台，多个钱包，总部视图" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">新上线 · 第 7 阶段 · Wen Counter</p><p style="margin:0 0 6px">在浏览器中运行于 Solana Pay 的免费开放收银台：仅收款、每笔 0 费用、钱包由店主 PIN 锁定、57 项公开检查。</p><p style="margin:0"><a href="counter.html">查看方案</a> · <a href="counter/">打开收银台</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>本页背后的所有外部来源都汇集在一个页面上，供你自行公开研究和核验。<a href="../../sources.html#lab-b2b-invoices-token-2022">打开本页来源 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-03-city-of-towers-friend.jpeg" alt="Wen 和一个友善的绿色生物走在高楼林立的城市里" width="800" height="1202" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>大城市里的生意：没有发票号就不能付款；只有获批公司才能收款。</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

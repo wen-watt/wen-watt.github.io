@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>第 5 阶段：银行卡与链上支付的成本和速度模拟器</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/payment-simulator.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/payment-simulator.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/payment-simulator.html">
+<meta name="description" content="Wen Open Lab 模型 5：用你自己的数字比较银行卡收单和 Solana Pay 的月成本与结算速度。公开公式，不做跟踪。">
+<!-- seo:start -->
+<meta name="keywords" content="payment cost calculator, card fees vs crypto, Solana Pay, settlement speed, simulator">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第 5 阶段：银行卡与链上支付的成本和速度模拟器">
+<meta property="og:description" content="Wen Open Lab 模型 5：用你自己的数字比较银行卡收单和 Solana Pay 的月成本与结算速度。公开公式，不做跟踪。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/payment-simulator.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-market-run.jpeg">
+<meta property="og:image:alt" content="Wen 市场竞速">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-market-run.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": ["WebPage"], "@id": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html#page", "name": "第 5 阶段：银行卡与链上支付的成本和速度模拟器", "headline": "第 5 阶段：银行卡与链上支付的成本和速度模拟器", "description": "Wen Open Lab 模型 5：用你自己的数字比较银行卡收单和 Solana Pay 的月成本与结算速度。公开公式，不做跟踪。", "url": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html", "inLanguage": "zh-CN", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Token-2022", "Wen New Standard (WNS)", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-market-run.jpeg", "mainEntity": {"@id": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html#app"}}, {"@type": "WebApplication", "@id": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html#app", "name": "银行卡与链上支付成本模拟器", "url": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html", "applicationCategory": "EducationalApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "publisher": {"@id": "https://wen-watt.github.io/#org"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "第 5 阶段：银行卡与链上支付的成本和速度模拟器", "item": "https://wen-watt.github.io/cn-wen/lab/payment-simulator.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 开放集成</p>
+<h1>第 5 阶段：支付模拟器<span class="lab-badge">可交互</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/payment-simulator.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/payment-simulator.html" hreflang="it" lang="it">Italiano</a> · <a href="payment-simulator.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/payment-simulator.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/payment-simulator.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a aria-current="page" href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<figure><img src="../../wen-media/wen-market-run.jpeg" alt="Wen 市场竞速" width="1200" height="675"><figcaption>可以测量的速度</figcaption></figure>
+<p class="intro">模型在遇到真实数字时才变得有用。输入你店铺的交易量、银行卡条款和链上成本，模拟器会比较每月成本和等待结算的资金。每个公式都会展示，什么都不会被发送出去：计算在你的浏览器里进行。</p>
+<h2>你的数字</h2>
+<p>任何字段都可以修改。默认值仅作示例，并非任何服务商的报价：请换成你自己的合同条款和今天的价格。</p>
+<form class="lab-sim" id="sim" onsubmit="return false;">
+<label>每月订单数<input id="orders" min="0" type="number" value="2000"></label>
+<label>平均订单额，$<input id="ticket" min="0" step="0.01" type="number" value="40"></label>
+<label>银行卡费率，%<input id="mdr" min="0" step="0.01" type="number" value="2.9"></label>
+<label>银行卡每笔固定费用，$<input id="fixed" min="0" step="0.01" type="number" value="0.30"></label>
+<label>银行卡结算天数<input id="days" min="0" type="number" value="2"></label>
+<label>拒付率，%<input id="cbr" min="0" step="0.01" type="number" value="0.5"></label>
+<label>每笔拒付费用，$<input id="cbf" min="0" step="0.01" type="number" value="15"></label>
+<label>每笔网络费，SOL<input id="netfee" min="0" step="0.000001" type="number" value="0.00001"></label>
+<label>SOL 价格，$<input id="sol" min="0" step="0.01" type="number" value="150"></label>
+<label>兑换为法币，%<input id="offramp" min="0" step="0.01" type="number" value="0.5"></label>
+</form>
+<table class="lab-table" id="sim-out">
+<thead><tr><th>每月</th><th>银行卡</th><th>链上（Solana Pay）</th></tr></thead>
+<tbody>
+<tr><td>收入</td><td id="o-rev1"></td><td id="o-rev2"></td></tr>
+<tr><td>支付费用</td><td id="o-fee1"></td><td id="o-fee2"></td></tr>
+<tr><td>拒付成本</td><td id="o-cb1"></td><td id="o-cb2"></td></tr>
+<tr><td><strong>总成本</strong></td><td id="o-tot1"></td><td id="o-tot2"></td></tr>
+<tr><td>每笔订单成本</td><td id="o-per1"></td><td id="o-per2"></td></tr>
+<tr><td>等待结算的资金</td><td id="o-wait1"></td><td id="o-wait2"></td></tr>
+</tbody>
+</table>
+<p id="o-sum" style="font-size:15px;"></p>
+<script>
+    (function(){
+      var ids=['orders','ticket','mdr','fixed','days','cbr','cbf','netfee','sol','offramp'];
+      function v(id){var x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>=0?x:0;}
+      function m(x){return '$'+x.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+      function set(id,t){document.getElementById(id).textContent=t;}
+      function run(){
+        var n=v('orders'),t=v('ticket'),rev=n*t;
+        var fee1=rev*v('mdr')/100+n*v('fixed');
+        var cb1=n*v('cbr')/100*(t+v('cbf'));
+        var fee2=n*v('netfee')*v('sol')+rev*v('offramp')/100;
+        var tot1=fee1+cb1,tot2=fee2;
+        var wait1=rev/30*v('days');
+        set('o-rev1',m(rev));set('o-rev2',m(rev));
+        set('o-fee1',m(fee1));set('o-fee2',m(fee2));
+        set('o-cb1',m(cb1));set('o-cb2','none (refunds are new payments)');
+        set('o-tot1',m(tot1));set('o-tot2',m(tot2));
+        set('o-per1',n?m(tot1/n):'—');set('o-per2',n?m(tot2/n):'—');
+        set('o-wait1',m(wait1)+' ('+v('days')+' days)');set('o-wait2','≈ $0 (seconds)');
+        var diff=tot1-tot2;
+        set('o-sum',diff>=0?('With these numbers, on-chain payments cost '+m(diff)+' less per month, '+m(diff*12)+' per year, before any setup, compliance or refund-handling costs.')
+                          :('With these numbers, cards cost '+m(-diff)+' less per month. Check the conversion fee and volume assumptions.'));
+      }
+      ids.forEach(function(id){document.getElementById(id).addEventListener('input',run);});
+      run();
+    })();
+    </script>
+<noscript><p>The simulator needs JavaScript. The formulas are listed below so you can use a spreadsheet instead.</p></noscript>
+<h2>公式</h2>
+<ul>
+<li>收入 = 订单数 × 平均订单额。</li>
+<li>银行卡支付费用 = 收入 × 银行卡费率 % + 订单数 × 固定费用。</li>
+<li>拒付成本 = 订单数 × 拒付率 × （平均订单额 + 每笔拒付费用）。</li>
+<li>链上费用 = 订单数 × 以 SOL 计的网络费 × SOL 价格 + 收入 × 兑换 %。</li>
+<li>等待结算的资金 = 收入 ÷ 30 × 结算天数。</li>
+</ul>
+<h2>模拟器没有计算的内容</h2>
+<ul>
+<li>搭建、集成、合规和牌照成本。</li>
+<li>你的顾客中有多少人已经拥有 Solana 钱包。</li>
+<li>拒付对买家的保护价值，这对顾客来说是真实存在的。</li>
+<li>非稳定代币在付款与兑换之间的价格波动。</li>
+</ul>
+<p>重点不在于某条轨道总能获胜，而在于用你能核对的数字取代主观看法，然后用<a href="payments-acquiring-bridge.html">第 4 阶段</a>在 devnet 上测试胜出者。</p>
+<h2>图说 Wen</h2>
+<div class="lab-grid"><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-1.html" title="夜间赛车的 Wen 猫"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-1.jpeg" alt="夜间赛车的 Wen 猫" loading="lazy" width="300" height="300"></a><figcaption>以秒计，而非以天计</figcaption></figure><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-2.html" title="全速前进的 Wen 赛车手"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-2.jpeg" alt="全速前进的 Wen 赛车手" loading="lazy" width="300" height="300"></a><figcaption>实时结算</figcaption></figure><figure><a href="../../image-story/night-racing-crypto-cat-wen-solana-memecoin-3.html" title="冲过终点线的 Wen 猫"><img src="../../wen-media/night-racing-crypto-cat-wen-solana-memecoin-3.jpeg" alt="冲过终点线的 Wen 猫" loading="lazy" width="300" height="300"></a><figcaption>先建模，再决定</figcaption></figure><figure><a href="../../image-story/testing-jup-wen-solana.html" title="测试 Jupiter 和 Wen"><img src="../../wen-media/testing-jup-wen-solana.jpeg" alt="测试 Jupiter 和 Wen" loading="lazy" width="300" height="300"></a><figcaption>先测试，再信任</figcaption></figure><figure><a href="../../image-story/crypto-game-solana-memecoin-wen.html" title="Wen 数字游戏"><img src="../../wen-media/crypto-game-solana-memecoin-wen.jpeg" alt="Wen 数字游戏" loading="lazy" width="300" height="300"></a><figcaption>玩转数字</figcaption></figure></div>
+<div class="lab-box">
+<h3>Wen 在此模型中的位置</h3>
+<p style="margin:0;">如果商店把 WEN 作为支付选项之一，波动性就很重要：把兑换字段设为你真实的兑换成本，并记住一笔 WEN 付款的价值在收款与兑换之间可能变动。稳定定价属于稳定币；WEN 为收银台带来的是社区和关注。</p>
+</div>
+<div class="lab-box">
+<h3>Wen 的主线：一个合约，处处可见</h3>
+<p style="margin:0 0 8px;">实验室的每个模型都免费且开放，并带着同一个签名：$WEN 代币合约。复制它，在你自己的文档中重复它，使用前务必在浏览器上核验。</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">核验：<a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">如何找到合约 ID</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>开放使用政策</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>免费且开放。</strong>实验室的全部代码以 Apache License 2.0 发布，与 Wen Program Library 相同。无论是否商用，都可以使用、修改、发布；请保留许可声明。</li>
+<li><strong>只用开放工具。</strong>基于公开且有文档的工具构建：Solana SPL Token-2022（Token Extensions）、Wen New Standard（WNS）的代币布局、Solana Pay，以及用于本地测试的 LiteSVM。</li>
+<li><strong>规则：始终核验你自己的模型。</strong>运行测试，从 devnet 开始，阅读官方文档，检查每个账户和金额，并在任何主网使用之前获得独立审计。未经核验的模型不是模型，而是猜测。</li>
+<li><strong>未经审计，不构成建议。</strong>这些是教学示例，不构成金融、法律或税务建议，也不是持牌的支付或银行产品。在大多数国家，支付、稳定币和收单都是受监管的活动。</li>
+<li><strong>安全。</strong>切勿把私钥粘贴到任何网站。不要安装 npm 包 <code>@wen-community/wen-new-standard</code>：npm 已因恶意将其移除。请从官方来源构建。</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">由 Wen 为社区讲述。更多内容见我们的<a href="../../privacy-policy-cookie-policy.html">编辑与数据政策</a>。</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">路线图</a> · <a href="../../lab/code/README.md">全部代码</a> · <a class="src-ref" href="../../sources.html#lab-payment-simulator-1">GitHub 上的 Wen Program Library</a></p>
+<aside class="lab-box" id="wen-counter-callout" style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><a href="counter.html" style="flex:0 0 200px;max-width:100%"><img src="../../wen-media/wen-counter-card-3-today-you-kept.png" alt="卡片：今天你留下了，按已确认销售测量" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:8px;display:block"></a><div style="flex:1 1 240px;min-width:0"><p style="margin:0 0 4px;font-weight:700;color:var(--teal)">新上线 · 第 7 阶段 · Wen Counter</p><p style="margin:0 0 6px">在浏览器中运行于 Solana Pay 的免费开放收银台：仅收款、每笔 0 费用、钱包由店主 PIN 锁定、57 项公开检查。</p><p style="margin:0"><a href="counter.html">查看方案</a> · <a href="counter/">打开收银台</a> · <a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a></p></div></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>本页背后的所有外部来源都汇集在一个页面上，供你自行公开研究和核验。<a href="../../sources.html#lab-payment-simulator">打开本页来源 →</a></p>
+</aside><!-- /src:callout -->
+<!--wimg--><figure style="max-width:420px;margin:28px auto"><img src="../../wen-media/wen-lab-saga-08-snow-ride.jpeg" alt="Wen 骑着一只毛茸茸的大生物穿越雪山，头顶有飞船飞过" width="800" height="1202" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px"><figcaption>在冷冰冰的数字中保持稳定：五个公式比较银行卡费用与链上费用，并诚实列出局限。</figcaption></figure><!--/wimg-->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

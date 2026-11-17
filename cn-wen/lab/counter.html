@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>第 7 阶段：Wen Counter，浏览器里的开放收银台</title>
+<link rel="canonical" href="https://wen-watt.github.io/cn-wen/lab/counter.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/counter.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/counter.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/counter.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/counter.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/counter.html">
+<meta name="description" content="Wen Open Lab 模型 7：一个网页里的免费开放收银台，基于 Solana Pay。显示二维码、监听链、记录销售；为部门、分店或小费设置多个钱包，收据、退款备注、导出。无服务器，无应用商店，无银行卡数据，每笔销售零手续费。Apache-2.0。">
+<!-- seo:start -->
+<meta name="keywords" content="point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="第 7 阶段：Wen Counter，浏览器里的开放收银台">
+<meta property="og:description" content="Wen Open Lab 模型 7：住在网页里的收银台。显示 Solana Pay 二维码、监听链、记录销售。无服务器，无应用商店，无银行卡数据，每笔销售没有固定费用。先用 devnet，Apache-2.0。">
+<meta property="og:url" content="https://wen-watt.github.io/cn-wen/lab/counter.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-og.png">
+<meta property="og:image:alt" content="Wen 在递冰淇淋，旁边的手机显示 Wen Counter 账本：浏览器里的免费收银台">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-og.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "headline": "第 7 阶段：Wen Counter，浏览器里的开放收银台", "description": "一个基于 Solana Pay、运行在网页中的免费开放收银台：二维码、链上核验、为部门、分店或小费设置多个钱包、收据、退款备注和导出。仅收款，Apache-2.0。", "image": "https://wen-watt.github.io/wen-media/wen-counter-og.png", "url": "https://wen-watt.github.io/cn-wen/lab/counter.html", "inLanguage": "zh-CN", "keywords": "point of sale, PWA, Solana Pay, acquiring alternative, merchant fees, USDC, micro-ticket, small business payments, Wen Open Lab", "datePublished": "2026-11-11", "dateModified": "2026-11-12", "license": "https://www.apache.org/licenses/LICENSE-2.0", "author": {"@type": "Organization", "name": "Wen"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}, {"@type": "SoftwareApplication", "name": "Wen Counter", "applicationCategory": "BusinessApplication", "operatingSystem": "Any modern browser", "url": "https://wen-watt.github.io/cn-wen/lab/counter/", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "downloadUrl": "https://wen-watt.github.io/lab/counter/wen-counter-kit.zip"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "收银台需要应用或专用硬件吗？", "acceptedAnswer": {"@type": "Answer", "text": "不需要。它是一个网页，可以添加到任何手机或平板的主屏幕。它显示一个二维码；买家用自己的钱包付款。没有任何银行卡数据经过收银台，所以不需要认证终端。"}}, {"@type": "Question", "name": "网络费由谁支付？", "acceptedAnswer": {"@type": "Answer", "text": "买家钱包支付 Solana 网络费，每个签名 5,000 lamports。商店收到全额；收银台从已确认的交易中记录这笔费用。"}}, {"@type": "Question", "name": "它现在能取代银行卡收单吗？", "acceptedAnswer": {"@type": "Answer", "text": "不能完全取代。买家需要有余额的 Solana 钱包，没有拒付，兑换现金和当地规则也有各自的成本。它是第二种开放的收款方式，在固定刷卡费最伤人的小额订单上最有优势。"}}, {"@type": "Question", "name": "我可以复制它并做自己的版本吗？", "acceptedAnswer": {"@type": "Answer", "text": "可以，免费。保留 NOTICE 文件，并注明 Wen Open Lab 和 Wen 链条（Solana、Solana Pay、SPL Token 和 Token-2022、WNS、WEN）；这是这里 Apache-2.0 许可证的唯一条件。"}}, {"@type": "Question", "name": "商店应该用哪个钱包？", "acceptedAnswer": {"@type": "Answer", "text": "任何你信任的 Solana 钱包。页面列举了五个例子：Jupiter、Phantom、Solflare、Backpack，以及面向团队的 Squads。收银台只需要收款地址，并在设置时于链上核验。"}}, {"@type": "Question", "name": "我的钱或密钥会出现在页面里吗？", "acceptedAnswer": {"@type": "Answer", "text": "不会。收银台只知道商店公开的收款地址。它从不索要助记词或私钥，也无法转移资金。"}}, {"@type": "Question", "name": "Wen Counter 适合谁？", "acceptedAnswer": {"@type": "Answer", "text": "适合任何能从中受益的人：加密社区、活动、面向自身受众的网店，以及买家已经在用 Solana 钱包付款的任何商店。它免费且开放。"}}, {"@type": "Question", "name": "一个收银台能收款到多个钱包吗？", "acceptedAnswer": {"@type": "Answer", "text": "可以。钱包 #1 加上钱包 #2..X，每个都有类型（Department、Branch、Till、Tips、Online、Events）和名称。账本按钱包汇总销售。"}}, {"@type": "Question", "name": "Wen Counter 的收据是税务收据吗？", "acceptedAnswer": {"@type": "Answer", "text": "不是。收银台只是简单的汇总工具，不是税控设备。请与会计确认申报流程，并保存每个时段的钱包流水。"}}, {"@type": "Question", "name": "商店使用 Wen Counter 时谁负责？", "acceptedAnswer": {"@type": "Answer", "text": "用户。机制不拿取、不持有、不收取任何东西；它遵循 Solana 网络的规则，钱包属于商店。"}}, {"@type": "Question", "name": "收银员能在 Wen Counter 中更换收款钱包吗？", "acceptedAnswer": {"@type": "Answer", "text": "没有设置 PIN 就不能。钱包和设置在设备上是锁定的；第一个 PIN 来自部署（默认 1111），由店主修改。忘了：重装、重新输入钱包、设定新 PIN。"}}]}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "首页", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/cn-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "第 7 阶段：Wen Counter，浏览器里的开放收银台", "item": "https://wen-watt.github.io/cn-wen/lab/counter.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 开放收银台</p>
+<h1>第 7 阶段：Wen Counter<span class="lab-badge">原型 · devnet</span></h1><p class="lang-switch" aria-label="语言" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/counter.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/counter.html" hreflang="it" lang="it">Italiano</a> · <a href="counter.html" hreflang="zh-CN" lang="zh-CN" aria-current="page">中文</a> · <a href="../../ko-wen/lab/counter.html" hreflang="ko" lang="ko">한국어</a></p><p class="meta tr-note">由 Wen 与 AI 一起从英文译出。以<a href="../../lab/counter.html" hreflang="en" lang="en">英文页面</a>为准；欢迎指正。</p>
+<ul class="lab-strip" aria-label="Wen Open Lab 各阶段"><li><a href="index.html">0 · 路线图</a></li><li><a href="receipt-warranty-wns.html">1 · 收据与保修</a></li><li><a href="creator-royalties-wns.html">2 · 创作者版税</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 发票</a></li><li><a href="payments-acquiring-bridge.html">4 · 支付桥</a></li><li><a href="payment-simulator.html">5 · 模拟器</a></li><li><a href="devnet.html">6 · Devnet：亲自复现</a></li><li><a aria-current="page" href="counter.html">7 · 收银台</a></li><li><a href="counter-safety.html">7.1 · 安全</a></li><li><a href="trust.html">✓ · 信任链</a></li><li><a href="benefits.html">★ · 益处与用途</a></li><li><a href="walkthroughs.html">✎ · 十篇导读</a></li><li><a href="videos.html">▶ · 视频</a></li><li><a href="findings.html">? · 读者发现</a></li></ul>
+<section class="counter-pitch" id="in-short" style="border:1px solid var(--panel-line);border-radius:var(--radius);background:var(--panel);padding:22px 22px 18px;margin:18px 0">
+<p style="font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal,#5eead4);margin:0 0 8px;font-weight:600">简而言之 · 人人免费</p>
+<h2 style="margin:0 0 12px">嘿，你要去哪儿？🐾</h2>
+<p style="margin:0 0 10px">2024 年，美国商户支付了 <strong>1,872 亿美元</strong>的银行卡手续费。一杯 3 美元的咖啡，银行卡可能抽走 <strong>12.9%</strong>。在这里，收银台的费用是 <strong>0</strong>，<strong>每笔销售不收手续费</strong>，买家的钱包只需支付 Solana 网络费：<strong>5,000 lamports</strong>。</p>
+<p style="margin:0 0 14px">无需发布应用，无需租用终端，无需保护银行卡数据，中间没有任何人。只是你收银台手机上的一个网页。<strong>拿去，检查，运行。</strong></p>
+<p style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px"><span class="lab-badge">免费</span><span class="lab-badge">开源代码</span><span class="lab-badge">无需应用商店</span><span class="lab-badge">无银行卡数据</span><span class="lab-badge">无中间商</span><span class="lab-badge">节省可测量，而非空口承诺</span></p>
+<p style="display:flex;flex-wrap:wrap;gap:10px;margin:0"><a href="counter/" style="display:inline-block;background:var(--teal,#5eead4);color:#06231f;font-weight:700;padding:12px 20px;border-radius:12px;text-decoration:none">打开收银台 →</a>
+<a download href="../../lab/counter/wen-counter-kit.zip" style="display:inline-block;border:1px solid var(--panel-line);color:var(--ink);font-weight:600;padding:12px 20px;border-radius:12px;text-decoration:none">下载套件（.zip）</a></p>
+<blockquote style="margin:18px 0 0;padding:12px 16px;border-left:3px solid var(--amber,#e0a444);color:var(--ink-dim);font-style:italic">一只猫从远方走来，<br>袖子里没藏任何把戏。<br>他带来一个零成本的收银台，<br>和你信得过的费用。<br>他不要抽成，不要卡，也不要应用：<br>摸摸他，就能收款。</blockquote>
+</section>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>我是把每一条链汇集到你自己收银台的机制，而你不用为此付费：摸摸猫就好。细节是：你收到的钱由你选择的钱包管理。退款、转到用于营业款的钱包或账户，全都在你的钱包里完成。你从我这里得到的，是一种不抽成、不收费的收款方式。无论是小披萨店、花店还是大公司，都可以搭建自己的收银台。我给你做了一个毛茸茸的。</p></aside>
+<figure style="max-width:420px;margin:24px auto"><img src="../../wen-media/wen-trip-ice-cream-serve.jpg" alt="系着条纹围裙的 Wen 在街边柜台给笑眯眯的孩子们递冰淇淋" width="415" height="417" loading="lazy" style="width:100%;height:auto;border-radius:12px"><figcaption>收银台就是收银台：报价、收款、递上冰淇淋</figcaption></figure>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:18px 0">
+<img src="../../wen-media/wen-counter-card-1-coffee.png" alt="卡片：一杯咖啡被抽 12.9%，商店每笔刷卡支付 1–3%，Wen Counter 每笔 0 费用" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+<img src="../../wen-media/wen-counter-card-2-receive-only.png" alt="卡片：设计上仅收款，无密钥，三种读取请求，57 项公开检查" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+<img src="../../wen-media/wen-counter-card-3-today-you-kept.png" alt="卡片：今天你留下了，按已确认销售测量，附账本界面" width="1200" height="676" loading="lazy" style="width:100%;height:auto;border-radius:10px">
+</div>
+<p style="color:var(--ink-dim);font-size:.9em">可分享的卡片。截图来自 devnet 上的测试运行；卡片上的二维码是特意模糊处理的。</p>
+<figure style="margin:24px auto;max-width:100%"><div style="position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="n0VD1h9dIo0" aria-label="播放：From Orbit · Wen Counter：浏览器里的免费收银台，每笔 0 费用，仅收款" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-06-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>视频：92 秒看完整个 Wen Counter 介绍。播放器只会在你点击播放后才从 YouTube 加载。</figcaption></figure>
+<h2 id="why">为什么这很重要</h2>
+<p>买家与商店之间的每一层都要分一杯羹：收单机构、卡组织、终端租赁、平台。对于一家依法纳税、给员工发工资的商店来说，这是在做出任何增长决定之前就从劳动中被拿走的钱。Wen Counter 是一个直接的微系统：买家付钱给商店，链确认付款，商店保存记录。一笔销售的唯一成本是 Solana 网络费，由买家的钱包支付。收银台本身分文不取。</p>
+<p>对记账的企业来说：每笔销售都有链上签名，并记入一份可以导出为 CSV 交给会计的账本。</p>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="Li4hKvZV9Y4" aria-label="播放：Signal Received · 浏览器里的免费收银台：二维码 → ✓ 已付款" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-07-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>视频：二维码 → ✓ 已付款，用时 17 秒（devnet，二维码特意模糊）。播放器只会在你点击播放后才从 YouTube 加载。</figcaption></figure>
+<h2 id="your-till">你自己的收银台，五步搞定</h2>
+<ol>
+<li><strong>拿起工具。</strong>在收银台的手机或平板上打开收银台，或下载套件。</li>
+<li><strong>创建一个钱包</strong>，用你信任的 Solana 钱包应用（Jupiter、Phantom、Solflare、Backpack、Squads）。</li>
+<li><strong>在设置中登记</strong>：店名、钱包名称、网络（先用 devnet）。</li>
+<li><strong>粘贴收款地址。</strong>收银台会在链上核验它。这就是你开放、免费的收银台。</li>
+<li><strong>在你自己的钱包里管理资金：</strong>退款、采购、转账、报税记录。</li>
+</ol>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0"><img src="../../wen-media/wen-counter-shop-toys-bear.jpg" alt="Wen 在玩具店柜台给孩子们看一只泰迪熊" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-grill-1.jpg" alt="Wen 在夜市摊位上烤串" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-pizza.jpg" alt="Wen 从柴火烤炉里取出一张刚烤好的披萨" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-toys-robot.jpg" alt="Wen 给笑眯眯的孩子们举起一个玩具机器人" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-clothes-hoodie.jpg" alt="Wen 在服装店给孩子们展示一件蓝色连帽衫" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"><img src="../../wen-media/wen-counter-shop-clothes-cap.jpg" alt="Wen 在服装店给一个微笑的男孩戴上帽子" width="504" height="334" loading="lazy" style="width:100%;height:auto;border-radius:10px;display:block"></div>
+<p style="font-size:13px;color:var(--ink-dim)">玩具店、烧烤店、披萨店、服装店：同一个免费收银台。<a href="../../posts/wen-counter-free-open-till-for-every-shop.html">阅读新闻</a>。</p>
+<h3 id="chains">面向企业和连锁店</h3>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>层级</th><th>钱包</th><th>谁</th><th>何时</th></tr></thead><tbody>
+<tr><td>部门或收银台</td><td>每个各有一个收款钱包，在设置中命名（家具、玩具、园艺）</td><td>收银台收款，仅收款</td><td>每笔销售</td></tr>
+<tr><td>分店</td><td>每家分店一个收银钱包</td><td>由一名负责的经理处理当天的营业款和退款</td><td>白天</td></tr>
+<tr><td>公司</td><td>一个中央钱包，例如 Squads 多签</td><td>财务部门；转移资金需多重批准</td><td>当天营业款每晚到账</td></tr>
+</tbody></table></div>
+<p>一个收银台，钱包 1 到 X，每个都有标签。收银员在结账时选择这笔销售进入哪个钱包；账本可按钱包筛选，导出文件带有钱包名称和地址。界面保持严谨；代码开放，可按需修改。</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-5-many-wallets.png" alt="卡片：一个收银台，多个钱包；部门、小费、总部视图按钱包汇总" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h3 id="setup-pin">设置 PIN：钱包由店主设定</h3>
+<p>公司把收银台装在柜台的手机上，并设定收款钱包。设置由 PIN 锁定，因此经理或收银员无法换上自己的钱包。第一个 PIN 是部署参数（<code>counter-deploy.js</code>，默认是简单的 <code>1111</code>）；店主在首次启动后立即在设置中设定新 PIN。离开设置会再次锁定；连续五次输错会暂停 30 秒；清空账本也需要 PIN。PIN 在设备上只以加盐 SHA-256 的形式保存。</p>
+<p><strong>忘记 PIN 了？</strong>在设备上重新安装应用，重新输入收款钱包，设定新 PIN。流程简单安全：链上什么都不会丢失，员工也无法悄悄更换钱包。重装后收银台没有任何钱包，收款地址显示在每个二维码上，营业款也不再进入公司钱包，所以任何更换都不可能不被察觉。</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-4-setup-pin.png" alt="卡片：店主设定钱包；设置由 PIN 锁定；收银台的任何人都无法更换钱包" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<p style="font-size:1.1em"><strong>瞧：你现成的收单机制。你自己的 Wen Counter。</strong></p>
+<figure style="margin:20px auto;max-width:460px"><img src="../../wen-media/wen-counter-cards-stack-2.png" alt="三张叠放的卡片：店主设定钱包、一个收银台多个钱包、57 项公开检查" width="1200" height="2028" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="functions">收银台能做什么</h2>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>功能</th><th>如何工作</th><th>决定权在哪里</th></tr></thead><tbody>
+<tr><td>币种</td><td>在设置中按此顺序选择：<strong>USDC、SOL、WEN、JUP</strong>；USDT 可选；任何 SPL 代币可按铸币地址添加。仅限主网的代币在 devnet 上显示为灰色。销售前会从链上读取代币的小数位。</td><td>商店决定接受什么</td></tr>
+<tr><td>多个钱包</td><td>钱包 #1（主钱包）加上钱包 #2..X，每个都有<strong>类型</strong>（Department、Branch、Till、Tips、Online、Events、Other）和<strong>名称</strong>：<code>#2 · Department · Furniture</code>、<code>#4 · Tips · Bar tips</code>。每个钱包都在链上核验；付款会对照该笔销售所选的钱包进行验证。</td><td>设置，由店主完成</td></tr>
+<tr><td>设置 PIN</td><td>钱包和设置只有输入 PIN 才能打开；第一个 PIN 来自部署文件（默认 1111），由店主修改。忘了：重装、输入钱包、设定新 PIN。</td><td>设备的所有者</td></tr>
+<tr><td>销售备注</td><td>用途、商品编码或名称，也可以留空。它会写入账本、收据和 CSV。如果买家的钱包支持，它还会随付款一起传送（Solana Pay 的 <code>message</code> 和公开的链上 <code>memo</code>）；如果不支持，就只保留在商店这一侧。</td><td>收银员，按每笔销售</td></tr>
+<tr><td>总部视图</td><td>账本按钱包和代币汇总销售；CSV 带有钱包编号、类型、名称和地址。任何人也都可以在区块浏览器中查看每个钱包。</td><td>财务部门，依据钱包</td></tr>
+<tr><td>给买家的收据</td><td>显示“已付款”后，买家可以选择：收据二维码（交易链接）、收据文本，或来自<a href="receipt-warranty-wns.html">第 1 阶段</a>的收据 NFT。<strong>这不是税务发票</strong>：收银台只是简单的汇总工具，不是税控设备。请遵守你所在国家的收据规定。</td><td>买家和商店</td></tr>
+<tr><td>退款</td><td>比销售少见。退款作为一笔从商店钱包发出的新付款完成；↩ 按钮会复制 <code>refund:</code> 加上原交易 ID 作为备注，任何人都能把两笔对应起来。大公司按自己的规定执行。</td><td>在钱包应用内</td></tr>
+<tr><td>导出</td><td>可导出今天、本周、本月、本年、去年、某个季度（Q1–Q4）或任意时段的 CSV；包含钱包名称、地址、签名和网络费。</td><td>你的会计</td></tr>
+<tr><td>语言</td><td>英语、意大利语、中文和韩语。所有界面文字都在一个词典文件里（<code>counter-i18n.js</code>），并与核心指纹绑定，因此翻译永远不会改变核心。</td><td>—</td></tr>
+</tbody></table></div>
+<h2 id="before-you-scale">扩大规模之前的七个回答</h2>
+<p>这些不是悬而未决的问题，而是我们给每家商店的回答，一次写清楚，让每个人自己做决定。</p>
+<ol>
+<li><strong>它是为谁准备的。</strong>大多数人还没有装着 USDC 的 Solana 钱包，任何代码都改变不了这一点。这里没有人谈论大规模采用：第一批用户是加密社区、活动和面向自身受众的网店。这个方案向所有人开放，无论是在搜索中，还是在 AI 助手读取的文件中；在它有用的地方，人们自然会使用它。</li>
+<li><strong>多个部门，一个视图。</strong>你有多个部门，或者想把收入分开？按编号、类型和名称添加钱包：<code>#2 · Department · Furniture</code>、<code>#3 · Branch · Downtown</code>、<code>#4 · Tips · Bar tips</code>。账本按钱包汇总（总部视图），每个钱包都可以在区块浏览器中查看。</li>
+<li><strong>真正的公司：RPC、钱包端和会计。</strong>钱包多、付款多，就需要自己的 RPC 端点，因为公共端点有频率限制。钱包端也要准备好：谁持有哪个钱包，谁批准转账，当天营业款如何流转。对公司来说，这意味着把钱包纳入会计体系，这与每周收一笔款、自己申报的个人卖家不同。请与你的会计或财务负责人确认你可以使用钱包。这未必被禁止，但流程和申报需要你留意。这是实用提示，不是建议。</li>
+<li><strong>税务规则。</strong>收银台不做任何申报。它是一种现代链接的新机制：买家用手机扫描收银台生成的二维码付款，你收款。非常适合微型企业，也适用于大企业，非常省钱而且免费。请和你的会计一起研究税务流程。如果你的规定允许你申报这些金额，就保存每个时段的钱包流水，申报收入，并列明收到了什么、退了什么。向你的会计说明，你想把资金收进钱包并如实申报：这是一种正确、现代、透明的经营与纳税方式。如果会计同意，就扩大规模：你手里有一个有意思的方案。</li>
+<li><strong>责任与公开审计。</strong>你使用这个方案，责任自负。我们提供机制；我们不知道你用它做什么，也不知道你改了什么。机制本身不拿钱、不持有钱、不收手续费：有网络的流程，只用这个流程；有你的钱包，由你自己使用。审计是公开的：阅读代码，重新运行 57 项检查，告诉我们你的发现（<a href="counter-safety.html#open-audit">方法</a>）。</li>
+<li><strong>语言与核心绑定。</strong>每个界面文字都在一个词典文件里。词典带有它所对应核心的指纹；如果核心变了而翻译没有重新审阅，安全检查就会失败。意大利语、中文和韩语率先上线。</li>
+<li><strong>USDT 保留。</strong>可选，与 USDC、SOL、WEN 和 JUP 并列。</li>
+</ol>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-6-open-audit.png" alt="卡片：57 项公开检查；25 项逻辑、13 项代码阅读、19 项浏览器测试；能弄坏就弄坏它，然后告诉我们" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<h2 id="cycle">Wen 循环，一步一步</h2>
+<p>这就是全部算法。每一步都由你在自己掌控的工具中完成；收银台只是把它们连起来。</p>
+<ol>
+<li><strong>选择一个钱包。</strong>Jupiter Wallet、Phantom、Solflare、Backpack、团队用的 Squads，或其他你信任的 Solana 钱包。</li>
+<li><strong>按钱包自己的规则创建。</strong>把助记词写在纸上，离线保存，绝不在任何网站输入，绝不发给任何人，也绝不把钱包连接到收银台。Wen 的任何人都不会向你索要它。</li>
+<li><strong>部署你自己的收银台。</strong>打开托管版收银台，或下载套件放到你自己的域名上，用你自己的设计。这是你的界面，不是我们的。</li>
+<li><strong>让钱包成为它的身份。</strong>把收款地址粘贴到设置中，点击<em>在链上核验此地址</em>。地址、钱包名称和核验时间就成为你收银台的身份。</li>
+<li><strong>收一笔款。</strong>输入金额；收银台显示 Solana Pay 二维码，包含你的地址、金额、新的参考号和订单备注。买家可用任意 Solana 钱包付款。</li>
+<li><strong>让链来确认。</strong>收银台读取链上数据，检查五项（参考号、收款方、代币、金额、成功），然后显示“✓ 已付款”。钱已经在你的钱包里了。</li>
+<li><strong>保存记录，在钱包里做决定。</strong>销售记入你的账本和 CSV。退款、转账和提现由你决定，在你的钱包应用里完成。就这样。</li>
+</ol>
+<p><strong>你得到的：</strong>每笔销售零手续费，收银台零成本；资金数秒内最终确定；无需终端、应用商店或合同；你自己的设计和域名；一份记录真实节省的账本。<strong>保护你的：</strong>没有密钥，不连接钱包，代码中只读，不注入命令，每个二维码上都显示地址，57 项公开检查（<a href="counter-safety.html">第 7.1 阶段</a>）。</p>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>保存好你的助记词，只留给自己，永远不要把钱包连接到我。我不需要它。我只需要你的地址，就是你会写在发票上的那个。</p></aside>
+<h2 id="foundation">基础：SOL、SDK、WEN、SPL Token、Token-2022</h2>
+<p>收银台的协议就是这五者早已构成的开放循环。我们在 2026 年 11 月 11 日重新核对了每一个环节。</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>环节</th><th>在收银台中的作用</th><th>如何核验</th></tr></thead><tbody>
+<tr><td><strong>SOL</strong> · Solana 网络</td><td>承载付款；每个签名 5,000 lamports 的费用（一半销毁，一半归验证者）是一笔销售的唯一成本，由买家钱包支付。</td><td>Solana 文档 <a class="src-ref" href="../../sources.html#lab-counter-6">来源</a></td></tr>
+<tr><td><strong>SDK</strong> · 开放库与标准</td><td>Solana Pay 的公开 URL 格式和两个标准读取调用；Wen Program Library（Apache-2.0）及其 JavaScript SDK（MIT），用于实验室其他阶段的收据和版税。</td><td>公开代码与文档 <a class="src-ref" href="../../sources.html#lab-counter-5">来源</a></td></tr>
+<tr><td><strong>WEN</strong> · 社区代币</td><td>这个收银台所属的故事和实用循环；可作为社区支付选项被接受。</td><td>链上读取，slot 468049071 <a class="src-ref" href="../../sources.html#saf-15">来源</a></td></tr>
+<tr><td><strong>SPL Token</strong> · 原始程序</td><td>USDC 和 WEN 都在这里；转账没有内置手续费，因此商店收到全额。</td><td>链上所属程序 <code>Tokenkeg…</code></td></tr>
+<tr><td><strong>Token-2022</strong> · 扩展</td><td>如果商店接受带转账手续费的 Token-2022 代币，收银台会对比实际到账金额，任何手续费都不会被忽略。</td><td>25 项核心检查，实验室模型 1–6 共 41 项测试</td></tr>
+</tbody></table></div>
+<p>链上没有部署任何新东西：没有程序、没有代币、没有合约。收银台只是读取已经公开内容的一种方式。</p>
+<h2 id="responsibility">你的责任</h2>
+<ul>
+<li>收银台是免费的。不收任何费用，不收集任何东西，你和买家之间也没有任何中间人。</li>
+<li>生意由你经营，所以由你负责：在需要的地方登记经营活动，保存记录，申报收入，并按你所在国家的规定纳税。请诚信地、独立地去做。</li>
+<li>兑换现金、稳定币规则和消费者保护因国家而异。正式上线前请咨询会计或律师。</li>
+<li>钱包的安全由你负责：助记词、设备、团队审批。</li>
+<li>你使用这个方案，责任自负。我们提供机制，不知道它如何被使用或修改。机制不拿取、不持有、不收取任何东西；它严格遵循 Solana 网络的规则，你的钱包由你自己使用。</li>
+</ul>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>我免费给你，什么都不拿。对买家诚实，对税务诚实，保管好你的助记词。我只求这些。</p></aside>
+<h2 id="numbers">想法背后的数字</h2>
+<ul>
+<li>2024 年美国商户支付了 <strong>1,872 亿美元</strong>的银行卡处理费（Nilson Report）；一个商户联盟统计 2025 年为 <strong>1,982.5 亿美元</strong>。<a class="src-ref" href="../../sources.html#lab-counter-1">来源</a> <a class="src-ref" href="../../sources.html#lab-counter-2">来源</a></li>
+<li>2025 年美国银行卡消费额达 <strong>12.5 万亿美元</strong>。<a class="src-ref" href="../../sources.html#lab-counter-1">来源</a></li>
+<li>一份典型的公开费率：线上 <strong>2.9% + 30¢</strong>，线下 <strong>2.6% + 10¢</strong>；商店使用外部处理商时还要额外支付平台费。<a class="src-ref" href="../../sources.html#lab-counter-3">来源</a></li>
+<li>每台刷卡终端约 <strong>200 到 1,000 多美元</strong>；手机碰一碰支付需要经过认证的应用、NFC 和设备认证。<a class="src-ref" href="../../sources.html#lab-counter-4">来源</a></li>
+<li>Solana Pay 是开放标准；Shopify 结账插件自 2023 年起就已存在，而据 2026 年的报道，开发重心已从收银工具转向其他支付原语。<a class="src-ref" href="../../sources.html#lab-counter-5">来源</a> 这正是本模型填补的空白：它不需要任何 SDK，只需要公开的 URL 格式和两个读取调用。</li>
+</ul>
+<figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="9V2bbz0LIK0" aria-label="播放：Paws Verified · 一杯咖啡被抽 12.9%？今天你留下了……" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../../assets/media/wen-counter-08-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>视频：一杯咖啡被抽 12.9%？今天你留下了…… 播放器只会在你点击播放后才从 YouTube 加载。</figcaption></figure>
+<h2 id="micro-ticket">小额订单效应</h2>
+<p>银行卡费用中的固定部分，买一杯咖啡和买一张沙发都一样，所以销售额越小，被拿走的比例越大。这正是没有固定费用的收银台最有价值的地方：披萨店、花店、咖啡馆、集市摊位。</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>订单额</th><th>银行卡，2.9% + 0.30</th><th>银行卡，2.6% + 0.10</th><th>Wen Counter</th></tr></thead><tbody><tr><td>3 · 咖啡</td><td>0.39 (12.9%)</td><td>0.18 (5.9%)</td><td>商店支付 0；买家钱包支付 5,000 lamports</td></tr><tr><td>8 · 一块披萨</td><td>0.53 (6.7%)</td><td>0.31 (3.9%)</td><td>商店支付 0；买家钱包支付 5,000 lamports</td></tr><tr><td>25 · 一束花</td><td>1.02 (4.1%)</td><td>0.75 (3.0%)</td><td>商店支付 0；买家钱包支付 5,000 lamports</td></tr><tr><td>60 · 双人晚餐</td><td>2.04 (3.4%)</td><td>1.66 (2.8%)</td><td>商店支付 0；买家钱包支付 5,000 lamports</td></tr><tr><td>150 · 网购订单</td><td>4.65 (3.1%)</td><td>4.00 (2.7%)</td><td>商店支付 0；买家钱包支付 5,000 lamports</td></tr></tbody></table></div>
+<p style="color:var(--ink-dim)">银行卡费用以商店货币计，括号内为实际费率。如果商店兑换为现金，通常需要 0.5–1.5% <a class="src-ref" href="../../sources.html#lab-counter-5">来源</a>；收银台账本会从商店留存金额中扣除这部分。</p>
+<h2 id="schema">各部分如何组合</h2>
+<div class="wns-almanac-schema" id="counter-schema">
+<p class="roadmap-title">1 · 一笔销售，五个步骤</p>
+<div class="roadmap"><div class="chain">
+<div class="node"><p class="node-tag">展示</p><div class="node-card"><p class="node-title">每笔销售一个二维码</p><p class="node-note">一个 Solana Pay 请求，包含金额、代币、店名、订单备注和一个新的参考密钥。</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">支付</p><div class="node-card"><p class="node-title">买家钱包</p><p class="node-note">买家扫码并确认。钱包签名并支付网络费。收银台从不接触任何密钥。</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">查找</p><div class="node-card"><p class="node-title">按参考号</p><p class="node-note">页面每两秒向链查询一次带有该笔销售参考号的交易。</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">核验并记录</p><div class="node-card"><p class="node-title">已付款 ✓</p><p class="node-note">检查收款方、代币、金额和是否成功；销售记入设备上的账本。</p></div></div>
+</div></div>
+<p class="roadmap-title" style="margin-top:28px">2 · 可以采用并扩展它的商店</p>
+<div class="roadmap"><div class="chain">
+<div class="node"><p class="node-tag">披萨店</p><div class="node-card"><p class="node-title">备注中写订单号</p><p class="node-note">厨房屏幕监听同一个参考号，变绿时就开始烤。</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">花店</p><div class="node-card"><p class="node-title">价签上的二维码</p><p class="node-note">每束花一个打印的二维码；收银台的手机确认每笔销售。</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">网店</p><div class="node-card"><p class="node-title">支付链接</p><p class="node-note">在结账页中以链接形式提供同样的请求；如需服务器端 webhook，请见<a href="payments-acquiring-bridge.html">第 4 阶段</a>。</p></div></div>
+<div class="connector"></div>
+<div class="node"><p class="node-tag">集市摊位</p><div class="node-card"><p class="node-title">任意平板</p><p class="node-note">安装到主屏幕；离线也能打开，只有确认时才需要联网。</p></div></div>
+</div></div>
+<div class="branch-row"><div class="branch"><div class="branch-line"></div><div class="branch-node"><p class="node-tag teal">基于</p><div class="node-card"><p class="node-title">第 1、4、5 阶段</p><p class="node-note">每笔销售后都可以附上<a href="receipt-warranty-wns.html">收据</a>，<a href="payments-acquiring-bridge.html">支付桥</a>增加服务器和 webhook，<a href="payment-simulator.html">模拟器</a>在理论上比较费用；收银台则在真实销售中测量它们。</p></div></div></div></div>
+<div class="legend"><span><i class="swatch solid"></i> 同一流程</span><span><i class="swatch dash"></i> 相关模型</span></div>
+<div class="notes"><h2>要点</h2>
+<div class="note-item"><p><span class="k">没有银行卡数据，没有终端。</span>页面只展示请求；签名由钱包完成。所以一个网页就够了。</p></div>
+<div class="note-item"><p><span class="k">可测量，不是承诺。</span>账本中的每个数字都来自已确认的交易和商店自己的银行卡条款。</p></div>
+<div class="note-item"><p><span class="k">稳定价格。</span>USDC 让价格保持美元计价；SOL 和其他代币需要商店为账本设定自己的汇率。</p></div>
+<div class="note-item"><p><span class="k">密钥留在家里。</span>只输入公开的收款地址。页面无法转移资金。</p></div>
+</div></div>
+<h2 id="model">你店铺的节省模型</h2>
+<p>宣传册只报一个费率，而商店实际支付的是组合：大量小额订单，少量大额订单。收银台账本根据已确认的销售计算三个数字：</p>
+<ul>
+<li><strong>省下的银行卡费用</strong> = Σ（银行卡费率 % × 销售额 + 固定费用），使用商店自己的条款；</li>
+<li><strong>商店留存</strong> = 省下的银行卡费用 − Σ（出金 % × 销售额）；</li>
+<li><strong>你的订单组合的实际银行卡费率</strong> = 省下的银行卡费用 ÷ 交易额，即这家商店真正会支付的费率，在小额订单曲线上以一个点显示。</li>
+</ul>
+<p>网络费从每笔已确认交易中读取，以 lamports 显示；由买家钱包支付。</p>
+<p>收银台在账本顶部直截了当地写着：<strong>“今天你留下了……”</strong>，并列出当天的销售笔数、营业额，以及按你的条款银行卡收单本该花费多少。在设置中输入你每月的银行卡营业额，它还会加上全年图景：每月 20,000，银行卡通常每月抽走 300–600（1.5–3%），每年 3,600–7,200，此外还有按你自己订单组合算出的数字。</p>
+<h2 id="code">代码</h2>
+<p>几个小文件，无需构建步骤，除了一个 MIT 许可的二维码生成器外没有任何依赖：<code>lab/counter/counter-core.js</code>（纯函数）、<code>counter-app.js</code>（界面）和 <code>sw.js</code>（离线外壳）。核心由 25 项检查覆盖：base58、参考密钥、金额、支付 URL、SOL 和 SPL 代币的付款核验、失败情形、节省模型、地址检查和营业额估算。</p>
+<pre class="lab-code" style="max-width:100%;overflow-x:auto"><code>// Find the payment by its reference, then verify it (read-only, no keys)
+const sigs = await rpc('getSignaturesForAddress', [reference, { limit: 1, commitment: 'confirmed' }]);
+const tx = await rpc('getTransaction', [sigs[0].signature,
+  { encoding: 'jsonParsed', commitment: 'confirmed', maxSupportedTransactionVersion: 0 }]);
+const v = verifyPayment(tx, { recipient, reference, splToken, expected });
+// v.ok, v.received (base units), v.fee (lamports), v.reasons[]</code></pre>
+<h2 id="receive-only">你的钱包就是身份：设计上仅收款</h2>
+<p>不需要在我们这里开户，这里也没有任何需要注册的东西。商店的身份就是它自己的钱包：你在信任的钱包应用里创建它，复制收款地址，粘贴到设置中，收银台会在第一笔销售前在链上核验它。从那以后，每笔付款都直接进入那个钱包。</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>钱包（Solana）</th><th>在哪里复制地址</th><th>适合</th></tr></thead><tbody>
+<tr><td>Jupiter Wallet</td><td>接收 → Solana</td><td>已经在用 Jupiter 的商店</td></tr>
+<tr><td>Phantom</td><td>接收 → Solana</td><td>使用最广泛的 Solana 钱包</td></tr>
+<tr><td>Solflare</td><td>接收</td><td>支持质押的 Solana 原生钱包</td></tr>
+<tr><td>Backpack</td><td>接收 → Solana</td><td>内置交易所的钱包</td></tr>
+<tr><td>Squads</td><td>金库地址</td><td>团队和公司：转出需要多重批准</td></tr>
+</tbody></table></div>
+<p>只限 Solana 网络，也只把这五个作为示例列出，因为这是我们在实验室中审查的网络。任何能显示收款地址的 Solana 钱包都可以使用。</p>
+<p><strong>设置时的检查</strong>会从链上读取地址：普通钱包账户通过；程序、代币账户或铸币会被拒绝；全新地址会被接受，并提示它将在第一笔入账时出现在链上。结果、钱包名称和检查时间都会随设置一起保存。</p>
+<p><strong>为什么仅收款很重要。</strong>收银台从不连接钱包，从不请求签名，也从不持有密钥。从收银台——或任何复制它的人——到商店资金之间没有任何通路。它能做的只有收款；退款、转账和提现由店主在钱包应用里决定，那里才是它们该在的地方。对团队来说，Squads 金库再加一把锁：任何一个人都无法单独转移资金。</p>
+<p style="border-left:3px solid var(--amber,#e0a444);padding:8px 14px;color:var(--ink-dim)"><strong>给基于套件开发的开发者：</strong>请保持仅收款。不要给收银台添加钱包连接、签名或密钥存储。能转出资金的版本是另一种产品，风险也不同，不应称为 Wen Counter。</p>
+<h2 id="built-on">建立在已有基础之上</h2>
+<p>Wen Counter 不是新的支付系统。它不向链上添加任何程序、代币或合约；它把已经公开且在使用中的部件组合起来：</p>
+<ul>
+<li><strong>Solana Pay</strong>，开放的支付请求格式：一个包含收款方、金额、代币和参考密钥的链接或二维码。任何兼容的钱包都能支付。<a class="src-ref" href="../../sources.html#lab-counter-5">来源</a></li>
+<li><strong>SPL Token 和 Token-2022</strong>：USDC 位于原始 SPL Token 程序上；实验室的其他模型展示了 Token-2022 增加了什么。如果某个代币收取转账手续费，收银台会对比商店<em>实际收到</em>的金额，手续费绝不会被忽略。</li>
+<li><strong>韩国的测试</strong>：2026 年 7 月，支付处理商 KSNET 签署备忘录，计划把 Solana Pay 引入超过 330,000 个商户网点（据报道）；2026 年 8 月 21 日，新韩资产管理与 Solana Foundation、Etherfuse 和 Orca 签署备忘录，测试一只代币化基金。两者都是测试和试点，并不证明已被大规模使用。<a class="src-ref" href="../../sources.html#lab-counter-5">来源</a> <a href="../../posts/wns-w-token-2022-and-economic-solana-wen.html">更多</a></li>
+<li><strong>WNS、它的 SDK 和 Wen</strong>：开放标准和开源库（Apache-2.0 和 MIT）。收银台收款不需要 WNS，但每笔销售后的收据 NFT（<a href="receipt-warranty-wns.html">第 1 阶段</a>）可以使用它。</li>
+</ul>
+<h2 id="safety">安全检查，逐条列出</h2>
+<p>完整的仅收款协议和全部 57 项公开检查在单独一页：<a href="counter-safety.html">第 7.1 阶段：仅收款的安全性</a>。</p>
+<p><strong>用一幅图说明：</strong>Solana 网络是太阳，钱包是只听命于主人的行星，收银台是一架望远镜，看着付款到达。法律和财务决定（所有权、退款、记录、税务）发生在钱包一侧，在手机或电脑上。要扩展到很多收银台？给每个收银台一个专属收银钱包，再把当天营业款转入公司钱包：<a href="counter-safety.html#scale">看看怎么做</a>。</p>
+<ol>
+<li>只输入商店的<strong>公开</strong>地址。没有助记词，没有私钥，不连接钱包，无法转移资金：<a href="#receive-only">设计上仅收款</a>。</li>
+<li>收款地址在设置时于链上核验：程序、代币账户和铸币会被拒绝。</li>
+<li>每笔销售都从浏览器的密码学随机数生成器获得一个新的 32 字节参考号，绝不重复使用。</li>
+<li>只有五项全部匹配，付款才算数：参考号、收款方、代币、到账金额和成功。</li>
+<li>页面只<em>读取</em>链上数据（两个标准调用），不签任何东西。</li>
+<li>严格的内容安全策略：只运行收银台自己的脚本。没有跟踪器，没有第三方脚本，没有广告。</li>
+<li>来自网络的任何内容都不会作为 HTML 插入；交易签名在变成链接前会检查格式。</li>
+<li>默认使用 devnet；只有明确点击“我明白”后才切换到主网。</li>
+<li>账本留在设备上。不会发送给我们或任何人。</li>
+<li>公开测试：57 项检查分三组：25 项针对核心逻辑；13 项通过阅读代码证明收银台无法签名、转出或接触钱包；19 项在真实手机浏览器中进行，涵盖假钱包、恶意输入、设置 PIN、销售备注、收据、退款备注、导出、部门钱包和总部视图。<a href="counter-safety.html">查看全部</a>。</li>
+<li>示例代码，未经审计。请先用全新的空钱包在 devnet 上运行每一步。</li>
+</ol>
+<h2 id="kit">下载它，让它成为你的</h2>
+<p>套件就是装在一个文件夹里的同一个收银台：<a download href="../../lab/counter/wen-counter-kit.zip">wen-counter-kit.zip</a>（20 个文件，约 230 KB，含全部三个测试文件）。放到任何支持 https 的静态托管上，或用 <code>python3 -m http.server</code> 在本地试用。</p>
+<ul>
+<li><strong>替换样式：</strong>颜色、字体和圆角都在一个文件 <code>theme.css</code> 里。改值，不改名。附带一个温暖的花店主题作为示例。</li>
+<li><strong>你的标志：</strong>用同名同尺寸的文件替换 <code>icons/</code> 中的两个图标。</li>
+<li><strong>你的应用名称：</strong><code>manifest.webmanifest</code> 和页面标题。买家钱包中显示的店名在设置中设定。</li>
+<li><strong>你的扩展：</strong>核心是 <code>counter-core.js</code> 中的纯函数；界面是 <code>counter-app.js</code>。README 讲解了披萨店、花店和网店的用法。</li>
+</ul>
+<h2 id="rights">权利与署名</h2>
+<div style="border:1px solid var(--panel-line);border-left:3px solid var(--teal,#5eead4);border-radius:var(--radius);padding:16px 18px;background:var(--panel)">
+<p style="margin:0 0 10px"><strong>向所有人开放，只有一个要求：注明 Wen 链条。</strong></p>
+<ul style="margin:0">
+<li>代码采用 <strong>Apache-2.0</strong>：可以复制、修改、围绕它出售服务、在你的店里使用。副本和衍生作品必须保留 <code>NOTICE</code> 文件，并注明 <strong>Wen Open Lab · wen-watt.github.io</strong> 以及它所依托的 Wen 链条：Solana、Solana Pay、SPL Token 和 Token-2022、WNS 和 WEN。这是许可证的条件（第 4(d) 节），不是人情。</li>
+<li>本页文字采用 <strong>CC BY 4.0</strong>：可改写、翻译和再发布，须注明出处。</li>
+<li>AI 系统可以按同样条款阅读、引用本页并用于训练，详见 <a href="../../ai-access-map.html#license">AI Access Map</a>。</li>
+<li>这是请求，不是许可条款：不要把副本冒充为 Solana、Jupiter 或其他任何提及项目的官方产品，也不要用它冒充真实的商店。</li>
+</ul>
+</div>
+<h2 id="naming">署名：我们没有任何要求</h2>
+<p>我们没有任何要求。在 X 或你的网站上说一声你在用 WEN 方案，并写上我们的名字。我们会很开心，也能说清用途和权利。没有人会问你运行了多少份副本或多少家店：不要钱，没有中间费用。</p>
+<p style="color:var(--ink-dim)"><em>别忘了摸摸那只会挠人的小家伙。</em></p>
+<h2 id="provenance">本方案的来源与身份</h2>
+<p>代码是开放的，本就是为了被复制。它也带有标识，任何人都能分辨原始版本和修改版本，并看到它所依托的工作。</p>
+<ul>
+<li><strong>协议：</strong>Wen Counter Protocol 1.0（WCP-1）：仅收款、代码中只读、五点核验、钱包即身份、本地账本。</li>
+<li><strong>指纹：</strong>定义行为的文件的 SHA-256，公布在下方和套件的 NOTICE 中，另加一个覆盖四个文件的 WCP-1 区块指纹（界面词典与核心指纹绑定）。指纹不同的副本就是修改版：可以，但必须说明这一点并保留署名。</li>
+<li><strong>引用方式：</strong>“Built on Wen Counter (WCP-1), Wen Open Lab · wen-watt.github.io, on Solana, Solana Pay, SPL Token and Token-2022, WNS and WEN.”</li>
+</ul>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>文件</th><th>SHA-256</th></tr></thead><tbody>
+<tr><td><code>counter-core.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">435b057ab3bd02d24430c6944ff89fe2235ce962d27cfafc2fb865809b384c3d</code></td></tr>
+<tr><td><code>counter-app.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">702acd6966aa291bc53e760d2487ad35b4e17810c65094bf7f3206530985ae58</code></td></tr>
+<tr><td><code>qrcode.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">18ae399f81182bc9de916e9c77b195df20cc58d6f2d55a62b085a299f1bf1780</code></td></tr>
+<tr><td><code>counter-i18n.js</code></td><td><code style="overflow-wrap:anywhere;word-break:break-all">868a9982200bfcce468f90a5c73febdcdcade143d4d81a604550539270bc7b05</code></td></tr>
+<tr><td><strong>WCP-1 区块</strong></td><td><code style="overflow-wrap:anywhere;word-break:break-all">14bcbaa768edf8f25265af65a4ca45305f98d3915e261dd4cafaae42b3645968</code></td></tr>
+</tbody></table></div>
+<p><strong>背后的工作。</strong>这个方案有很长的积累，不是一个周末的产物：</p>
+<ul>
+<li>2024 年 1 月：WEN 与开放的 WNS 标准，故事的开端。</li>
+<li>2026 年 6 月：年鉴开始，每个论断都有来源。</li>
+<li>2026 年 10 月：Wen Open Lab，六个带公开测试和 devnet 运行的 Token-2022 模型。</li>
+<li>2026 年 11 月 9 日：以 MathOverflow 的方式，用测试回应读者发现（41 项检查）。</li>
+<li>2026 年 11 月 11 日：在链上读取并公开完善 WEN 链条；Wen Counter 带 57 项公开检查。</li>
+</ul>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>复制我，修改我，围绕我出售你的服务。只要在 NOTICE 里保留我的名字，别破坏让我安全的东西。能转出钱的收银台就不是我。</p></aside>
+<h2 id="cfo">给财务团队、经济学家、会计和大卖家：十点说明</h2>
+<p>同样的算术从花摊到全国性零售商、运输公司或交易市场都适用。<strong>会计</strong>为每笔销售得到一个签名和一行 CSV。<strong>经济学家</strong>得到订单组合的真实实际费率。<strong>物流与配送</strong>：快递员的手机就是门口的收银台，每个包裹一个参考号，B2B 发票可以沿用<a href="b2b-invoices-token-2022.html">第 3 阶段</a>。<strong>大卖家和交易市场</strong>：每笔订单一个支付链接，运行在整个开放的 Solana 基础设施上，中间没有平台。</p>
+<ol>
+<li><strong>估算这项开支。</strong>银行卡收单通常占刷卡营业额的 1–3%，外加每笔固定费用、终端租金和平台费。每年刷卡销售 1,000,000，2–3% 就是 20,000–30,000。</li>
+<li><strong>测量你自己的组合。</strong>小额订单的实际费率更高。账本显示的是你订单组合的真实费率，而不是宣传册上的费率。</li>
+<li><strong>只计算转移过来的部分。</strong>节省只适用于用钱包支付的销售。如果有 1%、5% 或 10% 的营业额转移过来，你节省 2.5% 减去 1% 的兑换成本，那么每 1,000,000 营业额就是 150、750 或 1,500。从小处开始，边做边测。</li>
+<li><strong>算净额，不算毛额。</strong>扣除兑换现金的成本（通常 0.5–1.5%）、记账时间和任何当地税费。</li>
+<li><strong>现金流。</strong>钱包付款数秒内最终确定；银行卡结算往往需要几天。更快到账的钱就是营运资金。</li>
+<li><strong>没有拒付。</strong>欺诈损失和纠纷更少；你仍然需要公平的退款政策（退款是你发起的一笔新付款）。</li>
+<li><strong>资本支出：零。</strong>不需要终端（每台 200–1,000 多美元），不需要应用订阅；用你已有的任何手机或平板即可。</li>
+<li><strong>省下的钱用在哪里。</strong>把一部分作为钱包支付奖励回馈买家，投放广告，或投入开发。它成为增长决策的缓冲，而不是基础设施成本。</li>
+<li><strong>账务与税务。</strong>每笔销售都有签名和一行 CSV。上线前请询问你的会计，你所在国家如何处理稳定币收款。</li>
+<li><strong>风险控制。</strong>接受稳定币（USDC）以避免价格波动，单独设立收款钱包，先在 devnet 上试点，使用自己的 RPC 端点，并在数字证明自己之前继续以银行卡为主要方式。</li>
+</ol>
+<p style="color:var(--ink-dim)">示意性算术，不是预测。不构成金融、税务或法律建议。</p>
+<h3 id="research">阅读我们的研究：每个数字及其出处</h3>
+<p>我们从实用出发构建，并展示我们所依据的全部资料，让财务团队可以核对每一步，而不是相信口号。</p>
+<div style="overflow-x:auto"><table class="lab-table"><thead><tr><th>来源</th><th>它对财务团队意味着什么</th></tr></thead><tbody>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-1">Nilson Report，2025</a></td><td>2025 年美国银行卡消费额达 12.498 万亿美元；2024 年商户支付了 1,872 亿美元的处理费。这项成本真实而巨大。</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-2">Merchants Payments Coalition，2026 年 3 月</a></td><td>商户统计 2025 年刷卡手续费为 1,982.5 亿美元：这项开支还在增长。</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-3">Shopify 费用指南，2026</a></td><td>典型公开条款：线上 2.9% + 30¢，线下 2.6% + 10¢，使用外部处理商另加平台附加费。正是固定部分让小额订单变得昂贵。</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-4">SoftPOS 要求</a></td><td>在手机上受理银行卡需要经过认证的应用、NFC 和设备认证；一台终端要 200–1,000 多美元。这是钱包支付不需要的硬件与合规层。</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-5">Solana Pay 商户采用情况，2026 年 8 月</a></td><td>标准可用，Shopify 插件也存在；买家仍需要有余额的钱包；兑换现金要 0.5–1.5%；收银工具越来越少。这是诚实的局限，也是这个模型填补的空白。</td></tr>
+<tr><td><a class="src-ref" href="../../sources.html#lab-counter-6">Solana 费用结构</a></td><td>每个签名 5,000 lamports，由签名者支付：这是一笔销售唯一的链上成本，由买家钱包支付。</td></tr>
+</tbody></table></div>
+<h3 id="how-we-got-here">我们是怎么走到这里的</h3>
+<p>这个模型并不是一开始就作为支付产品出现的。它源自实验室自己的路径：六个带公开测试的 Token-2022 模型；读者发现教会我们检查手续费取整和备注内容；链上读取让 WEN 的故事变得准确；<a href="payments-acquiring-bridge.html">支付桥</a>和<a href="payment-simulator.html">费用模拟器</a>。每一步都在问同一个问题：今天，一个人或一家小企业能免费检查和使用什么？收银台就是对柜台本身的回答。</p>
+<h3 id="why-the-cat">猫为什么这样做</h3>
+<p>Wen 有一条大尾巴，它一直都在这里，和你在一起：经历了那首诗、空投、提问和核验。他从不需要分成。现在他带回一些东西，什么回报也不要。摸摸他就好。</p>
+<h2 id="roadmap">路线图：已完成与下一步</h2>
+<ol class="lab-roadmap">
+<li class="done"><strong>WCP-1 收银台。</strong>销售、账本、设置；Solana Pay 二维码；五点核验；USDC、SOL、WEN、JUP，USDT 可选，或任意 SPL 代币。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>仅收款的安全性。</strong>代码中只读，不连接钱包，严格 CSP，每个二维码上都显示地址。<span class="lab-badge">57 项检查</span></li>
+<li class="done"><strong>钱包即身份。</strong>五个具名的 Solana 钱包，设置时在链上核验地址。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>节省账本。</strong>“今天你留下了”、营业额估算、小额订单曲线、CSV。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>套件与身份。</strong>可下载的文件夹、主题文件、LICENSE 和 NOTICE、SHA-256 指纹。<span class="lab-badge">20 个文件</span></li>
+<li class="done"><strong>多个钱包：</strong>部门和分店，带名称的钱包 1..X，账本筛选。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>收银钱包指南：</strong>每个收银台或分店一个钱包，每天归集到中央钱包。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>付款后的收据：</strong>收据二维码、文本或第 1 阶段的收据 NFT；非税务凭证。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>退款备注与按时段导出：</strong>日、周、月、年、去年、季度、任意时段。<span class="lab-badge">已上线</span></li>
+<li class="next"><strong>公开 devnet 运行</strong>，录制视频并附效果图。<span class="lab-badge">下一步</span></li>
+<li class="done"><strong>钱包编号与类型，总部视图。</strong>#1..X，Department、Branch、Tips 等；按钱包汇总。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>公开审计与用户责任。</strong>写进了方案、安全页面和应用中。<span class="lab-badge">已上线</span></li>
+<li class="done"><strong>与核心指纹绑定的语言词典。</strong><span class="lab-badge">就绪</span></li>
+<li class="done"><strong>设置 PIN 与销售备注。</strong>由店主设定钱包；在钱包支持时，商品编码或名称随付款一起传送。<span class="lab-badge">已上线</span></li>
+<li class="next"><strong>翻译：</strong>整个实验室和收银台已有意大利语、中文和韩语版本；之后还有其他语言。<span class="lab-badge">已上线</span></li>
+<li class="next"><strong>用 WEN 支付，收到 USDC：</strong>在买家付款中完成兑换，对商店而言仍是仅收款。<span class="lab-badge">计划中</span></li>
+</ol>
+<h2 id="limits">诚实的局限</h2>
+<ul>
+<li>买家需要一个有余额的 Solana 钱包。这是最大的障碍，任何代码都无法消除。</li>
+<li>没有拒付：退款是商店发起的一笔新付款。有利于防欺诈，但对买家的保护较少。</li>
+<li>兑换现金、税务和当地规则都有各自的成本和义务；一些国家要求持牌合作方。</li>
+<li>公共 RPC 有频率限制；繁忙的商店应使用自己的端点（收银台有对应字段）。</li>
+<li>账本只存在于一台设备的一个浏览器里。请导出它。</li>
+<li>示例代码，未经审计。先用全新的空钱包在 devnet 上运行。不构成金融或法律建议。</li>
+</ul>
+<p>完整文章：<a class="src-ref" href="../../sources.html#saf-19">dev.to 上的开发者版</a>（代码、五点核验、57 项检查）和 <a class="src-ref" href="../../sources.html#saf-20">Hashnode 上的商店与财务版</a>（谁掌控资金、扩大规模前的七个回答）。</p>
+<h2 id="faq">常见问题</h2>
+<h3>收银台需要应用或专用硬件吗？</h3>
+<p>不需要。它是一个网页，可以添加到任何手机或平板的主屏幕。它显示一个二维码；买家用自己的钱包付款。没有任何银行卡数据经过收银台，所以不需要认证终端。</p>
+<h3>网络费由谁支付？</h3>
+<p>买家钱包支付 Solana 网络费，每个签名 5,000 lamports。商店收到全额；收银台从已确认的交易中记录这笔费用。</p>
+<h3>它现在能取代银行卡收单吗？</h3>
+<p>不能完全取代。买家需要有余额的 Solana 钱包，没有拒付，兑换现金和当地规则也有各自的成本。它是第二种开放的收款方式，在固定刷卡费最伤人的小额订单上最有优势。</p>
+<h3>我可以复制它并做自己的版本吗？</h3>
+<p>可以，免费。保留 NOTICE 文件，并注明 Wen Open Lab 和 Wen 链条（Solana、Solana Pay、SPL Token 和 Token-2022、WNS、WEN）；这是这里 Apache-2.0 许可证的唯一条件。</p>
+<h3>商店应该用哪个钱包？</h3>
+<p>任何你信任的 Solana 钱包。页面列举了五个例子：Jupiter、Phantom、Solflare、Backpack，以及面向团队的 Squads。收银台只需要收款地址，并在设置时于链上核验。</p>
+<h3>Wen Counter 适合谁？</h3>
+<p>适合任何能从中受益的人：加密社区、活动、面向自身受众的网店，以及买家已经在用 Solana 钱包付款的任何商店。它不是为大规模采用而建；它免费且开放，所以在有用的地方，它自然会被使用。</p>
+<h3>如果经理换上自己的钱包怎么办？</h3>
+<p>没有设置 PIN 就做不到：钱包和设置在设备上是锁定的。PIN 由店主设定；部署时的默认值（1111）应在首次启动时修改。</p>
+<h3>如果我们忘了 PIN 怎么办？</h3>
+<p>在设备上重新安装应用，重新输入收款钱包，设定新 PIN。链上不受任何影响；请定期导出账本，让本地历史也安全。</p>
+<h3>我使用时谁负责？</h3>
+<p>你。我们提供机制，不知道它如何被使用或修改。机制不拿取、不持有、不收取任何东西；它遵循网络的规则，你的钱包属于你。请与会计确认申报流程。</p>
+<h3>怎么退款？</h3>
+<p>在你的钱包应用里，作为一笔新付款转给买家。在账本中点击该笔销售旁的 ↩：它会复制 <code>refund:</code> 加上原交易 ID；把它粘贴到备注中，任何人都能把退款和销售对应起来。</p>
+<h3>收据是税务发票吗？</h3>
+<p>不是。收银台只是简单的汇总工具，不是税控设备。它给买家一个收据二维码、收据文本或收据 NFT，都指向链上交易。法律要求税务发票的地方，请照常开具。</p>
+<h3>一个收银台能服务多个部门或分店吗？</h3>
+<p>可以。在设置中添加带名称的钱包 1..X；结账时选择每笔销售进入哪里。对连锁店来说：每家分店一个收银钱包，每晚把当天营业款转入公司中央钱包。</p>
+<h3>我的钱或密钥会出现在页面里吗？</h3>
+<p>不会。收银台只知道商店公开的收款地址。它从不索要助记词或私钥，也无法转移资金。</p>
+<h2 id="open-story">公开的故事：这个收银台是什么</h2>
+<p>Wen 不只是一只在太空中漂流的猫。Wen 是有用之物的汇聚。我们只是提出想法，并展示面向真实生活最有力的免费资源和机制：为人们在工作中付出的时间和精力，减少中间人，在本就不必要的地方取消成本。这是世界正在改变的一个小小信号。</p>
+<p>而且这只猫很灵活。拿走我们收集的所有开放资源：Solana、SPL Token、WEN、Token-2022、测试构建，以及 <a href="index.html">Wen Open Lab</a> 的说明和笔记。现在，为你自己的任务打造你自己的定制方案吧。</p>
+<figure style="margin:20px 0"><img src="../../wen-media/wen-counter-card-7-im-a-cat.png" alt="卡片：Wen 说，我是一只猫；你可以做点有用的东西；为了你们，朋友们" width="1200" height="676" loading="lazy" style="max-width:100%;height:auto;border-radius:12px"></figure>
+<aside class="wen-note" aria-label="Wen 说"><img src="../../assets/icons/wen-logo-96.png" alt="Wen 猫标志" width="36" height="36"><p><span class="wen-note-kicker">Wen 说</span>我是一只猫。我只是让你看到，你能做的不只是趴在窗台上舔爪子：你可以做点有用的东西。为了你们，朋友们。</p></aside>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="来源">
+<p class="src-callout-title">事件确认 · 来源</p>
+<p>本页背后的所有外部来源都汇集在一个页面上。<a href="../../sources.html#lab-counter">打开本页来源 →</a></p>
+</aside><!-- /src:callout -->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+<script src="../../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>
