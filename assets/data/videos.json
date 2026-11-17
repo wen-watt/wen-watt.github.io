@@ -1,5 +1,44 @@
 [
  {
+  "id": "fKwSTznVAp4",
+  "page": "lab/counter-safety.html",
+  "kind": "short",
+  "series": "counter",
+  "title": "Useful Anomaly · A till that can't send your money",
+  "desc": "No wallet connection, no key, three read requests. The owner sets the wallets behind a PIN. 57 open checks: break it if you can, then tell us.",
+  "date": "2026-11-16",
+  "dur": "PT25S",
+  "poster": "assets/media/wen-counter-09-poster.jpg",
+  "heading": "Video: a till that can't send your money",
+  "text": "Receive-only by design, the setup PIN and the open audit."
+ },
+ {
+  "id": "9V2bbz0LIK0",
+  "page": "lab/counter.html",
+  "kind": "short",
+  "series": "counter",
+  "title": "Paws Verified · 12.9% on a coffee? Today you kept…",
+  "desc": "Shops pay 1–3% on every card sale, up to 12.9% on a small coffee. Wen Counter shows what you kept, measured from confirmed sales, with a CSV for your accountant.",
+  "date": "2026-11-16",
+  "dur": "PT18S",
+  "poster": "assets/media/wen-counter-08-poster.jpg",
+  "heading": "Video: today you kept",
+  "text": "What a shop keeps, measured from confirmed sales."
+ },
+ {
+  "id": "n0VD1h9dIo0",
+  "page": "posts/wen-counter-free-open-till-for-every-shop.html",
+  "kind": "video",
+  "series": "counter",
+  "title": "From Orbit · Wen Counter: A Free Till in Your Browser, 0 per Sale, Receive-Only",
+  "desc": "The whole solution in 92 seconds: the card toll, a till in your browser (QR → ✓ Paid), receive-only, today you kept, many wallets, the setup PIN, 57 open checks and Wen the cat.",
+  "date": "2026-11-16",
+  "dur": "PT92S",
+  "poster": "assets/media/wen-counter-06-poster.jpg",
+  "heading": "Video: Wen Counter from orbit",
+  "text": "The full Wen Counter presentation in 92 seconds."
+ },
+ {
   "id": "Li4hKvZV9Y4",
   "page": "lab/counter.html",
   "kind": "short",

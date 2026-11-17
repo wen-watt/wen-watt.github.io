@@ -136,6 +136,8 @@ if (process.argv[2]) inspectRoyaltyHook(process.argv[2]).then(r =&gt; console.lo
     <h2>What was verified</h2>
     <p>In LiteSVM: an NFT mint is created with a transfer hook pointing to the WNS royalty program, and the inspection logic reads that program back from the mint correctly. The transfer function is type-checked against the official <code>@solana/spl-token</code> API; running it end to end needs the real WNS programs, which is the job of the devnet stage on the <a href="index.html">roadmap</a>.</p>
 
+    <figure style="margin:24px auto;max-width:340px"><div style="position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#0a0c14"><button class="wv-btn" type="button" data-yt="Zvk0RLFRqJk" aria-label="Play: Royalties written into the NFT · Wen Open Lab 02/10" style="position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;cursor:pointer;background:#0a0c14 url(../assets/media/wen-lab-02-poster.jpg) center/cover no-repeat"><span aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:rgba(224,164,68,.95);color:#0a0c14;font-size:26px;line-height:64px;text-align:center">▶</span></button></div><figcaption>Video 02/10: royalties written into the NFT, in thirty seconds. The player loads from YouTube only after you press play.</figcaption></figure>
+
     <h2>Where it is useful</h2>
     <ul>
       <li>Digital art, music and video NFTs.</li>
@@ -195,5 +197,6 @@ if (process.argv[2]) inspectRoyaltyHook(process.argv[2]).then(r =&gt; console.lo
 
 <script src="../assets/js/main.js?v=20261027"></script>
 <script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-video.js?v=20261106" defer></script>
 </body>
 </html>
