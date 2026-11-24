@@ -1,0 +1,68 @@
+# Sends changed pages to IndexNow (Bing, Yandex, Seznam, Naver and others share it) after each update of main.
+# Uses the public key file in the site root; no secrets. Manual run: Actions → IndexNow → Run workflow (optional list of URLs).
+name: IndexNow
+on:
+  push:
+    branches: [main]
+    paths: ['**.html', '**.txt', '**.xml', '**.md', '**.zip']
+  workflow_dispatch:
+    inputs:
+      urls:
+        description: 'Extra URLs, one per line or space-separated (optional)'
+        required: false
+        default: ''
+permissions:
+  contents: read
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Collect changed URLs
+        id: urls
+        env:
+          BEFORE: ${{ github.event.before }}
+          EXTRA: ${{ github.event.inputs.urls }}
+        run: |
+          SITE="https://wen-watt.github.io"
+          KEY_FILE="eb3892c4f3d77297493bd02f6a4a5ed2.txt"
+          : > urls.txt
+          if [ -n "$BEFORE" ] && [ "$BEFORE" != "0000000000000000000000000000000000000000" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+            RANGE="$BEFORE $GITHUB_SHA"
+          else
+            RANGE="HEAD~1 HEAD"
+          fi
+          git diff --name-only --diff-filter=AM $RANGE | grep -E '\.(html|txt|xml|md|zip)$' | grep -v -E '^(\.github/|README\.md$)' | grep -v "$KEY_FILE" | while read -r f; do
+            case "$f" in
+              index.html) echo "$SITE/" ;;
+              */index.html) echo "$SITE/${f%index.html}" ;;
+              *) echo "$SITE/$f" ;;
+            esac
+          done >> urls.txt
+          for u in $EXTRA; do echo "$u" >> urls.txt; done
+          sort -u urls.txt -o urls.txt
+          echo "count=$(wc -l < urls.txt)" >> "$GITHUB_OUTPUT"
+          cat urls.txt
+      - name: Wait for GitHub Pages to publish
+        if: steps.urls.outputs.count != '0'
+        run: sleep 120
+      - name: Send to IndexNow
+        if: steps.urls.outputs.count != '0'
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request
+          urls = [u.strip() for u in open('urls.txt') if u.strip()]
+          key = "eb3892c4f3d77297493bd02f6a4a5ed2"
+          body = json.dumps({"host": "wen-watt.github.io", "key": key,
+                             "keyLocation": f"https://wen-watt.github.io/{key}.txt", "urlList": urls}).encode()
+          req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body,
+                                       headers={"Content-Type": "application/json; charset=utf-8"})
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  print("IndexNow answered", r.status, "for", len(urls), "URLs")
+          except urllib.error.HTTPError as e:
+              print("IndexNow answered", e.code, e.read()[:300])
+              raise SystemExit(0 if e.code in (200, 202) else 1)
+          PY
