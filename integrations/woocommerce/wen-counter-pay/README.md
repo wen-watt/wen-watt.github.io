@@ -13,7 +13,7 @@ Free, receive-only Solana Pay checkout for WooCommerce, built on the Wen Counter
 ```bash
 node tests/make-fixtures.js   # fixtures from lab/counter/counter-core.js (run from the repository root)
 php tests/test-core.php       # 12: PHP core gives the same answers as the JavaScript core
-php tests/test-gateway.php    # 22: settings, order, chain check, REST status, background check
+php tests/test-gateway.php    # 27: settings, order, chain check, REST status, background check, usability (stray transaction, same QR, no auto-cancel, payment email, wallet-app hint)
 php tests/test-safety.php     # 14: no keys, no signing, read-only RPC, escaped output, attribution
 node tests/browser.e2e.js     # 6: QR, polling, paid, foreign link ignored (Playwright)
 ```

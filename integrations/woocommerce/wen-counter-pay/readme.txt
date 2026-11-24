@@ -4,7 +4,7 @@ Tags: solana pay, solana, usdc, crypto payments, woocommerce
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: Apache-2.0
 License URI: https://www.apache.org/licenses/LICENSE-2.0
 
@@ -23,7 +23,7 @@ Wen Counter Pay adds a Solana Pay payment method to WooCommerce, built on the op
 
 Tokens: USDC (default, stable prices), SOL, WEN, JUP, USDT, or any SPL token by mint. Set how many tokens equal one unit of your shop currency; amounts are rounded up so you never receive less than the order total.
 
-Open source, tested in public: 54 checks (core parity with the JavaScript Wen Counter, gateway flow, code safety, browser). Source, tests and the AI-agent skill that installs it: https://github.com/wen-watt/wen-watt.github.io
+Open source, tested in public: 59 checks (core parity with the JavaScript Wen Counter, gateway flow and usability, code safety, browser). Source, tests and the AI-agent skill that installs it: https://github.com/wen-watt/wen-watt.github.io
 
 This is example code, not audited. You are responsible for your shop, refunds and taxes in your country.
 
@@ -51,6 +51,9 @@ A refund is a new payment from your wallet to the buyer, made in your wallet app
 No. Follow the receipt and tax rules of your country.
 
 == Changelog ==
+
+= 0.2.0 =
+* Usability audit fixes: a stray transaction carrying the reference no longer blocks the order (up to 25 signatures checked, oldest first); WooCommerce no longer auto-cancels our unpaid orders before 24 hours; the buyer gets an email with the link back to the payment page; paying again for the same order keeps the same QR; the checkout and order page say to pay from a wallet app, not by manual transfer or exchange withdrawal. 59 checks.
 
 = 0.1.0 =
 * First public version: gateway, block checkout, status endpoint, background check, 54 checks.

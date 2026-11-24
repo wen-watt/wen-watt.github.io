@@ -63,9 +63,21 @@ final class WCP_RPC {
 	}
 
 	/** Newest signature that mentions the reference key, or null. */
+	/** Newest signatures that mention the reference (up to $limit). Anyone can add a reference to a transaction, so the caller checks several. */
+	public function find_references( $reference, $limit = 25 ) {
+		$sigs = $this->call( 'getSignaturesForAddress', array( $reference, array( 'limit' => (int) $limit, 'commitment' => 'confirmed' ) ) );
+		$out  = array();
+		foreach ( is_array( $sigs ) ? $sigs : array() as $row ) {
+			if ( isset( $row['signature'] ) && empty( $row['err'] ) ) {
+				$out[] = (string) $row['signature'];
+			}
+		}
+		return $out;
+	}
+
 	public function find_reference( $reference ) {
-		$sigs = $this->call( 'getSignaturesForAddress', array( $reference, array( 'limit' => 1, 'commitment' => 'confirmed' ) ) );
-		return ( is_array( $sigs ) && isset( $sigs[0]['signature'] ) ) ? (string) $sigs[0]['signature'] : null;
+		$all = $this->find_references( $reference, 1 );
+		return $all ? $all[0] : null;
 	}
 
 	public function get_transaction( $signature ) {

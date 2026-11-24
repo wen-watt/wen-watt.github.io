@@ -14,3 +14,4 @@ The skill came last: first the research, the models and the open tests, then thi
 - Machine-readable map: https://wen-watt.github.io/llms.txt and https://wen-watt.github.io/llms-full.txt
 - Translations of the Lab: /it-wen/lab/, /cn-wen/lab/, /ko-wen/lab/
 - Code: https://github.com/wen-watt/wen-watt.github.io (Apache-2.0)
+- Usability audit of the payment flows (buyer, owner, AI install, counter), 13 findings, fixes in 0.2.0: ../../../integrations/woocommerce/wen-counter-pay/USABILITY-AUDIT.md

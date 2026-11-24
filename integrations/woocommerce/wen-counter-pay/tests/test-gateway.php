@@ -40,6 +40,8 @@ class Fake_Order {
 	function get_payment_method() { return $this->method; } function update_meta_data( $k, $v ) { $this->meta[ $k ] = $v; } function get_meta( $k ) { return isset( $this->meta[ $k ] ) ? $this->meta[ $k ] : ''; }
 	function save() {} function update_status( $s, $n = '' ) { $this->status = $s; if ( $n ) { $this->notes[] = $n; } } function add_order_note( $n ) { $this->notes[] = $n; }
 	function is_paid() { return $this->paid; } function payment_complete( $tx ) { $this->paid = true; $this->status = 'processing'; $this->txid = $tx; }
+	function get_date_created() { return new DateTime( '@' . $this->created ); } function get_billing_email() { return 'buyer@example.com'; }
+	function get_checkout_order_received_url() { return 'https://shop.test/checkout/order-received/' . $this->id . '/?key=' . $this->key; }
 }
 function wc_get_order( $id ) { return isset( $GLOBALS['wcp_orders'][ $id ] ) ? $GLOBALS['wcp_orders'][ $id ] : false; }
 function wc_get_orders( $q ) {
@@ -54,7 +56,9 @@ function wc_get_orders( $q ) {
 }
 class Fake_Cart { public $emptied = false; function empty_cart() { $this->emptied = true; } }
 class Fake_PG { function payment_gateways() { return array( 'wen_counter' => $GLOBALS['wcp_gw'] ); } }
-class Fake_WC { public $cart; function __construct() { $this->cart = new Fake_Cart(); } function payment_gateways() { return new Fake_PG(); } }
+class Fake_Mailer { function wrap_message( $h, $b ) { return "<h1>$h</h1>$b"; } function send( $to, $subj, $msg ) { $GLOBALS['wcp_mail'][] = array( $to, $subj, $msg ); return true; } }
+class Fake_WC { public $cart; function __construct() { $this->cart = new Fake_Cart(); } function payment_gateways() { return new Fake_PG(); } function mailer() { return new Fake_Mailer(); } }
+function is_email( $e ) { return (bool) filter_var( $e, FILTER_VALIDATE_EMAIL ); } if ( ! defined( 'DAY_IN_SECONDS' ) ) { define( 'DAY_IN_SECONDS', 86400 ); }
 function WC() { static $w; if ( ! $w ) { $w = new Fake_WC(); } return $w; }
 
 /* ---------- load the plugin ---------- */
@@ -74,7 +78,7 @@ function gw() { $g = new WC_Gateway_Wen_Counter(); $GLOBALS['wcp_gw'] = $g; retu
 $GLOBALS['chain'] = array( 'refs' => array(), 'txs' => array(), 'calls' => array() );
 WC_Gateway_Wen_Counter::$transport = function ( $method, $params ) {
 	$GLOBALS['chain']['calls'][] = $method;
-	if ( 'getSignaturesForAddress' === $method ) { $s = isset( $GLOBALS['chain']['refs'][ $params[0] ] ) ? $GLOBALS['chain']['refs'][ $params[0] ] : null; return $s ? array( array( 'signature' => $s ) ) : array(); }
+	if ( 'getSignaturesForAddress' === $method ) { $s = isset( $GLOBALS['chain']['refs'][ $params[0] ] ) ? $GLOBALS['chain']['refs'][ $params[0] ] : array(); return array_map( function ( $x ) { return array( 'signature' => $x ); }, array_slice( (array) $s, 0, $params[1]['limit'] ) ); }
 	if ( 'getTransaction' === $method ) { return isset( $GLOBALS['chain']['txs'][ $params[0] ] ) ? $GLOBALS['chain']['txs'][ $params[0] ] : null; }
 	return null;
 };
@@ -121,6 +125,11 @@ t( 'order received page: QR data, wallet link, short address; nothing unescaped'
 	ok( in_array( 'wcp-checkout', $GLOBALS['wcp_scripts'], true ) ); ok( $GLOBALS['wcp_loc']['url'] === $o->get_meta( '_wcp_url' ) ); ok( $GLOBALS['wcp_loc']['key'] === $o->get_order_key() );
 	ok( false !== strpos( $h, 'href="solana:' ) ); ok( false !== strpos( $h, substr( $SHOP, 0, 5 ) . '…' . substr( $SHOP, -5 ) ) ); ok( false !== strpos( $h, 'devnet' ) ); ok( false === strpos( $h, '<script' ) ); } );
 t( 'a shop name with HTML is shown as text, never as markup', function () { $GLOBALS['wcp_settings']['shop_label'] = '<img src=x onerror=alert(1)>'; list( $o ) = new_order( 141, '1' ); ob_start(); gw()->thankyou_page( 141 ); $h = ob_get_clean(); ok( false === strpos( $h, '<img' ) ); unset( $GLOBALS['wcp_settings']['shop_label'] ); } );
+t( 'usability: a stray transaction with the same reference after the payment does not block the order', function () { list( $o ) = new_order( 150, '10' ); $good = pay( $o, '10000000' ); $ref = $o->get_meta( '_wcp_reference' ); $junk = WCP_Core::b58encode( random_bytes( 64 ) ); $GLOBALS['chain']['txs'][ $junk ] = spl_tx( WCP_Core::new_reference(), $o->get_meta( '_wcp_mint' ), 0, '1', array( $ref ) ); $GLOBALS['chain']['refs'][ $ref ] = array( $junk, $good ); ok( 'paid' === gw()->check_order( $o ) ); ok( $good === $o->txid ); } );
+t( 'usability: paying again for the same order keeps the same reference and QR', function () { list( $o ) = new_order( 151, '8' ); $ref = $o->get_meta( '_wcp_reference' ); $url = $o->get_meta( '_wcp_url' ); gw()->process_payment( 151 ); ok( $ref === $o->get_meta( '_wcp_reference' ) ); ok( $url === $o->get_meta( '_wcp_url' ) ); } );
+t( 'usability: WooCommerce does not auto-cancel our unpaid order within 24 hours, other orders untouched', function () { list( $o ) = new_order( 152, '4' ); ok( false === wcp_keep_unpaid_order( true, $o ) ); $o->created = time() - 2 * DAY_IN_SECONDS; ok( true === wcp_keep_unpaid_order( true, $o ) ); $other = new Fake_Order( 153, '4' ); $other->method = 'cod'; ok( true === wcp_keep_unpaid_order( true, $other ) ); } );
+t( 'usability: the buyer gets an email with the way back to the payment page, nothing about keys asked', function () { $GLOBALS['wcp_mail'] = array(); list( $o ) = new_order( 154, '6' ); ok( 1 === count( $GLOBALS['wcp_mail'] ) ); list( $to, $subj, $msg ) = $GLOBALS['wcp_mail'][0]; ok( 'buyer@example.com' === $to ); ok( false !== strpos( $subj, '#154' ) ); ok( false !== strpos( $msg, 'order-received/154/?key=' . $o->get_order_key() ) ); ok( false !== strpos( $msg, 'exchange' ) ); ok( false === stripos( $msg, 'enter your seed' ) ); $GLOBALS['wcp_settings']['pay_email'] = 'no'; $GLOBALS['wcp_mail'] = array(); new_order( 155, '6' ); ok( 0 === count( $GLOBALS['wcp_mail'] ) ); unset( $GLOBALS['wcp_settings']['pay_email'] ); } );
+t( 'usability: the order page says to pay from a wallet app, not by manual transfer or exchange withdrawal', function () { list( $o ) = new_order( 156, '2' ); ob_start(); gw()->thankyou_page( 156 ); $h = ob_get_clean(); ok( false !== strpos( $h, 'exchange withdrawal' ) ); ok( false !== strpos( $h, 'wcp-hint' ) ); } );
 t( 'only the three read methods ever reached the chain', function () { $used = array_unique( $GLOBALS['chain']['calls'] ); foreach ( $used as $m ) { ok( in_array( $m, WCP_RPC::READ_ONLY, true ), $m ); } } );
 t( 'the RPC client blocks anything that is not a read', function () { $rpc = new WCP_RPC( 'devnet', '', WC_Gateway_Wen_Counter::$transport ); foreach ( array( 'sendTransaction', 'requestAirdrop', 'simulateTransaction' ) as $m ) { $blocked = false; try { $rpc->call( $m, array() ); } catch ( RuntimeException $e ) { $blocked = true; } ok( $blocked, $m ); } } );
 echo "\n{$n} checks passed" . ( $fail ? ", {$fail} FAILED" : '' ) . "\n";

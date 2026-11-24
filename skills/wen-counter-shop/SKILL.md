@@ -31,8 +31,9 @@ Source of truth: https://github.com/wen-watt/wen-watt.github.io (folders `lab/co
 4. **Test on devnet:** place an order, pay from a devnet wallet with devnet USDC or SOL, confirm the order becomes paid and the transaction opens in Solana Explorer with `?cluster=devnet`.
 5. **Verify the build** with `references/verify.md`: run the checks, compare fingerprints.
 6. **Security review** with `references/security.md`. Fix anything red before going live.
-7. **Go live:** switch to mainnet only with the owner's yes; tell the owner that refunds are new payments from their wallet and that the receipt is not fiscal.
-8. **Report back:** what you changed, where, the test transaction link, and what the owner must do themselves (wallet backup, accountant, refund policy).
+7. **Tell the owner what buyers will meet** (from `references/usability.md`): pay from a wallet app with the QR code or the button, never by exchange withdrawal or manual transfer; buyers need a little SOL for the fee; receive one small USDC test payment first so the shop's USDC account exists; use a real server cron on quiet shops; keep the shop's other payment methods next to this one.
+8. **Go live:** switch to mainnet only with the owner's yes; tell the owner that refunds are new payments from their wallet and that the receipt is not fiscal.
+9. **Report back:** what you changed, where, the test transaction link, and what the owner must do themselves (wallet backup, accountant, refund policy).
 
 ## Where the ideas come from
 

@@ -4,7 +4,7 @@ For AI coding agents and assistants working with this repository or helping some
 
 ## What is here
 - `lab/` — the Wen Open Lab: six Token-2022 models (`lab/code/`, 41 tests), the Wen Counter browser till (`lab/counter/`, WCP-1, 57 checks), and Stage 8 for shops.
-- `integrations/woocommerce/wen-counter-pay/` — free, receive-only Solana Pay checkout for WooCommerce (54 checks). Installable zip: `integrations/woocommerce/wen-counter-pay.zip`.
+- `integrations/woocommerce/wen-counter-pay/` — free, receive-only Solana Pay checkout for WooCommerce (59 checks; usability audit in `USABILITY-AUDIT.md`). Installable zip: `integrations/woocommerce/wen-counter-pay.zip`.
 - `skills/wen-counter-shop/` — agent skill (`SKILL.md`) that audits a shop and installs the checkout. Install: `npx skills add wen-watt/wen-watt.github.io`.
 - `it-wen/`, `cn-wen/`, `ko-wen/` — the Lab in Italian, Chinese and Korean.
 - `llms.txt`, `llms-full.txt`, `ai-access-map.html`, `sources.html` — maps and sources.

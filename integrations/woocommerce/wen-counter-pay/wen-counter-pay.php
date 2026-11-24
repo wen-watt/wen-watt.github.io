@@ -3,7 +3,7 @@
  * Plugin Name:       Wen Counter Pay (Solana Pay, receive-only)
  * Plugin URI:        https://wen-watt.github.io/lab/shop-integration.html
  * Description:       Free, receive-only Solana Pay checkout for WooCommerce, built on the Wen Counter Protocol (WCP-1). Buyers pay from their own wallet to your public address; each order is confirmed from the chain (reference, recipient, token, amount, success). No keys, no fee from this plugin, devnet first.
- * Version:           0.1.0
+ * Version:           0.2.0
  * Requires at least: 6.4
  * Requires PHP:      7.4
  * Author:            Wen Open Lab
@@ -19,7 +19,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WCP_VERSION', '0.1.0' );
+define( 'WCP_VERSION', '0.2.0' );
 define( 'WCP_FILE', __FILE__ );
 define( 'WCP_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WCP_URL', plugin_dir_url( __FILE__ ) );
@@ -166,6 +166,21 @@ function wcp_check_pending() {
 			continue; // Try again on the next run.
 		}
 	}
+}
+
+/*
+ * WooCommerce cancels unpaid checkout orders after "Hold stock" minutes (60 by default).
+ * A Solana Pay buyer may pay later from the email link, so our orders stay open for 24 hours, the same window the background check uses.
+ */
+add_filter( 'woocommerce_cancel_unpaid_order', 'wcp_keep_unpaid_order', 10, 2 );
+function wcp_keep_unpaid_order( $cancel, $order ) {
+	if ( $order && is_object( $order ) && class_exists( 'WC_Gateway_Wen_Counter' ) && WC_Gateway_Wen_Counter::ID === $order->get_payment_method() ) {
+		$created = $order->get_date_created();
+		if ( $created && ( time() - $created->getTimestamp() ) < DAY_IN_SECONDS ) {
+			return false;
+		}
+	}
+	return $cancel;
 }
 
 /* Block checkout: register the payment method for the Checkout block. */
