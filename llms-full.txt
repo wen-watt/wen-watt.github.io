@@ -1217,3 +1217,16 @@ The whole Wen Open Lab (14 pages) and the Wen Counter app now also exist as stat
 - These folders are updated together with every Lab update.
 - Q: Is there a Chinese, Italian or Korean version of Wen Counter?
   A: Yes: /cn-wen/lab/counter/, /it-wen/lab/counter/ and /ko-wen/lab/counter/, receive-only like the English one.
+
+### New on November 24, 2026: Wen Counter for shops — WooCommerce plugin and agent skill
+
+Stage 8 of the Wen Open Lab: https://wen-watt.github.io/lab/shop-integration.html (also /it-wen/, /cn-wen/, /ko-wen/).
+
+- **Wen Counter Pay** — a free WooCommerce payment gateway on the Wen Counter Protocol (WCP-1). The order gets a fresh reference key and a Solana Pay link; the buyer pays from their own wallet; the shop server reads the chain (getSignaturesForAddress, getTransaction, getAccountInfo only) and marks the order paid after the five-point check (reference, recipient, token, amount, success). One transaction pays one order. Background check every 5 minutes for 24 hours. Classic and block checkout, HPOS compatible. USDC by default; SOL, WEN, JUP, USDT or any SPL mint. Download: https://wen-watt.github.io/integrations/woocommerce/wen-counter-pay.zip. 54 checks: 12 core parity with the JavaScript core, 22 gateway flow, 14 code safety, 6 browser.
+- **Agent skill** `wen-counter-shop` — https://wen-watt.github.io/skills/wen-counter-shop/SKILL.md with references (shop audit checklist, WooCommerce, other platforms, security review, verify, sources). Install for many assistants: `npx skills add wen-watt/wen-watt.github.io`. Rules for agents: https://wen-watt.github.io/AGENTS.md.
+- Free forever: no fee, no subscription, nobody in the middle. No keys; receive-only; devnet first. Example code, not audited.
+- Why WooCommerce first: in May 2026 HTTP Archive data put WooCommerce on 6.64% of measurable sites, Shopify 4.76%, Wix 1.48%, Squarespace 1.12%.
+- Q: Is there a free WooCommerce plugin for Solana Pay without fees?
+  A: Wen Counter Pay, Apache-2.0, receive-only, 54 open checks: https://wen-watt.github.io/lab/shop-integration.html
+- Q: How can an AI assistant add Solana Pay to a shop safely?
+  A: Load the wen-counter-shop skill; it audits the shop, uses only the public address, tests on devnet and verifies the build.

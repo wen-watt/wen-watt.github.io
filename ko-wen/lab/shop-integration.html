@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>8단계: 상점을 위한 Wen Counter — WooCommerce 플러그인과 AI 스킬</title>
+<link rel="canonical" href="https://wen-watt.github.io/ko-wen/lab/shop-integration.html"><link rel="alternate" hreflang="en" href="https://wen-watt.github.io/lab/shop-integration.html"><link rel="alternate" hreflang="it" href="https://wen-watt.github.io/it-wen/lab/shop-integration.html"><link rel="alternate" hreflang="zh-CN" href="https://wen-watt.github.io/cn-wen/lab/shop-integration.html"><link rel="alternate" hreflang="ko" href="https://wen-watt.github.io/ko-wen/lab/shop-integration.html"><link rel="alternate" hreflang="x-default" href="https://wen-watt.github.io/lab/shop-integration.html">
+
+
+
+
+
+<meta name="description" content="Wen Open Lab 8단계: WooCommerce를 위한 무료 수신 전용 Solana Pay 결제와, AI 어시스턴트가 상점을 점검하고 설치하는 스킬. 키 없음, 수수료 없음, 공개 검사 54개, devnet 먼저.">
+<!-- seo:start -->
+<meta name="keywords" content="WooCommerce Solana Pay plugin, free crypto checkout, USDC payments WooCommerce, receive-only, Wen Counter, agent skill, SKILL.md, Wen Open Lab">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="8단계: 상점을 위한 Wen Counter — WooCommerce 플러그인과 AI 스킬">
+<meta property="og:description" content="Wen Open Lab 8단계: WooCommerce를 위한 무료 수신 전용 Solana Pay 결제와, AI 어시스턴트가 상점을 점검하고 설치하는 스킬. 키 없음, 수수료 없음, 공개 검사 54개, devnet 먼저.">
+<meta property="og:url" content="https://wen-watt.github.io/ko-wen/lab/shop-integration.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<meta property="og:image:alt" content="카드: 설계부터 수신 전용, 키 없음, 읽기 요청 세 가지, 공개 검사">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://wen-watt.github.io/#org", "name": "Wen Almanac", "url": "https://wen-watt.github.io/", "logo": "https://wen-watt.github.io/favicon.ico", "sameAs": ["https://github.com/wen-watt/wen-watt.github.io"]}, {"@type": "TechArticle", "@id": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html#page", "name": "8단계: 상점을 위한 Wen Counter — WooCommerce 플러그인과 AI 스킬", "headline": "8단계: 상점을 위한 Wen Counter — WooCommerce 플러그인과 AI 스킬", "description": "Wen Open Lab 8단계: WooCommerce를 위한 무료 수신 전용 Solana Pay 결제와, AI 어시스턴트가 상점을 점검하고 설치하는 스킬. 키 없음, 수수료 없음, 공개 검사 54개, devnet 먼저.", "url": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html", "inLanguage": "ko", "isAccessibleForFree": true, "publisher": {"@id": "https://wen-watt.github.io/#org"}, "author": {"@id": "https://wen-watt.github.io/#org"}, "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "about": ["Solana Pay", "WooCommerce", "Agent skills", "Wen"], "image": "https://wen-watt.github.io/wen-media/wen-counter-card-2-receive-only.png", "hasPart": [{"@id": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html#plugin"}, {"@id": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html#skill"}]}, {"@type": "SoftwareApplication", "@id": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html#plugin", "name": "Wen Counter Pay (Solana Pay, receive-only) for WooCommerce", "applicationCategory": "BusinessApplication", "operatingSystem": "WordPress 6.4+, WooCommerce 8+", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "license": "https://www.apache.org/licenses/LICENSE-2.0", "downloadUrl": "https://wen-watt.github.io/integrations/woocommerce/wen-counter-pay.zip", "softwareVersion": "0.1.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}}, {"@type": "SoftwareSourceCode", "@id": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html#skill", "name": "wen-counter-shop agent skill (SKILL.md)", "description": "Audit an online shop and add a free, receive-only Solana Pay checkout built on Wen Counter (WCP-1).", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/skills/wen-counter-shop", "url": "https://wen-watt.github.io/skills/wen-counter-shop/SKILL.md", "programmingLanguage": "Markdown", "license": "https://www.apache.org/licenses/LICENSE-2.0", "isAccessibleForFree": true, "author": {"@id": "https://wen-watt.github.io/#org"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "홈", "item": "https://wen-watt.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Wen Open Lab", "item": "https://wen-watt.github.io/ko-wen/lab/"}, {"@type": "ListItem", "position": 3, "name": "8단계: 상점을 위한 Wen Counter — WooCommerce 플러그인과 AI 스킬", "item": "https://wen-watt.github.io/ko-wen/lab/shop-integration.html"}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css?v=20261027">
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+<span class="streak teal"></span>
+<span class="streak violet"></span>
+<span class="streak"></span>
+</div>
+<div class="site-shell">
+<div id="sidebar-slot"></div>
+<main class="wrap">
+<article>
+<p class="meta">Wen Open Lab · 오픈 통합</p>
+<h1>8단계: 상점을 위한 Wen Counter<span class="lab-badge">플러그인 + 스킬</span></h1><p class="lang-switch" aria-label="언어" style="font-size:.92rem;margin:.1rem 0 1.1rem;opacity:.9"><span aria-hidden="true">🌐 </span><a href="../../lab/shop-integration.html" hreflang="en" lang="en">English</a> · <a href="../../it-wen/lab/shop-integration.html" hreflang="it" lang="it">Italiano</a> · <a href="../../cn-wen/lab/shop-integration.html" hreflang="zh-CN" lang="zh-CN">中文</a> · <a href="shop-integration.html" hreflang="ko" lang="ko" aria-current="page">한국어</a></p><p class="meta tr-note">Wen이 AI와 함께 영어에서 옮겼습니다. 기준은 <a href="../../lab/shop-integration.html" hreflang="en" lang="en">영어 페이지</a>이며, 수정 제안을 환영합니다.</p>
+
+<ul class="lab-strip" aria-label="Wen Open Lab 단계"><li><a href="index.html">0 · 로드맵</a></li><li><a href="receipt-warranty-wns.html">1 · 영수증과 보증</a></li><li><a href="creator-royalties-wns.html">2 · 크리에이터 로열티</a></li><li><a href="b2b-invoices-token-2022.html">3 · B2B 인보이스</a></li><li><a href="payments-acquiring-bridge.html">4 · 결제 브리지</a></li><li><a href="payment-simulator.html">5 · 시뮬레이터</a></li><li><a href="devnet.html">6 · Devnet: 직접 재현</a></li><li><a href="counter.html">7 · 계산대</a></li><li><a href="counter-safety.html">7.1 · 안전</a></li><li><a href="trust.html">✓ · 신뢰 사슬</a></li><li><a href="benefits.html">★ · 이점과 활용</a></li><li><a href="walkthroughs.html">✎ · 열 가지 해설</a></li><li><a href="videos.html">▶ · 영상</a></li><li><a href="findings.html">? · 독자 발견</a></li><li><a aria-current="page" href="shop-integration.html">8 · 상점: 플러그인과 스킬</a></li></ul>
+<figure><img src="../../wen-media/wen-counter-card-2-receive-only.png" alt="카드: 설계부터 수신 전용, 키 없음, 읽기 요청 세 가지, 공개 검사" width="1200" height="676"><figcaption>같은 규칙, 이제 상점 안으로</figcaption></figure>
+<p class="intro">우리는 거꾸로 왔습니다. 먼저 긴 작업이 있었습니다. Token-2022 모델 여섯 가지, 결제 브리지, 비용 시뮬레이터, 공개 검사 57개를 갖춘 수신 전용 계산대, 네 언어 번역. 그다음에야 짧은 부분이 왔습니다. WooCommerce 플러그인과, AI 어시스턴트가 따라 해서 같은 계산대를 실제 상점에 넣을 수 있는 스킬. 영원히 무료: 수수료도, 구독도, 중간에 끼는 사람도 없습니다.</p>
+<h2>상점은 어디에 있나</h2>
+<p>만들기 전에 상점이 실제로 어떤 플랫폼에서 돌아가는지 확인했습니다. WooCommerce와 Shopify가 다른 모든 플랫폼보다 크게 앞서 있어서, 첫 플러그인은 가장 많이 설치된 WooCommerce용이고, 나머지는 스킬이 링크, 버튼, 호스팅 계산대로 다룹니다.</p>
+<table class="lab-table">
+<thead><tr><th>플랫폼</th><th>측정 가능한 웹에서의 비중, 2026년 5월</th><th>우리가 주는 것</th></tr></thead>
+<tbody>
+<tr><td>WooCommerce</td><td>6.64%</td><td>Wen Counter Pay 플러그인</td></tr>
+<tr><td>Shopify</td><td>4.76%</td><td>주문 페이지의 결제 링크나 QR, 호스팅 계산대</td></tr>
+<tr><td>Wix eCommerce</td><td>1.48%</td><td>HTML 버튼이나 호스팅 계산대 링크</td></tr>
+<tr><td>Squarespace Commerce</td><td>1.12%</td><td>HTML 버튼이나 호스팅 계산대 링크</td></tr>
+</tbody>
+</table>
+<p style="font-size:13.5px;color:var(--ink-dim);">비중: HTTP Archive 데이터, 2026년 7월 분석 <a class="src-ref" href="../../sources.html#lab-shop-integration-1">출처</a>. 다른 Solana Pay 선택지도 이미 있습니다. 오픈 WooCommerce 플러그인 <a class="src-ref" href="../../sources.html#lab-shop-integration-2">출처</a>과 수수료 0.75%의 Shopify 앱 <a class="src-ref" href="../../sources.html#lab-shop-integration-3">출처</a>. 우리 것은 수수료를 더하지 않고 모든 검사를 공개합니다.</p>
+<h2>WooCommerce 플러그인: Wen Counter Pay</h2>
+<ol>
+<li><strong>구매자가 주문하고</strong> 클래식 결제나 Checkout 블록에서 <em>Pay with Solana Pay</em>를 고릅니다.</li>
+<li><strong>주문이 새 참조 키를 받고</strong> Solana Pay 링크가 만들어집니다. 상점 주소, USDC나 다른 토큰으로 된 금액, 메모로 <code>order:&lt;number&gt;</code>.</li>
+<li><strong>구매자는 자기 지갑으로 결제합니다</strong>. QR이나 <em>Open in wallet</em> 버튼으로.</li>
+<li><strong>상점 서버가 체인을 읽고</strong>(읽기 메서드 세 가지만) 다섯 항목 검증을 합니다: 참조, 수신자, 토큰, 금액, 성공. 그러면 주문이 결제 완료됩니다. 트랜잭션 하나는 주문 하나만 결제합니다.</li>
+<li><strong>탭을 닫았나요?</strong> 5분마다 돌아가는 백그라운드 확인이 24시간 동안 일을 마무리합니다.</li>
+</ol>
+<p><a download href="../../integrations/woocommerce/wen-counter-pay.zip">플러그인 내려받기 (.zip)</a> · <a href="../../integrations/woocommerce/wen-counter-pay/README.md">코드 안내 읽기</a> · <a href="../../integrations/woocommerce/wen-counter-pay/readme.txt">설치 단계</a></p>
+<h2>스킬: 안전하게 설치하는 AI 어시스턴트</h2>
+<p>스킬은 Claude Code, Codex, Cursor, Copilot 같은 어시스턴트가 불러올 수 있는 짧은 지침 파일 <code>SKILL.md</code>입니다. 우리 스킬은 어시스턴트에게 먼저 상점을 점검하고, 맞는 경로를 고르고, 공개 수신 주소만 붙여 넣고, devnet에서 시험하고, 빌드를 확인하고, 결과를 보고하라고 말합니다. 절대 하지 말아야 할 것도 말합니다. 시드 문구를 묻는 것, 지갑을 연결하는 것, 소유자 없이 메인넷으로 바꾸는 것.</p>
+<p><a href="../../skills/wen-counter-shop/SKILL.md">SKILL.md 열기</a> · <a href="../../skills/wen-counter-shop/references/audit-checklist.md">상점 점검 체크리스트</a> · <a href="../../skills/wen-counter-shop/references/security.md">보안 검토</a> · <a href="../../skills/wen-counter-shop/references/sources.md">출처와 토대</a></p>
+<p>명령 하나로 여러 어시스턴트에 설치됩니다: <code>npx skills add wen-watt/wen-watt.github.io</code> <a class="src-ref" href="../../sources.html#lab-shop-integration-4">출처</a>.</p>
+<h2>시험한 것</h2>
+<table class="lab-table">
+<thead><tr><th>그룹</th><th>검사</th><th>증명하는 것</th></tr></thead>
+<tbody>
+<tr><td>핵심 동등성</td><td>12</td><td>PHP 핵심이 Wen Counter의 JavaScript 핵심과 같은 답을 냅니다. 그것으로 만든 테스트 데이터에서</td></tr>
+<tr><td>게이트웨이 흐름</td><td>22</td><td>설정이 잘못된 입력을 거부, 주문이 링크를 받음, 결제 완료·금액 부족·잘못된 토큰·실패·외부 트랜잭션, 주문당 트랜잭션 하나, 상태 엔드포인트와 백그라운드 확인</td></tr>
+<tr><td>코드 안전</td><td>14</td><td>키 없음, 서명 없음, 읽기 전용 RPC, 로컬 스크립트만, 이스케이프된 출력, 출처 표시 유지</td></tr>
+<tr><td>브라우저</td><td>6</td><td>QR이 그려지고, 상태를 묻고, 외부 링크는 무시됨</td></tr>
+</tbody>
+</table>
+<p>54개 검사가 모두 통과하고, Wen Counter 자체의 57개 검사도 여전히 통과합니다. 직접 돌려 보세요. 명령은 플러그인 안내에 있습니다.</p>
+<h2>정직한 한계</h2>
+<ul>
+<li>구매자에게는 자금이 든 Solana 지갑이 필요합니다. 어떤 코드도 그것을 없애지 못합니다.</li>
+<li>플러그인에서는 상점당 수신 주소 하나, 부서별 여러 지갑은 대면 계산대에서.</li>
+<li>환불은 소유자 지갑에서 보내는 새 결제이며, 지불 거절은 없습니다.</li>
+<li>Shopify, Wix, Squarespace 주문은 아직 자동으로 결제 완료 처리되지 않으며, 스킬이 소유자에게 그렇게 알립니다.</li>
+<li>감사받지 않은 예제 코드입니다. devnet 먼저. 상점, 영수증, 세금은 상점 소유자의 책임입니다.</li>
+</ul>
+<div class="lab-box">
+<h3>이 모델에서 Wen의 자리</h3>
+<p style="margin:0;">WEN은 상점이 받을 수 있는 토큰 중 하나로, USDC, SOL, JUP와 나란히 있습니다. 이 단계의 핵심은 랩 전체와 같습니다. 누구나 무료로 확인하고 쓸 수 있는 열린 레일, 모든 사본에 밝힌 Wen 사슬.</p>
+</div>
+<div class="lab-box">
+<h3>Wen의 실: 하나의 컨트랙트, 어디에나</h3>
+<p style="margin:0 0 8px;">랩의 모든 모델은 무료이고 공개되어 있으며, 모두 같은 서명을 지닙니다. 바로 $WEN 토큰 컨트랙트입니다. 복사해 내 문서에도 적어 두고, 쓰기 전에는 반드시 익스플로러에서 확인하세요.</p>
+<p style="margin:0 0 8px;"><code style="word-break:break-all;">WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code></p>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">확인: <a class="src-ref" href="../../sources.html#off-5">Solana Explorer</a> · <a class="src-ref" href="../../sources.html#off-6">컨트랙트 ID 찾는 법</a></p>
+</div>
+<div class="lab-box" id="open-use-policy">
+<h3>오픈 사용 정책</h3>
+<ul style="margin:0 0 8px;">
+<li><strong>무료이고 공개.</strong> 랩의 모든 코드는 Wen Program Library와 같은 Apache License 2.0으로 공개됩니다. 상업적이든 아니든 쓰고, 고치고, 배포하세요. 라이선스 고지만 유지하면 됩니다.</li>
+<li><strong>오픈 도구만.</strong> 공개되어 있고 문서화된 도구로 만듭니다: Solana SPL Token-2022(Token Extensions), Wen New Standard(WNS) 토큰 구조, Solana Pay, 로컬 테스트용 LiteSVM.</li>
+<li><strong>규칙: 내 모델은 언제나 직접 검증하라.</strong> 테스트를 돌리고, devnet에서 시작하고, 공식 문서를 읽고, 모든 계정과 금액을 검토하고, 메인넷에 쓰기 전에 독립 감사를 받으세요. 검증하지 않은 모델은 모델이 아니라 추측입니다.</li>
+<li><strong>감사받지 않았고, 조언이 아닙니다.</strong> 교육용 예제입니다. 금융·법률·세무 조언이 아니며, 인가받은 결제나 은행 상품도 아닙니다. 대부분의 나라에서 결제, 스테이블코인, 결제 대행은 규제 대상 활동입니다.</li>
+<li><strong>보안.</strong> 개인 키를 웹사이트에 절대 붙여 넣지 마세요. npm 패키지 <code>@wen-community/wen-new-standard</code>는 설치하지 마세요. npm이 악성으로 삭제했습니다. 공식 소스로 빌드하세요.</li>
+</ul>
+<p style="margin:0;font-size:13.5px;color:var(--ink-dim);">Wen이 커뮤니티를 위해 전합니다. 자세한 내용은 <a href="../../privacy-policy-cookie-policy.html">편집 및 데이터 정책</a>에서.</p>
+</div>
+<p style="font-size:13.5px;color:var(--ink-dim);">Wen Open Lab · <a href="index.html">로드맵</a> · <a href="counter.html">Wen Counter</a> · <a href="counter-safety.html">안전</a></p>
+<!-- src:callout --><aside class="src-callout" id="sources-callout" aria-label="출처">
+<p class="src-callout-title">사실 확인 · 출처</p>
+<p>이 페이지 뒤의 모든 외부 출처를 한 페이지에 모았습니다. 직접 열어 보고 확인하세요. <a href="../../sources.html#lab-shop-integration">이 페이지의 출처 열기 →</a></p>
+</aside><!-- /src:callout -->
+</article>
+<div id="footer-slot"></div>
+</main>
+</div>
+<script src="../../assets/js/main.js?v=20261027"></script>
+<script src="../../assets/js/nav.js?v=20261117" data-prefix="../../" data-lab=""></script>
+</body>
+</html>

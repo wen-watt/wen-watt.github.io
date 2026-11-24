@@ -1,0 +1,19 @@
+Wen Counter Pay — free, receive-only Solana Pay checkout for WooCommerce
+Copyright 2026 Wen Open Lab (wen-watt.github.io)
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+Built on Wen Counter (WCP-1), Wen Open Lab · wen-watt.github.io,
+on Solana, Solana Pay, SPL Token and Token-2022, WNS and WEN.
+Copies and derivative works must keep this NOTICE (Apache-2.0, section 4(d)).
+
+Wen Counter Protocol 1.0 (WCP-1): receive-only; read-only (getSignaturesForAddress, getTransaction,
+getAccountInfo); five-point check (reference, recipient, token, amount, success); wallet as identity.
+includes/class-wcp-core.php is a PHP port of lab/counter/counter-core.js; tests/test-core.php proves
+the same answers on fixtures built from the JavaScript core.
+
+Third-party: assets/qrcode.js — QR Code Generator for JavaScript, Copyright (c) 2009 Kazuhiko Arase, MIT.
+"QR Code" is a registered trademark of DENSO WAVE INCORPORATED.
+
+Example code, not audited. Devnet first. Not financial, legal or tax advice.
+The plugin takes no fee and holds no funds; the shop owner is responsible for the shop, refunds and taxes.

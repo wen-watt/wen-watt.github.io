@@ -1,0 +1,12 @@
+/* Wen Counter Pay · order received box. Apache-2.0 */
+.wcp-box{border:1px solid rgba(0,0,0,.12);border-radius:12px;padding:16px 18px;margin:18px 0;max-width:420px}
+.wcp-box h2{margin:0 0 8px;font-size:1.2em}
+.wcp-amount{font-size:1.15em}
+.wcp-badge{display:inline-block;font-size:.75em;padding:1px 7px;border-radius:999px;background:#fde68a;color:#3b2f00;vertical-align:middle}
+.wcp-qr{width:min(280px,100%);margin:10px 0;background:#fff;border-radius:8px}
+.wcp-qr svg{width:100%;height:auto;display:block}
+.wcp-to code{font-size:.95em}
+.wcp-status{font-weight:600}
+.wcp-ok{color:#047857}
+.wcp-warn{color:#b45309}
+.wcp-note{font-size:.85em;opacity:.8}

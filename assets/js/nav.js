@@ -29,15 +29,16 @@
     ['benefits.html', '&#9733; Benefits &amp; use'],
     ['walkthroughs.html', '&#9998; Ten walkthroughs'],
     ['videos.html', '&#9654; Videos'],
-    ['findings.html', '? Reader findings']
+    ['findings.html', '? Reader findings'],
+    ['shop-integration.html', '8 · Shops: plugin &amp; skill']
   ];
   // Translated copies of the Lab (/it-wen/, /cn-wen/, /ko-wen/) set data-lab="" so the Lab links stay in their language
   var labAttr = scriptEl ? scriptEl.getAttribute('data-lab') : null;
   var labBase = labAttr === null ? p + 'lab/' : labAttr;
   var LAB_I18N = {
-    'it': ['0 · Roadmap', '1 · Ricevute e garanzia', '2 · Royalty per i creatori', '3 · Fatture B2B', '4 · Ponte pagamenti', '5 · Simulatore', '6 · Devnet: ripetilo', '7 · Cassa', '7.1 · Sicurezza', '&#10003; Catena della fiducia', '&#9733; Vantaggi e usi', '&#9998; Dieci guide', '&#9654; Video', '? Scoperte dei lettori'],
-    'zh-CN': ['0 · 路线图', '1 · 收据与保修', '2 · 创作者版税', '3 · B2B 发票', '4 · 支付桥', '5 · 模拟器', '6 · Devnet：亲自复现', '7 · 收银台', '7.1 · 安全', '&#10003; 信任链', '&#9733; 益处与用途', '&#9998; 十篇导读', '&#9654; 视频', '? 读者发现'],
-    'ko': ['0 · 로드맵', '1 · 영수증과 보증', '2 · 크리에이터 로열티', '3 · B2B 인보이스', '4 · 결제 브리지', '5 · 시뮬레이터', '6 · Devnet: 직접 재현', '7 · 계산대', '7.1 · 안전', '&#10003; 신뢰 사슬', '&#9733; 이점과 활용', '&#9998; 열 가지 해설', '&#9654; 영상', '? 독자 발견']
+    'it': ['0 · Roadmap', '1 · Ricevute e garanzia', '2 · Royalty per i creatori', '3 · Fatture B2B', '4 · Ponte pagamenti', '5 · Simulatore', '6 · Devnet: ripetilo', '7 · Cassa', '7.1 · Sicurezza', '&#10003; Catena della fiducia', '&#9733; Vantaggi e usi', '&#9998; Dieci guide', '&#9654; Video', '? Scoperte dei lettori', '8 · Negozi: plugin e skill'],
+    'zh-CN': ['0 · 路线图', '1 · 收据与保修', '2 · 创作者版税', '3 · B2B 发票', '4 · 支付桥', '5 · 模拟器', '6 · Devnet：亲自复现', '7 · 收银台', '7.1 · 安全', '&#10003; 信任链', '&#9733; 益处与用途', '&#9998; 十篇导读', '&#9654; 视频', '? 读者发现', '8 · 商店：插件与技能'],
+    'ko': ['0 · 로드맵', '1 · 영수증과 보증', '2 · 크리에이터 로열티', '3 · B2B 인보이스', '4 · 결제 브리지', '5 · 시뮬레이터', '6 · Devnet: 직접 재현', '7 · 계산대', '7.1 · 안전', '&#10003; 신뢰 사슬', '&#9733; 이점과 활용', '&#9998; 열 가지 해설', '&#9654; 영상', '? 독자 발견', '8 · 상점: 플러그인과 스킬']
   };
   var docLang = (document.documentElement.getAttribute('lang') || 'en');
   if (labAttr !== null && LAB_I18N[docLang]) {
