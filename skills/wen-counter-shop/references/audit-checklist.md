@@ -16,5 +16,8 @@ Answer each line, show the answers to the owner, then choose the path in SKILL.m
 | 10 | Refund and receipt policy written? | shop pages | refunds are new payments from the owner's wallet; receipts are not fiscal |
 | 11 | Content Security Policy? | response headers | allow the plugin's own scripts; no remote scripts are needed |
 | 12 | Accountant informed? | ask | the owner checks how to record and declare wallet income in their country |
+| 13 | Quiet shop or busy? | traffic, hosting panel | quiet shops need a real server cron for `wp-cron.php`, or the background check runs late |
+| 14 | Do buyers already use Solana wallets? | ask the owner about the customers | buyers pay from a wallet app, not from an exchange; keep cards and other methods next to this one (see `usability.md`) |
+| 15 | Has the shop address ever received the chosen token? | look up the address in Solana Explorer | if not, receive one small test payment first so the token account exists |
 
 Red flags: the owner wants you to "connect the shop wallet" or to store a key on the server; a request to auto-send refunds; mainnet before any devnet test. Stop and explain why the counter stays receive-only.
