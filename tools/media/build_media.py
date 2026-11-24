@@ -80,25 +80,10 @@ def build(db):
     s = re.sub(r'<div id="media-grid">.*?</div>(?=\s*\n\s*<(p|section) )', grid, s, count=1, flags=re.S) if '<div id="media-grid">\n<a' in s \
         else s.replace('<div id="media-grid"></div>', grid, 1)
 
-    # newest notes section, grouped by series (entries with a note and a non-story series)
-    groups = {}
-    for d in db:
-        if d['series'] and d['series'] != 'Image story':
-            groups.setdefault(d['series'], []).append(d)
-    sec = ['<section id="media-notes" class="media-notes">', '<h2>Newest in the archive: notes to the pictures</h2>']
-    for ser, items in groups.items():
-        sec.append(f'<h3>{E(ser)}</h3><ul>')
-        for d in items:
-            link = f' <a href="{E(d["link"])}">Where it is used</a>.' if d['link'] else ''
-            sec.append(f'<li><a href="wen-media/{E(d["file"])}"><strong>{E(d["alt"])}</strong></a>. {E(d["note"])}{link}</li>')
-        sec.append('</ul>')
-    sec.append('</section>')
-    sec = '\n'.join(sec)
-    if '<section id="media-notes"' in s:
-        s = re.sub(r'<section id="media-notes".*?</section>', sec, s, count=1, flags=re.S)
-    else:
-        s = s.replace('<p style="margin-top:28px;font-size:13px;color:var(--ink-dim);"><em>How this stays current:</em>',
-                      sec + '\n\n    <p style="margin-top:28px;font-size:13px;color:var(--ink-dim);"><em>How this stays current:</em>', 1)
+    # notes now live on image-story pages: drop the old notes section if present
+    s = re.sub(r'\n*<section id="media-notes".*?</section>', '', s, count=1, flags=re.S)
+    stories = sum(1 for d in db if d['link'].startswith('image-story/'))
+    s = re.sub(r'All \d+ stories are collected on the', f'All {stories} stories are collected on the', s)
 
     # intro count and maintenance note
     s = re.sub(r'in one place — \d+ tiles below', f'in one place — {n} tiles below', s)
@@ -136,7 +121,7 @@ def build(db):
     s = re.sub(r'<script>\n\(function\(\)\{var g=document.getElementById\("media-grid"\).*?</script>', js, s, count=1, flags=re.S)
     css = ('<style id="media-css">#media-grid a.has-note::after{content:"\\2197";position:absolute;top:6px;right:6px;width:20px;height:20px;'
            'border-radius:50%;background:var(--teal,#4fd1c5);color:#06201d;font:700 12px/20px Inter,sans-serif;text-align:center;}'
-           '.media-notes h3{margin-top:18px}.media-notes li{margin:6px 0}</style>')
+           '</style>')
     if 'id="media-css"' not in s:
         s = s.replace('</head>', css + '\n</head>', 1)
     open(PAGE, 'w').write(s)

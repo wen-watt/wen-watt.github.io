@@ -2,198 +2,198 @@
  {
   "file": "reader-finding-1-fee-rounding.png",
   "alt": "Wen in a space suit at a starship window beside a card titled Fee rounding: thank you, fixed",
-  "note": "Reader finding #1 from Wen Open Lab: Token-2022 rounds the transfer fee up, the lab's example rounded down (401 units gave a fee of 1, not 2), so the formula was fixed and two new tests were added. Status: fixed, 41 checks green.",
-  "link": "lab/findings.html",
-  "series": "Reader findings"
+  "note": "Token-2022 computes the fee as ceil(amount × basis points ÷ 10,000), capped at the maximum fee. For 401 base units at 25 bps the program expects 2, not 1. A reader caught the Lab rounding it down, and the formula was fixed on November 9, 2026 with new tests.",
+  "link": "image-story/reader-finding-1-fee-rounding.html",
+  "series": "Image story"
  },
  {
   "file": "reader-finding-2-memo-content.png",
   "alt": "Wen with a blue blade faces a figure with red blades beside a card: a memo exists is not the invoice is right",
-  "note": "Reader finding #2: the Required Memo extension checks that a memo exists, not what it says, so a wrong invoice number still passes on-chain. The lab documented this known limit and added off-chain reconciliation with two tests.",
-  "link": "lab/findings.html",
-  "series": "Reader findings"
+  "note": "Token-2022 rejects a transfer without a memo, but it never reads the text: a payment marked with a wrong invoice number still passes on-chain. Wen Open Lab now matches the invoice off-chain at reconciliation and tests both the right and the wrong case.",
+  "link": "image-story/reader-finding-2-memo-content.html",
+  "series": "Image story"
  },
  {
   "file": "reader-findings-thank-you.png",
   "alt": "Small Wen in a space suit under a giant glowing Wen spirit, card: two readers, two gaps, two fixes",
-  "note": "Proof before trust: every reader question gets an answer with a test, an honest status (fixed or known limit) and open changes on GitHub. A thank-you card for the two readers who found the gaps.",
-  "link": "lab/findings.html",
-  "series": "Reader findings"
+  "note": "Every question a reader raises gets one answer that cites a test anyone can run with npm test, an honest status with the reason, and credit to the reader. Nothing is deleted: old answers stay with the date they changed.",
+  "link": "image-story/reader-findings-thank-you.html",
+  "series": "Image story"
  },
  {
   "file": "wen-card-verified-1-spl-token.png",
   "alt": "Golden Wen coins in space beside a card: WEN lives on the original SPL Token",
-  "note": "Verified on-chain: read straight from Solana mainnet at slot 468049071, the WEN mint is an original SPL Token with no extensions, so no transfer fee is possible, and its mint and freeze authorities are revoked.",
-  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
-  "series": "The verified chain"
+  "note": "An open check read the mint at slot 468049071: owner program TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA, the original SPL Token program, with no extensions.",
+  "link": "image-story/wen-card-verified-1-spl-token.html",
+  "series": "Image story"
  },
  {
   "file": "wen-card-verified-2-chain.png",
   "alt": "Wen drives a white van through space beside a card: poem to WNS on Token-2022 to WEN on SPL Token",
-  "note": "The verified chain in three dates: January 24, 2024, Wen Program Library built on Token-2022; January 25, WNS 0.0, the open NFT standard; January 26, the poem NFT split into one trillion WEN on the SPL Token program.",
-  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
-  "series": "The verified chain"
+  "note": "The poem behind WEN was minted as an NFT with WNS, a standard on Token-2022; the trillion fungible WEN tokens live on the original SPL Token program.",
+  "link": "image-story/wen-card-verified-2-chain.html",
+  "series": "Image story"
  },
  {
   "file": "wen-card-verified-3-trust-2.png",
   "alt": "Wen in sunglasses and a red down suit holds a Mt. Everest 8,848.86 m sign beside a card: no hidden percentage",
-  "note": "Trust card #2: WEN adds no fee of its own; the Solana network charges 5,000 lamports per signature, half of it burned; swaps carry a pool fee that the wallet shows before you sign. Check, then trust.",
-  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
-  "series": "The verified chain"
+  "note": "The original SPL Token program cannot carry extensions, so a transfer fee cannot exist on WEN; the mint and freeze authorities are also revoked. What you pay is the Solana network fee and, on a swap, the pool fee your wallet shows before you sign.",
+  "link": "image-story/wen-card-verified-3-trust-2.html",
+  "series": "Image story"
  },
  {
   "file": "wen-cards-verified-chain-stack.png",
   "alt": "Three Wen Open Lab cards stacked: original SPL Token, the verified chain, no hidden percentage",
-  "note": "The three verified-chain cards in one tall image for sharing: what the WEN mint is, how the poem became WNS and WEN, and why there is no hidden percentage.",
-  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
-  "series": "The verified chain"
+  "note": "Meow asked whether to test the JUP launch site with a meme coin first; 83.5% of 14,581 votes said yes. That test became WEN.",
+  "link": "image-story/wen-cards-verified-chain-stack.html",
+  "series": "Image story"
  },
  {
   "file": "wen-news-verified-chain-og.png",
   "alt": "News card: the verified chain, from a poem to a token, read on-chain at slot 468049071",
-  "note": "Wen Almanac news of November 11, 2026: step one, the poem NFT on the WNS standard (Token-2022); step two, 1,000,000,000,000 WEN on the original SPL Token with no fee and revoked authorities.",
-  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
-  "series": "The verified chain"
+  "note": "The launch-eve thread from the Ovols side described the poem as the first and only NFT on WNS at the time.",
+  "link": "image-story/wen-news-verified-chain-og.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-og.png",
   "alt": "Wen in an apron serves ice cream to children next to a phone showing the Wen Counter till",
-  "note": "Wen Counter: a free till that opens in the browser, shows a Solana Pay QR, only receives, needs no app and holds no card data or middleman. Zero fee per sale.",
-  "link": "posts/wen-counter-free-open-till-for-every-shop.html",
-  "series": "Wen Counter"
+  "note": "Wen Counter is receive-only by design: no wallet connection, no signing, no keys, and only three read requests in code. Refunds are made inside the shop's own wallet.",
+  "link": "image-story/wen-counter-og.html",
+  "series": "Image story"
  },
  {
   "file": "wen-chain-coins-space.jpg",
   "alt": "Golden Wen coins with the cat face float on glowing streams past the Earth and a starship",
-  "note": "Wen Chain art: the WEN coin as a golden token drifting through space, used in the almanac's explainer of SPL, Token-2022 and WNS.",
-  "link": "spl-solana-program-library-token-2022-wns.html",
-  "series": "Wen Chain art"
+  "note": "The Wen cat is the brand identity of WEN, the coin that was the first real-world use of WNS. The cat theme runs from the mascot to the creator's handle, Meow.",
+  "link": "image-story/wen-chain-coins-space.html",
+  "series": "Image story"
  },
  {
   "file": "wen-chain-rocket-duo.jpg",
   "alt": "Two Wen kittens in space suits ride a rocket ship among donuts and Wen coins",
-  "note": "Wen Chain art: two Wen astronauts on a rocket, a playful picture for the step from the original SPL Token to Token-2022 extensions.",
-  "link": "spl-solana-program-library-token-2022-wns.html",
-  "series": "Wen Chain art"
+  "note": "Transfer fees, transfer hooks, confidential transfers, interest-bearing tokens, permanent delegate, non-transferable tokens, metadata and metadata pointer, and group and member pointers, all set at the mint or account level.",
+  "link": "image-story/wen-chain-rocket-duo.html",
+  "series": "Image story"
  },
  {
   "file": "wen-chain-van-donut.jpg",
   "alt": "A white Wen van with cat ears and a WEN plate drives through space past a giant donut",
-  "note": "Wen Chain art: the Wen van carries the story from the poem to the token; it appears in the SPL, Token-2022 and WNS explainer.",
-  "link": "spl-solana-program-library-token-2022-wns.html",
-  "series": "Wen Chain art"
+  "note": "The poem was minted with WNS, so the NFT itself carried Token-2022 extensions; it was then split into one trillion WEN on the original SPL Token program, which is why WEN moves like an ordinary SPL token.",
+  "link": "image-story/wen-chain-van-donut.html",
+  "series": "Image story"
  },
  {
   "file": "wen-chain-van-front.jpg",
   "alt": "Front view of the white Wen van with cat-face headlights and a WEN plate, Wen at the wheel in a helmet",
-  "note": "Wen Chain art: the van seen head-on, the friendly face of the almanac's token explainer.",
-  "link": "spl-solana-program-library-token-2022-wns.html",
-  "series": "Wen Chain art"
+  "note": "With Token-2022 transfer hooks, checks such as KYC or geo-restrictions can run on every transfer of the token itself, a requirement for regulated financial instruments.",
+  "link": "image-story/wen-chain-van-front.html",
+  "series": "Image story"
  },
  {
   "file": "wen-chain-van-ufo.jpg",
   "alt": "The Wen van flies through space while a UFO beams light nearby",
-  "note": "Wen Chain art: the Wen van meets a UFO among coins and donuts, from the SPL, Token-2022 and WNS explainer.",
-  "link": "spl-solana-program-library-token-2022-wns.html",
-  "series": "Wen Chain art"
+  "note": "On Ethereum, rules for security tokens are added as extra standards; on Solana, Token-2022 makes such controls a native part of the token program.",
+  "link": "image-story/wen-chain-van-ufo.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-payment-nft-web3-methon1.jpg",
   "alt": "Story card 1 of 5: a warranty card can live in your wallet and refuse to be resold",
-  "note": "Did you know? Token-2022 has a NonTransferable token whose details live inside the mint, the same light NFT layout WNS uses. The base of the lab's warranty card model.",
-  "link": "lab/walkthroughs.html",
-  "series": "Wen Open Lab story cards"
+  "note": "The chain stores only a hash; the buyer keeps the order and can prove the match later, with no personal data on a public ledger.",
+  "link": "image-story/wen-lab-payment-nft-web3-methon1.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-payment-nft-web3-methon2.jpg",
   "alt": "Story card 2 of 5: a payment can refuse to arrive without an invoice number",
-  "note": "Did you know? Required memo, frozen-by-default accounts and a capped fee are built into the token itself, with no custom program. The base of the lab's B2B invoice model.",
-  "link": "lab/walkthroughs.html",
-  "series": "Wen Open Lab story cards"
+  "note": "Default Account State = Frozen: only accounts the issuer thaws after its own checks can send or receive.",
+  "link": "image-story/wen-lab-payment-nft-web3-methon2.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-payment-nft-web3-methon3.jpg",
   "alt": "Story card 3 of 5: an NFT can carry its royalty rule inside the token",
-  "note": "Did you know? A transfer hook runs on every transfer in every wallet; WNS uses it for creator royalties.",
-  "link": "lab/walkthroughs.html",
-  "series": "Wen Open Lab story cards"
+  "note": "The program is today's rule; the authority decides who can point the hook somewhere else tomorrow.",
+  "link": "image-story/wen-lab-payment-nft-web3-methon3.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-payment-nft-web3-methon4.jpg",
   "alt": "Story card 4 of 5: a small shop can match every payment to its order",
-  "note": "Did you know? With Solana Pay each order gets one random reference key, then the shop validates the payment: no card number, no customer data.",
-  "link": "lab/walkthroughs.html",
-  "series": "Wen Open Lab story cards"
+  "note": "Each order gets a fresh reference key; the wallet adds it to the transfer, so the shop can find that payment on-chain.",
+  "link": "image-story/wen-lab-payment-nft-web3-methon4.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-payment-nft-web3-methon5.jpg",
   "alt": "Story card 5 of 5: all four models are open code, with a golden eye medallion",
-  "note": "Did you know? Wen began as a poem split into a trillion tokens that grew into WNS, an open NFT standard on Token-2022. The four lab models are tested, devnet-ready and released under Apache-2.0.",
-  "link": "lab/walkthroughs.html",
-  "series": "Wen Open Lab story cards"
+  "note": "LiteSVM loads the real Token-2022 and Memo programs into the test process, so the Lab's checks run in milliseconds, offline.",
+  "link": "image-story/wen-lab-payment-nft-web3-methon5.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-beach-chair.jpg",
   "alt": "Wen in sunglasses and a flowered shirt relaxes in a beach chair with a coconut drink",
-  "note": "Wen's trip, beach day: the cat takes a break under the palms. Community-style art, free to reuse with credit.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "In the example the network part is 0.02 SOL for 2,000 payments a month, while a 0.5% conversion comes to $400.",
+  "link": "image-story/wen-trip-beach-chair.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-beach-sandcastle.jpg",
   "alt": "Wen in a flowered shirt builds a sandcastle on a tropical beach",
-  "note": "Wen's trip, beach day: building a sandcastle, one tower at a time.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "Zero decimals, supply 1 and no mint authority make a true one-of-one, the light-NFT layout WNS uses.",
+  "link": "image-story/wen-trip-beach-sandcastle.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-beach-walk.jpg",
   "alt": "Wen in sunglasses walks along the waterline of a sunny beach",
-  "note": "Wen's trip, beach day: a walk where the waves meet the sand.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "The address is identity. The real WEN is WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk: search the address, not the name.",
+  "link": "image-story/wen-trip-beach-walk.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-everest-rope.jpg",
   "alt": "Wen in a red down suit climbs a snowy ridge holding a fixed rope",
-  "note": "Wen's trip, Everest: climbing on a fixed rope, one safe step at a time.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "The Lab's token inspector flags it in plain words, so a holder knows the powers behind a token before receiving it.",
+  "link": "image-story/wen-trip-everest-rope.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-everest-summit.jpg",
   "alt": "Wen holds a Mt. Everest 8,848.86 m sign at the summit with prayer flags behind",
-  "note": "Wen's trip, Everest summit: 8,848.86 metres, the height of Mount Everest measured by Nepal and China in 2020.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "findReference only says a transaction mentions the key; validateTransfer checks the recipient, amount, token, reference and memo.",
+  "link": "image-story/wen-trip-everest-summit.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-everest-trek.jpg",
   "alt": "Wen in sunglasses and a red down suit treks with a pole below snowy peaks",
-  "note": "Wen's trip, Everest: the long trek before the climb.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "The shop pastes its wallet's public receiving address; the counter checks it on-chain at setup and shows it on every QR screen.",
+  "link": "image-story/wen-trip-everest-trek.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-ice-cream-kids.jpg",
   "alt": "Wen in an apron hands ice cream cones to laughing children at a street stall",
-  "note": "Wen's trip, ice cream stall: the same friendly shop scene that Wen Counter is built for.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "0.087 plus 0.30 is 0.387, or 12.9% of 3. The fixed part makes small tickets the most expensive: the micro-ticket effect.",
+  "link": "image-story/wen-trip-ice-cream-kids.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-ice-cream-serve.jpg",
   "alt": "Wen scoops pink ice cream into a cone while children watch",
-  "note": "Wen's trip, ice cream stall: serving a fresh scoop at a market street.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "The counter is free and open (Apache-2.0) and takes no fee per sale; the only on-chain cost of a sale is the Solana network fee, paid by the buyer's wallet.",
+  "link": "image-story/wen-trip-ice-cream-serve.html",
+  "series": "Image story"
  },
  {
   "file": "wen-trip-ice-cream-thumbs.jpg",
   "alt": "Wen gives a thumbs up among smiling children holding ice cream cones",
-  "note": "Wen's trip, ice cream stall: everyone got a cone.",
-  "link": "",
-  "series": "Wen's trip"
+  "note": "The signer pays the fee: 5,000 lamports per signature, half burned and half to the validator. The shop receives the full amount.",
+  "link": "image-story/wen-trip-ice-cream-thumbs.html",
+  "series": "Image story"
  },
  {
   "file": "wen-news-wen-counter-og.png",
