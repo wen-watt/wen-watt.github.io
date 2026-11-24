@@ -1,0 +1,4559 @@
+[
+ {
+  "file": "reader-finding-1-fee-rounding.png",
+  "alt": "Wen in a space suit at a starship window beside a card titled Fee rounding: thank you, fixed",
+  "note": "Reader finding #1 from Wen Open Lab: Token-2022 rounds the transfer fee up, the lab's example rounded down (401 units gave a fee of 1, not 2), so the formula was fixed and two new tests were added. Status: fixed, 41 checks green.",
+  "link": "lab/findings.html",
+  "series": "Reader findings"
+ },
+ {
+  "file": "reader-finding-2-memo-content.png",
+  "alt": "Wen with a blue blade faces a figure with red blades beside a card: a memo exists is not the invoice is right",
+  "note": "Reader finding #2: the Required Memo extension checks that a memo exists, not what it says, so a wrong invoice number still passes on-chain. The lab documented this known limit and added off-chain reconciliation with two tests.",
+  "link": "lab/findings.html",
+  "series": "Reader findings"
+ },
+ {
+  "file": "reader-findings-thank-you.png",
+  "alt": "Small Wen in a space suit under a giant glowing Wen spirit, card: two readers, two gaps, two fixes",
+  "note": "Proof before trust: every reader question gets an answer with a test, an honest status (fixed or known limit) and open changes on GitHub. A thank-you card for the two readers who found the gaps.",
+  "link": "lab/findings.html",
+  "series": "Reader findings"
+ },
+ {
+  "file": "wen-card-verified-1-spl-token.png",
+  "alt": "Golden Wen coins in space beside a card: WEN lives on the original SPL Token",
+  "note": "Verified on-chain: read straight from Solana mainnet at slot 468049071, the WEN mint is an original SPL Token with no extensions, so no transfer fee is possible, and its mint and freeze authorities are revoked.",
+  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
+  "series": "The verified chain"
+ },
+ {
+  "file": "wen-card-verified-2-chain.png",
+  "alt": "Wen drives a white van through space beside a card: poem to WNS on Token-2022 to WEN on SPL Token",
+  "note": "The verified chain in three dates: January 24, 2024, Wen Program Library built on Token-2022; January 25, WNS 0.0, the open NFT standard; January 26, the poem NFT split into one trillion WEN on the SPL Token program.",
+  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
+  "series": "The verified chain"
+ },
+ {
+  "file": "wen-card-verified-3-trust-2.png",
+  "alt": "Wen in sunglasses and a red down suit holds a Mt. Everest 8,848.86 m sign beside a card: no hidden percentage",
+  "note": "Trust card #2: WEN adds no fee of its own; the Solana network charges 5,000 lamports per signature, half of it burned; swaps carry a pool fee that the wallet shows before you sign. Check, then trust.",
+  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
+  "series": "The verified chain"
+ },
+ {
+  "file": "wen-cards-verified-chain-stack.png",
+  "alt": "Three Wen Open Lab cards stacked: original SPL Token, the verified chain, no hidden percentage",
+  "note": "The three verified-chain cards in one tall image for sharing: what the WEN mint is, how the poem became WNS and WEN, and why there is no hidden percentage.",
+  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
+  "series": "The verified chain"
+ },
+ {
+  "file": "wen-news-verified-chain-og.png",
+  "alt": "News card: the verified chain, from a poem to a token, read on-chain at slot 468049071",
+  "note": "Wen Almanac news of November 11, 2026: step one, the poem NFT on the WNS standard (Token-2022); step two, 1,000,000,000,000 WEN on the original SPL Token with no fee and revoked authorities.",
+  "link": "posts/verified-chain-wen-spl-token-wns-token-2022.html",
+  "series": "The verified chain"
+ },
+ {
+  "file": "wen-counter-og.png",
+  "alt": "Wen in an apron serves ice cream to children next to a phone showing the Wen Counter till",
+  "note": "Wen Counter: a free till that opens in the browser, shows a Solana Pay QR, only receives, needs no app and holds no card data or middleman. Zero fee per sale.",
+  "link": "posts/wen-counter-free-open-till-for-every-shop.html",
+  "series": "Wen Counter"
+ },
+ {
+  "file": "wen-chain-coins-space.jpg",
+  "alt": "Golden Wen coins with the cat face float on glowing streams past the Earth and a starship",
+  "note": "Wen Chain art: the WEN coin as a golden token drifting through space, used in the almanac's explainer of SPL, Token-2022 and WNS.",
+  "link": "spl-solana-program-library-token-2022-wns.html",
+  "series": "Wen Chain art"
+ },
+ {
+  "file": "wen-chain-rocket-duo.jpg",
+  "alt": "Two Wen kittens in space suits ride a rocket ship among donuts and Wen coins",
+  "note": "Wen Chain art: two Wen astronauts on a rocket, a playful picture for the step from the original SPL Token to Token-2022 extensions.",
+  "link": "spl-solana-program-library-token-2022-wns.html",
+  "series": "Wen Chain art"
+ },
+ {
+  "file": "wen-chain-van-donut.jpg",
+  "alt": "A white Wen van with cat ears and a WEN plate drives through space past a giant donut",
+  "note": "Wen Chain art: the Wen van carries the story from the poem to the token; it appears in the SPL, Token-2022 and WNS explainer.",
+  "link": "spl-solana-program-library-token-2022-wns.html",
+  "series": "Wen Chain art"
+ },
+ {
+  "file": "wen-chain-van-front.jpg",
+  "alt": "Front view of the white Wen van with cat-face headlights and a WEN plate, Wen at the wheel in a helmet",
+  "note": "Wen Chain art: the van seen head-on, the friendly face of the almanac's token explainer.",
+  "link": "spl-solana-program-library-token-2022-wns.html",
+  "series": "Wen Chain art"
+ },
+ {
+  "file": "wen-chain-van-ufo.jpg",
+  "alt": "The Wen van flies through space while a UFO beams light nearby",
+  "note": "Wen Chain art: the Wen van meets a UFO among coins and donuts, from the SPL, Token-2022 and WNS explainer.",
+  "link": "spl-solana-program-library-token-2022-wns.html",
+  "series": "Wen Chain art"
+ },
+ {
+  "file": "wen-lab-payment-nft-web3-methon1.jpg",
+  "alt": "Story card 1 of 5: a warranty card can live in your wallet and refuse to be resold",
+  "note": "Did you know? Token-2022 has a NonTransferable token whose details live inside the mint, the same light NFT layout WNS uses. The base of the lab's warranty card model.",
+  "link": "lab/walkthroughs.html",
+  "series": "Wen Open Lab story cards"
+ },
+ {
+  "file": "wen-lab-payment-nft-web3-methon2.jpg",
+  "alt": "Story card 2 of 5: a payment can refuse to arrive without an invoice number",
+  "note": "Did you know? Required memo, frozen-by-default accounts and a capped fee are built into the token itself, with no custom program. The base of the lab's B2B invoice model.",
+  "link": "lab/walkthroughs.html",
+  "series": "Wen Open Lab story cards"
+ },
+ {
+  "file": "wen-lab-payment-nft-web3-methon3.jpg",
+  "alt": "Story card 3 of 5: an NFT can carry its royalty rule inside the token",
+  "note": "Did you know? A transfer hook runs on every transfer in every wallet; WNS uses it for creator royalties.",
+  "link": "lab/walkthroughs.html",
+  "series": "Wen Open Lab story cards"
+ },
+ {
+  "file": "wen-lab-payment-nft-web3-methon4.jpg",
+  "alt": "Story card 4 of 5: a small shop can match every payment to its order",
+  "note": "Did you know? With Solana Pay each order gets one random reference key, then the shop validates the payment: no card number, no customer data.",
+  "link": "lab/walkthroughs.html",
+  "series": "Wen Open Lab story cards"
+ },
+ {
+  "file": "wen-lab-payment-nft-web3-methon5.jpg",
+  "alt": "Story card 5 of 5: all four models are open code, with a golden eye medallion",
+  "note": "Did you know? Wen began as a poem split into a trillion tokens that grew into WNS, an open NFT standard on Token-2022. The four lab models are tested, devnet-ready and released under Apache-2.0.",
+  "link": "lab/walkthroughs.html",
+  "series": "Wen Open Lab story cards"
+ },
+ {
+  "file": "wen-trip-beach-chair.jpg",
+  "alt": "Wen in sunglasses and a flowered shirt relaxes in a beach chair with a coconut drink",
+  "note": "Wen's trip, beach day: the cat takes a break under the palms. Community-style art, free to reuse with credit.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-beach-sandcastle.jpg",
+  "alt": "Wen in a flowered shirt builds a sandcastle on a tropical beach",
+  "note": "Wen's trip, beach day: building a sandcastle, one tower at a time.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-beach-walk.jpg",
+  "alt": "Wen in sunglasses walks along the waterline of a sunny beach",
+  "note": "Wen's trip, beach day: a walk where the waves meet the sand.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-everest-rope.jpg",
+  "alt": "Wen in a red down suit climbs a snowy ridge holding a fixed rope",
+  "note": "Wen's trip, Everest: climbing on a fixed rope, one safe step at a time.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-everest-summit.jpg",
+  "alt": "Wen holds a Mt. Everest 8,848.86 m sign at the summit with prayer flags behind",
+  "note": "Wen's trip, Everest summit: 8,848.86 metres, the height of Mount Everest measured by Nepal and China in 2020.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-everest-trek.jpg",
+  "alt": "Wen in sunglasses and a red down suit treks with a pole below snowy peaks",
+  "note": "Wen's trip, Everest: the long trek before the climb.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-ice-cream-kids.jpg",
+  "alt": "Wen in an apron hands ice cream cones to laughing children at a street stall",
+  "note": "Wen's trip, ice cream stall: the same friendly shop scene that Wen Counter is built for.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-ice-cream-serve.jpg",
+  "alt": "Wen scoops pink ice cream into a cone while children watch",
+  "note": "Wen's trip, ice cream stall: serving a fresh scoop at a market street.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-trip-ice-cream-thumbs.jpg",
+  "alt": "Wen gives a thumbs up among smiling children holding ice cream cones",
+  "note": "Wen's trip, ice cream stall: everyone got a cone.",
+  "link": "",
+  "series": "Wen's trip"
+ },
+ {
+  "file": "wen-news-wen-counter-og.png",
+  "alt": "News card: a free till for every shop, Wen Counter, open and receive-only",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-1-coffee.png",
+  "alt": "Card: 12.9% on a coffee; Wen Counter costs 0 per sale",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-2-receive-only.png",
+  "alt": "Card: receive-only by design, three read requests, 57 open checks",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-3-today-you-kept.png",
+  "alt": "Card: today you kept, measured from confirmed sales",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-4-setup-pin.png",
+  "alt": "Card: the owner sets the wallets, setup locked by a PIN",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-5-many-wallets.png",
+  "alt": "Card: one counter, many wallets, head office view",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-6-open-audit.png",
+  "alt": "Card: 57 open checks, break it if you can",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-card-7-im-a-cat.png",
+  "alt": "Card: Wen says, I am a cat, make something useful",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-cards-stack.png",
+  "alt": "Three Wen Counter cards stacked: coffee, receive-only, today you kept",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-cards-stack-2.png",
+  "alt": "Three Wen Counter cards stacked: setup PIN, many wallets, open audit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-banner-x.png",
+  "alt": "Banner: hey, where are you going? Wen Counter, the till costs 0 and only receives",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-toys-bear.jpg",
+  "alt": "Wen shows a teddy bear to children at a toy shop counter",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-toys-robot.jpg",
+  "alt": "Wen holds up a toy robot for smiling children",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-toys-bag.jpg",
+  "alt": "Wen packs toys into a paper bag that says thank you",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-grill-1.jpg",
+  "alt": "Wen grills skewers at a night market stall while children watch",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-grill-2.jpg",
+  "alt": "Wen lifts a skewer from the grill as children laugh",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-pizza.jpg",
+  "alt": "Wen slides a fresh pizza out of a wood-fired oven",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-clothes-polo.jpg",
+  "alt": "Wen shows a blue polo shirt to children in a clothing shop",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-clothes-hoodie.jpg",
+  "alt": "Wen holds up a blue hoodie on a hanger for smiling children",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-counter-shop-clothes-cap.jpg",
+  "alt": "Wen puts a cap on a smiling boy in a clothing shop",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-01-desert-two-suns.jpeg",
+  "alt": "Wen the kitten in a white space suit holds a glowing blue blade in a desert under two suns",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-09-hangar-cargo.jpeg",
+  "alt": "Wen checks cargo crates in a starship hangar while robots load boxes",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-07-ancient-temple.jpeg",
+  "alt": "Wen with a glowing blade at the gate of an ancient carved temple in a misty forest",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-03-city-of-towers-friend.jpeg",
+  "alt": "Wen walks with a friendly green creature through a city of tall towers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-02-cockpit-hyperspace.jpeg",
+  "alt": "Wen pilots a starship through streaks of light in deep space",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-08-snow-ride.jpeg",
+  "alt": "Wen rides a big furry creature across snowy mountains while a ship flies overhead",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-06-spacewalk-repair.jpeg",
+  "alt": "Wen on a spacewalk repairs the hull of a ship above the Earth, held by a safety line",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-04-rain-duel.jpeg",
+  "alt": "Wen with a blue blade faces a dark armoured figure with red blades in the rain",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-05-jungle-new-friend.jpeg",
+  "alt": "Wen kneels in a glowing jungle and reaches out to a small curious creature",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lab-saga-10-sunset-team.jpeg",
+  "alt": "Wen stands on a rock at sunset with friendly creatures while ships fly across the sky",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-open-heritage-guardian-spirit.jpeg",
+  "alt": "Small Wen in a space suit looks up at a giant glowing spirit of Wen in a helmet among cosmic light",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "0007.jpeg",
+  "alt": "Epic Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "005.jpeg",
+  "alt": "Bright Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "02.jpeg",
+  "alt": "Active Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "04.jpeg",
+  "alt": "Wen legend for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "1-phone-cryptocurrency-news-prediction-reddit-wen-solana-blockchain-solana-meme-coins.jpeg",
+  "alt": "Wen treasure on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "1.jpeg",
+  "alt": "Bold Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "11-cryptocurrency-Solana-wen-cryptocurrencynews-wen-wencoin.jpeg",
+  "alt": "Happy Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "13-cryptocurrency-market-crypto-prediction-wen-altcoins-cryptobullrun-memecoins.jpeg",
+  "alt": "Cheerful Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "17-market-cup-crypto-memes-2025-wen-jupiter-crypto-community.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "18-community-coin-Solana-memecoin-wen-crypto-market-meme-crypto.jpeg",
+  "alt": "Cozy Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "2-pinterest-cryptocoin-memecoins-wen-wensolana-wentoken-memecoin.jpeg",
+  "alt": "Fearless Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "20-cryptocurrency-listing-CoinBase-wen-coingecko-investing.jpeg",
+  "alt": "Mighty Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "2025-06-19-11.10.40.jpeg",
+  "alt": "Shiny Wen crew with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "21-cryptocoin-memecoin-wen-memecoin-solana.jpeg",
+  "alt": "Mighty Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "23-cryptocurrency-market-Solana-wen-trading-crypto-cryptocurrency.jpeg",
+  "alt": "Brave Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "24-cryptocurrency-news-memecoins-wen-trading-strategy-crypto-signal.jpeg",
+  "alt": "Shiny Wen orbit in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "25-cryptocurrency-price-crypto-prediction-wen-crypto-news-signal-rich.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "27-cryptocurrency-coin-prediction-reddit-wen-motivational-solana-meme-coina.jpeg",
+  "alt": "Lucky Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "28-market-cup-crypto-memes-wen-trading-trader-life.jpeg",
+  "alt": "Cosmic Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "3-post-cryptocurrency-market-crypto-prediction-wen-altcoins-cryptobullrun-memecoins.jpeg",
+  "alt": "Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "333-market-cup-crypto-memes-wen-trading-trader-2.jpeg",
+  "alt": "Stellar Wen future with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "4-wen-song-crypto-listing-binance-wen-bonk-pepe-bome.jpeg",
+  "alt": "Happy Wen crew on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "5-wen-lambo-wen-photo-listing-coinbase-wen-coingecko-investing.jpeg",
+  "alt": "Bold Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "8-video-wen-coin-review-trading-strategy-crypto-signal.jpeg",
+  "alt": "Wen cat with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "africa-w-coin-wen.jpeg",
+  "alt": "Happy Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "alien-battle-wen-crypto.jpeg",
+  "alt": "Active Wen paws in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "alien-wen-crypto-solana.jpeg",
+  "alt": "Shiny Wen moon",
+  "note": "Did you know? With Etherfuse and Orca: a tokenized ultra-short-term bond fund in Korean won. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/alien-wen-crypto-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "alt-seasons-2025-bullrun-cat-crypto-wen.jpeg",
+  "alt": "Electric Wen business",
+  "note": "Did you know? wenwencoin.com is the official site, with the contract and core tokenomics. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/alt-seasons-2025-bullrun-cat-crypto-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "alt-seasons.jpeg",
+  "alt": "Mighty Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "america-usa-crypto-coin-wen-world.jpeg",
+  "alt": "Wen kitty with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "analitycs-wen-coin-official-cost-prediction.jpeg",
+  "alt": "Active Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "anime-cat-crypto-wen-solana.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? Wen describes itself as the proud owner of @shouldhavecat and @postsofcats, called the #1 and #2 cat accounts in the world.",
+  "link": "image-story/anime-cat-crypto-wen-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "back-to-the-future.jpeg",
+  "alt": "Brave Wen spirit",
+  "note": "Did you know? Transfer Fees takes a percentage (with an optional cap) on every transfer, enforced by the token. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/back-to-the-future.html",
+  "series": "Image story"
+ },
+ {
+  "file": "behance-crypto-wen-payment-method.jpeg",
+  "alt": "Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "behance-wen-crypto-bonk.jpeg",
+  "alt": "Shiny Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "believe-magic-2.jpeg",
+  "alt": "Wen orbit with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "best-crypto-2025-2027-wen-coin.jpeg",
+  "alt": "Bold Wen cat",
+  "note": "Did you know? 294–134 was the House vote for CLARITY the same day. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/best-crypto-2025-2027-wen-coin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "best-crypto-memes-cats-we.jpeg",
+  "alt": "Fearless Wen spirit",
+  "note": "Did you know? Trim's statue stands in Sydney beside his captain's. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/best-crypto-memes-cats-we.html",
+  "series": "Image story"
+ },
+ {
+  "file": "best-crypto-memes-in-the-world.jpeg",
+  "alt": "Active Wen future",
+  "note": "Did you know? Pictures are a gentle door into a culture — and every picture here leads to a fact. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/best-crypto-memes-in-the-world.html",
+  "series": "Image story"
+ },
+ {
+  "file": "best-crypto.jpeg",
+  "alt": "Mighty Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "best-meme-coin-reddit-wen.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "best-meme-coin-world-wen-crypto.jpeg",
+  "alt": "Rising Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "best-memecoin-solana-wen.jpeg",
+  "alt": "Rising Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "best-real-crypto.jpeg",
+  "alt": "Wen moon",
+  "note": "Did you know? Unlike a culture token, a stock token is a claim on something outside the network. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/best-real-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "best-solana-memes-wen-crypto.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bitget-exchange-best-crypto-wen.jpeg",
+  "alt": "Cosmic Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bitget-solana-wen-crypto-bonk.jpeg",
+  "alt": "Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bitso-onchain-wen-crypto.jpeg",
+  "alt": "Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bonk-2025-wen-2026.jpeg",
+  "alt": "Wen moon",
+  "note": "Did you know? Wen is the curious cat, Bonk the loyal dog: Solana's best-known mascot duo. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/bonk-2025-wen-2026.html",
+  "series": "Image story"
+ },
+ {
+  "file": "bonk-etp-2026.jpeg",
+  "alt": "Wen orbit on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bonk-wen-compare-what-best-crypto.jpeg",
+  "alt": "Electric Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bonk-wen-crypto-compare-nft-airdrop-playground.jpeg",
+  "alt": "Wen legend",
+  "note": "Did you know? More than one million Solana wallets were eligible, one of the widest single-event distributions on Solana. A Wen Wen Wen",
+  "link": "image-story/bonk-wen-crypto-compare-nft-airdrop-playground.html",
+  "series": "Image story"
+ },
+ {
+  "file": "bonk-wen-crypto.jpeg",
+  "alt": "Rising Wen business",
+  "note": "Did you know? The teams came from several chains: Solana, Ethereum and BNB Chain, where Baby Doge lives. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/bonk-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "bonk-wen-w-coin.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bonk-wif-wen.jpeg",
+  "alt": "Epic Wen builder",
+  "note": "Did you know? Market value is the last price times all tokens — nobody could ever sell at it. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/bonk-wif-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "bsol-wen-bonk.jpeg",
+  "alt": "Golden Wen business",
+  "note": "Did you know? Eight teams: WEN, WIF, Pudgy Penguins, Ponke, Shiba Inu, MOG, Turbo and Baby Doge. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/bsol-wen-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "bsol-wen-crypto.jpeg",
+  "alt": "Cosmic Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bsol.jpeg",
+  "alt": "Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "btc-wen-crypto-solana.jpeg",
+  "alt": "Bold Wen coin",
+  "note": "Did you know? Validators stake SOL, and proof of history orders events like a clock. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/btc-wen-crypto-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "bybit-wen-crypto-price-realtime.jpeg",
+  "alt": "Cozy Wen spark in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bybit-wen-crypto.jpeg",
+  "alt": "Epic Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "bybtit-about-wen-crypto-buy-contract.jpeg",
+  "alt": "Sunny Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "cat-lumpur-2026.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Planetary Call #60, on November 19, 2025, brought back Meow to talk about the Jupiverse and Catlumpur. A Wen Wen Wen Wen Wen",
+  "link": "image-story/cat-lumpur-2026.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-season-q4-crypto-wen-solana.jpeg",
+  "alt": "Happy Wen kitty",
+  "note": "Did you know? Names and tickers can match; the Solana address cannot. Always check the address. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/cat-season-q4-crypto-wen-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-season.jpeg",
+  "alt": "Golden Wen orbit",
+  "note": "Did you know? The winners speak, the many losers stay silent. A promise of multiplied money is an advert, not information. A Wen Wen Wen",
+  "link": "image-story/cat-season.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-we-coin-jupiter-exchange.jpeg",
+  "alt": "Fearless Wen moon for builders",
+  "note": "Did you know? A miller's son inherits only a cat — whose wit wins him a castle. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/cat-we-coin-jupiter-exchange.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-wen-crypto-memecoin-solana.jpeg",
+  "alt": "Shiny Wen whiskers",
+  "note": "Did you know? A cat as the keeper of stories. A Wen Media photo with one checked fact from the Wen almanac and a link to read more. Wen",
+  "link": "image-story/cat-wen-crypto-memecoin-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-wen-crypto-memecoin.jpeg",
+  "alt": "Electric Wen energy for builders",
+  "note": "Did you know? Wen calls itself the internet's cutest cat and aims to become one of the world's most beloved IPs. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/cat-wen-crypto-memecoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-wen-crypto-travel-japan.jpeg",
+  "alt": "Wen moon",
+  "note": "Did you know? The opposite of the belief in many other countries. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/cat-wen-crypto-travel-japan.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cat-wen-with-love-for-me.jpeg",
+  "alt": "Bright Wen kitty",
+  "note": "Did you know? Meow wrote \"A Love Letter to Wen Bros\" for everyone who kept asking \"wen token?\". The poem became WEN. A Wen Wen Wen Wen Wen",
+  "link": "image-story/cat-wen-with-love-for-me.html",
+  "series": "Image story"
+ },
+ {
+  "file": "catlumpur-2026-wen-coin-crypto-party.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? CatLumpurr is a pun on Kuala Lumpur: Jupiter's community-first summit organized by Meow. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/catlumpur-2026-wen-coin-crypto-party.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cats-in-egypt-cryptoworld.jpeg",
+  "alt": "Sunny Wen meme on Solana",
+  "note": "Did you know? Thoth, god of writing and wisdom, was shown with the head of an ibis. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/cats-in-egypt-cryptoworld.html",
+  "series": "Image story"
+ },
+ {
+  "file": "china-crypto-best-wen-cat.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? Wen is a cat — the community calls it the internet's cutest cat. Its dog friend in memes is BONK. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/china-crypto-best-wen-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "coin-5.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "coin-dogs-cats.jpeg",
+  "alt": "Wen whiskers on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "coin-marketcap-reddit-wen-official.jpeg",
+  "alt": "Golden Wen whiskers",
+  "note": "Did you know? Without the partner's own word, it stays \"reported\". A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/coin-marketcap-reddit-wen-official.html",
+  "series": "Image story"
+ },
+ {
+  "file": "coin-wen-official.jpeg",
+  "alt": "Wen whiskers",
+  "note": "Did you know? Wen plushies were made with TOYMAK3RS, a maker that has produced for Adidas, Netflix and J Balvin. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/coin-wen-official.html",
+  "series": "Image story"
+ },
+ {
+  "file": "coinbase-2025-2026-wen-come-1.jpeg",
+  "alt": "Epic Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "coinbase-2025-2026-wen-come.jpeg",
+  "alt": "Happy Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "conference-16-october-wen-crypto-elevate.jpeg",
+  "alt": "Wen vibes",
+  "note": "Did you know? The ChinaAMC Solana ETF began trading on the Hong Kong Stock Exchange on October 27, 2025. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/conference-16-october-wen-crypto-elevate.html",
+  "series": "Image story"
+ },
+ {
+  "file": "copa-de-memes-bangkok.jpeg",
+  "alt": "Golden Wen orbit for builders",
+  "note": "Did you know? Copa De Los Memes, organized by Bitso Onchain, was a 5v5 single-elimination memecoin football tournament. A Wen Wen Wen Wen",
+  "link": "image-story/copa-de-memes-bangkok.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cost-price-wen.jpeg",
+  "alt": "Active Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "cropped-wen-coin-2027-mrfius-alexwoogo-pinterest-1.jpeg",
+  "alt": "Cozy Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "cropped-wen-crypto-solana-bonk-1.jpeg",
+  "alt": "Epic Wen coin",
+  "note": "Did you know? Bonk arrived at Christmas 2022 and helped bring life back to Solana after the crash. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/cropped-wen-crypto-solana-bonk-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cropped-wen-crypto-solana-bonk.jpeg",
+  "alt": "Smart Wen cat",
+  "note": "Did you know? Real-world use needs audits and legal checks; the Lab is for learning and testing. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/cropped-wen-crypto-solana-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-cat-memecoin-wen-in-space.jpeg",
+  "alt": "Smart Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "crypto-flag-wen-bull-market.jpeg",
+  "alt": "Wen coin",
+  "note": "Did you know? It summarises market mood from signals like volatility and volume — a thermometer, not a forecast. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/crypto-flag-wen-bull-market.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-game-solana-memecoin-wen.jpeg",
+  "alt": "Active Wen kitty",
+  "note": "Did you know? Its stated purpose is supporting the development of public goods on Solana and giving back to the community. A Wen Wen Wen",
+  "link": "image-story/crypto-game-solana-memecoin-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-news-binance.jpeg",
+  "alt": "Golden Wen business with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "crypto-wen-coin-solana-arabian-dubai.jpeg",
+  "alt": "Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "crypto-wen-coin-solana-babe-girl.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "crypto-wen-coin-solana-cat-bnb.jpeg",
+  "alt": "Cozy Wen future",
+  "note": "Did you know? MEW, launched in March 2024, tells of a cat standing up to a world ruled by dog coins. A Wen Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/crypto-wen-coin-solana-cat-bnb.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-wen-coin-solana-dance-miami.jpeg",
+  "alt": "Wen future",
+  "note": "Did you know? LiteSVM runs the real Token-2022 and Memo programs locally — no network, no real funds. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/crypto-wen-coin-solana-dance-miami.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-wen-coin-solana-girls-party.jpeg",
+  "alt": "Wen meme on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "crypto-wen-coin-solana-japan-life.jpeg",
+  "alt": "Mighty Wen moon",
+  "note": "Did you know? Bitcoin keys use secp256k1, a curve defined years before Bitcoin existed. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/crypto-wen-coin-solana-japan-life.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-wen-coin-solana-jdm-japanese.jpeg",
+  "alt": "Wen paws for builders",
+  "note": "Did you know? Check the contract on authoritative explorers and indexers, never from messages or ads. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/crypto-wen-coin-solana-jdm-japanese.html",
+  "series": "Image story"
+ },
+ {
+  "file": "crypto-wen-forming-sep.jpeg",
+  "alt": "Lucky Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "crypto-wen.jpeg",
+  "alt": "Happy Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "cryptocurrency-market-trump-law-july-2025.jpeg",
+  "alt": "Bold Wen business",
+  "note": "Did you know? An elective, interim rule for the corporate minimum tax — not a general crypto tax exemption. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/cryptocurrency-market-trump-law-july-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "cryptocurrency-market-wen-coin-jup-dao-exchange.jpeg",
+  "alt": "Brave Wen mood on Solana",
+  "note": "Did you know? After generic listing standards were approved, the SEC asked issuers to withdraw 19b-4s; only the S-1 remained. A Wen Wen",
+  "link": "image-story/cryptocurrency-market-wen-coin-jup-dao-exchange.html",
+  "series": "Image story"
+ },
+ {
+  "file": "culture-wen-coin-2.jpeg",
+  "alt": "Wen energy on Solana",
+  "note": "Did you know? 文 (wén) refers to culture, language and writing — fitting for a coin born from a poem. A Wen Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/culture-wen-coin-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "d0a1d0bdd0b8d0bcd0bed0ba-d18dd0bad180d0b0d0bdd0b0-2025e2809409e2809423-d0b2-09.56.58.jpeg",
+  "alt": "Happy Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "download-free-wen-coin-1.jpeg",
+  "alt": "Wen paws for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "download-free-wen-coin-2-1.jpeg",
+  "alt": "Bright Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "download-free-wen-coin-2.jpeg",
+  "alt": "Happy Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "download-free-wen-coin.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "download-free-wen-coin3.jpeg",
+  "alt": "Smart Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "download-wen-crypto-bonk-solana.jpeg",
+  "alt": "Wen vibes for builders",
+  "note": "Did you know? An on-ramp turns card money into crypto; it is not a payment system for memecoins. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/download-wen-crypto-bonk-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "elevate-wen-coin-start-2025.jpeg",
+  "alt": "Lucky Wen meme",
+  "note": "Did you know? Default Account State can start every new account frozen until the issuer thaws it. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/elevate-wen-coin-start-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "elevate-wen.jpeg",
+  "alt": "Wen coin for builders",
+  "note": "Did you know? Names, logos and tickers are copied; the contract address is unique. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/elevate-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "elevates-warner-brother-mtv-wen-coin.jpeg",
+  "alt": "Shiny Wen legend in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "energy-coin-wen-crypto.jpeg",
+  "alt": "Sunny Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "energy-coins.jpeg",
+  "alt": "Stellar Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "ethena-wen-crypto-jup.jpeg",
+  "alt": "Smart Wen legend in orbit",
+  "note": "Did you know? Jupiter announced JupUSD with Ethena Labs in October 2025; it went live in January 2026. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/ethena-wen-crypto-jup.html",
+  "series": "Image story"
+ },
+ {
+  "file": "future-back-wen-crypto.jpeg",
+  "alt": "Happy Wen builder",
+  "note": "Did you know? The Tamra Maew, the Cat-Book Poems, described cats that bring good fortune. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/future-back-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "gif-wen-meme-cryptocoin-memecoins-wen-trader-live-trend-solana.jpeg",
+  "alt": "Happy Wen legend on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "github-wns-wen-crypto-solana.jpeg",
+  "alt": "Wen spirit",
+  "note": "Did you know? Classic Solana NFTs needed several linked accounts (Metaplex metadata, master edition). WNS keeps it in the mint. A Wen Wen",
+  "link": "image-story/github-wns-wen-crypto-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "happy-new-year-7.jpeg",
+  "alt": "Happy Wen future",
+  "note": "Did you know? A temple cat waved a lord inside just before lightning struck his tree. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/happy-new-year-7.html",
+  "series": "Image story"
+ },
+ {
+  "file": "haw-to-by-wen-coin.jpeg",
+  "alt": "Wen spark with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "hope-wen-crypto-solana.jpeg",
+  "alt": "Cozy Wen moon",
+  "note": "Did you know? The verb wēnan, \"to expect, to hope\", survives as the old-fashioned \"to ween\". A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/hope-wen-crypto-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "i-love-wen.jpeg",
+  "alt": "Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "ids-token-2025-2026-2027-solana.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Shinhan Asset Management signed a non-binding four-party MOU on August 21, 2026 to test a tokenized KRW fund. A Wen Wen Wen",
+  "link": "image-story/ids-token-2025-2026-2027-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "image-1.jpeg",
+  "alt": "Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-2.jpeg",
+  "alt": "Mighty Wen legend in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-3.jpeg",
+  "alt": "Fearless Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-4.jpeg",
+  "alt": "Wen future with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-5.jpeg",
+  "alt": "Bold Wen treasure with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-6.jpeg",
+  "alt": "Wen future with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-7-1.jpeg",
+  "alt": "Active Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-7.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-8-1.jpeg",
+  "alt": "Happy Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-8-2.jpeg",
+  "alt": "Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-8-3.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image-8.jpeg",
+  "alt": "Cheerful Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "image.jpeg",
+  "alt": "Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "iq-wiki-wen.jpeg",
+  "alt": "Wen treasure for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "japanese-crypto-solana-wen-cat.jpeg",
+  "alt": "Wen legend",
+  "note": "Did you know? The legendary Wen poem was the first NFT ever minted on the Wen New Standard. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/japanese-crypto-solana-wen-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jup-come-to-future-2.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? \"We refuel our spaceship — we all fly to Jupiter.\". A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/jup-come-to-future-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jup-cost-1000.jpeg",
+  "alt": "Bold Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "jup-crypto.jpeg",
+  "alt": "Wen moon",
+  "note": "Did you know? \"A Love Letter to Wen Bros\" became 1,000,000,000,000 WEN. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/jup-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jup-exchange-wallet.jpeg",
+  "alt": "Smart Wen energy",
+  "note": "Did you know? Phantom faced challenges at peak demand, while Solflare and Backpack stayed stable. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/jup-exchange-wallet.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jup-wen-jupiter-bonk-usa-thai-arabian.jpeg",
+  "alt": "Wen kitty on Solana",
+  "note": "Did you know? Drop 001 on Playground was a limited Wen x Bonk plush made with Toymak3rs. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/jup-wen-jupiter-bonk-usa-thai-arabian.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jup-wen-jupiter-bonk-usa-thai.jpeg",
+  "alt": "Cozy Wen vibes",
+  "note": "Did you know? About 90% of JupUSD's reserves were planned in USDtb, which holds mainly a tokenized Treasury fund. A Wen Wen Wen Wen Wen",
+  "link": "image-story/jup-wen-jupiter-bonk-usa-thai.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jup-wen-jupiter-bonk.jpeg",
+  "alt": "Fearless Wen cat",
+  "note": "Did you know? Issued by Bitcoin Capital — a dog memecoin reaching ordinary brokerage accounts. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/jup-wen-jupiter-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jupiter-exchange-jup-wen.jpeg",
+  "alt": "Wen mood for builders",
+  "note": "Did you know? The WNS 0.0 proposal of January 25, 2024 named Ovols and Jupiter, supported by the Wen Foundation. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/jupiter-exchange-jup-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "jupiter-jup-wen-crypto.jpeg",
+  "alt": "Fearless Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "jupiter-stable-coin.jpeg",
+  "alt": "Rising Wen moon for builders",
+  "note": "Did you know? WEN on January 26, 2024; $JUP on January 31, with the lessons applied. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/jupiter-stable-coin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "korean-wen-crypto-best-crypto-corea.jpeg",
+  "alt": "Golden Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "kraken-how-to-buy-crypto.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "kraken-wen-crypto.jpeg",
+  "alt": "Bold Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "kukoin-solana-echange-wen-1.jpeg",
+  "alt": "Lucky Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "kukoin-solana-echange-wen.jpeg",
+  "alt": "Bold Wen meme",
+  "note": "Did you know? Solana's hybrid Proof of History and Proof of Stake gives near-instant finality. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/kukoin-solana-echange-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "listing-wen-crypto.jpeg",
+  "alt": "Epic Wen mood in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "look.jpeg",
+  "alt": "Happy Wen vibes",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "market-crypto-dec-25-wen.jpeg",
+  "alt": "Playful Wen moon",
+  "note": "Did you know? Player versus player. The Wen community's \"PPP\" means the opposite: people making things for each other. A Wen Wen Wen Wen",
+  "link": "image-story/market-crypto-dec-25-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "market-wen-bonk-crypto-nov-2025.jpeg",
+  "alt": "Wen legend",
+  "note": "Did you know? The venue was La Rural in Buenos Aires during Devconnect Argentina; early posts wrongly said Bangkok. A Wen Wen Wen Wen Wen",
+  "link": "image-story/market-wen-bonk-crypto-nov-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "mastercat-and-wen-crypro-coin.jpeg",
+  "alt": "Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "matrix-wen-35.jpeg",
+  "alt": "Bright Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "matrix-wen-crypto-future.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "matrix-wen-crypto.jpeg",
+  "alt": "Brave Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "matrix-wen-mog.jpeg",
+  "alt": "Rising Wen crew on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "meet-wen-cat-crypto.jpeg",
+  "alt": "Happy Wen meme",
+  "note": "Did you know? docs.wenwencoin.com covers WNS, the validator and .wen domains. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/meet-wen-cat-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "memecoin-solana-wen-wen-coin.jpeg",
+  "alt": "Epic Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "memes-cats-best-crypto-wen-idol-crypto-cat-1.jpeg",
+  "alt": "Bright Wen moon for builders",
+  "note": "Did you know? He kept the crew's food safe from rats during a long siege. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/memes-cats-best-crypto-wen-idol-crypto-cat-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "memes-cats-best-crypto-wen-idol-crypto-cat-2.jpeg",
+  "alt": "Electric Wen whiskers",
+  "note": "Did you know? wpl_cli creates collections and runs asset operations from the terminal. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/memes-cats-best-crypto-wen-idol-crypto-cat-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "memes-cats-best-crypto-wen-idol-crypto-cat.jpeg",
+  "alt": "Smart Wen business",
+  "note": "Did you know? Cats were Freyja's animals. A Wen Media photo with one checked fact from the Wen almanac and a link to read more. Wen Wen",
+  "link": "image-story/memes-cats-best-crypto-wen-idol-crypto-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "meow-jupiter.jpeg",
+  "alt": "Smart Wen future in orbit",
+  "note": "Did you know? Catlumpur is Jupiter's gathering in Kuala Lumpur, Malaysia. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/meow-jupiter.html",
+  "series": "Image story"
+ },
+ {
+  "file": "meow-wen-coin-market-wallet-exchange-wall-street.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Bitwise's BSOL started trading on the NYSE on October 28, 2025. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/meow-wen-coin-market-wallet-exchange-wall-street.html",
+  "series": "Image story"
+ },
+ {
+  "file": "new-crypto-standarts-wen-1.jpeg",
+  "alt": "Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "new-crypto-standarts-wen.jpeg",
+  "alt": "Mighty Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "new-crypto-wen-1.jpeg",
+  "alt": "Wen kitty",
+  "note": "Did you know? Herodotus wrote that families shaved their eyebrows when a house cat died. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/new-crypto-wen-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "new-crypto-wen.jpeg",
+  "alt": "Bright Wen paws in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "new-energy-egypt-coin-wen.jpeg",
+  "alt": "Electric Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "new-listiongs-2025.jpeg",
+  "alt": "Bright Wen legend with WNS",
+  "note": "Did you know? A Syndicate newsletter reported that WEN acquired the @TweetsOfCats account. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/new-listiongs-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "new-wen.jpeg",
+  "alt": "Wen treasure on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "new-year-2-turbo-2.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "new-year-2-turbo-3.jpeg",
+  "alt": "Cozy Wen moon",
+  "note": "Did you know? WEN launched in January 2024, a few days before Jupiter's own JUP airdrop. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/new-year-2-turbo-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "new-year-mog.jpeg",
+  "alt": "Stellar Wen whiskers",
+  "note": "Did you know? The claim window lasted three days; unclaimed WEN was then burned. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/new-year-mog.html",
+  "series": "Image story"
+ },
+ {
+  "file": "new-york-crypto-wen.jpeg",
+  "alt": "Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "news-16-ocober-cryptoworld-2025.jpeg",
+  "alt": "Cosmic Wen spirit for builders",
+  "note": "Did you know? PayPay, with around 70 million users, took a 40% stake in a Japanese crypto exchange in October 2025. A Wen Wen Wen Wen Wen",
+  "link": "image-story/news-16-ocober-cryptoworld-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "news-3.jpeg",
+  "alt": "Cheerful Wen coin",
+  "note": "Did you know? Chainlink verifies the order; zerohash handles compliance; XSwap supplies liquidity. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/news-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "news-cryptocurrency-wen-crypto.jpeg",
+  "alt": "Wen legend",
+  "note": "Did you know? Descendants of a cat given to the writer, still cared for today. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/news-cryptocurrency-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "night-racing-crypto-cat-wen-solana-memecoin-1.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? The clients are generated from the programs' IDLs with Kinobi, so they stay in sync with the code. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/night-racing-crypto-cat-wen-solana-memecoin-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "night-racing-crypto-cat-wen-solana-memecoin-2.jpeg",
+  "alt": "Bright Wen business",
+  "note": "Did you know? Cats kept mice and snakes away from grain stores — the start of a 4,000-year friendship. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/night-racing-crypto-cat-wen-solana-memecoin-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "night-racing-crypto-cat-wen-solana-memecoin-3.jpeg",
+  "alt": "Playful Wen future",
+  "note": "Did you know? Receipts, royalties, B2B invoices, a payments bridge, a simulator and a devnet run. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/night-racing-crypto-cat-wen-solana-memecoin-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "night-racing-crypto-cat-wen-solana-memecoin-4.jpeg",
+  "alt": "Smart Wen meme on Solana",
+  "note": "Did you know? @wenwencoin is the official account for Wen updates. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/night-racing-crypto-cat-wen-solana-memecoin-4.html",
+  "series": "Image story"
+ },
+ {
+  "file": "papay-binance-october-2025.jpeg",
+  "alt": "Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "phantom-coin-ovols.jpeg",
+  "alt": "Smart Wen treasure",
+  "note": "Did you know? Phantom reported about 8,000 requests per second at the WEN peak and used the lessons for the JUP airdrop. A Wen Wen Wen Wen",
+  "link": "image-story/phantom-coin-ovols.html",
+  "series": "Image story"
+ },
+ {
+  "file": "pinterest-wen-coin-crypto.jpeg",
+  "alt": "Wen spirit for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "planet-record.jpeg",
+  "alt": "Cosmic Wen future",
+  "note": "Did you know? WEN launched on January 26, 2024; any record dated earlier is an error. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/planet-record.html",
+  "series": "Image story"
+ },
+ {
+  "file": "pokemon-wen-2026-back-future-1997-2.jpeg",
+  "alt": "Cozy Wen spirit",
+  "note": "Did you know? Reports describe the SEC's March 2026 taxonomy placing SOL among digital commodities. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/pokemon-wen-2026-back-future-1997-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "pokemon-wen-2026-back-future-1997.jpeg",
+  "alt": "Rising Wen vibes with WNS",
+  "note": "Did you know? Jupiter's community members call themselves Catdets. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/pokemon-wen-2026-back-future-1997.html",
+  "series": "Image story"
+ },
+ {
+  "file": "power-coin.jpeg",
+  "alt": "Cheerful Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "price-wen-prediction-reddit.jpeg",
+  "alt": "Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "reddit-coin.jpeg",
+  "alt": "Fearless Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "reddit-crypto-about-wen.jpeg",
+  "alt": "Wen cat in orbit",
+  "note": "Did you know? Each WEN token is a fractional share of the poem NFT \"A Love Letter to Wen Bros\". A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/reddit-crypto-about-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "reddit-use-for-wen.jpeg",
+  "alt": "Stellar Wen mood on Solana",
+  "note": "Did you know? The open folders are culture: share freely, credit the community, keep prices out. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/reddit-use-for-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "reddit-wen-things.jpeg",
+  "alt": "Wen crew with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "review-wen-coin-cost.jpeg",
+  "alt": "Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "review-wen-coin-w-crypto-analog-btc.jpeg",
+  "alt": "Bright Wen coin",
+  "note": "Did you know? wen_royalty_distribution enforces royalty payouts for WNS assets through a transfer hook. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/review-wen-coin-w-crypto-analog-btc.html",
+  "series": "Image story"
+ },
+ {
+  "file": "roadmap-wen-cat-wiki.jpeg",
+  "alt": "Lucky Wen treasure",
+  "note": "Did you know? IQ.Wiki introduced Ecosystem Map, a non-commercial relationship graph, starting with the Wen page. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/roadmap-wen-cat-wiki.html",
+  "series": "Image story"
+ },
+ {
+  "file": "roadmap-wen-cat.jpeg",
+  "alt": "Rising Wen moon",
+  "note": "Did you know? A burial at Shillourokambos, Cyprus, is among the earliest signs of cats living with people. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/roadmap-wen-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "satoshi-bts-yakovenko-jupiter-wen-crypto-meow.jpeg",
+  "alt": "Wen crew with WNS",
+  "note": "Did you know? Jupiter was founded by the pseudonymous Meow — the same person who wrote the Wen poem. A Wen Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/satoshi-bts-yakovenko-jupiter-wen-crypto-meow.html",
+  "series": "Image story"
+ },
+ {
+  "file": "satoshi-next-crypto-wen-x-friend.jpeg",
+  "alt": "Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "search-wen-crypto-correctly-id.jpeg",
+  "alt": "Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "secrets-wencrypto.jpeg",
+  "alt": "Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "sol-bsol-wen-bonk.jpeg",
+  "alt": "Bold Wen meme on Solana",
+  "note": "Did you know? Devnet coins have no value. Anyone offering to sell them is a scammer. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/sol-bsol-wen-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "solana-best-memes.jpeg",
+  "alt": "Shiny Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "solana-memecoin-crypto-cat-wen.jpeg",
+  "alt": "Wen spirit",
+  "note": "Did you know? Check the mint authority on an explorer: if it is revoked, the supply can never grow. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/solana-memecoin-crypto-cat-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "solana-rap.jpeg",
+  "alt": "Electric Wen energy with WNS",
+  "note": "Did you know? One token per real share, held with a regulated custodian. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/solana-rap.html",
+  "series": "Image story"
+ },
+ {
+  "file": "solana-seeker-wen-coin.jpeg",
+  "alt": "Mighty Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "solana-seeker-wen.jpeg",
+  "alt": "Happy Wen paws",
+  "note": "Did you know? Shipping went to customers in more than 50 countries. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/solana-seeker-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "solana-wen-crypto.jpeg",
+  "alt": "Shiny Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "solana-western.jpeg",
+  "alt": "Happy Wen energy",
+  "note": "Did you know? USDPT is issued by Anchorage Digital Bank, a federally chartered crypto bank. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/solana-western.html",
+  "series": "Image story"
+ },
+ {
+  "file": "solana.jpeg",
+  "alt": "Smart Wen moon for builders",
+  "note": "Did you know? Holders of the Solana Saga phone's Genesis token were among the eligible wallets. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "spl-wns-rwa-token-2022-1.jpeg",
+  "alt": "Smart Wen spirit",
+  "note": "Did you know? Token-2022 adds extensions through a TLV structure at the mint or account level. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/spl-wns-rwa-token-2022-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "spl-wns-rwa-token-2022-2.jpeg",
+  "alt": "Smart Wen spark",
+  "note": "Did you know? The Transfer Hook calls a program on every transfer, so royalties travel with the token. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/spl-wns-rwa-token-2022-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "spl-wns-rwa-token-2022-3.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? WNS is the Wen New Standard, an open NFT standard for Solana. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/spl-wns-rwa-token-2022-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "spl-wns-rwa-token-2022-4.jpeg",
+  "alt": "Stellar Wen cat",
+  "note": "Did you know? WNS is a light layer on Solana's Token-2022, also called Token Extensions. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/spl-wns-rwa-token-2022-4.html",
+  "series": "Image story"
+ },
+ {
+  "file": "square-binance.jpeg",
+  "alt": "Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "squid-game-crypto-cat-wen-solana.jpeg",
+  "alt": "Sunny Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "star-wen.jpeg",
+  "alt": "Cheerful Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "talk-about-wen-crypto.jpeg",
+  "alt": "Playful Wen kitty",
+  "note": "Did you know? \"Wen\" is a playful misspelling of \"when\". \"Wen moon?\" asks when a coin's price will take off, a phrase born in the crypto community around 2017.",
+  "link": "image-story/talk-about-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "testing-jup-wen-solana.jpeg",
+  "alt": "Wen future",
+  "note": "Did you know? Permanent Delegate is used by regulated issuers, for example to follow court orders. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/testing-jup-wen-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "texchange-solana-coins-wen-crypto-bonk.jpeg",
+  "alt": "Lucky Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "the-x-saying-users-about-wen-bonk-crypto-1.jpeg",
+  "alt": "Electric Wen spark",
+  "note": "Did you know? Wen and BONK are the Solana \"cat and dog\" duo; both grew from community airdrops. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/the-x-saying-users-about-wen-bonk-crypto-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "toly-javoneko-in-memes-crypto.jpeg",
+  "alt": "Wen coin with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "toly-sol-wen-crypto.jpeg",
+  "alt": "Playful Wen energy",
+  "note": "Did you know? The Wen validator attracted close to 100,000 SOL in delegated stake. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/toly-sol-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "toy-wen-crypto.jpeg",
+  "alt": "Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "usa-crypto-wen-coin.jpeg",
+  "alt": "Brave Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "usa-turkish-korean-china-japan-wen.jpeg",
+  "alt": "Wen paws on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "verifid-wen-crypto-power-coin.jpeg",
+  "alt": "Active Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "video-crypto-coin-wen-wen-song.jpeg",
+  "alt": "Epic Wen moon on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "video-wen-cryptocurrency-market-solana-wen-trading-crypto-cryptocurrency.jpeg",
+  "alt": "Wen orbit on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "vrfd-wen-jupiter.jpeg",
+  "alt": "Golden Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-best-analog-btc.jpeg",
+  "alt": "Epic Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-cat-memes.jpeg",
+  "alt": "Rising Wen paws",
+  "note": "Did you know? Bitso Onchain organized it; teams included WEN, MOG, Pudgy Penguins and others. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/w-coin-cat-memes.html",
+  "series": "Image story"
+ },
+ {
+  "file": "w-coin-crypto.jpeg",
+  "alt": "Epic Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-wen-bonk-jupiter-1-why.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Many crews believed a cat on board meant a safe voyage. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/w-coin-wen-bonk-jupiter-1-why.html",
+  "series": "Image story"
+ },
+ {
+  "file": "w-coin-wen-bonk-jupiter-2-coinmarketcap.jpeg",
+  "alt": "Happy Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-wen-bonk-jupiter-3-prediction.jpeg",
+  "alt": "Wen legend with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-wen-bonk-jupiter-first-coin.jpeg",
+  "alt": "Wen orbit in orbit",
+  "note": "Did you know? Thanks to lessons from WEN, Phantom handled about 90,000 RPS during the JUP airdrop with far fewer errors. A Wen Wen Wen Wen",
+  "link": "image-story/w-coin-wen-bonk-jupiter-first-coin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "w-coin-wen-bonk-jupiter-history.jpeg",
+  "alt": "Playful Wen mood",
+  "note": "Did you know? Ethereum launched on July 30, 2015 and brought smart contracts — programmable money. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/w-coin-wen-bonk-jupiter-history.html",
+  "series": "Image story"
+ },
+ {
+  "file": "w-coin-wen-crypto.jpeg",
+  "alt": "Happy Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-wen-reddit.jpeg",
+  "alt": "Mighty Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin-what-need-to-buy.jpeg",
+  "alt": "Rising Wen spark with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-coin.jpeg",
+  "alt": "Wen kitty on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-gold-coin-wen-crypto-btc.jpeg",
+  "alt": "Cozy Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "w-reddit-crypto.jpeg",
+  "alt": "Wen meme",
+  "note": "Did you know? 温 (wēn) means warm or mild; 问 is to ask, 文 is writing, 闻 is to hear. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/w-reddit-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wall-street.jpeg",
+  "alt": "Happy Wen cat",
+  "note": "Did you know? Keeping the granary safe was keeping the family safe. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wall-street.html",
+  "series": "Image story"
+ },
+ {
+  "file": "warner-brother-wen.jpeg",
+  "alt": "Wen whiskers for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "web-crypto-today.jpeg",
+  "alt": "Wen meme",
+  "note": "Did you know? A seed phrase is the key to everything in a wallet. No real team, support or event ever needs it. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/web-crypto-today.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-2-1.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-2.jpeg",
+  "alt": "Happy Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-5.jpeg",
+  "alt": "Wen future",
+  "note": "Did you know? The library is open source under the Apache License 2.0. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-5.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-7.jpeg",
+  "alt": "Cheerful Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-about-crypto.jpeg",
+  "alt": "Rising Wen kitty",
+  "note": "Did you know? 温 (wēn) means warm or mild. Other \"wen\" characters mean to ask (问) and culture or writing (文). A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-about-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-about-reddit-page.jpeg",
+  "alt": "Fearless Wen business",
+  "note": "Did you know? Per Meow's thread: 1% to LFG Launchpad, 0.75% to the future Jupiter DAO and 0.25% to the team. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-about-reddit-page.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-anime-girl-3-choose-@alexwoogo-@olegt39484998-wen-cartoon-winner-crypto1.jpeg",
+  "alt": "Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin56.jpeg",
+  "alt": "Shiny Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin57.jpeg",
+  "alt": "Bright Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin58.jpeg",
+  "alt": "Brave Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin59.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin60.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin61.jpeg",
+  "alt": "Golden Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin62.jpeg",
+  "alt": "Playful Wen spark in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin63.jpeg",
+  "alt": "Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin64.jpeg",
+  "alt": "Epic Wen treasure with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin65.jpeg",
+  "alt": "Bold Wen orbit with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin67.jpeg",
+  "alt": "Bright Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin68.jpeg",
+  "alt": "Cosmic Wen legend with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin69.jpeg",
+  "alt": "Cosmic Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin70.jpeg",
+  "alt": "Brave Wen legend",
+  "note": "Did you know? Gwen is the feminine of gwyn — white, fair, blessed, holy. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin70.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin71.jpeg",
+  "alt": "Mighty Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin72.jpeg",
+  "alt": "Golden Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin73.jpeg",
+  "alt": "Active Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin74.jpeg",
+  "alt": "Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin75.jpeg",
+  "alt": "Cheerful Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl-choose-40alexwoogo-40olegt39484998-wen-cartoon-winner-crypto-coin76.jpeg",
+  "alt": "Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-anime-girl.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-binance-2-1.jpeg",
+  "alt": "Rising Wen kitty for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-binance-2.jpeg",
+  "alt": "Wen mood for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-birn-w-crypto-coin-not-wendys.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-bonk-2025-partners.jpeg",
+  "alt": "Stellar Wen treasure",
+  "note": "Did you know? Wen announced that 100% of the proceeds would go to charity with Buddies for Paws. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-bonk-2025-partners.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-bonk-bitso-19-nov-2025.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-bonk-compare-what-best-crypto.jpeg",
+  "alt": "Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-bonk-crypto.jpeg",
+  "alt": "Wen moon for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-bonk-football-sport-games.jpeg",
+  "alt": "Bold Wen energy",
+  "note": "Did you know? No real event, airdrop or team page ever needs your seed phrase or private key. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-bonk-football-sport-games.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-bonk-football-wen-winner.jpeg",
+  "alt": "Wen vibes in orbit",
+  "note": "Did you know? On November 19, 2025, eight memecoin communities, WEN among them, played a single-elimination five-a-side football tournament.",
+  "link": "image-story/wen-bonk-football-wen-winner.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-bonk-nov-25.jpeg",
+  "alt": "Cheerful Wen spirit",
+  "note": "Did you know? Devcon 2024 was in Bangkok; Devconnect 2025 moved to Buenos Aires, hence the mix-up. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-bonk-nov-25.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-bonk.jpeg",
+  "alt": "Sunny Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-cat-anime-crypto.jpeg",
+  "alt": "Bold Wen paws",
+  "note": "Did you know? From Lewis Carroll's Alice's Adventures in Wonderland, 1865. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-cat-anime-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-cat-crypto-egypt.jpeg",
+  "alt": "Wen kitty with WNS",
+  "note": "Did you know? Bastet, often shown as a cat or cat-headed woman, protected homes and families. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-cat-crypto-egypt.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-cat.jpeg",
+  "alt": "Wen energy with WNS",
+  "note": "Did you know? He has held it since 2011. A Wen Media photo with one checked fact from the Wen almanac and a link to read more. Wen Wen Wen",
+  "link": "image-story/wen-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-change-the-world.jpeg",
+  "alt": "Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-china.jpeg",
+  "alt": "Fearless Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-1.jpeg",
+  "alt": "Cozy Wen vibes on Solana",
+  "note": "Did you know? CoinDesk reported a burn of 27% of supply. Other texts say 300 billion; the trust chain shows both figures. A Wen Wen Wen",
+  "link": "image-story/wen-coin-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-2027-mrfius-alexwoogo-pinterest-1-1.jpeg",
+  "alt": "Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-2027-mrfius-alexwoogo-pinterest-1-crypto-2.jpeg",
+  "alt": "Cosmic Wen moon",
+  "note": "Did you know? With Required Memo enabled, Token-2022 rejects a transfer that has no memo right before it. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-coin-2027-mrfius-alexwoogo-pinterest-1-crypto-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-2027-mrfius-alexwoogo-pinterest-1.jpeg",
+  "alt": "Bright Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-best-crypto-2025-meme.jpeg",
+  "alt": "Wen business",
+  "note": "Did you know? GENIUS passed the Senate on June 17 and the House on July 17, 2025, and was signed the next day. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-coin-best-crypto-2025-meme.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-best-crypto-world-1.jpeg",
+  "alt": "Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-best-crypto-world.jpeg",
+  "alt": "Brave Wen legend",
+  "note": "Did you know? Wen partnered with Elevate Media to build an IP story world across animation, comics and products, announced in June 2025.",
+  "link": "image-story/wen-coin-best-crypto-world.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-big.jpeg",
+  "alt": "Wen builder on Solana",
+  "note": "Did you know? Dave Minogue and Adventurverse bring the character to life in art and animation. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-big.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-crypto-token-1.jpeg",
+  "alt": "Bold Wen whiskers",
+  "note": "Did you know? The poem NFT was split into 1 trillion fungible WEN tokens. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-coin-crypto-token-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-crypto-token.jpeg",
+  "alt": "Wen moon",
+  "note": "Did you know? WEN was the first project on Jupiter's LFG (Launch, Farm, Grow) Launchpad. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-crypto-token.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-crypto.jpeg",
+  "alt": "Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-dec-1.jpeg",
+  "alt": "Stellar Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-new-gold-unifined0market.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Like all community material it can be used, copied and adapted freely. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-new-gold-unifined0market.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-one-usdt.jpeg",
+  "alt": "Wen paws",
+  "note": "Did you know? Every article links to its own section of the sources page for open checking. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-one-usdt.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-public-1.jpeg",
+  "alt": "Epic Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-public.jpeg",
+  "alt": "Wen builder for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-ready-2-3.jpeg",
+  "alt": "Epic Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-screen-2025.jpeg",
+  "alt": "Fearless Wen energy",
+  "note": "Did you know? One person can own many wallets, and airdrops create holders who never chose to hold. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-screen-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-style-0.jpeg",
+  "alt": "Stellar Wen spark",
+  "note": "Did you know? Name, symbol and link live inside the token — a receipt or certificate that explains itself. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-coin-style-0.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-style-2-10.jpeg",
+  "alt": "Smart Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-12.jpeg",
+  "alt": "Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-13.jpeg",
+  "alt": "Epic Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-14.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-15.jpeg",
+  "alt": "Cosmic Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-16.jpeg",
+  "alt": "Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-2.jpeg",
+  "alt": "Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-3.jpeg",
+  "alt": "Wen vibes in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-4.jpeg",
+  "alt": "Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-5.jpeg",
+  "alt": "Golden Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-6.jpeg",
+  "alt": "Cheerful Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-7.jpeg",
+  "alt": "Wen whiskers for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-8.jpeg",
+  "alt": "Playful Wen moon for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2-9.jpeg",
+  "alt": "Bright Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-coin-style-2024-2025.jpeg",
+  "alt": "Wen mood",
+  "note": "Did you know? The allocation was 70% airdrop, 20% liquidity pool and 10% treasury. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-style-2024-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-coin-video-1.jpeg",
+  "alt": "Wen treasure on Solana",
+  "note": "Did you know? The programs are built with the Anchor framework: yarn install, then anchor build. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-coin-video-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-compare-power-lambo.jpeg",
+  "alt": "Brave Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-compare.jpeg",
+  "alt": "Wen mood in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-contract-id-search-official.jpeg",
+  "alt": "Sunny Wen energy",
+  "note": "Did you know? The WEN mint is WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk. Always verify it before use. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-contract-id-search-official.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-08-october-25.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Wen and Elevate Pictures met the community in an X Space on October 16, 2025. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-08-october-25.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-2.jpeg",
+  "alt": "Cheerful Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-2024-2025.jpeg",
+  "alt": "Bright Wen spark",
+  "note": "Did you know? USDC led with 974 programs; WEN was eighth with 345, beside JitoSOL, PYTH and mSOL. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-2024-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-2025-memecoin.jpeg",
+  "alt": "Wen treasure",
+  "note": "Did you know? Shift4 converts card money, zerohash handles compliance, Chainlink verifies the order. A Wen Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-2025-memecoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-5.jpeg",
+  "alt": "Wen moon for builders",
+  "note": "Did you know? The largest liquidation weekend in crypto history — a lesson about borrowed money. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-5.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-about-nft.jpeg",
+  "alt": "Wen spark",
+  "note": "Did you know? Minting on WNS costs around 0.01 SOL, much of it recoverable as rent. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-about-nft.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-alien-ship.jpeg",
+  "alt": "Cheerful Wen business",
+  "note": "Did you know? Each program has autogenerated JavaScript and Rust clients. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-crypto-alien-ship.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-audi-wen-solana.jpeg",
+  "alt": "Bold Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-benefit.jpeg",
+  "alt": "Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-best-coin.jpeg",
+  "alt": "Bold Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-binance-1.jpeg",
+  "alt": "Playful Wen builder for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-binance.jpeg",
+  "alt": "Stellar Wen builder in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-bonk-19-november-bitso.jpeg",
+  "alt": "Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-bonk.jpeg",
+  "alt": "Cozy Wen builder",
+  "note": "Did you know? 10% went to the WEN treasury for liquidity, culture and moving WNS forward. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-buy-1.jpeg",
+  "alt": "Shiny Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-buy.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-cat-travel-japan-train.jpeg",
+  "alt": "Bold Wen vibes",
+  "note": "Did you know? The visitors she drew are credited with helping to save the railway line. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-cat-travel-japan-train.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-catlumpur-2026.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? The Planetary Call is Jupiter's recurring community series; Meow returned on Planetary Call #60. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-catlumpur-2026.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-coin-meme-solana-best-1.jpeg",
+  "alt": "Mighty Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-coin-meme-solana-best-2.jpeg",
+  "alt": "Wen vibes for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-coin-meme-solana-best-3.jpeg",
+  "alt": "Cheerful Wen mood in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-coin-meme-solana-best-4.jpeg",
+  "alt": "Stellar Wen mood",
+  "note": "Did you know? BSOL debuted on the NYSE in October 2025 as the first U.S. spot Solana staking ETF. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-coin-meme-solana-best-4.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-coin-meme-solana-best-5.jpeg",
+  "alt": "Rising Wen spirit",
+  "note": "Did you know? Close to JitoSOL, PYTH and mSOL; USDC led with 974. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-crypto-coin-meme-solana-best-5.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-coin-meme-solana-best-6.jpeg",
+  "alt": "Wen paws with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-coin-solana.jpeg",
+  "alt": "Wen kitty with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-compare-history-1.jpeg",
+  "alt": "Cosmic Wen moon",
+  "note": "Did you know? The Wayback Machine keeps copies of pages that may later vanish. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-compare-history-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-compare-history-2.jpeg",
+  "alt": "Stellar Wen spark",
+  "note": "Did you know? \"Wen moon?\" and \"wen lambo?\" — impatient questions that gave a cat coin its name. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-compare-history-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-compare-history-3.jpeg",
+  "alt": "Wen crew",
+  "note": "Did you know? A mike-neko on board was thought to bring a safe voyage. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-crypto-compare-history-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-compare-history-4.jpeg",
+  "alt": "Active Wen meme",
+  "note": "Did you know? One simple, joyful internet image: a dog in a pink knitted hat. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-compare-history-4.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-compare-power-sep-20251.jpeg",
+  "alt": "Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-compare-power-sep-20253.jpeg",
+  "alt": "Epic Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-conferece-about-best-meme.jpeg",
+  "alt": "Wen whiskers in orbit",
+  "note": "Did you know? WEN absorbed the first wave of chaos just days before the JUP rollout. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-conferece-about-best-meme.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-histopry-03-oct-2025-2-1.jpeg",
+  "alt": "Wen orbit with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-histopry-03-oct-2025-2-2.jpeg",
+  "alt": "Wen crew with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-histopry-03-oct-2025-2.jpeg",
+  "alt": "Stellar Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-histopry-03-oct-2025-3.jpeg",
+  "alt": "Electric Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-histopry-03-oct-2025.jpeg",
+  "alt": "Cozy Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-id-best-energy.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-id-contract-best-world-crypto.jpeg",
+  "alt": "Wen legend on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-iron-1.jpeg",
+  "alt": "Cosmic Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-iron.jpeg",
+  "alt": "Epic Wen treasure for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-luxury-solana-memecoin.jpeg",
+  "alt": "Shiny Wen future with WNS",
+  "note": "Did you know? Bitcoin finality is probabilistic; about six confirmations, roughly an hour, is the usual rule. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-luxury-solana-memecoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-luxury-style-lambo-memecoin.jpeg",
+  "alt": "Active Wen builder",
+  "note": "Did you know? Verified, primary source, reported, opinion, unverified, figures differ. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-luxury-style-lambo-memecoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-luxury-style-life-memecoin.jpeg",
+  "alt": "Happy Wen legend",
+  "note": "Did you know? In the 1820s — a city grown swollen; a reminder that growth should serve people. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-luxury-style-life-memecoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-luxury-style-life-solana-wallet.jpeg",
+  "alt": "Wen vibes",
+  "note": "Did you know? Each xStock is backed by a real share held with a regulated custodian. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-luxury-style-life-solana-wallet.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-luxury-style-life.jpeg",
+  "alt": "Lucky Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-main-world.jpeg",
+  "alt": "Cheerful Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-main.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-friends.jpeg",
+  "alt": "Wen crew with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-nyc.jpeg",
+  "alt": "Cosmic Wen energy",
+  "note": "Did you know? Their classic order is still called the King Wen sequence. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-crypto-memecoin-nyc.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-catlumpur-2026.jpeg",
+  "alt": "Bright Wen future on Solana",
+  "note": "Did you know? CatLumpurr ran from January 30 to February 1, 2026, with an unconference format where attendees shaped the sessions. A Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-catlumpur-2026.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-coins.jpeg",
+  "alt": "Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-angel.jpeg",
+  "alt": "Lucky Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-girl.jpeg",
+  "alt": "Shiny Wen spark",
+  "note": "Did you know? Every swap, pool or game has a program ID; counting programs that use a token shows how widely it is built in. A Wen Wen Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-girl.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-girls-party.jpeg",
+  "alt": "Shiny Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-j4j.jpeg",
+  "alt": "Happy Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-japanese.jpeg",
+  "alt": "Cosmic Wen mood",
+  "note": "Did you know? Unclaimed WEN was burned after the claim window — a real supply cut, not just a promise. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-japanese.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-jupiter-mobile.jpeg",
+  "alt": "Playful Wen moon",
+  "note": "Did you know? Jupiter finds the best token swaps across Solana and has grown into a broad DeFi platform. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-jupiter-mobile.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-lambo-meme.jpeg",
+  "alt": "Shiny Wen spirit",
+  "note": "Did you know? The KRW fund pilot follows the structure of BlackRock's BUIDL, the largest tokenized treasury fund. A Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-lambo-meme.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-live-happy.jpeg",
+  "alt": "Wen coin",
+  "note": "Did you know? WEN is a Solana token, launched on Jupiter, the leading Solana DEX aggregator. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-live-happy.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-bonk.jpeg",
+  "alt": "Bold Wen orbit",
+  "note": "Did you know? The poem was minted as an NFT and fractionalized into one trillion tokens. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-catlumpur.jpeg",
+  "alt": "Cozy Wen builder",
+  "note": "Did you know? In his launch thread Meow joked that the NFT standard did not need adoption because \"we are gonna break this NFT into a trillion pieces anyway\".",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-catlumpur.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-christmas.jpeg",
+  "alt": "Mighty Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-happy.jpeg",
+  "alt": "Brave Wen business",
+  "note": "Did you know? Model 4 of the Lab builds a payment bridge on the open Solana Pay standard. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-happy.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-icp.jpeg",
+  "alt": "Stellar Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-j4j.jpeg",
+  "alt": "Smart Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-japanese.jpeg",
+  "alt": "Sunny Wen meme with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-jup.jpeg",
+  "alt": "Cozy Wen kitty",
+  "note": "Did you know? The Jupiter Group published it as \"Meow is Back on the Planetary Call #60\". A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-jup.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-jupiter-mobile.jpeg",
+  "alt": "Wen business",
+  "note": "Did you know? Before Catlumpur came Catstanbul, held in Istanbul. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-jupiter-mobile.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-lambo.jpeg",
+  "alt": "Active Wen vibes",
+  "note": "Did you know? Solana kept 100% uptime under the WEN launch traffic, as reported by SolanaFloor. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-lambo.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-meow.jpeg",
+  "alt": "Wen mood",
+  "note": "Did you know? SolanaFloor reported a peak above 2,300 TPS while the network stayed up. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-meow.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-nyc.jpeg",
+  "alt": "Sunny Wen mood for builders",
+  "note": "Did you know? AssetDash minted its 10,000-piece Elements collection on the Wen New Standard. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-nyc.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-pepe.jpeg",
+  "alt": "Brave Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-super-cat.jpeg",
+  "alt": "Mighty Wen kitty",
+  "note": "Did you know? .wen domains are human-readable names on Solana; thousands were created and used as wallet addresses. A Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-super-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-ecosystem-weremeow-wns.jpeg",
+  "alt": "Sunny Wen builder",
+  "note": "Did you know? Confidential Transfers hide balances and amounts using ElGamal encryption, with an optional auditor key. A Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-memecoin-solana-ecosystem-weremeow-wns.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-france.jpeg",
+  "alt": "Playful Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-friends-weremeow.jpeg",
+  "alt": "Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-jup-weremeow.jpeg",
+  "alt": "Wen vibes with WNS",
+  "note": "Did you know? WNS uses Token-2022's Group and Member extensions instead of custom account links. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-jup-weremeow.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memecoin-solana-jupiter.jpeg",
+  "alt": "Brave Wen vibes",
+  "note": "Did you know? WEN was the dress rehearsal; $JUP followed on January 31, 2024. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-memecoin-solana-jupiter.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-memes.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-miami-solana-memecoin-wallet.jpeg",
+  "alt": "Rising Wen cat",
+  "note": "Did you know? Every eligible wallet received the same amount, making WEN widely distributed from day one. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-miami-solana-memecoin-wallet.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-miami-style-game-gta-solana.jpeg",
+  "alt": "Epic Wen coin",
+  "note": "Did you know? Shared tools, standards and free archives make more pie — the sober meaning of PPP. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-miami-style-game-gta-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-pinterest-3.jpeg",
+  "alt": "Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-prediction-2026.jpeg",
+  "alt": "Wen vibes for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-price-redit.jpeg",
+  "alt": "Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-rocket-moon.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? Wen grows up on Wen-9, an outer moon of forgotten airdrops. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-crypto-rocket-moon.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-sec.jpeg",
+  "alt": "Electric Wen spirit",
+  "note": "Did you know? CFTC for digital commodities, SEC for restricted digital assets — passed by the House, stalled in the Senate in 2026. A Wen",
+  "link": "image-story/wen-crypto-sec.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-solana-bonk-1.jpeg",
+  "alt": "Mighty Wen coin in orbit",
+  "note": "Did you know? Bonk arrived on December 25, 2022, with half of its supply airdropped to the community. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-solana-bonk-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-solana-bonk.jpeg",
+  "alt": "Golden Wen kitty",
+  "note": "Did you know? WNS 0.0 started extremely simple, with only name, symbol and uri. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-solana-bonk.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-solana-memecoin-bullrun.jpeg",
+  "alt": "Wen crew",
+  "note": "Did you know? WEN was airdropped to more than a million Solana wallets — one of the largest airdrops the network had seen. A Wen Wen Wen",
+  "link": "image-story/wen-crypto-solana-memecoin-bullrun.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-solana-memecoin-space-travel.jpeg",
+  "alt": "Wen kitty",
+  "note": "Did you know? Halborn, Zellic, NCC, Trail of Bits and OtterSec audited Token-2022. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-solana-memecoin-space-travel.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-solana-memecoin-space.jpeg",
+  "alt": "Wen spirit",
+  "note": "Did you know? The Wen Foundation's code lives under github.com/wen-community. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-solana-memecoin-space.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-solana-memecoin.jpeg",
+  "alt": "Mighty Wen business",
+  "note": "Did you know? Western Union announced the U.S. Dollar Payment Token, USDPT, on October 28, 2025. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-solana-memecoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-space-coin-solana.jpeg",
+  "alt": "Golden Wen moon",
+  "note": "Did you know? Each order gets a unique random reference; the shop looks for the transaction that includes it. A Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-space-coin-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-squid-game-2025.jpeg",
+  "alt": "Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-travel-japan.jpeg",
+  "alt": "Rising Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-usa-coin-international.jpeg",
+  "alt": "Happy Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-video-prediction-1.jpeg",
+  "alt": "Smart Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto-wallet-2.jpeg",
+  "alt": "Bright Wen cat",
+  "note": "Did you know? Every wallet got the same amount: 643,652 WEN. No whales on day one. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-crypto-wallet-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-web3-nft.jpeg",
+  "alt": "Lucky Wen treasure",
+  "note": "Did you know? The Wen Foundation grew out of the Ovols NFT community; Ovols helped turn Meow's poem into his first NFT. A Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-web3-nft.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-wns-standart.jpeg",
+  "alt": "Happy Wen crew",
+  "note": "Did you know? AssetDash minted the first 10,000-NFT collection on WNS just 18 days after WEN launched. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-crypto-wns-standart.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-crypto-youtube.jpeg",
+  "alt": "Shiny Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-crypto.jpeg",
+  "alt": "Smart Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-csearch-crypto.jpeg",
+  "alt": "Epic Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-culture-more.jpeg",
+  "alt": "Wen mood",
+  "note": "Did you know? Same rails, different promise: culture versus a claim on a company. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-culture-more.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-culture.jpeg",
+  "alt": "Wen kitty",
+  "note": "Did you know? 文化 is culture and 文明 is civilisation — both built on 文. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-culture.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-docimentation-crypto-solana-memes1.jpeg",
+  "alt": "Sunny Wen coin",
+  "note": "Did you know? Validators vote on blocks through transactions, so total TPS is much higher than user TPS. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-docimentation-crypto-solana-memes1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-docimentation-crypto-solana-memes2.jpeg",
+  "alt": "Active Wen crew",
+  "note": "Did you know? The Wen validator runs with zero commission and zero MEV fees. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-docimentation-crypto-solana-memes2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-docimentation-crypto-solana-memes3.jpeg",
+  "alt": "Active Wen mood in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-docimentation-crypto-solana-memes4.jpeg",
+  "alt": "Epic Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-docimentation-crypto-solana-memes5.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-eat-people.jpeg",
+  "alt": "Wen whiskers",
+  "note": "Did you know? Tests live in the tests folder and run with anchor test. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-eat-people.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-ena-jup.jpeg",
+  "alt": "Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-field-coin.jpeg",
+  "alt": "Electric Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-forming-crypto-solana.jpeg",
+  "alt": "Stellar Wen cat",
+  "note": "Did you know? \"We did ok, but did not do that well on the bot mitigation front today\" — honest lessons made the next launch better. A Wen",
+  "link": "image-story/wen-forming-crypto-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-forming-sep-3.jpeg",
+  "alt": "Cozy Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-forming-sep.jpeg",
+  "alt": "Fearless Wen builder",
+  "note": "Did you know? The one place where an analysis admits its own limits. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-forming-sep.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-0001-@alexwoogo-@olegt39484998.jpeg",
+  "alt": "Shiny Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-0003-@alexwoogo-@olegt39484998.jpeg",
+  "alt": "Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-0005-@alexwoogo-@olegt39484998.jpeg",
+  "alt": "Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-0007-@alexwoogo-@olegt39484998.jpeg",
+  "alt": "Cheerful Wen cat",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-0009-@alexwoogo-@olegt39484998-wen-cartoon-winner-crypto-coin.jpeg",
+  "alt": "Cosmic Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world1.jpeg",
+  "alt": "Wen builder on Solana",
+  "note": "Did you know? Lab code is free and educational but not audited: run the tests, use devnet, read the docs and get an audit. A Wen Wen Wen",
+  "link": "image-story/wen-gif-new-world1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world10.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? npm replaced @wen-community/wen-new-standard with a security holding package. Build from official sources. A Wen Wen Wen Wen",
+  "link": "image-story/wen-gif-new-world10.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world11.jpeg",
+  "alt": "Mighty Wen legend",
+  "note": "Did you know? Wen plushies were made with Toymak3rs — including the Wen x Bonk charity plush. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world11.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world12.jpeg",
+  "alt": "Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world13.jpeg",
+  "alt": "Epic Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world14.jpeg",
+  "alt": "Stellar Wen vibes",
+  "note": "Did you know? Instead of striking, Wen broadcasts one line: wen = now. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-gif-new-world14.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world15.jpeg",
+  "alt": "Shiny Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world16.jpeg",
+  "alt": "Wen cat on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world17.jpeg",
+  "alt": "Shiny Wen business on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world18.jpeg",
+  "alt": "Rising Wen crew on Solana",
+  "note": "Did you know? A community-reported milestone, beside parties, contests and plush toys. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world18.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world19.jpeg",
+  "alt": "Playful Wen kitty",
+  "note": "Did you know? Wen bros keep asking \"wen token? wen airdrop?\". Meow's poem was a love letter to exactly them. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-gif-new-world19.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world2.jpeg",
+  "alt": "Cozy Wen spirit",
+  "note": "Did you know? A common mix-up corrected in the almanac. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-gif-new-world2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world20.jpeg",
+  "alt": "Cozy Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world21.jpeg",
+  "alt": "Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world22.jpeg",
+  "alt": "Shiny Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world23.jpeg",
+  "alt": "Cosmic Wen crew",
+  "note": "Did you know? WNS uses Token-2022 metadata extensions, so the NFT carries its own name card on-chain. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-gif-new-world23.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world24.jpeg",
+  "alt": "Stellar Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world25.jpeg",
+  "alt": "Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world26.jpeg",
+  "alt": "Fearless Wen whiskers on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world27.jpeg",
+  "alt": "Electric Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world28.jpeg",
+  "alt": "Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world29.jpeg",
+  "alt": "Sunny Wen builder",
+  "note": "Did you know? Also: urgency, promises of multiplied money, and nothing to use. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world29.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world3.jpeg",
+  "alt": "Mighty Wen vibes",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world30.jpeg",
+  "alt": "Shiny Wen moon",
+  "note": "Did you know? A transfer hook calls a royalty program whenever the token moves — royalties enforced by the token itself. A Wen Wen Wen Wen",
+  "link": "image-story/wen-gif-new-world30.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world31.jpeg",
+  "alt": "Electric Wen paws",
+  "note": "Did you know? An elective, interim rule — not a general crypto tax exemption. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world31.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world32.jpeg",
+  "alt": "Wen paws",
+  "note": "Did you know? A song about a kind space cat who shares a piece of happiness with everyone. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world32.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world33.jpeg",
+  "alt": "Wen builder",
+  "note": "Did you know? wenSOL lets SOL be staked through a Wen validator while staying liquid (community-reported). A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-gif-new-world33.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world34.jpeg",
+  "alt": "Shiny Wen spark for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world35.jpeg",
+  "alt": "Mighty Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world36.jpeg",
+  "alt": "Bright Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world37.jpeg",
+  "alt": "Epic Wen future",
+  "note": "Did you know? Automated trading and airdrop farming inflate activity counts. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world37.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world4.jpeg",
+  "alt": "Cosmic Wen meme with WNS",
+  "note": "Did you know? WEN is identified by one Solana mint address; tickers can be copied. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif-new-world4.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world5.jpeg",
+  "alt": "Brave Wen vibes",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world6.jpeg",
+  "alt": "Epic Wen coin on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world7.jpeg",
+  "alt": "Cosmic Wen orbit on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-new-world8.jpeg",
+  "alt": "Shiny Wen mood",
+  "note": "Did you know? Often paid promotion; check the account's history. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-gif-new-world8.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-gif-new-world9.jpeg",
+  "alt": "Epic Wen builder on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif-wen.jpeg",
+  "alt": "Stellar Wen vibes",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gif.jpeg",
+  "alt": "Brave Wen kitty with WNS",
+  "note": "Did you know? Circulating supply is a third party's estimate; total supply is on-chain. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gif.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-global-best-crypto-coin.jpeg",
+  "alt": "Bright Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-global-crypto.jpeg",
+  "alt": "Wen crew",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-gold-market-coin-crypto-2025.jpeg",
+  "alt": "Bright Wen paws",
+  "note": "Did you know? When it falls quickly, money is flowing into other coins — an \"alt season\". A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-gold-market-coin-crypto-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-history.jpeg",
+  "alt": "Golden Wen spirit",
+  "note": "Did you know? We corrected the original timeline, which placed DAOs in 2022. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-history.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-icon.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-idol-crypto-memes-world.jpeg",
+  "alt": "Cheerful Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-image-youtube.jpeg",
+  "alt": "Mighty Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-jup-mobile.jpeg",
+  "alt": "Wen energy",
+  "note": "Did you know? The runic letter ƿ was named wynn or wen — the old name of W itself. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-jup-mobile.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-lambo-1.jpeg",
+  "alt": "Happy Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lambo-bonk.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lambo-coin.jpeg",
+  "alt": "Sunny Wen business",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lambo-crypto-memecoin-solana-coin.jpeg",
+  "alt": "Wen paws with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lambo-crypto-memecoin-solana.jpeg",
+  "alt": "Wen moon",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lambo-crypto-sep-25.jpeg",
+  "alt": "Cheerful Wen treasure",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-lambo-toly.jpeg",
+  "alt": "Stellar Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-listings-october-2025-1.jpeg",
+  "alt": "Shiny Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-listings-october-2025-2-1.jpeg",
+  "alt": "Wen whiskers on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-listings-october-2025-2.jpeg",
+  "alt": "Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-listings-october-2025.jpeg",
+  "alt": "Wen legend for builders",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-logo-all.jpeg",
+  "alt": "Playful Wen paws",
+  "note": "Did you know? One trillion minus more than 271 billion burned; the explorer shows today's exact total. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-logo-all.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-market-run.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? Reserves must match the coins one for one, with regular public disclosure. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-market-run.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-market-wall-street.jpeg",
+  "alt": "Smart Wen legend",
+  "note": "Did you know? An ETF like BSOL holds and stakes SOL; it does not buy meme coins. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-market-wall-street.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-new-standart.jpeg",
+  "alt": "Cheerful Wen meme in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-new-year-10.jpeg",
+  "alt": "Cosmic Wen treasure on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-new-year-11.jpeg",
+  "alt": "Wen builder in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-new-year-2.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-new-year-3.jpeg",
+  "alt": "Shiny Wen orbit",
+  "note": "Did you know? Art is a way into the story, not an advert: show the token address, never a trading link. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-new-year-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-new-year-4.jpeg",
+  "alt": "Mighty Wen legend",
+  "note": "Did you know? Sixty votes were needed; disputes over stablecoin yield and ethics rules stopped it. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-new-year-4.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-new-year-5.jpeg",
+  "alt": "Wen whiskers with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-new-year.jpeg",
+  "alt": "Cozy Wen legend",
+  "note": "Did you know? Always test with a throwaway devnet wallet and never reuse it on mainnet. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-new-year.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-pengu-compare-what-best-crypto.jpeg",
+  "alt": "Active Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-prediction.jpeg",
+  "alt": "Playful Wen future",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-ready-coin-main-making-2.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-ready-coin-main-making.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-reddit.jpeg",
+  "alt": "Wen paws on Solana",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-satoshi-with-friends.jpeg",
+  "alt": "Sunny Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-save-this-world.jpeg",
+  "alt": "Brave Wen spirit",
+  "note": "Did you know? Folk belief held that the cat brings peace to the home and takes misfortune upon itself. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-save-this-world.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-save-world-btc-solana.jpeg",
+  "alt": "Wen legend with WNS",
+  "note": "Did you know? Bitcoin miners race to find SHA-256 hashes below a target. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-save-world-btc-solana.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-screen-1.jpeg",
+  "alt": "Shiny Wen business",
+  "note": "Did you know? Wen launched wenSOL with Sanctum, a liquid staking token that represents staked SOL. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-screen-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-screen-2.jpeg",
+  "alt": "Sunny Wen mood",
+  "note": "Did you know? The official X account is Wen's most active primary channel. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-screen-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-screen-3.jpeg",
+  "alt": "Rising Wen builder",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-screen-coin.jpeg",
+  "alt": "Bright Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-social-news-crypto-world.jpeg",
+  "alt": "Fearless Wen kitty",
+  "note": "Did you know? A U.S.–Irish co-production; the first outputs were planned as a comic and an animation pilot. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-social-news-crypto-world.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-socmic-prediction.jpeg",
+  "alt": "Wen business in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-socmic.jpeg",
+  "alt": "Epic Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-solana-bitget.jpeg",
+  "alt": "Golden Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-solana-style.jpeg",
+  "alt": "Shiny Wen treasure with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-solana.jpeg",
+  "alt": "Smart Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-space-crypto-cat.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? So his servants would not resent the cat; Hodge's statue sits in London. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-space-crypto-cat.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-star-wars-style.jpeg",
+  "alt": "Wen paws",
+  "note": "Did you know? 问 (wèn) means \"to ask\" — a nice echo of everyone asking \"wen?\". A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-star-wars-style.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-style-coin-2025.jpeg",
+  "alt": "Wen crew for builders",
+  "note": "Did you know? Wen and Elevate Pictures announced a story world of animation, comics and products. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-style-coin-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-thomething.jpeg",
+  "alt": "Playful Wen cat with WNS",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-toys.jpeg",
+  "alt": "Mighty Wen spirit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-ufo-coin.jpeg",
+  "alt": "Epic Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-ufo-style-coin.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-up-seeker-3.jpeg",
+  "alt": "Wen future",
+  "note": "Did you know? Keys in protected hardware, with fingerprint confirmation for signing. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-up-seeker-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-up-seeker-5.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-up-seeker.jpeg",
+  "alt": "Stellar Wen cat on Solana",
+  "note": "Did you know? Shipping began on August 4, 2025. A Wen Media photo with one checked fact from the Wen almanac and a link to read more. Wen",
+  "link": "image-story/wen-up-seeker.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-up-song.jpeg",
+  "alt": "Cozy Wen spark",
+  "note": "Did you know? It cannot be sold on, so it proves what it says about its holder. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-up-song.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-use-crypto-cost-predition-1.jpeg",
+  "alt": "Lucky Wen whiskers in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-use-crypto-cost-predition.jpeg",
+  "alt": "Electric Wen legend",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-use-crypto-wen.jpeg",
+  "alt": "Lucky Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-video-2.jpeg",
+  "alt": "Bold Wen spark on Solana",
+  "note": "Did you know? 20% of WEN went to the launch DLMM liquidity pool. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-video-2.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-video-3.jpeg",
+  "alt": "Smart Wen coin",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-w-coin-china-usa-canada-germany-korean.jpeg",
+  "alt": "Wen spark",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-w-coin-matrix-btc.jpeg",
+  "alt": "Wen crew",
+  "note": "Did you know? The first famous real-world Bitcoin purchase — now Bitcoin Pizza Day. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wen-w-coin-matrix-btc.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-wall-street-july-2025.jpeg",
+  "alt": "Bold Wen whiskers",
+  "note": "Did you know? Phone backgrounds, post images, songs, photos, videos, GIFs and anime art, all free to reuse. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-wall-street-july-2025.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-wallstreet.jpeg",
+  "alt": "Wen vibes in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-wen-crypto-coin-cats.jpeg",
+  "alt": "Wen orbit",
+  "note": "Did you know? With the fox's help he frightens off a wolf and a bear. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-wen-crypto-coin-cats.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-wen-wen-reddit.jpeg",
+  "alt": "Brave Wen meme",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-wif-bonk-not-wendys-its-crypto.jpeg",
+  "alt": "Active Wen cat",
+  "note": "Did you know? Wendy's is an American fast-food chain founded in 1969. \"Wen is not Wendy's\" — they have nothing to do with each other. A",
+  "link": "image-story/wen-wif-bonk-not-wendys-its-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-wif-compare-what-best-crypto.jpeg",
+  "alt": "Fearless Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-win-2.jpeg",
+  "alt": "Wen whiskers in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-win-3.jpeg",
+  "alt": "Wen future",
+  "note": "Did you know? The cat rid a palace of rats far away. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wen-win-3.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-win4.jpeg",
+  "alt": "Wen orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wen-wns-solana-jup-crypto.jpeg",
+  "alt": "Lucky Wen energy",
+  "note": "Did you know? The four-party MOU was signed by Shinhan Asset Management, the Solana Foundation, Etherfuse and Orca. A Wen Wen Wen Wen Wen",
+  "link": "image-story/wen-wns-solana-jup-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wen-youtube-video-crypto-popolar-coin.jpeg",
+  "alt": "Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wendys-wen-crypto-bonk.jpeg",
+  "alt": "Happy Wen kitty",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wendys-wen-crypto-compare.jpeg",
+  "alt": "Fearless Wen whiskers",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wendys-wen-history-2026.jpeg",
+  "alt": "Wen vibes in orbit",
+  "note": "Did you know? Dave Thomas named the restaurant after his daughter Melinda Lou, nicknamed Wendy. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wendys-wen-history-2026.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wendys.jpeg",
+  "alt": "Wen kitty on Solana",
+  "note": "Did you know? The Wendy's Company trades on Nasdaq as WEN — the same three letters as the Wen cat's token. A Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wendys.html",
+  "series": "Image story"
+ },
+ {
+  "file": "weremeov-jupiter-wen-crypto-cou-founder.jpeg",
+  "alt": "Wen spirit",
+  "note": "Did you know? WEN was a deliberate, lower-stakes stress test of the launchpad and infrastructure before the JUP airdrop. A Wen Wen Wen Wen",
+  "link": "image-story/weremeov-jupiter-wen-crypto-cou-founder.html",
+  "series": "Image story"
+ },
+ {
+  "file": "weremeow-meow-co-founder-jup-wen.jpeg",
+  "alt": "Stellar Wen spark",
+  "note": "Did you know? The poem was written by Meow, the pseudonymous founder of Jupiter Exchange, also known as weremeow. A Wen Wen Wen Wen Wen",
+  "link": "image-story/weremeow-meow-co-founder-jup-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "what-best-meme-coin.jpeg",
+  "alt": "Golden Wen future in orbit",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "what-by-analog-btc-more-chipper-w-coin-wen.jpeg",
+  "alt": "Fearless Wen mood",
+  "note": "Did you know? Unclaimed tokens were burned for good: nearly 39% of the airdrop allocation (Decrypt). A Wen Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/what-by-analog-btc-more-chipper-w-coin-wen.html",
+  "series": "Image story"
+ },
+ {
+  "file": "what-is-wen.jpeg",
+  "alt": "Rising Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "what-meme-coin-best-in-the-world.jpeg",
+  "alt": "Wen mood",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "when-next-bitcoin.jpeg",
+  "alt": "Golden Wen vibes",
+  "note": "Did you know? Alt seasons are named afterwards — famous ones came at the end of 2017 and in early 2021. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/when-next-bitcoin.html",
+  "series": "Image story"
+ },
+ {
+  "file": "where-can-buy-wen-crypto-bonk.jpeg",
+  "alt": "Smart Wen paws",
+  "note": "",
+  "link": "",
+  "series": ""
+ },
+ {
+  "file": "wns-china-wen-crypto.jpeg",
+  "alt": "Active Wen orbit",
+  "note": "Did you know? WNS creates an NFT by locking supply at 1 with 0 decimals. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/wns-china-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wns-korea-crypto-world.jpeg",
+  "alt": "Wen future",
+  "note": "Did you know? The docs say the WNS audit has not been formally completed and should be treated as such. A Wen Wen Wen Wen Wen Wen Wen Wen",
+  "link": "image-story/wns-korea-crypto-world.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wns-sol-spl-token-2022.jpeg",
+  "alt": "Wen spark",
+  "note": "Did you know? Metadata lives inside the mint itself through Metadata Pointer and Token Metadata — no external metadata account. A Wen Wen",
+  "link": "image-story/wns-sol-spl-token-2022.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wns-wen-crypto-1.jpeg",
+  "alt": "Stellar Wen kitty",
+  "note": "Did you know? The wen_new_standard program ID is wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wns-wen-crypto-1.html",
+  "series": "Image story"
+ },
+ {
+  "file": "wns-wen-crypto.jpeg",
+  "alt": "Wen cat artwork from the community archive",
+  "note": "Did you know? Non-Transferable makes a token soulbound — used in Wen Open Lab's warranty receipts. A. Wen Media photo with a checked fact from the Wen almanac.",
+  "link": "image-story/wns-wen-crypto.html",
+  "series": "Image story"
+ },
+ {
+  "file": "youtube-crypto-wen-about.jpeg",
+  "alt": "Wen builder",
+  "note": "Did you know? WEN is the governance token of the Wen DAO. A Wen Media photo with one checked fact from the Wen almanac and a link to read more.",
+  "link": "image-story/youtube-crypto-wen-about.html",
+  "series": "Image story"
+ },
+ {
+  "file": "youtube-crypto-wen-look-preduction.jpeg",
+  "alt": "Cheerful Wen energy",
+  "note": "",
+  "link": "",
+  "series": ""
+ }
+]
