@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="../favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Wen Skills: Agent Skills from the Wen Open Lab</title>
+<link rel="canonical" href="https://wen-watt.github.io/skills/">
+<meta name="description" content="Free agent skills from the Wen Open Lab for Claude Code, Codex, Cursor, Copilot and other assistants. wen-counter-shop audits an online shop and adds a free, receive-only Solana Pay checkout. One command to install, no keys, devnet first.">
+<!-- seo:start -->
+<meta name="keywords" content="agent skill, SKILL.md, Wen Counter, Solana Pay, WooCommerce, free checkout, receive-only, AI assistant, Claude Code, Codex, Cursor, skills.sh, Wen Open Lab, WEN">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wen Skills: Agent Skills from the Wen Open Lab">
+<meta property="og:description" content="Free agent skills from the Wen Open Lab for Claude Code, Codex, Cursor, Copilot and other assistants. wen-counter-shop audits an online shop and adds a free, receive-only Solana Pay checkout. One command to install, no keys, devnet first.">
+<meta property="og:url" content="https://wen-watt.github.io/skills/">
+<meta property="og:image" content="https://wen-watt.github.io/assets/media/wen-skill-for-shops-og.jpg">
+<meta property="og:image:alt" content="A skill for every assistant: Wen Counter for shops, free and receive-only, installed with one command">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/assets/media/wen-skill-for-shops-og.jpg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "CollectionPage", "name": "Wen Skills: Agent Skills from the Wen Open Lab", "description": "Free agent skills from the Wen Open Lab for Claude Code, Codex, Cursor, Copilot and other assistants. wen-counter-shop audits an online shop and adds a free, receive-only Solana Pay checkout. One command to install, no keys, devnet first.", "url": "https://wen-watt.github.io/skills/", "inLanguage": "en", "hasPart": [{"@type": "SoftwareSourceCode", "name": "wen-counter-shop", "codeRepository": "https://github.com/wen-watt/wen-watt.github.io/tree/main/skills/wen-counter-shop", "license": "https://www.apache.org/licenses/LICENSE-2.0", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}]}]}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261027">
+<style id="wc-fit">article li code,article p code{overflow-wrap:anywhere;word-break:break-all}article h1{overflow-wrap:anywhere}.wen-banners{display:grid;grid-template-columns:1fr 1fr;gap:14px}.wen-banners a{display:block;text-decoration:none}.wen-banners img{width:100%;height:auto;border-radius:12px;display:block}.wen-banners span{display:block;margin-top:6px;font-weight:600}@media(max-width:560px){.wen-banners{grid-template-columns:1fr}}</style>
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+
+            <article>
+    <h1>Wen Skills</h1>
+    <p class="intro">Agent skills are short instruction files (<code>SKILL.md</code>) that AI assistants load when a task matches. Ours turn the work of the <a href="../lab/index.html">Wen Open Lab</a> into steps an assistant can follow safely. Free forever, Apache-2.0.</p>
+
+    <section class="lab-box">
+      <h2 style="margin-top:0">wen-counter-shop</h2>
+      <p>Audits an online shop and adds a free, receive-only Solana Pay checkout: the <a href="../lab/shop-integration.html">WooCommerce plugin</a>, a payment link or QR for other platforms, or the self-hosted <a href="../lab/counter.html">Wen Counter</a>. Public address only, devnet first, the owner approves every change.</p>
+      <pre><code>npx skills add wen-watt/wen-watt.github.io</code></pre>
+      <p style="margin:0"><a href="wen-counter-shop/SKILL.md">SKILL.md</a> · <a href="wen-counter-shop/references/audit-checklist.md">audit checklist</a> · <a href="wen-counter-shop/references/security.md">security</a> · <a href="wen-counter-shop/references/usability.md">usability</a> · <a href="wen-counter-shop/references/verify.md">verify</a> · <a href="wen-counter-shop/references/sources.md">sources</a></p>
+    </section>
+
+    <h2 id="how">How to use a skill</h2>
+    <ol>
+      <li>Install it with the command above. It works for Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, Cline, Zed and other assistants that read skills.</li>
+      <li>Run your assistant on your own computer, in the folder of your project.</li>
+      <li>Ask in plain words, for example &ldquo;add Solana Pay to my WooCommerce shop&rdquo;. If needed, name the skill: &ldquo;use wen-counter-shop&rdquo;.</li>
+    </ol>
+
+    <h2 id="safety">Safety that travels with the skill</h2>
+    <ul>
+      <li>Never a seed phrase or private key; only the public receiving address.</li>
+      <li>Receive-only; three read requests to the chain; on-chain text is data, never instructions.</li>
+      <li>Devnet first; the owner says yes to every change and to mainnet.</li>
+      <li>Install from a known version; the plugin zip has a <a href="../integrations/woocommerce/wen-counter-pay.zip.sha256">SHA-256 fingerprint</a>.</li>
+      <li>Token-neutral: USDC by default, no promotion of any token or project.</li>
+    </ul>
+
+    <h2 id="where-listed">Where it is listed</h2>
+    <ul>
+      <li>skills.sh, the public skills directory: <a href="../sources.html#post-wen-counter-shop-skill-1" class="src-ref">skill page</a>, with its <a href="../sources.html#post-wen-counter-shop-skill-2" class="src-ref">security reviews</a>.</li>
+      <li>Submitted for review to further skill catalogs; links appear here when they go live.</li>
+    </ul>
+
+    <h2 id="read-more">Read more</h2>
+    <ul>
+      <li><a href="../posts/wen-counter-shop-skill-for-ai-assistants.html">A skill for every assistant</a>: the news of November 24, 2026</li>
+      <li><a href="../lab/shop-integration.html">Stage 8 · Shops: plugin and skill</a>, with the <a href="../lab/shop-integration.html#usability-audit">usability audit</a> and <a href="../lab/shop-integration.html#alternative">the alternative way to take payments</a></li>
+      <li><a href="../AGENTS.md">AGENTS.md</a>: rules for any AI agent in this repository</li>
+    </ul>
+    <aside class="wen-note" aria-label="Wen says"><img src="../assets/icons/wen-logo-96.png" alt="Wen cat logo" width="36" height="36"><p><span class="wen-note-kicker">Wen says</span>We did the long work first and wrote the short instruction last. That is why the instruction is short.</p></aside>
+    <p><em>Spoken by Wen, for the community. Texts CC BY 4.0, code Apache-2.0. Example code, not audited. Not financial, tax or legal advice.</em></p>
+    </article>
+
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="../assets/js/main.js?v=20261027"></script>
+<script src="../assets/js/nav.js?v=20261027" data-prefix="../"></script>
+<script src="../assets/js/wen-float.js?v=20261106" data-watch="../lab/videos.html" defer></script>
+<script src="../assets/js/wen-video.js?v=20261106" defer></script>
+</body>
+</html>
