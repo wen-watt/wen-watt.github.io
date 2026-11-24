@@ -13,7 +13,7 @@ Build a Solana Pay link per order or per product and show it as a button or QR:
 - Confirming the payment: open the counter's ledger, or check the reference in Solana Explorer. Orders are not marked paid automatically on these platforms; tell the owner.
 
 ## B. Hosted counter for staff
-The owner opens https://wen-watt.github.io/lab/counter/ (or a copy on their own domain from the kit) on a phone or tablet, sets the receiving address in Setup (locked by a PIN), and takes payments by QR. Good for pop-ups, events, phone orders. Translated copies: `/it-wen/lab/counter/`, `/cn-wen/lab/counter/`, `/ko-wen/lab/counter/`.
+For a quick devnet test the owner can open the public copy at https://wen-watt.github.io/lab/counter/; for real sales prefer a copy on the owner's own domain from the kit (option C) on a phone or tablet, sets the receiving address in Setup (locked by a PIN), and takes payments by QR. Good for pop-ups, events, phone orders. Translated copies: `/it-wen/lab/counter/`, `/cn-wen/lab/counter/`, `/ko-wen/lab/counter/`.
 
 ## C. Self-hosted kit
 `lab/counter/wen-counter-kit.zip` (20 files): put it on any static https host, change `theme.css` and icons, keep `NOTICE`. Set the language with `lang` in `counter-deploy.js` (en, it, zh, ko).

@@ -11,7 +11,7 @@ Answer each line, show the answers to the owner, then choose the path in SKILL.m
 | 5 | Order tables (HPOS) on? | WooCommerce → Settings → Advanced → Features | the plugin is compatible either way |
 | 6 | Who holds the receiving wallet? | ask the owner | the owner keeps the seed phrase offline; for teams suggest a multisig vault (Squads) |
 | 7 | One wallet or several? | departments, branches, tips | the in-person counter supports wallets #1..X; the plugin uses one address per shop |
-| 8 | Which token? | owner's choice | USDC keeps prices stable; SOL, WEN, JUP and other SPL tokens move in price |
+| 8 | Which token? | owner's choice | USDC keeps prices stable (recommended); other SPL tokens move in price and are the owner's own choice |
 | 9 | Own RPC endpoint? | busy shop or many orders | public endpoints are rate-limited; a provider endpoint is safer for production |
 | 10 | Refund and receipt policy written? | shop pages | refunds are new payments from the owner's wallet; receipts are not fiscal |
 | 11 | Content Security Policy? | response headers | allow the plugin's own scripts; no remote scripts are needed |

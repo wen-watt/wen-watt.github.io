@@ -3,7 +3,7 @@
 Folder: `integrations/woocommerce/wen-counter-pay/` · installable zip: `integrations/woocommerce/wen-counter-pay.zip` (same files). Current version: 0.2.0 (after the usability audit, `USABILITY-AUDIT.md`).
 
 ## Install
-1. Download the zip from the repository (or copy the folder to `wp-content/plugins/wen-counter-pay/`).
+1. Show the owner what will be installed and get a yes. Download the zip from the repository and check its SHA-256 (`references/verify.md`), or copy the reviewed folder to `wp-content/plugins/wen-counter-pay/`. On a live shop: staging copy or backup first.
 2. WordPress → Plugins → Add New → Upload Plugin → choose the zip → Activate. WooCommerce must be active.
 3. WooCommerce → Settings → Payments → **Wen Counter (Solana Pay)** → Manage.
 
@@ -11,7 +11,7 @@ Folder: `integrations/woocommerce/wen-counter-pay/` · installable zip: `integra
 - Enable: on.
 - Receiving address: the owner's public address (wallet → Receive → Solana). The plugin refuses anything that is not a 32-byte Solana address.
 - Network: Devnet. Mainnet only with the confirmation checkbox, after a devnet test.
-- Token: USDC by default (on devnet the plugin uses the devnet USDC test mint automatically). Or SOL, WEN, JUP, USDT, or a custom SPL mint (decimals are read from the chain).
+- Token: USDC by default (on devnet the plugin uses the devnet USDC test mint automatically). Other options (SOL, USDT, other listed tokens or a custom SPL mint) only if the owner asks; do not suggest a specific token.
 - Tokens per 1 unit of shop currency: 1 for USD + USDC. Amounts are rounded up, never down.
 - Order number in memo: on (public memo `order:<number>`).
 - Payment email: on (default). The buyer gets a link back to the payment page; WooCommerce itself sends no email for a pending order.
