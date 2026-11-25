@@ -139,6 +139,17 @@
   }
   /* Returns {state:'found'|'name'|'none'|'unreachable', id, title, updated}.
      'found' only when the page lists this exact mint address (or is WEN's known page). */
+  function iqDb() { var n = document.getElementById('cw-iqwiki'); try { return n ? JSON.parse(n.textContent) : {}; } catch (e) { return {}; } }
+  /* First the almanac's hand-checked record (the page is still read live), then the general search. */
+  function iqCheckDb(addr, name, knownId, hints) {
+    var d = iqDb()[addr];
+    if (!d) return iqCheck(addr, name, knownId, hints);
+    return iqWiki(d.id).then(function (wk) {
+      if (!wk) return iqCheck(addr, name, knownId, hints);
+      var st = mentions(wk, addr) ? 'found' : d.st === 'checked' ? 'checked' : d.st === 'related' ? 'name' : 'found';
+      return { state: st, id: wk.id, title: wk.title, updated: String(wk.updated || '').slice(0, 10), note: d.note || '', date: d.date || '' };
+    }, function () { return iqCheck(addr, name, knownId, hints); });
+  }
   function iqCheck(addr, name, knownId, hints) {
     var nm = String(name || '').trim(); var sn = slug(nm);
     var ids = [];
@@ -146,6 +157,8 @@
     if (knownId) add(knownId);
     (hints || []).forEach(add);
     if (sn) { add(sn); add(sn + '-token'); add(sn + '-coin'); }
+    /* IQ.wiki often names pages "name-ticker" (dogwifhat-wif, cat-in-a-dogs-world-mew): a "Name · TICKER" name already gives that slug; also try each part. */
+    nm.split(/\s*[·(),]\s*/).forEach(function (part) { if (part && part !== nm) add(part); });
     var reached = false, byName = null, seen = {};
     function look(id) {
       if (seen[id]) return Promise.resolve(null); seen[id] = 1;
@@ -190,8 +203,12 @@
       td.appendChild(el('span', 'n', name ? 'Searched by the name \u201c' + name + '\u201d and by the address. This says nothing about the token itself.' : 'Searched by the address only (no name given). Type the token name above to search by name.'));
       return td;
     }
-    td.appendChild(el('span', 'v', r.state === 'found' ? 'Page found: ' + r.title : 'Related page: ' + r.title));
-    td.appendChild(el('span', 'n', (r.state === 'found' ? (isWen ? 'The wiki entry the almanac lists among its sources.' : 'The page lists this mint address.') : 'The page does not list this mint address, so it may describe a project or another token with this name.') + (r.updated ? ' Last edit ' + r.updated + '.' : '')));
+    td.appendChild(el('span', 'v', r.state === 'found' || r.state === 'checked' ? 'Page found: ' + r.title : 'Related page: ' + r.title));
+    var why = r.state === 'found' ? (isWen ? 'The wiki entry the almanac lists among its sources.' : 'The page lists this mint address.')
+      : r.state === 'checked' ? 'Matched by hand in the Wen Almanac record' + (r.date ? ' (' + r.date + ')' : '') + ': the page is about this token, but it does not list the mint address.'
+      : (r.note || 'The page does not list this mint address, so it may describe a project or another token with this name.');
+    if (r.state === 'found' && r.note) why += ' ' + r.note;
+    td.appendChild(el('span', 'n', why + (r.updated ? ' Last edit ' + r.updated + '.' : '')));
     var a = el('a', '', 'iq.wiki/wiki/' + r.id);
     if (isWen) { a.href = 'sources.html#off-10'; } else { a.href = 'https://iq.wiki/wiki/' + encodeURIComponent(r.id); a.rel = 'nofollow noopener'; a.target = '_blank'; }
     var sp = el('span', 'n'); sp.appendChild(a); td.appendChild(sp);
@@ -323,9 +340,9 @@
       log('Step 3 · Checking the programs built around WEN (WNS and its royalty transfer hook)…');
       return checkAround(list).then(function () {
         log('Step 4 · Looking for wiki pages on IQ.wiki…');
-        return Promise.all([iqCheck(WEN, 'Wen', 'wen'), iqCheck(addr, o.name, '', WIKI[addr] ? WIKI[addr].split(',') : [])]).then(function (rr) {
+        return Promise.all([iqCheck(WEN, 'Wen', 'wen'), iqCheckDb(addr, o.name, '', WIKI[addr] ? WIKI[addr].split(',') : [])]).then(function (rr) {
           w.iq = rr[0]; o.iq = rr[1];
-          var say = function (r) { return r.state === 'found' ? 'page found (' + r.id + ')' : r.state === 'name' ? 'related page, address not on it (' + r.id + ')' : r.state === 'none' ? 'no page found' : 'IQ.wiki did not answer'; };
+          var say = function (r) { return r.state === 'found' || r.state === 'checked' ? 'page found (' + r.id + ')' : r.state === 'name' ? 'related page, address not on it (' + r.id + ')' : r.state === 'none' ? 'no page found' : 'IQ.wiki did not answer'; };
           log('Step 4 · IQ.wiki: WEN ' + say(w.iq) + '; compared token ' + say(o.iq) + '.', rr[0].state === 'unreachable' ? 'bad' : 'ok');
         });
       }).then(function () {

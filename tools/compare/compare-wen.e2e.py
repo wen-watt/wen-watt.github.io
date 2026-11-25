@@ -23,7 +23,7 @@ DATA = {
  WALLET: {'context': {'slot': 1}, 'value': {'owner': '11111111111111111111111111111111', 'executable': False, 'lamports': 5, 'data': ['', 'base64']}},
  TACC: {'context': {'slot': 1}, 'value': {'owner': SPL, 'executable': False, 'lamports': 5, 'data': {'program': 'spl-token', 'parsed': {'type': 'account', 'info': {}}, 'space': 165}}},
 }
-DATA['7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr'] = DATA[BONK]; DATA['JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'] = DATA[BONK]
+DATA['7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr'] = DATA[BONK]; DATA['JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'] = DATA[BONK]; DATA['EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm'] = DATA[BONK]; DATA['J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn'] = DATA[BONK]
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(executable_path='/usr/bin/google-chrome') if __import__('os').path.exists('/usr/bin/google-chrome') else await p.chromium.launch(); n = 0; fail = 0; methods = []
@@ -38,6 +38,8 @@ async def main():
         IQW = {'wen': {'id': 'wen', 'title': 'Wen', 'updated': '2026-10-20T09:35:29.963Z', 'metadata': [{'id': 'website', 'value': 'https://wenwencoin.com/'}]},
                'bonk': {'id': 'bonk', 'title': 'Bonk', 'updated': '2026-09-01T00:00:00Z', 'metadata': [{'id': 'contract_url', 'value': 'https://solscan.io/token/' + BONK}]},
                'jupiter': {'id': 'jupiter', 'title': 'Jupiter', 'updated': '2026-07-01T00:00:00Z', 'metadata': [{'id': 'contract_url', 'value': 'https://solscan.io/token/JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'}]},
+               'dogwifhat-wif': {'id': 'dogwifhat-wif', 'title': 'Dogwifhat (WIF)', 'updated': '2026-06-01T00:00:00Z', 'metadata': []},
+               'jito': {'id': 'jito', 'title': 'Jito', 'updated': '2026-06-01T00:00:00Z', 'metadata': [{'id': 'contract_url', 'value': 'https://solscan.io/token/jtojtomepa8beP8AuQc6eXt5FriJwfFMwQx2v2f9mCL'}]},
                'popcat': {'id': 'popcat', 'title': 'Popcat', 'updated': '2026-08-01T00:00:00Z', 'metadata': []}}
         iq_state = {'down': False}; iq_q = []
         async def iq_route(r):
@@ -73,6 +75,12 @@ async def main():
         ck('IQ.wiki: JUP found as page "jupiter" by its mint address', 'Page found: Jupiter' in await pg.inner_text('table.cw-iq'))
         await pg.fill('#cw-mint', 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'); await pg.click('#cw-run'); await pg.wait_for_timeout(1000)
         ck('IQ.wiki: pasted address with no name → found through search by address', 'Page found: Jupiter' in await pg.inner_text('table.cw-iq') and await pg.locator('table.cw-iq a[href="https://iq.wiki/wiki/jupiter"]').count() == 1)
+        await pg.click('button.cw-preset[data-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm"]'); await pg.wait_for_timeout(1000)
+        iqt = await pg.inner_text('table.cw-iq')
+        ck('IQ.wiki: WIF from the hand-checked record, honest note', 'Page found: Dogwifhat (WIF)' in iqt and 'Matched by hand in the Wen Almanac record' in iqt)
+        await pg.click('button.cw-preset[data-mint="J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn"]'); await pg.wait_for_timeout(1000)
+        iqt = await pg.inner_text('table.cw-iq')
+        ck('IQ.wiki: JitoSOL → Jito shown as related, not as the token', 'Related page: Jito' in iqt and 'not JitoSOL' in iqt)
         await pg.click('button.cw-preset[data-mint="7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr"]'); await pg.wait_for_timeout(1000)
         iqt = await pg.inner_text('table.cw-iq')
         ck('IQ.wiki: same name without the address is said honestly', 'Related page: Popcat' in iqt and 'may describe a project or another token' in iqt)
