@@ -200,7 +200,7 @@
     }
     if (r.state === 'none') {
       td.appendChild(el('span', 'v', 'No page found'));
-      td.appendChild(el('span', 'n', name ? 'Searched by the name \u201c' + name + '\u201d and by the address. This says nothing about the token itself.' : 'Searched by the address only (no name given). Type the token name above to search by name.'));
+      td.appendChild(el('span', 'n', (name ? 'Searched by the name \u201c' + name + '\u201d and by the address. This says nothing about the token itself.' : 'Searched by the address only (no name given). Type the token name above to search by name.') + ' The page may exist under another name: try the search on IQ.wiki yourself, for example with the project name or the ticker.'));
       return td;
     }
     td.appendChild(el('span', 'v', r.state === 'found' || r.state === 'checked' ? 'Page found: ' + r.title : 'Related page: ' + r.title));
