@@ -1,0 +1,68 @@
+{
+ "sources": {
+  "A": "wen-media-f/wen-hero-triptych-day.jpg",
+  "B": "wen-media-f/wen-hero-triptych-evening.jpg"
+ },
+ "items": [
+  {
+   "src": "A",
+   "panel": 0,
+   "y0": 190,
+   "slug": "be-strong",
+   "title": "Be strong.",
+   "sub": "Stay strong, fren. Fly anyway.",
+   "alt": "Wen in a blue hero suit with a cape flies over a sunny city, caption: Be strong",
+   "note": "Wen says: be strong. Stay strong, fren, and fly anyway."
+  },
+  {
+   "src": "A",
+   "panel": 1,
+   "y0": 120,
+   "slug": "share-your-light",
+   "title": "Share your light.",
+   "sub": "Good energy grows when you give it.",
+   "alt": "Wen with glowing butterfly wings hovers over a city park, caption: Share your light",
+   "note": "Wen says: share your light. Good energy grows when you give it."
+  },
+  {
+   "src": "A",
+   "panel": 2,
+   "y0": 180,
+   "slug": "respect-your-elders",
+   "title": "Respect your elders.",
+   "sub": "Listen first. Learn always.",
+   "alt": "Wen in a white space suit greets smiling families and children in a city square, caption: Respect your elders",
+   "note": "Wen says: respect your elders. Listen first, learn always."
+  },
+  {
+   "src": "B",
+   "panel": 0,
+   "y0": 190,
+   "slug": "tell-the-truth",
+   "title": "Tell the truth.",
+   "sub": "Check addresses, not names. No cap.",
+   "alt": "Wen in a blue hero suit flies over the city at golden hour, caption: Tell the truth",
+   "note": "Wen says: tell the truth. Check addresses, not names."
+  },
+  {
+   "src": "B",
+   "panel": 1,
+   "y0": 110,
+   "slug": "love-life",
+   "title": "Love life.",
+   "sub": "Good vibes, real data, open heart.",
+   "alt": "Wen with luminous butterfly wings holds a sphere of blue energy above a crowd, caption: Love life",
+   "note": "Wen says: love life. Good vibes, real data, open heart."
+  },
+  {
+   "src": "B",
+   "panel": 2,
+   "y0": 230,
+   "slug": "be-kind",
+   "title": "Be kind.",
+   "sub": "Wen came for the smiles. gm.",
+   "alt": "Wen in a white space suit, helmet under his arm, hugged by a laughing girl on an evening square, caption: Be kind",
+   "note": "Wen says: be kind. Wen came for the smiles."
+  }
+ ]
+}
