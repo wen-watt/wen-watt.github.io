@@ -104,8 +104,8 @@
         <button id="cw-copy" type="button">Copy link</button>
       </div>
       <details><summary>Use your own RPC</summary>
-        <label for="cw-rpc" class="small">Solana mainnet RPC address (https). The public one can be busy at peak hours.</label>
-        <input id="cw-rpc" type="url" value="https://api.mainnet-beta.solana.com" spellcheck="false">
+        <label for="cw-rpc" class="small">Leave empty for automatic: free public nodes PublicNode, then dRPC, then Solana Foundation. Or paste your own mainnet RPC address (https). Only the two mint addresses are sent.</label>
+        <input id="cw-rpc" type="url" value="" placeholder="Automatic: PublicNode → dRPC → Solana Foundation" spellcheck="false">
       </details>
       <ol id="cw-log" aria-live="polite"></ol>
     </section>
@@ -117,7 +117,7 @@
 
     <h2>How the procedure works</h2>
     <ol class="cw-steps">
-      <li>Your browser sends one read-only request, <code>getAccountInfo</code>, for the WEN mint and one for the token you chose. Nothing is signed, no wallet is connected.</li>
+      <li>Your browser sends one read-only request, <code>getAccountInfo</code>, for the WEN mint and one for the token you chose, to a free public Solana node (PublicNode, dRPC or the Solana Foundation node, whichever answers first) or to your own. Nothing is signed, no wallet is connected; only the two mint addresses leave your browser.</li>
       <li>The answer comes back decoded by the RPC node (jsonParsed): program, supply, authorities and Token-2022 extensions.</li>
       <li>Each power is turned into plain words: mint and freeze authority, transfer fee, permanent delegate, transfer hook and who can change it, accounts frozen by default, non-transferable, close and pause authority.</li>
       <li>The two columns are lined up; rows that differ are tinted, keys that can still act are marked. The link with <code>?mint=</code> lets anyone repeat the same check.</li>
@@ -141,6 +141,6 @@
 
 <script src="assets/js/main.js?v=20261027"></script>
 <script src="assets/js/nav.js?v=20261027" data-prefix=""></script>
-<script src="assets/js/compare-wen.js?v=20261125"></script>
+<script src="assets/js/compare-wen.js?v=20261125b"></script>
 </body>
 </html>

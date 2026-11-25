@@ -26,11 +26,15 @@ async def main():
         b = await p.chromium.launch(executable_path='/usr/bin/google-chrome') if __import__('os').path.exists('/usr/bin/google-chrome') else await p.chromium.launch(); n = 0; fail = 0; methods = []
         def ck(name, ok, extra=''):
             nonlocal n, fail; n += 1; fail += (not ok); print(('ok ' if ok else 'FAIL ') + name + (' · ' + extra if extra else ''))
+        hosts = []; down = set()
         async def route(r):
+            host = r.request.url.split('/')[2]; hosts.append(host)
+            if host in down: await r.fulfill(status=403, body='forbidden'); return
             body = json.loads(r.request.post_data); methods.append(body['method'])
             await r.fulfill(json={'jsonrpc': '2.0', 'id': 1, 'result': DATA.get(body['params'][0], {'context': {'slot': 1}, 'value': None})})
         ctx = await b.new_context(viewport={'width': 1200, 'height': 1600}); await ctx.add_init_script('window.__xss=0')
-        await ctx.route('https://api.mainnet-beta.solana.com/**', route); await ctx.route('https://api.mainnet-beta.solana.com', route)
+        for h in ['https://solana-rpc.publicnode.com', 'https://solana.drpc.org', 'https://api.mainnet-beta.solana.com']:
+            await ctx.route(h, route); await ctx.route(h + '/**', route)
         pg = await ctx.new_page(); await pg.goto(BASE + 'compare-wen.html'); await pg.wait_for_timeout(600)
         await pg.click(f'button.cw-preset[data-mint="{BONK}"]'); await pg.wait_for_timeout(700)
         t = await pg.inner_text('#cw-result')
@@ -52,9 +56,17 @@ async def main():
         before = len(methods); await pg.fill('#cw-mint', 'hello'); await pg.click('#cw-run'); await pg.wait_for_timeout(300)
         ck('bad input refused with no request', 'not a Solana address' in await pg.inner_text('#cw-log') and len(methods) == before)
         ck('only getAccountInfo is used', set(methods) == {'getAccountInfo'}, str(set(methods)))
+        down.add('solana-rpc.publicnode.com'); hosts.clear()
+        await pg.fill('#cw-mint', BONK); await pg.click('#cw-run'); await pg.wait_for_timeout(800)
+        lg = await pg.inner_text('#cw-log')
+        ck('first node down: falls back to the next', 'dRPC answered' in lg and 'BONK' in await pg.inner_text('#cw-result'), str(hosts))
+        down.update(['solana.drpc.org', 'api.mainnet-beta.solana.com'])
+        await pg.click('#cw-run'); await pg.wait_for_timeout(800)
+        ck('all nodes down: clear message', 'No RPC answered' in await pg.inner_text('#cw-log'))
+        down.clear()
         p2 = await ctx.new_page(); await p2.goto(BASE + 'compare-wen.html?mint=' + PY); await p2.wait_for_timeout(900)
         ck('?mint= repeats the check', 'Token-2022' in await p2.inner_text('#cw-result'))
-        m = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True); await m.route('https://api.mainnet-beta.solana.com', route)
+        m = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True); await m.route('https://solana-rpc.publicnode.com', route)
         mp = await m.new_page(); await mp.goto(BASE + 'compare-wen.html?mint=' + BONK); await mp.wait_for_timeout(1200)
         ck('mobile: no horizontal overflow', await mp.evaluate('document.documentElement.scrollWidth<=window.innerWidth+1'))
         print(f'{n - fail}/{n} checks passed'); await b.close(); sys.exit(1 if fail else 0)

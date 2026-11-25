@@ -6,7 +6,9 @@
   var WEN = 'WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk';
   var SPL = 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
   var T22 = 'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb';
-  var DEFAULT_RPC = 'https://api.mainnet-beta.solana.com';
+  /* Free public mainnet endpoints that answer browser requests, tried in order.
+     Only the two mint addresses are sent. Your own RPC in the field replaces this list. */
+  var RPCS = [['PublicNode', 'https://solana-rpc.publicnode.com'], ['dRPC', 'https://solana.drpc.org'], ['Solana Foundation', 'https://api.mainnet-beta.solana.com']];
   var B58 = /^[1-9A-HJ-NP-Za-km-z]{32,44}$/;
   var LABEL = {};
 
@@ -18,12 +20,26 @@
     $('cw-log').appendChild(li);
   }
 
-  function rpc(url, addr) {
+  function rpcOne(url, addr) {
     return fetch(url, {
       method: 'POST', headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'getAccountInfo', params: [addr, { encoding: 'jsonParsed', commitment: 'confirmed' }] })
-    }).then(function (r) { if (!r.ok) throw new Error('RPC answered HTTP ' + r.status); return r.json(); })
-      .then(function (j) { if (j.error) throw new Error('RPC error: ' + (j.error.message || 'unknown')); return j.result; });
+    }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) { if (j.error) throw new Error('RPC error: ' + (j.error.message || 'unknown')); if (!j.result) throw new Error('empty answer'); return j.result; });
+  }
+
+  /* Try the endpoints in order; remember the first one that answers for the next read. */
+  function rpc(list, addr) {
+    var i = 0, errors = [];
+    function next() {
+      if (i >= list.length) return Promise.reject(new Error('No RPC answered (' + errors.join('; ') + ')'));
+      var ep = list[i++];
+      return rpcOne(ep[1], addr).then(function (res) {
+        if (list.indexOf(ep) > 0 || !list.used) log('Node: ' + ep[0] + ' answered.', 'ok');
+        list.splice(0, list.length, ep); list.used = true; return res;
+      }, function (e) { errors.push(ep[0] + ': ' + e.message); log('Node: ' + ep[0] + ' did not answer (' + e.message + '), trying the next one.'); return next(); });
+    }
+    return next();
   }
 
   function fmtSupply(raw, dec) {
@@ -113,19 +129,20 @@
   }
 
   function run() {
-    var addr = $('cw-mint').value.trim(); var url = ($('cw-rpc').value.trim() || DEFAULT_RPC);
+    var addr = $('cw-mint').value.trim(); var own = $('cw-rpc').value.trim();
+    var list = own ? [['your RPC', own]] : RPCS.slice();
     $('cw-log').textContent = ''; $('cw-result').textContent = '';
     if (!B58.test(addr)) { log('Step 1 · This is not a Solana address. Paste a mint address (32 to 44 base58 characters).', 'bad'); return; }
-    if (!/^https:\/\//.test(url)) { log('The RPC address must start with https://', 'bad'); return; }
+    if (own && !/^https:\/\//.test(own)) { log('The RPC address must start with https://', 'bad'); return; }
     var btn = $('cw-run'); btn.disabled = true;
     try { history.replaceState(null, '', '?mint=' + encodeURIComponent(addr)); } catch (e) {}
     log('Step 1 · Reading the WEN mint from Solana mainnet…');
     var w;
-    rpc(url, WEN).then(function (r) {
+    rpc(list, WEN).then(function (r) {
       w = analyze(r, WEN); if (w.error) throw new Error('WEN: ' + w.error); if (!w.name) w.name = 'WEN';
       log('Step 1 · WEN read at slot ' + w.slot + ': ' + w.program + '.', 'ok');
       log('Step 2 · Reading the compared mint ' + short(addr) + '…');
-      return rpc(url, addr);
+      return rpc(list, addr);
     }).then(function (r) {
       var o = analyze(r, addr);
       if (o.error) { log('Step 2 · ' + o.error, 'bad'); return; }
@@ -134,7 +151,7 @@
       log('Step 3 · Comparing ' + LABELS.length + ' properties: ' + w.powers.length + ' active key(s) on WEN, ' + o.powers.length + ' on the compared token.', 'ok');
       render(w, o);
     }).catch(function (e) {
-      log(String(e && e.message || e) + '. Public RPC can be busy: try again, or paste your own RPC address.', 'bad');
+      log(String(e && e.message || e) + '. Public nodes can be busy: try again in a minute, or paste your own RPC address.', 'bad');
     }).then(function () { btn.disabled = false; });
   }
 
