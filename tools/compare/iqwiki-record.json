@@ -1,0 +1,41 @@
+{
+ "_about": "IQ.wiki pages for the preset tokens, checked by hand. st: address = the page lists this mint; checked = the page is about this token but does not list the mint; related = a related page, not this token. The script still reads each page live.",
+ "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263": {
+  "id": "bonk",
+  "st": "address",
+  "date": "2026-11-25"
+ },
+ "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN": {
+  "id": "jupiter",
+  "st": "address",
+  "date": "2026-11-25",
+  "note": "The page covers Jupiter, the exchange; its Contract field is the JUP mint."
+ },
+ "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm": {
+  "id": "dogwifhat-wif",
+  "st": "checked",
+  "date": "2026-11-25"
+ },
+ "MEW1gQWJ3nEXg2qgERiKu7FAFj79PHvQVREQUzScPP5": {
+  "id": "cat-in-a-dogs-world-mew",
+  "st": "checked",
+  "date": "2026-11-25"
+ },
+ "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v": {
+  "id": "usdc",
+  "st": "checked",
+  "date": "2026-11-25"
+ },
+ "2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo": {
+  "id": "pyusd0",
+  "st": "related",
+  "date": "2026-11-25",
+  "note": "The page describes PYUSD0, the omnichain (LayerZero OFT) version of PYUSD, not the Solana PYUSD mint itself."
+ },
+ "J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn": {
+  "id": "jito",
+  "st": "related",
+  "date": "2026-11-25",
+  "note": "The page covers the Jito protocol that issues JitoSOL; its Contract field is the JTO governance token, not JitoSOL."
+ }
+}
