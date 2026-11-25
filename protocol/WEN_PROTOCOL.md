@@ -2230,3 +2230,11 @@ PR #13 (9737b70), решения владельца:
 - Файл `IQWIKI-EDITS-251126.md` (outputs + repo `protocol/`): готовые английские тексты правок поля Contract для страниц IQ.wiki WEN, dogwifhat-wif, cat-in-a-dogs-world-mew, usdc, с источниками (Circle для USDC; launch-пост @dogwifcoin и Coinbase для WIF; Coinbase и Chainlink CCIP для MEW; сам mint и проверка альманаха для WEN).
 - Вносит владелец своим кошельком (Claude не подписывает и не входит). pyusd0 и jito не править — это другие токены/протокол.
 - После публикации: перевести эти записи в `tools/compare/iqwiki-record.json` из «checked» в «address».
+
+## §123 · 25.11.2026 · Пост «Compare WEN with Any Solana Token» (PR #21) + X + видео
+
+- Пост: https://wen-watt.github.io/posts/compare-wen-with-any-solana-token.html (Almanac news). Без цен, внешние ссылки в тексте только через sources.html (IQ.wiki → #off-10). Подключён: карточка на главной, navigation, sitemap (+2 изображения), llms.txt, llms-full.txt.
+- Графика владельца (собрана на арене по промту Claude): wen-media-f/compare-wen-arrives-og.jpg (1200×630, обложка) и compare-wen-arrives-alt.jpg (вертикальная, в тексте поста). compare-wen.html теперь отдаёт ту же обложку в og:image/twitter:image.
+- 2 поста в X: X-POSTS-251126-compare-wen.md (1 → инструмент, 2 → новость; публиковать по одному).
+- Промт видео для Gemini/Veo: VIDEO-PROMPT-251126-wen-arrives.md (image-to-video, 8 с).
+- Перевод: пост не относится к Lab, папки переводов Lab не затронуты.
