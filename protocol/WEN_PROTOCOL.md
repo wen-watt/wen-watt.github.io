@@ -2293,3 +2293,9 @@ PR #13 (9737b70), решения владельца:
 Голос: тихий учитель — пожелание всего прекрасного + одна лёгкая строка; без цен, обещаний и «купи»; лёгкий сленг допустим (fren, gm, no cap).
 Инструкция и банк из 15 следующих пожеланий: tools/media/WEN-SAYS.md (Breathe · Be patient · Be grateful · Let go · Stay curious · Speak kindly · Help someone · Keep your word · Rest well · Start again · Walk your path · Protect the little ones · Shine quietly · Forgive · Dream big).
 Первый выпуск 25.11.2026: Be strong · Share your light · Respect your elders · Tell the truth · Love life · Be kind.
+
+## §131 · 25.11.2026 · Страницы «Wen says» и 6 постов «Wen wishes you» (PR #31)
+
+- wen-says/<пожелание>.html ×6 + wen-says/ (сводная): у каждой страницы og/twitter-картинка = карточка, поэтому ссылка в X показывает изображение; навигация «назад/вперёд», ImageObject в разметке. Плитки Wen Media теперь открывают эти страницы. Sitemap +7, llms.txt.
+- X-POSTS-251126-wen-says.md: 6 коротких постов «Wen wishes you …» + слоган + весёлые значки + ссылка на страницу. По одному в день.
+- Добавлено в порядок графики (§130), шаг 7: для X делать страницу-обёртку с og:image, а не ссылку на сам файл.
