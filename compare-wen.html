@@ -54,6 +54,7 @@
 #cw-run:disabled{opacity:.6;cursor:wait}
 #cw-copy{padding:11px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:inherit;cursor:pointer;font:inherit}
 .cw-panel details{margin-top:12px;font-size:.88rem}
+#cw-name{flex:1 1 340px;min-width:0;padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:inherit;font:inherit;font-size:.86rem}
 #cw-rpc{width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:inherit;font-family:ui-monospace,monospace}
 #cw-log{list-style:none;padding:0;margin:14px 0 0;font-size:.9rem}
 #cw-log li{padding:4px 0 4px 22px;position:relative}
@@ -112,8 +113,9 @@
         <button id="cw-run" type="button">&#9654; Run the comparison</button>
         <button id="cw-copy" type="button">Copy link</button>
       </div>
+      <div class="cw-row"><input id="cw-name" type="text" maxlength="60" autocomplete="off" spellcheck="false" placeholder="Token name (optional, for the IQ.wiki search), e.g. Bonk" aria-label="Token name for the IQ.wiki search"></div>
       <details><summary>Use your own RPC</summary>
-        <label for="cw-rpc" class="small">Leave empty for automatic: free public nodes PublicNode, then dRPC, then Solana Foundation. Or paste your own mainnet RPC address (https). Only the two mint addresses are sent.</label>
+        <label for="cw-rpc" class="small">Leave empty for automatic: free public nodes PublicNode, then dRPC, then Solana Foundation. Or paste your own mainnet RPC address (https). Only the two mint addresses are sent to Solana; the IQ.wiki search sends the token name (or the address if no name is given) to api.iq.wiki.</label>
         <input id="cw-rpc" type="url" value="" placeholder="Automatic: PublicNode → dRPC → Solana Foundation" spellcheck="false">
       </details>
       <ol id="cw-log" aria-live="polite"></ol>
@@ -136,6 +138,7 @@
       <li>The answer comes back decoded by the RPC node (jsonParsed): program, supply, authorities and Token-2022 extensions.</li>
       <li>Each power is turned into plain words: mint and freeze authority, transfer fee, permanent delegate, transfer hook and who can change it, accounts frozen by default, non-transferable, close and pause authority.</li>
       <li>The page then reads the two programs built around WEN that the almanac records, the WNS program (wns1g…) and its royalty transfer-hook program (wen_royalty_distribution, diste3n…), and says whether they are live, executable code on mainnet. The poem NFT's own mint address is not yet in the almanac record, so the page checks the programs its hook relies on.</li>
+      <li>It then asks the public IQ.wiki encyclopedia whether a wiki page exists: for WEN (iq.wiki/wiki/wen, listed in the almanac's sources) and for the compared token, by its name and address. A page found means public documentation exists; no page says nothing about the token itself.</li>
       <li>The two columns are lined up; rows that differ are tinted, keys that can still act are marked, and every row has a <em>What it means</em> button with a plain explanation and the picture story about it. Below, 20 facts from the almanac record appear next to the compared token. The link with <code>?mint=</code> lets anyone repeat the same check.</li>
     </ol>
 
@@ -157,6 +160,6 @@
 
 <script src="assets/js/main.js?v=20261027"></script>
 <script src="assets/js/nav.js?v=20261027" data-prefix=""></script>
-<script src="assets/js/compare-wen.js?v=20261125c"></script>
+<script src="assets/js/compare-wen.js?v=20261125d"></script>
 </body>
 </html>

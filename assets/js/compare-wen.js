@@ -115,6 +115,75 @@
     ['soul', 'Non-transferable'], ['close', 'Mint close authority'], ['pause', 'Pausable'], ['meta', 'Metadata']];
 
   var LIVE = {};
+
+  /* IQ.wiki presence: read-only GraphQL queries to the public IQ.wiki API. */
+  var IQ = 'https://api.iq.wiki/graphql';
+  function iq(query, vars) {
+    var ctl = window.AbortController ? new AbortController() : null;
+    var tm = setTimeout(function () { if (ctl) ctl.abort(); }, 9000);
+    return fetch(IQ, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ query: query, variables: vars }), signal: ctl ? ctl.signal : undefined })
+      .then(function (r) { clearTimeout(tm); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) { return j && j.data ? j.data : {}; });
+  }
+  function iqWiki(id) {
+    return iq('query($id:String!){wiki(id:$id){id title updated metadata{id value}}}', { id: id }).then(function (d) { return d.wiki || null; });
+  }
+  function iqSearch(q) {
+    return iq('query($q:String!){search(query:$q){suggestions{id title}}}', { q: q })
+      .then(function (d) { return (d.search && d.search.suggestions) || []; }, function () { return []; });
+  }
+  function slug(n) { return String(n || '').toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
+  function mentions(wk, addr) {
+    return (wk.metadata || []).some(function (m) { return String(m.value || '').indexOf(addr) !== -1; });
+  }
+  /* Returns {state:'found'|'name'|'none'|'unreachable', id, title, updated} */
+  function iqCheck(addr, name, knownId) {
+    var nm = String(name || '').trim();
+    var ids = [];
+    if (knownId) ids.push(knownId);
+    if (nm && ids.indexOf(slug(nm)) === -1) ids.push(slug(nm));
+    var reached = false;
+    function tryIds(i) {
+      if (i >= ids.length) return Promise.resolve(null);
+      return iqWiki(ids[i]).then(function (wk) { reached = true; return wk || tryIds(i + 1); });
+    }
+    return tryIds(0).then(function (wk) {
+      if (wk) return wk;
+      return iqSearch(nm || addr).then(function (list) {
+        var pick = list.filter(function (x) { return nm && String(x.title || '').toLowerCase() === nm.toLowerCase(); })[0] || null;
+        var others = list.slice(0, 3);
+        if (pick) return iqWiki(pick.id);
+        var chain = Promise.resolve(null);
+        others.forEach(function (x) { chain = chain.then(function (f) { return f || iqWiki(x.id).then(function (wk2) { return wk2 && mentions(wk2, addr) ? wk2 : null; }, function () { return null; }); }); });
+        return chain;
+      });
+    }).then(function (wk) {
+      if (!wk) return { state: 'none' };
+      var st = knownId && wk.id === knownId ? 'found' : (mentions(wk, addr) ? 'found' : 'name');
+      return { state: st, id: wk.id, title: wk.title, updated: String(wk.updated || '').slice(0, 10) };
+    }, function () { return reached ? { state: 'none' } : { state: 'unreachable' }; });
+  }
+  function iqCell(r, addr, name, isWen) {
+    var td = el('td');
+    if (!r) { td.appendChild(el('span', 'n', 'Not checked.')); return td; }
+    if (r.state === 'unreachable') {
+      td.appendChild(el('span', 'v', 'Could not be checked from this browser'));
+      td.appendChild(el('span', 'n', 'IQ.wiki did not answer. You can search it yourself: '));
+      var s1 = el('a', '', 'search IQ.wiki'); s1.href = 'https://iq.wiki/search/' + encodeURIComponent(name || addr); s1.rel = 'nofollow noopener'; s1.target = '_blank'; td.lastChild.appendChild(s1);
+      return td;
+    }
+    if (r.state === 'none') {
+      td.appendChild(el('span', 'v', 'No page found'));
+      td.appendChild(el('span', 'n', name ? 'Searched by the name \u201c' + name + '\u201d and by the address. This says nothing about the token itself.' : 'Searched by the address only (no name given). Type the token name above to search by name.'));
+      return td;
+    }
+    td.appendChild(el('span', 'v', r.state === 'found' ? 'Page found: ' + r.title : 'Page with the same name: ' + r.title));
+    td.appendChild(el('span', 'n', (r.state === 'found' ? (isWen ? 'The wiki entry the almanac lists among its sources.' : 'The page lists this mint address.') : 'The page does not list this mint address, so it may describe another token with the same name.') + (r.updated ? ' Last edit ' + r.updated + '.' : '')));
+    var a = el('a', '', 'iq.wiki/wiki/' + r.id);
+    if (isWen) { a.href = 'sources.html#off-10'; } else { a.href = 'https://iq.wiki/wiki/' + encodeURIComponent(r.id); a.rel = 'nofollow noopener'; a.target = '_blank'; }
+    var sp = el('span', 'n'); sp.appendChild(a); td.appendChild(sp);
+    return td;
+  }
   function almanac() {
     var n = document.getElementById('cw-almanac');
     try { return n ? JSON.parse(n.textContent) : []; } catch (e) { return []; }
@@ -178,6 +247,17 @@
       if (ex) tb.appendChild(er);
     });
     t.appendChild(tb); box.appendChild(t);
+    if (w.iq || o.iq) {
+      box.appendChild(el('h3', 'cw-h3', 'In the open crypto encyclopedia: IQ.wiki'));
+      box.appendChild(el('p', 'cw-foot', 'Checked live with the public IQ.wiki API: is there a wiki page for the token? A page is a sign of public documentation, not of quality or value.'));
+      var t3 = el('table', 'cw-table cw-iq'); var h3 = el('thead'); var r3 = el('tr');
+      ['Encyclopedia', 'WEN', o.name || short(o.addr)].forEach(function (h) { r3.appendChild(el('th', '', h)); });
+      h3.appendChild(r3); t3.appendChild(h3); var b3 = el('tbody'); var tr3 = el('tr');
+      tr3.appendChild(el('th', '', 'Page on IQ.wiki'));
+      tr3.appendChild(iqCell(w.iq, w.addr, 'Wen', true));
+      tr3.appendChild(iqCell(o.iq, o.addr, o.name, false));
+      b3.appendChild(tr3); t3.appendChild(b3); box.appendChild(t3);
+    }
     var rec = almanac();
     if (rec.length) {
       box.appendChild(el('h3', 'cw-h3', 'Beyond the mint: what the Wen Almanac has recorded'));
@@ -211,7 +291,8 @@
     if (!B58.test(addr)) { log('Step 1 · This is not a Solana address. Paste a mint address (32 to 44 base58 characters).', 'bad'); return; }
     if (own && !/^https:\/\//.test(own)) { log('The RPC address must start with https://', 'bad'); return; }
     var btn = $('cw-run'); btn.disabled = true;
-    try { history.replaceState(null, '', '?mint=' + encodeURIComponent(addr)); } catch (e) {}
+    var nmq = $('cw-name') && $('cw-name').value.trim() ? '&name=' + encodeURIComponent($('cw-name').value.trim()) : '';
+    try { history.replaceState(null, '', '?mint=' + encodeURIComponent(addr) + nmq); } catch (e) {}
     log('Step 1 · Reading the WEN mint from Solana mainnet…');
     var w;
     rpc(list, WEN).then(function (r) {
@@ -223,10 +304,19 @@
       var o = analyze(r, addr);
       if (o.error) { log('Step 2 · ' + o.error, 'bad'); return; }
       if (!o.name && LABEL[addr]) o.name = LABEL[addr];
+      var typed = $('cw-name') ? $('cw-name').value.trim().slice(0, 60) : '';
+      if (typed) o.name = typed;
       log('Step 2 · Read at slot ' + o.slot + ': ' + o.program + (o.name ? ', ' + o.name : '') + '.', 'ok');
       log('Step 3 · Checking the programs built around WEN (WNS and its royalty transfer hook)…');
       return checkAround(list).then(function () {
-        log('Step 4 · Comparing ' + LABELS.length + ' on-chain properties and ' + almanac().length + ' almanac facts: ' + w.powers.length + ' active key(s) on WEN, ' + o.powers.length + ' on the compared token.', 'ok');
+        log('Step 4 · Looking for wiki pages on IQ.wiki…');
+        return Promise.all([iqCheck(WEN, 'Wen', 'wen'), iqCheck(addr, o.name, '')]).then(function (rr) {
+          w.iq = rr[0]; o.iq = rr[1];
+          var say = function (r) { return r.state === 'found' ? 'page found (' + r.id + ')' : r.state === 'name' ? 'page with the same name (' + r.id + ')' : r.state === 'none' ? 'no page found' : 'IQ.wiki did not answer'; };
+          log('Step 4 · IQ.wiki: WEN ' + say(w.iq) + '; compared token ' + say(o.iq) + '.', rr[0].state === 'unreachable' ? 'bad' : 'ok');
+        });
+      }).then(function () {
+        log('Step 5 · Comparing ' + LABELS.length + ' on-chain properties and ' + almanac().length + ' almanac facts: ' + w.powers.length + ' active key(s) on WEN, ' + o.powers.length + ' on the compared token.', 'ok');
         render(w, o);
       });
     }).catch(function (e) {
@@ -237,15 +327,18 @@
   document.addEventListener('DOMContentLoaded', function () {
     if (!$('cw-run')) return;
     $('cw-run').addEventListener('click', run);
+    $('cw-mint').addEventListener('input', function () { if ($('cw-name')) $('cw-name').value = ''; });
     $('cw-mint').addEventListener('keydown', function (e) { if (e.key === 'Enter') run(); });
     Array.prototype.forEach.call(document.querySelectorAll('.cw-preset'), function (b) {
       LABEL[b.getAttribute('data-mint')] = b.textContent;
-      b.addEventListener('click', function () { $('cw-mint').value = b.getAttribute('data-mint'); run(); });
+      b.addEventListener('click', function () { $('cw-mint').value = b.getAttribute('data-mint'); if ($('cw-name')) $('cw-name').value = b.textContent; run(); });
     });
     $('cw-copy').addEventListener('click', function () {
-      var u = location.origin + location.pathname + '?mint=' + encodeURIComponent($('cw-mint').value.trim());
+      var u = location.origin + location.pathname + '?mint=' + encodeURIComponent($('cw-mint').value.trim()) + ($('cw-name') && $('cw-name').value.trim() ? '&name=' + encodeURIComponent($('cw-name').value.trim()) : '');
       if (navigator.clipboard) navigator.clipboard.writeText(u).then(function () { $('cw-copy').textContent = 'Link copied'; });
     });
+    var qn = new URLSearchParams(location.search).get('name');
+    if (qn && $('cw-name')) $('cw-name').value = qn.slice(0, 60);
     var q = new URLSearchParams(location.search).get('mint');
     if (q && B58.test(q)) { $('cw-mint').value = q; run(); }
   });

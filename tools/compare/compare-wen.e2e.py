@@ -23,6 +23,7 @@ DATA = {
  WALLET: {'context': {'slot': 1}, 'value': {'owner': '11111111111111111111111111111111', 'executable': False, 'lamports': 5, 'data': ['', 'base64']}},
  TACC: {'context': {'slot': 1}, 'value': {'owner': SPL, 'executable': False, 'lamports': 5, 'data': {'program': 'spl-token', 'parsed': {'type': 'account', 'info': {}}, 'space': 165}}},
 }
+DATA['7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr'] = DATA[BONK]
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(executable_path='/usr/bin/google-chrome') if __import__('os').path.exists('/usr/bin/google-chrome') else await p.chromium.launch(); n = 0; fail = 0; methods = []
@@ -34,7 +35,20 @@ async def main():
             if host in down: await r.fulfill(status=403, body='forbidden'); return
             body = json.loads(r.request.post_data); methods.append(body['method'])
             await r.fulfill(json={'jsonrpc': '2.0', 'id': 1, 'result': DATA.get(body['params'][0], {'context': {'slot': 1}, 'value': None})})
+        IQW = {'wen': {'id': 'wen', 'title': 'Wen', 'updated': '2026-10-20T09:35:29.963Z', 'metadata': [{'id': 'website', 'value': 'https://wenwencoin.com/'}]},
+               'bonk': {'id': 'bonk', 'title': 'Bonk', 'updated': '2026-09-01T00:00:00Z', 'metadata': [{'id': 'contract_url', 'value': 'https://solscan.io/token/' + BONK}]},
+               'popcat': {'id': 'popcat', 'title': 'Popcat', 'updated': '2026-08-01T00:00:00Z', 'metadata': []}}
+        iq_state = {'down': False}; iq_q = []
+        async def iq_route(r):
+            if iq_state['down']: await r.abort(); return
+            H = {'access-control-allow-origin': '*', 'access-control-allow-headers': 'content-type', 'access-control-allow-methods': 'POST, OPTIONS'}
+            if r.request.method == 'OPTIONS': await r.fulfill(status=204, headers=H); return
+            body = json.loads(r.request.post_data); v = body.get('variables') or {}; iq_q.append(v)
+            if 'search' in body['query']:
+                await r.fulfill(json={'data': {'search': {'suggestions': []}}}, headers=H); return
+            await r.fulfill(json={'data': {'wiki': IQW.get(v.get('id'))}}, headers=H)
         ctx = await b.new_context(viewport={'width': 1200, 'height': 1600}); await ctx.add_init_script('window.__xss=0')
+        await ctx.route('https://api.iq.wiki/**', iq_route)
         for h in ['https://solana-rpc.publicnode.com', 'https://solana.drpc.org', 'https://api.mainnet-beta.solana.com']:
             await ctx.route(h, route); await ctx.route(h + '/**', route)
         pg = await ctx.new_page(); await pg.goto(BASE + 'compare-wen.html'); await pg.wait_for_timeout(600)
@@ -50,9 +64,20 @@ async def main():
         await pg.locator('button.cw-q').first.click()
         ck('What it means opens an explanation with a picture story', await pg.locator('tr.cw-explain:not([hidden]) a[href^="image-story/"]').count() == 1)
         ck('static list of 20 facts for readers and search engines', await pg.locator('ol.cw-list li').count() == 20)
+        iqt = await pg.inner_text('table.cw-iq')
+        ck('IQ.wiki: WEN page found, linked through sources', 'Page found: Wen' in iqt and await pg.locator('table.cw-iq a[href="sources.html#off-10"]').count() == 1)
+        ck('IQ.wiki: BONK page found by its mint address', 'Page found: Bonk' in iqt and 'lists this mint address' in iqt)
+        await pg.click('button.cw-preset[data-mint="7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr"]'); await pg.wait_for_timeout(1000)
+        iqt = await pg.inner_text('table.cw-iq')
+        ck('IQ.wiki: same name without the address is said honestly', 'Page with the same name: Popcat' in iqt and 'may describe another token' in iqt)
         await pg.fill('#cw-mint', PY); await pg.click('#cw-run'); await pg.wait_for_timeout(1000)
         t = await pg.inner_text('#cw-result')
         ck('Token-2022 read', 'Token-2022' in t)
+        ck('IQ.wiki: new address clears the old name; no page → neutral wording', 'No page found' in t and 'says nothing about the token itself' in t and await pg.input_value('#cw-name') == '')
+        iq_state['down'] = True; await pg.click('#cw-run'); await pg.wait_for_timeout(1200)
+        t = await pg.inner_text('#cw-result')
+        ck('IQ.wiki down: comparison still shown, honest message', 'Could not be checked from this browser' in t and 'Token-2022' in t)
+        iq_state['down'] = False
         ck('permanent delegate flagged', 'ANY holder' in t)
         ck('transfer hook authority shown', 'Can be changed by' in t)
         ck('0% fee with its authority shown', '0% per transfer' in t and 'Fee can be changed' in t)
@@ -76,7 +101,7 @@ async def main():
         down.clear()
         p2 = await ctx.new_page(); await p2.goto(BASE + 'compare-wen.html?mint=' + PY); await p2.wait_for_timeout(900)
         ck('?mint= repeats the check', 'Token-2022' in await p2.inner_text('#cw-result'))
-        m = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True); await m.route('https://solana-rpc.publicnode.com', route)
+        m = await b.new_context(viewport={'width': 390, 'height': 844}, is_mobile=True); await m.route('https://solana-rpc.publicnode.com', route); await m.route('https://api.iq.wiki/**', iq_route)
         mp = await m.new_page(); await mp.goto(BASE + 'compare-wen.html?mint=' + BONK); await mp.wait_for_timeout(1200)
         ck('mobile: no horizontal overflow', await mp.evaluate('document.documentElement.scrollWidth<=window.innerWidth+1'))
         print(f'{n - fail}/{n} checks passed'); await b.close(); sys.exit(1 if fail else 0)
