@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- icons:start -->
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#0b0e18">
+<!-- icons:end -->
+<title>Compare WEN with Any Solana Token: On-Chain Powers Side by Side</title>
+<link rel="canonical" href="https://wen-watt.github.io/compare-wen.html">
+<meta name="description" content="Compare WEN with any Solana token by what the chain says: token program, supply, mint and freeze authority, transfer fee, permanent delegate, transfer hook. One read-only request per mint. No prices, no wallet.">
+<!-- seo:start -->
+<meta name="keywords" content="compare WEN, WEN token, Solana token checker, Token-2022 extensions, mint authority, freeze authority, permanent delegate, transfer fee, BONK, JUP, WIF">
+<meta property="og:site_name" content="Wen Almanac">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Compare WEN with Any Solana Token: On-Chain Powers Side by Side">
+<meta property="og:description" content="Compare WEN with any Solana token by what the chain says: token program, supply, mint and freeze authority, transfer fee, permanent delegate, transfer hook. One read-only request per mint. No prices, no wallet.">
+<meta property="og:url" content="https://wen-watt.github.io/compare-wen.html">
+<meta property="og:image" content="https://wen-watt.github.io/wen-media/wen-w-coin-matrix-btc.jpeg">
+<meta property="og:image:alt" content="W Coin Wen crypto not Wendy&#x27;s">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://wen-watt.github.io/wen-media/wen-w-coin-matrix-btc.jpeg">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Compare WEN", "url": "https://wen-watt.github.io/compare-wen.html", "description": "Compare WEN with any Solana token by what the chain says: token program, supply, mint and freeze authority, transfer fee, permanent delegate, transfer hook. One read-only request per mint. No prices, no wallet.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (browser)", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "isAccessibleForFree": true, "license": "https://www.apache.org/licenses/LICENSE-2.0", "isPartOf": {"@type": "WebSite", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}, "publisher": {"@type": "Organization", "name": "Wen Almanac", "url": "https://wen-watt.github.io/"}}</script>
+<!-- seo:end -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css?v=20261027">
+<style id="t22-fit">pre{max-width:100%;overflow-x:auto}pre code{white-space:pre}a.src-ref{overflow-wrap:anywhere}.lab-table{display:block;overflow-x:auto}</style>
+<style>
+.cw-hero{font-size:1.05rem;color:var(--ink-dim,#b9c0d4);max-width:760px}
+.cw-panel{margin:22px 0;padding:18px;border:1px solid rgba(255,255,255,.12);border-radius:16px;background:rgba(255,255,255,.03)}
+.cw-presets{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.cw-preset{border:1px solid rgba(255,255,255,.2);background:transparent;color:inherit;border-radius:999px;padding:6px 14px;cursor:pointer;font:inherit;font-size:.9rem}
+.cw-preset:hover,.cw-preset:focus-visible{border-color:#e0a444}
+.cw-row{display:flex;gap:10px;flex-wrap:wrap}
+#cw-mint{flex:1 1 340px;min-width:0;padding:11px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:inherit;font:inherit;font-family:ui-monospace,monospace;font-size:.88rem}
+#cw-run{padding:11px 18px;border-radius:10px;border:0;background:#e0a444;color:#1b1406;font-weight:700;cursor:pointer;font:inherit;font-weight:700}
+#cw-run:disabled{opacity:.6;cursor:wait}
+#cw-copy{padding:11px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);background:transparent;color:inherit;cursor:pointer;font:inherit}
+.cw-panel details{margin-top:12px;font-size:.88rem}
+#cw-rpc{width:100%;margin-top:6px;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.25);color:inherit;font-family:ui-monospace,monospace}
+#cw-log{list-style:none;padding:0;margin:14px 0 0;font-size:.9rem}
+#cw-log li{padding:4px 0 4px 22px;position:relative}
+#cw-log li::before{content:"\2022";position:absolute;left:6px;color:#8a93a8}
+#cw-log li.ok::before{content:"\2713";color:#4fd1c5}
+#cw-log li.bad::before{content:"!";color:#ff8a7a;font-weight:700}
+.cw-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:18px 0}
+.cw-card{padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04)}
+.cw-card-k{margin:0;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#e0a444}
+.cw-card-n{margin:4px 0 2px;font-size:1.25rem;font-weight:600}
+.cw-card-p{margin:0 0 8px;color:var(--ink-dim,#b9c0d4);font-size:.9rem}
+.cw-card-s{margin:0 0 8px;font-weight:600}.cw-card-s.none{color:#4fd1c5}.cw-card-s.has{color:#f0b35a}
+.cw-addr{font-size:.75rem;word-break:break-all;opacity:.8}
+.cw-table{width:100%;border-collapse:collapse;font-size:.9rem}
+.cw-table th,.cw-table td{text-align:left;vertical-align:top;padding:9px 8px;border-bottom:1px solid rgba(255,255,255,.1)}
+.cw-table thead th{font-size:.8rem;color:var(--ink-dim,#b9c0d4)}
+.cw-table tbody th{width:24%;font-weight:600}
+.cw-table tr.diff td{background:rgba(224,164,68,.06)}
+.cw-table td .v{display:block}.cw-table td .n{display:block;font-size:.8rem;opacity:.7;margin-top:2px}
+.cw-table td.power .v{color:#f0b35a}
+.cw-foot{font-size:.82rem;color:var(--ink-dim,#b9c0d4)}
+.cw-steps{counter-reset:s;list-style:none;padding:0}
+.cw-steps li{counter-increment:s;padding:6px 0 6px 34px;position:relative}
+.cw-steps li::before{content:counter(s);position:absolute;left:0;top:6px;width:24px;height:24px;border-radius:50%;background:rgba(224,164,68,.18);color:#e0a444;text-align:center;line-height:24px;font-size:.8rem;font-weight:700}
+@media (max-width:640px){.cw-table tbody th{width:auto}.cw-table{font-size:.82rem}}
+</style>
+</head>
+<body>
+<div class="space"></div>
+<div class="stars"></div>
+<div class="stars layer2"></div>
+<div class="veil"></div>
+<div class="streaks">
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+  <span class="streak teal"></span>
+  <span class="streak violet"></span>
+  <span class="streak"></span>
+</div>
+
+<div class="site-shell">
+  <div id="sidebar-slot"></div>
+
+  <main class="wrap">
+    <article>
+    <h1>Compare WEN with any Solana token</h1>
+    <p class="cw-hero">Names, tickers and logos can be copied. The powers written into a token cannot hide. Pick a token or paste any mint address: this page reads WEN and that token straight from Solana and lines up what the chain says. Who can still create tokens, freeze a holder, move anyone's tokens or take a fee on every transfer. No prices, no rankings, no wallet.</p>
+
+    <section class="cw-panel" aria-label="Run the comparison">
+      <div class="cw-presets" aria-label="Popular tokens"><button type="button" class="cw-preset" data-mint="DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263">BONK</button><button type="button" class="cw-preset" data-mint="JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN">JUP</button><button type="button" class="cw-preset" data-mint="EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm">WIF</button><button type="button" class="cw-preset" data-mint="7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr">POPCAT</button><button type="button" class="cw-preset" data-mint="MEW1gQWJ3nEXg2qgERiKu7FAFj79PHvQVREQUzScPP5">MEW</button><button type="button" class="cw-preset" data-mint="EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v">USDC</button><button type="button" class="cw-preset" data-mint="2b1kV6DkPAnxd5ixfnxCpjxmKwqjjaYmCZfHsFu24GXo">PYUSD</button><button type="button" class="cw-preset" data-mint="J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn">JitoSOL</button></div>
+      <div class="cw-row">
+        <input id="cw-mint" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="Paste a token mint address" aria-label="Token mint address">
+        <button id="cw-run" type="button">&#9654; Run the comparison</button>
+        <button id="cw-copy" type="button">Copy link</button>
+      </div>
+      <details><summary>Use your own RPC</summary>
+        <label for="cw-rpc" class="small">Solana mainnet RPC address (https). The public one can be busy at peak hours.</label>
+        <input id="cw-rpc" type="url" value="https://api.mainnet-beta.solana.com" spellcheck="false">
+      </details>
+      <ol id="cw-log" aria-live="polite"></ol>
+    </section>
+
+    <div id="cw-result" aria-live="polite"></div>
+
+    <h2>What we already know about WEN</h2>
+    <p>An open check read the WEN mint on November 11, 2026 at slot 468049071: it lives on the original SPL Token program with no extensions, and its mint and freeze authorities are revoked. So no one can create more WEN, freeze a holder or add a transfer fee. Run the comparison to read it again right now. <a href="token-2022-wns-solana-wen.html#verified-chain">The verified chain &rarr;</a></p>
+
+    <h2>How the procedure works</h2>
+    <ol class="cw-steps">
+      <li>Your browser sends one read-only request, <code>getAccountInfo</code>, for the WEN mint and one for the token you chose. Nothing is signed, no wallet is connected.</li>
+      <li>The answer comes back decoded by the RPC node (jsonParsed): program, supply, authorities and Token-2022 extensions.</li>
+      <li>Each power is turned into plain words: mint and freeze authority, transfer fee, permanent delegate, transfer hook and who can change it, accounts frozen by default, non-transferable, close and pause authority.</li>
+      <li>The two columns are lined up; rows that differ are tinted, keys that can still act are marked. The link with <code>?mint=</code> lets anyone repeat the same check.</li>
+    </ol>
+
+    <h2>Read it fairly</h2>
+    <p>A key that can act is not good or bad by itself. Stablecoins and regulated assets often must keep a freeze authority or a permanent delegate by law; a meme coin usually gives these keys up. The page compares powers, it does not judge projects. Preset addresses are common community references: the page always reads the chain, so check that the address is the one you mean. The mint itself is only part of the picture; programs behind a transfer hook need their own review.</p>
+
+    <section class="dyk" aria-label="Did you know?">
+      <p class="dyk-kicker">Did you know? · Stay safe</p>
+      <p><strong>Search the address, not the name.</strong> Anyone can copy a token's name, ticker and logo. The real WEN is <code>WENWENvqqNya429ubCdR81ZmD69brwQaaBYY6p3LCpk</code>.</p>
+      <p style="margin:0;"><a href="lab/walkthroughs.html#w8">Reading any token like an auditor &rarr;</a></p>
+    </section>
+
+    <p class="claim-note" style="font-size:13px;">Open code: <code>assets/js/compare-wen.js</code>, the browser version of Wen Open Lab Model 6 (<code>lab/code/src/06-inspect-mint.ts</code>), Apache-2.0. Only the read method <code>getAccountInfo</code> is used. Sources for every claim are on the <a href="sources.html">sources page</a> and in the <a href="lab/trust.html">trust chain</a>. Educational content, not financial advice.</p>
+    </article>
+  <div id="footer-slot"></div>
+
+  </main>
+</div>
+
+<script src="assets/js/main.js?v=20261027"></script>
+<script src="assets/js/nav.js?v=20261027" data-prefix=""></script>
+<script src="assets/js/compare-wen.js?v=20261125"></script>
+</body>
+</html>
