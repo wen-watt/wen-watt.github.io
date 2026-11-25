@@ -34,7 +34,7 @@ jobs:
           else
             RANGE="HEAD~1 HEAD"
           fi
-          git diff --name-only --diff-filter=AM $RANGE | grep -E '\.(html|txt|xml|md|zip)$' | grep -v -E '^(\.github/|README\.md$)' | grep -v "$KEY_FILE" | while read -r f; do
+          git diff --name-only --diff-filter=AM $RANGE | grep -E '\.(html|txt|xml|md|zip)$' | grep -v -E '^(\.github/|README\.md$|protocol/)' | grep -v "$KEY_FILE" | while read -r f; do
             case "$f" in
               index.html) echo "$SITE/" ;;
               */index.html) echo "$SITE/${f%index.html}" ;;
