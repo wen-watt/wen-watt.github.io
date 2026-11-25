@@ -87,7 +87,7 @@ async def main():
         await pg.fill('#cw-mint', PY); await pg.click('#cw-run'); await pg.wait_for_timeout(1000)
         t = await pg.inner_text('#cw-result')
         ck('Token-2022 read', 'Token-2022' in t)
-        ck('IQ.wiki: new address clears the old name; no page → neutral wording', 'No page found' in t and 'says nothing about the token itself' in t and await pg.input_value('#cw-name') == '')
+        ck('IQ.wiki: new address clears the old name; no page → neutral wording', 'No page found' in t and 'says nothing about the token itself' in t and 'try the search on IQ.wiki yourself' in t and await pg.input_value('#cw-name') == '')
         iq_state['down'] = True; await pg.click('#cw-run'); await pg.wait_for_timeout(1200)
         t = await pg.inner_text('#cw-result')
         ck('IQ.wiki down: comparison still shown, honest message', 'Could not be checked from this browser' in t and 'Token-2022' in t)
