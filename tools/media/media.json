@@ -1,5 +1,47 @@
 [
  {
+  "file": "wen-media-f/wen-says-be-strong.jpg",
+  "alt": "Wen in a blue hero suit with a cape flies over a sunny city, caption: Be strong",
+  "note": "Wen says: be strong. Stay strong, fren, and fly anyway.",
+  "link": "",
+  "series": "Wen says"
+ },
+ {
+  "file": "wen-media-f/wen-says-share-your-light.jpg",
+  "alt": "Wen with glowing butterfly wings hovers over a city park, caption: Share your light",
+  "note": "Wen says: share your light. Good energy grows when you give it.",
+  "link": "",
+  "series": "Wen says"
+ },
+ {
+  "file": "wen-media-f/wen-says-respect-your-elders.jpg",
+  "alt": "Wen in a white space suit greets smiling families and children in a city square, caption: Respect your elders",
+  "note": "Wen says: respect your elders. Listen first, learn always.",
+  "link": "",
+  "series": "Wen says"
+ },
+ {
+  "file": "wen-media-f/wen-says-tell-the-truth.jpg",
+  "alt": "Wen in a blue hero suit flies over the city at golden hour, caption: Tell the truth",
+  "note": "Wen says: tell the truth. Check addresses, not names.",
+  "link": "",
+  "series": "Wen says"
+ },
+ {
+  "file": "wen-media-f/wen-says-love-life.jpg",
+  "alt": "Wen with luminous butterfly wings holds a sphere of blue energy above a crowd, caption: Love life",
+  "note": "Wen says: love life. Good vibes, real data, open heart.",
+  "link": "",
+  "series": "Wen says"
+ },
+ {
+  "file": "wen-media-f/wen-says-be-kind.jpg",
+  "alt": "Wen in a white space suit, helmet under his arm, hugged by a laughing girl on an evening square, caption: Be kind",
+  "note": "Wen says: be kind. Wen came for the smiles.",
+  "link": "",
+  "series": "Wen says"
+ },
+ {
   "file": "reader-finding-1-fee-rounding.png",
   "alt": "Wen in a space suit at a starship window beside a card titled Fee rounding: thank you, fixed",
   "note": "Token-2022 computes the fee as ceil(amount × basis points ÷ 10,000), capped at the maximum fee. For 401 base units at 25 bps the program expects 2, not 1. A reader caught the Lab rounding it down, and the formula was fixed on November 9, 2026 with new tests.",
