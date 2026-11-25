@@ -10128,5 +10128,13 @@
     <loc>https://wen-watt.github.io/compare-wen.html</loc>
     <lastmod>2026-11-25</lastmod>
     <priority>0.8</priority>
+    <image:image><image:loc>https://wen-watt.github.io/wen-media-f/compare-wen-arrives-og.jpg</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://wen-watt.github.io/posts/compare-wen-with-any-solana-token.html</loc>
+    <lastmod>2026-11-25</lastmod>
+    <priority>0.8</priority>
+    <image:image><image:loc>https://wen-watt.github.io/wen-media-f/compare-wen-arrives-og.jpg</image:loc></image:image>
+    <image:image><image:loc>https://wen-watt.github.io/wen-media-f/compare-wen-arrives-alt.jpg</image:loc></image:image>
   </url>
 </urlset>
