@@ -18,6 +18,8 @@ DATA = {
      {'extension': 'transferFeeConfig', 'state': {'transferFeeConfigAuthority': 'Fee11111111111111111111111111111111111111', 'newerTransferFee': {'epoch': 1, 'maximumFee': 0, 'transferFeeBasisPoints': 0}}},
      {'extension': 'transferHook', 'state': {'authority': 'Hk111111111111111111111111111111111111111', 'programId': 'HkP11111111111111111111111111111111111111'}},
      {'extension': 'tokenMetadata', 'state': {'updateAuthority': 'Up111111111111111111111111111111111111111', 'name': '<img src=x onerror="window.__xss++">', 'symbol': 'PYUSD'}}]}, 'spl-token-2022'),
+ 'wns1gDLt8fgLcGhWi5MqAqgXpwEP1JftKE9eZnXS1HM': {'context': {'slot': 470000001}, 'value': {'owner': 'BPFLoaderUpgradeab1e11111111111111111111111', 'executable': True, 'lamports': 1, 'data': {'program': 'bpf-upgradeable-loader', 'parsed': {'type': 'program', 'info': {'programData': 'PD11111111111111111111111111111111111111111'}}, 'space': 36}}},
+ 'diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay': {'context': {'slot': 470000002}, 'value': {'owner': 'BPFLoaderUpgradeab1e11111111111111111111111', 'executable': True, 'lamports': 1, 'data': {'program': 'bpf-upgradeable-loader', 'parsed': {'type': 'program', 'info': {'programData': 'PD21111111111111111111111111111111111111111'}}, 'space': 36}}},
  WALLET: {'context': {'slot': 1}, 'value': {'owner': '11111111111111111111111111111111', 'executable': False, 'lamports': 5, 'data': ['', 'base64']}},
  TACC: {'context': {'slot': 1}, 'value': {'owner': SPL, 'executable': False, 'lamports': 5, 'data': {'program': 'spl-token', 'parsed': {'type': 'account', 'info': {}}, 'space': 165}}},
 }
@@ -36,11 +38,19 @@ async def main():
         for h in ['https://solana-rpc.publicnode.com', 'https://solana.drpc.org', 'https://api.mainnet-beta.solana.com']:
             await ctx.route(h, route); await ctx.route(h + '/**', route)
         pg = await ctx.new_page(); await pg.goto(BASE + 'compare-wen.html'); await pg.wait_for_timeout(600)
-        await pg.click(f'button.cw-preset[data-mint="{BONK}"]'); await pg.wait_for_timeout(700)
+        await pg.click(f'button.cw-preset[data-mint="{BONK}"]'); await pg.wait_for_timeout(1000)
         t = await pg.inner_text('#cw-result')
         ck('preset BONK compared, names on cards', 'SPL Token (original)' in t and 'BONK' in t and 'WEN' in t)
         ck('both: no active keys', await pg.locator('.cw-card-s.none').count() == 2)
-        await pg.fill('#cw-mint', PY); await pg.click('#cw-run'); await pg.wait_for_timeout(700)
+        lg = await pg.inner_text('#cw-log')
+        ck('WNS program checked live', 'WNS program on mainnet: live on mainnet, executable' in lg)
+        ck('royalty transfer hook program checked live', 'Royalties through a transfer hook: live on mainnet, executable' in lg)
+        ck('20 almanac facts listed next to the token', await pg.locator('table.cw-rec tbody tr').count() == 20 and await pg.locator('td.cw-none').count() == 20)
+        ck('live badge on almanac rows', await pg.locator('.cw-st.live').count() == 2)
+        await pg.locator('button.cw-q').first.click()
+        ck('What it means opens an explanation with a picture story', await pg.locator('tr.cw-explain:not([hidden]) a[href^="image-story/"]').count() == 1)
+        ck('static list of 20 facts for readers and search engines', await pg.locator('ol.cw-list li').count() == 20)
+        await pg.fill('#cw-mint', PY); await pg.click('#cw-run'); await pg.wait_for_timeout(1000)
         t = await pg.inner_text('#cw-result')
         ck('Token-2022 read', 'Token-2022' in t)
         ck('permanent delegate flagged', 'ANY holder' in t)

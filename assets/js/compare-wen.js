@@ -92,9 +92,50 @@
     return out;
   }
 
+  /* What each row means, in plain words, with the image story that explains it (if there is one). */
+  var EXPLAIN = {
+    program: ['Which program created the token and keeps its rules. The original SPL Token is simple and cannot carry extensions; Token-2022 can carry extra rules inside the token.', 'wen-card-verified-1-spl-token.html'],
+    decimals: ['How finely one token can be divided. 5 decimals means the smallest piece is 0.00001.', 'wns-china-wen-crypto.html'],
+    supply: ['How many tokens exist right now, read from the mint. It is a count, not a price.', 'wen-coin-crypto-token-1.html'],
+    mint: ['The mint authority is the key that can create new tokens. Revoked means the supply can never grow.', 'solana-memecoin-crypto-cat-wen.html'],
+    freeze: ['The freeze authority can lock a holder\'s token account so it cannot send. Revoked means no one can freeze you.', 'elevate-wen-coin-start-2025.html'],
+    ext: ['Extensions are extra rules written into a Token-2022 mint (fees, hooks, delegates, metadata). The original SPL Token has none.', 'spl-wns-rwa-token-2022-1.html'],
+    fee: ['A transfer fee takes a share of every transfer for the issuer. It is separate from the small Solana network fee.', 'back-to-the-future.html'],
+    delegate: ['A permanent delegate can move or burn tokens from any holder\'s account, with no permission from the holder.', 'testing-jup-wen-solana.html'],
+    hook: ['A transfer hook runs a program on every transfer. WNS uses one for creator royalties; whoever holds the hook authority can change the rule later.', 'spl-wns-rwa-token-2022-2.html'],
+    frozen: ['If new accounts start frozen, a new holder cannot use the token until the issuer approves (thaws) the account.', 'elevate-wen-coin-start-2025.html'],
+    soul: ['A non-transferable (soulbound) token stays with its owner: good for receipts and badges, not for trading.', 'wns-wen-crypto.html'],
+    close: ['The close authority can delete the mint account once the supply is zero.', ''],
+    pause: ['A pausable token can have all transfers stopped by its pause authority.', ''],
+    meta: ['Where the name, symbol and picture live. WNS keeps them inside the mint; classic tokens keep them in a separate account.', 'wns-sol-spl-token-2022.html']
+  };
+
   var LABELS = [['program', 'Token program'], ['decimals', 'Decimals'], ['supply', 'Supply'], ['mint', 'Mint authority'], ['freeze', 'Freeze authority'],
     ['ext', 'Extensions'], ['fee', 'Transfer fee'], ['delegate', 'Permanent delegate'], ['hook', 'Transfer hook'], ['frozen', 'New accounts start frozen'],
     ['soul', 'Non-transferable'], ['close', 'Mint close authority'], ['pause', 'Pausable'], ['meta', 'Metadata']];
+
+  var LIVE = {};
+  function almanac() {
+    var n = document.getElementById('cw-almanac');
+    try { return n ? JSON.parse(n.textContent) : []; } catch (e) { return []; }
+  }
+
+  /* Read the programs built around WEN (from the almanac record) and say if they are live code on mainnet. */
+  function checkAround(list) {
+    var rec = almanac().filter(function (x) { return x.live; });
+    var chain = Promise.resolve();
+    rec.forEach(function (x) {
+      chain = chain.then(function () {
+        if (LIVE[x.live]) return;
+        return rpc(list, x.live).then(function (r) {
+          var v = r && r.value;
+          LIVE[x.live] = v && v.executable ? 'live on mainnet, executable (slot ' + (r.context && r.context.slot) + ')' : 'not found as a program';
+          log('Around WEN · ' + x.t + ': ' + LIVE[x.live] + '.', v && v.executable ? 'ok' : 'bad');
+        }, function () { LIVE[x.live] = 'could not be read now'; log('Around WEN · ' + x.t + ': could not be read now.', 'bad'); });
+      });
+    });
+    return chain;
+  }
 
   function card(title, a) {
     var c = el('div', 'cw-card');
@@ -116,15 +157,50 @@
     LABELS.forEach(function (L) {
       var a = w.rows[L[0]] || { v: '—' }, b = o.rows[L[0]] || { v: '—' };
       var tr = el('tr', a.v !== b.v ? 'diff' : '');
-      tr.appendChild(el('th', '', L[1]));
+      var th0 = el('th', '', L[1] + ' ');
+      var ex = EXPLAIN[L[0]];
+      if (ex) {
+        var q = el('button', 'cw-q', 'What it means'); q.type = 'button'; q.setAttribute('aria-expanded', 'false');
+        th0.appendChild(q);
+        var er = el('tr', 'cw-explain'); er.hidden = true; var ec = el('td'); ec.colSpan = 3;
+        ec.appendChild(el('span', '', ex[0] + ' '));
+        if (ex[1]) { var sl = el('a', '', 'See the picture story \u2192'); sl.href = 'image-story/' + ex[1]; ec.appendChild(sl); }
+        er.appendChild(ec);
+        q.addEventListener('click', (function (row, btn) { return function () { row.hidden = !row.hidden; btn.setAttribute('aria-expanded', String(!row.hidden)); }; })(er, q));
+      }
+      tr.appendChild(th0);
       [a, b].forEach(function (c) {
         var td = el('td', c.power ? 'power' : ''); td.appendChild(el('span', 'v', c.v));
         if (c.note) td.appendChild(el('span', 'n', c.note));
         tr.appendChild(td);
       });
       tb.appendChild(tr);
+      if (ex) tb.appendChild(er);
     });
     t.appendChild(tb); box.appendChild(t);
+    var rec = almanac();
+    if (rec.length) {
+      box.appendChild(el('h3', 'cw-h3', 'Beyond the mint: what the Wen Almanac has recorded'));
+      box.appendChild(el('p', 'cw-foot', 'Facts the chain alone cannot show, each from a page of the almanac with its source and status. For other tokens these rows say only that the almanac has no record: check their own sources before drawing conclusions.'));
+      var t2 = el('table', 'cw-table cw-rec'); var h2 = el('thead'); var r2 = el('tr');
+      ['From the Wen Almanac', 'WEN', o.name || short(o.addr)].forEach(function (h) { r2.appendChild(el('th', '', h)); });
+      h2.appendChild(r2); t2.appendChild(h2); var b2 = el('tbody');
+      rec.forEach(function (x, k) {
+        var tr = el('tr'); tr.appendChild(el('th', '', (k + 1) + '. ' + x.t));
+        var td = el('td'); td.appendChild(el('span', 'v', x.f));
+        var meta = el('span', 'n', x.m + ' ');
+        var st = el('span', 'cw-st ' + x.s, x.s === 'verified' ? 'verified' : 'reported'); meta.appendChild(st);
+        if (x.live && LIVE[x.live]) { meta.appendChild(document.createTextNode(' ')); meta.appendChild(el('span', 'cw-st live', LIVE[x.live])); }
+        td.appendChild(meta);
+        var links = el('span', 'n');
+        var a1 = el('a', '', 'Source in the almanac'); a1.href = x.src; links.appendChild(a1);
+        if (x.story) { links.appendChild(document.createTextNode(' \u00b7 ')); var a2 = el('a', '', 'Picture story'); a2.href = 'image-story/' + x.story; links.appendChild(a2); }
+        td.appendChild(links); tr.appendChild(td);
+        tr.appendChild(el('td', 'cw-none', 'No record in the Wen Almanac'));
+        b2.appendChild(tr);
+      });
+      t2.appendChild(b2); box.appendChild(t2);
+    }
     box.appendChild(el('p', 'cw-foot', 'Read at slot ' + (w.slot || '?') + ' (WEN) and ' + (o.slot || '?') + ' (compared token) with one read-only request each. A key that can act is not good or bad by itself: stablecoins and regulated assets often need freeze or a permanent delegate by law. Compare the powers, then decide. Not financial advice.'));
   }
 
@@ -148,8 +224,11 @@
       if (o.error) { log('Step 2 · ' + o.error, 'bad'); return; }
       if (!o.name && LABEL[addr]) o.name = LABEL[addr];
       log('Step 2 · Read at slot ' + o.slot + ': ' + o.program + (o.name ? ', ' + o.name : '') + '.', 'ok');
-      log('Step 3 · Comparing ' + LABELS.length + ' properties: ' + w.powers.length + ' active key(s) on WEN, ' + o.powers.length + ' on the compared token.', 'ok');
-      render(w, o);
+      log('Step 3 · Checking the programs built around WEN (WNS and its royalty transfer hook)…');
+      return checkAround(list).then(function () {
+        log('Step 4 · Comparing ' + LABELS.length + ' on-chain properties and ' + almanac().length + ' almanac facts: ' + w.powers.length + ' active key(s) on WEN, ' + o.powers.length + ' on the compared token.', 'ok');
+        render(w, o);
+      });
     }).catch(function (e) {
       log(String(e && e.message || e) + '. Public nodes can be busy: try again in a minute, or paste your own RPC address.', 'bad');
     }).then(function () { btn.disabled = false; });
