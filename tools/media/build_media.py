@@ -56,9 +56,14 @@ def migrate():
     return db
 
 
+def src(f):
+    # owner uploads live in wen-media/ (bare file name); Claude-made graphics in wen-media-f/ (path with a folder)
+    return f if '/' in f else f'wen-media/{f}'
+
+
 def dims(f):
     try:
-        with Image.open(f'wen-media/{f}') as im:
+        with Image.open(src(f)) as im:
             return im.size
     except Exception:
         return None
@@ -70,12 +75,12 @@ def build(db):
     tiles = []
     for d in db:
         f = d['file']
-        href = d['link'] or f'wen-media/{f}'
+        href = d['link'] or src(f)
         cls = ' class="has-fact"' if d['link'].startswith('image-story/') else (' class="has-note"' if d['link'] else '')
         title = d['alt'] + (f' — {d["note"]}' if d['note'] and not d['link'].startswith('image-story/') else '')
         wh = dims(f)
         size = f' width="{wh[0]}" height="{wh[1]}"' if wh else ''
-        tiles.append(f'<a href="{E(href)}"{cls} title="{E(title)}"><img src="wen-media/{E(f)}" alt="{E(d["alt"])}" loading="lazy" decoding="async"{size}></a>')
+        tiles.append(f'<a href="{E(href)}"{cls} title="{E(title)}"><img src="{E(src(f))}" alt="{E(d["alt"])}" loading="lazy" decoding="async"{size}></a>')
     grid = '<div id="media-grid">\n' + '\n'.join(tiles) + '\n</div>'
     s = re.sub(r'<div id="media-grid">.*?</div>(?=\s*\n\s*<(p|section) )', grid, s, count=1, flags=re.S) if '<div id="media-grid">\n<a' in s \
         else s.replace('<div id="media-grid"></div>', grid, 1)
@@ -96,7 +101,7 @@ def build(db):
     # JSON-LD: ImageGallery with ImageObjects
     imgs = []
     for d in [x for x in db if x['note']]:
-        o = {'@type': 'ImageObject', 'contentUrl': f'{BASE}wen-media/{d["file"]}', 'name': d['alt'],
+        o = {'@type': 'ImageObject', 'contentUrl': f'{BASE}{src(d["file"])}', 'name': d['alt'],
              'creditText': 'Wen community', 'acquireLicensePage': f'{BASE}originals.html'}
         if d['note']:
             o['description'] = d['note']
@@ -148,7 +153,7 @@ def sitemap(db):
     blk = re.search(r'(<url>\s*<loc>https://wen-watt.github.io/wen-media.html</loc>)(.*?)(</url>)', s, re.S)
     lastmod = re.search(r'<lastmod>[^<]*</lastmod>', blk.group(2))
     lm = '\n    <lastmod>2026-11-24</lastmod>' if lastmod else ''
-    imgs = ''.join(f'\n    <image:image>\n      <image:loc>{BASE}wen-media/{E(d["file"])}</image:loc>\n    </image:image>' for d in db)
+    imgs = ''.join(f'\n    <image:image>\n      <image:loc>{BASE}{E(src(d["file"]))}</image:loc>\n    </image:image>' for d in db)
     s = s[:blk.start()] + blk.group(1) + lm + imgs + '\n  ' + blk.group(3) + s[blk.end():]
     open('sitemap.xml', 'w').write(s)
 
