@@ -2224,3 +2224,9 @@ PR #13 (9737b70), решения владельца:
 - Можно предложить правки на IQ.wiki: добавить mint-адреса на страницы WEN, WIF, MEW, USDC (решение владельца).
 - Тест 33/33. Скрипт `?v=20261125f`.
 - PR #18: при «No page found» добавлена подсказка текстом, без ссылки: «The page may exist under another name: try the search on IQ.wiki yourself, for example with the project name or the ticker.» Скрипт `?v=20261125g`.
+
+## §122 · 25.11.2026 · Заметка правок для IQ.wiki
+
+- Файл `IQWIKI-EDITS-251126.md` (outputs + repo `protocol/`): готовые английские тексты правок поля Contract для страниц IQ.wiki WEN, dogwifhat-wif, cat-in-a-dogs-world-mew, usdc, с источниками (Circle для USDC; launch-пост @dogwifcoin и Coinbase для WIF; Coinbase и Chainlink CCIP для MEW; сам mint и проверка альманаха для WEN).
+- Вносит владелец своим кошельком (Claude не подписывает и не входит). pyusd0 и jito не править — это другие токены/протокол.
+- После публикации: перевести эти записи в `tools/compare/iqwiki-record.json` из «checked» в «address».
