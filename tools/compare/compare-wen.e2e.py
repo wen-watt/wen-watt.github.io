@@ -23,7 +23,7 @@ DATA = {
  WALLET: {'context': {'slot': 1}, 'value': {'owner': '11111111111111111111111111111111', 'executable': False, 'lamports': 5, 'data': ['', 'base64']}},
  TACC: {'context': {'slot': 1}, 'value': {'owner': SPL, 'executable': False, 'lamports': 5, 'data': {'program': 'spl-token', 'parsed': {'type': 'account', 'info': {}}, 'space': 165}}},
 }
-DATA['7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr'] = DATA[BONK]
+DATA['7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr'] = DATA[BONK]; DATA['JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'] = DATA[BONK]
 async def main():
     async with async_playwright() as p:
         b = await p.chromium.launch(executable_path='/usr/bin/google-chrome') if __import__('os').path.exists('/usr/bin/google-chrome') else await p.chromium.launch(); n = 0; fail = 0; methods = []
@@ -37,6 +37,7 @@ async def main():
             await r.fulfill(json={'jsonrpc': '2.0', 'id': 1, 'result': DATA.get(body['params'][0], {'context': {'slot': 1}, 'value': None})})
         IQW = {'wen': {'id': 'wen', 'title': 'Wen', 'updated': '2026-10-20T09:35:29.963Z', 'metadata': [{'id': 'website', 'value': 'https://wenwencoin.com/'}]},
                'bonk': {'id': 'bonk', 'title': 'Bonk', 'updated': '2026-09-01T00:00:00Z', 'metadata': [{'id': 'contract_url', 'value': 'https://solscan.io/token/' + BONK}]},
+               'jupiter': {'id': 'jupiter', 'title': 'Jupiter', 'updated': '2026-07-01T00:00:00Z', 'metadata': [{'id': 'contract_url', 'value': 'https://solscan.io/token/JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'}]},
                'popcat': {'id': 'popcat', 'title': 'Popcat', 'updated': '2026-08-01T00:00:00Z', 'metadata': []}}
         iq_state = {'down': False}; iq_q = []
         async def iq_route(r):
@@ -45,7 +46,8 @@ async def main():
             if r.request.method == 'OPTIONS': await r.fulfill(status=204, headers=H); return
             body = json.loads(r.request.post_data); v = body.get('variables') or {}; iq_q.append(v)
             if 'search' in body['query']:
-                await r.fulfill(json={'data': {'search': {'suggestions': []}}}, headers=H); return
+                sug = [{'id': 'jupiter', 'title': 'Jupiter'}] if v.get('q') == 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN' else []
+                await r.fulfill(json={'data': {'search': {'suggestions': sug}}}, headers=H); return
             await r.fulfill(json={'data': {'wiki': IQW.get(v.get('id'))}}, headers=H)
         ctx = await b.new_context(viewport={'width': 1200, 'height': 1600}); await ctx.add_init_script('window.__xss=0')
         await ctx.route('https://api.iq.wiki/**', iq_route)
@@ -67,9 +69,13 @@ async def main():
         iqt = await pg.inner_text('table.cw-iq')
         ck('IQ.wiki: WEN page found, linked through sources', 'Page found: Wen' in iqt and await pg.locator('table.cw-iq a[href="sources.html#off-10"]').count() == 1)
         ck('IQ.wiki: BONK page found by its mint address', 'Page found: Bonk' in iqt and 'lists this mint address' in iqt)
+        await pg.click('button.cw-preset[data-mint="JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN"]'); await pg.wait_for_timeout(1000)
+        ck('IQ.wiki: JUP found as page "jupiter" by its mint address', 'Page found: Jupiter' in await pg.inner_text('table.cw-iq'))
+        await pg.fill('#cw-mint', 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN'); await pg.click('#cw-run'); await pg.wait_for_timeout(1000)
+        ck('IQ.wiki: pasted address with no name → found through search by address', 'Page found: Jupiter' in await pg.inner_text('table.cw-iq') and await pg.locator('table.cw-iq a[href="https://iq.wiki/wiki/jupiter"]').count() == 1)
         await pg.click('button.cw-preset[data-mint="7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr"]'); await pg.wait_for_timeout(1000)
         iqt = await pg.inner_text('table.cw-iq')
-        ck('IQ.wiki: same name without the address is said honestly', 'Page with the same name: Popcat' in iqt and 'may describe another token' in iqt)
+        ck('IQ.wiki: same name without the address is said honestly', 'Related page: Popcat' in iqt and 'may describe a project or another token' in iqt)
         await pg.fill('#cw-mint', PY); await pg.click('#cw-run'); await pg.wait_for_timeout(1000)
         t = await pg.inner_text('#cw-result')
         ck('Token-2022 read', 'Token-2022' in t)
