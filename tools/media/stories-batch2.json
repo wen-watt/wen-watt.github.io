@@ -1,0 +1,202 @@
+[
+ {
+  "file": "wen-news-wen-counter-og.png",
+  "q": "What is Wen Counter?",
+  "kicker": "Wen Counter",
+  "bold": "A free till in a web page.",
+  "f": "Wen Counter, opened by the Wen Open Lab on November 12, 2026, is a till that lives in a web page: type the amount, show a Solana Pay QR, and the chain confirms the sale. No server, no app store, no card data, no fee per sale.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html"
+ },
+ {
+  "file": "wen-counter-card-1-coffee.png",
+  "q": "How much can a card fee take from a 3-dollar coffee?",
+  "kicker": "Wen Counter",
+  "bold": "12.9%.",
+  "f": "On a 3-dollar coffee a published plan of 2.9% + 30¢ takes 12.9%, because the fixed part of the fee hurts small tickets most. With Wen Counter the till costs 0; the buyer's wallet pays only the Solana network fee, 5,000 lamports per signature.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#why"
+ },
+ {
+  "file": "wen-counter-card-2-receive-only.png",
+  "q": "Which requests is Wen Counter allowed to send?",
+  "kicker": "Under the hood",
+  "bold": "Three read requests, nothing else.",
+  "f": "The counter never connects to a wallet, never asks it to sign and holds no key. Its code may send only getSignaturesForAddress, getTransaction and getAccountInfo, so there is no path from the counter to the shop's money.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#receive-only"
+ },
+ {
+  "file": "wen-counter-card-3-today-you-kept.png",
+  "q": "What does the Wen Counter ledger show?",
+  "kicker": "Wen Counter",
+  "bold": "The card fee you did not pay.",
+  "f": "The ledger measures the card fee you did not pay from confirmed sales at your card terms, shows the effective rate of your own ticket mix, and exports a CSV for your accountant for today, a week, a month, a quarter, a year or any period.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#today-you-kept"
+ },
+ {
+  "file": "wen-counter-card-4-setup-pin.png",
+  "q": "Who decides which wallet a Wen Counter pays into?",
+  "kicker": "Wen Counter",
+  "bold": "Only the owner, behind a PIN.",
+  "f": "Setup is locked by a PIN, so nobody at the till can put their own wallet in. Forgot it? Reinstall, enter the wallets again and set a new PIN: nothing on-chain changes, and every QR shows the address, so a swap cannot stay hidden.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#setup-pin"
+ },
+ {
+  "file": "wen-counter-card-5-many-wallets.png",
+  "q": "Can one Wen Counter serve several departments?",
+  "kicker": "Wen Counter",
+  "bold": "Yes: one counter, many wallets.",
+  "f": "Wallet #1 plus wallets #2..X, each with a type and a name, such as #2 · Department · Toys or #3 · Tips · Bar tips. The cashier picks where the sale goes, and the head office view adds up sales per wallet.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#many-wallets"
+ },
+ {
+  "file": "wen-counter-card-6-open-audit.png",
+  "q": "How many open checks guard Wen Counter?",
+  "kicker": "Under the hood",
+  "bold": "57.",
+  "f": "25 checks for the logic, 13 that prove by reading the code that the counter cannot sign, send or reach a wallet, and 19 in a real phone browser with fake wallets, hostile text, the setup PIN and the head office view. Anyone can rerun them.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#open-audit"
+ },
+ {
+  "file": "wen-counter-card-7-im-a-cat.png",
+  "q": "What does Wen ask in return for Wen Counter?",
+  "kicker": "Wen says",
+  "bold": "Nothing, just a word.",
+  "f": "\"We require nothing,\" Wen says: post on X or on your site that you use the WEN solution, with its name, and nobody will ever ask how many shops you run.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#story"
+ },
+ {
+  "file": "wen-counter-cards-stack.png",
+  "q": "When does Wen Counter count a payment as paid?",
+  "kicker": "Under the hood",
+  "bold": "When five things match.",
+  "f": "A payment counts only when the reference, the recipient, the token, the amount and the success all match on-chain. Anything else stays unpaid.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#receive-only"
+ },
+ {
+  "file": "wen-counter-cards-stack-2.png",
+  "q": "How is the original Wen Counter build recognised?",
+  "kicker": "Under the hood",
+  "bold": "By one WCP-1 fingerprint.",
+  "f": "One WCP-1 block fingerprint identifies the original build of the counter, so a copy can be checked against it; the code and the 57 checks are public for anyone to rerun.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#open-audit"
+ },
+ {
+  "file": "wen-counter-banner-x.png",
+  "q": "How does a shop refund a Wen Counter sale?",
+  "kicker": "Wen Counter",
+  "bold": "With a new payment, marked refund.",
+  "f": "A refund is a new payment from the shop's own wallet, with refund: plus the original transaction in the memo, so anyone can match the two.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#tools"
+ },
+ {
+  "file": "wen-counter-shop-toys-bear.jpg",
+  "q": "How many steps does it take to open your own Wen Counter?",
+  "kicker": "The basics",
+  "bold": "Five.",
+  "f": "Open the counter on a phone or tablet, create a wallet in a Solana wallet app you trust, register it in Setup behind your own PIN, paste the receiving address (the counter checks it on-chain), and manage the money in your own wallet.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#five-steps"
+ },
+ {
+  "file": "wen-counter-shop-toys-robot.jpg",
+  "q": "Is a Wen Counter receipt a fiscal receipt?",
+  "kicker": "The basics",
+  "bold": "No.",
+  "f": "The buyer can get a QR, the text or a receipt NFT, but it is not a fiscal receipt: shops check their country's rules and talk to their accountant.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#tools"
+ },
+ {
+  "file": "wen-counter-shop-toys-bag.jpg",
+  "q": "What can a cashier attach to a Wen Counter sale?",
+  "kicker": "Wen Counter",
+  "bold": "A comment.",
+  "f": "A comment, such as a product code or a name, lands in the ledger, the receipt and the CSV, and travels with the payment as a memo where the buyer's wallet supports it. A memo is public.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#tools"
+ },
+ {
+  "file": "wen-counter-shop-grill-1.jpg",
+  "q": "How much did US merchants pay in card fees in 2024?",
+  "kicker": "Why it matters",
+  "bold": "$187.2 billion.",
+  "f": "US merchants paid $187.2 billion in card fees in 2024, and shops pay roughly 1–3% on every card sale. Small tickets, like skewers at a street grill, feel the fixed part of the fee most.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#why"
+ },
+ {
+  "file": "wen-counter-shop-grill-2.jpg",
+  "q": "How long did a devnet sale take on Wen Counter?",
+  "kicker": "Wen Counter",
+  "bold": "17 seconds.",
+  "f": "The almanac's devnet video shows a sale going from the QR to ✓ Paid in 17 seconds, with the QR blurred on purpose.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#why"
+ },
+ {
+  "file": "wen-counter-shop-pizza.jpg",
+  "q": "Who is Wen Counter made for first?",
+  "kicker": "The basics",
+  "bold": "Crypto communities, events and online shops.",
+  "f": "The solution names its audience honestly: crypto communities, events and online shops for their own audience, not mass adoption. Seven answers to read before scaling are written down on the solution page.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#before-you-scale"
+ },
+ {
+  "file": "wen-counter-shop-clothes-polo.jpg",
+  "q": "How can a chain of shops close the day with Wen Counter?",
+  "kicker": "Wen Counter",
+  "bold": "By moving the takings to the company wallet.",
+  "f": "For a chain: a till wallet per branch, and in the evening the day's takings move to the company wallet, for example a multisig.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#many-wallets"
+ },
+ {
+  "file": "wen-counter-shop-clothes-hoodie.jpg",
+  "q": "Who controls the money when a shop uses Wen Counter?",
+  "kicker": "The basics",
+  "bold": "The shop, in its own wallet.",
+  "f": "The mechanism takes nothing, holds nothing and charges nothing; it follows the Solana network's rules, and the wallet is the shop's own. The shop uses the solution on its own responsibility.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#before-you-scale"
+ },
+ {
+  "file": "wen-counter-shop-clothes-cap.jpg",
+  "q": "What is the first Wen Counter setup PIN?",
+  "kicker": "Wen Counter",
+  "bold": "1111, changed at the first start.",
+  "f": "The first PIN is a deployment parameter, a simple 1111, and the owner changes it at the first start so nobody at the till can change the wallets.",
+  "l": "posts/wen-counter-free-open-till-for-every-shop.html#setup-pin"
+ },
+ {
+  "file": "wen-lab-saga-01-desert-two-suns.jpeg",
+  "q": "What does the Wen Open Lab build?",
+  "kicker": "Wen Open Lab",
+  "bold": "Free, working models.",
+  "f": "The Lab takes the open tools behind Wen, the WNS token layout, Solana Token-2022 and Solana Pay, and builds free, working models that a developer, a shop, a fintech team or a bank can study, test and reuse.",
+  "l": "lab/index.html"
+ },
+ {
+  "file": "wen-lab-saga-09-hangar-cargo.jpeg",
+  "q": "How does a Wen Open Lab receipt keep an order private?",
+  "kicker": "Wen Open Lab",
+  "bold": "Only its hash goes on-chain.",
+  "f": "The shop hashes the order (id, product, price, date) with SHA-256; only the hash goes on-chain, in a Token-2022 mint with its metadata inside the token and a supply locked at exactly one.",
+  "l": "lab/receipt-warranty-wns.html"
+ },
+ {
+  "file": "wen-lab-saga-07-ancient-temple.jpeg",
+  "q": "What happens if a WNS royalty hook's conditions are not met?",
+  "kicker": "Under the hood",
+  "bold": "The whole transfer is rolled back.",
+  "f": "A WNS NFT carries the Token-2022 Transfer Hook extension naming the royalty program diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay. Token-2022 calls it on every transfer, and if its conditions are not met the whole transaction is rolled back.",
+  "l": "lab/creator-royalties-wns.html"
+ },
+ {
+  "file": "wen-lab-saga-03-city-of-towers-friend.jpeg",
+  "q": "What does the Lab's B2B settlement token refuse?",
+  "kicker": "Wen Open Lab",
+  "bold": "Payments with no invoice memo.",
+  "f": "The Stage 3 model builds a settlement token that refuses payments carrying no invoice memo and refuses counterparties nobody approved: business rules inside the token itself.",
+  "l": "lab/b2b-invoices-token-2022.html"
+ },
+ {
+  "file": "wen-lab-saga-02-cockpit-hyperspace.jpeg",
+  "q": "How fast is a payment final in the Lab's Solana Pay bridge?",
+  "kicker": "Wen Open Lab",
+  "bold": "In about 13 seconds.",
+  "f": "The Payments Bridge confirms a Solana Pay payment in seconds and treats it as final in about 13 seconds, where card acquiring authorizes in seconds but settles the money in days.",
+  "l": "lab/payments-acquiring-bridge.html"
+ }
+]

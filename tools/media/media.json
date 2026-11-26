@@ -240,177 +240,177 @@
  {
   "file": "wen-news-wen-counter-og.png",
   "alt": "News card: a free till for every shop, Wen Counter, open and receive-only",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "Wen Counter, opened by the Wen Open Lab on November 12, 2026, is a till that lives in a web page: type the amount, show a Solana Pay QR, and the chain confirms the sale. No server, no app store, no card data, no fee per sale.",
+  "link": "image-story/wen-news-wen-counter-og.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-1-coffee.png",
   "alt": "Card: 12.9% on a coffee; Wen Counter costs 0 per sale",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "On a 3-dollar coffee a published plan of 2.9% + 30¢ takes 12.9%, because the fixed part of the fee hurts small tickets most. With Wen Counter the till costs 0; the buyer's wallet pays only the Solana network fee, 5,000 lamports per signature.",
+  "link": "image-story/wen-counter-card-1-coffee.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-2-receive-only.png",
   "alt": "Card: receive-only by design, three read requests, 57 open checks",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The counter never connects to a wallet, never asks it to sign and holds no key. Its code may send only getSignaturesForAddress, getTransaction and getAccountInfo, so there is no path from the counter to the shop's money.",
+  "link": "image-story/wen-counter-card-2-receive-only.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-3-today-you-kept.png",
   "alt": "Card: today you kept, measured from confirmed sales",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The ledger measures the card fee you did not pay from confirmed sales at your card terms, shows the effective rate of your own ticket mix, and exports a CSV for your accountant for today, a week, a month, a quarter, a year or any period.",
+  "link": "image-story/wen-counter-card-3-today-you-kept.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-4-setup-pin.png",
   "alt": "Card: the owner sets the wallets, setup locked by a PIN",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "Setup is locked by a PIN, so nobody at the till can put their own wallet in. Forgot it? Reinstall, enter the wallets again and set a new PIN: nothing on-chain changes, and every QR shows the address, so a swap cannot stay hidden.",
+  "link": "image-story/wen-counter-card-4-setup-pin.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-5-many-wallets.png",
   "alt": "Card: one counter, many wallets, head office view",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "Wallet #1 plus wallets #2..X, each with a type and a name, such as #2 · Department · Toys or #3 · Tips · Bar tips. The cashier picks where the sale goes, and the head office view adds up sales per wallet.",
+  "link": "image-story/wen-counter-card-5-many-wallets.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-6-open-audit.png",
   "alt": "Card: 57 open checks, break it if you can",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "25 checks for the logic, 13 that prove by reading the code that the counter cannot sign, send or reach a wallet, and 19 in a real phone browser with fake wallets, hostile text, the setup PIN and the head office view. Anyone can rerun them.",
+  "link": "image-story/wen-counter-card-6-open-audit.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-card-7-im-a-cat.png",
   "alt": "Card: Wen says, I am a cat, make something useful",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "\"We require nothing,\" Wen says: post on X or on your site that you use the WEN solution, with its name, and nobody will ever ask how many shops you run.",
+  "link": "image-story/wen-counter-card-7-im-a-cat.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-cards-stack.png",
   "alt": "Three Wen Counter cards stacked: coffee, receive-only, today you kept",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "A payment counts only when the reference, the recipient, the token, the amount and the success all match on-chain. Anything else stays unpaid.",
+  "link": "image-story/wen-counter-cards-stack.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-cards-stack-2.png",
   "alt": "Three Wen Counter cards stacked: setup PIN, many wallets, open audit",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "One WCP-1 block fingerprint identifies the original build of the counter, so a copy can be checked against it; the code and the 57 checks are public for anyone to rerun.",
+  "link": "image-story/wen-counter-cards-stack-2.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-banner-x.png",
   "alt": "Banner: hey, where are you going? Wen Counter, the till costs 0 and only receives",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "A refund is a new payment from the shop's own wallet, with refund: plus the original transaction in the memo, so anyone can match the two.",
+  "link": "image-story/wen-counter-banner-x.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-toys-bear.jpg",
   "alt": "Wen shows a teddy bear to children at a toy shop counter",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "Open the counter on a phone or tablet, create a wallet in a Solana wallet app you trust, register it in Setup behind your own PIN, paste the receiving address (the counter checks it on-chain), and manage the money in your own wallet.",
+  "link": "image-story/wen-counter-shop-toys-bear.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-toys-robot.jpg",
   "alt": "Wen holds up a toy robot for smiling children",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The buyer can get a QR, the text or a receipt NFT, but it is not a fiscal receipt: shops check their country's rules and talk to their accountant.",
+  "link": "image-story/wen-counter-shop-toys-robot.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-toys-bag.jpg",
   "alt": "Wen packs toys into a paper bag that says thank you",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "A comment, such as a product code or a name, lands in the ledger, the receipt and the CSV, and travels with the payment as a memo where the buyer's wallet supports it. A memo is public.",
+  "link": "image-story/wen-counter-shop-toys-bag.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-grill-1.jpg",
   "alt": "Wen grills skewers at a night market stall while children watch",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "US merchants paid $187.2 billion in card fees in 2024, and shops pay roughly 1–3% on every card sale. Small tickets, like skewers at a street grill, feel the fixed part of the fee most.",
+  "link": "image-story/wen-counter-shop-grill-1.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-grill-2.jpg",
   "alt": "Wen lifts a skewer from the grill as children laugh",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The almanac's devnet video shows a sale going from the QR to ✓ Paid in 17 seconds, with the QR blurred on purpose.",
+  "link": "image-story/wen-counter-shop-grill-2.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-pizza.jpg",
   "alt": "Wen slides a fresh pizza out of a wood-fired oven",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The solution names its audience honestly: crypto communities, events and online shops for their own audience, not mass adoption. Seven answers to read before scaling are written down on the solution page.",
+  "link": "image-story/wen-counter-shop-pizza.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-clothes-polo.jpg",
   "alt": "Wen shows a blue polo shirt to children in a clothing shop",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "For a chain: a till wallet per branch, and in the evening the day's takings move to the company wallet, for example a multisig.",
+  "link": "image-story/wen-counter-shop-clothes-polo.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-clothes-hoodie.jpg",
   "alt": "Wen holds up a blue hoodie on a hanger for smiling children",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The mechanism takes nothing, holds nothing and charges nothing; it follows the Solana network's rules, and the wallet is the shop's own. The shop uses the solution on its own responsibility.",
+  "link": "image-story/wen-counter-shop-clothes-hoodie.html",
+  "series": "Image story"
  },
  {
   "file": "wen-counter-shop-clothes-cap.jpg",
   "alt": "Wen puts a cap on a smiling boy in a clothing shop",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The first PIN is a deployment parameter, a simple 1111, and the owner changes it at the first start so nobody at the till can change the wallets.",
+  "link": "image-story/wen-counter-shop-clothes-cap.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-saga-01-desert-two-suns.jpeg",
   "alt": "Wen the kitten in a white space suit holds a glowing blue blade in a desert under two suns",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The Lab takes the open tools behind Wen, the WNS token layout, Solana Token-2022 and Solana Pay, and builds free, working models that a developer, a shop, a fintech team or a bank can study, test and reuse.",
+  "link": "image-story/wen-lab-saga-01-desert-two-suns.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-saga-09-hangar-cargo.jpeg",
   "alt": "Wen checks cargo crates in a starship hangar while robots load boxes",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The shop hashes the order (id, product, price, date) with SHA-256; only the hash goes on-chain, in a Token-2022 mint with its metadata inside the token and a supply locked at exactly one.",
+  "link": "image-story/wen-lab-saga-09-hangar-cargo.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-saga-07-ancient-temple.jpeg",
   "alt": "Wen with a glowing blade at the gate of an ancient carved temple in a misty forest",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "A WNS NFT carries the Token-2022 Transfer Hook extension naming the royalty program diste3nXmK7ddDTs1zb6uday6j4etCa9RChD8fJ1xay. Token-2022 calls it on every transfer, and if its conditions are not met the whole transaction is rolled back.",
+  "link": "image-story/wen-lab-saga-07-ancient-temple.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-saga-03-city-of-towers-friend.jpeg",
   "alt": "Wen walks with a friendly green creature through a city of tall towers",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The Stage 3 model builds a settlement token that refuses payments carrying no invoice memo and refuses counterparties nobody approved: business rules inside the token itself.",
+  "link": "image-story/wen-lab-saga-03-city-of-towers-friend.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-saga-02-cockpit-hyperspace.jpeg",
   "alt": "Wen pilots a starship through streaks of light in deep space",
-  "note": "",
-  "link": "",
-  "series": ""
+  "note": "The Payments Bridge confirms a Solana Pay payment in seconds and treats it as final in about 13 seconds, where card acquiring authorizes in seconds but settles the money in days.",
+  "link": "image-story/wen-lab-saga-02-cockpit-hyperspace.html",
+  "series": "Image story"
  },
  {
   "file": "wen-lab-saga-08-snow-ride.jpeg",
