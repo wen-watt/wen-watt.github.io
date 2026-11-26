@@ -2351,3 +2351,16 @@ PR #13 (9737b70), решения владельца:
 - **POPCAT на IQ.wiki (PR #34):** страница popcat — о мемкоине на Solana (Cryptoassets, Memecoin), адреса mint нет → в iqwiki-record.json как «checked» (сверено 26.11).
 - **Каталоги скилла:** agentskill.sh — скилл уже опубликован (agentskill.sh/@wen-watt, аудит безопасности 100/100 от 24.11) → карточка в sources.html (#post-wen-counter-shop-skill-5), в хабе skills и llms-full. smithery — нужна авторизация владельца через GitHub (Claude войти не может). skillsmp — формы нет, собирает сам; поиском пока не находится, проверить позже.
 - **GitHub Release v0.2.0:** создание релизов из сессии запрещено (403). Готовый текст и шаги: RELEASE-wen-counter-pay-v0.2.0.md (предрелиз, devnet-прогон впереди, SHA-256 архива указан).
+
+## §134 · 27.11.2026, ночь · Релиз 0.2.0 вышел + вертикальный ролик «Truth · Belief · Kindness»
+
+- GitHub Release wen-counter-pay-v0.2.0 опубликован владельцем (zip приложен, SHA-256 совпадает: 034db423…). Мелочи на усмотрение: отметить «Set as a pre-release» (сейчас «Latest») и убрать первую строку «Attach binaries…» из описания.
+- Ролик wen-hero-truth-belief-kindness-vertical.mp4: 1080×1920, 30 с, из 4 роликов владельца (полёт → превращение и бабочка → космонавт среди людей → прогулка по городам → площадь). Слоган в начале и в финале: «WEN SAYS · Bring the truth. Believe in yourself. Be kind.»; подписи по сценам; города NEW YORK · LONDON · PARIS · ISTANBUL · DUBAI сверены по кадрам; финал — карточка-постер с адресом сайта. Горизонтальный полёт — в постерной рамке с размытым фоном, остальное — кадрирование по герою. Единый бирюзово-янтарный тон, зерно, вспышки на склейках.
+- Звук синтезирован Claude (100 BPM, Am–F–C–G): пэд, бас, бочка, хлопки и хэты на прогулке, нарастания и удары на склейках, свист на сменах городов, колокольчики в финале. Пик −0,6 дБ.
+- Исходники монтажа: /home/claude/work/v2 (segs.sh, comp.py, audio2.py).
+
+## §135 · 27.11.2026 · Статьи для dev.to и Hashnode о Compare WEN
+
+- DEVTO-251127-compare-wen.md — для разработчиков: getAccountInfo с jsonParsed, отказ для кошелька и токен-аккаунта, чтение authorities и расширений Token-2022, запасные публичные узлы (урок 403), проверка программ на executable, IQ.wiki по адресу mint, безопасный вывод (textContent), e2e-тест 33/33. Фронтматтер dev.to: published: false, теги solana/javascript/web3/opensource, обложка poster-1, canonical_url → новость альманаха.
+- HASHNODE-251127-compare-wen.md — для читателей, магазинов и финансов: 14 свойств простыми словами, почему без рейтинга, программы вокруг WEN, 20 фактов, IQ.wiki, безопасность, вопросы для бизнеса. Обложка poster-2, в настройках Hashnode указать оригинальный URL (новость альманаха).
+- Аккаунты: dev.to/wen-cat и wen-cat.hashnode.dev. После публикации — ссылки в sources.html (раздел новости Compare WEN).
