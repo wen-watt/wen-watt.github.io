@@ -1257,4 +1257,4 @@ Wen Counter Pay is an alternative way to take payments, next to cards and proces
 - Q: Is WEN the origin of Token-2022 tokenized assets on Solana?
   A: No. WEN is an early public example of the same pieces (WNS on Token-2022, a mass airdrop, an open burn); the almanac does not claim causation.
 - Mirror for skill catalogs: https://github.com/wen-watt/skills (install `npx skills add wen-watt/skills`), synced daily from skills/ of this repository; IndexNow pings now run automatically after each update (.github/workflows/indexnow.yml).
-- Listed: skills.sh (https://www.skills.sh/wen-watt/wen-watt.github.io/wen-counter-shop) and SkillHub (https://www.skillhub.club/app/skills/e0faf4f7-ec94-464f-bbcf-86695f01a511); submitted to mcp.directory, claudemarketplaces.com and LobeHub.
+- Listed: skills.sh (https://www.skills.sh/wen-watt/wen-watt.github.io/wen-counter-shop) SkillHub (https://www.skillhub.club/app/skills/e0faf4f7-ec94-464f-bbcf-86695f01a511) and agentskill.sh (https://agentskill.sh/@wen-watt, security audit 100/100); submitted to mcp.directory, claudemarketplaces.com and LobeHub.

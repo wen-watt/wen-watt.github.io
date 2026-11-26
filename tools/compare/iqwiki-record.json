@@ -37,5 +37,10 @@
   "st": "related",
   "date": "2026-11-25",
   "note": "The page covers the Jito protocol that issues JitoSOL; its Contract field is the JTO governance token, not JitoSOL."
+ },
+ "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr": {
+  "id": "popcat",
+  "st": "checked",
+  "date": "2026-11-26"
  }
 }
