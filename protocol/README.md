@@ -5,6 +5,7 @@ The working log of the Wen Almanac (wen-watt.github.io), the gateway wen-crypto.
 - `WEN_PROTOCOL.md` — the protocol. The current summary of open plans is §115 (25.11.2026), at the end of the file. Written in Russian.
 - `MARKET-ANALYSIS-241124.md` — gateway languages and crypto rules per market (overview of open sources, not legal advice).
 - `IQWIKI-EDITS-251126.md` — ready-to-paste IQ.wiki edits: Solana mint addresses for the WEN, WIF, MEW and USDC pages, with sources.
+- `META-VIDEO-271126-wen-hero.md` — YouTube Shorts, TikTok and X texts for the Wen hero video.
 - `DEVTO-251127-compare-wen.md`, `HASHNODE-251127-compare-wen.md` — articles about Compare WEN for dev.to and Hashnode.
 - `RELEASE-wen-counter-pay-v0.2.0.md` — ready text and steps for the Wen Counter Pay 0.2.0 GitHub pre-release.
 - `X-POSTS-251126-wen-says.md` — six "Wen wishes you" X posts with share pages.
