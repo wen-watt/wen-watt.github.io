@@ -1,5 +1,145 @@
 [
  {
+  "file": "wen-media-f/wandering-wen-cover.jpg",
+  "alt": "Wandering Wen series cover: Wen the astronaut cat waving, with city posters behind",
+  "note": "Wandering Wen: 19 places, one cat, and where Solana already lives.",
+  "link": "wandering-wen/",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-new-york.jpg",
+  "alt": "Wen the astronaut cat in New York, USA, by the Times Square",
+  "note": "Wandering Wen in New York: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/new-york.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-paris.jpg",
+  "alt": "Wen the astronaut cat in Paris, France, by the Seine River",
+  "note": "Wandering Wen in Paris: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/paris.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-tokyo.jpg",
+  "alt": "Wen the astronaut cat in Tokyo, Japan, by the Shibuya Crossing",
+  "note": "Wandering Wen in Tokyo: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/tokyo.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-london.jpg",
+  "alt": "Wen the astronaut cat in London, United Kingdom, by the Big Ben",
+  "note": "Wandering Wen in London: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/london.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-rome.jpg",
+  "alt": "Wen the astronaut cat in Rome, Italy, by the Colosseum",
+  "note": "Wandering Wen in Rome: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/rome.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-cairo.jpg",
+  "alt": "Wen the astronaut cat in Cairo, Egypt, by the Pyramids of Giza",
+  "note": "Wandering Wen in Cairo: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/cairo.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-sydney.jpg",
+  "alt": "Wen the astronaut cat in Sydney, Australia, by the Opera House",
+  "note": "Wandering Wen in Sydney: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/sydney.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-rio-de-janeiro.jpg",
+  "alt": "Wen the astronaut cat in Rio de Janeiro, Brazil, by the Christ the Redeemer",
+  "note": "Wandering Wen in Rio de Janeiro: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/rio-de-janeiro.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-new-delhi.jpg",
+  "alt": "Wen the astronaut cat in New Delhi, India, by the India Gate",
+  "note": "Wandering Wen in New Delhi: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/new-delhi.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-toronto.jpg",
+  "alt": "Wen the astronaut cat in Toronto, Canada, by the CN Tower",
+  "note": "Wandering Wen in Toronto: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/toronto.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-reykjavik.jpg",
+  "alt": "Wen the astronaut cat in Reykjavik, Iceland, by the Hallgrímskirkja",
+  "note": "Wandering Wen in Reykjavik: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/reykjavik.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-stockholm.jpg",
+  "alt": "Wen the astronaut cat in Stockholm, Sweden, by the Old Town",
+  "note": "Wandering Wen in Stockholm: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/stockholm.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-helsinki.jpg",
+  "alt": "Wen the astronaut cat in Helsinki, Finland, by the Helsinki Cathedral",
+  "note": "Wandering Wen in Helsinki: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/helsinki.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-amsterdam.jpg",
+  "alt": "Wen the astronaut cat in Amsterdam, Netherlands, by the Canals",
+  "note": "Wandering Wen in Amsterdam: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/amsterdam.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-berlin.jpg",
+  "alt": "Wen the astronaut cat in Berlin, Germany, by the Brandenburg Gate",
+  "note": "Wandering Wen in Berlin: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/berlin.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-zermatt.jpg",
+  "alt": "Wen the astronaut cat in Zermatt, Switzerland, by the Matterhorn",
+  "note": "Wandering Wen in Zermatt: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/zermatt.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-ouro-preto.jpg",
+  "alt": "Wen the astronaut cat in Ouro Preto, Brazil, by the Colonial town",
+  "note": "Wandering Wen in Ouro Preto: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/ouro-preto.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-galapagos.jpg",
+  "alt": "Wen the astronaut cat in Galápagos, Ecuador, by the Galápagos Islands",
+  "note": "Wandering Wen in Galápagos: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/galapagos.html",
+  "series": "Wandering Wen"
+ },
+ {
+  "file": "wen-media-f/wandering-wen-machu-picchu.jpg",
+  "alt": "Wen the astronaut cat in Machu Picchu, Peru, by the Inca citadel",
+  "note": "Wandering Wen in Machu Picchu: the city's story, Solana there and a kind word from Wen.",
+  "link": "wandering-wen/machu-picchu.html",
+  "series": "Wandering Wen"
+ },
+ {
   "file": "wen-media-f/wen-says-be-strong.jpg",
   "alt": "Wen in a blue hero suit with a cape flies over a sunny city, caption: Be strong",
   "note": "Wen says: be strong. Stay strong, fren, and fly anyway.",
