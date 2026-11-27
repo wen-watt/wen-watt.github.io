@@ -88,6 +88,7 @@
     + '      <li><a href="' + p + 'posts/wen-program-library-review.html">Wen Program Library</a></li>'
     + '      <li><a href="' + p + 'sources.html#tab-community">Sources and community links</a></li>'
     + '      <li><a href="' + p + 'wen-media.html">Wen Media</a></li>'
+    + '      <li><a href="' + p + 'wandering-wen/">&#127757; Wandering Wen</a></li>'
     + '      <li><a href="' + p + 'search-video-wen.html">More Wen</a></li>'
     + '    </ul>'
     + '  </nav>'
